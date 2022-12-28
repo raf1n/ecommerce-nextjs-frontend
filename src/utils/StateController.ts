@@ -1,6 +1,7 @@
 import { state, action, createStore } from 'usm-redux';
 import { compose } from 'redux';
 
+
 const composeEnhancers =
     // @ts-ignore
     typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -10,21 +11,33 @@ const composeEnhancers =
         })
         : compose;
 
+export interface IStates {
+    counter: number
+}
+
 export class Controller {
     @state
-    states = {
+    states: IStates = {
         counter: 0
     }
 
     @action
-    increase() {
-        this.states.counter += 1;
+    setState(states: Partial<IStates>) {
+        this.states = {
+            ...this.states,
+            ...states
+        }
     }
 
-    @action
-    decrease() {
-        this.states.counter -= 1;
-    }
+    // @action
+    // increase() {
+    //     this.states.counter += 1;
+    // }
+
+    // @action
+    // decrease() {
+    //     this.states.counter -= 1;
+    // }
 }
 
 export const controller = new Controller();

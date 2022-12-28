@@ -9,14 +9,16 @@ const index = () => {
     <p>Counter
       {states.counter}
     </p>
-      <button onClick={() => {
-          controller.increase()
-      }}>+</button>
-      <button onClick={() => {
-          //
-          // doSomething()
-          controller.decrease()
-      }}>-</button>
+    <button onClick={() => {
+      controller.setState({
+        counter: states.counter + 1
+      })
+    }}>+</button>
+    <button onClick={() => {
+      //
+      // doSomething()
+      // controller.decrease()
+    }}>-</button>
   </div>
 }
 

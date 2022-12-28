@@ -16,6 +16,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/utils/StateController.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/utils/StateController.ts"],
   "exclude": ["node_modules"]
 }
