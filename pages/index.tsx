@@ -1,12 +1,13 @@
 import { useSelector } from "react-redux";
 import { controller } from "../src/state/StateController";
-
+import Homepage from "../components/pages/homepage/Homepage";
 
 const index = () => {
   const states = useSelector(() => controller.states);
 
-  return <div>
-    <p className="text-lg">Counter
+  return (
+    <div>
+      {/* <p className="text-lg">Counter
       {states.counter}
     </p>
     <button onClick={() => {
@@ -16,8 +17,10 @@ const index = () => {
       //
       // doSomething()
       controller.decrease()
-    }}>-</button>
-  </div>
-}
+    }}>-</button> */}
+      <Homepage></Homepage>
+    </div>
+  );
+};
 
 export default index;
