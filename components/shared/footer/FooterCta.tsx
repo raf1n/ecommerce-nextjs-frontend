@@ -37,25 +37,25 @@ const FooterCta: React.FC<Props> = (props) => {
                 <path
                   d="M15 14H2C1.4 14 1 13.6 1 13V2C1 1.4 1.4 1 2 1H15C15.6 1 16 1.4 16 2V13C16 13.6 15.6 14 15 14Z"
                   stroke="currentColor"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeMiterlimit="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
                 <path
                   d="M3 4L8.5 8.5L14 4"
                   stroke="currentColor"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeMiterlimit="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
               </svg>
             </span>
             <input
               type="email"
               name="email"
-              className="w-full h-full focus:outline-none text-sm placeholder:text-xs placeholder:text-qblack text-qblack font-400 tracking-wider"
+              className="w-full h-full focus:outline-none text-sm placeholder:text-xs tracking-wider"
               placeholder="EMAIL ADDRESS"
-              value=""
+              // value=""
             />
           </div>
           <button
