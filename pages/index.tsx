@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { controller } from "../src/state/StateController";
+import Homepage from "../components/pages/homepage/Homepage";
 
 
 const index = () => {
@@ -17,6 +18,8 @@ const index = () => {
       // doSomething()
       controller.decrease()
     }}>-</button>
+
+    <Homepage />
   </div>
 }
 
