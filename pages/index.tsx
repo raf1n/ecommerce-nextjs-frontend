@@ -6,7 +6,7 @@ const index = () => {
   const states = useSelector(() => controller.states);
 
   return <div>
-    <p className="text-lg">Counter
+    {/* <p className="text-lg">Counter
       {states.counter}
     </p>
     <button onClick={() => {
@@ -16,7 +16,8 @@ const index = () => {
       //
       // doSomething()
       controller.decrease()
-    }}>-</button>
+    }}>-</button> */}
+    <h1>Hello</h1>
   </div>
 }
 
