@@ -1,23 +1,21 @@
 import { useSelector } from "react-redux";
-import { controller } from "../src/utils/StateController";
+import { controller } from "../src/state/StateController";
 
 
 const index = () => {
   const states = useSelector(() => controller.states);
 
   return <div>
-    <p>Counter
+    <p className="text-lg">Counter
       {states.counter}
     </p>
     <button onClick={() => {
-      controller.setState({
-        counter: states.counter + 1
-      })
+      controller.increase()
     }}>+</button>
     <button onClick={() => {
       //
       // doSomething()
-      // controller.decrease()
+      controller.decrease()
     }}>-</button>
   </div>
 }
