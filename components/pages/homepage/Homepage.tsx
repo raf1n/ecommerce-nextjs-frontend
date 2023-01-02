@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import Shopbybrand from "./shopbybrand/Shopbybrand";
+import Toprated from "./topratedproducts/Toprated";
 
 interface Props { }
 
@@ -10,6 +11,7 @@ const Homepage: React.FC<Props> = (props) => {
 
   return <div>homepage
     <Shopbybrand></Shopbybrand>
+    <Toprated></Toprated>
   </div>;
 };
 
