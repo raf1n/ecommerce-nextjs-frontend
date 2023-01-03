@@ -24,7 +24,7 @@ const Itemdetails: React.FC<Props> = (props) => {
                             </li> */}
                         </ul>
                     </div>
-                    <div className='w-full h-[1px] bg-[#372626] absolute left-0 sm:top-[50px] top-[36px] -z-10'>
+                    <div className='w-full h-[1px] bg-[#c1cccc] relative left-0 sm:top-[00px] top-[36px] -z-1'>
 
                     </div>
                 </div>
