@@ -42,7 +42,6 @@ const GetInTouch: React.FC<Props> = (props) => {
                 placeholder="Name"
                 className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                 id="name"
-                value=""
               />
             </div>
           </div>
@@ -60,7 +59,6 @@ const GetInTouch: React.FC<Props> = (props) => {
                 placeholder="Email"
                 className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                 id="email"
-                value=""
               />
             </div>
           </div>
@@ -78,7 +76,6 @@ const GetInTouch: React.FC<Props> = (props) => {
                 placeholder="Your Subject here"
                 className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                 id="subject"
-                value=""
               />
             </div>
           </div>
