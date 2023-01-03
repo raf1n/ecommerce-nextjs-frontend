@@ -1,3 +1,14 @@
+ .nav-widget-wrapper .nav ul li .sub-menu {
+    transition: all .5s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: auto;
+}
+.nav-widget-wrapper .nav ul li:hover .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
 .box{
     box-shadow: rgba(0, 0, 0, 0.14) 0px 15px 50px 0px
 }

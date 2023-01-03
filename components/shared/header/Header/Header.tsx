@@ -85,7 +85,7 @@ const Header: React.FC<Props> = (props) => {
                                                 <input type="text" className="search-input" placeholder="Search Products ..." />
                                             </div>
                                         </div>
-                                        <div className="w-[1px] h-[22px] bg-qgray-border"></div>
+                                        <div className="w-[1px] h-[22px] bg-qgrayLite"></div>
                                         <div className="flex-1 flex items-center px-4 relative">
                                             <button className="w-full text-xs font-500 text-qgray flex justify-between items-center">
                                                 <span className="line-clamp-1">All Categories</span>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import styles from './styles.module.css'
@@ -7,15 +7,22 @@ interface Props { }
 
 const HeaderDropdown: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-
+  const [openDropdown, setOpenDropdown]=useState(false)
+  const openCategoryDropDown = () => {
+    console.log('hello')
+  setOpenDropdown(!openDropdown)
+}
   return (
-    <div className="nav-widget-wrapper w-full  h-[60px] relative z-30  quomodo-shop-nav-bar lg:block hidden bg-qyellow ">
+    <div className={`${styles['nav-widget-wrapper']} w-full  h-[60px] relative z-30  quomodo-shop-nav-bar lg:block hidden bg-qyellow`}>
       <div className="container-x mx-auto h-full">
         <div className="w-full h-full relative">
           <div className="w-full h-full flex justify-between items-center">
             <div className="category-and-nav flex xl:space-x-7 space-x-3 items-center">
               <div className="category w-[270px] h-[53px] bg-white px-5 rounded-t-md mt-[6px] relative">
+                {openDropdown && <div onClick={() => { openCategoryDropDown() }} className="fixed top-0 left-0 w-full h-full -z-10"></div>
+                }
                 <button
+                  onClick={() => { openCategoryDropDown()}}
                   type="button"
                   className="w-full h-full flex justify-between items-center"
                 >
@@ -64,7 +71,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                   </div>
                 </button>
                 <div
-                  className={`${styles['box']} category-dropdown w-full absolute left-0 top-[53px]  hidden`}
+                  className={`${styles['box']} category-dropdown w-full absolute left-0 top-[53px]  ${openDropdown?'block':'hidden'}`}
                 
                 >
                   <ul className="categories-list relative">
@@ -1235,7 +1242,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                   </ul>
                 </div>
               </div>
-              <div className="nav">
+              <div className={`${styles['nav']}`}>
                 <ul className="nav-wrapper flex xl:space-x-10 space-x-5">
                   <li>
                     <span className="flex items-center text-sm font-600 cursor-pointer ">
@@ -1266,7 +1273,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                         </svg>
                       </span>
                     </span>
-                    {/* <div className="sub-menu w-full absolute left-0 top-[60px]" >
+                    <div className={`${styles['sub-menu']} w-full absolute left-0 top-[60px]`} >
                       <div
                         className={`${styles['boxHeight']} mega-menu-wrapper w-full bg-white p-[30px] flex justify-between items-center`}
                        
@@ -1457,7 +1464,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                           </div>
                         </div>
                       </div>
-                    </div> */}
+                    </div>
                   </li>
                   <li>
                     <a rel="noopener noreferrer" href="/sellers">
@@ -1516,7 +1523,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                         </svg>
                       </span>
                     </span>
-                    {/* <div className="sub-menu w-[220px] absolute left-0 top-[60px]">
+                    <div className={`${styles['sub-menu']} w-[220px] absolute left-0 top-[60px]`}>
                       <div
                         className={`${styles['box']} w-full bg-white flex justify-between items-center `}
                         
@@ -1577,7 +1584,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                           </div>
                         </div>
                       </div>
-                    </div> */}
+                    </div>
                   </li>
                 </ul>
               </div>
