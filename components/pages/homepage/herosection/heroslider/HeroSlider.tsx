@@ -4,7 +4,7 @@ import { controller } from "../../../../../src/state/StateController";
 import Slider from "react-slick";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
-import Styles from "./heroslider.module.css";
+
 interface Props {}
 
 const HeroSlider: React.FC<Props> = (props) => {
@@ -46,7 +46,7 @@ const HeroSlider: React.FC<Props> = (props) => {
   };
   return (
     <div className="xl:w-[740px] w-full lg:h-full xl:h-full md:h-[500px] h-[220px] xl:mb-0 mb-2 aos-init aos-animate">
-      <div className={`${Styles["sliderwrapper"]} w-full h-full`}>
+      <div className={`slider-wrapper w-full h-full`}>
         <Slider {...settings}>
           {[1, 2].map((el) => (
             <div

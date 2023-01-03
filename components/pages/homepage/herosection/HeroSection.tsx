@@ -12,7 +12,7 @@ const HeroSection: React.FC<Props> = (props) => {
   return (
     <div className="w-full min-h-screen pt-[30px] pb-[60px]">
       <div className="container-x mx-auto pb-[60px]">
-        <div className="banner-card xl:flex xl:space-x-[30px] xl:h-[600px] mb-[30px] ">
+        <div className="banner-card xl:flex xl:space-x-[30px] xl:h-[600px] mb-[30px]">
           <HeroSlider />
           <HeroStatic />
         </div>
