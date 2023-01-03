@@ -6,6 +6,7 @@ import ProductCategory from "../components/pages/homepage/ProductCategory/Produc
 import Banner1 from "../components/pages/homepage/Banners/Banner1";
 import SingleProduct from "../components/pages/singleproduct/SingleProduct";
 import Contact from "../components/pages/contact/Contact";
+import Blogs from "../components/pages/blogs/Blogs";
 
 interface Props {}
 
@@ -17,8 +18,9 @@ const denji: React.FC<Props> = (props) => {
       <HeroSection></HeroSection>
       <ProductCategory />
       <Banner1 />
-      <SingleProduct></SingleProduct>
-      <Contact></Contact>
+      <SingleProduct />
+      <Contact />
+      <Blogs />
     </>
   );
 };
