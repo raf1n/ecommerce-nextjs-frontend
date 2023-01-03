@@ -104,4 +104,157 @@ export class Jsondata {
         },
 
     ]
+
+    static footerData = [
+        {
+          header: "Feature",
+          links: [
+            {
+              title: "About Us",
+              url: "about",
+            },
+            {
+              title: "Terms Condition",
+              url: "terms-condition",
+            },
+            {
+              title: "Best Products",
+              url: "/products?highlight=best_product",
+            },
+          ],
+        },
+        {
+          header: "General Links",
+          links: [
+            {
+              title: "Blog",
+              url: "blogs",
+            },
+            {
+              title: "Shop",
+              url: "sellers",
+            },
+            {
+              title: "Support",
+              url: "faq",
+            },
+          ],
+        },
+        {
+          header: "Helpful",
+          links: [
+            {
+              title: "Helpful",
+              url: "about",
+            },
+            {
+              title: "Popular Category",
+              url: "products?highlight=popular_category",
+            },
+            {
+              title: "Contact Us",
+              url: "contact",
+            },
+          ],
+        },
+      ];
+
+      static bestProductsData = [
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+        {
+          name: "Mi Laptop Pro",
+          formerPrice: 50000,
+          currentPrice: 45000,
+          slug: "mi-laptop-pro",
+          imgUrl:
+            "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+        },
+      ];
 }
