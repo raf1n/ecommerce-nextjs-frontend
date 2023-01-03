@@ -67,7 +67,6 @@ export class Jsondata {
       name: 'Rayhans'
     },
   ];
-
   static saleTime = [
     {
       name: 'Days',
