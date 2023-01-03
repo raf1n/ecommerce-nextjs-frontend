@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../../src/state/StateController'
+import ProductDetails from './ProductDetails'
 
 interface Props {
 }
@@ -15,8 +16,8 @@ const SingleProduct: React.FC<Props> = (props) => {
         <div className='lg:w-1/2 xl:mr-[70px] lg:mr-[50px] bg-slate-500 min-h-screen'>
 
         </div>
-        <div className='flex-1 bg-slate-900 min-h-screen'>
-
+        <div className='flex-1 min-h-screen'>
+          <ProductDetails />
         </div>
       </div>
     </div>
