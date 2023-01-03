@@ -12,7 +12,7 @@ const SingleProduct: React.FC<Props> = (props) => {
   return (
     <div className="w-full bg-white pb-[60px] ">
       <div className="container-x mx-auto lg:flex justify-between ">
-        <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px] bg-slate-500 min-h-screen">
+        <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
           <ItemDetailsLeft></ItemDetailsLeft>
         </div>
         <div className="flex-1 min-h-screen">

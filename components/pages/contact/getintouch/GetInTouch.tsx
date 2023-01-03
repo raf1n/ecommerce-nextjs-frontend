@@ -40,7 +40,7 @@ const GetInTouch: React.FC<Props> = (props) => {
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
               <input
                 placeholder="Name"
-                className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
+                className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                 id="name"
               />
             </div>
@@ -57,7 +57,7 @@ const GetInTouch: React.FC<Props> = (props) => {
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
               <input
                 placeholder="Email"
-                className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
+                className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                 id="email"
               />
             </div>
@@ -74,7 +74,7 @@ const GetInTouch: React.FC<Props> = (props) => {
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
               <input
                 placeholder="Your Subject here"
-                className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
+                className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                 id="subject"
               />
             </div>
