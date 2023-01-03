@@ -77,21 +77,21 @@ export class Jsondata {
             image:"https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=1920&q=75" ,
             previousPrice:3500 ,
             currentPrice:3300 ,
-            rating: ""
+            
         },
         {
             name:"VISION ELITE CEILING FAN" ,
             image:"https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fvision-rice-cooker-2022-09-26-12-48-28-5516.png&w=1920&q=75",
             previousPrice:11.11 ,
             currentPrice:9.9 ,
-            rating: ""
+           
         },
         {
             name:"VISION Rice Cooker" ,
             image:"https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fvision-elite-ceiling-fan-2022-09-26-12-29-33-2795.png&w=1920&q=75",
             previousPrice:99.88 ,
             currentPrice:35.43 ,
-            rating: ""
+          
         }
     ]
 
