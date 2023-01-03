@@ -7,3 +7,36 @@ body {
   padding: 0;
   font-family: 'Inter', sans-serif;
 }
+.container-x {
+  max-width: 1216px !important;
+  width: 100%;
+}
+
+.search-input {
+  height: 100%;
+  width: 100%;
+  padding-left: 1.25rem;
+  font-size: .75rem;
+  line-height: 1rem;
+  font-weight: 500;
+}
+
+.line-clamp-1 {
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.search-btn{
+  --tw-bg-opacity: 1;
+      background-color: rgb(255 187 56/var(--tw-bg-opacity));
+      --tw-text-opacity: 1;
+      color: rgb(34 34 34/var(--tw-text-opacity));
+}
+
+@media (min-width: 768px) {
+  .container-x {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+  }
+}

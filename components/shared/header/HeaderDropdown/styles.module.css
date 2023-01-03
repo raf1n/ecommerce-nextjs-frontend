@@ -1,0 +1,15 @@
+.box{
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 15px 50px 0px
+}
+.height{
+    height:0px
+}
+.boxHeight{
+    min-height: 295px;
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 15px 50px 0px;
+}
+.background{
+    background-image:url('https://api.websolutionus.com/shopo/uploads/website-images/Mega-menu-2022-10-27-01-44-55-7811.png');
+    background-size: contain;
+    background-repeat: no-repeat,
+}

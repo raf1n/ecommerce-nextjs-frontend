@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import Header from "../components/shared/header/Header/Header";
 import { controller } from "../src/state/StateController";
 
 
@@ -17,7 +18,6 @@ const index = () => {
       // doSomething()
       controller.decrease()
     }}>-</button> */}
-    <h1>Hello</h1>
   </div>
 }
 
