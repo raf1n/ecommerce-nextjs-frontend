@@ -68,4 +68,58 @@ export class Jsondata {
             image: 'https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fwomans-fasion-2022-11-19-02-52-58-2850.png&w=1920&q=75'
         }
     ]
+
+    static footerData = [
+        {
+          header: "Feature",
+          links: [
+            {
+              title: "About Us",
+              url: "about",
+            },
+            {
+              title: "Terms Condition",
+              url: "terms-condition",
+            },
+            {
+              title: "Best Products",
+              url: "/products?highlight=best_product",
+            },
+          ],
+        },
+        {
+          header: "General Links",
+          links: [
+            {
+              title: "Blog",
+              url: "blogs",
+            },
+            {
+              title: "Shop",
+              url: "sellers",
+            },
+            {
+              title: "Support",
+              url: "faq",
+            },
+          ],
+        },
+        {
+          header: "Helpful",
+          links: [
+            {
+              title: "Helpful",
+              url: "about",
+            },
+            {
+              title: "Popular Category",
+              url: "products?highlight=popular_category",
+            },
+            {
+              title: "Contact Us",
+              url: "contact",
+            },
+          ],
+        },
+      ];
 }

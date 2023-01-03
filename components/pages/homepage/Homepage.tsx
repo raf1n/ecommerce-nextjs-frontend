@@ -10,8 +10,7 @@ const Homepage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return <div>
-    <ProductCategory />
-    <Banner1 />
+    
   </div>
 };
 

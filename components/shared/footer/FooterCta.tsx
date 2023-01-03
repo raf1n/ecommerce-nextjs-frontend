@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
+import { FaEnvelope } from 'react-icons/fa';
 
 interface Props {}
 
@@ -27,35 +28,14 @@ const FooterCta: React.FC<Props> = (props) => {
         >
           <div className="flex-1 bg-white pl-4 flex space-x-2 items-center h-full">
             <span>
-              <svg
-                width="17"
-                height="15"
-                viewBox="0 0 17 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15 14H2C1.4 14 1 13.6 1 13V2C1 1.4 1.4 1 2 1H15C15.6 1 16 1.4 16 2V13C16 13.6 15.6 14 15 14Z"
-                  stroke="currentColor"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-                <path
-                  d="M3 4L8.5 8.5L14 4"
-                  stroke="currentColor"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </svg>
+              <FaEnvelope className="text-lg text-[#9A9A9A]" />
             </span>
             <input
               type="email"
               name="email"
-              className="w-full h-full focus:outline-none text-sm placeholder:text-xs placeholder:text-qblack text-qblack font-400 tracking-wider"
+              className="w-full h-full focus:outline-none text-sm placeholder:text-xs tracking-wider"
               placeholder="EMAIL ADDRESS"
-              value=""
+              // value=""
             />
           </div>
           <button
