@@ -1,16 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-import Footer from "../../shared/footer/Footer";
+import Banner1 from "./Banners/Banner1";
+import ProductCategory from "./ProductCategory/ProductCategory";
 
-interface Props {}
+interface Props { }
 
 const Homepage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return <div>
-    <Footer />
-  </div>;
+    <ProductCategory />
+    <Banner1 />
+  </div>
 };
 
 export default Homepage;
