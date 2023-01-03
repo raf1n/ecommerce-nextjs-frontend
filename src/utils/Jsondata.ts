@@ -65,7 +65,43 @@ export class Jsondata {
         },
         {
             name: 'Woman Fashion',
-            image: 'https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fwomans-fasion-2022-11-19-02-52-58-2850.png&w=1920&q=75'
+            image: 'https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fwomans-fasion-2022-11-19-02-52-58-2850.png&w=1920&q=75',
+
         }
+    ]
+    static topRatedProducts = [
+        {
+            name: "Sony joystick SJ pro",
+            image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-joystick-sj-pro-2022-09-27-03-39-20-9931.png&w=2048&q=75",
+            rating: 5,
+            mainPrice: "$7000",
+            offerPrice: " $5000.00",
+
+        },
+        {
+            name: "JBL headphone Max",
+            image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-headphon-max-2022-09-26-01-55-56-9123.png&w=1920&q=75",
+            rating: 5,
+            mainPrice: "$700",
+            offerPrice: " $650.000",
+
+        },
+        {
+            name: "Sony Play Station 5",
+            image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-play-staton-5-2022-09-26-12-20-52-2324.png&w=1920&q=75",
+            rating: 5,
+            mainPrice: "$88.88",
+            offerPrice: " $61.10",
+
+        },
+        {
+            name: "FANTECH OCTANE Headset",
+            image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Ffantech-octane-headset-2022-09-26-12-53-57-7709.png&w=1920&q=75",
+            rating: 5,
+            mainPrice: "$88",
+            offerPrice: "$59.40",
+
+        },
+
     ]
 }

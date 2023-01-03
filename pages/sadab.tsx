@@ -1,0 +1,26 @@
+import React from 'react'
+import { useSelector } from 'react-redux'
+import Banner1 from '../components/pages/homepage/Banners/Banner1'
+import ProductCategory from '../components/pages/homepage/ProductCategory/ProductCategory'
+import Shopbybrand from '../components/pages/homepage/shopbybrand/Shopbybrand'
+import Toprated from '../components/pages/homepage/topratedproducts/Toprated'
+import { controller } from '../src/state/StateController'
+
+interface Props {
+}
+
+const sadab: React.FC<Props> = (props) => {
+
+    const states = useSelector(() => controller.states)
+
+    return (
+        <>
+            <Shopbybrand />
+            <Toprated />
+            {/* <ProductCategory />
+            <Banner1 /> */}
+        </>
+    )
+}
+
+export default sadab

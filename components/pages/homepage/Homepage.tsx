@@ -12,10 +12,10 @@ const Homepage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return <div>homepage
-    <Shopbybrand></Shopbybrand>
+    {/* <Shopbybrand></Shopbybrand>
     <Toprated></Toprated>
     <ProductCategory />
-    <Banner1 />
+    <Banner1 /> */}
   </div>;
 
 };
