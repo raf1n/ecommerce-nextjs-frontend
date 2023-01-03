@@ -73,7 +73,7 @@ const ItemDetailsLeft: React.FC<Props> = (props) => {
               src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=2048&q=75"
               decoding="async"
               data-nimg="fill"
-              className="w-full h-full object-contain transform scale-110 absolute m-auto block max-w-full min-w-full min-h-full max-h-full object-scale-down"
+              className="w-full h-full object-contain transform scale-110 absolute m-auto block max-w-full min-w-full min-h-full max-h-full"
             ></img>
           </span>
         </div>
