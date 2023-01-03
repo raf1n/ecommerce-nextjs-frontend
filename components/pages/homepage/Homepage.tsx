@@ -1,13 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
+<<<<<<< HEAD
 import DeliberyCompenents from "./DeliberyPolicyData/DeliberyCompenents";
+=======
+import Banner1 from "./Banners/Banner1";
+import ProductCategory from "./ProductCategory/ProductCategory";
+>>>>>>> eb5a120173d6c6ba735400672b3f20c40dc77196
 
-interface Props {}
+interface Props { }
 
 const Homepage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
+<<<<<<< HEAD
   const deliveryPolicyDatas = [
     {
       id:1,
@@ -48,6 +54,12 @@ const Homepage: React.FC<Props> = (props) => {
       </div>
     </div>
   );
+=======
+  return <div>
+    <ProductCategory />
+    <Banner1 />
+  </div>
+>>>>>>> eb5a120173d6c6ba735400672b3f20c40dc77196
 };
 
 export default Homepage;
