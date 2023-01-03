@@ -30,7 +30,7 @@ const AD2: React.FC<Props> = (props) => {
                                 <div className="w-[136px] h-[40px] bg-white relative flex justify-center overflow-hidden">
                                     <div className="w-full h-full bg-qyellow absolute transition-all duration-300 ease-in-out -left-[140px] group-hover:left-0 top-0"></div>
                                     <div className="flex space-x-2 items-center relative z-10">
-                                        <span className="text-sm text-semibold transition-all duration-300 ease-in-out text-qyellow group-hover:text-qblack">
+                                        <span className="text-sm font-semibold transition-all duration-300 ease-in-out text-qyellow group-hover:text-qblack">
                                             Shop Now
                                         </span>
                                         <span className="text-qyellow transition-all duration-300 ease-in-out group-hover:text-qblack">
