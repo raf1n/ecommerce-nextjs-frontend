@@ -9,19 +9,6 @@ const index = () => {
   return (
     <Homepage />
   )
-  // <div>
-  //   <p className="text-lg">Counter
-  //     {states.counter}
-  //   </p>
-  //   <button onClick={() => {
-  //     controller.increase()
-  //   }}>+</button>
-  //   <button onClick={() => {
-  //     //
-  //     // doSomething()
-  //     controller.decrease()
-  //   }}>-</button>
-  // </div>
 }
 
 export default index;
