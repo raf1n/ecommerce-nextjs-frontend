@@ -8,7 +8,7 @@ const index = () => {
   const states = useSelector(() => controller.states);
 
   return (
-    
+    <></>
   )
   // <div>
   //   <p className="text-lg">Counter
