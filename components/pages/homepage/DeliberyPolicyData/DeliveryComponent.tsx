@@ -6,7 +6,7 @@ interface Props {
     deliveryPolicyData:any
 }
 
-const DeliveryComponent: React.FC<Props> = (props) => {
+const DeliberyCompenents: React.FC<Props> = (props) => {
 const {deliveryPolicyData}=props
     const states = useSelector(() => controller.states)
     
@@ -47,4 +47,4 @@ const {deliveryPolicyData}=props
     )
 }
 
-export default DeliveryComponent
+export default DeliberyCompenents

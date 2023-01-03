@@ -3,11 +3,10 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../ProductCard/ProductCard";
-import Styles from "./FeaturedProduct.module.css";
 
 interface Props {}
 
-const FeaturedProducts: React.FC<Props> = (props) => {
+const PopularCategory: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
@@ -16,7 +15,7 @@ const FeaturedProducts: React.FC<Props> = (props) => {
       <div className="mx-20 section-title flex justify-between items-center mb-5">
         <div>
           <h1 className="sm:text-3xl text-xl font-600 text-qblacktext leading-none">
-            Featured Products
+          Popular Category
           </h1>
         </div>
         <div className="view-more-btn">
@@ -56,18 +55,23 @@ const FeaturedProducts: React.FC<Props> = (props) => {
           >
             <div>
               <h1 className="text-base font-600 tracking-wide mb-2">
-                Featured Products
+              Popular Category
               </h1>
               <div className="brands-list mb-[7px]">
                 <ul>
                   <li>
                     <span className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
-                      Accessories
+                    Mobile
                     </span>
                   </li>
                   <li>
                     <span className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
-                      Lifestyle
+                    Electronics
+                    </span>
+                  </li>
+                  <li>
+                    <span className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
+                    Games
                     </span>
                   </li>
                 </ul>
@@ -119,4 +123,4 @@ const FeaturedProducts: React.FC<Props> = (props) => {
   );
 };
 
-export default FeaturedProducts;
+export default PopularCategory;
