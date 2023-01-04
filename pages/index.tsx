@@ -1,16 +1,12 @@
 import { useSelector } from "react-redux";
-import Header from "../components/shared/header/Header/Header";
+import Header from "../components/shared/header/HeaderTop/HeaderTop";
 import { controller } from "../src/state/StateController";
 import Homepage from "../components/pages/homepage/Homepage";
 
 const index = () => {
   const states = useSelector(() => controller.states);
 
-  return (
-    <>
-      <Homepage />
-    </>
-  )
+  return <Homepage />
 }
 
 export default index;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-import Breadcrumb from "../breadcrumb/Breadcrumb";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
 interface Props {
   slug: string;

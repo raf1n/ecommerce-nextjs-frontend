@@ -82,7 +82,7 @@ const Header: React.FC<Props> = (props) => {
                                     <div className="w-full h-full flex items-center  border border-qgray-border bg-white  search-com">
                                         <div className="flex-1 bg-red-500 h-full">
                                             <div className="h-full">
-                                                <input type="text" className="search-input" placeholder="Search Products ..." />
+                                                <input type="text" className={styles['search-input']} placeholder="Search Products ..." />
                                             </div>
                                         </div>
                                         <div className="w-[1px] h-[22px] bg-qgrayLite"></div>
@@ -94,7 +94,7 @@ const Header: React.FC<Props> = (props) => {
                                                 </span>
                                             </button>
                                         </div>
-                                        <button className="search-btn w-[93px] h-full text-sm font-600">Search</button>
+                                        <button className="search-btn bg-qyellow text-qblacktext w-[93px] h-full text-sm font-semibold">Search</button>
                                     </div>
                                 </div>
 
@@ -173,7 +173,7 @@ const Header: React.FC<Props> = (props) => {
                         </div>
                     </div>
                 </div>
-                <HeaderDropdown/>
+                <HeaderDropdown />
             </header>
         </div>
     )
