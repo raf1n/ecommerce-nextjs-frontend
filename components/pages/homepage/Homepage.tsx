@@ -10,14 +10,12 @@ import BestProducts from "./BestProducts/BestProducts";
 import BestSeller from "./BestSeller/BestSeller";
 import Campaign from "./Campaign/Campaign";
 import FeaturedProducts from "./FeaturedProducts/FeaturedProducts";
+import HeroSection from "./HeroSection/HeroSection";
 import NewReleasedProducts from "./NewReleasedProducts/NewReleasedProducts";
 import PopularCategory from "./PopularCategory/PopularCategory";
 import ProductCategory from "./ProductCategory/ProductCategory";
-import HeroSection from './HeroSection/HeroSection';
 import ShopByBrand from './ShopByBrand/ShopByBrand';
-import TopRated from "./TopRatedProducts/TopRated";
-
-
+import TopRated from './TopRatedProducts/TopRated';
 
 interface Props { }
 
