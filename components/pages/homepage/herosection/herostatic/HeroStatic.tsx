@@ -82,7 +82,7 @@ const HeroStatic: React.FC<Props> = (props) => {
         }}>
         <div className="flex flex-col justify-between">
           <div>
-            <div className=" md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
+            <div className="md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
               <span className="text-qblack uppercase md:text-xs text-[10px] font-semibold">
                 Gaming
               </span>

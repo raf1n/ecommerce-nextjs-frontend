@@ -6,7 +6,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import TopRatedProduct from "./TopRatedProduct";
 interface Props {}
 
-const Toprated: React.FC<Props> = (props) => {
+const TopRated: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
@@ -26,7 +26,6 @@ const Toprated: React.FC<Props> = (props) => {
             <span className="animate-right"></span>
           </div>
         </div>
-
         <div className="section-content w-full grid sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5  ">
           {Jsondata.topRatedProducts.map((product: any) => {
             return <TopRatedProduct product={product}></TopRatedProduct>;
@@ -36,5 +35,4 @@ const Toprated: React.FC<Props> = (props) => {
     </div>
   );
 };
-
-export default Toprated;
+export default TopRated;

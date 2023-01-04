@@ -7,11 +7,11 @@ interface Props { }
 
 const HeaderDropdown: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const [openDropdown, setOpenDropdown]=useState(false)
+  const [openDropdown, setOpenDropdown] = useState(false)
   const openCategoryDropDown = () => {
     console.log('hello')
-  setOpenDropdown(!openDropdown)
-}
+    setOpenDropdown(!openDropdown)
+  }
   return (
     <div className={`${styles['nav-widget-wrapper']} w-full  h-[60px] relative z-30  quomodo-shop-nav-bar lg:block hidden bg-qyellow`}>
       <div className="container-x mx-auto h-full">
@@ -22,7 +22,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                 {openDropdown && <div onClick={() => { openCategoryDropDown() }} className="fixed top-0 left-0 w-full h-full -z-10"></div>
                 }
                 <button
-                  onClick={() => { openCategoryDropDown()}}
+                  onClick={() => { openCategoryDropDown() }}
                   type="button"
                   className="w-full h-full flex justify-between items-center"
                 >
@@ -71,8 +71,8 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                   </div>
                 </button>
                 <div
-                  className={`${styles['box']} category-dropdown w-full absolute left-0 top-[53px]  ${openDropdown?'block':'hidden'}`}
-                
+                  className={`${styles['box']} category-dropdown w-full absolute left-0 top-[53px]  ${openDropdown ? 'block' : 'hidden'}`}
+
                 >
                   <ul className="categories-list relative">
                     <li className="category-item">
@@ -135,7 +135,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                       </a>
                       <div
                         className={`${styles['height']} sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px] bg-white`}
-                        
+
                       >
                         <ul className="">
                           <li className="category-item">
@@ -181,7 +181,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                             </a>
                             <div
                               className={`${styles['height']} sub-category-lvl-three absolute left-[270px] top-0 z-10 w-[270px] bg-white`}
-                              
+
                             >
                               <ul className="">
                                 <li className="category-item">
@@ -244,7 +244,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                             </a>
                             <div
                               className={`${styles['height']} sub-category-lvl-three absolute left-[270px] top-0 z-10 w-[270px] bg-white`}
-                              
+
                             >
                               <ul className="">
                                 <li className="category-item">
@@ -307,7 +307,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                             </a>
                             <div
                               className={`${styles['height']} sub-category-lvl-three absolute left-[270px] top-0 z-10 w-[270px]`}
-                              
+
                             >
                               <ul className=""></ul>
                             </div>
@@ -373,7 +373,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                       </a>
                       <div
                         className={`${styles['height']} sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px] bg-white`}
-                        
+
                       >
                         <ul className="">
                           <li className="category-item">
@@ -419,7 +419,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                             </a>
                             <div
                               className={`${styles['height']} sub-category-lvl-three absolute left-[270px] top-0 z-10 w-[270px]`}
-                              
+
                             >
                               <ul className=""></ul>
                             </div>
@@ -467,7 +467,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                             </a>
                             <div
                               className={`${styles['height']} sub-category-lvl-three absolute left-[270px] top-0 z-10 w-[270px]`}
-                              
+
                             >
                               <ul className=""></ul>
                             </div>
@@ -515,7 +515,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                             </a>
                             <div
                               className={`${styles['height']} sub-category-lvl-three absolute left-[270px] top-0 z-10 w-[270px]`}
-                              
+
                             >
                               <ul className=""></ul>
                             </div>
@@ -581,7 +581,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                       </a>
                       <div
                         className={`${styles['height']} sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px]`}
-                        
+
                       >
                         <ul className=""></ul>
                       </div>
@@ -644,7 +644,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                       </a>
                       <div
                         className={`${styles['height']} sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px]`}
-                        
+
                       >
                         <ul className=""></ul>
                       </div>
@@ -709,7 +709,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                       </a>
                       <div
                         className={`${styles['height']} sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px]`}
-                        
+
                       >
                         <ul className=""></ul>
                       </div>
@@ -772,7 +772,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                       </a>
                       <div
                         className={`${styles['height']} sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px]`}
-                        
+
                       >
                         <ul className=""></ul>
                       </div>
@@ -837,7 +837,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                       </a>
                       <div
                         className={`${styles['height']} sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px]`}
-                        
+
                       >
                         <ul className=""></ul>
                       </div>
@@ -902,7 +902,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                       </a>
                       <div
                         className={`${styles['height']} sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px]`}
-                        
+
                       >
                         <ul className=""></ul>
                       </div>
@@ -965,7 +965,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                       </a>
                       <div
                         className={`${styles['height']} sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px]`}
-                        
+
                       >
                         <ul className=""></ul>
                       </div>
@@ -1030,7 +1030,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                       </a>
                       <div
                         className={`${styles['height']} sub-category-lvl-two absolute left-[270px] top-0 z-10 w-[270px] bg-white`}
-                        
+
                       >
                         <ul className="">
                           <li className="category-item">
@@ -1276,7 +1276,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                     <div className={`${styles['sub-menu']} w-full absolute left-0 top-[60px]`} >
                       <div
                         className={`${styles['boxHeight']} mega-menu-wrapper w-full bg-white p-[30px] flex justify-between items-center`}
-                       
+
                       >
                         <div className="categories-wrapper flex-1 h-full flex justify-around -ml-[70px]">
                           <div>
@@ -1292,7 +1292,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                     rel="noopener noreferrer"
                                     href="/products?sub_category=mobiles"
                                   >
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                       Mobiles
                                     </span>
                                   </a>
@@ -1302,7 +1302,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                     rel="noopener noreferrer"
                                     href="/products?sub_category=monitor"
                                   >
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                       Monitor
                                     </span>
                                   </a>
@@ -1312,7 +1312,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                     rel="noopener noreferrer"
                                     href="/products?sub_category=camera"
                                   >
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                       camera
                                     </span>
                                   </a>
@@ -1333,7 +1333,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                     rel="noopener noreferrer"
                                     href="/products?sub_category=controller"
                                   >
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer ">
                                       Controller
                                     </span>
                                   </a>
@@ -1343,7 +1343,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                     rel="noopener noreferrer"
                                     href="/products?sub_category=playstation"
                                   >
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                       PlayStation
                                     </span>
                                   </a>
@@ -1353,7 +1353,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                     rel="noopener noreferrer"
                                     href="/products?sub_category=need-for-speed"
                                   >
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                       Need For Speed
                                     </span>
                                   </a>
@@ -1374,7 +1374,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                     rel="noopener noreferrer"
                                     href="/products?sub_category=desktop"
                                   >
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                       Desktop
                                     </span>
                                   </a>
@@ -1384,7 +1384,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                     rel="noopener noreferrer"
                                     href="/products?sub_category=headphone"
                                   >
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                       Headphone
                                     </span>
                                   </a>
@@ -1394,7 +1394,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                     rel="noopener noreferrer"
                                     href="/products?sub_category=mouse"
                                   >
-                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                       Mouse
                                     </span>
                                   </a>
@@ -1405,7 +1405,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                         </div>
                         <div
                           className={`${styles['background']} thumbnil w-[348px] h-[235px] relative flex items-center pl-[40px] group`}
-                         
+
                         >
                           <div className="flex flex-col justify-between">
                             <div>
@@ -1526,7 +1526,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                     <div className={`${styles['sub-menu']} w-[220px] absolute left-0 top-[60px]`}>
                       <div
                         className={`${styles['box']} w-full bg-white flex justify-between items-center `}
-                        
+
                       >
                         <div className="categories-wrapper w-full h-full p-5">
                           <div>

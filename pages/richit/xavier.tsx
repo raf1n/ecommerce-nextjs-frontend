@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Header from '../../components/shared/header/HeaderTop/HeaderTop'
+import Header from '../../components/shared/Header/HeaderTop/HeaderTop'
 import { controller } from '../../src/state/StateController'
 
 interface Props {

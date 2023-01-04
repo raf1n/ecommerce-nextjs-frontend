@@ -9,57 +9,6 @@ const Shopbybrand: React.FC<Props> = (props) => {
 
     const states = useSelector(() => controller.states);
 
-    // const brands = [
-    //     {
-    //         id: 1,
-    //         image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Foneplus-2022-09-25-04-15-53-8330.png&w=1920&q=75"
-    //     },
-    //     {
-    //         id: 2,
-    //         image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Ftencent-2022-09-25-04-16-01-9474.png&w=1920&q=75"
-    //     },
-    //     {
-    //         id: 3,
-    //         image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fapple-2022-09-25-04-16-05-2914.png&w=1920&q=75"
-    //     },
-    //     {
-    //         id: 4,
-    //         image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmircrosoft-2022-09-25-04-16-10-7094.png&w=1920&q=75"
-    //     },
-    //     {
-    //         id: 5,
-    //         image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Flenovo-2022-09-25-04-16-19-9532.png&w=1920&q=75"
-    //     },
-    //     {
-    //         id: 6,
-    //         image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fhuawei-2022-09-25-04-16-23-2134.png&w=1920&q=75"
-    //     },
-    //     {
-    //         id: 7,
-    //         image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fnexus-2022-09-25-04-16-31-3263.png&w=1920&q=75"
-    //     },
-    //     {
-    //         id: 8,
-    //         image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fgoogle-2022-09-25-04-16-35-5464.png&w=1920&q=75"
-    //     },
-    //     {
-    //         id: 9,
-    //         image: 
-    //     },
-    //     {
-    //         id: 10,
-    //         image: 
-    //     },
-    //     {
-    //         id: 11,
-    //         image: 
-    //     },
-    //     {
-    //         id: 12,
-    //         image: 
-    //     },
-    // ]
-
     return (
         <div className=' w-full'>
             <div className='container-x mx-auto pb-[60px]'>
