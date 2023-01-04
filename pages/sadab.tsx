@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import FAQ from '../components/pages/faq/FAQ'
 import Banner1 from '../components/pages/homepage/Banners/Banner1'
 import Contact from '../components/pages/homepage/contact/Contact'
 import Itemdetails from '../components/pages/homepage/itemdetails/Itemdetails'
@@ -23,6 +24,7 @@ const sadab: React.FC<Props> = (props) => {
             <Banner1 /> */}
             <Itemdetails />
             <Contact></Contact>
+            <FAQ></FAQ>
         </>
     )
 }
