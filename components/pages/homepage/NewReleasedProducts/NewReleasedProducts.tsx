@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
-import ProductCard from "../../../ProductCard/ProductCard";
+import ProductCard from "../../../shared/ProductCard/ProductCard";
 
-interface Props {}
+interface Props { }
 
 const NewReleasedProducts: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
