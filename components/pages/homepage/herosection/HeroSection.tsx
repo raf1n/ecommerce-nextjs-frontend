@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
+import DeliveryComponents from "../DeliberyPolicyData/DeliveryComponents";
 import HeroSlider from "./heroslider/HeroSlider";
 import HeroStatic from "./herostatic/HeroStatic";
 
-interface Props {}
+interface Props { }
 
 const HeroSection: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -16,6 +17,7 @@ const HeroSection: React.FC<Props> = (props) => {
           <HeroSlider />
           <HeroStatic />
         </div>
+        <DeliveryComponents />
       </div>
     </div>
   );

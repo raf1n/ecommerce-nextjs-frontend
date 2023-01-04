@@ -6,7 +6,9 @@ const index = () => {
   const states = useSelector(() => controller.states);
 
   return (
-    <></>
+    <>
+      <Homepage />
+    </>
   )
 }
 
