@@ -5,6 +5,7 @@ import Footer from './../components/shared/footer/Footer';
 import BestProducts from './../components/pages/homepage/BestProducts/BestProducts';
 import SingleProduct from './../components/pages/singleproduct/SingleProduct';
 import FAQ from '../components/pages/faq/FAQ';
+import CategoryPage from '../components/pages/categorypage/CategoryPage';
 
 interface Props {
 }
@@ -14,7 +15,8 @@ const Toukir: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states)
   
   return (
-    <div>
+    <div className='bg-gray-100'>
+      <CategoryPage />
       <FAQ />
       <SingleProduct />
       <BestProducts />
