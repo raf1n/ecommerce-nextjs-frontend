@@ -5,7 +5,7 @@ import { controller } from '../../../../src/state/StateController'
 interface Props {
 }
 
-const Shopbybrand: React.FC<Props> = (props) => {
+const ShopByBrand: React.FC<Props> = (props) => {
 
     const states = useSelector(() => controller.states);
 
@@ -110,4 +110,4 @@ const Shopbybrand: React.FC<Props> = (props) => {
     )
 }
 
-export default Shopbybrand
+export default ShopByBrand;

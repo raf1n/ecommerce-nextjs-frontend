@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import InputRange from "react-input-range";
@@ -61,7 +63,10 @@ const checkCategoryFilterData = [
   },
 ];
 
-interface Props {}
+interface Props {
+
+
+}
 
 const FilterWidget: React.FC<Props> = (props) => {
   const [value, setValue] = useState({
@@ -69,6 +74,8 @@ const FilterWidget: React.FC<Props> = (props) => {
     max: 250000,
   });
   const states = useSelector(() => controller.states);
+
+  // console.log(value);
 
   return (
     <div className="w-full bg-white px-[30px] pt-[40px] mb-[30px] hidden lg:block">
@@ -101,7 +108,10 @@ const FilterWidget: React.FC<Props> = (props) => {
           maxValue={250000}
           minValue={10}
           value={value}
-          onChange={(value) => console.log(value)}
+          onChange={(value) => {
+            // console.log(value?.min)
+            setValue(value)
+          }}
         />
       </div>
     </div>

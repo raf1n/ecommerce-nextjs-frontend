@@ -7,7 +7,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 interface Props {
 }
 
-const Toprated: React.FC<Props> = (props) => {
+const TopRated: React.FC<Props> = (props) => {
 
     const states = useSelector(() => controller.states)
 
@@ -328,4 +328,4 @@ const Toprated: React.FC<Props> = (props) => {
     )
 }
 
-export default Toprated
+export default TopRated;
