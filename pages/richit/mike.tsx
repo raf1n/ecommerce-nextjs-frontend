@@ -1,11 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Contact from '../../components/pages/contact/Contact'
-import FAQ from '../../components/pages/faq/FAQ'
-import Itemdetails from '../../components/pages/homepage/itemdetails/Itemdetails'
-import Shopbybrand from '../../components/pages/homepage/shopbybrand/Shopbybrand'
-import Toprated from '../../components/pages/homepage/topratedproducts/Toprated'
-import WishList from '../../components/pages/wishlist/Wishlist'
+import Contact from '../../components/pages/Contact/Contact'
+import FAQ from '../../components/pages/FAQ/FAQ'
+import Itemdetails from '../../components/pages/Homepage/ItemDetails/Itemdetails'
+import Shopbybrand from '../../components/pages/Homepage/ShopByBrand/Shopbybrand'
+import TopRated from '../../components/pages/Homepage/TopRatedProducts/Toprated'
+
+import WishList from '../../components/pages/Wishlist/Wishlist'
+
 import { controller } from '../../src/state/StateController'
 
 
@@ -19,7 +21,7 @@ const sadab: React.FC<Props> = (props) => {
     return (
         <>
             <Shopbybrand />
-            <Toprated />
+            <TopRated />
             {/* <ProductCategory />
             <Banner1 /> */}
             <Itemdetails />

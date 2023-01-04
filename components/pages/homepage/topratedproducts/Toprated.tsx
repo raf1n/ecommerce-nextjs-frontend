@@ -2,12 +2,13 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../../../src/state/StateController'
 import { Jsondata } from '../../../../src/utils/Jsondata'
-import TopRatedProduct from './TopRatedProduct'
+// import TopRatedProduct from './TopRatedProduct'
 import { AiOutlineArrowRight } from "react-icons/ai";
+import TopRatedProduct from './TopRatedProduct';
 interface Props {
 }
 
-const Toprated: React.FC<Props> = (props) => {
+const TopRated: React.FC<Props> = (props) => {
 
     const states = useSelector(() => controller.states)
 
@@ -328,4 +329,4 @@ const Toprated: React.FC<Props> = (props) => {
     )
 }
 
-export default Toprated
+export default TopRated

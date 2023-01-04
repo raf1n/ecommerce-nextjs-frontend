@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 
 import ContactInformation from "./ContactInformation";
-import GetInTouch from "./getintouch/GetInTouch";
+import GetInTouch from "./GetInTouch/GetInTouch";
 
 
 interface Props { }

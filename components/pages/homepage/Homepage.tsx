@@ -2,7 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import Footer from "../../shared/Footer/Footer";
-import Header from "../../shared/header/HeaderTop/HeaderTop";
+import Header from "../../shared/Header/HeaderTop/HeaderTop";
+// import Header from "../../shared/header/HeaderTop/HeaderTop";
 import AD1 from "./Ads/AD1";
 import AD2 from "./Ads/AD2";
 import AD3 from "./Ads/AD3";
@@ -10,12 +11,14 @@ import BestProducts from "./BestProducts/BestProducts";
 import BestSeller from "./BestSeller/BestSeller";
 import Campaign from "./Campaign/Campaign";
 import FeaturedProducts from "./FeaturedProducts/FeaturedProducts";
-import HeroSection from "./herosection/HeroSection";
+import HeroSection from "./HeroSection/HeroSection";
 import NewReleasedProducts from "./NewReleasedProducts/NewReleasedProducts";
 import PopularCategory from "./PopularCategory/PopularCategory";
 import ProductCategory from "./ProductCategory/ProductCategory";
-import Shopbybrand from "./shopbybrand/Shopbybrand";
-import Toprated from "./topratedproducts/Toprated";
+import Shopbybrand from "./ShopByBrand/Shopbybrand";
+import TopRated from "./TopRatedProducts/Toprated";
+
+
 
 
 
@@ -31,7 +34,7 @@ const Homepage: React.FC<Props> = (props) => {
     <PopularCategory />
     <Shopbybrand />
     <Campaign />
-    <Toprated />
+    <TopRated />
     <BestSeller />
     <AD1 />
     <FeaturedProducts />
