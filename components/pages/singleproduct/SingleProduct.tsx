@@ -15,7 +15,7 @@ const SingleProduct: React.FC<Props> = (props) => {
         <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
           <ItemDetailsLeft></ItemDetailsLeft>
         </div>
-        <div className="flex-1 min-h-screen">
+        <div className="flex-1">
           <ProductDetails />
         </div>
       </div>
