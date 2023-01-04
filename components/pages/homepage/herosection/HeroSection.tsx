@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import DeliveryComponents from "../DeliberyPolicyData/DeliveryComponents";
 import HeroSlider from "./Heroslider/HeroSlider";
-import HeroStatic from "./Herostatic/HeroStatic";
+import HeroStatic from "./HeroStatic/HeroStatic";
 
 interface Props {}
 

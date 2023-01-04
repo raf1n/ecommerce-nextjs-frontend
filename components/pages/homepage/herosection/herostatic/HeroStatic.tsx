@@ -17,11 +17,10 @@ const HeroStatic: React.FC<Props> = (props) => {
           )`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-        }}
-      >
+        }}>
         <div className="flex flex-col justify-between">
           <div>
-            <div className="inline-block md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
+            <div className="md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
               <span className="text-qblack uppercase md:text-xs text-[10px] font-semibold">
                 Gaming
               </span>
@@ -48,24 +47,21 @@ const HeroStatic: React.FC<Props> = (props) => {
                       height="11"
                       viewBox="0 0 7 11"
                       fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <rect
                         x="2.08984"
                         y="0.636719"
                         width="6.94219"
                         height="1.54271"
                         transform="rotate(45 2.08984 0.636719)"
-                        fill="#1D1D1D"
-                      ></rect>
+                        fill="#1D1D1D"></rect>
                       <rect
                         x="7"
                         y="5.54492"
                         width="6.94219"
                         height="1.54271"
                         transform="rotate(135 7 5.54492)"
-                        fill="#1D1D1D"
-                      ></rect>
+                        fill="#1D1D1D"></rect>
                     </svg>
                   </span>
                 </div>
@@ -83,11 +79,10 @@ const HeroStatic: React.FC<Props> = (props) => {
           )`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-        }}
-      >
+        }}>
         <div className="flex flex-col justify-between">
           <div>
-            <div className="inline-block md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
+            <div className=" md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
               <span className="text-qblack uppercase md:text-xs text-[10px] font-semibold">
                 Gaming
               </span>
@@ -114,24 +109,21 @@ const HeroStatic: React.FC<Props> = (props) => {
                       height="11"
                       viewBox="0 0 7 11"
                       fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                      xmlns="http://www.w3.org/2000/svg">
                       <rect
                         x="2.08984"
                         y="0.636719"
                         width="6.94219"
                         height="1.54271"
                         transform="rotate(45 2.08984 0.636719)"
-                        fill="#1D1D1D"
-                      ></rect>
+                        fill="#1D1D1D"></rect>
                       <rect
                         x="7"
                         y="5.54492"
                         width="6.94219"
                         height="1.54271"
                         transform="rotate(135 7 5.54492)"
-                        fill="#1D1D1D"
-                      ></rect>
+                        fill="#1D1D1D"></rect>
                     </svg>
                   </span>
                 </div>
