@@ -109,7 +109,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                   </div>
                 </div>
                 {/*********** * card *********/}
-                {Jsondata.FeaturedProducts.map((product) => (
+                {Jsondata.featuredProducts.map((product) => (
                   <ProductCard product={product}></ProductCard>
                 ))}
 

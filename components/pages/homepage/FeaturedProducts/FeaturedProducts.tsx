@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../ProductCard/ProductCard";
-import Styles from "./FeaturedProduct.module.css";
 
 interface Props {}
 
@@ -109,7 +108,7 @@ const FeaturedProducts: React.FC<Props> = (props) => {
                   </div>
 
                   {/*********** * card *********/}
-                  {Jsondata.FeaturedProducts.map((product) => (
+                  {Jsondata.featuredProducts.map((product) => (
                     <ProductCard product={product}></ProductCard>
                   ))}
 
