@@ -1,14 +1,14 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { controller } from '../../../src/state/StateController'
+import React from "react";
+import { useSelector } from "react-redux";
+import { controller } from "../../../src/state/StateController";
+import FaqHeader from "./FaqHeader";
+import FaqRight from "./FaqRight";
 import Drawer from './Drawer'
-import FaqHeader from './FaqHeader'
 
-interface Props {
-}
+interface Props { }
 
 const FAQ: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states)
+  const states = useSelector(() => controller.states);
 
   return (
     <div>
@@ -22,10 +22,13 @@ const FAQ: React.FC<Props> = (props) => {
           <div className="flex-1">
             {/* <FaqRight /> */}
           </div>
+          <div className="flex-1">
+            <FaqRight />
+          </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FAQ
+export default FAQ;

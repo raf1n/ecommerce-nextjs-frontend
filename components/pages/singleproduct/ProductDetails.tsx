@@ -2,41 +2,32 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FaRegHeart, FaFlag, FaFacebookF, FaTwitter } from "react-icons/fa";
+import { Jsondata } from "../../../src/utils/Jsondata";
+
 // import ReactStars from "react-rating-stars-component";
 
-const itemDetail = {
-  name: "Asus zenbook desktop",
-  brand: "HUAWEI",
-  rating: 3,
-  reviews: [],
-  formerPrice: 35000,
-  currentPrice: 33000.0,
-  description: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.`,
-  availability: 2,
-  category: "Accessories",
-  sku: "kjhyy78",
-};
-
-const secondExample = {
-  size: 50,
-  count: 10,
-  color: "black",
-  activeColor: "red",
-  value: 7.5,
-  a11y: true,
-  isHalf: true,
-  emptyIcon: <i className="far fa-star" />,
-  halfIcon: <i className="fa fa-star-half-alt" />,
-  filledIcon: <i className="fa fa-star" />,
-  onChange: (newValue: string) => {
-    console.log(`Example 2: new value is ${newValue}`);
-  },
-};
+// const secondExample = {
+//   size: 50,
+//   count: 10,
+//   color: "black",
+//   activeColor: "red",
+//   value: 7.5,
+//   a11y: true,
+//   isHalf: true,
+//   emptyIcon: <i className="far fa-star" />,
+//   halfIcon: <i className="fa fa-star-half-alt" />,
+//   filledIcon: <i className="fa fa-star" />,
+//   onChange: (newValue: string) => {
+//     console.log(`Example 2: new value is ${newValue}`);
+//   },
+// };
 
 interface Props {}
 
 const ProductDetails: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
+  const { itemDetail } = Jsondata;
 
   return (
     <div className="mt-10 lg:mt-0">
