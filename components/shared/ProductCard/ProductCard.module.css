@@ -1,0 +1,38 @@
+.productCardStyle{
+    width: 260px;
+    height: 440px;
+    border: 1px solid rgb(238, 237, 237);
+}
+.productImageStyle{
+    width: 268px;
+    height: 300px;
+
+
+}
+.productCardDetails{
+    width: 267px;
+    height: 126px;
+    padding: 8px 30px 30px;
+}
+
+
+.priceDiv{
+    /* padding-right: 100px; */
+}
+
+.previuosPrice{
+    color: gray;
+    font-size: 20px;
+    font-weight: 700;
+}
+.currentPrice{
+    color: red;
+    font-size: 20px;
+    font-weight: 700;
+}
+.addToCardButton{
+    margin-top: 12px;
+    background-color:#f1c40f;
+    padding: 5px;
+    width: 200px;
+}
