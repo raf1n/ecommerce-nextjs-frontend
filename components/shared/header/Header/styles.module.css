@@ -1,0 +1,145 @@
+/* .search-btn {
+    background: #f57224 url('./search.svg') 50% no-repeat;
+}
+
+.nav-category-text::after {
+    content: '\e736';
+    margin-left: 12px;
+    font-size: 16px;
+}
+
+.breadcrumb-container {
+    background: #eff0f5;
+}
+
+.product-img::after {
+    display: inline-block;
+    content: "";
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.promotion-tag-item::before {
+    position: absolute;
+    top: 10px;
+    right: 7px;
+    content: "";
+    border-color: #fff transparent transparent;
+    border-style: solid;
+    border-width: 5px 4px;
+}
+
+.tag-name::after {
+    position: absolute;
+    top: 0;
+    right: -7px;
+    display: inline-block;
+    content: "";
+    border-color: #ff9800 transparent;
+    border-style: solid;
+    border-width: 12px 7px;
+}
+
+.product-color::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.product-image-inDetails::after {
+    display: inline-block;
+    content: "";
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.product-image-inDetails::before {
+    display: inline-block;
+    content: "";
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.add-icon {
+    font-size: 25px;
+    color: #757575;
+    padding: 2px 5px;
+}
+
+.minus-icon {
+    font-size: 30px;
+    color: #757575;
+    padding: 2px 7px;
+}
+
+.add-icon::before {
+    width: 12px;
+    font-size: 12px;
+    line-height: inherit;
+    font-weight: 900;
+}
+
+.minus-icon::before {
+    width: 12px;
+    font-size: 12px;
+    line-height: inherit;
+    font-weight: 900;
+}
+
+
+/* Modal CSS  */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+} */
+
+.container-x {
+    max-width: 1216px !important;
+    width: 100%;
+}
+
+.search-input {
+    height: 100%;
+    width: 100%;
+    padding-left: 1.25rem;
+    font-size: .75rem;
+    line-height: 1rem;
+    font-weight: 500;
+}
+
+.line-clamp-1 {
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.search-btn{
+    --tw-bg-opacity: 1;
+        background-color: rgb(255 187 56/var(--tw-bg-opacity));
+        --tw-text-opacity: 1;
+        color: rgb(34 34 34/var(--tw-text-opacity));
+}
+
+@media (min-width: 768px) {
+    .container-x {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}

@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import Header from "../components/shared/header/Header/Header";
 import { controller } from "../src/state/StateController";
 import Homepage from "../components/pages/homepage/Homepage";
 
