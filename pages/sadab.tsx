@@ -2,12 +2,13 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import FAQ from '../components/pages/faq/FAQ'
 import Banner1 from '../components/pages/homepage/Banners/Banner1'
-import Contact from '../components/pages/homepage/contact/Contact'
+import Contact from '../components/pages/contact/Contact'
 import Itemdetails from '../components/pages/homepage/itemdetails/Itemdetails'
 import ProductCategory from '../components/pages/homepage/ProductCategory/ProductCategory'
 import Shopbybrand from '../components/pages/homepage/shopbybrand/Shopbybrand'
 import Toprated from '../components/pages/homepage/topratedproducts/Toprated'
 import { controller } from '../src/state/StateController'
+import WishList from '../components/pages/wishlist/Wishlist'
 
 interface Props {
 }
@@ -25,6 +26,7 @@ const sadab: React.FC<Props> = (props) => {
             <Itemdetails />
             <Contact></Contact>
             <FAQ></FAQ>
+            <WishList></WishList>
         </>
     )
 }
