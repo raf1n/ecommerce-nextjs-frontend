@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import BestDealBanner from "../components/pages/homepage/BestDealBanner/BestDealBanner";
-import ContactPage from "../components/pages/homepage/ContactPage/ContactPage";
 import DeliberyComponents from "../components/pages/homepage/DeliberyPolicyData/DeliveryComponents";
 import FeaturedProducts from "../components/pages/homepage/FeaturedProducts/FeaturedProducts";
 import Homepage from "../components/pages/homepage/Homepage";
@@ -27,8 +26,6 @@ const ironman: React.FC<Props> = (props) => {
       <br />
       <PopularCategory></PopularCategory>
       <br />
-      <br />
-      <ContactPage></ContactPage>
       <br />
       <br />
       <BestDealBanner></BestDealBanner>
