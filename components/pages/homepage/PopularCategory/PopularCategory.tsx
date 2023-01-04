@@ -11,11 +11,11 @@ const PopularCategory: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <div className="section-wrapper w-full ">
+      <div className="section-wrapper w-full md:mb-[60px] mb-[30px]">
         <div className="container-x mx-auto">
           <div className=" section-title flex justify-between items-center mb-5">
             <div>
-              <h1 className="sm:text-3xl text-xl font-600 text-qblacktext leading-none">
+              <h1 className="sm:text-3xl text-xl font-semibold text-qblacktext leading-none">
                 Popular Category
               </h1>
             </div>
@@ -24,7 +24,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                 rel="noopener noreferrer"
                 href="/products?highlight=popular_category">
                 <div className="flex space-x-2 items-center cursor-pointer">
-                  <p className="text-base font-600 text-qblack">View More</p>
+                  <p className="text-base font-semibold text-qblack">View More</p>
                   <span className="animate-right-dir">
                     <svg
                       width="17"
@@ -55,7 +55,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                         "url(https://api.websolutionus.com/shopo/uploads/website-images/popular-cat-banner-2022-09-20-01-15-44-7577.jpg) 0% 0% / cover no-repeat",
                     }}>
                     <div>
-                      <h1 className="text-base font-600 tracking-wide mb-2">
+                      <h1 className="text-base font-semibold tracking-wide mb-2">
                         Popular Category
                       </h1>
                       <div className="brands-list mb-[7px]">
@@ -78,7 +78,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                         </ul>
                       </div>
                       <div className="flex space-x-2 items-center">
-                        <span className="text-qblack font-600 text-sm">
+                        <span className="text-qblack font-semibold text-sm">
                           Shop Now
                         </span>
                         <span>

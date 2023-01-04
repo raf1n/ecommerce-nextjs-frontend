@@ -16,7 +16,7 @@ const NewReleasedProducts: React.FC<Props> = (props) => {
           <div className="container-x mx-auto">
             <div className=" section-title flex justify-between items-center mb-5">
               <div>
-                <h1 className="sm:text-3xl text-xl font-600 text-qblacktext leading-none">
+                <h1 className="sm:text-3xl text-xl font-semibold text-qblacktext leading-none">
                   New Arrivals
                 </h1>
               </div>
@@ -25,7 +25,7 @@ const NewReleasedProducts: React.FC<Props> = (props) => {
                   rel="noopener noreferrer"
                   href="/products?highlight=new_arrival">
                   <div className="flex space-x-2 items-center cursor-pointer">
-                    <p className="text-base font-600 text-qblack">View More</p>
+                    <p className="text-base font-semibold text-qblack">View More</p>
                     <span className="animate-right-dir">
                       <svg
                         width="17"

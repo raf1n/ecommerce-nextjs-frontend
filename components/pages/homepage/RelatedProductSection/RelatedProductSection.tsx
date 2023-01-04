@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 
-interface Props {}
+interface Props { }
 
 const RelatedProductSection: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -12,7 +12,7 @@ const RelatedProductSection: React.FC<Props> = (props) => {
     //   <div className="related-product w-full bg-white">
     //     <div className="container-x mx-auto">
     //       <div className="w-full py-[60px]">
-    //         <h1 className="sm:text-3xl text-xl font-600 text-qblacktext leading-none mb-[30px]">
+    //         <h1 className="sm:text-3xl text-xl font-semibold text-qblacktext leading-none mb-[30px]">
     //           Related Product
     //         </h1>
     //         <div
@@ -144,15 +144,15 @@ const RelatedProductSection: React.FC<Props> = (props) => {
     //                   <a
     //                     rel="noopener noreferrer"
     //                     href="/single-product?slug=samsung-galaxy-a52-8128-gb">
-    //                     <p className="title mb-2 text-[15px] font-600 text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
+    //                     <p className="title mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
     //                       Samsung Galaxy A52 (8/128 GB)
     //                     </p>
     //                   </a>
     //                   <p className="price">
-    //                     <span className="main-price  font-600 text-[18px] line-through text-qgray">
+    //                     <span className="main-price  font-semibold text-[18px] line-through text-qgray">
     //                       <span>$11.11</span>
     //                     </span>
-    //                     <span className="offer-price text-qred font-600 text-[18px] ml-2">
+    //                     <span className="offer-price text-qred font-semibold text-[18px] ml-2">
     //                       $9.99
     //                     </span>
     //                   </p>
@@ -356,12 +356,12 @@ const RelatedProductSection: React.FC<Props> = (props) => {
     //                   <a
     //                     rel="noopener noreferrer"
     //                     href="/single-product?slug=jbl-clip-4-orange-portable-speaker">
-    //                     <p className="title mb-2 text-[15px] font-600 text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
+    //                     <p className="title mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
     //                       JBL Clip 4 Orange Portable Speaker
     //                     </p>
     //                   </a>
     //                   <p className="price">
-    //                     <span className="main-price  font-600 text-[18px] text-qred">
+    //                     <span className="main-price  font-semibold text-[18px] text-qred">
     //                       $133.00
     //                     </span>
     //                   </p>

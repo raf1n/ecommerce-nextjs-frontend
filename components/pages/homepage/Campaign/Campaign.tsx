@@ -28,7 +28,7 @@ const Campaign: React.FC<Props> = (props) => {
                                                 <div className="sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
                                                     <span className="font-bold sm:text-[30px] text-[14px] text-[#EB5757]">{item.duration}</span>
                                                 </div>
-                                                <p className="sm:text-[18px] text-[12px] font-500 text-center leading-8">{item.name}</p>
+                                                <p className="sm:text-[18px] text-[12px] font-medium text-center leading-8">{item.name}</p>
                                             </div>
                                         )
                                     })

@@ -5,15 +5,15 @@ import { controller } from '../../../../src/state/StateController'
 interface Props {
 }
 
-const Shopbybrand: React.FC<Props> = (props) => {
+const ShopByBrand: React.FC<Props> = (props) => {
 
     const states = useSelector(() => controller.states);
 
     return (
-        <div className=' w-full'>
+        <div className='w-full'>
             <div className='container-x mx-auto pb-[60px]'>
                 <div >
-                    <h1 className='sm:text-3xl text-xl font-600 font-semibold mb-10'>Shop by Brand</h1>
+                    <h1 className='sm:text-3xl text-xl font-semibold mb-10'>Shop by Brand</h1>
                     <div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 '>
                         <div className='grid place-items-center border-slate-200 h-32 px-5'><img src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Foneplus-2022-09-25-04-15-53-8330.png&w=1920&q=75" alt="" /> </div>
                         <div className=' grid place-items-center border-slate-200  h-32 px-5'>
@@ -59,4 +59,4 @@ const Shopbybrand: React.FC<Props> = (props) => {
     )
 }
 
-export default Shopbybrand
+export default ShopByBrand

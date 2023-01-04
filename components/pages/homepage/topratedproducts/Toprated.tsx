@@ -16,10 +16,10 @@ const TopRated: React.FC<Props> = (props) => {
             <div className='container-x mx-auto pb-[60px]'>
                 <div className=' section-title flex justify-between items-center mb-5'>
                     <div>
-                        <h1 className='sm:text-3xl text-xl font-600 font-semibold mb-10'>Top Rated Products</h1>
+                        <h1 className='sm:text-3xl text-xl font-semibold font-semibold mb-10'>Top Rated Products</h1>
                     </div>
                     <div className='view-more-btn flex items-center		'>
-                        <button className='text-base font-600 font-semibold'>View More
+                        <button className='text-base font-semibold font-semibold'>View More
 
                         </button>
                         <AiOutlineArrowRight />

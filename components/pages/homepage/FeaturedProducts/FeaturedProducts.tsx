@@ -18,7 +18,7 @@ const FeaturedProducts: React.FC<Props> = (props) => {
           <div className="container-x mx-auto">
             <div className=" section-title flex justify-between items-center mb-5">
               <div>
-                <h1 className="sm:text-3xl text-xl font-600 text-qblacktext leading-none">
+                <h1 className="sm:text-3xl text-xl font-semibold text-qblacktext leading-none">
                   Featured Products
                 </h1>
               </div>
@@ -27,7 +27,7 @@ const FeaturedProducts: React.FC<Props> = (props) => {
                   rel="noopener noreferrer"
                   href="/products?highlight=featured_product">
                   <div className="flex space-x-2 items-center cursor-pointer">
-                    <p className="text-base font-600 text-qblack">View More</p>
+                    <p className="text-base font-semibold text-qblack">View More</p>
                     <span className="animate-right-dir">
                       <svg
                         width="17"
@@ -58,7 +58,7 @@ const FeaturedProducts: React.FC<Props> = (props) => {
                           "url(https://api.websolutionus.com/shopo/uploads/website-images/featured-cat-banner-2022-09-21-02-43-49-4710.jpg) 0% 0% / cover no-repeat",
                       }}>
                       <div>
-                        <h1 className="text-base font-600 tracking-wide mb-2">
+                        <h1 className="text-base font-semibold tracking-wide mb-2">
                           Featured Products
                         </h1>
                         <div className="brands-list mb-[7px]">
@@ -76,7 +76,7 @@ const FeaturedProducts: React.FC<Props> = (props) => {
                           </ul>
                         </div>
                         <div className="flex space-x-2 items-center">
-                          <span className="text-qblack font-600 text-sm">
+                          <span className="text-qblack font-semibold text-sm">
                             Shop Now
                           </span>
                           <span>

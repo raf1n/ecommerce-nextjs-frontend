@@ -29,7 +29,7 @@ const DeliveryComponents: React.FC<Props> = (props) => {
             </span>
           </div>
           <div>
-            <p className="text-black text-[15px] font-700 tracking-wide mb-1">
+            <p className="text-black text-[15px] font-bold tracking-wide mb-1">
               Free Shipping
             </p>
             <p className="text-sm text-qgray line-clamp-1">
@@ -58,7 +58,7 @@ const DeliveryComponents: React.FC<Props> = (props) => {
             </span>
           </div>
           <div>
-            <p className="text-black text-[15px] font-700 tracking-wide mb-1">
+            <p className="text-black text-[15px] font-bold tracking-wide mb-1">
               Return Policy
             </p>
             <p className="text-sm text-qgray line-clamp-1">
@@ -87,7 +87,7 @@ const DeliveryComponents: React.FC<Props> = (props) => {
             </span>
           </div>
           <div>
-            <p className="text-black text-[15px] font-700 tracking-wide mb-1">
+            <p className="text-black text-[15px] font-bold tracking-wide mb-1">
               Secured Payment
             </p>
             <p className="text-sm text-qgray line-clamp-1">
@@ -116,7 +116,7 @@ const DeliveryComponents: React.FC<Props> = (props) => {
             </span>
           </div>
           <div>
-            <p className="text-black text-[15px] font-700 tracking-wide mb-1">
+            <p className="text-black text-[15px] font-bold tracking-wide mb-1">
               Best Quality
             </p>
             <p className="text-sm text-qgray line-clamp-1">

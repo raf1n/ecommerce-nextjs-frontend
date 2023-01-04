@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useStore } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { Jsondata } from "../../../src/utils/Jsondata";
-interface Props {}
+interface Props { }
 
 const BlogsCards: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -146,7 +146,7 @@ const BlogsCards: React.FC<Props> = (props) => {
             >
               <div className="flex justify-center w-full h-full items-center group rounded relative transition-all duration-300 ease-in-out overflow-hidden cursor-pointer">
                 <div className="flex items-center transition-all duration-300 ease-in-out relative z-10 text-qblack hover:text-white">
-                  <span className="text-sm font-600 tracking-wide leading-7 mr-2">
+                  <span className="text-sm font-semibold tracking-wide leading-7 mr-2">
                     Show more...
                   </span>
                 </div>

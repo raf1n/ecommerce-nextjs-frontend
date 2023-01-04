@@ -14,7 +14,8 @@ import HeroSection from "./HeroSection/HeroSection";
 import NewReleasedProducts from "./NewReleasedProducts/NewReleasedProducts";
 import PopularCategory from "./PopularCategory/PopularCategory";
 import ProductCategory from "./ProductCategory/ProductCategory";
-import Shopbybrand from "./ShopByBrand/Shopbybrand";
+import ShopByBrand from "./ShopByBrand/ShopByBrand";
+
 import Toprated from "./TopRatedProducts/TopRated";
 
 
@@ -29,7 +30,7 @@ const Homepage: React.FC<Props> = (props) => {
     <HeroSection />
     <ProductCategory />
     <PopularCategory />
-    <Shopbybrand />
+    <ShopByBrand />
     <Campaign />
     <Toprated />
     <BestSeller />
