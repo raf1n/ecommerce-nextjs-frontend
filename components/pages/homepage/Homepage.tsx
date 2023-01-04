@@ -3,7 +3,10 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import Footer from "../../shared/Footer/Footer";
 import Header from "../../shared/Header/HeaderTop/HeaderTop";
+<<<<<<< HEAD
 // import Header from "../../shared/header/HeaderTop/HeaderTop";
+=======
+>>>>>>> 37b96889121f36d716d6186791727b42d7f1f562
 import AD1 from "./Ads/AD1";
 import AD2 from "./Ads/AD2";
 import AD3 from "./Ads/AD3";
@@ -17,8 +20,7 @@ import PopularCategory from "./PopularCategory/PopularCategory";
 import ProductCategory from "./ProductCategory/ProductCategory";
 import Shopbybrand from "./ShopByBrand/Shopbybrand";
 import TopRated from "./TopRatedProducts/Toprated";
-
-
+// import Toprated from "./TopRatedProducts/TopRated";
 
 
 
