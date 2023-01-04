@@ -16,7 +16,7 @@ import PopularCategory from "./PopularCategory/PopularCategory";
 import ProductCategory from "./ProductCategory/ProductCategory";
 import ShopByBrand from "./ShopByBrand/ShopByBrand";
 
-import Toprated from "./TopRatedProducts/TopRated";
+import TopRated from "./TopRatedProducts/TopRated";
 
 
 
@@ -32,7 +32,7 @@ const Homepage: React.FC<Props> = (props) => {
     <PopularCategory />
     <ShopByBrand />
     <Campaign />
-    <Toprated />
+    <TopRated />
     <BestSeller />
     <AD1 />
     <FeaturedProducts />

@@ -14,7 +14,7 @@ const TopRatedProduct: React.FC<Props> = (props) => {
         <div>
 
 
-            <div className='item w-full'>
+            <div className='item w-full group'>
                 <div className='main-wrapper-card relative'>
                     <div className='flex space-x-5 items-center w-full h-full lg:p-[30px] sm:p-5 p-2'>
                         <div className='lg:w-1/2 w-1/3 h-full relative transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out'>
@@ -62,15 +62,15 @@ const TopRatedProduct: React.FC<Props> = (props) => {
                                     </span>
                                 </div>
                                 <a href="/single-product?slug=sony-joystick-sj-pro-vlv">
-                                    <p className='title mb-2 sm:text-[15px] text-[13px] font-semibold text-slate-700 font-semibold leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer'>{name}</p>
+                                    <p className='title mb-2 sm:text-[15px] text-[13px] text-slate-700 font-semibold leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer'>{name}</p>
                                 </a>
                                 <p className='price mb-[26px]'>
-                                    <span className='main-price font-semibold  font-semibold text-[18px] line-through text-gray-500'>
+                                    <span className='main-price font-semibold text-[18px] line-through text-gray-500'>
                                         <span>
                                             {mainPrice}
                                         </span>
                                     </span>
-                                    <span className='offer-price text-red-500 font-semibold font-semibold text-[18px] ml-2'>
+                                    <span className='offer-price text-red-500 font-semibold text-[18px] ml-2'>
                                         <span>
                                             {offerPrice}
                                         </span>
