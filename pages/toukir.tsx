@@ -4,8 +4,8 @@ import { controller } from '../src/state/StateController';
 import Footer from './../components/shared/footer/Footer';
 import BestProducts from './../components/pages/homepage/BestProducts/BestProducts';
 import SingleProduct from './../components/pages/singleproduct/SingleProduct';
-import FAQ from '../components/pages/faq/FAQ';
-import CategoryPage from '../components/pages/categorypage/CategoryPage';
+import FAQ from '../components/pages/FAQ/FAQ';
+import CategoryPage from '../components/pages/CategoryPage/CategoryPage';
 
 interface Props {
 }

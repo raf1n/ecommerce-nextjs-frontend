@@ -1,19 +1,19 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../../../src/state/StateController'
-import styles from "./Banners.module.css";
+import styles from "./Ads.module.css";
 
 interface Props {
 }
 
-const Banner1: React.FC<Props> = (props) => {
+const AD2: React.FC<Props> = (props) => {
 
     const states = useSelector(() => controller.states)
 
     return (
         <div className="one-column-ads-one md:h-[295px] h-[190px] md:mb-[60px] mb-[30px] w-full">
             <div className="container-x mx-auto h-full">
-                <div className={`${styles['banner1']} w-full h-full flex justify-center items-center xl:py-[60px] md:py-[40px] py-4 `}>
+                <div className={`${styles['ad2-bg']} w-full h-full flex justify-center items-center xl:py-[60px] md:py-[40px] py-4 `}>
                     <div className="w-full h-full flex flex-col justify-between items-center">
                         <div>
                             <div className="md:mb-3 text-center">
@@ -30,7 +30,7 @@ const Banner1: React.FC<Props> = (props) => {
                                 <div className="w-[136px] h-[40px] bg-white relative flex justify-center overflow-hidden">
                                     <div className="w-full h-full bg-qyellow absolute transition-all duration-300 ease-in-out -left-[140px] group-hover:left-0 top-0"></div>
                                     <div className="flex space-x-2 items-center relative z-10">
-                                        <span className="text-sm text-semibold transition-all duration-300 ease-in-out text-qyellow group-hover:text-qblack">
+                                        <span className="text-sm font-semibold transition-all duration-300 ease-in-out text-qyellow group-hover:text-qblack">
                                             Shop Now
                                         </span>
                                         <span className="text-qyellow transition-all duration-300 ease-in-out group-hover:text-qblack">
@@ -47,4 +47,4 @@ const Banner1: React.FC<Props> = (props) => {
     )
 }
 
-export default Banner1
+export default AD2

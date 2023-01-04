@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import FaqHeader from "./FaqHeader";
 import FaqRight from "./FaqRight";
+import Drawer from './Drawer'
 
-interface Props {}
+interface Props { }
 
 const FAQ: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -16,6 +17,10 @@ const FAQ: React.FC<Props> = (props) => {
         <div className="container-x mx-auto w-full lg:flex lg:gap-x-[30px]">
           <div className="lg:w-1/2 w-full mb-10 lg:mb-0">
             {/* <ItemDetailsLeft></ItemDetailsLeft> */}
+            <Drawer></Drawer>
+          </div>
+          <div className="flex-1">
+            {/* <FaqRight /> */}
           </div>
           <div className="flex-1">
             <FaqRight />
