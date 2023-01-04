@@ -92,7 +92,7 @@ const FaqRight: React.FC<Props> = (props) => {
           <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
             <textarea
               placeholder="Type your message here"
-              className="input-field placeholder:text-sm text-sm px-6 w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
+              className="input-field placeholder:text-sm text-sm px-6 py-3 w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
               id="message"
               defaultValue=""
               spellCheck="false"
