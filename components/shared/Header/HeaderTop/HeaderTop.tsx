@@ -10,6 +10,7 @@ const Header: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [sideDropdownOpen, setSideDropdownOpen] = useState(false);
   const [showCategory, setShowCategory] = useState(true);
+  const [showTopAllCatgory, setShowTopAllCatgory] = useState(false);
 
   const sideDropdown = () => {
     console.log("open");
@@ -18,6 +19,10 @@ const Header: React.FC<Props> = (props) => {
   const routeSideDropdown = () => {
     console.log("open2");
     setShowCategory(!showCategory);
+  };
+  const topAllCategoriesDropdown = () => {
+    console.log("open2");
+    setShowTopAllCatgory(!showTopAllCatgory);
   };
 
   return (
@@ -236,7 +241,9 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-normal capitalize">Game</span>
+                      <span className="text-sm font-normal capitalize">
+                        Game
+                      </span>
                     </div>
                     <div>
                       <span>
@@ -458,7 +465,9 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-normal capitalize">Bike</span>
+                      <span className="text-sm font-normal capitalize">
+                        Bike
+                      </span>
                     </div>
                     <div>
                       <span>
@@ -779,7 +788,9 @@ const Header: React.FC<Props> = (props) => {
                 <li className="category-item">
                   <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex items-center space-x-6">
-                      <span className="text-sm font-normal capitalize">Pages</span>
+                      <span className="text-sm font-normal capitalize">
+                        Pages
+                      </span>
                     </div>
                     <div>
                       <span>
@@ -1001,7 +1012,9 @@ const Header: React.FC<Props> = (props) => {
                 <li className="category-item">
                   <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex items-center space-x-6">
-                      <span className="text-sm font-normal capitalize">About</span>
+                      <span className="text-sm font-normal capitalize">
+                        About
+                      </span>
                     </div>
                     <div>
                       <span>
@@ -1036,7 +1049,9 @@ const Header: React.FC<Props> = (props) => {
                 <li className="category-item">
                   <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex items-center space-x-6">
-                      <span className="text-sm font-normal capitalize">blogs</span>
+                      <span className="text-sm font-normal capitalize">
+                        blogs
+                      </span>
                     </div>
                     <div>
                       <span>
@@ -1219,15 +1234,22 @@ const Header: React.FC<Props> = (props) => {
                       <div className="h-full">
                         <input
                           type="text"
-                          className={styles['search-input']}
+                          className={styles["search-input"]}
                           placeholder="Search Products ..."
                         />
                       </div>
                     </div>
                     <div className="w-[1px] h-[22px] bg-qgrayLite"></div>
                     <div className="flex-1 flex items-center px-4 relative">
-                      <button className="w-full text-xs font-medium text-qgray flex justify-between items-center">
-                        <span className="line-clamp-1">All Categories</span>
+                      <button
+                        className="w-full text-xs font-medium text-qgray flex justify-between items-center"
+                        onClick={() => {
+                          topAllCategoriesDropdown();
+                        }}
+                      >
+                        <span className={styles["line-clamp-1"]}>
+                          All Categories
+                        </span>
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -1243,7 +1265,85 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </button>
+                      {/* all categories div */}
+
+                      {showTopAllCatgory && (
+                        <div>
+                          <div
+                            className="w-full h-full fixed left-0 top-0 z-50"
+                            onClick={() => {
+                              topAllCategoriesDropdown();
+                            }}
+                          ></div>
+                          <div
+                            className="w-[227px] h-auto absolute bg-white left-0 top-[29px] z-50 p-5"
+                            style={{
+                              boxShadow:
+                                "rgba(0, 0, 0, 0.14) 0px 15px 50px 0px",
+                            }}
+                          >
+                            <ul className="flex flex-col space-y-2">
+                              <li>
+                                <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                  Electronics
+                                </span>
+                              </li>
+                              <li>
+                                <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                  Game
+                                </span>
+                              </li>
+                              <li>
+                                <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                  Mobile
+                                </span>
+                              </li>
+                              <li>
+                                <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                  Lifestyle
+                                </span>
+                              </li>
+                              <li>
+                                <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                  Babies &amp; Toys
+                                </span>
+                              </li>
+                              <li>
+                                <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                  Bike
+                                </span>
+                              </li>
+                              <li>
+                                <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                  Men's Fasion
+                                </span>
+                              </li>
+                              <li>
+                                <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                  Woman Fashion
+                                </span>
+                              </li>
+                              <li>
+                                <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                  Talevision
+                                </span>
+                              </li>
+                              <li>
+                                <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                  Accessories
+                                </span>
+                              </li>
+                              <li>
+                                <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                  John Doe
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      )}
                     </div>
+
                     <button className="search-btn w-[93px] bg-qyellow h-full text-sm font-semibold">
                       Search
                     </button>
