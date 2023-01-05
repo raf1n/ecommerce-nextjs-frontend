@@ -10,7 +10,7 @@ const Dashboard: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states)
   
   return (
-    <div>
+    <div className='flex-1'>
       Dashboard
     </div>
   )

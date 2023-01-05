@@ -599,6 +599,7 @@ export class Jsondata {
     {
       title: "Orders",
       icon: FaShoppingCart,
+      height: "253px",
       nestedRoutes: [
         {
           title: "All Orders",
@@ -630,70 +631,80 @@ export class Jsondata {
         },
       ],
     },
-    { title: "Manage Categories", icon: AiFillAppstore, nestedRoutes: [
-      {
-        title: "Categories",
-        link: "/categories",
-      },
-      {
-        title: "Sub Categories",
-        link: "/sub-categories",
-      },
-      {
-        title: "Child Categories",
-        link: "/child-categories",
-      },
-      {
-        title: "Mega Menu Category",
-        link: "/mega-menu-category",
-      },
-      {
-        title: "Popular Category",
-        link: "/popular-category",
-      },
-      {
-        title: "Featured Category",
-        link: "/featured-category",
-      },
-    ] },
-    { title: "Manage Products ", icon: AiFillAppstore, nestedRoutes: [
-      {
-        title: "Brands",
-        link: "/brands",
-      },
-      {
-        title: "Create Product",
-        link: "/create-product",
-      },
-      {
-        title: "Products",
-        link: "/products",
-      },
-      {
-        title: "Stock Out",
-        link: "/stock-out",
-      },
-      {
-        title: "Seller Products",
-        link: "/seller-products",
-      },
-      {
-        title: "Seller Pending Products",
-        link: "/seller-pending-products",
-      },
-      {
-        title: "Specification Key",
-        link: "/specification-key",
-      },
-      {
-        title: "Product Reviews",
-        link: "/product-reviews",
-      },
-      {
-        title: "Product Report",
-        link: "/product-report",
-      },
-    ] },
+    {
+      title: "Manage Categories",
+      icon: AiFillAppstore,
+      height: "218px",
+      nestedRoutes: [
+        {
+          title: "Categories",
+          link: "/categories",
+        },
+        {
+          title: "Sub Categories",
+          link: "/sub-categories",
+        },
+        {
+          title: "Child Categories",
+          link: "/child-categories",
+        },
+        {
+          title: "Mega Menu Category",
+          link: "/mega-menu-category",
+        },
+        {
+          title: "Popular Category",
+          link: "/popular-category",
+        },
+        {
+          title: "Featured Category",
+          link: "/featured-category",
+        },
+      ],
+    },
+    {
+      title: "Manage Products ",
+      icon: AiFillAppstore,
+      height: "323px",
+      nestedRoutes: [
+        {
+          title: "Brands",
+          link: "/brands",
+        },
+        {
+          title: "Create Product",
+          link: "/create-product",
+        },
+        {
+          title: "Products",
+          link: "/products",
+        },
+        {
+          title: "Stock Out",
+          link: "/stock-out",
+        },
+        {
+          title: "Seller Products",
+          link: "/seller-products",
+        },
+        {
+          title: "Seller Pending Products",
+          link: "/seller-pending-products",
+        },
+        {
+          title: "Specification Key",
+          link: "/specification-key",
+        },
+        {
+          title: "Product Reviews",
+          link: "/product-reviews",
+        },
+        {
+          title: "Product Report",
+          link: "/product-report",
+        },
+      ],
+    },
     { title: "Ecommerce", icon: FaShoppingCart },
     { title: "Advertisements", icon: FaAdversal },
     { title: "Withdraw Payment", icon: FaNewspaper },
