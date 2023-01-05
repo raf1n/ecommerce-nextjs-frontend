@@ -19,7 +19,7 @@ const ironman: React.FC<Props> = (props) => {
       <FeaturedProducts></FeaturedProducts>
       <NewReleasedProducts></NewReleasedProducts>
       <PopularCategory></PopularCategory>
-      {/* <WishList /> */}
+      <WishList />
     </div>
   );
 };

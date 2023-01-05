@@ -46,7 +46,7 @@ const ShopByBrand: React.FC<Props> = (props) => {
                         <div className='grid bg-white border border-primarygray place-items-center border-slate-200   h-32 px-5'>
                             <img src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fbrave-2022-09-25-04-16-55-9281.png&w=1920&q=75" alt="" />
                         </div>
-                        <div className='grid bg-white border border-primarygray place-items-center border-gray-400  h-32 px-5'>
+                        <div className='grid bg-white border border-primarygray place-items-center border-slate-200  h-32 px-5'>
                             <img src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Ffacebook-2022-09-25-04-17-01-2209.png&w=1920&q=75" alt="" />
                         </div>
                     </div>
