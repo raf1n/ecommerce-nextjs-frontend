@@ -8,7 +8,6 @@ interface Props { }
 const HeaderDropdown: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [openDropdown, setOpenDropdown] = useState(false)
-
   const openCategoryDropDown = () => {
     console.log('hello')
     setOpenDropdown(!openDropdown)
