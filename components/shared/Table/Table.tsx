@@ -110,8 +110,8 @@ const Table: React.FC<Props> = (props) => {
                       <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                         <span
                           aria-hidden
-                          className="absolute inset-0 bg-red-500 opacity-50 rounded-full"></span>
-                        <span className="relative">Pending</span>
+                          className="absolute inset-0 bg-red-500  rounded-full"></span>
+                        <span className="relative text-white">Pending</span>
                       </span>
                     </td>
 
@@ -119,90 +119,39 @@ const Table: React.FC<Props> = (props) => {
                       <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                         <span
                           aria-hidden
-                          className="absolute inset-0 bg-green-500 opacity-50 rounded-full"></span>
-                        <span className="relative">Completed</span>
+                          className="absolute inset-0 bg-green-500 rounded-full"></span>
+                        <span className="relative text-white">Success</span>
                       </span>
                     </td>
 
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className=" h-8 w-8 absolute inset-0 bg-blue-600  opacity-50 rounded "></span>
-                        <span className="relative flex ">
-                          <FaEye />
+                      <button>
+                        <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
+                          <span className="h-8 w-8  inset-0 bg-blue-700   rounded  relative text-white flex justify-center items-center">
+                            <FaEye />
+                          </span>
                         </span>
-                      </span>
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className=" h-8 w-8 absolute inset-0 bg-red-600 opacity-50 rounded "></span>
-                        <span className="relative flex">
-                          <FaTrash />
+                      </button>
+                      <button>
+                        <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
+                          <span className="h-8 w-8  inset-0 bg-red-500   rounded  relative text-white flex justify-center items-center">
+                            <FaTrash />
+                          </span>
                         </span>
-                      </span>
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className=" h-8 w-8 absolute inset-0 bg-orange-600 opacity-50 rounded "></span>
-                        <span className="relative flex">
-                          <FaTruck />
-                        </span>
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">1</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">Rumon</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">512</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">
-                        1-1-2023
-                      </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">420</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">10200</p>
-                    </td>
-
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className="absolute inset-0 bg-green-500 opacity-50 rounded-full"></span>
-                        <span className="relative">Progress</span>
-                      </span>
-                    </td>
-
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className="absolute inset-0 bg-red-500 opacity-50 rounded-full"></span>
-                        <span className="relative">Pending</span>
-                      </span>
-                    </td>
-
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                        <span className="relative">Action</span>
+                      </button>
+                      <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
+                        <button>
+                          <span className="h-8 w-8  inset-0 bg-orange-400   rounded  relative text-white flex justify-center items-center">
+                            <FaTruck />
+                          </span>
+                        </button>
                       </span>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+              {/* -------------- */}
+              <div className="px-5 py-5 bg-white border-t flex justify-between">
                 <span className="text-xs xs:text-sm text-gray-900">
                   Showing 1 to 4 of 50 Entries
                 </span>
@@ -216,6 +165,8 @@ const Table: React.FC<Props> = (props) => {
                   </button>
                 </div>
               </div>
+
+              {/* ----------------- */}
             </div>
           </div>
         </div>
