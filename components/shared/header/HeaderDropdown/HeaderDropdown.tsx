@@ -72,7 +72,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                     </div>
                   </button>
                   <div
-                    className={`${styles['box']} ${styles['category-dropdown']} w-full absolute left-0 top-[53px]  ${openDropdown ? 'block' : 'hidden'}`}
+                    className={`${styles['box']} ${styles['category-dropdown']} w-full absolute left-0 top-[53px] bg-white  ${openDropdown ? 'block' : 'hidden'}`}
 
                   >
                     <ul className={`${styles['categories-list']} relative`}>
