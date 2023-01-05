@@ -13,15 +13,15 @@ const FAQ: React.FC<Props> = (props) => {
   return (
     <div>
       <FaqHeader />
-      <div className="w-full mb-10">
-        <div className="container-x mx-auto w-full lg:flex lg:gap-x-[30px]">
+      <div className="w-full mb-10 ">
+        <div className="container-x mx-auto w-full lg:flex lg:gap-x-[30px] mt-6">
           <div className="lg:w-1/2 w-full mb-10 lg:mb-0">
             {/* <ItemDetailsLeft></ItemDetailsLeft> */}
             <Drawer></Drawer>
           </div>
-          <div className="flex-1">
-            {/* <FaqRight /> */}
-          </div>
+          {/* <div className="flex-1">
+            <FaqRight />
+          </div> */}
           <div className="flex-1">
             <FaqRight />
           </div>

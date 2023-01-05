@@ -16,4 +16,4 @@ const AdminPage: React.FC<Props> = (props) => {
     )
 }
 
-export default AdminPage
+export default AdminPage;

@@ -18,10 +18,10 @@
     position: relative;
 }
 
-.section {
+/* .section {
     position: relative;
     z-index: 1;
-}
+} */
 
 .title {
     margin-bottom: 0;
@@ -38,14 +38,15 @@
     align-items: center;
 }
 
-.row {
+/* .row {
     display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
+-ms-flex-wrap: wrap;
+flex-wrap: wrap;
+margin-right: -15px;
+margin-left: -15px;
 }
 
+*/
 .card {
     box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
     background-color: #fff;
@@ -74,4 +75,9 @@
 .profile-widget-description {
     padding: 20px;
     line-height: 26px;
+}
+
+.new-img {
+    display: inline-block;
+    margin-bottom: 0.5rem;
 }
