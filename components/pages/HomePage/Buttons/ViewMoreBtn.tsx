@@ -3,15 +3,18 @@ import { useSelector } from 'react-redux'
 import { controller } from '../../../../src/state/StateController'
 
 interface Props {
+
+    link: string
 }
 
 const ViewMoreBtn: React.FC<Props> = (props) => {
-
+    const { link } = props;
     const states = useSelector(() => controller.states)
+
 
     return (
         <div>
-            <a href="" rel="noopener noreferrer">
+            <a href={link} rel="noopener noreferrer">
                 <div className="flex space-x-2 items-center cursor-pointer">
                     <p className="text-base font-bold text-qblack">View More</p>
                     <span>

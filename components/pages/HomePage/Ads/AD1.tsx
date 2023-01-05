@@ -10,9 +10,6 @@ interface Props {
 const AD1: React.FC<Props> = (props) => {
 
     const states = useSelector(() => controller.states)
-
-    const color = 'text-qblack'
-
     return (
         <div className="two-column-ads-section md:mb-[60px] lg:h-[295px] h-[200px] mb-[30px] w-full">
             <div className="container-x mx-auto h-full">

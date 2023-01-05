@@ -108,7 +108,7 @@ const TopRatedProduct: React.FC<Props> = (props) => {
                                         </span>
                                     </p>
                                     <button type='button' className='w-[110px] h-[30px] '>
-                                        <span className='btn bg-yellow-500 p-2 font-semibold'>Add To Cart</span>
+                                        <span className='yellow-btn'>Add To Cart</span>
                                     </button>
                                 </div>
                             </div>

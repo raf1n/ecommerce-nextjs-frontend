@@ -1,8 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../../src/state/StateController";
+import ShopNowBtn from '../../Buttons/ShopNowBtn';
 
-interface Props {}
+interface Props { }
 
 const HeroStatic: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -34,41 +35,7 @@ const HeroStatic: React.FC<Props> = (props) => {
               </h1>
             </div>
           </div>
-          <div className="w-[90px]">
-            <a rel="noopener noreferrer" href="/products?category=electronics">
-              <div className="cursor-pointer w-full relative ">
-                <div className="inline-flex space-x-1.5 items-center relative z-20">
-                  <span className="text-sm text-qblack font-medium leading-[30px]">
-                    Shop Now
-                  </span>
-                  <span className="leading-[30px]">
-                    <svg
-                      width="7"
-                      height="11"
-                      viewBox="0 0 7 11"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <rect
-                        x="2.08984"
-                        y="0.636719"
-                        width="6.94219"
-                        height="1.54271"
-                        transform="rotate(45 2.08984 0.636719)"
-                        fill="#1D1D1D"></rect>
-                      <rect
-                        x="7"
-                        y="5.54492"
-                        width="6.94219"
-                        height="1.54271"
-                        transform="rotate(135 7 5.54492)"
-                        fill="#1D1D1D"></rect>
-                    </svg>
-                  </span>
-                </div>
-                <div className="w-[82px] transition-all duration-300 ease-in-out group-hover:h-4 h-[0px] bg-qyellow absolute left-0 bottom-0 z-10"></div>
-              </div>
-            </a>
-          </div>
+          <ShopNowBtn color={{ textColor: 'text-qblack' }} />
         </div>
       </div>
       <div
@@ -96,41 +63,7 @@ const HeroStatic: React.FC<Props> = (props) => {
               </h1>
             </div>
           </div>
-          <div className="w-[90px]">
-            <a rel="noopener noreferrer" href="/products?category=electronics">
-              <div className="cursor-pointer w-full relative ">
-                <div className="inline-flex space-x-1.5 items-center relative z-20">
-                  <span className="text-sm text-qblack font-medium leading-[30px]">
-                    Shop Now
-                  </span>
-                  <span className="leading-[30px]">
-                    <svg
-                      width="7"
-                      height="11"
-                      viewBox="0 0 7 11"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <rect
-                        x="2.08984"
-                        y="0.636719"
-                        width="6.94219"
-                        height="1.54271"
-                        transform="rotate(45 2.08984 0.636719)"
-                        fill="#1D1D1D"></rect>
-                      <rect
-                        x="7"
-                        y="5.54492"
-                        width="6.94219"
-                        height="1.54271"
-                        transform="rotate(135 7 5.54492)"
-                        fill="#1D1D1D"></rect>
-                    </svg>
-                  </span>
-                </div>
-                <div className="w-[82px] transition-all duration-300 ease-in-out group-hover:h-4 h-[0px] bg-qyellow absolute left-0 bottom-0 z-10"></div>
-              </div>
-            </a>
-          </div>
+          <ShopNowBtn color={{ textColor: 'text-qblack' }} />
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { controller } from '../../../../src/state/StateController'
 import { Jsondata } from '../../../../src/utils/Jsondata'
 import ViewMoreBtn from '../Buttons/ViewMoreBtn'
+import SectionHeader from '../SectionHeader'
 import styles from "./BestSeller.module.css"
 interface Props {
 }
@@ -14,12 +15,7 @@ const BestSeller: React.FC<Props> = (props) => {
     return (
         <div className={`${styles['best-sellers-section']} w-full md:mb-[60px] mb-[30px]`}>
             <div className="container-x mx-auto">
-                <div className={`${styles['best-sellers-section-title']} flex justify-between items-center mb-5`}>
-                    <div>
-                        <h1 className="sm:text-3xl text-xl font-semibold text-qblacktext leading-none">Best Seller</h1>
-                    </div>
-                    <ViewMoreBtn />
-                </div>
+                <SectionHeader title="Best Seller" link='/' />
                 <div className={styles['section-content']}>
                     <div className="w-full">
                         <div className="grid xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 xl:gap-[30px] sm:gap-5 gap-2">

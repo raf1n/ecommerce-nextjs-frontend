@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FaArrowRight } from "react-icons/fa";
+import ViewMoreBtn from "./Buttons/ViewMoreBtn";
 
 interface Props {
   title: string;
@@ -19,10 +20,7 @@ const SectionHeader: React.FC<Props> = (props) => {
         <h1 className="sm:text-3xl text-xl font-semibold leading-none">
           {title}
         </h1>
-        <a href={link} className="flex items-center gap-2" title="view more">
-          <span className="text-base font-semibold ">View More</span>
-          <FaArrowRight />
-        </a>
+        <ViewMoreBtn link={link} />
       </div>
     </div>
   );
