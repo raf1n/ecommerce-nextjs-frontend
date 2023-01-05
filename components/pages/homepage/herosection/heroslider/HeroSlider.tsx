@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../../src/state/StateController";
 import Slider from "react-slick";
-import ShopNowBtn from '../../Buttons/ShopNowBtn';
+import ShopNowBtn from '../../../../helpers/Buttons/ShopNowBtn';
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 

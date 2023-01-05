@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 
 interface Props { }
 
-const Header: React.FC<Props> = (props) => {
+const HeaderTop: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [sideDropdownOpen, setSideDropdownOpen] = useState(false);
   const [showCategory, setShowCategory] = useState(true);
@@ -1510,4 +1510,4 @@ const Header: React.FC<Props> = (props) => {
   );
 };
 
-export default Header;
+export default HeaderTop;

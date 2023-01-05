@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../../../src/state/StateController'
 import { Jsondata } from '../../../../src/utils/Jsondata'
-import ShopNowBtn from '../Buttons/ShopNowBtn'
+import ShopNowBtn from '../../../helpers/Buttons/ShopNowBtn'
 import styles from './Campaign.module.css'
 import img1 from "./googlePlay.png";
 import img2 from "./app.png";

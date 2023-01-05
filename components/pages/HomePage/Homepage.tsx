@@ -24,7 +24,6 @@ const Homepage: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <Header />
       <HeroSection />
       <ProductCategory />
       <PopularCategory />
@@ -38,7 +37,6 @@ const Homepage: React.FC<Props> = (props) => {
       <NewReleasedProducts />
       <AD3 />
       <BestProducts />
-      <Footer />
     </div>
   );
 };

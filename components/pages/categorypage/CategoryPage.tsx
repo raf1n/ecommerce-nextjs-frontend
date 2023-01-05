@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../../src/state/StateController'
+import CategoryItemsRight from '../CategorizedItem/CategoryItemsRight'
 import FilterWidget from './FilterWidget'
 
 
@@ -18,7 +19,7 @@ const CategoryPage: React.FC<Props> = (props) => {
           <FilterWidget />
         </div>
         <div className="flex-1 min-h-screen">
-
+          <CategoryItemsRight />
         </div>
       </div>
     </div>

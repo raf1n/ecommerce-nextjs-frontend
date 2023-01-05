@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FaArrowRight } from "react-icons/fa";
-import ViewMoreBtn from "./Buttons/ViewMoreBtn";
+import ViewMoreBtn from "../../helpers/Buttons/ViewMoreBtn";
 
 interface Props {
   title: string;

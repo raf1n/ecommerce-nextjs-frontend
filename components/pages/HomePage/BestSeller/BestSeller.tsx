@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../../../src/state/StateController'
 import { Jsondata } from '../../../../src/utils/Jsondata'
-import ViewMoreBtn from '../Buttons/ViewMoreBtn'
+import ViewMoreBtn from '../../../helpers/Buttons/ViewMoreBtn'
 import SectionHeader from '../SectionHeader'
 import styles from "./BestSeller.module.css"
 interface Props {

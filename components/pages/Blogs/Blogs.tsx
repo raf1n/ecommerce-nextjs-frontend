@@ -1,17 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-import BlogHeader from "./BlogHeader";
+import PageHeader from "../../shared/PageHeader/PageHeader";
 import BlogsCards from "./BlogsCards";
 
-interface Props {}
+interface Props { }
 
 const Blogs: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
     <div>
-      <BlogHeader />
+      <PageHeader slug="Blogs" link="/blogs" title="Blogs" />
       <BlogsCards></BlogsCards>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../../src/state/StateController'
-import WishlistBanner from './WishlistBanner'
+import PageHeader from '../../shared/PageHeader/PageHeader';
 import WishlistCart from "./WishlistCart";
 
 interface Props {
@@ -14,7 +14,7 @@ const WishList: React.FC<Props> = (props) => {
     return (
         <div>
             <div>
-                <WishlistBanner></WishlistBanner>
+                <PageHeader slug="Wishlist" link="/wishlist" title="Wishlist" />
                 <WishlistCart></WishlistCart>
             </div>
         </div>
