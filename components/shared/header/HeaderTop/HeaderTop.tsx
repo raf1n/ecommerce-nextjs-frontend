@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
-import HeaderDropdown from "../HeaderDropdown";
+import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import styles from "./styles.module.css";
 
 interface Props {}
@@ -31,7 +31,7 @@ const Header: React.FC<Props> = (props) => {
         ></div>
       )}
       {sideDropdownOpen && (
-        <div className="w-[280px] transition-all duration-300 ease-in-out h-screen overflow-y-auto overflow-x-hidden overflow-style-none bg-white fixed left-0 top-0 z-50 left-0">
+        <div className="w-[280px] transition-all duration-300 ease-in-out h-screen overflow-y-auto overflow-x-hidden overflow-style-none bg-white fixed left-0 top-0 z-50">
           <div className="w-full px-5 mt-5 mb-4">
             <div className="flex justify-between items-center">
               <div className="flex space-x-5 items-center">
@@ -925,7 +925,7 @@ const Header: React.FC<Props> = (props) => {
                     <li className="category-item">
                       <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qgreen transition-all duration-300 ease-in-out cursor-pointer">
                         <div className="flex items-center space-x-6">
-                          <span className="text-sm font-400 capitalize capitalize ">
+                          <span className="text-sm font-400 capitalize">
                             Seller terms and conditions
                           </span>
                         </div>
@@ -962,7 +962,7 @@ const Header: React.FC<Props> = (props) => {
                     <li className="category-item">
                       <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                         <div className="flex items-center space-x-6">
-                          <span className="text-sm font-400 capitalize capitalize ">
+                          <span className="text-sm font-400 capitalize">
                             kibatu
                           </span>
                         </div>

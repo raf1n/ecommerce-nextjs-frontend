@@ -1293,7 +1293,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=mobiles"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Mobiles
                                       </span>
                                     </a>
@@ -1303,7 +1303,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=monitor"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Monitor
                                       </span>
                                     </a>
@@ -1313,7 +1313,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=camera"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         camera
                                       </span>
                                     </a>
@@ -1334,7 +1334,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=controller"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Controller
                                       </span>
                                     </a>
@@ -1344,7 +1344,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=playstation"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         PlayStation
                                       </span>
                                     </a>
@@ -1354,7 +1354,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=need-for-speed"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Need For Speed
                                       </span>
                                     </a>
@@ -1375,7 +1375,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=desktop"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Desktop
                                       </span>
                                     </a>
@@ -1385,7 +1385,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=headphone"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Headphone
                                       </span>
                                     </a>
@@ -1395,7 +1395,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=mouse"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer cursor-pointer">
+                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Mouse
                                       </span>
                                     </a>

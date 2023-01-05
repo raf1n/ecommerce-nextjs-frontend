@@ -15,8 +15,8 @@ import NewReleasedProducts from "./NewReleasedProducts/NewReleasedProducts";
 import PopularCategory from "./PopularCategory/PopularCategory";
 import ProductCategory from "./ProductCategory/ProductCategory";
 import ShopByBrand from "./ShopByBrand/ShopByBrand";
+import TopRated from "./TopRatedProducts/Toprated";
 
-import TopRated from "./TopRatedProducts/TopRated";
 
 
 
