@@ -41,7 +41,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                           <rect y="4" width="10" height="1" fill="#1D1D1D"></rect>
                         </svg>
                       </span>
-                      <span className="text-sm font-600 text-qblacktext">
+                      <span className="text-sm font-semibold text-qblacktext">
                         All Categories
                       </span>
                     </div>
@@ -100,7 +100,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                   ></path>
                                 </svg>
                               </span>
-                              <span className="text-xs font-400">
+                              <span className="text-xs font-normal">
                                 Electronics
                               </span>
                             </div>
@@ -146,7 +146,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                               >
                                 <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                   <div>
-                                    <span className="text-xs font-400">
+                                    <span className="text-xs font-normal">
                                       Mobiles
                                     </span>
                                   </div>
@@ -192,7 +192,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                     >
                                       <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                         <div>
-                                          <span className="text-xs font-400">
+                                          <span className="text-xs font-normal">
                                             Apple
                                           </span>
                                         </div>
@@ -209,7 +209,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                               >
                                 <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                   <div>
-                                    <span className="text-xs font-400">
+                                    <span className="text-xs font-normal">
                                       Monitor
                                     </span>
                                   </div>
@@ -255,7 +255,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                     >
                                       <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                         <div>
-                                          <span className="text-xs font-400">
+                                          <span className="text-xs font-normal">
                                             LG
                                           </span>
                                         </div>
@@ -272,7 +272,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                               >
                                 <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                   <div>
-                                    <span className="text-xs font-400">
+                                    <span className="text-xs font-normal">
                                       camera
                                     </span>
                                   </div>
@@ -340,7 +340,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                   ></path>
                                 </svg>
                               </span>
-                              <span className="text-xs font-400">Game</span>
+                              <span className="text-xs font-normal">Game</span>
                             </div>
                             <div>
                               <span>
@@ -384,7 +384,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                               >
                                 <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                   <div>
-                                    <span className="text-xs font-400">
+                                    <span className="text-xs font-normal">
                                       Controller
                                     </span>
                                   </div>
@@ -432,7 +432,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                               >
                                 <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                   <div>
-                                    <span className="text-xs font-400">
+                                    <span className="text-xs font-normal">
                                       PlayStation
                                     </span>
                                   </div>
@@ -480,7 +480,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                               >
                                 <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                   <div>
-                                    <span className="text-xs font-400">
+                                    <span className="text-xs font-normal">
                                       Need For Speed
                                     </span>
                                   </div>
@@ -548,7 +548,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                   ></path>
                                 </svg>
                               </span>
-                              <span className="text-xs font-400">Mobile</span>
+                              <span className="text-xs font-normal">Mobile</span>
                             </div>
                             <div>
                               <span>
@@ -611,7 +611,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                   ></path>
                                 </svg>
                               </span>
-                              <span className="text-xs font-400">Lifestyle</span>
+                              <span className="text-xs font-normal">Lifestyle</span>
                             </div>
                             <div>
                               <span>
@@ -674,7 +674,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                   ></path>
                                 </svg>
                               </span>
-                              <span className="text-xs font-400">
+                              <span className="text-xs font-normal">
                                 Babies &amp; Toys
                               </span>
                             </div>
@@ -739,7 +739,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                   ></path>
                                 </svg>
                               </span>
-                              <span className="text-xs font-400">Bike</span>
+                              <span className="text-xs font-normal">Bike</span>
                             </div>
                             <div>
                               <span>
@@ -802,7 +802,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                   ></path>
                                 </svg>
                               </span>
-                              <span className="text-xs font-400">
+                              <span className="text-xs font-normal">
                                 Men's Fasion
                               </span>
                             </div>
@@ -867,7 +867,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                   ></path>
                                 </svg>
                               </span>
-                              <span className="text-xs font-400">
+                              <span className="text-xs font-normal">
                                 Woman Fashion
                               </span>
                             </div>
@@ -932,7 +932,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                   ></path>
                                 </svg>
                               </span>
-                              <span className="text-xs font-400">Talevision</span>
+                              <span className="text-xs font-normal">Talevision</span>
                             </div>
                             <div>
                               <span>
@@ -995,7 +995,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                   ></path>
                                 </svg>
                               </span>
-                              <span className="text-xs font-400">
+                              <span className="text-xs font-normal">
                                 Accessories
                               </span>
                             </div>
@@ -1041,7 +1041,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                               >
                                 <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                   <div>
-                                    <span className="text-xs font-400">
+                                    <span className="text-xs font-normal">
                                       Desktop
                                     </span>
                                   </div>
@@ -1088,7 +1088,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                               >
                                 <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                   <div>
-                                    <span className="text-xs font-400">
+                                    <span className="text-xs font-normal">
                                       Headphone
                                     </span>
                                   </div>
@@ -1135,7 +1135,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                               >
                                 <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                   <div>
-                                    <span className="text-xs font-400">
+                                    <span className="text-xs font-normal">
                                       Mouse
                                     </span>
                                   </div>
@@ -1202,7 +1202,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                   ></path>
                                 </svg>
                               </span>
-                              <span className="text-xs font-400">John Doe</span>
+                              <span className="text-xs font-normal">John Doe</span>
                             </div>
                             <div>
                               <span>
@@ -1246,7 +1246,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                 <div className={`${styles['nav']}`}>
                   <ul className="nav-wrapper flex xl:space-x-10 space-x-5">
                     <li>
-                      <span className="flex items-center text-sm font-600 cursor-pointer ">
+                      <span className="flex items-center text-sm font-semibold cursor-pointer ">
                         <span>Shop</span>
                         <span className="ml-1.5 ">
                           <svg
@@ -1282,7 +1282,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                           <div className="categories-wrapper flex-1 h-full flex justify-around -ml-[70px]">
                             <div>
                               <div className="category">
-                                <h1 className="text-[13px] font-700 text-qblack uppercase mb-[13px]">
+                                <h1 className="text-[13px] font-bold text-qblack uppercase mb-[13px]">
                                   Electronics
                                 </h1>
                               </div>
@@ -1293,7 +1293,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=mobiles"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Mobiles
                                       </span>
                                     </a>
@@ -1303,7 +1303,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=monitor"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Monitor
                                       </span>
                                     </a>
@@ -1313,7 +1313,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=camera"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         camera
                                       </span>
                                     </a>
@@ -1323,7 +1323,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                             </div>
                             <div>
                               <div className="category">
-                                <h1 className="text-[13px] font-700 text-qblack uppercase mb-[13px]">
+                                <h1 className="text-[13px] font-bold text-qblack uppercase mb-[13px]">
                                   Game
                                 </h1>
                               </div>
@@ -1334,7 +1334,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=controller"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Controller
                                       </span>
                                     </a>
@@ -1344,7 +1344,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=playstation"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         PlayStation
                                       </span>
                                     </a>
@@ -1354,7 +1354,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=need-for-speed"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Need For Speed
                                       </span>
                                     </a>
@@ -1364,7 +1364,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                             </div>
                             <div>
                               <div className="category">
-                                <h1 className="text-[13px] font-700 text-qblack uppercase mb-[13px]">
+                                <h1 className="text-[13px] font-bold text-qblack uppercase mb-[13px]">
                                   Accessories
                                 </h1>
                               </div>
@@ -1375,7 +1375,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=desktop"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Desktop
                                       </span>
                                     </a>
@@ -1385,7 +1385,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=headphone"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Headphone
                                       </span>
                                     </a>
@@ -1395,7 +1395,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/products?sub_category=mouse"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Mouse
                                       </span>
                                     </a>
@@ -1469,34 +1469,34 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                     </li>
                     <li>
                       <a rel="noopener noreferrer" href="/sellers">
-                        <span className="flex items-center text-sm font-600 cursor-pointer ">
+                        <span className="flex items-center text-sm font-semibold cursor-pointer ">
                           <span>Sellers</span>
                         </span>
                       </a>
                     </li>
                     <li>
                       <a rel="noopener noreferrer" href="/blogs">
-                        <span className="flex items-center text-sm font-600 cursor-pointer ">
+                        <span className="flex items-center text-sm font-semibold cursor-pointer ">
                           <span className="capitalize">blogs</span>
                         </span>
                       </a>
                     </li>
                     <li>
                       <a rel="noopener noreferrer" href="/about">
-                        <span className="flex items-center text-sm font-600 cursor-pointer ">
+                        <span className="flex items-center text-sm font-semibold cursor-pointer ">
                           <span>About</span>
                         </span>
                       </a>
                     </li>
                     <li>
                       <a rel="noopener noreferrer" href="/contact">
-                        <span className="flex items-center text-sm font-600 cursor-pointer ">
+                        <span className="flex items-center text-sm font-semibold cursor-pointer ">
                           <span>Contact</span>
                         </span>
                       </a>
                     </li>
                     <li className="relative">
-                      <span className="flex items-center text-sm font-600 cursor-pointer ">
+                      <span className="flex items-center text-sm font-semibold cursor-pointer ">
                         <span>Pages</span>
                         <span className="ml-1.5 ">
                           <svg
@@ -1538,7 +1538,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/privacy-policy"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Privacy Policy
                                       </span>
                                     </a>
@@ -1548,7 +1548,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/terms-condition"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         Terms and Conditions
                                       </span>
                                     </a>
@@ -1558,14 +1558,14 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/seller-terms-condition"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qgreen hover:text-qgreen cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qgreen hover:text-qgreen cursor-pointer">
                                         Seller terms and conditions
                                       </span>
                                     </a>
                                   </li>
                                   <li>
                                     <a rel="noopener noreferrer" href="/faq">
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         FAQ
                                       </span>
                                     </a>
@@ -1575,7 +1575,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       rel="noopener noreferrer"
                                       href="/pages?custom=kibatu"
                                     >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         kibatu
                                       </span>
                                     </a>
@@ -1594,7 +1594,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                 <a rel="noopener noreferrer" href="/become-seller">
                   <div className=" w-[161px] h-[40px] flex justify-center items-center cursor-pointer bg-qblack text-white">
                     <div className="flex space-x-2 items-center">
-                      <span className="text-sm font-600">Become seller</span>
+                      <span className="text-sm font-semibold">Become seller</span>
                       <span>
                         <svg
                           width="6"

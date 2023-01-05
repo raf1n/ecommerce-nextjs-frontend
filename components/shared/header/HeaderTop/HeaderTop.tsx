@@ -180,7 +180,7 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-400 capitalize">
+                      <span className="text-sm font-normal capitalize">
                         Electronics
                       </span>
                     </div>
@@ -236,7 +236,7 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-400 capitalize">Game</span>
+                      <span className="text-sm font-normal capitalize">Game</span>
                     </div>
                     <div>
                       <span>
@@ -290,7 +290,7 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-400 capitalize">
+                      <span className="text-sm font-normal capitalize">
                         Mobile
                       </span>
                     </div>
@@ -346,7 +346,7 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-400 capitalize">
+                      <span className="text-sm font-normal capitalize">
                         Lifestyle
                       </span>
                     </div>
@@ -402,7 +402,7 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-400 capitalize">
+                      <span className="text-sm font-normal capitalize">
                         Babies &amp; Toys
                       </span>
                     </div>
@@ -458,7 +458,7 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-400 capitalize">Bike</span>
+                      <span className="text-sm font-normal capitalize">Bike</span>
                     </div>
                     <div>
                       <span>
@@ -512,7 +512,7 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-400 capitalize">
+                      <span className="text-sm font-normal capitalize">
                         Men's Fasion
                       </span>
                     </div>
@@ -568,7 +568,7 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-400 capitalize">
+                      <span className="text-sm font-normal capitalize">
                         Woman Fashion
                       </span>
                     </div>
@@ -624,7 +624,7 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-400 capitalize">
+                      <span className="text-sm font-normal capitalize">
                         Talevision
                       </span>
                     </div>
@@ -680,7 +680,7 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-400 capitalize">
+                      <span className="text-sm font-normal capitalize">
                         Accessories
                       </span>
                     </div>
@@ -736,7 +736,7 @@ const Header: React.FC<Props> = (props) => {
                           </svg>
                         </span>
                       </span>
-                      <span className="text-sm font-400 capitalize">
+                      <span className="text-sm font-normal capitalize">
                         John Doe
                       </span>
                     </div>
@@ -779,7 +779,7 @@ const Header: React.FC<Props> = (props) => {
                 <li className="category-item">
                   <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex items-center space-x-6">
-                      <span className="text-sm font-400 capitalize">Pages</span>
+                      <span className="text-sm font-normal capitalize">Pages</span>
                     </div>
                     <div>
                       <span>
@@ -814,7 +814,7 @@ const Header: React.FC<Props> = (props) => {
                     <li className="category-item">
                       <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                         <div className="flex items-center space-x-6">
-                          <span className="text-sm font-400 capitalize">
+                          <span className="text-sm font-normal capitalize">
                             Privacy Policy
                           </span>
                         </div>
@@ -851,7 +851,7 @@ const Header: React.FC<Props> = (props) => {
                     <li className="category-item">
                       <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                         <div className="flex items-center space-x-6">
-                          <span className="text-sm font-400 capitalize">
+                          <span className="text-sm font-normal capitalize">
                             FAQ
                           </span>
                         </div>
@@ -888,7 +888,7 @@ const Header: React.FC<Props> = (props) => {
                     <li className="category-item">
                       <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                         <div className="flex items-center space-x-6">
-                          <span className="text-sm font-400 capitalize">
+                          <span className="text-sm font-normal capitalize">
                             Terms and Conditions
                           </span>
                         </div>
@@ -925,7 +925,7 @@ const Header: React.FC<Props> = (props) => {
                     <li className="category-item">
                       <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qgreen transition-all duration-300 ease-in-out cursor-pointer">
                         <div className="flex items-center space-x-6">
-                          <span className="text-sm font-400 capitalize">
+                          <span className="text-sm font-normal capitalize">
                             Seller terms and conditions
                           </span>
                         </div>
@@ -962,7 +962,7 @@ const Header: React.FC<Props> = (props) => {
                     <li className="category-item">
                       <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                         <div className="flex items-center space-x-6">
-                          <span className="text-sm font-400 capitalize">
+                          <span className="text-sm font-normal capitalize">
                             kibatu
                           </span>
                         </div>
@@ -1001,7 +1001,7 @@ const Header: React.FC<Props> = (props) => {
                 <li className="category-item">
                   <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex items-center space-x-6">
-                      <span className="text-sm font-400 capitalize">About</span>
+                      <span className="text-sm font-normal capitalize">About</span>
                     </div>
                     <div>
                       <span>
@@ -1036,7 +1036,7 @@ const Header: React.FC<Props> = (props) => {
                 <li className="category-item">
                   <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex items-center space-x-6">
-                      <span className="text-sm font-400 capitalize">blogs</span>
+                      <span className="text-sm font-normal capitalize">blogs</span>
                     </div>
                     <div>
                       <span>
@@ -1071,7 +1071,7 @@ const Header: React.FC<Props> = (props) => {
                 <li className="category-item">
                   <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex items-center space-x-6">
-                      <span className="text-sm font-400 capitalize">
+                      <span className="text-sm font-normal capitalize">
                         Contact
                       </span>
                     </div>
@@ -1118,21 +1118,21 @@ const Header: React.FC<Props> = (props) => {
                 <ul className="flex space-x-6">
                   <li>
                     <a rel="noopener noreferrer" href="/">
-                      <span className="text-xs leading-6 text-qblack font-600 cursor-pointer">
+                      <span className="text-xs leading-6 text-qblack font-semibold cursor-pointer">
                         Account
                       </span>
                     </a>
                   </li>
                   <li>
                     <a rel="noopener noreferrer" href="/">
-                      <span className="text-xs leading-6 text-qblack font-600 cursor-pointer">
+                      <span className="text-xs leading-6 text-qblack font-semibold cursor-pointer">
                         Track Order
                       </span>
                     </a>
                   </li>
                   <li>
                     <a rel="noopener noreferrer" href="/">
-                      <span className="text-xs leading-6 text-qblack font-600 cursor-pointer">
+                      <span className="text-xs leading-6 text-qblack font-semibold cursor-pointer">
                         Support
                       </span>
                     </a>
@@ -1156,7 +1156,7 @@ const Header: React.FC<Props> = (props) => {
                         />
                       </svg>
                     </span>
-                    <span className="text-xs text-qblack font-500 leading-none">
+                    <span className="text-xs text-qblack font-medium leading-none">
                       +88 01682 825 123
                     </span>
                   </div>
@@ -1175,7 +1175,7 @@ const Header: React.FC<Props> = (props) => {
                         />
                       </svg>
                     </span>
-                    <span className="text-xs text-qblack font-500 leading-none">
+                    <span className="text-xs text-qblack font-medium leading-none">
                       abdur.rohman2003@gmail.com
                     </span>
                   </div>
@@ -1183,7 +1183,7 @@ const Header: React.FC<Props> = (props) => {
               </div>
               <div className="block lg:hidden">
                 <a rel="noopener noreferrer" href="/become-seller">
-                  <span className="text-xs leading-6 text-qblack px-3 py-1 bg-qyellow font-medium font-500 cursor-pointer">
+                  <span className="text-xs leading-6 text-qblack px-3 py-1 bg-qyellow font-medium cursor-pointer">
                     Become seller
                   </span>
                 </a>
@@ -1219,14 +1219,14 @@ const Header: React.FC<Props> = (props) => {
                       <div className="h-full">
                         <input
                           type="text"
-                          className="search-input"
+                          className={styles['search-input']}
                           placeholder="Search Products ..."
                         />
                       </div>
                     </div>
                     <div className="w-[1px] h-[22px] bg-qgrayLite"></div>
                     <div className="flex-1 flex items-center px-4 relative">
-                      <button className="w-full text-xs font-500 text-qgray flex justify-between items-center">
+                      <button className="w-full text-xs font-medium text-qgray flex justify-between items-center">
                         <span className="line-clamp-1">All Categories</span>
                         <span>
                           <svg
@@ -1244,7 +1244,7 @@ const Header: React.FC<Props> = (props) => {
                         </span>
                       </button>
                     </div>
-                    <button className="search-btn w-[93px] h-full text-sm font-600">
+                    <button className="search-btn w-[93px] bg-qyellow h-full text-sm font-semibold">
                       Search
                     </button>
                   </div>
