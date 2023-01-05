@@ -6,6 +6,7 @@ import FAQ from '../../components/pages/FAQ/FAQ';
 import SingleProduct from '../../components/pages/SingleProduct/SingleProduct';
 import BestProducts from './../../components/pages/HomePage/BestProducts/BestProducts';
 import Footer from '../../components/shared/Footer/Footer';
+import Blogs from '../../components/pages/Blogs/Blogs';
 
 
 interface Props {
@@ -18,6 +19,7 @@ const Toukir: React.FC<Props> = (props) => {
   return (
     <div className='bg-gray-100'>
       <CategoryPage />
+      <Blogs />
       <FAQ />
       <SingleProduct />
       <BestProducts />

@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
+import BlogHeader from "./BlogHeader";
 import BlogsCards from "./BlogsCards";
 
 interface Props {}
@@ -10,6 +11,7 @@ const Blogs: React.FC<Props> = (props) => {
 
   return (
     <div>
+      <BlogHeader />
       <BlogsCards></BlogsCards>
     </div>
   );
