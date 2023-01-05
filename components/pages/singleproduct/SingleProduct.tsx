@@ -1,10 +1,10 @@
 import React from "react";
-import ItemDetailsLeft from "./itemdetailsleftside/ItemDetailsLeft";
+import ItemDetailsLeft from "./ItemDetailsLeft/ItemDetailsLeft";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import ProductDetails from "./ProductDetails";
 
-interface Props {}
+interface Props { }
 
 const SingleProduct: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -15,7 +15,7 @@ const SingleProduct: React.FC<Props> = (props) => {
         <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
           <ItemDetailsLeft></ItemDetailsLeft>
         </div>
-        <div className="flex-1 min-h-screen">
+        <div className="flex-1">
           <ProductDetails />
         </div>
       </div>

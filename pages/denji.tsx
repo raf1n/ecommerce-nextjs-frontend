@@ -13,16 +13,7 @@ interface Props {}
 const denji: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  return (
-    <>
-      <HeroSection></HeroSection>
-      <ProductCategory />
-      <SingleProduct />
-      <Contact />
-      <Blogs />
-      <CategorizedItem></CategorizedItem>
-    </>
-  );
+  return <></>;
 };
 
 export default denji;
