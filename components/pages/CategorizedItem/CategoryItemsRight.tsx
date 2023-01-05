@@ -66,7 +66,7 @@ const CategoryItemsRight: React.FC<Props> = (props) => {
         </button>
       </div>
       <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]">
-        {Jsondata.productsData.map((data) => (
+        {Jsondata.newReleasedProducts.map((data) => (
           <div data-aos="fade-up" className="aos-init aos-animate">
             <div className="main-wrapper-card relative">
               <div
