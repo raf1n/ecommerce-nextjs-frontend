@@ -12,8 +12,9 @@ const BlogsCards: React.FC<Props> = (props) => {
       <div className="container-x mx-auto">
         <div className="w-full">
           <div className="grid md:grid-cols-2 grid-cols-1 lg:gap-[30px] gap-5 pb-[60px]">
-            {Jsondata.blogsData.slice(0, 4).map((data) => (
+            {Jsondata.blogsData.slice(0, 4).map((data, idx) => (
               <div
+              key={idx}
                 data-aos="fade-up"
                 className="item w-full aos-init aos-animate"
               >

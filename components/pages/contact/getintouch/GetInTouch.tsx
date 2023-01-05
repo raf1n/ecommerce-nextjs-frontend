@@ -22,8 +22,8 @@ const GetInTouch: React.FC<Props> = (props) => {
             <path
               d="M1 28.8027C17.6508 20.3626 63.9476 8.17089 113.509 17.8802C166.729 28.3062 341.329 42.704 353 1"
               stroke="#FFBB38"
-              stroke-width="2"
-              stroke-linecap="round"
+              strokeWidth="2"
+              strokeLinecap="round"
             ></path>
           </svg>
         </span>

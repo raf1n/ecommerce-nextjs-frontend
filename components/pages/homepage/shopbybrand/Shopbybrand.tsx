@@ -59,4 +59,4 @@ const ShopByBrand: React.FC<Props> = (props) => {
     )
 }
 
-export default ShopByBrand
+export default ShopByBrand;

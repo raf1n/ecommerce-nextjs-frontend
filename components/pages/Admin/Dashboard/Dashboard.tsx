@@ -1,19 +1,19 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { controller } from '../../../src/state/StateController'
+import { controller } from './../../../../src/utils/StateController';
 
 interface Props {
 }
 
-const Category: React.FC<Props> = (props) => {
+const Dashboard: React.FC<Props> = (props) => {
 
   const states = useSelector(() => controller.states)
   
   return (
     <div>
-      Category
+      Dashboard
     </div>
   )
 }
 
-export default Category
+export default Dashboard
