@@ -45,3 +45,33 @@
     margin-right: -15px;
     margin-left: -15px;
 }
+
+.card {
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border-radius: 3px;
+    border: none;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.profile-widget {
+    margin-top: 35px;
+}
+
+.profile-widget-picture {
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: cover !important;
+}
+
+.profile-widget-header {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.profile-widget-description {
+    padding: 20px;
+    line-height: 26px;
+}

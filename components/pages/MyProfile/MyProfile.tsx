@@ -26,10 +26,15 @@ const MyProfile: React.FC<Props> = (props) => {
                         </div>
                     </div>
                     <div className='section-body'>
-                        <div className={`${styles['row']} mt-sm-4`}>
-                            <div className='col-8'>
-                                <div>
+                        <div className={`${styles['row']} mt-4`}>
+                            <div className='grid grid-cols-8'>
+                                <div className={`${styles['card']} ${styles['profile-widget']}`}>
+                                    <div className={`${styles['profile-widget-header']} `}>
+                                        <img className={`rounded-full   ${styles['profile-widget-picture']} `} src="https://api.websolutionus.com/shopo/uploads/website-images/ibrahim-khalil-2022-01-30-02-48-50-5743.jpg" alt="" />
+                                    </div>
+                                    <div className={`${styles['profile-widget-description']}`}>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>

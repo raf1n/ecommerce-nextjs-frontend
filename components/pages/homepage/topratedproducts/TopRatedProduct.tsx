@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../../../src/state/StateController'
-
+import styles from "./TopRatedProduct.module.css"
 interface Props {
     product: any
 }
@@ -178,10 +178,10 @@ const TopRatedProduct: React.FC<Props> = (props) => {
                             </button>
                         </div>
                     </div>
-                    <span className="anim bottom"></span>
-                    <span className="anim right"></span>
-                    <span className="anim top"></span>
-                    <span className="anim left"></span>
+                    <span className={`${styles['anim']} ${styles['bottom']} `} ></span>
+                    <span className={`${styles['anim']} ${styles['right']} `} ></span>
+                    <span className={`${styles['anim']} ${styles['top']} `} ></span>
+                    <span className={`${styles['anim']} ${styles['left']} `} ></span>
                 </div>
             </div>
 
