@@ -6,9 +6,9 @@ import DashboardBreadcrumb from './DashboardBreadcrumb';
 import styles from "./Myprofile.module.css"
 
 interface Props {
-    slug: string;
-    link: string;
-    title: string;
+    // slug: string;
+    // link: string;
+    // title: string;
 }
 
 const MyProfile: React.FC<Props> = (props) => {

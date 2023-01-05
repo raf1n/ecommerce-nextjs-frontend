@@ -6,8 +6,8 @@ import Itemdetails from '../../components/pages/HomePage/ItemDetails/ItemDetails
 import TopRated from '../../components/pages/HomePage/TopRatedProducts/Toprated'
 import WishList from '../../components/pages/Wishlist/Wishlist'
 import { controller } from '../../src/state/StateController'
-import MyProfile from '../../components/pages/MyProfile/MyProfile'
 import ShopByBrand from '../../components/pages/HomePage/ShopByBrand/ShopByBrand'
+import MyProfile from '../../components/pages/MyProfile/MyProfile'
 
 
 interface Props {
@@ -24,8 +24,8 @@ const sadab: React.FC<Props> = (props) => {
             <Itemdetails />
             <Contact />
             <FAQ />
-            {/* <WishList /> */}
-            {/* <MyProfile /> */}
+            <WishList />
+            <MyProfile />
         </>
     )
 }
