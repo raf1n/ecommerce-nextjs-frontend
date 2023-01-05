@@ -1,12 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../src/state/StateController'
-import CategoryPage from '../../components/pages/CategoryPage/CategoryPage';
 import FAQ from '../../components/pages/FAQ/FAQ';
 import SingleProduct from '../../components/pages/SingleProduct/SingleProduct';
 import BestProducts from './../../components/pages/HomePage/BestProducts/BestProducts';
 import Footer from '../../components/shared/Footer/Footer';
 import Blogs from '../../components/pages/Blogs/Blogs';
+import CategoryPage from '../../components/pages/categorypage/CategoryPage';
 
 
 interface Props {

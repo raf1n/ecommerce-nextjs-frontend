@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import InputRange from "react-input-range";
 import { controller } from "../../../src/state/StateController";
 import "react-input-range/lib/css/index.css";
-import FilterHeader from "./FilterHeader";
-import FilterCheckbox from "./FilterCheckbox";
 import { Jsondata } from './../../../src/utils/Jsondata';
+import FilterCheckbox from "./FilterCheckbox";
+import FilterHeader from "./FilterHeader";
 
-interface Props {}
+interface Props { }
 
 const FilterWidget: React.FC<Props> = (props) => {
   const [value, setValue] = useState({
@@ -52,7 +52,7 @@ const FilterWidget: React.FC<Props> = (props) => {
 
         <ul>
           {Jsondata.checkBrandFilterData.map((filter, i) => (
-            <FilterCheckbox key={i}  filter={filter} />
+            <FilterCheckbox key={i} filter={filter} />
           ))}
         </ul>
       </div>

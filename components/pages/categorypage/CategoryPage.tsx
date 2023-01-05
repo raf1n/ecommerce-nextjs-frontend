@@ -1,7 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../../src/state/StateController'
-import FilterWidget from './FilterWidget';
+import FilterWidget from './FilterWidget'
+
 
 interface Props {
 }
@@ -9,7 +10,7 @@ interface Props {
 const CategoryPage: React.FC<Props> = (props) => {
 
   const states = useSelector(() => controller.states)
-  
+
   return (
     <div className='container-x mx-auto'>
       <div className='lg:flex lg:gap-x-[30px]'>
@@ -17,7 +18,7 @@ const CategoryPage: React.FC<Props> = (props) => {
           <FilterWidget />
         </div>
         <div className="flex-1 min-h-screen">
-          
+
         </div>
       </div>
     </div>
