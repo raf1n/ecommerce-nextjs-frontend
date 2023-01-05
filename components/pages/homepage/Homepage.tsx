@@ -24,23 +24,25 @@ interface Props { }
 const Homepage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  return <div>
-    <Header />
-    <HeroSection />
-    <ProductCategory />
-    <PopularCategory />
-    <ShopByBrand />
-    <Campaign />
-    <TopRated />
-    <BestSeller />
-    <AD1 />
-    <FeaturedProducts />
-    <AD2 />
-    <NewReleasedProducts />
-    <AD3 />
-    <BestProducts />
-    <Footer />
-  </div>;
+  return (
+    <div>
+      <Header />
+      <HeroSection />
+      <ProductCategory />
+      <PopularCategory />
+      <ShopByBrand />
+      <Campaign />
+      <TopRated />
+      <BestSeller />
+      <AD1 />
+      <FeaturedProducts />
+      <AD2 />
+      <NewReleasedProducts />
+      <AD3 />
+      <BestProducts />
+      <Footer />
+    </div>
+  );
 };
 
 export default Homepage;
