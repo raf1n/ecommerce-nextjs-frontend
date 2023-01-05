@@ -52,10 +52,10 @@ const ProductCard: React.FC<Props> = (props) => {
                       display: "block",
                       width: 0,
                       height: 0,
-                      minWidth: '100%',
-                      maxWidth: '100%',
-                      minHeight: '100%',
-                      maxHeight: '100%',
+                      minWidth: "100%",
+                      maxWidth: "100%",
+                      minHeight: "100%",
+                      maxHeight: "100%",
                       objectFit: "scale-down",
                     }}
                     sizes="100vw"

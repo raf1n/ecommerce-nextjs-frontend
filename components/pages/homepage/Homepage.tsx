@@ -19,8 +19,6 @@ import TopRated from "./TopRatedProducts/Toprated";
 
 
 
-
-
 interface Props { }
 
 const Homepage: React.FC<Props> = (props) => {

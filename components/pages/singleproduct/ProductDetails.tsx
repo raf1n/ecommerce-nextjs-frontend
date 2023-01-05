@@ -46,12 +46,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -60,12 +58,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -74,12 +70,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -88,12 +82,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -102,12 +94,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
         </div>
@@ -165,8 +155,7 @@ const ProductDetails: React.FC<Props> = (props) => {
         <div className="flex-1 h-full">
           <button
             type="button"
-            className="bg-black text-white text-sm font-semibold w-full h-full"
-          >
+            className="bg-black text-white text-sm font-semibold w-full h-full">
             Add To Cart
           </button>
         </div>
@@ -190,24 +179,21 @@ const ProductDetails: React.FC<Props> = (props) => {
 
       <div
         data-aos="fade-up"
-        className="social-share flex items-center w-full aos-init aos-animate"
-      >
+        className="social-share flex items-center w-full aos-init aos-animate">
         <span className="text-qblack text-[13px] mr-[17px] inline-block">
           Share This
         </span>
         <div className="flex space-x-5 items-center">
           <button
             aria-label="facebook"
-            className="bg-transparent border-none p-0 cursor-pointer"
-          >
+            className="bg-transparent border-none p-0 cursor-pointer">
             <span className="cursor-pointer">
               <FaFacebookF className="text-blue-900" />
             </span>
           </button>
           <button
             aria-label="twitter"
-            className="bg-transparent border-none p-0 cursor-pointer"
-          >
+            className="bg-transparent border-none p-0 cursor-pointer">
             <span className="cursor-pointer">
               <FaTwitter className="text-blue-400" />
             </span>

@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
+import Drawer from "./Drawer";
 import FaqHeader from "./FaqHeader";
 import FaqRight from "./FaqRight";
-import Drawer from './Drawer'
 
-interface Props { }
+interface Props {}
 
 const FAQ: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -19,9 +19,7 @@ const FAQ: React.FC<Props> = (props) => {
             {/* <ItemDetailsLeft></ItemDetailsLeft> */}
             <Drawer></Drawer>
           </div>
-          <div className="flex-1">
-            {/* <FaqRight /> */}
-          </div>
+          <div className="flex-1">{/* <FaqRight /> */}</div>
           <div className="flex-1">
             <FaqRight />
           </div>
