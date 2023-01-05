@@ -23,7 +23,7 @@ const MyProfile: React.FC<Props> = (props) => {
                             <DashboardBreadcrumb slug='My Profile' link='/myprofile'></DashboardBreadcrumb>
                         </div>
                     </div>
-                    <div className='section-body w-3/4'>
+                    <div className='section-body '>
                         <div className={`${styles['row']} mt-4`}>
                             <div >
                                 <div className={`${styles['card']} ${styles['profile-widget']}`}>
