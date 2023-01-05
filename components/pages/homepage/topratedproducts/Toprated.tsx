@@ -44,11 +44,7 @@ const TopRated: React.FC<Props> = (props) => {
     )
 }
 
-<<<<<<< HEAD
-export default TopRated
-=======
 export default TopRated
 
 
 
->>>>>>> 37b96889121f36d716d6186791727b42d7f1f562

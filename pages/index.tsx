@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
-import Homepage from "../components/pages/HomePage/Homepage";
+import Homepage from "../components/pages/Homepage/Homepage";
+// import Homepage from "../components/pages/HomePage/Homepage";
 import { controller } from "../src/state/StateController";
 
 const index = () => {
