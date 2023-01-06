@@ -1,13 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../src/state/StateController";
-import HeroSection from "../../components/pages/Homepage/HeroSection/HeroSection";
-import ProductCategory from "../../components/pages/Homepage/ProductCategory/ProductCategory";
+
 import SingleProduct from "../../components/pages/SingleProduct/SingleProduct";
 import Contact from "../../components/pages/Contact/Contact";
 import Blogs from "../../components/pages/Blogs/Blogs";
 import CategorizedItem from "../../components/pages/CategorizedItem/CategorizedItems";
 import AdminDetailsSummary from "../../components/pages/Admin/Dashboard/AdminDetailsSummary/AdminDetailsSummary";
+import HeroSection from "../../components/pages/HomePage/HeroSection/HeroSection";
+import ProductCategory from "../../components/pages/HomePage/ProductCategory/ProductCategory";
 
 interface Props {}
 
