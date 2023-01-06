@@ -6,7 +6,6 @@ import { FaBars } from "react-icons/fa";
 
 import { Jsondata } from "../../../../src/utils/Jsondata";
 import MenuItem from "./MenuItem";
-import styles from "./Scrollhost.module.css";
 
 interface Props {}
 
@@ -21,7 +20,7 @@ const Sidebar: React.FC<Props> = (props) => {
     <div
       className={` ${
         open ? "w-[250px]" : "w-[65px] "
-      } ${ responsiveOpen ? "left-0" : "left-[-250px]"} fixed  lg:left-0 lg:relative bg-white duration-500`}
+      } ${ responsiveOpen ? "left-0" : "left-[-250px]"} fixed z-50 min-h-screen lg:left-0 lg:relative bg-white duration-500`}
     >
       <FaBars
         className={`absolute cursor-pointer hidden lg:block -right-12 top-6 w-7 rounded-full duration-300`}
