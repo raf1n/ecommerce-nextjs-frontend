@@ -5,7 +5,9 @@ import FeaturedProducts from "../../components/pages/HomePage/FeaturedProducts/F
 import NewReleasedProducts from "../../components/pages/HomePage/NewReleasedProducts/NewReleasedProducts";
 import PopularCategory from "../../components/pages/HomePage/PopularCategory/PopularCategory";
 import WishList from "../../components/pages/Wishlist/Wishlist";
-
+import Dashboard from "../../components/pages/Admin/Dashboard/Dashboard";
+import RelatedProductSection from "../../components/pages/HomePage/RelatedProductSection/RelatedProductSection";
+import Wishlist from "../../components/pages/Wishlist/Wishlist";
 import { controller } from "../../src/state/StateController";
 
 interface Props { }
@@ -19,7 +21,9 @@ const ironman: React.FC<Props> = (props) => {
       <FeaturedProducts></FeaturedProducts>
       <NewReleasedProducts></NewReleasedProducts>
       <PopularCategory></PopularCategory>
-      <WishList />
+      <Wishlist></Wishlist>
+      <RelatedProductSection></RelatedProductSection>
+      <Dashboard></Dashboard>
     </div>
   );
 };
