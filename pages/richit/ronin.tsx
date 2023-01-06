@@ -6,11 +6,8 @@ import SingleProduct from '../../components/pages/SingleProduct/SingleProduct';
 import BestProducts from './../../components/pages/HomePage/BestProducts/BestProducts';
 import Footer from '../../components/shared/Footer/Footer';
 import Blogs from '../../components/pages/Blogs/Blogs';
-<<<<<<< HEAD
 import AdminPage from './../../components/pages/Admin/AdminPage';
-=======
 import CategoryPage from '../../components/pages/CategoryPage/CategoryPage';
->>>>>>> 06bd96c2c2017ab4ce57650327294d629d56c005
 
 
 interface Props {
