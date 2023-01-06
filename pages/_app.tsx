@@ -3,6 +3,8 @@ import '../styles/globals.css';
 import { AppProps } from 'next/app';
 import { Provider } from "react-redux";
 import { store } from '../src/state/StateController';
+import Header from '../components/shared/Header/Header';
+import Footer from '../components/shared/Footer/Footer';
 
 
 export default function MyApp(props: AppProps) {
@@ -19,7 +21,9 @@ export default function MyApp(props: AppProps) {
     return (
         <Provider store={store}>
             <React.Fragment>
+                <Header />
                 <Component {...pageProps} />
+                <Footer />
             </React.Fragment>
         </Provider>
     );

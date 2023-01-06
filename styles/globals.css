@@ -61,3 +61,16 @@ body {
 .input-range__label {
   display: none;
 }
+
+.yellow-btn {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255 187 56/1);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(29 29 29/1);
+  line-height: 0;
+}
