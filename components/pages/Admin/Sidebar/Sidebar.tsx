@@ -33,7 +33,7 @@ const Sidebar: React.FC<Props> = (props) => {
         </a>
       </div>
       <ul
-        className={`${styles["scrollhost"]} text-[#78828a] h-[calc(100vh - 60px)] overflow-y-scroll overflow-x-hidden`}
+        className={`text-[#78828a]`}
       >
           {Jsondata.menus.map((menu, index) => (
             <MenuItem
