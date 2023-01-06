@@ -43,15 +43,16 @@ const Drawer: React.FC<Props> = (props) => {
     }
     return (
         <div>
-            <div className="accordion">
+            <div className="accordion  ">
+                <h1 className='text-qblack font-bold text-[22px]  mb-4 ml-3'>Frequently Asked Questions</h1>
                 {items.map((item, index) => (
-                    <div key={item.id} className={`${activeIndex === index ? 'bg-amber-400' : ''} p-3`} >
+                    <div key={item.id} className={`${activeIndex === index ? 'bg-amber-400' : ''} p-3 bg-white m-3`} >
                         <button
-                            className="block text-left w-full rounded-t-md py-3 font-medium text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900"
+                            className="block text-left w-full rounded-t-md py-3 font-medium text-qblack hover:text-qblack focus:outline-none focus:text-qblack"
                             onClick={() => handleClick(index)}
                         >
                             <div className="flex justify-between items-center ">
-                                <div className="w-3/4 text-lg leading-5 font-medium text-gray-700 ">{item.question}</div>
+                                <div className="w-3/4 text-lg leading-5 font-medium text-qblack ">{item.question}</div>
                                 <div className='w-2/10 text-qgray bg-transparent rounded-full'>
                                     {
                                         activeIndex === index ?
@@ -69,7 +70,7 @@ const Drawer: React.FC<Props> = (props) => {
                         </button>
                         {activeIndex === index && (
                             <div className="rounded-b-md py-2 overflow-hidden 	">
-                                <div className=" py-3 text-gray-700">
+                                <div className=" py-3 text-qblack">
                                     {item.description}
                                 </div>
                             </div>
