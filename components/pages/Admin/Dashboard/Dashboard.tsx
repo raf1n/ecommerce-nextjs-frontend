@@ -7,7 +7,11 @@ interface Props {}
 const Dashboard: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  return <div className="flex-1">Dashboard</div>;
+  return <div className="flex-1 overflow-y-scroll">
+    <div className="h-[2500px]">
+      dashboard
+    </div>
+  </div>;
 };
 
 export default Dashboard;

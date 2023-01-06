@@ -13,7 +13,7 @@ import CategoryPage from '../../components/pages/CategoryPage/CategoryPage';
 interface Props {
 }
 
-const Toukir: React.FC<Props> = (props) => {
+const Ronin: React.FC<Props> = (props) => {
 
   const states = useSelector(() => controller.states)
 
@@ -30,4 +30,4 @@ const Toukir: React.FC<Props> = (props) => {
   )
 }
 
-export default Toukir
+export default Ronin
