@@ -635,4 +635,124 @@ export class Jsondata {
       value: "40",
     },
   ];
+  static checkCategoryFilterData = [
+    {
+      id: "electronics",
+      name: 1,
+      label: "Electronics",
+    },
+    {
+      id: "game",
+      name: 2,
+      label: "game",
+    },
+    {
+      id: "mobile",
+      name: 3,
+      label: "mobile",
+    },
+    {
+      id: "lifestyle",
+      name: 4,
+      label: "lifestyle",
+    },
+    {
+      id: "babiesAndToys",
+      name: 5,
+      label: "Babies & Toys",
+    },
+    {
+      id: "bike",
+      name: 6,
+      label: "bike",
+    },
+    {
+      id: "mensFashion",
+      name: 7,
+      label: "Men's Fashion",
+    },
+    {
+      id: "womensFashion",
+      name: 8,
+      label: "Women's Fashion",
+    },
+    {
+      id: "television",
+      name: 9,
+      label: "television",
+    },
+    {
+      id: "accessories",
+      name: 10,
+      label: "accessories",
+    },
+    {
+      id: "johnDoe",
+      name: 11,
+      label: "John Doe",
+    },
+  ];
+
+  static checkBrandFilterData = [
+    {
+      id: "onePlus",
+      name: 1,
+      label: "OnePlus",
+    },
+    {
+      id: "tencent",
+      name: 2,
+      label: "tencent",
+    },
+    {
+      id: "apple",
+      name: 3,
+      label: "apple",
+    },
+    {
+      id: "microsoft",
+      name: 4,
+      label: "Microsoft",
+    },
+    {
+      id: "lenovo",
+      name: 5,
+      label: "Lenovo",
+    },
+    {
+      id: "huawei",
+      name: 6,
+      label: "Huawei",
+    },
+    {
+      id: "nexus",
+      name: 7,
+      label: "Nexus",
+    },
+    {
+      id: "google",
+      name: 8,
+      label: "Google",
+    },
+    {
+      id: "firefox",
+      name: 9,
+      label: "Firefox",
+    },
+    {
+      id: "tesla",
+      name: 10,
+      label: "Tesla",
+    },
+    {
+      id: "brave",
+      name: 11,
+      label: "Brave",
+    },
+    {
+      id: "facebook",
+      name: 12,
+      label: "Facebook",
+    },
+  ];
 }

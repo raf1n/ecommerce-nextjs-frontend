@@ -4,7 +4,6 @@ import { controller } from "../../../src/state/StateController";
 import { Jsondata } from "../../../src/utils/Jsondata";
 import FooterHeader from "./FooterHeader";
 
-
 interface Props {}
 
 const FooterBody: React.FC<Props> = (props) => {
@@ -49,7 +48,7 @@ const FooterBody: React.FC<Props> = (props) => {
           ))}
         </div>
       </div>
-        <div className="w-full h-px bg-[#E9E9E9]"></div>
+      <div className="w-full h-px bg-[#E9E9E9]"></div>
     </div>
   );
 };

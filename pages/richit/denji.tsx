@@ -5,7 +5,7 @@ import { controller } from "../../src/state/StateController";
 import SingleProduct from "../../components/pages/SingleProduct/SingleProduct";
 import Contact from "../../components/pages/Contact/Contact";
 import Blogs from "../../components/pages/Blogs/Blogs";
-import CategorizedItem from "../../components/pages/CategorizedItem/CategorizedItems";
+import CategoryPage from "../../components/pages/CategoryPage/CategoryPage";
 import AdminDetailsSummary from "../../components/pages/Admin/Dashboard/AdminDetailsSummary/AdminDetailsSummary";
 import HeroSection from "../../components/pages/HomePage/HeroSection/HeroSection";
 import ProductCategory from "../../components/pages/HomePage/ProductCategory/ProductCategory";
@@ -22,7 +22,7 @@ const denji: React.FC<Props> = (props) => {
       <SingleProduct />
       <Contact />
       <Blogs />
-      <CategorizedItem></CategorizedItem>
+      <CategoryPage></CategoryPage>
       <AdminDetailsSummary></AdminDetailsSummary>
     </>
   );

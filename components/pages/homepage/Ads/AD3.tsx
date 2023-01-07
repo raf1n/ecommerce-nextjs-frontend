@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../../../src/state/StateController'
-import ShopNowBtn from '../Buttons/ShopNowBtn';
+import ShopNowBtn from '../../../helpers/Buttons/ShopNowBtn';
 import styles from "./Ads.module.css";
 interface Props {
 }

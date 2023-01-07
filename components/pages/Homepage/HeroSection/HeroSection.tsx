@@ -7,6 +7,7 @@ import HeroStatic from "./HeroStatic/HeroStatic";
 
 
 
+
 interface Props { }
 
 const HeroSection: React.FC<Props> = (props) => {

@@ -1,27 +1,24 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-import FaqHeader from "./FaqHeader";
+import PageHeader from "../../shared/PageHeader/PageHeader";
+import Drawer from "./Drawer";
 import FaqRight from "./FaqRight";
-import Drawer from './Drawer'
 
-interface Props { }
+interface Props {}
 
 const FAQ: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
     <div>
-      <FaqHeader />
+      <PageHeader slug="FAQ" link="/faq" title="Frequently asked questions" />
       <div className="w-full mb-10">
         <div className="container-x mx-auto w-full lg:flex lg:gap-x-[30px]">
           <div className="lg:w-1/2 w-full mb-10 lg:mb-0">
-            {/* <ItemDetailsLeft></ItemDetailsLeft> */}
             <Drawer></Drawer>
           </div>
-          <div className="flex-1">
-            {/* <FaqRight /> */}
-          </div>
+          <div className="flex-1"></div>
           <div className="flex-1">
             <FaqRight />
           </div>

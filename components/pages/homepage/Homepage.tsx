@@ -15,7 +15,7 @@ import NewReleasedProducts from "./NewReleasedProducts/NewReleasedProducts";
 import PopularCategory from "./PopularCategory/PopularCategory";
 import ProductCategory from "./ProductCategory/ProductCategory";
 import ShopByBrand from "./ShopByBrand/ShopByBrand";
-import TopRated from "./TopRatedProducts/TopRated";
+import TopRated from "./TopRatedProducts/ToprRated";
 
 interface Props {}
 
@@ -24,7 +24,6 @@ const Homepage: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <Header />
       <HeroSection />
       <ProductCategory />
       <PopularCategory />
@@ -38,7 +37,6 @@ const Homepage: React.FC<Props> = (props) => {
       <NewReleasedProducts />
       <AD3 />
       <BestProducts />
-      <Footer />
     </div>
   );
 };
