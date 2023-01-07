@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import DeliveryComponents from "../DeliveryPolicyData/DeliveryComponents";
-import HeroSlider from './HeroSlider/HeroSlider';
-import HeroStatic from './HeroStatic/HeroStatic';
+import HeroSlider from "./HeroSlider/HeroSlider";
+import HeroStatic from "./HeroStatic/HeroStatic";
 
 
 

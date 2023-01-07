@@ -60,6 +60,8 @@ const Sidebar: React.FC<Props> = (props) => {
       </ul>
     </div>
   );
+
+  return <div>Sidebar</div>;
 };
 
 export default Sidebar;

@@ -16,21 +16,24 @@ const FooterBottom: React.FC<Props> = (props) => {
             href="https://www.facebook.com/"
             target="_blank"
             rel="noreferrer noopener"
-            title="facebook-link">
+            title="facebook-link"
+          >
             <FaFacebookF />
           </a>
           <a
             href="https://www.twitter.com/"
             target="_blank"
             rel="noreferrer noopener"
-            title="twitter-link">
+            title="twitter-link"
+          >
             <FaTwitter />
           </a>
           <a
             href="https://www.linkedin.com/"
             target="_blank"
             rel="noreferrer noopener"
-            title="linkedin-link">
+            title="linkedin-link"
+          >
             <FaLinkedin />
           </a>
         </div>

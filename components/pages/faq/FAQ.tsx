@@ -5,7 +5,7 @@ import PageHeader from "../../shared/PageHeader/PageHeader";
 import Drawer from "./Drawer";
 import FaqRight from "./FaqRight";
 
-interface Props { }
+interface Props {}
 
 const FAQ: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);

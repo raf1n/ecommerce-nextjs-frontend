@@ -4,7 +4,7 @@ import { controller } from "../../../src/state/StateController";
 import PageHeader from "../../shared/PageHeader/PageHeader";
 import BlogsCards from "./BlogsCards";
 
-interface Props { }
+interface Props {}
 
 const Blogs: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);

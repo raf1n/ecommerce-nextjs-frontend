@@ -3,7 +3,7 @@ import { useSelector, useStore } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { Jsondata } from "../../../src/utils/Jsondata";
 import ViewMoreBtn from "../../helpers/Buttons/ViewMoreBtn";
-interface Props { }
+interface Props {}
 
 const BlogsCards: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);

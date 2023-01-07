@@ -2,11 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../../src/state/StateController";
 import Slider from "react-slick";
-import ShopNowBtn from '../../../../helpers/Buttons/ShopNowBtn';
+import ShopNowBtn from "../../../../helpers/Buttons/ShopNowBtn";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 
-interface Props { }
+interface Props {}
 
 const HeroSlider: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -78,7 +78,7 @@ const HeroSlider: React.FC<Props> = (props) => {
                       JBL Music
                     </h1>
                   </div>
-                  <ShopNowBtn color={{ textColor: 'text-qblack' }} />
+                  <ShopNowBtn color={{ textColor: "text-qblack" }} />
                 </div>
               </div>
             </div>
