@@ -46,14 +46,16 @@ const Drawer: React.FC<Props> = (props) => {
       <div className="accordion">
         <h1 className='text-qblack font-bold text-[22px]  mb-4 ml-3'>Frequently Asked Questions</h1>
         {items.map((item, index) => (
-          <div key={item.id} className={`${activeIndex === index ? 'bg-amber-400' : ''} p-3 bg-white m-3`} >
+          <div key={item.id} className={`${activeIndex === index ? 'bg-amber-400' : ''}  bg-white m-3`} >
             <button
-              className="block text-left w-full rounded-t-md py-3 font-medium text-qblack hover:text-qblack focus:outline-none focus:text-qblack"
+              className="block text-left w-full rounded-t-md py-2 font-semibold text-qblack hover:text-qblack focus:outline-none focus:text-qblack"
               onClick={() => handleClick(index)}
             >
+
               <div className="flex justify-between items-center ">
-                <div className="w-3/4 text-lg leading-5 font-medium text-qblack ">{item.question}</div>
-                <div className='w-2/10 text-qgray bg-transparent rounded-full'>
+                <div className="w-3/4 text-lg leading-5 font-medium text-qblack p-3 ">{item.question}</div>
+                <div className='w-2/10 text-qgray bg-transparent rounded-full p-3 '>
+
                   {
                     activeIndex === index ?
                       <svg xmlns="http://www.w3.org/2000/svg" className="minus w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -68,9 +70,10 @@ const Drawer: React.FC<Props> = (props) => {
                 {/* <div className="w-3/4 pl-3">{item.answer}</div> */}
               </div>
             </button>
+
             {activeIndex === index && (
-              <div className="rounded-b-md py-2 overflow-hidden 	">
-                <div className=" py-3 text-qblack">
+              <div className="rounded-b-md py-2 overflow-hidden border-t border-[#E5A832]	">
+                <div className=" py-3 text-qblack text-sm p-3 ">
                   {item.description}
                 </div>
               </div>
