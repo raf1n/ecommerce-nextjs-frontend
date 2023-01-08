@@ -7,25 +7,29 @@ const items = [
     id: 1,
     question: 'How to download IOS app?',
     answer: 'Next.js is a JavaScript framework for building server-rendered or statically exported React apps.',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam fugit alias eos facilis aliquid ratione ut ea atque corporis quis dolore earum, voluptatum impedit? Facere blanditiis impedit ullam laborum sequi. '
+    descriptionTitle: "Lorem ipsum ",
+    description: 'dolor sit amet consectetur adipisicing elit. Numquam fugit alias eos facilis aliquid ratione ut ea atque corporis quis dolore earum, voluptatum impedit? Facere blanditiis impedit ullam laborum sequi. '
   },
   {
     id: 2,
     question: 'How to download app?',
     answer: 'Tailwind CSS is a utility-first CSS framework for rapidly building custom user interfaces.',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus distinctio harum, error eum dolorum cum deleniti, quod nisi consequuntur possimus, atque sit nemo repellendus porro veniam animi ipsum voluptatibus at.'
+    descriptionTitle: "Lorem ipsum ",
+    description: 'dolor sit, amet consectetur adipisicing elit. Necessitatibus distinctio harum, error eum dolorum cum deleniti, quod nisi consequuntur possimus, atque sit nemo repellendus porro veniam animi ipsum voluptatibus at.'
   },
   {
     id: 3,
     question: 'How to download Elementor?',
     answer: 'Tailwind CSS is a utility-first CSS framework for rapidly building custom user interfaces.',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus distinctio harum, error eum dolorum cum deleniti, quod nisi consequuntur possimus, atque sit nemo repellendus porro veniam animi ipsum voluptatibus at.'
+    descriptionTitle: "Lorem ipsum ",
+    description: 'dolor sit, amet consectetur adipisicing elit. Necessitatibus distinctio harum, error eum dolorum cum deleniti, quod nisi consequuntur possimus, atque sit nemo repellendus porro veniam animi ipsum voluptatibus at.'
   },
   {
     id: 4,
     question: 'How to download Wordpress?',
     answer: 'Tailwind CSS is a utility-first CSS framework for rapidly building custom user interfaces.',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus distinctio harum, error eum dolorum cum deleniti, quod nisi consequuntur possimus, atque sit nemo repellendus porro veniam animi ipsum voluptatibus at.'
+    descriptionTitle: "Lorem ipsum ",
+    description: 'dolor sit, amet consectetur adipisicing elit. Necessitatibus distinctio harum, error eum dolorum cum deleniti, quod nisi consequuntur possimus, atque sit nemo repellendus porro veniam animi ipsum voluptatibus at.'
   },
 ];
 
@@ -53,7 +57,7 @@ const Drawer: React.FC<Props> = (props) => {
             >
 
               <div className="flex justify-between items-center ">
-                <div className="w-3/4 text-lg leading-5 font-medium text-qblack p-3 ">{item.question}</div>
+                <div className="w-3/4 text-sm leading-5 font-semibold text-qblack p-3 ">{item.question}</div>
                 <div className='w-2/10 text-qgray bg-transparent rounded-full p-3 '>
 
                   {
@@ -74,6 +78,7 @@ const Drawer: React.FC<Props> = (props) => {
             {activeIndex === index && (
               <div className="rounded-b-md py-2 overflow-hidden border-t border-[#E5A832]	">
                 <div className=" py-3 text-qblack text-sm p-3 ">
+                  <span className='font-bold'>{item.descriptionTitle} </span>
                   {item.description}
                 </div>
               </div>
