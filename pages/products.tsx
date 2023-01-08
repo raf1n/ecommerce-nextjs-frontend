@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import CategoryPage from '../components/pages/CategoryPage/CategoryPage'
+import CategoryPage from '../components/pages/CategoryProductPage/CategoryPage'
+
 import { controller } from '../src/state/StateController'
 
 interface Props {

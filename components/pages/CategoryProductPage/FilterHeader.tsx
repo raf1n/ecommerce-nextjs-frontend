@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { controller } from "../../../src/utils/StateController";
+import { controller } from "../../../src/state/StateController";
+
 
 interface Props {
   title: string

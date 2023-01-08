@@ -2,7 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Dashboard from '../components/pages/AdminPage/Dashboard/Dashboard'
 import Sidebar from '../components/pages/AdminPage/Sidebar/Sidebar'
-import { controller } from '../src/utils/StateController'
+import { controller } from '../src/state/StateController'
+
 
 interface Props {
 }
