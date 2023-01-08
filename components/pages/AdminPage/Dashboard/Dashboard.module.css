@@ -1,0 +1,14 @@
+.main-content {
+  padding-left: 280px;
+  padding-right: 30px;
+  padding-top: 80px;
+  width: 100%;
+  position: relative;
+}
+@media (max-width: 1024px) {
+  .main-content {
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 100% !important;
+  }
+}

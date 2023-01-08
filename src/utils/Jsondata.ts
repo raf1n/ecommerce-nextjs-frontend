@@ -1,3 +1,22 @@
+import {
+  FaFire,
+  FaTrash,
+  FaCog,
+  FaEnvelope,
+  FaColumns,
+  FaGlobe,
+  FaUserAlt,
+  FaNewspaper,
+  FaShoppingCart,
+  FaMapMarkerAlt,
+  FaHome,
+  FaAdversal,
+  FaCircle,
+  FaCheckCircle,
+  FaUser,
+} from "react-icons/fa";
+import { AiFillAppstore } from "react-icons/ai";
+
 export class Jsondata {
   //Product Categories
   static productCategories = [
@@ -45,47 +64,53 @@ export class Jsondata {
   //Best Seller
   static bestSeller = [
     {
-      image: 'https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-11-58-14-9795.png&w=1920&q=75',
-      name: 'Shopno BD'
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-11-58-14-9795.png&w=1920&q=75",
+      name: "Shopno BD",
     },
     {
-      image: 'https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-10-12-2682.png&w=1920&q=75',
-      name: 'Ecoms Shop'
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-10-12-2682.png&w=1920&q=75",
+      name: "Ecoms Shop",
     },
     {
-      image: 'https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-16-13-5847.png&w=1920&q=75',
-      name: 'Fusion X'
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-16-13-5847.png&w=1920&q=75",
+      name: "Fusion X",
     },
     {
-      image: 'https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-19-19-3916.png&w=1920&q=75',
-      name: 'Rikayi Rox'
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-19-19-3916.png&w=1920&q=75",
+      name: "Rikayi Rox",
     },
     {
-      image: 'https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-22-55-6660.png&w=1920&q=75',
-      name: 'Habbriyi'
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-22-55-6660.png&w=1920&q=75",
+      name: "Habbriyi",
     },
     {
-      image: 'https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75',
-      name: 'Rayhans'
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
+      name: "Rayhans",
     },
   ];
   //Sale Time
   static saleTime = [
     {
-      name: 'Days',
-      duration: '984'
+      name: "Days",
+      duration: "984",
     },
     {
-      name: 'Hours',
-      duration: '23'
+      name: "Hours",
+      duration: "23",
     },
     {
-      name: 'Minutes',
-      duration: '28'
+      name: "Minutes",
+      duration: "28",
     },
     {
-      name: 'Seconds',
-      duration: '56'
+      name: "Seconds",
+      duration: "56",
     },
   ];
   //Footer Data
@@ -302,126 +327,139 @@ export class Jsondata {
   static topRatedProducts = [
     {
       name: "Sony joystick SJ pro",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-joystick-sj-pro-2022-09-27-03-39-20-9931.png&w=2048&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-joystick-sj-pro-2022-09-27-03-39-20-9931.png&w=2048&q=75",
       rating: 5,
       mainPrice: "$7000",
       offerPrice: " $5000.00",
-
     },
     {
       name: "JBL headphone Max",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-headphon-max-2022-09-26-01-55-56-9123.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-headphon-max-2022-09-26-01-55-56-9123.png&w=1920&q=75",
       rating: 5,
       mainPrice: "$700",
       offerPrice: " $650.000",
-
     },
     {
       name: "Sony Play Station 5",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-play-staton-5-2022-09-26-12-20-52-2324.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-play-staton-5-2022-09-26-12-20-52-2324.png&w=1920&q=75",
       rating: 5,
       mainPrice: "$88.88",
       offerPrice: " $61.10",
-
     },
     {
       name: "FANTECH OCTANE Headset",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Ffantech-octane-headset-2022-09-26-12-53-57-7709.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Ffantech-octane-headset-2022-09-26-12-53-57-7709.png&w=1920&q=75",
       rating: 5,
       mainPrice: "$88",
       offerPrice: "$59.40",
-
     },
-
   ];
   //Featured Products Data
   static featuredProducts = [
     {
       name: "Asus zenbook desktop",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=1920&q=75",
       previousPrice: 3500,
       currentPrice: 3300,
     },
     {
       name: "VISION ELITE CEILING FAN",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fvision-rice-cooker-2022-09-26-12-48-28-5516.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fvision-rice-cooker-2022-09-26-12-48-28-5516.png&w=1920&q=75",
       previousPrice: 11.11,
       currentPrice: 9.9,
     },
     {
       name: "VISION Rice Cooker",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fvision-elite-ceiling-fan-2022-09-26-12-29-33-2795.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fvision-elite-ceiling-fan-2022-09-26-12-29-33-2795.png&w=1920&q=75",
       previousPrice: 99.88,
       currentPrice: 35.43,
-    }
+    },
   ];
   //New Release Products
   static newReleasedProducts = [
     {
       name: "Apple watch pro",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fapple-watch-pro-2022-09-26-12-04-40-6657.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fapple-watch-pro-2022-09-26-12-04-40-6657.png&w=1920&q=75",
       previousPrice: 4500,
-      currentPrice: 4000
+      currentPrice: 4000,
     },
     {
       name: "Sony joystick SJ pro",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-joystick-sj-pro-2022-09-27-03-39-20-9931.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-joystick-sj-pro-2022-09-27-03-39-20-9931.png&w=1920&q=75",
       previousPrice: 7000,
-      currentPrice: 5000
+      currentPrice: 5000,
     },
     {
       name: "Asus zenbook desktop",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=1920&q=75",
       previousPrice: 35000,
-      currentPrice: 33000
+      currentPrice: 33000,
     },
     {
       name: "Realme mini music",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Frealme-mini-music-2022-09-26-01-34-10-1954.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Frealme-mini-music-2022-09-26-01-34-10-1954.png&w=1920&q=75",
       previousPrice: 800,
-      currentPrice: 569
+      currentPrice: 569,
     },
     {
       name: "Mi Laptop pro",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
       previousPrice: 50000,
-      currentPrice: 45000
+      currentPrice: 45000,
     },
     {
       name: "JBL Clip 4 Orange Portable Bluetooth Speaker",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-bluetooth-speaker-jblclip40rg-2022-09-26-12-42-09-8912.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-bluetooth-speaker-jblclip40rg-2022-09-26-12-42-09-8912.png&w=1920&q=75",
       previousPrice: 332,
-      currentPrice: 299
+      currentPrice: 299,
     },
     {
       name: "PlayStation 4",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fplaystation-4-2022-09-26-12-43-50-4261.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fplaystation-4-2022-09-26-12-43-50-4261.png&w=1920&q=75",
       previousPrice: 123,
-      currentPrice: 99
+      currentPrice: 99,
     },
     {
       name: "Samsung Galaxy A52 (8/128 GB)",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsamsung-galaxy-a52-8128-gb-2022-09-26-12-12-12-9319.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsamsung-galaxy-a52-8128-gb-2022-09-26-12-12-12-9319.png&w=1920&q=75",
       previousPrice: 11.11,
-      currentPrice: 9.9
+      currentPrice: 9.9,
     },
     {
       name: "VISION Rice Cooker",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fvision-elite-ceiling-fan-2022-09-26-12-29-33-2795.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fvision-elite-ceiling-fan-2022-09-26-12-29-33-2795.png&w=1920&q=75",
       previousPrice: 99.88,
       currentPrice: 35.43,
     },
     {
       name: "Sony Play Staton 5",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-play-staton-5-2022-09-26-12-20-52-2324.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-play-staton-5-2022-09-26-12-20-52-2324.png&w=1920&q=75",
       previousPrice: 88.88,
-      currentPrice: 69.99
+      currentPrice: 69.99,
     },
     {
       name: "FANTECH OCTANE Headset",
-      image: "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Ffantech-octane-headset-2022-09-26-12-53-57-7709.png&w=1920&q=75",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Ffantech-octane-headset-2022-09-26-12-53-57-7709.png&w=1920&q=75",
       previousPrice: 88.88,
-      currentPrice: 69.99
+      currentPrice: 69.99,
     },
   ];
   //Single Item Detail
@@ -438,6 +476,422 @@ export class Jsondata {
     sku: "kjhyy78",
   };
 
+  static dashboardSummaryData = [
+    {
+      id: 1,
+      title: "Today Order",
+      icons: FaShoppingCart,
+      bgColor: "bg-blue-600",
+      value: "0",
+    },
+    {
+      id: 2,
+      title: "Today Pending Order",
+      icons: FaShoppingCart,
+      bgColor: "bg-blue-600",
+      value: "0",
+    },
+    {
+      id: 3,
+      title: "Total Order",
+      icons: FaShoppingCart,
+      bgColor: "bg-blue-600",
+      value: "0",
+    },
+    {
+      id: 4,
+      title: "Total Pending Order",
+      icons: FaShoppingCart,
+      bgColor: "bg-blue-600",
+      value: "40",
+    },
+    {
+      id: 5,
+      title: "Total Declined Order",
+      icons: FaShoppingCart,
+      bgColor: "bg-orange-700",
+      value: "0",
+    },
+    {
+      id: 6,
+      title: "Total Complete Order",
+      icons: FaShoppingCart,
+      bgColor: "bg-orange-700",
+      value: "6",
+    },
+    {
+      id: 7,
+      title: "Total Earning",
+      icons: FaNewspaper,
+      bgColor: "bg-orange-700",
+      value: "$0",
+    },
+    {
+      id: 8,
+      title: "Today Pending Earning",
+      icons: FaNewspaper,
+      bgColor: "bg-orange-700",
+      value: "$0",
+    },
+    {
+      id: 9,
+      title: "This Month Earning",
+      icons: FaNewspaper,
+      bgColor: "bg-green-600",
+      value: "$0",
+    },
+    {
+      id: 10,
+      title: "This Year Earning",
+      icons: FaNewspaper,
+      bgColor: "bg-green-600",
+      value: "$0",
+    },
+    {
+      id: 11,
+      title: "Total Earning",
+      icons: FaNewspaper,
+      bgColor: "bg-green-600",
+      value: "$0",
+    },
+    {
+      id: 12,
+      title: "Today Product Sale",
+      icons: FaCircle,
+      bgColor: "bg-green-600",
+      value: "0",
+    },
+    {
+      id: 13,
+      title: "This Month Product Sale",
+      icons: FaCircle,
+      bgColor: "bg-red-600",
+      value: "0",
+    },
+    {
+      id: 14,
+      title: "This Year Product Sale",
+      icons: FaCircle,
+      bgColor: "bg-red-600",
+      value: "0",
+    },
+    {
+      id: 15,
+      title: "Total Product Sale",
+      icons: FaCircle,
+      bgColor: "bg-red-600",
+      value: "0",
+    },
+    {
+      id: 16,
+      title: "Total Product",
+      icons: FaCheckCircle,
+      bgColor: "bg-red-600",
+      value: "0",
+    },
+    {
+      id: 17,
+      title: "Total Product Report",
+      icons: FaCheckCircle,
+      bgColor: "bg-green-600",
+      value: "0",
+    },
+    {
+      id: 18,
+      title: "Total Product Review",
+      icons: FaCheckCircle,
+      bgColor: "bg-green-600",
+      value: "0",
+    },
+    {
+      id: 19,
+      title: "Total Seller",
+      icons: FaUser,
+      bgColor: "bg-green-600",
+      value: "0",
+    },
+    {
+      id: 20,
+      title: "Total Seller",
+      icons: FaUser,
+      bgColor: "bg-green-600",
+      value: "0",
+    },
+    {
+      id: 21,
+      title: "Total Subscriber",
+      icons: FaUser,
+      bgColor: "bg-blue-600",
+      value: "0",
+    },
+    {
+      id: 22,
+      title: "Total Blog",
+      icons: FaCheckCircle,
+      bgColor: "bg-blue-600",
+      value: "0",
+    },
+    {
+      id: 23,
+      title: "Product Category",
+      icons: FaCheckCircle,
+      bgColor: "bg-blue-600",
+      value: "0",
+    },
+    {
+      id: 24,
+      title: "Total Brand",
+      icons: FaCheckCircle,
+      bgColor: "bg-blue-600",
+      value: "40",
+    },
+  ];
+  static checkCategoryFilterData = [
+    {
+      id: "electronics",
+      name: 1,
+      label: "Electronics",
+    },
+    {
+      id: "game",
+      name: 2,
+      label: "game",
+    },
+    {
+      id: "mobile",
+      name: 3,
+      label: "mobile",
+    },
+    {
+      id: "lifestyle",
+      name: 4,
+      label: "lifestyle",
+    },
+    {
+      id: "babiesAndToys",
+      name: 5,
+      label: "Babies & Toys",
+    },
+    {
+      id: "bike",
+      name: 6,
+      label: "bike",
+    },
+    {
+      id: "mensFashion",
+      name: 7,
+      label: "Men's Fashion",
+    },
+    {
+      id: "womensFashion",
+      name: 8,
+      label: "Women's Fashion",
+    },
+    {
+      id: "television",
+      name: 9,
+      label: "television",
+    },
+    {
+      id: "accessories",
+      name: 10,
+      label: "accessories",
+    },
+    {
+      id: "johnDoe",
+      name: 11,
+      label: "John Doe",
+    },
+  ];
 
+  static checkBrandFilterData = [
+    {
+      id: "onePlus",
+      name: 1,
+      label: "OnePlus",
+    },
+    {
+      id: "tencent",
+      name: 2,
+      label: "tencent",
+    },
+    {
+      id: "apple",
+      name: 3,
+      label: "apple",
+    },
+    {
+      id: "microsoft",
+      name: 4,
+      label: "Microsoft",
+    },
+    {
+      id: "lenovo",
+      name: 5,
+      label: "Lenovo",
+    },
+    {
+      id: "huawei",
+      name: 6,
+      label: "Huawei",
+    },
+    {
+      id: "nexus",
+      name: 7,
+      label: "Nexus",
+    },
+    {
+      id: "google",
+      name: 8,
+      label: "Google",
+    },
+    {
+      id: "firefox",
+      name: 9,
+      label: "Firefox",
+    },
+    {
+      id: "tesla",
+      name: 10,
+      label: "Tesla",
+    },
+    {
+      id: "brave",
+      name: 11,
+      label: "Brave",
+    },
+    {
+      id: "facebook",
+      name: 12,
+      label: "Facebook",
+    },
+  ];
+
+  static menus = [
+    { title: "Dashboard", icon: FaHome, gap: false },
+    {
+      title: "Orders",
+      icon: FaShoppingCart,
+      height: "253px",
+      nestedRoutes: [
+        {
+          title: "All Orders",
+          link: "/all-orders",
+        },
+        {
+          title: "Pending Orders",
+          link: "/pending-orders",
+        },
+        {
+          title: "Progress Orders",
+          link: "/progress-orders",
+        },
+        {
+          title: "Delivered Orders",
+          link: "/delivered-orders",
+        },
+        {
+          title: "Completed Orders",
+          link: "/completed-orders",
+        },
+        {
+          title: "Declined Orders",
+          link: "/declined-orders",
+        },
+        {
+          title: "Cash On Delivery",
+          link: "/cash-on-delivery",
+        },
+      ],
+    },
+    {
+      title: "Manage Categories",
+      icon: AiFillAppstore,
+      height: "218px",
+      nestedRoutes: [
+        {
+          title: "Categories",
+          link: "/categories",
+        },
+        {
+          title: "Sub Categories",
+          link: "/sub-categories",
+        },
+        {
+          title: "Child Categories",
+          link: "/child-categories",
+        },
+        {
+          title: "Mega Menu Category",
+          link: "/mega-menu-category",
+        },
+        {
+          title: "Popular Category",
+          link: "/popular-category",
+        },
+        {
+          title: "Featured Category",
+          link: "/featured-category",
+        },
+      ],
+    },
+    {
+      title: "Manage Products ",
+      icon: AiFillAppstore,
+      height: "323px",
+      nestedRoutes: [
+        {
+          title: "Brands",
+          link: "/brands",
+        },
+        {
+          title: "Create Product",
+          link: "/create-product",
+        },
+        {
+          title: "Products",
+          link: "/products",
+        },
+        {
+          title: "Stock Out",
+          link: "/stock-out",
+        },
+        {
+          title: "Seller Products",
+          link: "/seller-products",
+        },
+        {
+          title: "Seller Pending Products",
+          link: "/seller-pending-products",
+        },
+        {
+          title: "Specification Key",
+          link: "/specification-key",
+        },
+        {
+          title: "Product Reviews",
+          link: "/product-reviews",
+        },
+        {
+          title: "Product Report",
+          link: "/product-report",
+        },
+      ],
+    },
+    { title: "Ecommerce", icon: FaShoppingCart },
+    { title: "Advertisements", icon: FaAdversal },
+    { title: "Withdraw Payment", icon: FaNewspaper },
+    { title: "Users", icon: FaUserAlt },
+    { title: "Manage Website", icon: FaGlobe },
+    { title: "Website Footer", icon: AiFillAppstore },
+    { title: "Pages", icon: FaColumns },
+    { title: "Blogs", icon: AiFillAppstore },
+    { title: "Email Configuration", icon: FaEnvelope },
+    { title: "Language", icon: AiFillAppstore },
+    { title: "Setting", icon: FaCog },
+    { title: "Clear Database", icon: FaTrash },
+    { title: "Subscribers", icon: FaFire },
+    { title: "Contact Message", icon: FaEnvelope },
+    { title: "Admin List", icon: FaUserAlt },
+  ];
 }
-
