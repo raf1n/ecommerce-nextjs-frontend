@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { controller } from "./../../../../src/state/StateController";
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
 
 import { Jsondata } from "../../../../src/utils/Jsondata";
 import MenuItem from "./MenuItem";
 import styles from "./Scrollbar.module.css";
+import { controller } from "../../../../src/state/StateController";
 
 interface Props {}
 

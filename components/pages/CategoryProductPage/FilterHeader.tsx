@@ -1,6 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
+<<<<<<< HEAD:components/pages/CategoryPage/FilterHeader.tsx
+=======
+
+>>>>>>> 84b52ee5dcc9f9357102f1616bd8c707387d3f86:components/pages/CategoryProductPage/FilterHeader.tsx
 
 interface Props {
   title: string;

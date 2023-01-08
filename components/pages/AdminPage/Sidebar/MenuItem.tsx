@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { controller } from "../../../../src/state/StateController";
+
 import { FaAngleRight } from "react-icons/fa";
+import { controller } from "../../../../src/state/StateController";
 
 interface Props {
   menu: any;
