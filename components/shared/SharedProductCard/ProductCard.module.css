@@ -1,0 +1,29 @@
+.yellow-btn {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255 187 56/1);
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(29 29 29/1);
+    line-height: 0;
+}
+
+.yellow-btn .btn-content {
+    transition: all .5s ease-in-out;
+}
+
+.yellow-btn:hover .btn-content {
+    color: rgb(255 255 255/1);
+}
+
+.yellow-btn .bg-shape {
+    left: -500px;
+    transition: all .5s ease-in-out;
+}
+
+.yellow-btn:hover .bg-shape {
+    left: 0;
+}

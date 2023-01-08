@@ -1,9 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import SingleProduct from "../../components/pages/Singleproduct/SingleProduct";
+import Itemdetails from "../../components/pages/HomePagee/ItemDetails/ItemDetails";
+import RelatedProductSection from "../../components/pages/HomePagee/RelatedProductSection/RelatedProductSection";
+import SingleProduct from "../../components/pages/SingleProductPage/SingleProduct";
+
+
 import { controller } from "../../src/state/StateController";
 
-interface Props {}
+interface Props { }
 
 const SingleProductPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -11,6 +15,8 @@ const SingleProductPage: React.FC<Props> = (props) => {
   return (
     <div>
       <SingleProduct />
+      <Itemdetails />
+      <RelatedProductSection />
     </div>
   );
 };

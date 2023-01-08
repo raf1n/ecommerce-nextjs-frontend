@@ -1,0 +1,49 @@
+.anim {
+    position: absolute;
+    background-color: #ffbb38;
+    transform-origin: center;
+    transition: transform .5s ease;
+}
+
+.bottom {
+    height: 1px;
+    left: 0;
+    right: 0;
+    transform: scaleX(0);
+    
+}
+
+
+@keyframes color-me-in {
+
+    /* You could think of as "step 1" */
+    0% {
+        transform: scaleX(0);
+    }
+
+    /* You could think of as "step 2" */
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+.left {
+    width: 1px;
+    top: 0;
+    bottom: 0;
+    transform: scaleY(1);
+}
+
+.top {
+    height: 1px;
+    left: 0;
+    right: 0;
+    transform: scaleX(0);
+}
+
+.right {
+    width: 1px;
+    top: 0;
+    bottom: 0;
+    transform: scaleY(0);
+}
