@@ -14,7 +14,7 @@ import HeroSection from "./HeroSection/HeroSection";
 import NewReleasedProducts from "./NewReleasedProducts/NewReleasedProducts";
 import PopularCategory from "./PopularCategory/PopularCategory";
 import ProductCategory from "./ProductCategory/ProductCategory";
-import Shopbybrand from "./ShopByBrand/Shopbybrand";
+import Shopbybrand from "./ShopByBrand/ShopByBrand";
 import TopRated from "./TopRatedProducts/TopRated";
 
 interface Props {}

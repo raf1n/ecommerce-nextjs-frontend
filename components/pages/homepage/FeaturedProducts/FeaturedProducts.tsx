@@ -4,7 +4,7 @@ import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../shared/ProductCard/ProductCard";
 
-interface Props { }
+interface Props {}
 
 const FeaturedProducts: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -111,7 +111,6 @@ const FeaturedProducts: React.FC<Props> = (props) => {
                   {Jsondata.featuredProducts.map((product) => (
                     <ProductCard product={product}></ProductCard>
                   ))}
-
                   {/************ * card **********/}
                 </div>
               </div>
