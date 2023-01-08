@@ -43,7 +43,7 @@ const Drawer: React.FC<Props> = (props) => {
     }
     return (
         <div>
-            <div className="accordion  ">
+            <div className="accordion">
                 <h1 className='text-qblack font-bold text-[22px]  mb-4 ml-3'>Frequently Asked Questions</h1>
                 {items.map((item, index) => (
                     <div key={item.id} className={`${activeIndex === index ? 'bg-amber-400' : ''} p-3 bg-white m-3`} >
