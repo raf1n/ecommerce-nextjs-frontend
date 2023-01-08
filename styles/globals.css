@@ -5,7 +5,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: #f8f8f8;
 }
 
@@ -39,4 +39,38 @@ body {
   margin: 0;
   list-style: none;
   text-align: center;
+}
+
+/* range slider styles */
+.input-range__label--value {
+  display: none;
+}
+
+.input-range__track.input-range__track--active {
+  background: #ffbb38;
+}
+
+.input-range__slider {
+  background: #fff !important;
+  border: 1px solid #fff !important;
+  width: 14px;
+  height: 14px;
+  box-shadow: 0 3px 10px 0 #ccc;
+}
+
+.input-range__label {
+  display: none;
+}
+
+.yellow-btn {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255 187 56/1);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(29 29 29/1);
+  line-height: 0;
 }
