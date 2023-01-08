@@ -10,12 +10,12 @@ const SingleProduct: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div className="w-full bg-white pb-[60px] ">
+    <div className="w-full bg-white pb-[60px]">
       <div className="container-x mx-auto lg:flex justify-between ">
-        <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
+        <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px] mt-12">
           <ItemDetailsLeft></ItemDetailsLeft>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 mt-16">
           <ProductDetails />
         </div>
       </div>

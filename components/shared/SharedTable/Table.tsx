@@ -2,14 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FaEye, FaTrash, FaTruck } from "react-icons/fa";
-interface Props {}
+interface Props { }
 
 const Table: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
     <div>
-      <div className="bg-white p-8 rounded-md w-full">
+      <div className="bg-dark p-8 rounded-md w-full">
         <div className=" flex items-center justify-between pb-6">
           <div>
             <span className="text-xs px-1">Show </span>

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { controller } from '../../../src/state/StateController'
+import { controller } from '../../../../src/state/StateController'
 import DashboardBreadcrumb from './DashboardBreadcrumb';
-import styles from "./Myprofile.module.css"
+import styles from "./AdminProfile.module.css"
 
 interface Props {
     // slug: string;
@@ -11,7 +11,7 @@ interface Props {
 
 }
 
-const MyProfile: React.FC<Props> = (props) => {
+const AdminProfile: React.FC<Props> = (props) => {
 
     const states = useSelector(() => controller.states)
 
@@ -95,4 +95,4 @@ const MyProfile: React.FC<Props> = (props) => {
     )
 }
 
-export default MyProfile;
+export default AdminProfile;

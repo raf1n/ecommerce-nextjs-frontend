@@ -10,7 +10,7 @@ const WishlistCart: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <div className="w-full mt-[23px]">
+      <div className="w-full my-[23px]">
         <div className="container-x mx-auto">
           <div className="w-full mb-[30px]">
             <div className="relative w-full overflow-x-auto border border-[#EDEDED]">

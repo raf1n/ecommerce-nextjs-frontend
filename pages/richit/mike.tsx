@@ -5,7 +5,7 @@ import FAQ from '../../components/pages/FAQPage/FAQ';
 import Itemdetails from '../../components/pages/HomePagee/ItemDetails/ItemDetails';
 import ShopByBrand from '../../components/pages/HomePagee/ShopByBrandSection/ShopByBrand';
 import TopRated from '../../components/pages/HomePagee/TopRatedProductsSection/TopRatedSection';
-import MyProfile from '../../components/pages/MyProfile/MyProfile';
+import MyProfile from '../../components/pages/ProfilePage/AdminProfile/AdminProfile';
 import WishList from '../../components/pages/WishlistPage/Wishlist';
 import { controller } from '../../src/state/StateController'
 
