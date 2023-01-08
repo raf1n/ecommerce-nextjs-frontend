@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import WishList from '../components/pages/Wishlist/Wishlist'
+import WishList from '../components/pages/WishlistPage/Wishlist'
 import { controller } from '../src/state/StateController'
 
 interface Props {

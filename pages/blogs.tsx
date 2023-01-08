@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Blogs from '../components/pages/Blogs/Blogs'
+import Blogs from '../components/pages/BlogsPage/Blogs'
 import { controller } from '../src/state/StateController'
 
 interface Props {

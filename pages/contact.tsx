@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Contact from '../components/pages/Contact/Contact'
+import Contact from '../components/pages/ContactPage/Contact'
 import { controller } from '../src/state/StateController'
 
 interface Props {

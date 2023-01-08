@@ -2,7 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { Jsondata } from "../../../src/utils/Jsondata";
-import ProductCard from "../../shared/ProductCard/ProductCard";
+import ProductCard from "../../shared/SharedProductCard/ProductCard";
+
 
 interface Props { }
 

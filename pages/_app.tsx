@@ -3,8 +3,9 @@ import '../styles/globals.css';
 import { AppProps } from 'next/app';
 import { Provider } from "react-redux";
 import { store } from '../src/state/StateController';
-import Header from '../components/shared/Header/Header';
-import Footer from '../components/shared/Footer/Footer';
+import Header from '../components/shared/SharedHeader/Header';
+import Footer from '../components/shared/SharedFooter/Footer';
+
 
 
 export default function MyApp(props: AppProps) {
