@@ -6,19 +6,19 @@ import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
 
 interface Props {}
 
-const DeliveredOrders: React.FC<Props> = (props) => {
+const CompletedOrders: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
     <div>
       <DashboardBreadcrumb
-        headline="Delivered Orders"
-        slug="Delivered Orders"
-        link="/delivered-orders"></DashboardBreadcrumb>
+        headline="Completed Orders"
+        slug="Completed Orders"
+        link="/completed-orders"></DashboardBreadcrumb>
 
       <Table />
     </div>
   );
 };
 
-export default DeliveredOrders;
+export default CompletedOrders;
