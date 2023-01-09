@@ -37,7 +37,6 @@ const ItemDetailsLeft: React.FC<Props> = (props) => {
           <img
             alt=""
             sizes="100vw"
-            // srcSet="/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fxbox-wireless-game-controller-2022-09-26-12-20-19-1096.png&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fxbox-wireless-game-controller-2022-09-26-12-20-19-1096.png&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fxbox-wireless-game-controller-2022-09-26-12-20-19-1096.png&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fxbox-wireless-game-controller-2022-09-26-12-20-19-1096.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fxbox-wireless-game-controller-2022-09-26-12-20-19-1096.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fxbox-wireless-game-controller-2022-09-26-12-20-19-1096.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fxbox-wireless-game-controller-2022-09-26-12-20-19-1096.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fxbox-wireless-game-controller-2022-09-26-12-20-19-1096.png&amp;w=3840&amp;q=75 3840w"
             src={image}
             decoding="async"
             data-nimg="fill"
@@ -73,7 +72,9 @@ const ItemDetailsLeft: React.FC<Props> = (props) => {
                 background: "none",
                 inset: "0px",
               }}
-              className="block overflow-hidden opacity-80 absolute"
+              className={`block overflow-hidden ${
+                image !== img ? "opacity-80" : ""
+              } absolute`}
             >
               <img
                 onClick={() => imageChange(img)}
@@ -82,7 +83,7 @@ const ItemDetailsLeft: React.FC<Props> = (props) => {
                 sizes="100vw"
                 decoding="async"
                 data-nimg="fill"
-                className="w-full h-full object-contain transform scale-110 absolute m-auto block max-w-full min-w-full min-h-full max-h-full"
+                className="w-full h-full object-contain transform scale-110 absolute m-auto block max-w-full min-w-full min-h-full max-h-full "
               ></img>
             </span>
           </div>
