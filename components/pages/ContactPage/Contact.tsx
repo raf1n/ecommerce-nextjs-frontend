@@ -5,7 +5,7 @@ import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import ContactInformation from "./ContactInformation";
 import GetInTouch from "./GetInTouchComponent/GetInTouch";
 
-interface Props {}
+interface Props { }
 
 const Contact: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -15,13 +15,8 @@ const Contact: React.FC<Props> = (props) => {
       <PageHeader slug="Contact" link="/contact" title="Contact" />
       <div className="w-full min-h-screen mt-10 pt-0 pb-0">
         <div className="container-x mx-auto">
-<<<<<<< HEAD
           <div className="main-wrapper w-full lg:flex lg:space-x-[30px] my-16">
             <div> <ContactInformation></ContactInformation> </div>
-=======
-          <div className="main-wrapper w-full lg:flex lg:space-x-[30px]">
-            <ContactInformation></ContactInformation>
->>>>>>> 61d5661345b31c6ecdeb3e49678c51ff9929704b
             <GetInTouch />
           </div>
         </div>
