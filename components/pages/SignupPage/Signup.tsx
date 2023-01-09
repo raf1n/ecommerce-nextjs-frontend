@@ -143,7 +143,7 @@ const Signup: React.FC<Props> = (props) => {
           <div className="signin-area mb-3">
             <div className="flex justify-center">
               <button
-                disabled={checked === true}
+                disabled={checked !== true}
                 type="button"
                 className={`${Styles["black-btn"]} disabled:bg-opacity-50 disabled:cursor-not-allowed w-full h-[50px] font-semibold flex justify-center bg-purple items-center`}
               >
