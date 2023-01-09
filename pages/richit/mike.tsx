@@ -6,6 +6,7 @@ import Itemdetails from '../../components/pages/HomePagee/ItemDetails/ItemDetail
 import ShopByBrand from '../../components/pages/HomePagee/ShopByBrandSection/ShopByBrand';
 import TopRated from '../../components/pages/HomePagee/TopRatedProductsSection/TopRatedSection';
 import MyProfile from '../../components/pages/MyProfile/MyProfile';
+import TermsAndConditions from '../../components/pages/TermsAndConditionsPage/TermsAndConditions';
 import WishList from '../../components/pages/WishlistPage/Wishlist';
 import { controller } from '../../src/state/StateController'
 
@@ -25,6 +26,7 @@ const sadab: React.FC<Props> = (props) => {
       <FAQ />
       <WishList />
       <MyProfile />
+      <TermsAndConditions />
     </>
   );
 };
