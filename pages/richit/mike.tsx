@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import About from '../../components/pages/AboutPage/About';
 import Contact from '../../components/pages/ContactPage/Contact';
 import FAQ from '../../components/pages/FAQPage/FAQ';
 import Itemdetails from '../../components/pages/HomePagee/ItemDetails/ItemDetails';
@@ -31,6 +32,7 @@ const sadab: React.FC<Props> = (props) => {
       <TermsAndConditions />
       <PrivacyPolicy />
       <SellerTermsAndCondition />
+      <About />
     </>
   );
 };
