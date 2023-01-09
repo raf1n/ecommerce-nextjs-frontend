@@ -6,17 +6,18 @@ interface Props {}
 
 const Table: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const tableArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
-    <div>
-      <div className="bg-white p-8 rounded-md w-full">
+    <div style={{ margin: "20px" }}>
+      <div className="bg-white p-4 rounded-md w-full">
         <div className=" flex items-center justify-between pb-6">
           <div>
-            <span className="text-xs px-1">Show </span>
+            <span className="text-xs px-1 ">Show </span>
             <select
               name="dataTable_length"
               aria-controls="dataTable"
-              className="custom-select custom-select-sm form-control form-control-sm">
+              className="custom-select custom-select-sm form-control form-control-sm border border-blue-600">
               <option value="10">10</option>
               <option value="25">25</option>
               <option value="50">50</option>
@@ -48,106 +49,124 @@ const Table: React.FC<Props> = (props) => {
           </div>
         </div>
         <div>
-          <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+          <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-1 overflow-x-auto">
             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
               <table className="min-w-full leading-normal">
                 <thead>
                   <tr>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       SL
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Customer
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Order Id
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Date
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Quantity
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Amount
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Order Status
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Payment
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Action
                     </th>
                   </tr>
                 </thead>
-                {/* ------------------------- */}
+                {/* -----------Plz Attention ,Table body/Row start here -------------- */}
                 <tbody>
-                  <tr>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">1</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">Rumon</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">512</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">
-                        1-1-2023
-                      </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">420</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">10200</p>
-                    </td>
+                  {tableArray.map((tab, index) => (
+                    <>
+                      <tr>
+                        <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {index + 1}
+                          </p>
+                        </td>
+                        <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            Rumon
+                          </p>
+                        </td>
+                        <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            512
+                          </p>
+                        </td>
+                        <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            10-5-2023
+                          </p>
+                        </td>
+                        <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            420
+                          </p>
+                        </td>
+                        <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            10200
+                          </p>
+                        </td>
 
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className="absolute inset-0 bg-red-500  rounded-full"></span>
-                        <span className="relative text-white">Pending</span>
-                      </span>
-                    </td>
+                        <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
+                          <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                            <span
+                              aria-hidden
+                              className="absolute inset-0 bg-red-500  rounded-full"></span>
+                            <span className="relative text-white text-xs">
+                              Pending
+                            </span>
+                          </span>
+                        </td>
 
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className="absolute inset-0 bg-green-500 rounded-full"></span>
-                        <span className="relative text-white">Success</span>
-                      </span>
-                    </td>
+                        <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
+                          <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                            <span
+                              aria-hidden
+                              className="absolute inset-0 bg-green-500 rounded-full"></span>
+                            <span className="relative text-white text-xs">
+                              Success
+                            </span>
+                          </span>
+                        </td>
 
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <button>
-                        <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
-                          <span className="h-8 w-8  inset-0 bg-blue-700   rounded  relative text-white flex justify-center items-center">
-                            <FaEye />
+                        <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
+                          <button>
+                            <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
+                              <span className="h-8 w-8  inset-0 bg-blue-700   rounded  relative text-white flex justify-center items-center">
+                                <FaEye />
+                              </span>
+                            </span>
+                          </button>
+                          <button>
+                            <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
+                              <span className="h-8 w-8  inset-0 bg-red-500   rounded  relative text-white flex justify-center items-center">
+                                <FaTrash />
+                              </span>
+                            </span>
+                          </button>
+                          <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
+                            <button>
+                              <span className="h-8 w-8  inset-0 bg-orange-400   rounded  relative text-white flex justify-center items-center">
+                                <FaTruck />
+                              </span>
+                            </button>
                           </span>
-                        </span>
-                      </button>
-                      <button>
-                        <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
-                          <span className="h-8 w-8  inset-0 bg-red-500   rounded  relative text-white flex justify-center items-center">
-                            <FaTrash />
-                          </span>
-                        </span>
-                      </button>
-                      <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
-                        <button>
-                          <span className="h-8 w-8  inset-0 bg-orange-400   rounded  relative text-white flex justify-center items-center">
-                            <FaTruck />
-                          </span>
-                        </button>
-                      </span>
-                    </td>
-                  </tr>
+                        </td>
+                      </tr>
+                    </>
+                  ))}
                 </tbody>
               </table>
               {/* -------------- */}

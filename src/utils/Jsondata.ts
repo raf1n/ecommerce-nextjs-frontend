@@ -894,4 +894,43 @@ export class Jsondata {
     { title: "Contact Message", icon: FaEnvelope },
     { title: "Admin List", icon: FaUserAlt },
   ];
+
+  static    sellerAddress = [
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+    },
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+    },
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+    },
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+    },
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+    },
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+    },
+  ];
 }

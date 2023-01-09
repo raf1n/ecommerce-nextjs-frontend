@@ -9,10 +9,12 @@ interface Props {}
 const AdminPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-    return <div className="flex h-screen overflow-y-hidden">
+  return (
+    <div className="flex h-screen overflow-y-hidden">
       <Sidebar />
       <Dashboard />
     </div>
+  );
 };
 
 export default AdminPage;
