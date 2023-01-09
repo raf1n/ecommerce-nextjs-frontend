@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import Login from "../AdminLogin/AdminLogin";
 import AllOrders from "./Orders/AllOrders/AllOrders";
+import CashOnDelivery from "./Orders/CashOnDelivery/CashOnDelivery";
 import CompletedOrders from "./Orders/CompletedOrders/CompletedOrders";
+import DeclinedOrders from "./Orders/DeclinedOrders/DeclinedOrders";
 import DeliveredOrders from "./Orders/DeliveredOrders/DeliveredOrders";
 import PendingOrders from "./Orders/PendingOrders/PendingOrders";
 import ProgressOrders from "./Orders/ProgressOrders/ProgressOrders";
@@ -21,6 +23,8 @@ const Dashboard: React.FC<Props> = (props) => {
       <ProgressOrders></ProgressOrders>
       <DeliveredOrders></DeliveredOrders>
       <CompletedOrders></CompletedOrders>
+      <DeclinedOrders></DeclinedOrders>
+      <CashOnDelivery></CashOnDelivery>
     </div>
   );
 };
