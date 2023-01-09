@@ -7,6 +7,7 @@ import { Jsondata } from "../../../../src/utils/Jsondata";
 import MenuItem from "./MenuItem";
 import styles from "./Scrollbar.module.css";
 import { controller } from "../../../../src/state/StateController";
+import Link from "next/link";
 
 interface Props {}
 
@@ -40,9 +41,9 @@ const Sidebar: React.FC<Props> = (props) => {
       />
 
       <div className="text-center h-[60px] leading-[60px]">
-        <a href="/" className="font-bold text-sm tracking-widest">
+        <Link href="/" className="font-bold text-sm tracking-widest">
           {open ? "SHOPO" : "SP"}
-        </a>
+        </Link>
       </div>
       <ul
         className={`${styles["scrollbar"]} h-[calc(100vh-60px)] text-[#78828a] overflow-y-scroll overflow-x-hidden`}
@@ -58,10 +59,9 @@ const Sidebar: React.FC<Props> = (props) => {
           />
         ))}
       </ul>
+      
     </div>
   );
-
-  return <div>Sidebar</div>;
 };
 
 export default Sidebar;
