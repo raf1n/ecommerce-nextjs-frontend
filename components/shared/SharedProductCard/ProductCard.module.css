@@ -27,3 +27,24 @@
 .yellow-btn:hover .bg-shape {
     left: 0;
 }
+
+.item {
+    position: relative;
+}
+
+.lines {
+    background: linear-gradient(to bottom, rgb(255 187 56/1) 2px, transparent 2px) 100% 0, linear-gradient(to right, rgb(255 187 56/1) 2px, transparent 2px) 0 100%, linear-gradient(to left, rgb(255 187 56/1) 2px, transparent 2px) 100% 0, linear-gradient(to top, rgb(255 187 56/1) 2px, transparent 2px) 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 0px 0px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: background-size 0.5s cubic-bezier(.4, 0, .2, 1);
+    border: 1px solid transparent;
+}
+
+.item:hover .lines {
+    background-size: 100% 100%;
+    cursor: pointer;
+}
