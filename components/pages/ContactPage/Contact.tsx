@@ -18,7 +18,7 @@ const Contact: React.FC<Props> = (props) => {
       <div className="w-full min-h-screen  pt-0 pb-0">
         <div className="container-x mx-auto">
           <div className="main-wrapper w-full lg:flex lg:space-x-[30px]">
-            <div> <ContactInformation></ContactInformation> </div>
+            <ContactInformation></ContactInformation>
             <GetInTouch />
           </div>
         </div>
