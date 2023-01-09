@@ -12,6 +12,7 @@ import CategoryPage from "../../components/pages/CategoryProductPage/CategoryPag
 import ProfileDashboard from "../../components/pages/ProfilePage/ProfileDashboard/ProfileDashboard";
 import ProfileOrder from "../../components/pages/ProfilePage/ProfileOrder/ProfileOrder";
 import ProfileAddress from "../../components/pages/ProfilePage/ProfileAddress/ProfileAddress";
+import ProfilePage from "../../components/pages/ProfilePage/ProfilePage";
 
 interface Props {}
 
@@ -27,9 +28,7 @@ const denji: React.FC<Props> = (props) => {
       <Blogs />
       <CategoryPage />
       <AdminDetailsSummary /> */}
-      <ProfileDashboard />
-      <ProfileOrder />
-      <ProfileAddress />
+      <ProfilePage></ProfilePage>
     </>
   );
 };
