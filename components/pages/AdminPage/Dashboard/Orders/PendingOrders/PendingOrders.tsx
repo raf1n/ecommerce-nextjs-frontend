@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { controller } from "../../../../../src/state/StateController";
-import Table from "../../../../shared/SharedTable/Table";
-import DashboardBreadcrumb from "../../../MyProfile/DashboardBreadcrumb";
+import { controller } from "../../../../../../src/state/StateController";
+import Table from "../../../../../shared/SharedTable/Table";
+import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
 
 interface Props {}
 

@@ -1,12 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
-import Table from "../../../shared/SharedTable/Table";
-import DashboardBreadcrumb from "../../MyProfile/DashboardBreadcrumb";
-
 import Login from "../AdminLogin/AdminLogin";
-import AllOrders from "./AllOrders/AllOrders";
-import PendingOrders from "./PendingOrders/PendingOrders";
+import AllOrders from "./Orders/AllOrders/AllOrders";
+import PendingOrders from "./Orders/PendingOrders/PendingOrders";
+import ProgressOrders from "./Orders/ProgressOrders/ProgressOrders";
 
 interface Props {}
 
@@ -18,6 +16,7 @@ const Dashboard: React.FC<Props> = (props) => {
       <Login />
       <AllOrders></AllOrders>
       <PendingOrders></PendingOrders>
+      <ProgressOrders></ProgressOrders>
     </div>
   );
 };
