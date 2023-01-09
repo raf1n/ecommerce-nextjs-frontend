@@ -43,16 +43,20 @@
 
 .product-row-card-style-one:hover~span.bottom {
     transform: scaleX(1);
+    cursor: pointer;
 }
 
 .product-row-card-style-one:hover~span.right {
     transform: scaleY(1);
+    cursor: pointer;
 }
 
 .product-row-card-style-one:hover~span.top {
     transform: scaleX(1);
+    cursor: pointer;
 }
 
 .product-row-card-style-one:hover~span.left {
     transform: scaleY(1);
+    cursor: pointer;
 }
