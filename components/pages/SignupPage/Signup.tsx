@@ -49,7 +49,6 @@ const Signup: React.FC<Props> = (props) => {
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                     type="text"
                     id="fname"
-                    value=""
                   />
                 </div>
               </div>
@@ -68,7 +67,6 @@ const Signup: React.FC<Props> = (props) => {
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                     type="text"
                     id="lname"
-                    value=""
                   />
                 </div>
               </div>
@@ -88,7 +86,6 @@ const Signup: React.FC<Props> = (props) => {
                   className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                   type="email"
                   id="email"
-                  value=""
                 />
               </div>
             </div>
@@ -108,7 +105,6 @@ const Signup: React.FC<Props> = (props) => {
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                     type="password"
                     id="password"
-                    value=""
                   />
                 </div>
               </div>
@@ -127,7 +123,6 @@ const Signup: React.FC<Props> = (props) => {
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                     type="password"
                     id="confirm_password"
-                    value=""
                   />
                 </div>
               </div>

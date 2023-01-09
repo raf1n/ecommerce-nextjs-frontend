@@ -267,7 +267,6 @@ const ProfileAddress: React.FC<Props> = (props) => {
                       <input
                         placeholder="Name"
                         className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
-                        value=""
                       />
                     </div>
                   </div>
@@ -283,7 +282,6 @@ const ProfileAddress: React.FC<Props> = (props) => {
                       <input
                         placeholder="Email"
                         className="input-field placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
-                        value=""
                       />
                     </div>
                   </div>
@@ -297,7 +295,6 @@ const ProfileAddress: React.FC<Props> = (props) => {
                       <input
                         placeholder="012 3 *******"
                         className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
-                        value=""
                       />
                     </div>
                   </div>
@@ -355,7 +352,6 @@ const ProfileAddress: React.FC<Props> = (props) => {
                       <input
                         placeholder="Your Address here"
                         className="input-field placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
-                        value=""
                       />
                     </div>
                   </div>
