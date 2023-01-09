@@ -12,7 +12,7 @@ const ContactInformation: React.FC<Props> = (props) => {
     const states = useSelector(() => controller.states)
 
     return (
-        <div>
+        <div className='lg:w-1/2 w-full'>
             <h1 className='text-[22px] font-semibold text-qblack leading-[30px] mb-1'>Contact Information</h1>
             <p className='text-[15px] text-qgray leading-[30px] mb-5'>Fill the form below or write us .We will help you as soon as possible.</p>
             <div className='xl:flex xl:space-x-[30px] mb-[30px]'>
