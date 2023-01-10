@@ -3,13 +3,7 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import Breadcrumb from "../../shared/SharedBreadcrumb/Breadcrumb";
 import Link from "next/link";
-import ProfileDashboard from "./ProfileDashboard/ProfileDashboard";
-import ProfileOrder from "./ProfileOrder/ProfileOrder";
-import ProfileAddress from "./ProfileAddress/ProfileAddress";
-import ChangePassword from "./ChangePassword/ChangePassword";
-import PersonalInfo from "./PersonalInfo/PersonalInfo";
-import ProfileWishlist from './ProfileWishlist/ProfileWishlist';
-import ProfileReviews from "./ProfileReviews/ProfileReviews";
+import ProfileDashboardRenderer from "./ProfileDashboardRenderer";
 
 interface Props {}
 
@@ -218,13 +212,7 @@ const ProfilePage: React.FC<Props> = (props) => {
               </div>
             </div>
             <div className="flex-1">
-              <ProfileReviews />
-              <ProfileWishlist />
-              <PersonalInfo />
-              <ProfileDashboard></ProfileDashboard>
-              <ProfileOrder></ProfileOrder>
-              <ProfileAddress></ProfileAddress>
-              <ChangePassword></ChangePassword>
+              <ProfileDashboardRenderer />
             </div>
           </div>
         </div>
