@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "./../../../../src/state/StateController";
-import Select from "react-select";
+import Select, { components, MenuProps } from "react-select";
 import { useState } from "react";
 
 interface Props {}
@@ -10,6 +10,27 @@ const PersonalInfo: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const [selectedOption, setSelectedOption] = useState(null);
+
+  const style = {
+    control: (base: any) => ({
+      ...base,
+      border: "1px solid rgb(239 239 239)",
+      height: "50px",
+      width: "100%",
+      margin: "0",
+      paddingLeft: "12px",
+      paddingRight: "12px",
+      fontSize: "13px",
+      borderRadius: 0,
+      // This line disable the blue border
+      boxShadow: "none",
+      cursor: "pointer",
+      '&:hover': {
+        border: "1px solid rgb(239 239 239)",
+      },
+    }),
+  };
+
   const countryOptions = [
     { value: "bangladesh", label: "Bangladesh" },
     { value: "india", label: "India" },
@@ -23,110 +44,101 @@ const PersonalInfo: React.FC<Props> = (props) => {
   return (
     <div className="flex space-x-8">
       <div className="w-[570px]">
-        {/* <div className='mb-8'>
-          <label className="capitalize block mb-2 text-qgray text-[13px] font-normal">Name</label>
-          <input placeholder="Name" className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-white focus:ring-0 focus:outline-none border border-[rgb(239,239,239)] h-[50px]" type="text" />
-          </div>
-          <div className='flex space-x-2.5 mb-8'>
-
-          </div> */}
-
         <form>
-          <div className="mb-6">
+          <div className="mb-8">
             <div className="w-full mb-5 sm:mb-0">
-              <div className="input-com w-full h-full">
-                <label className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal">
-                  Name*
+              <div className="w-full h-full">
+                <label className="capitalize block  mb-2 text-qgray text-[13px] font-normal">
+                  Name
                 </label>
-                <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
+                <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
                   <input
                     placeholder="Name"
-                    className="input-field placeholder:text-sm text-sm px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                    className="placeholder:text-sm text-sm px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex space-x-5 items-center mb-6">
+          <div className="flex gap-x-2.5 items-center mb-8">
             <div className="sm:w-1/2 w-full">
-              <div className="input-com w-full h-full">
-                <label className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal">
-                  Email*
+              <div className="w-full h-full">
+                <label className="capitalize block  mb-2 text-qgray text-[13px] font-normal">
+                  Email
+                  <span className="text-yellow-500 text-xs ml-1">
+                    (Read Only)
+                  </span>
                 </label>
-                <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
-                  <input
-                    placeholder="Email"
-                    className="input-field placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
-                  />
-                </div>
+                <input
+                  readOnly
+                  value="placeholder@email.com"
+                  className="border border-yellow-500 px-6 w-full h-[50px] bg-yellow-50 text-dark-gray flex items-center cursor-not-allowed rounded"
+                />
               </div>
             </div>
             <div className="sm:w-1/2 w-full">
-              <div className="input-com w-full h-full">
-                <label className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal">
-                  Phone Number*
+              <div className="w-full h-full">
+                <label className="capitalize block  mb-2 text-qgray text-[13px] font-normal">
+                  Phone Number
                 </label>
-                <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
+                <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
                   <input
                     placeholder="012 3 *******"
-                    className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                    className="placeholder:text-sm text-sm px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
                 </div>
               </div>
             </div>
           </div>
           <div className="mb-6">
-            <h1 className="input-label capitalize block mb-2 text-qgray text-[13px] font-normal">
+            <h1 className="capitalize block mb-2 text-qgray text-[13px] font-normal">
               Country*
             </h1>
-            <div className="w-full h-[50px]  flex justify-between items-center rounded border-[#CBECD9] mb-2 ">
-              <div className="my-select-box w-full">
-                <div className="my-select-box-section ">
-                  <Select
-                    value={selectedOption}
-                    onChange={handleChange}
-                    options={countryOptions}
-                  />
-                </div>
-              </div>
-            </div>
+            <Select
+              value={selectedOption}
+              onChange={handleChange}
+              options={countryOptions}
+              styles={style}
+              components={{
+                // Menu,
+                IndicatorSeparator: () => null,
+              }}
+            />
           </div>
           <div className="flex space-x-5 items-center mb-6">
             <div className="w-1/2">
-              <h1 className="input-label capitalize block mb-2 text-qgray text-[13px] font-normal">
+              <h1 className="capitalize block mb-2 text-qgray text-[13px] font-normal">
                 State*
               </h1>
-              <div className="w-full h-[50px] flex justify-between items-center rounded border-[#CBECD9] mb-2 ">
-                <div className="my-select-box w-full">
-                  <div className="my-select-box-section ">
-                    <Select className="list"></Select>
-                  </div>
-                </div>
-              </div>
+              <Select
+                styles={style}
+                components={{
+                  IndicatorSeparator: () => null,
+                }}
+              />
             </div>
             <div className="w-1/2">
-              <h1 className="input-label capitalize block mb-2 text-qgray text-[13px] font-normal">
+              <h1 className="capitalize block mb-2 text-qgray text-[13px] font-normal">
                 City*
               </h1>
-              <div className="w-full h-[50px] flex justify-between items-center rounded border-[#CBECD9] mb-2 ">
-                <div className="my-select-box w-full">
-                  <div className="my-select-box-section ">
-                    <Select className="list"></Select>
-                  </div>
-                </div>
-              </div>
+              <Select
+                styles={style}
+                components={{
+                  IndicatorSeparator: () => null,
+                }}
+              />
             </div>
           </div>
-          <div className=" mb-6">
+          <div className="mb-8">
             <div className="w-full">
-              <div className="input-com w-full h-full">
-                <label className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal">
+              <div className="w-full h-full">
+                <label className="capitalize block  mb-2 text-qgray text-[13px] font-normal">
                   Address
                 </label>
-                <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
+                <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
                   <input
                     placeholder="Your Address here"
-                    className="input-field placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                    className="placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
                 </div>
               </div>
