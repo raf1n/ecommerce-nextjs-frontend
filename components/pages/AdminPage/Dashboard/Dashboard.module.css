@@ -5,6 +5,33 @@
   width: 100%;
   position: relative;
 }
+.dropdown-menu {
+  box-shadow: 0 10px 40px 0 rgb(51 73 94 / 15%);
+  border: none;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+ 
+  position: absolute;
+  top: 3rem;
+  right: 1rem;
+  z-index: 1;
+}
+.dropdown-menu a{
+  color: #000;
+}
+.dropdown-menu>div{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  /* gap:12px; */
+  width: 200px;
+ 
+  border-radius: 5px;
+}
+.dropdown-menu>div>a{
+  padding: 15px;
+}
 @media (max-width: 1024px) {
   .main-content {
     padding-left: 30px;
