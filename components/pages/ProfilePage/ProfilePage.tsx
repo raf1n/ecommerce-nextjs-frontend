@@ -8,6 +8,7 @@ import ProfileOrder from "./ProfileOrder/ProfileOrder";
 import ProfileAddress from "./ProfileAddress/ProfileAddress";
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import ProfileWishlist from './ProfileWishlist/ProfileWishlist';
+import ProfileReviews from "./ProfileReviews/ProfileReviews";
 
 interface Props {}
 
@@ -216,6 +217,7 @@ const ProfilePage: React.FC<Props> = (props) => {
               </div>
             </div>
             <div className="flex-1">
+              <ProfileReviews />
               <ProfileWishlist />
               <PersonalInfo />
               <ProfileDashboard></ProfileDashboard>
