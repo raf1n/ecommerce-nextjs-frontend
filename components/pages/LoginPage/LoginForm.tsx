@@ -77,7 +77,7 @@ const LoginForm: React.FC<Props> = (props) => {
                />
               <span className="text-base text-black">Remember Me</span>
             </div>
-            <Link href="/forgot-password">Forgot password</Link>
+            <Link href="/forgot-password" className="hover:underline">Forgot password</Link>
           </div>
               <div>
               <button
@@ -90,13 +90,13 @@ const LoginForm: React.FC<Props> = (props) => {
                 type="button"
                 className="bg-[#4285F4] text-white mb-6 text-sm w-full h-[50px] font-semibold flex gap-x-2 justify-center items-center bg-purple items-center"
               >
-                <FaGoogle className="w-4 h-4" />Sign In With Google
+                <FaGoogle className="w-6 h-6" />Sign In With Google
               </button>
               </div>
           <div className="flex justify-center">
             <p className="text-base text-qgraytwo font-normal">
               Dont't have an account ?
-              <Link href="/signup" className="ml-2 text-qblack cursor-pointer capitalize">
+              <Link href="/signup" className="ml-2 text-qblack cursor-pointer capitalize hover:underline">
                 sign up free
               </Link>
             </p>
