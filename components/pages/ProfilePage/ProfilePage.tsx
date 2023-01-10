@@ -6,6 +6,7 @@ import Link from "next/link";
 import ProfileDashboard from "./ProfileDashboard/ProfileDashboard";
 import ProfileOrder from "./ProfileOrder/ProfileOrder";
 import ProfileAddress from "./ProfileAddress/ProfileAddress";
+import ChangePassword from "./ChangePassword/ChangePassword";
 
 interface Props {}
 
@@ -217,6 +218,7 @@ const ProfilePage: React.FC<Props> = (props) => {
               <ProfileDashboard></ProfileDashboard>
               <ProfileOrder></ProfileOrder>
               <ProfileAddress></ProfileAddress>
+              <ChangePassword></ChangePassword>
             </div>
           </div>
         </div>
