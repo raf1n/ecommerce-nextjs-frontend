@@ -3,15 +3,17 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 
-interface Props {}
+interface Props {
+  images: Array<string>;
+}
 
 const ItemDetailsLeft: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const images = [
-    "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=2048&q=75",
-    "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
-  ];
-  const [image, setImage] = useState(images[0]);
+  // const images = [
+  //   "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=2048&q=75",
+  //   "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
+  // ];
+  const [image, setImage] = useState(props.images[0]);
   const imageChange = (newImage: any) => {
     setImage(newImage);
   };
@@ -63,7 +65,7 @@ const ItemDetailsLeft: React.FC<Props> = (props) => {
         </div>
       </div>
       <div className="flex gap-2 flex-wrap">
-        {images.map((img) => (
+        {props.images.map((img: any) => (
           <div className="w-[110px] h-[110px] p-[15px] border border-qgray-border cursor-pointer relative">
             <span
               style={{
