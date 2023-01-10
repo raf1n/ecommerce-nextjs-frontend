@@ -134,11 +134,12 @@ const Signup: React.FC<Props> = (props) => {
               <input
                 onChange={() => setChecked(!checked)}
                 type="checkbox"
+                checked={checked}
                 className="w-5 h-5 text-qblack flex justify-center items-center border border-light-gray"
               ></input>
-              <span className="text-base text-black cursor-pointer">
+              <Link href="/seller_terms_condition" className="text-base text-black cursor-pointer">
                 I agree all terms and condition in ecoShop
-              </span>
+              </Link>
             </div>
           </div>
           <div className="signin-area mb-3">
