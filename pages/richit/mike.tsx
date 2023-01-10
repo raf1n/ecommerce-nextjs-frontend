@@ -6,6 +6,7 @@ import FAQ from '../../components/pages/FAQPage/FAQ';
 import Itemdetails from '../../components/pages/HomePagee/ItemDetails/ItemDetails';
 import ShopByBrand from '../../components/pages/HomePagee/ShopByBrandSection/ShopByBrand';
 import TopRated from '../../components/pages/HomePagee/TopRatedProductsSection/TopRatedSection';
+import MyCart from '../../components/pages/MyCartPage/MyCart';
 import MyProfile from '../../components/pages/MyProfile/MyProfile';
 import PrivacyPolicy from '../../components/pages/PrivacyPolicyPage/PrivacyPolicy';
 import SellerTermsAndCondition from '../../components/pages/SellerTermsAndConditionPage/SellerTermsAndCondition';
@@ -33,6 +34,7 @@ const sadab: React.FC<Props> = (props) => {
       <PrivacyPolicy />
       <SellerTermsAndCondition />
       <About />
+      <MyCart />
     </>
   );
 };
