@@ -22,7 +22,7 @@ const ChangePassword: React.FC<Props> = (props) => {
               id="new_password"
             ></ChangePasswordInput>
             <ChangePasswordInput
-              label="Password"
+              label="Re-Enter Password"
               id="re-enter_password"
             ></ChangePasswordInput>
             <div className="w-full mt-[30px] flex justify-start">
