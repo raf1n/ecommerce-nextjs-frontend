@@ -4,10 +4,9 @@ import Itemdetails from "../../components/pages/HomePagee/ItemDetails/ItemDetail
 import RelatedProductSection from "../../components/pages/HomePagee/RelatedProductSection/RelatedProductSection";
 import SingleProduct from "../../components/pages/SingleProductPage/SingleProduct";
 
-
 import { controller } from "../../src/state/StateController";
 
-interface Props { }
+interface Props {}
 
 const SingleProductPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);

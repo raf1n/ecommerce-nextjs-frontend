@@ -465,6 +465,7 @@ export class Jsondata {
   //Single Item Detail
   static itemDetail = {
     name: "Asus zenbook desktop",
+    slug: "jbl-clip-4-orange-portable-speake",
     brand: "HUAWEI",
     rating: 3,
     reviews: [],
@@ -474,6 +475,10 @@ export class Jsondata {
     availability: 3,
     category: "Accessories",
     sku: "kjhyy78",
+    images: [
+      "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=2048&q=75",
+      "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
+    ],
   };
 
   static dashboardSummaryData = [

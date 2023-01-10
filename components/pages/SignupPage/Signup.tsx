@@ -3,11 +3,12 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import Styles from "./signup.module.css";
+import Link from "next/link";
 interface Props {}
 
 const Signup: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const [checked, setCheked] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   return (
     <div className="lg:w-[572px] w-full lg:h-auto bg-white flex flex-col justify-center sm:p-10 p-5 border border-[#E0E0E0]">
@@ -131,7 +132,7 @@ const Signup: React.FC<Props> = (props) => {
           <div className="forgot-password-area mb-7">
             <div className="remember-checkbox flex items-center space-x-2.5">
               <input
-                onChange={() => setCheked(!checked)}
+                onChange={() => setChecked(!checked)}
                 type="checkbox"
                 className="w-5 h-5 text-qblack flex justify-center items-center border border-light-gray"
               ></input>
@@ -143,7 +144,7 @@ const Signup: React.FC<Props> = (props) => {
           <div className="signin-area mb-3">
             <div className="flex justify-center">
               <button
-                disabled={checked !== true}
+                disabled={!checked}
                 type="button"
                 className={`${Styles["black-btn"]} disabled:bg-opacity-50 disabled:cursor-not-allowed w-full h-[50px] font-semibold flex justify-center bg-purple items-center`}
               >
@@ -154,7 +155,9 @@ const Signup: React.FC<Props> = (props) => {
           <div className="signup-area flex justify-center">
             <p className={`text-base ${Styles["text-qgraytwo"]} font-normal`}>
               Already have an Account?
-              <span className="ml-2 text-qblack cursor-pointer ">Log In</span>
+              <Link href="/login" className="ml-2 text-qblack cursor-pointer ">
+                Log In
+              </Link>
             </p>
           </div>
         </div>
