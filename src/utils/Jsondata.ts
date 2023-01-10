@@ -933,4 +933,84 @@ export class Jsondata {
       address: "Chattogram , Bangladesh",
     },
   ];
+
+  static tableDatas = [
+    {
+      id:1 ,
+      Customer:"Rafin Robin",
+      OrderId:"8966896",
+      Date:"32 December,2023",
+      Quantity:20,
+      Amount:20343,
+      OrderStatus:"pending",
+      Payment:"success",
+      Action:""
+    },
+    {
+      id:2 ,
+      Customer:"Mr. Sadab",
+      OrderId:"8966896",
+      Date:"32 January,2023",
+      Quantity:540,
+      Amount:65456,
+      OrderStatus:"delivered",
+      Payment:"success",
+      Action:""
+    },
+    {
+      id:3 ,
+      Customer:"Toukir khan",
+      OrderId:"4547544",
+      Date:"15 February,2023",
+      Quantity:1220,
+      Amount:62324,
+      OrderStatus:"pending",
+      Payment:"pending",
+      Action:""
+    },
+    {
+      id:4 ,
+      Customer:"Iqbal Hasan",
+      OrderId:"7875876",
+      Date:"23 January,2023",
+      Quantity:767,
+      Amount:77544,
+      OrderStatus:"delivered",
+      Payment:"success",
+      Action:""
+    },
+    {
+      id:5 ,
+      Customer:"Fayaz karim",
+      OrderId:"674454",
+      Date:"31 August,2023",
+      Quantity:1345,
+      Amount:86647,
+      OrderStatus:"pending",
+      Payment:"pending",
+      Action:""
+    },
+    {
+      id:6 ,
+      Customer:"Mr Stark",
+      OrderId:"656568",
+      Date:"32 January,2023",
+      Quantity:110,
+      Amount:65575,
+      OrderStatus:"pending",
+      Payment:"success",
+      Action:""
+    },
+    {
+      id:7 ,
+      Customer:"Mr Xavier",
+      OrderId:"9676767",
+      Date:"32 July,2023",
+      Quantity:225,
+      Amount:24242,
+      OrderStatus:"delivered",
+      Payment:"success",
+      Action:""
+    },
+  ]
 }

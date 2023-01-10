@@ -13,7 +13,7 @@ const DashboardBreadcrumb: React.FC<Props> = (props) => {
 
   return (
     <div
-      className="flex justify-between  bg-white my-12"
+      className="flex justify-between  bg-white my-12 rounded"
       style={{ margin: "20px", padding: "20px" }}>
       <div>
         <h1 className="text-2xl font-semibold">{props.headline}</h1>
