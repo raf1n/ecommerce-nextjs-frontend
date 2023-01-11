@@ -1,23 +1,23 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import About from '../../components/pages/AboutPage/About';
-import Categories from '../../components/pages/AdminPage/Dashboard/ManageCategories/Categories/Categories';
-import Contact from '../../components/pages/ContactPage/Contact';
-import FAQ from '../../components/pages/FAQPage/FAQ';
-import Itemdetails from '../../components/pages/HomePagee/ItemDetails/ItemDetails';
-import ShopByBrand from '../../components/pages/HomePagee/ShopByBrandSection/ShopByBrand';
-import TopRated from '../../components/pages/HomePagee/TopRatedProductsSection/TopRatedSection';
-import MyCart from '../../components/pages/MyCartPage/MyCart';
-import MyProfile from '../../components/pages/MyProfile/MyProfile';
-import PrivacyPolicy from '../../components/pages/PrivacyPolicyPage/PrivacyPolicy';
-import SellerTermsAndCondition from '../../components/pages/SellerTermsAndConditionPage/SellerTermsAndCondition';
-import TermsAndConditions from '../../components/pages/TermsAndConditionsPage/TermsAndConditions';
-import WishList from '../../components/pages/WishlistPage/Wishlist';
-import { controller } from '../../src/state/StateController'
+import React from "react";
+import { useSelector } from "react-redux";
+import About from "../../components/pages/AboutPage/About";
+import Categories from "../../components/pages/AdminPage/Dashboard/ManageCategories/Categories/Categories";
+import PopularCategoryAdmin from "../../components/pages/AdminPage/Dashboard/ManageCategories/PopularCategoryAdmin/PopularCategoryAdmin";
+import Contact from "../../components/pages/ContactPage/Contact";
+import FAQ from "../../components/pages/FAQPage/FAQ";
+import Itemdetails from "../../components/pages/HomePagee/ItemDetails/ItemDetails";
+import PopularCategory from "../../components/pages/HomePagee/PopularCategory/PopularCategory";
+import ShopByBrand from "../../components/pages/HomePagee/ShopByBrandSection/ShopByBrand";
+import TopRated from "../../components/pages/HomePagee/TopRatedProductsSection/TopRatedSection";
+import MyCart from "../../components/pages/MyCartPage/MyCart";
+import MyProfile from "../../components/pages/MyProfile/MyProfile";
+import PrivacyPolicy from "../../components/pages/PrivacyPolicyPage/PrivacyPolicy";
+import SellerTermsAndCondition from "../../components/pages/SellerTermsAndConditionPage/SellerTermsAndCondition";
+import TermsAndConditions from "../../components/pages/TermsAndConditionsPage/TermsAndConditions";
+import WishList from "../../components/pages/WishlistPage/Wishlist";
+import { controller } from "../../src/state/StateController";
 
-
-
-interface Props { }
+interface Props {}
 
 const sadab: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -37,6 +37,7 @@ const sadab: React.FC<Props> = (props) => {
       <About />
       <MyCart />
       <Categories></Categories>
+      <PopularCategoryAdmin />
     </>
   );
 };
