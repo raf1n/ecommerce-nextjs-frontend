@@ -33,14 +33,15 @@ const Dashboard: React.FC<Props> = (props) => {
     <div className="flex-1  overflow-y-auto relative">
       <div className="flex flex-row justify-between h-[115px] relative bg-[#6777ef]">
         <div className="relative">
+          {/* for big screen: hamberger */}
           <FaBars
-            className={`absolute cursor-pointer hidden lg:block top-9 w-7 rounded-full duration-300 text-white`}
+            className={`absolute cursor-pointer hidden lg:block top-9 w-16 rounded-full duration-300 text-white`}
             onClick={() => {
               setOpen(!open);
               setResponsiveOpen(false);
             }}
           />
-
+          {/* for small screen: hamberger */}
           <FaBars
             className={`left-[270px] absolute cursor-pointer block lg:hidden  top-6 w-7 rounded-full duration-300 text-white`}
             onClick={() => {

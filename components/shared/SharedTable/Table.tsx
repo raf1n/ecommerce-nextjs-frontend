@@ -50,65 +50,83 @@ const Table: React.FC<Props> = (props) => {
                   <tr className="h-16">
                     <th
                       className={`px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}>
-                      <span className="flex  space-x-0 space-y-0 opacity-80">
+                      <span className="flex  space-x-0 space-y-0 ">
                         SL
-                        <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        <span className="opacity-50 flex">
+                          <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        </span>
                       </span>
                     </th>
                     <th
                       className={` px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}>
-                      <span className="flex  space-x-0 space-y-0  opacity-80">
+                      <span className="flex  space-x-0 space-y-0  ">
                         Customer
-                        <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        <span className="opacity-50 flex">
+                          <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        </span>
                       </span>
                     </th>
                     <th
                       className={`px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}>
-                      <span className="flex  space-x-0 space-y-0  opacity-80">
+                      <span className="flex  space-x-0 space-y-0 ">
                         Order Id
-                        <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        <span className="opacity-50 flex">
+                          <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        </span>
                       </span>
                     </th>
                     <th
                       className={` px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}>
-                      <span className="flex  space-x-0 space-y-0  opacity-80">
+                      <span className="flex  space-x-0 space-y-0 ">
                         Date
-                        <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        <span className="opacity-50 flex">
+                          <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        </span>
                       </span>
                     </th>
                     <th
                       className={` px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}>
-                      <span className="flex  space-x-0 space-y-0  opacity-80">
+                      <span className="flex  space-x-0 space-y-0 ">
                         Quantity
-                        <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        <span className="opacity-50 flex">
+                          <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        </span>
                       </span>
                     </th>
                     <th
                       className={` px-1 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}>
-                      <span className="flex  space-x-0 space-y-0 opacity-80">
+                      <span className="flex  space-x-0 space-y-0">
                         Amount
-                        <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        <span className="opacity-50 flex">
+                          <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        </span>
                       </span>
                     </th>
                     <th
                       className={` px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}>
-                      <span className="flex  space-x-0 space-y-0 opacity-80">
+                      <span className="flex  space-x-0 space-y-0 ">
                         Order Status
-                        <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        <span className="opacity-50 flex">
+                          <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        </span>
                       </span>
                     </th>
                     <th
                       className={`px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}>
-                      <span className="flex  space-x-0 space-y-0 opacity-80">
+                      <span className="flex  space-x-0 space-y-0">
                         Payment
-                        <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        <span className="opacity-50 flex">
+                          <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        </span>
                       </span>
                     </th>
                     <th
                       className={` px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}>
-                      <span className="flex  space-x-0 space-y-0 opacity-80">
+                      <span className="flex  space-x-0 space-y-0">
                         Action
-                        <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        <span className="opacity-50 flex">
+                          <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                        </span>
                       </span>
                     </th>
                   </tr>
