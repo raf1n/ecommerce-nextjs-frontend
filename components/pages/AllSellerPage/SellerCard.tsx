@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-
+import Styles from "./SellerCard.module.css";
 interface Props {
   sellerAdd: any;
   //   shopName: string;
@@ -20,12 +20,7 @@ const SellerCard: React.FC<Props> = (props) => {
         data-aos="fade-up"
         className="item w-full aos-init aos-animate pb-[30px] mt-12">
         <div
-          className="w-full sm:h-[328px] sm:p-[30px] p-5  "
-          style={{
-            background:
-              "url('../../../sellersCover.png') 0% 0% / cover no-repeat",
-            padding: "30px",
-          }}>
+          className={`w-full sm:h-[328px] sm:p-[30px] p-5 ${Styles["bg-image"]}`}>
           <div className="flex sm:flex-row flex-col-reverse sm:items-center justify-between w-full h-full">
             <div className="flex flex-col justify-between h-full">
               <div className="">

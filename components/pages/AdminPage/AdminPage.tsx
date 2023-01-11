@@ -12,7 +12,7 @@ const AdminPage: React.FC<Props> = (props) => {
   const [responsiveOpen, setResponsiveOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-y-hidden">
+    <div className="flex h-screen overflow-y-hidden bg-[#f4f6f9]">
       <Sidebar open={open} responsiveOpen={responsiveOpen} />
       <Dashboard
         open={open}

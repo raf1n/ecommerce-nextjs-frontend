@@ -19,21 +19,22 @@ const ironman: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div>
-      <DeliveryComponents></DeliveryComponents>
-      <FeaturedProducts></FeaturedProducts>
-      <NewReleasedProducts></NewReleasedProducts>
+    <>
+      <AdminPage></AdminPage>
+      {/* <DeliveryComponents></DeliveryComponents> */}
+      {/* <FeaturedProducts></FeaturedProducts> */}
+      {/* <NewReleasedProducts></NewReleasedProducts>
       <PopularCategory></PopularCategory>
       <WishList />
-      <RelatedProductSection></RelatedProductSection>
+      <RelatedProductSection></RelatedProductSection> */}
 
       <br />
       <br />
-      <AdminPage></AdminPage>
+
       <AllSellerPage></AllSellerPage>
       <TrackOrder></TrackOrder>
       <CheckoutPage></CheckoutPage>
-    </div>
+    </>
   );
 };
 

@@ -15,6 +15,7 @@ import DeliveredOrders from "./Orders/DeliveredOrders/DeliveredOrders";
 import PendingOrders from "./Orders/PendingOrders/PendingOrders";
 import ProgressOrders from "./Orders/ProgressOrders/ProgressOrders";
 import { MdArrowDropDown } from "react-icons/md";
+import { useState } from "react";
 
 interface Props {
   open: boolean;
@@ -26,15 +27,14 @@ interface Props {
 const Dashboard: React.FC<Props> = (props) => {
   const { open, setOpen, responsiveOpen, setResponsiveOpen } = props;
   const states = useSelector(() => controller.states);
+  const [show, setShow] = useState(false);
 
   return (
     <div className="flex-1  overflow-y-auto relative">
-      <div
-        className="flex flex-row justify-between h-20 relative"
-        style={{ backgroundColor: "#6777ef" }}>
+      <div className="flex flex-row justify-between h-[115px] relative bg-[#6777ef]">
         <div className="relative">
           <FaBars
-            className={`absolute cursor-pointer hidden lg:block top-6 w-7 rounded-full duration-300 text-white`}
+            className={`absolute cursor-pointer hidden lg:block top-9 w-7 rounded-full duration-300 text-white`}
             onClick={() => {
               setOpen(!open);
               setResponsiveOpen(false);
@@ -42,30 +42,28 @@ const Dashboard: React.FC<Props> = (props) => {
           />
 
           <FaBars
-            className={`left-[270px] absolute cursor-pointer block lg:hidden top-6 w-7 rounded-full duration-300 text-white`}
+            className={`left-[270px] absolute cursor-pointer block lg:hidden  top-6 w-7 rounded-full duration-300 text-white`}
             onClick={() => {
               setResponsiveOpen(!responsiveOpen);
               setOpen(true);
             }}
           />
         </div>
-        <div className="flex items-center px-8 text-white ">
+        <div className="flex items-center px-8 text-white  ">
           <button className="flex">
-            <IoIosHome /> <span className="text-sm">Visit Website</span>
+            <IoIosHome /> <span className="text-sm pl-1">Visit Website</span>
           </button>
-          <button>
-            <div className="flex text-white  pl-6">
+          <button
+            onClick={() => {
+              setShow(!show);
+            }}>
+            <div className={`flex text-white  pl-6`}>
               <img
                 src={`https://api.websolutionus.com/shopo/uploads/website-images/ibrahim-khalil-2022-01-30-02-48-50-5743.jpg`}
-                alt=""
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  objectFit: "cover",
-                  borderRadius: "50%",
-                }}
+                alt="pic"
+                className={`${styles["img-style"]}`}
               />
-              <span className="text-sm  pt-1">Admin</span>
+              <span className="text-sm  pt-1 pl-2">Admin</span>
               <span className="text-xl  pt-1">
                 <MdArrowDropDown />
               </span>
@@ -74,23 +72,31 @@ const Dashboard: React.FC<Props> = (props) => {
         </div>
       </div>
 
-      <div className={styles["dropdown-menu"]}>
-        <div className="">
-          <a href="/profile" className="flex">
-            <HiOutlineUser /> Profile
-          </a>
+      <div className={` ${show ? "block" : "hidden"} `}>
+        <div className={styles["dropdown-menu"]}>
+          <div>
+            <a href="/profile" className="flex">
+              <span className="pt-1 pr-2">
+                <HiOutlineUser />
+              </span>
+              Profile
+            </a>
 
-          <div className="border-t"></div>
-          <a href="/logout" className="flex">
-            <MdOutlineLogout /> Logout
-          </a>
+            <div className="border-t"></div>
+            <a href="/logout" className="flex">
+              <span className="pt-1 pr-2">
+                <MdOutlineLogout />
+              </span>
+              Logout
+            </a>
+          </div>
         </div>
       </div>
 
-      {/*  <Login />
+      {/* <Login /> */}
       <AllOrders></AllOrders>
-       <PendingOrders></PendingOrders>
-     <ProgressOrders></ProgressOrders>
+      {/* <PendingOrders></PendingOrders>
+      <ProgressOrders></ProgressOrders>
       <DeliveredOrders></DeliveredOrders>
       <CompletedOrders></CompletedOrders>
       <DeclinedOrders></DeclinedOrders>

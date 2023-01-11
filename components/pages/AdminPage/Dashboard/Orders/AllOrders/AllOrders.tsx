@@ -10,7 +10,7 @@ const AllOrders: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div>
+    <div className="mt-[-50px] absolute">
       <DashboardBreadcrumb
         headline="All Orders"
         slug="All Orders"

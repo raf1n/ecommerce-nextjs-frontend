@@ -215,7 +215,7 @@ const Table: React.FC<Props> = (props) => {
               {/* -------------- */}
               <div className="px-5 py-5  border-t flex justify-end">
                 <div className="inline-flex mt-2 xs:mt-0">
-                  <button className="text-sm text-indigo-500 transition duration-150   font-semibold py-2 px-4 rounded-l">
+                  <button className="text-sm text-indigo-500 transition duration-150    font-semibold py-2 px-4 rounded-l">
                     Prev
                   </button>
                   &nbsp; &nbsp;
