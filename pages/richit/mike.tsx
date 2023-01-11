@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import About from "../../components/pages/AboutPage/About";
+import FeaturedCaategoryAdmin from "../../components/pages/AdminPage/Dashboard/FeaturedCategoryAdmin/FeaturedCaategoryAdmin";
 import Categories from "../../components/pages/AdminPage/Dashboard/ManageCategories/Categories/Categories";
 import PopularCategoryAdmin from "../../components/pages/AdminPage/Dashboard/ManageCategories/PopularCategoryAdmin/PopularCategoryAdmin";
 import Contact from "../../components/pages/ContactPage/Contact";
@@ -38,6 +39,7 @@ const sadab: React.FC<Props> = (props) => {
       <MyCart />
       <Categories></Categories>
       <PopularCategoryAdmin />
+      <FeaturedCaategoryAdmin />
     </>
   );
 };
