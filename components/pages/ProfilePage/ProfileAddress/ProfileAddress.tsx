@@ -55,6 +55,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
               <p className="title text-[22px] font-semibold">Address #1</p>
               <div className="flex space-x-2.5 items-center">
                 <button
+                  onClick={() => setForm(true)}
                   type="button"
                   className="border border-qgray text-qyellow w-[34px] h-[34px] rounded-full flex justify-center items-center"
                 >
@@ -155,6 +156,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
               <p className="title text-[22px] font-semibold">Address #2</p>
               <div className="flex space-x-2.5 items-center">
                 <button
+                  onClick={() => setForm(true)}
                   type="button"
                   className="border border-qgray text-qyellow w-[34px] h-[34px] rounded-full flex justify-center items-center"
                 >

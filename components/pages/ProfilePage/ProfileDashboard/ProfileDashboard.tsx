@@ -151,7 +151,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
             </table>
           </div>
         </div>
-        <div className="w-[1px] h-[164px] bg-[#E4E4E4]"></div>
+        <div className="w-[1px] h-0 lg:h-[164px] bg-[#E4E4E4]"></div>
         <div className="ml-6">
           <p className="title text-[22px] font-semibold">Shop Information</p>
           <div className="mt-5">

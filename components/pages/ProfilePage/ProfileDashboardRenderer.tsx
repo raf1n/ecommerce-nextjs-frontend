@@ -19,7 +19,7 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
 
   const hash = asPath.split("#")[1];
 
-  switch( hash ) {
+  switch (hash) {
     case "dashboard": {
       return <ProfileDashboard />;
     }
