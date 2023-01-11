@@ -67,72 +67,80 @@ const Table: React.FC<Props> = (props) => {
                 </thead>
                 {/* ------------------------- */}
                 <tbody>
-                  <tr>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">1</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">Rumon</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">512</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">
-                        1-1-2023
-                      </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">420</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">10200</p>
-                    </td>
+                  {testDynamicTableData.tableData.map((row: any, idx) => {
+                    return (
+                      <tr>
+                        {Object.keys(row).map((key: any, idx) => {
+                          if (key === "status" && row[key] === "pending") {
+                            return (
+                              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                  <span
+                                    aria-hidden
+                                    className="absolute inset-0 bg-red-500  rounded-full"
+                                  ></span>
+                                  <span className="relative text-white">
+                                    Pending
+                                  </span>
+                                </span>
+                              </td>
+                            );
+                          } else if (
+                            key === "payment" &&
+                            row[key] === "success"
+                          ) {
+                            return (
+                              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                  <span
+                                    aria-hidden
+                                    className="absolute inset-0 bg-green-500 rounded-full"
+                                  ></span>
+                                  <span className="relative text-white">
+                                    Success
+                                  </span>
+                                </span>
+                              </td>
+                            );
+                          } else {
+                            return (
+                              <>
+                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                  <p className="text-gray-900 whitespace-no-wrap">
+                                    {row[key]}
+                                  </p>
+                                </td>
+                              </>
+                            );
+                          }
+                        })}
 
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className="absolute inset-0 bg-red-500  rounded-full"
-                        ></span>
-                        <span className="relative text-white">Pending</span>
-                      </span>
-                    </td>
-
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className="absolute inset-0 bg-green-500 rounded-full"
-                        ></span>
-                        <span className="relative text-white">Success</span>
-                      </span>
-                    </td>
-
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <button>
-                        <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
-                          <span className="h-8 w-8  inset-0 bg-blue-700   rounded  relative text-white flex justify-center items-center">
-                            <FaEye />
-                          </span>
-                        </span>
-                      </button>
-                      <button>
-                        <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
-                          <span className="h-8 w-8  inset-0 bg-red-500   rounded  relative text-white flex justify-center items-center">
-                            <FaTrash />
-                          </span>
-                        </span>
-                      </button>
-                      <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
-                        <button>
-                          <span className="h-8 w-8  inset-0 bg-orange-400   rounded  relative text-white flex justify-center items-center">
-                            <FaTruck />
-                          </span>
-                        </button>
-                      </span>
-                    </td>
-                  </tr>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          {testDynamicTableData.actions.isViewable && (
+                            <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight cursor-pointer">
+                              <span className="h-8 w-8  inset-0 bg-blue-700   rounded  relative text-white flex justify-center items-center">
+                                <FaEye />
+                              </span>
+                            </span>
+                          )}{" "}
+                          {testDynamicTableData.actions.isDeletable && (
+                            <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight cursor-pointer">
+                              <span className="h-8 w-8  inset-0 bg-red-500   rounded  relative text-white flex justify-center items-center">
+                                <FaTrash />
+                              </span>
+                            </span>
+                          )}
+                          {testDynamicTableData.actions.isShipping && (
+                            <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight cursor-pointer">
+                              <span className="h-8 w-8  inset-0 bg-orange-400   rounded  relative text-white flex justify-center items-center">
+                                <FaTruck />
+                              </span>
+                            </span>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
               {/* -------------- */}
