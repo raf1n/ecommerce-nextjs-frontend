@@ -2,10 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FaEye, FaTrash, FaTruck } from "react-icons/fa";
+import { Jsondata } from "../../../src/utils/Jsondata";
 interface Props {}
 
 const Table: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
+  const { testDynamicTableData } = Jsondata;
 
   return (
     <div>
@@ -16,7 +19,8 @@ const Table: React.FC<Props> = (props) => {
             <select
               name="dataTable_length"
               aria-controls="dataTable"
-              className="custom-select custom-select-sm form-control form-control-sm">
+              className="custom-select custom-select-sm form-control form-control-sm"
+            >
               <option value="10">10</option>
               <option value="25">25</option>
               <option value="50">50</option>
@@ -30,7 +34,8 @@ const Table: React.FC<Props> = (props) => {
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-gray-400"
                 viewBox="0 0 20 20"
-                fill="currentColor">
+                fill="currentColor"
+              >
                 <path
                   fill-rule="evenodd"
                   d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
@@ -53,33 +58,11 @@ const Table: React.FC<Props> = (props) => {
               <table className="min-w-full leading-normal">
                 <thead>
                   <tr>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      SL
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Customer
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Order Id
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Date
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Quantity
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Amount
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Order Status
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Payment
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Action
-                    </th>
+                    {testDynamicTableData.tableHeaders.map((header, idx) => (
+                      <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        {header}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 {/* ------------------------- */}
@@ -110,7 +93,8 @@ const Table: React.FC<Props> = (props) => {
                       <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                         <span
                           aria-hidden
-                          className="absolute inset-0 bg-red-500  rounded-full"></span>
+                          className="absolute inset-0 bg-red-500  rounded-full"
+                        ></span>
                         <span className="relative text-white">Pending</span>
                       </span>
                     </td>
@@ -119,7 +103,8 @@ const Table: React.FC<Props> = (props) => {
                       <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                         <span
                           aria-hidden
-                          className="absolute inset-0 bg-green-500 rounded-full"></span>
+                          className="absolute inset-0 bg-green-500 rounded-full"
+                        ></span>
                         <span className="relative text-white">Success</span>
                       </span>
                     </td>
