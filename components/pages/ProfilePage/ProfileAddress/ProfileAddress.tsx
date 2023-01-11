@@ -9,6 +9,26 @@ const ProfileAddress: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [form, setForm] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const style = {
+    control: (base: any) => ({
+      ...base,
+      border: "1px solid rgb(239 239 239)",
+      height: "50px",
+      width: "100%",
+      margin: "0",
+      paddingLeft: "12px",
+      paddingRight: "12px",
+      fontSize: "13px",
+      borderRadius: 0,
+      // This line disable the blue border
+      boxShadow: "none",
+      cursor: "pointer",
+      "&:hover": {
+        border: "1px solid rgb(239 239 239)",
+      },
+    }),
+  };
+
   const countryOptions = [
     { value: "bangladesh", label: "Bangladesh" },
     { value: "india", label: "India" },
@@ -311,6 +331,10 @@ const ProfileAddress: React.FC<Props> = (props) => {
                         value={selectedOption}
                         onChange={handleChange}
                         options={countryOptions}
+                        styles={style}
+                        components={{
+                          IndicatorSeparator: () => null,
+                        }}
                       />
                     </div>
                   </div>
@@ -324,7 +348,12 @@ const ProfileAddress: React.FC<Props> = (props) => {
                   <div className="w-full h-[50px] flex justify-between items-center rounded border-[#CBECD9] mb-2 ">
                     <div className="my-select-box w-full">
                       <div className="my-select-box-section ">
-                        <Select className="list"></Select>
+                        <Select
+                          styles={style}
+                          components={{
+                            IndicatorSeparator: () => null,
+                          }}
+                        ></Select>
                       </div>
                     </div>
                   </div>
@@ -336,7 +365,12 @@ const ProfileAddress: React.FC<Props> = (props) => {
                   <div className="w-full h-[50px] flex justify-between items-center rounded border-[#CBECD9] mb-2 ">
                     <div className="my-select-box w-full">
                       <div className="my-select-box-section ">
-                        <Select className="list"></Select>
+                        <Select
+                          styles={style}
+                          components={{
+                            IndicatorSeparator: () => null,
+                          }}
+                        ></Select>
                       </div>
                     </div>
                   </div>
