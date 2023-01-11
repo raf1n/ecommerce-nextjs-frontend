@@ -2,6 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import { FaBars } from "react-icons/fa";
+import { HiOutlineUser } from "react-icons/hi";
+import { MdOutlineLogout } from "react-icons/md";
+import { IoIosHome } from "react-icons/io";
 import styles from "./Dashboard.module.css";
 import Login from "../AdminLogin/AdminLogin";
 import AllOrders from "./Orders/AllOrders/AllOrders";
@@ -47,11 +50,25 @@ const Dashboard: React.FC<Props> = (props) => {
           />
         </div>
         <div className="flex items-center px-8 text-white ">
-          <button>Visit Website</button>
+          <button className="flex">
+            <IoIosHome /> <span className="text-sm">Visit Website</span>
+          </button>
           <button>
-            <div className="flex text-white">
-              Admin
-              <MdArrowDropDown />
+            <div className="flex text-white  pl-6">
+              <img
+                src={`https://api.websolutionus.com/shopo/uploads/website-images/ibrahim-khalil-2022-01-30-02-48-50-5743.jpg`}
+                alt=""
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                }}
+              />
+              <span className="text-sm  pt-1">Admin</span>
+              <span className="text-xl  pt-1">
+                <MdArrowDropDown />
+              </span>
             </div>
           </button>
         </div>
@@ -59,15 +76,20 @@ const Dashboard: React.FC<Props> = (props) => {
 
       <div className={styles["dropdown-menu"]}>
         <div className="">
-          <a href="/profile">Profile</a>
+          <a href="/profile" className="flex">
+            <HiOutlineUser /> Profile
+          </a>
+
           <div className="border-t"></div>
-          <a href="/logout">Logout</a>
+          <a href="/logout" className="flex">
+            <MdOutlineLogout /> Logout
+          </a>
         </div>
       </div>
 
-      {/*   <Login />
+      {/*  <Login />
       <AllOrders></AllOrders>
-      <PendingOrders></PendingOrders>
+       <PendingOrders></PendingOrders>
      <ProgressOrders></ProgressOrders>
       <DeliveredOrders></DeliveredOrders>
       <CompletedOrders></CompletedOrders>

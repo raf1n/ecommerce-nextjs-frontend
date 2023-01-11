@@ -10,7 +10,6 @@ interface Props {}
 
 const Table: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const tableArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <div style={{ margin: "25px", backgroundColor: "white" }}>
@@ -214,16 +213,44 @@ const Table: React.FC<Props> = (props) => {
                 </tbody>
               </table>
               {/* -------------- */}
-              <div className="px-5 py-5  border-t flex justify-between">
-                <span className="text-xs xs:text-sm text-gray-900">
-                  Showing 1 to 4 of 50 Entries
-                </span>
+              <div className="px-5 py-5  border-t flex justify-end">
                 <div className="inline-flex mt-2 xs:mt-0">
-                  <button className="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-l">
+                  <button className="text-sm text-indigo-500 transition duration-150   font-semibold py-2 px-4 rounded-l">
                     Prev
                   </button>
                   &nbsp; &nbsp;
-                  <button className="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r">
+                  <a
+                    href="#"
+                    aria-current="page"
+                    className="relative z-10 inline-flex items-center  bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-600 focus:z-20">
+                    1
+                  </a>
+                  <a
+                    href="#"
+                    className="relative inline-flex items-center  bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-indigo-300 focus:z-20">
+                    2
+                  </a>
+                  <a
+                    href="#"
+                    className="relative hidden items-center bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-indigo-300 focus:z-20 md:inline-flex">
+                    3
+                  </a>
+                  <a
+                    href="#"
+                    className="relative hidden items-center  bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-indigo-300 focus:z-20 md:inline-flex">
+                    4
+                  </a>
+                  <a
+                    href="#"
+                    className="relative inline-flex items-center  bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-indigo-300 focus:z-20">
+                    5
+                  </a>
+                  <a
+                    href="#"
+                    className="relative inline-flex items-center  bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-indigo-300 focus:z-20">
+                    6
+                  </a>
+                  <button className="ml-3 text-sm text-indigo-500 transition duration-150  font-semibold py-2 px-4 rounded-r">
                     Next
                   </button>
                 </div>
