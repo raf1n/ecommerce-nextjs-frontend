@@ -14,6 +14,15 @@ import {
   FaCircle,
   FaCheckCircle,
   FaUser,
+  FaAnchor,
+  FaGamepad,
+  FaMobileAlt,
+  FaBasketballBall,
+  FaBicycle,
+  FaStreetView,
+  FaAndroid,
+  FaAdjust,
+  FaCogs,
 } from "react-icons/fa";
 import { AiFillAppstore } from "react-icons/ai";
 
@@ -893,5 +902,94 @@ export class Jsondata {
     { title: "Subscribers", icon: FaFire },
     { title: "Contact Message", icon: FaEnvelope },
     { title: "Admin List", icon: FaUserAlt },
+  ];
+  //Categories Table Data
+  static categoriesTableData = [
+    {
+      id: 1,
+      name: "Electronics",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/electronics-2022-11-19-02-48-28-5548.png",
+      icon: FaAnchor,
+      status: "active",
+    },
+    {
+      id: 2,
+      name: "Game",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/game-2022-11-19-02-48-48-6382.png",
+      icon: FaGamepad,
+      status: "inactive",
+    },
+    {
+      id: 3,
+      name: "Mobile",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/mobile-2022-11-19-02-49-20-2538.png",
+      icon: FaMobileAlt,
+      status: "active",
+    },
+    {
+      id: 4,
+      name: "Lifestyle",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/lifestyle-2022-11-19-02-49-38-3139.png",
+      icon: FaHome,
+      status: "active",
+    },
+    {
+      id: 5,
+      name: "Babies & Toys",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/babies-toys-2022-11-19-02-50-00-3811.png",
+      icon: FaBasketballBall,
+      status: "active",
+    },
+    {
+      id: 6,
+      name: "Bike",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/bike-2022-11-19-02-50-18-4648.png",
+      icon: FaBicycle,
+      status: "active",
+    },
+    {
+      id: 7,
+      name: "Men's Fasion",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/mens-fasion-2022-11-19-02-50-39-5203.png",
+      icon: FaStreetView,
+      status: "active",
+    },
+    {
+      id: 8,
+      name: "Woman Fashion",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/womans-fasion-2022-11-19-02-52-58-2850.png",
+      icon: FaAndroid,
+      status: "active",
+    },
+    {
+      id: 9,
+      name: "Talevision",
+      image: "",
+      icon: FaAdjust,
+      status: "active",
+    },
+    {
+      id: 10,
+      name: "Accessories",
+      image: "",
+      icon: FaCogs,
+      status: "active",
+    },
+    {
+      id: 11,
+      name: "John Doe",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/john-doe-2022-11-17-12-00-23-1751.jpg",
+      icon: FaAdjust,
+      status: "active",
+    },
   ];
 }
