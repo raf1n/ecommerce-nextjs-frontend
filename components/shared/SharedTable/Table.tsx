@@ -11,7 +11,7 @@ const Table: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div style={{ margin: "30px", backgroundColor: "white" }}>
+    <div style={{ margin: "25px", backgroundColor: "white" }}>
       <div className="p-4 rounded w-full">
         <div className="flex items-center justify-between pb-6">
           <div>
@@ -76,7 +76,7 @@ const Table: React.FC<Props> = (props) => {
                       </span>
                     </th>
                     <th
-                      className={` px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}>
+                      className={` px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase  `}>
                       <span className="flex  space-x-0 space-y-0 ">
                         Date
                         <span className="opacity-50 flex">
@@ -135,38 +135,26 @@ const Table: React.FC<Props> = (props) => {
                 <tbody>
                   {Jsondata.tableDatas.map((tabledata, index) => (
                     <tr className="even:bg-gray-50 odd:bg-white">
-                      <td className="px-3 py-3  text-center  text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {index + 1}
-                        </p>
+                      <td className="px-3 py-3 text-sm">
+                        <p className="text-gray-900 ">{index + 1}</p>
                       </td>
-                      <td className="px-3 py-3 text-center text-sm">
-                        <p className="text-gray-900  break-all">
-                          {tabledata.Customer}
-                        </p>
+                      <td className="px-3 py-3  text-sm">
+                        <p className="text-gray-900 ">{tabledata.Customer}</p>
                       </td>
-                      <td className="px-3 py-3 text-center   text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {tabledata.OrderId}
-                        </p>
+                      <td className="px-3 py-3    text-sm">
+                        <p className="text-gray-900 ">{tabledata.OrderId}</p>
                       </td>
-                      <td className="px-0 py-3 text-center text-sm">
-                        <p className="text-gray-900 break-all">
-                          {tabledata.Date}
-                        </p>
+                      <td className="px-0 py-3  text-sm">
+                        <p className="text-gray-900 ">{tabledata.Date}</p>
                       </td>
-                      <td className="px-3 py-3 text-center text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {tabledata.Quantity}
-                        </p>
+                      <td className="px-3 py-3  text-sm">
+                        <p className="text-gray-900">{tabledata.Quantity}</p>
                       </td>
-                      <td className="px-3 py-3 text-center  text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          ${tabledata.Amount}
-                        </p>
+                      <td className="px-3 py-3  text-sm">
+                        <p className="text-gray-900 ">${tabledata.Amount}</p>
                       </td>
 
-                      <td className="px-3 py-3  text-center text-sm ">
+                      <td className="px-3 py-3   text-sm ">
                         <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight ">
                           <span
                             aria-hidden
@@ -181,7 +169,7 @@ const Table: React.FC<Props> = (props) => {
                         </span>
                       </td>
 
-                      <td className="px-3 py-3 text-center text-sm">
+                      <td className="px-3 py-3  text-sm">
                         <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                           <span
                             aria-hidden
@@ -197,7 +185,7 @@ const Table: React.FC<Props> = (props) => {
                         </span>
                       </td>
 
-                      <td className="px-2 py-3 text-center text-sm">
+                      <td className="px-2 py-3  text-sm">
                         <button>
                           <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
                             <span

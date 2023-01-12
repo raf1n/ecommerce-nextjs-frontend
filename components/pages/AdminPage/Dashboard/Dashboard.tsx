@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import { FaBars } from "react-icons/fa";
 import { HiOutlineUser } from "react-icons/hi";
-import { MdOutlineLogout } from "react-icons/md";
+import { FaSignOutAlt } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 import styles from "./Dashboard.module.css";
 import Login from "../AdminLogin/AdminLogin";
@@ -89,7 +89,7 @@ const Dashboard: React.FC<Props> = (props) => {
             <div className="border-t"></div>
             <a href="/logout" className="flex text-xs font-medium">
               <span className="pr-2 text-red-600">
-                <MdOutlineLogout />
+                <FaSignOutAlt />
               </span>
               <span className="text-red-400"> Logout</span>
             </a>
