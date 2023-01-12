@@ -137,9 +137,9 @@ const MegaMenuCategory: React.FC<Props> = (props) => {
                                   </p>
                                 </td>
                                 <td className="px-3 py-3  text-sm">
-                                  <p className="text-gray-900 whitespace-no-wrap">
+                                  <span className="text-gray-900 whitespace-no-wrap">
                                     <ToggleButton />
-                                  </p>
+                                  </span>
                                 </td>
 
                                 <td className="px-2 py-3  text-sm">

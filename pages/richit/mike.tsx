@@ -28,19 +28,19 @@ const sadab: React.FC<Props> = (props) => {
 
   return (
     <>
-      <ShopByBrand />
-      <TopRated />
-      <Itemdetails />
-      <Contact />
-      <FAQ />
-      <WishList />
-      <MyProfile />
-      <TermsAndConditions />
-      <PrivacyPolicy />
-      <SellerTermsAndCondition />
-      <About />
-      <MyCart />
-      <Categories></Categories>
+      {/* <ShopByBrand /> */}
+      {/* <TopRated /> */}
+      {/* <Itemdetails /> */}
+      {/* <Contact /> */}
+      {/* <FAQ /> */}
+      {/* <WishList /> */}
+      {/* <MyProfile /> */}
+      {/* <TermsAndConditions /> */}
+      {/* <PrivacyPolicy /> */}
+      {/* <SellerTermsAndCondition /> */}
+      {/* <About /> */}
+      {/* <MyCart /> */}
+      {/* <Categories></Categories> */}
       <PopularCategoryAdmin />
       <FeaturedCaategoryAdmin />
       <ProductChildCategory />

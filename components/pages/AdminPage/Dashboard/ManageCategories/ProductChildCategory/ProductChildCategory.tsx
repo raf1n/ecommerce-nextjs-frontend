@@ -161,11 +161,12 @@ const ProductChildCategory: React.FC<Props> = (props) => {
                                     {childCategoryTableData.category}
                                   </p>
                                 </td>
-                                <td className="px-3 py-3  text-sm">
-                                  <p className="text-gray-900 whitespace-no-wrap">
-                                    {/* {childCategoryTableData.status} */}
+                                <td className="px-3 py-3 text-sm">
+                                  <ToggleButton />
+                                  {/* <span className="text-gray-900 whitespace-no-wrap">
+                                  
                                     <ToggleButton />
-                                  </p>
+                                  </span> */}
                                 </td>
 
                                 <td className="px-2 py-3  text-sm">

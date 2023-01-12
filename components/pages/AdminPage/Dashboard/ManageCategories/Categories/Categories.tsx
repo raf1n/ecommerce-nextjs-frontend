@@ -157,11 +157,12 @@ const Categories: React.FC<Props> = (props) => {
                                     <categoryTableData.icon />
                                   </p>
                                 </td>
-                                <td className="px-3 py-3  text-sm">
-                                  <p className="text-gray-900 whitespace-no-wrap">
-                                    {/* {categoryTableData.status} */}
-                                    <ToggleButton />
-                                  </p>
+                                <td className="px-3 py-3 text-sm">
+                                <ToggleButton />
+                                  {/* <span className="text-gray-900 whitespace-no-wrap">
+                                   
+                                   
+                                  </span> */}
                                 </td>
 
                                 <td className="px-2 py-3  text-sm">

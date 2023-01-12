@@ -6,8 +6,9 @@ import MyProfile from "../../MyProfile/MyProfile";
 import Login from "../Login/Login";
 import AdminDetailsSummary from "./AdminDetailsSummary/AdminDetailsSummary";
 import Styles from "./Dashboard.module.css";
+import Categories from "./ManageCategories/Categories/Categories";
 
-interface Props { }
+interface Props {}
 
 const Dashboard: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -18,6 +19,7 @@ const Dashboard: React.FC<Props> = (props) => {
       <Table />
       <Login />
       <AdminDetailsSummary />
+      <Categories />
     </div>
   );
 };
