@@ -22,7 +22,7 @@ const MegaMenuCategory: React.FC<Props> = (props) => {
     <div className="w-full mt-10">
       <div className="m-10">
         <div className={`${styles["section-header"]}  justify-between`}>
-          <h1 className={`${styles["title"]} `}>Product Child Category</h1>
+          <h1 className={`${styles["title"]} `}>Mega Menu Category</h1>
           <div className={`${styles["section-header-breadcrumb"]} `}>
             <DashboardBreadcrumb
               slug="Product Category"
@@ -108,8 +108,9 @@ const MegaMenuCategory: React.FC<Props> = (props) => {
                         </thead>
                         {/* -----------Plz Attention ,Table body/Row start here -------------- */}
                         <tbody>
-                          {Jsondata.categoriesTableData.map(
-                            (categoryTableData, index) => (
+                          {Jsondata.categoriesTableData
+                            .slice(0, 3)
+                            .map((categoryTableData, index) => (
                               <tr className="even:bg-gray-50 odd:bg-white">
                                 <td className="px-3 py-3    text-sm">
                                   <p className="text-gray-900 whitespace-no-wrap">
@@ -183,8 +184,7 @@ const MegaMenuCategory: React.FC<Props> = (props) => {
                                   </span>
                                 </td>
                               </tr>
-                            )
-                          )}
+                            ))}
                         </tbody>
                       </table>
                       {/* -------------- */}
