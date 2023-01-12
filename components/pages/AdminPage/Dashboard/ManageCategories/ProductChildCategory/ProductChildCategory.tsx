@@ -10,6 +10,7 @@ import { controller } from "../../../../../../src/state/StateController";
 import { Jsondata } from "../../../../../../src/utils/Jsondata";
 import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
 import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
+import ToggleButton from "../ToggleButton/ToggleButton";
 import styles from "./ProductChildCategory.module.css";
 
 interface Props {}
@@ -162,7 +163,8 @@ const ProductChildCategory: React.FC<Props> = (props) => {
                                 </td>
                                 <td className="px-3 py-3  text-sm">
                                   <p className="text-gray-900 whitespace-no-wrap">
-                                    {childCategoryTableData.status}
+                                    {/* {childCategoryTableData.status} */}
+                                    <ToggleButton />
                                   </p>
                                 </td>
 

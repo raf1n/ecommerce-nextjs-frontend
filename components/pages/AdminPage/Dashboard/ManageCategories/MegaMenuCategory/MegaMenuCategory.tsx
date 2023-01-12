@@ -11,6 +11,7 @@ import { controller } from "../../../../../../src/state/StateController";
 import { Jsondata } from "../../../../../../src/utils/Jsondata";
 import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
 import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
+import ToggleButton from "../ToggleButton/ToggleButton";
 import styles from "./MegaMenuCategory.module.css";
 
 interface Props {}
@@ -97,6 +98,14 @@ const MegaMenuCategory: React.FC<Props> = (props) => {
                               </span>
                             </th>
                             <th
+                              className={`px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}
+                            >
+                              <span className="flex  space-x-0 space-y-0  opacity-80">
+                                Status
+                                <FaLongArrowAltUp /> <FaLongArrowAltDown />
+                              </span>
+                            </th>
+                            <th
                               className={` px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase`}
                             >
                               <span className="flex  space-x-0 space-y-0 opacity-80">
@@ -129,7 +138,7 @@ const MegaMenuCategory: React.FC<Props> = (props) => {
                                 </td>
                                 <td className="px-3 py-3  text-sm">
                                   <p className="text-gray-900 whitespace-no-wrap">
-                                    {categoryTableData.status}
+                                    <ToggleButton />
                                   </p>
                                 </td>
 

@@ -14,6 +14,7 @@ import {
   FaTrash,
   FaTruck,
 } from "react-icons/fa";
+import ToggleButton from "../ToggleButton/ToggleButton";
 
 interface Props {}
 
@@ -158,7 +159,8 @@ const Categories: React.FC<Props> = (props) => {
                                 </td>
                                 <td className="px-3 py-3  text-sm">
                                   <p className="text-gray-900 whitespace-no-wrap">
-                                    {categoryTableData.status}
+                                    {/* {categoryTableData.status} */}
+                                    <ToggleButton />
                                   </p>
                                 </td>
 
