@@ -2,8 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FaEye, FaTrash, FaTruck } from "react-icons/fa";
-import Style from "./Table.module.css";
-
+import Styles from "./Table.module.css";
 import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
 import { Jsondata } from "../../../src/utils/Jsondata";
 interface Props {}
@@ -12,7 +11,7 @@ const Table: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div style={{ margin: "25px", backgroundColor: "white" }}>
+    <div style={{ margin: "30px", backgroundColor: "white" }}>
       <div className="p-4 rounded w-full">
         <div className="flex items-center justify-between pb-6">
           <div>
@@ -20,7 +19,7 @@ const Table: React.FC<Props> = (props) => {
             <select
               name="dataTable_length"
               aria-controls="dataTable"
-              className="custom-select custom-select-sm form-control form-control-sm border border-blue-600 text-gray-500">
+              className="custom-select custom-select-sm form-control form-control-sm border hover:border-blue-600 text-gray-500 h-[42px] w-[52px] font-light text-sm text-center">
               <option value="10">10</option>
               <option value="25">25</option>
               <option value="50">50</option>
@@ -32,9 +31,10 @@ const Table: React.FC<Props> = (props) => {
             <label htmlFor="" className="text-xs text-gray-500">
               Search
             </label>
-            <div className="flex bg-gray-50 items-center ml-3 p-1 rounded">
+            <div
+              className={`${Styles[" "]}  flex bg-gray-50 items-center ml-3 rounded h-[34px]  `}>
               <input
-                className="bg-gray-50 outline-none   "
+                className={`${Styles["form-control-sm"]} bg-gray-50 outline-none  border border-blue-200 `}
                 type="text"
                 name=""
                 id=""
@@ -141,7 +141,7 @@ const Table: React.FC<Props> = (props) => {
                         </p>
                       </td>
                       <td className="px-3 py-3 text-center text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap ">
+                        <p className="text-gray-900  break-all">
                           {tabledata.Customer}
                         </p>
                       </td>
@@ -151,7 +151,7 @@ const Table: React.FC<Props> = (props) => {
                         </p>
                       </td>
                       <td className="px-0 py-3 text-center text-sm">
-                        <p className="text-gray-900 whitespace-wrap">
+                        <p className="text-gray-900 break-all">
                           {tabledata.Date}
                         </p>
                       </td>

@@ -4,7 +4,7 @@ import { controller } from "../../../../src/state/StateController";
 import { FaBars } from "react-icons/fa";
 import { HiOutlineUser } from "react-icons/hi";
 import { MdOutlineLogout } from "react-icons/md";
-import { IoIosHome } from "react-icons/io";
+import { FaHome } from "react-icons/fa";
 import styles from "./Dashboard.module.css";
 import Login from "../AdminLogin/AdminLogin";
 import AllOrders from "./Orders/AllOrders/AllOrders";
@@ -50,9 +50,12 @@ const Dashboard: React.FC<Props> = (props) => {
             }}
           />
         </div>
-        <div className="flex items-center px-8 text-white  ">
-          <button className="flex">
-            <IoIosHome /> <span className="text-sm pl-1">Visit Website</span>
+        <div className="flex items-center px-8 text-white">
+          <button className="flex text-[#f2f2f2]">
+            <span className="text-xl">
+              <FaHome />
+            </span>
+            <span className="text-sm pl-1 ">Visit Website</span>
           </button>
           <button
             onClick={() => {
@@ -74,21 +77,21 @@ const Dashboard: React.FC<Props> = (props) => {
       </div>
 
       <div className={` ${show ? "block" : "hidden"} `}>
-        <div className={styles["dropdown-menu"]}>
+        <div className={`${styles["dropdown-menu"]}  mt-3`}>
           <div>
-            <a href="/profile" className="flex">
-              <span className="pt-1 pr-2">
+            <a href="/profile" className="flex text-xs">
+              <span className="pr-2">
                 <HiOutlineUser />
               </span>
               Profile
             </a>
 
             <div className="border-t"></div>
-            <a href="/logout" className="flex">
-              <span className="pt-1 pr-2">
+            <a href="/logout" className="flex text-xs font-medium">
+              <span className="pr-2 text-red-600">
                 <MdOutlineLogout />
               </span>
-              Logout
+              <span className="text-red-400"> Logout</span>
             </a>
           </div>
         </div>
