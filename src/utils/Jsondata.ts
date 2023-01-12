@@ -1019,75 +1019,137 @@ export class Jsondata {
     },
   ];
 
-  static testDynamicTableData = {
-    tableHeaders: [
-      "SL",
-      "CUSTOMER",
-      "ORDER ID",
-      "DATE",
-      "QUANTITY",
-      "AMOUNT",
-      "ORDER STATUS",
-      "PAYMENT",
-      "ACTION",
-    ],
-    actions: {
-      isEditable: false,
-      isDeletable: true,
-      isShipping: true,
-      isViewable: true,
+  static testDynamicTableDataOne = [
+    {
+      sl: 1,
+      customer: "rumon",
+      orderId: "2342h",
+      date: "1-1-2023",
+      quantity: "420",
+      amount: "10200",
+      status: "pending",
+      payment: "success",
     },
-    tableData: [
-      {
-        sl: 1,
-        customer: "rumon",
-        orderId: "2342h",
-        date: "1-1-2023",
-        quantity: "420",
-        amount: "10200",
-        status: "pending",
-        payment: "success",
-      },
-      {
-        sl: 1,
-        customer: "rumon",
-        orderId: "2342h",
-        date: "1-1-2023",
-        quantity: "420",
-        amount: "10200",
-        status: "pending",
-        payment: "success",
-      },
-      {
-        sl: 2,
-        customer: "rumon",
-        orderId: "2342h",
-        date: "1-1-2023",
-        quantity: "420",
-        amount: "10200",
-        status: "pending",
-        payment: "success",
-      },
-      {
-        sl: 3,
-        customer: "rumon",
-        orderId: "2342h",
-        date: "1-1-2023",
-        quantity: "420",
-        amount: "10200",
-        status: "pending",
-        payment: "success",
-      },
-      {
-        sl: 4,
-        customer: "rumon",
-        orderId: "2342h",
-        date: "1-1-2023",
-        quantity: "420",
-        amount: "10200",
-        status: "pending",
-        payment: "success",
-      },
-    ],
-  };
+    {
+      sl: 2,
+      customer: "rumon",
+      orderId: "2342h",
+      date: "1-1-2023",
+      quantity: "420",
+      amount: "10200",
+      status: "pending",
+      payment: "success",
+    },
+    {
+      sl: 3,
+      customer: "rumon",
+      orderId: "2342h",
+      date: "1-1-2023",
+      quantity: "420",
+      amount: "10200",
+      status: "pending",
+      payment: "success",
+    },
+    {
+      sl: 4,
+      customer: "rumon",
+      orderId: "2342h",
+      date: "1-1-2023",
+      quantity: "420",
+      amount: "10200",
+      status: "pending",
+      payment: "success",
+    },
+    {
+      sl: 5,
+      customer: "rumon",
+      orderId: "2342h",
+      date: "1-1-2023",
+      quantity: "420",
+      amount: "10200",
+      status: "pending",
+      payment: "success",
+    },
+  ];
+
+  static testDynamicTableDataTwo = [
+    {
+      id: 1,
+      name: "Electronics",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/electronics-2022-11-19-02-48-28-5548.png",
+      icon: FaAnchor,
+      status: "active",
+    },
+    {
+      id: 2,
+      name: "Game",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/game-2022-11-19-02-48-48-6382.png",
+      icon: FaGamepad,
+      status: "inactive",
+    },
+    {
+      id: 3,
+      name: "Mobile",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/mobile-2022-11-19-02-49-20-2538.png",
+      icon: FaMobileAlt,
+      status: "active",
+    },
+    {
+      id: 4,
+      name: "Lifestyle",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/lifestyle-2022-11-19-02-49-38-3139.png",
+      icon: FaHome,
+      status: "active",
+    },
+    {
+      id: 5,
+      name: "Babies & Toys",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/babies-toys-2022-11-19-02-50-00-3811.png",
+      icon: FaBasketballBall,
+      status: "active",
+    },
+    {
+      id: 6,
+      name: "Bike",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/bike-2022-11-19-02-50-18-4648.png",
+      icon: FaBicycle,
+      status: "active",
+    },
+    {
+      id: 7,
+      name: "Men's Fasion",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/mens-fasion-2022-11-19-02-50-39-5203.png",
+      icon: FaStreetView,
+      status: "active",
+    },
+    {
+      id: 8,
+      name: "Woman Fashion",
+      image:
+        "https://api.websolutionus.com/shopo/uploads/custom-images/womans-fasion-2022-11-19-02-52-58-2850.png",
+      icon: FaAndroid,
+      status: "active",
+    },
+    {
+      id: 9,
+      name: "Talevision",
+      image: "",
+      icon: FaAdjust,
+      status: "active",
+    },
+    {
+      id: 10,
+      name: "Accessories",
+      image: "",
+      icon: FaCogs,
+      status: "active",
+    },
+  ];
 }

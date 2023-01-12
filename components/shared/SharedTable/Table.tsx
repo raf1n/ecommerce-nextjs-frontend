@@ -1,14 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-import { FaEye, FaTrash, FaTruck } from "react-icons/fa";
-import { Jsondata } from "../../../src/utils/Jsondata";
-interface Props {}
+import { FaEdit, FaEye, FaTrash, FaTruck } from "react-icons/fa";
+interface Props {
+  tableHeaders: Array<string>;
+  actions: {
+    isEditable?: boolean;
+    isDeletable?: boolean;
+    isShipping?: boolean;
+    isViewable?: boolean;
+  };
+  testDynamicTableData: Array<object>;
+}
 
 const Table: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  const { testDynamicTableData } = Jsondata;
+  const { tableHeaders, actions, testDynamicTableData } = props;
 
   return (
     <div>
@@ -58,7 +66,7 @@ const Table: React.FC<Props> = (props) => {
               <table className="min-w-full leading-normal">
                 <thead>
                   <tr>
-                    {testDynamicTableData.tableHeaders.map((header, idx) => (
+                    {tableHeaders.map((header, idx) => (
                       <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         {header}
                       </th>
@@ -67,7 +75,7 @@ const Table: React.FC<Props> = (props) => {
                 </thead>
                 {/* ------------------------- */}
                 <tbody>
-                  {testDynamicTableData.tableData.map((row: any, idx) => {
+                  {testDynamicTableData.map((row: any, idx) => {
                     return (
                       <tr>
                         {Object.keys(row).map((key: any, idx) => {
@@ -102,37 +110,60 @@ const Table: React.FC<Props> = (props) => {
                                 </span>
                               </td>
                             );
+                          } else if (key === "image") {
+                            return (
+                              <td className="px-3 py-3    ">
+                                <img
+                                  width="150px"
+                                  src={row[key]}
+                                  className=""
+                                ></img>
+                              </td>
+                            );
+                          } else if (key === "icon") {
+                            return (
+                              <td className="px-0 py-3 text-sm ">
+                                <p className="text-gray-900 whitespace-wrap pl-5 ">
+                                  <row.icon />
+                                </p>
+                              </td>
+                            );
                           } else {
                             return (
-                              <>
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                  <p className="text-gray-900 whitespace-no-wrap">
-                                    {row[key]}
-                                  </p>
-                                </td>
-                              </>
+                              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p className="text-gray-900 whitespace-no-wrap">
+                                  {row[key]}
+                                </p>
+                              </td>
                             );
                           }
                         })}
 
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          {testDynamicTableData.actions.isViewable && (
+                          {actions.isViewable && (
                             <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight cursor-pointer">
-                              <span className="h-8 w-8  inset-0 bg-blue-700   rounded  relative text-white flex justify-center items-center">
+                              <span className="h-8 w-8 shadow-[0_2px_6px_#fd9b96] inset-0 bg-blue-700 rounded relative text-white flex justify-center items-center">
                                 <FaEye />
                               </span>
                             </span>
-                          )}{" "}
-                          {testDynamicTableData.actions.isDeletable && (
+                          )}
+                          {actions.isEditable && (
                             <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight cursor-pointer">
-                              <span className="h-8 w-8  inset-0 bg-red-500   rounded  relative text-white flex justify-center items-center">
+                              <span className="h-8 w-8 shadow-[0_2px_6px_#fd9b96] inset-0 bg-blue-700 rounded relative text-white flex justify-center items-center">
+                              <FaEdit />
+                              </span>
+                            </span>
+                          )}
+                          {actions.isDeletable && (
+                            <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight cursor-pointer">
+                              <span className="h-8 w-8 shadow-[0_2px_6px_#fd9b96] inset-0 bg-red-500 rounded relative text-white flex justify-center items-center">
                                 <FaTrash />
                               </span>
                             </span>
                           )}
-                          {testDynamicTableData.actions.isShipping && (
+                          {actions.isShipping && (
                             <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight cursor-pointer">
-                              <span className="h-8 w-8  inset-0 bg-orange-400   rounded  relative text-white flex justify-center items-center">
+                              <span className="h-8 w-8 shadow-[0_2px_6px_#fd9b96] inset-0 bg-orange-400 rounded relative text-white flex justify-center items-center">
                                 <FaTruck />
                               </span>
                             </span>
