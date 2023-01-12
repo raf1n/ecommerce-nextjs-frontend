@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { FaEye, FaTrash, FaEdit } from "react-icons/fa";
 import Style from "./Table.module.css";
@@ -138,10 +139,8 @@ const SubCategories: React.FC<Props> = (props) => {
                           <span className="relative text-white text-xs capitalize break-words">
                             {tabledata.status}
                           </span> */}
-                          <ToggleButton
-                            status={tabledata.status}
-                            label={tabledata.slug}
-                          ></ToggleButton>
+
+                          <ToggleButton />
                         </span>
                       </td>
 

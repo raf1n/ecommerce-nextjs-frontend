@@ -1,42 +1,35 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../../../src/state/StateController";
-
-interface Props {
-  label: string;
-  status: string;
-}
+import Styles from "./ToggleButton.module.css";
+interface Props {}
 
 const ToggleButton: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const [toggle, setToggle] = useState(true);
+
+  const [active, setActive] = useState(true);
 
   return (
-    <label
-      htmlFor={props.label}
-      className="inline-flex items-center p-1 cursor-pointer bg-gray-300 text-gray-800 rounded"
+    <div
+      className={`w-[80px] overflow-hidden border h-8 relative rounded ${
+        active ? Styles["shadow-active"] : Styles["shadow-inactive"]
+      }`}
     >
-      <input
-        id={props.label}
-        type="checkbox"
-        checked={props.status === "active" ? !toggle : toggle}
-        onChange={() => {
-          if (props.status === "active") {
-            setToggle(!toggle);
-          } else {
-            setToggle(!toggle);
-          }
-        }}
-        className="hidden peer"
-      />
-      <span className="px-2 py-2 bg-green-600 peer-checked:bg-gray-300 rounded">
-        Active
-      </span>
-      <span className="px-2 py-2 bg-gray-300 peer-checked:bg-red-500 rounded">
-        Inactive
-      </span>
-    </label>
+      <div
+        onClick={() => setActive(!active)}
+        className={`grid grid-cols-[65px,15px,65px] relative transition-all delay-100 duration-200 ease-in ${
+          active ? "left-[0px]" : "left-[-65px]"
+        }`}
+      >
+        <span className="bg-green-500 text-xs text-white grid place-items-center">
+          Active
+        </span>
+        <span className=" border-blue-500 inline-block w-[15px] h-8 rounded bg-white"></span>
+        <span className="bg-red-500  text-white grid place-items-center text-xs">
+          Inactive
+        </span>
+      </div>
+    </div>
   );
 };
 
