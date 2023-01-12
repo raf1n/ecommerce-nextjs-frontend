@@ -1,30 +1,28 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { controller } from "../../../../../../src/state/StateController";
-import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
-import styles from "./Categories.module.css";
-import { BiPlus } from "react-icons/bi";
-import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
-import { Jsondata } from "../../../../../../src/utils/Jsondata";
 import {
   FaEdit,
-  FaEye,
   FaLongArrowAltDown,
   FaLongArrowAltUp,
+  FaPlus,
   FaTrash,
-  FaTruck,
 } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { controller } from "../../../../../../src/state/StateController";
+import { Jsondata } from "../../../../../../src/utils/Jsondata";
+import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
+import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
+import styles from "./MegaMenuCategory.module.css";
 
 interface Props {}
 
-const Categories: React.FC<Props> = (props) => {
+const MegaMenuCategory: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
     <div className="w-full mt-10">
       <div className="m-10">
         <div className={`${styles["section-header"]}  justify-between`}>
-          <h1 className={`${styles["title"]} `}>Product Category</h1>
+          <h1 className={`${styles["title"]} `}>Product Child Category</h1>
           <div className={`${styles["section-header-breadcrumb"]} `}>
             <DashboardBreadcrumb
               slug="Product Category"
@@ -34,10 +32,6 @@ const Categories: React.FC<Props> = (props) => {
         </div>
         <div className="section-body">
           <a href="">
-            {/* <button className=" flex items-center justify-center bg-blue-700 hover:bg-blue-600 text-white text-sm py-2 px-3 rounded">
-              <BiPlus className=" h-6 w-6" />
-              <span>Add New</span>
-            </button> */}
             <SharedAddNewButton></SharedAddNewButton>
           </a>
           <div>
@@ -98,27 +92,10 @@ const Categories: React.FC<Props> = (props) => {
                               className={`px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}
                             >
                               <span className="flex  space-x-0 space-y-0  opacity-80">
-                                Image
+                                Serial
                                 <FaLongArrowAltUp /> <FaLongArrowAltDown />
                               </span>
                             </th>
-                            <th
-                              className={` px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}
-                            >
-                              <span className="flex  space-x-0 space-y-0  opacity-80">
-                                Icon
-                                <FaLongArrowAltUp /> <FaLongArrowAltDown />
-                              </span>
-                            </th>
-                            <th
-                              className={` px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase `}
-                            >
-                              <span className="flex  space-x-0 space-y-0  opacity-80">
-                                Status
-                                <FaLongArrowAltUp /> <FaLongArrowAltDown />
-                              </span>
-                            </th>
-
                             <th
                               className={` px-3 py-3  bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase`}
                             >
@@ -144,16 +121,9 @@ const Categories: React.FC<Props> = (props) => {
                                     {categoryTableData.name}
                                   </p>
                                 </td>
-                                <td className="px-3 py-3    ">
-                                  <img
-                                    width="150px"
-                                    src={categoryTableData.image}
-                                    className=""
-                                  ></img>
-                                </td>
-                                <td className="px-0 py-3 text-sm ">
-                                  <p className="text-gray-900 whitespace-wrap pl-5 ">
-                                    <categoryTableData.icon />
+                                <td className="px-3 py-3    text-sm">
+                                  <p className="text-gray-900 whitespace-no-wrap">
+                                    {index + 1}
                                   </p>
                                 </td>
                                 <td className="px-3 py-3  text-sm">
@@ -172,6 +142,18 @@ const Categories: React.FC<Props> = (props) => {
                                         className="h-8 w-8  inset-0 bg-blue-700   rounded  relative text-white flex justify-center items-center"
                                       >
                                         <FaEdit />
+                                      </span>
+                                    </span>
+                                  </button>
+                                  <button>
+                                    <span className="relative inline-block px-1 py-1 font-semibold text-green-900 leading-tight">
+                                      <span
+                                        style={{
+                                          boxShadow: "0 2px 6px #acb5f6",
+                                        }}
+                                        className="h-8 w-8  inset-0 bg-green-500   rounded  relative text-white flex justify-center items-center"
+                                      >
+                                        <FaPlus />
                                       </span>
                                     </span>
                                   </button>
@@ -219,7 +201,7 @@ const Categories: React.FC<Props> = (props) => {
                           >
                             1
                           </a>
-                          <a
+                          {/* <a
                             href="#"
                             className="relative inline-flex items-center  bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-indigo-300 focus:z-20"
                           >
@@ -248,7 +230,7 @@ const Categories: React.FC<Props> = (props) => {
                             className="relative inline-flex items-center  bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-indigo-300 focus:z-20"
                           >
                             6
-                          </a>
+                          </a> */}
                           <button className="ml-3 text-sm text-indigo-500 transition duration-150  font-semibold py-2 px-4 rounded-r">
                             Next
                           </button>
@@ -268,4 +250,4 @@ const Categories: React.FC<Props> = (props) => {
   );
 };
 
-export default Categories;
+export default MegaMenuCategory;

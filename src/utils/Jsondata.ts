@@ -992,4 +992,55 @@ export class Jsondata {
       status: "active",
     },
   ];
+  //Child Category Table Data
+  static childCategoriesTableData = [
+    {
+      id: 1,
+      childCategory: "LG",
+      slug: "lg",
+      subCategory: "Monitor",
+      category: "Electronics",
+      status: "active",
+    },
+    {
+      id: 2,
+      childCategory: "HP",
+      slug: "hp",
+      subCategory: "Monitor",
+      category: "Electronics",
+      status: "Inactive",
+    },
+    {
+      id: 3,
+      childCategory: "PlayStation 4",
+      slug: "playstation-4",
+      subCategory: "PlayStation",
+      category: "Game",
+      status: "Inactive",
+    },
+    {
+      id: 4,
+      childCategory: "PlayStation 5",
+      slug: "playstation-5",
+      subCategory: "PlayStation",
+      category: "Game",
+      status: "Inactive",
+    },
+    {
+      id: 5,
+      childCategory: "Samsung",
+      slug: "samsung",
+      subCategory: "Mobiles",
+      category: "Electronics",
+      status: "Inactive",
+    },
+    {
+      id: 6,
+      childCategory: "Apple",
+      slug: "apple",
+      subCategory: "Mobiles",
+      category: "Electronics",
+      status: "active",
+    },
+  ];
 }
