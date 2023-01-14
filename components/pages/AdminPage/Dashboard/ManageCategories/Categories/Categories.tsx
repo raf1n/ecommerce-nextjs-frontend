@@ -23,16 +23,18 @@ const Categories: React.FC<Props> = (props) => {
 
   return (
     <div className="w-full mt-10">
+      <DashboardBreadcrumb
+        headline="Product Category"
+        slug="Product Category"
+        link="/Product Category"
+      ></DashboardBreadcrumb>
       <div className="m-10">
-        <div className={`${styles["section-header"]}  justify-between`}>
+        {/* <div className={`${styles["section-header"]}  justify-between`}>
           <h1 className={`${styles["title"]} `}>Product Category</h1>
-          <div className={`${styles["section-header-breadcrumb"]} `}>
-            <DashboardBreadcrumb
-              slug="Product Category"
-              link="/Product Category"
-            ></DashboardBreadcrumb>
-          </div>
-        </div>
+          <div className={`${styles["section-header-breadcrumb"]} `}> */}
+
+        {/* </div>
+        </div> */}
         <div className="section-body">
           <a href="">
             {/* <button className=" flex items-center justify-center bg-blue-700 hover:bg-blue-600 text-white text-sm py-2 px-3 rounded">
@@ -158,7 +160,7 @@ const Categories: React.FC<Props> = (props) => {
                                   </p>
                                 </td>
                                 <td className="px-3 py-3 text-sm">
-                                <ToggleButton />
+                                  <ToggleButton />
                                   {/* <span className="text-gray-900 whitespace-no-wrap">
                                    
                                    

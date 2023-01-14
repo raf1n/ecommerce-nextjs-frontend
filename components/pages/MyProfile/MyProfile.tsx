@@ -15,18 +15,19 @@ const MyProfile: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <div className={`${styles["main-content"]}`}>
+      <div className="">
         <section className={`${styles["section"]}`}>
-          <div className={`${styles["section-header"]}  justify-between`}>
-            <h1 className={`${styles["title"]} `}>My Profile</h1>
-            <div className={`${styles["section-header-breadcrumb"]} `}>
-              <DashboardBreadcrumb
-                slug="My Profile"
-                link="/myprofile"
-              ></DashboardBreadcrumb>
-            </div>
-          </div>
-          <div className="section-body ">
+          {/* <div className={`${styles["section-header"]}  `}> */}
+          {/* <h1 className={`${styles["title"]} `}>My Profile</h1> */}
+          {/* <div className={`${styles["section-header-breadcrumb"]} `}> */}
+          <DashboardBreadcrumb
+            headline="My Profile"
+            slug="My Profile"
+            link="/myprofile"
+          ></DashboardBreadcrumb>
+          {/* </div> */}
+          {/* </div> */}
+          <div className={`${styles["main-content"]}`}>
             <div className={`${styles["row"]} mt-4`}>
               <div>
                 <div

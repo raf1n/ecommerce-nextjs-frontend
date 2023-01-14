@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import About from "../../components/pages/AboutPage/About";
-import FeaturedCaategoryAdmin from "../../components/pages/AdminPage/Dashboard/FeaturedCategoryAdmin/FeaturedCaategoryAdmin";
+import FeaturedCaategoryAdmin from "../../components/pages/AdminPage/Dashboard/ManageCategories/FeaturedCategoryAdmin/FeaturedCategoryAdmin";
 import Categories from "../../components/pages/AdminPage/Dashboard/ManageCategories/Categories/Categories";
 import MegaMenuCategory from "../../components/pages/AdminPage/Dashboard/ManageCategories/MegaMenuCategory/MegaMenuCategory";
 import PopularCategoryAdmin from "../../components/pages/AdminPage/Dashboard/ManageCategories/PopularCategoryAdmin/PopularCategoryAdmin";
@@ -28,19 +28,19 @@ const sadab: React.FC<Props> = (props) => {
 
   return (
     <>
-      {/* <ShopByBrand /> */}
-      {/* <TopRated /> */}
-      {/* <Itemdetails /> */}
-      {/* <Contact /> */}
-      {/* <FAQ /> */}
-      {/* <WishList /> */}
-      {/* <MyProfile /> */}
-      {/* <TermsAndConditions /> */}
-      {/* <PrivacyPolicy /> */}
-      {/* <SellerTermsAndCondition /> */}
-      {/* <About /> */}
-      {/* <MyCart /> */}
-      {/* <Categories></Categories> */}
+      <ShopByBrand />
+      <TopRated />
+      <Itemdetails />
+      <Contact />
+      <FAQ />
+      <WishList />
+      <MyProfile />
+      <TermsAndConditions />
+      <PrivacyPolicy />
+      <SellerTermsAndCondition />
+      <About />
+      <MyCart />
+      <Categories></Categories>
       <PopularCategoryAdmin />
       <FeaturedCaategoryAdmin />
       <ProductChildCategory />

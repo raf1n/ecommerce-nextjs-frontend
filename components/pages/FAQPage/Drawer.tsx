@@ -1,6 +1,6 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { controller } from '../../../src/state/StateController'
+import React from "react";
+import { useSelector } from "react-redux";
+import { controller } from "../../../src/state/StateController";
 
 const items = [
   {
@@ -33,22 +33,20 @@ const items = [
   },
 ];
 
-
-
-interface Props {
-}
+interface Props {}
 
 const Drawer: React.FC<Props> = (props) => {
-
-  const states = useSelector(() => controller.states)
+  const states = useSelector(() => controller.states);
   const [activeIndex, setActiveIndex] = React.useState(null);
   const handleClick = (index: any) => {
     setActiveIndex(index === activeIndex ? null : index);
-  }
+  };
   return (
     <div>
       <div className="accordion">
-        <h1 className='text-qblack font-bold text-[22px]  mb-4 ml-3'>Frequently Asked Questions</h1>
+        <h1 className="text-qblack font-bold text-[22px]  mb-4 ml-3">
+          Frequently Asked Questions
+        </h1>
         {items.map((item, index) => (
           <div key={item.id} className={`${activeIndex === index ? 'bg-amber-400' : ''}  bg-white m-3`} >
             <button
@@ -86,10 +84,8 @@ const Drawer: React.FC<Props> = (props) => {
           </div>
         ))}
       </div>
-
-
     </div>
-  )
-}
+  );
+};
 
-export default Drawer
+export default Drawer;

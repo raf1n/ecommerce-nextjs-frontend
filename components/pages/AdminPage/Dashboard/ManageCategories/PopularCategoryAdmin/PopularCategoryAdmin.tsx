@@ -14,16 +14,18 @@ const PopularCategoryAdmin: React.FC<Props> = (props) => {
 
   return (
     <div className="w-full mt-10">
+      <DashboardBreadcrumb
+        headline="Popular Category"
+        slug="Popular Category"
+        link="/Popular Category"
+      ></DashboardBreadcrumb>
       <div className="m-10">
-        <div className={`${styles["section-header"]}  justify-between`}>
+        {/* <div className={`${styles["section-header"]}  justify-between`}>
           <h1 className={`${styles["title"]} `}>Popular Category</h1>
-          <div className={`${styles["section-header-breadcrumb"]} `}>
-            <DashboardBreadcrumb
-              slug="Popular Category"
-              link="/Popular Category"
-            ></DashboardBreadcrumb>
-          </div>
-        </div>
+          <div className={`${styles["section-header-breadcrumb"]} `}> */}
+
+        {/* </div>
+        </div> */}
         <div className={`${styles["card"]}`}>
           <div className={`${styles["card-body"]}`}>
             <div className="">

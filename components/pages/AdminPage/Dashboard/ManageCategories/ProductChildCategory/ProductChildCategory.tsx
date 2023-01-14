@@ -20,16 +20,18 @@ const ProductChildCategory: React.FC<Props> = (props) => {
 
   return (
     <div className="w-full mt-10">
+      <DashboardBreadcrumb
+        headline="Product Child Category"
+        slug="Product Category"
+        link="/Product Category"
+      ></DashboardBreadcrumb>
       <div className="m-10">
-        <div className={`${styles["section-header"]}  justify-between`}>
+        {/* <div className={`${styles["section-header"]}  justify-between`}>
           <h1 className={`${styles["title"]} `}>Product Child Category</h1>
-          <div className={`${styles["section-header-breadcrumb"]} `}>
-            <DashboardBreadcrumb
-              slug="Product Category"
-              link="/Product Category"
-            ></DashboardBreadcrumb>
-          </div>
-        </div>
+          <div className={`${styles["section-header-breadcrumb"]} `}> */}
+
+        {/* </div>
+        </div> */}
         <div className="section-body">
           <a href="">
             <SharedAddNewButton></SharedAddNewButton>

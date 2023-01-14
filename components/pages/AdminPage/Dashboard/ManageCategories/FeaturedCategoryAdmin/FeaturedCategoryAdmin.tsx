@@ -1,10 +1,11 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { controller } from "../../../../../src/state/StateController";
-import { Jsondata } from "../../../../../src/utils/Jsondata";
-import SharedAddNewButton from "../../../../shared/SharedAddNewButton/SharedAddNewButton";
-import DashboardBreadcrumb from "../../../MyProfile/DashboardBreadcrumb";
+import { controller } from "../../../../../../src/state/StateController";
+import { Jsondata } from "../../../../../../src/utils/Jsondata";
+import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
+import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
+
 import styles from "./FeaturedCategoryAdmin.module.css";
 
 interface Props {}
@@ -14,16 +15,18 @@ const FeaturedCaategoryAdmin: React.FC<Props> = (props) => {
 
   return (
     <div className="w-full mt-10">
+      <DashboardBreadcrumb
+        headline="Featured Category"
+        slug="Featured Category"
+        link="/Featured Category"
+      ></DashboardBreadcrumb>
       <div className="m-10">
-        <div className={`${styles["section-header"]}  justify-between`}>
+        {/* <div className={`${styles["section-header"]}  justify-between`}>
           <h1 className={`${styles["title"]} `}>Featured Category</h1>
-          <div className={`${styles["section-header-breadcrumb"]} `}>
-            <DashboardBreadcrumb
-              slug="Featured Category"
-              link="/Featured Category"
-            ></DashboardBreadcrumb>
-          </div>
-        </div>
+          <div className={`${styles["section-header-breadcrumb"]} `}> */}
+
+        {/* </div>
+        </div> */}
         <div className={`${styles["card"]}`}>
           <div className={`${styles["card-body"]}`}>
             <div className="">
