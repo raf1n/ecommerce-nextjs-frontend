@@ -32,7 +32,7 @@ const LoginForm: React.FC<Props> = (props) => {
           </div>
         </div>
 
-        <div>
+        <form>
           <div className="mb-5">
             <div className="w-full h-full">
               <label
@@ -47,6 +47,7 @@ const LoginForm: React.FC<Props> = (props) => {
                   className="placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                   type="email"
                   id="email"
+                  name="email"
                 />
               </div>
             </div>
@@ -65,6 +66,7 @@ const LoginForm: React.FC<Props> = (props) => {
                   className="placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                   type="password"
                   id="password"
+                  name="password"
                 />
               </div>
             </div>
@@ -74,6 +76,7 @@ const LoginForm: React.FC<Props> = (props) => {
             <input
                 type="checkbox"
                 className="w-5 h-5 text-qblack flex justify-center items-center border border-light-gray"
+                name="remember"
                />
               <span className="text-base text-black">Remember Me</span>
             </div>
@@ -88,7 +91,7 @@ const LoginForm: React.FC<Props> = (props) => {
               </button>
               <button
                 type="button"
-                className="bg-[#4285F4] text-white mb-6 text-sm w-full h-[50px] font-semibold flex gap-x-2 justify-center items-center bg-purple items-center"
+                className="bg-[#4285F4] text-white mb-6 text-sm w-full h-[50px] font-semibold flex gap-x-2 justify-center bg-purple items-center"
               >
                 <FaGoogle className="w-6 h-6" />Sign In With Google
               </button>
@@ -96,12 +99,12 @@ const LoginForm: React.FC<Props> = (props) => {
           <div className="flex justify-center">
             <p className="text-base text-qgraytwo font-normal">
               Dont't have an account ?
-              <Link href="/signup" className="ml-2 text-qblack cursor-pointer capitalize hover:underline">
+              <Link href="/signup" className="ml-2 text-qblack cursor-pointer capitalize">
                 sign up free
               </Link>
             </p>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
