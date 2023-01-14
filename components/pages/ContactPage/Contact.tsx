@@ -5,9 +5,7 @@ import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import ContactInformation from "./ContactInformation";
 import GetInTouch from "./GetInTouchComponent/GetInTouch";
 
-
-
-interface Props { }
+interface Props {}
 
 const Contact: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -22,7 +20,8 @@ const Contact: React.FC<Props> = (props) => {
             <GetInTouch />
           </div>
         </div>
-      </div></>
+      </div>
+    </>
   );
 };
 
