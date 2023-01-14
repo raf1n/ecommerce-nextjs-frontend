@@ -42,7 +42,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="flex space-x-8">
+    <div className="flex flex-col-reverse lg:flex-row space-x-8">
       <div className="w-[570px]">
         <form>
           <div className="mb-8">

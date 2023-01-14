@@ -39,6 +39,33 @@ const Dashboard: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [show, setShow] = useState(false);
 
+  const tableHeadersOne = [
+    "SL",
+    "CUSTOMER",
+    "ORDER ID",
+    "DATE",
+    "QUANTITY",
+    "AMOUNT",
+    "ORDER STATUS",
+    "PAYMENT",
+    "ACTION",
+  ];
+
+  const actionsOne = {
+    isDeletable: true,
+    isShipping: true,
+    isViewable: true,
+  };
+
+  const tableHeadersTwo = ["SL", "Name", "Image", "Icon", "Status", "Action"];
+
+  const actionsTwo = {
+    isEditable: true,
+    isDeletable: true,
+  };
+
+  // const { testDynamicTableDataOne, testDynamicTableDataTwo } = Jsondata;
+
   return (
     <div className="flex-1  overflow-y-auto relative">
       <div className="flex flex-row justify-between h-[115px] relative bg-[#6777ef]">
