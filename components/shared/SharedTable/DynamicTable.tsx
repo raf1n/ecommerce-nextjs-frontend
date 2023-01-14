@@ -13,7 +13,7 @@ interface Props {
   testDynamicTableData: Array<object>;
 }
 
-const Table: React.FC<Props> = (props) => {
+const DynamicTable: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const { tableHeaders, actions, testDynamicTableData } = props;
@@ -199,4 +199,4 @@ const Table: React.FC<Props> = (props) => {
   );
 };
 
-export default Table;
+export default DynamicTable;

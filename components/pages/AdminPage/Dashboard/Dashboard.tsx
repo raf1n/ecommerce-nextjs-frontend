@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
-import Table from "../../../shared/SharedTable/Table";
+import DynamicTable from "../../../shared/SharedTable/DynamicTable";
 import MyProfile from "../../MyProfile/MyProfile";
 import Login from "../Login/Login";
 import AdminDetailsSummary from "./AdminDetailsSummary/AdminDetailsSummary";
@@ -42,12 +42,12 @@ const Dashboard: React.FC<Props> = (props) => {
   return (
     <div className="flex-1 overflow-y-scroll">
       <MyProfile />
-      <Table
+      <DynamicTable
         tableHeaders={tableHeadersOne}
         actions={actionsOne}
         testDynamicTableData={testDynamicTableDataOne}
       />
-      <Table
+      <DynamicTable
         tableHeaders={tableHeadersTwo}
         actions={actionsTwo}
         testDynamicTableData={testDynamicTableDataTwo}
