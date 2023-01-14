@@ -1420,7 +1420,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                       </span>
                     </div>
                     <div
-                      className="cart-wrappwer w-[300px] bg-white border-t-[3px] absolute -right-[45px] top-11 z-50 hidden group-hover:block"
+                      className={`${styles['cart-wrappwer']} w-[300px] bg-white border-t-[3px] absolute -right-[45px] top-11 z-50 hidden group-hover:block`}
                       style={{
                         boxShadow: "rgba(0, 0, 0, 0.14) 0px 15px 50px 0px",
                       }}
@@ -1428,6 +1428,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                       <div className="w-full h-full">
                         <div className="product-items h-[310px] overflow-y-scroll">
                           <ul>
+                           
                             <li className="w-full h-full flex justify-between">
                               <div className="flex space-x-[6px] justify-center items-center px-4 my-[20px]">
                                 <div className="w-[65px] h-full relative">
@@ -1497,6 +1498,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                                 </svg>
                               </span>
                             </li>
+                        
                             <li className="w-full h-full flex justify-between">
                               <div className="flex space-x-[6px] justify-center items-center px-4 my-[20px]">
                                 <div className="w-[65px] h-full relative">
