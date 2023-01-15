@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 
-interface Props {}
+interface Props { }
 
 const TrackOrder: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -37,7 +37,7 @@ const TrackOrder: React.FC<Props> = (props) => {
                     <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                       <input
                         placeholder="Order Number"
-                        className="input-field placeholder:text-sm text-sm px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none"
+                        className="input-field h-[50px] placeholder:text-sm text-sm px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none"
                         value=""
                       />
                     </div>
@@ -51,7 +51,7 @@ const TrackOrder: React.FC<Props> = (props) => {
                     <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                       <input
                         placeholder="09/01/2023"
-                        className="input-field placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none "
+                        className="input-field h-[50px] placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none "
                         value=""
                       />
                     </div>

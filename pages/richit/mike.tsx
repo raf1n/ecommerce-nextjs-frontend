@@ -17,7 +17,7 @@ import SellerTermsAndCondition from "../../components/pages/SellerTermsAndCondit
 import TermsAndConditions from "../../components/pages/TermsAndConditionsPage/TermsAndConditions";
 import WishList from "../../components/pages/WishlistPage/Wishlist";
 import { controller } from "../../src/state/StateController";
-import AdminProfile from "../../components/pages/ProfilePage/AdminProfile/AdminProfile";
+import AdminProfile from "../../components/pages/AdminProfile/AdminProfile";
 
 interface Props { }
 

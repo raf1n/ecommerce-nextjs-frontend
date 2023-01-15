@@ -20,7 +20,8 @@ const WishlistCart: React.FC<Props> = (props) => {
           <div className="w-full mb-[30px]">
             <div className="relative w-full overflow-x-auto border border-[#EDEDED]">
               <SharedWishlistTable wishlistData={wishlistData} />
-
+            </div>
+            <div className="w-full mt-[30px] flex sm:justify-end justify-start">
               <div className="sm:flex sm:space-x-[30px] items-center">
                 <button type="button">
                   <div className=" w-full text-sm font-semibold text-qred mb-5 sm:mb-0">

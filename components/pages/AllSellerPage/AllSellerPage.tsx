@@ -5,7 +5,7 @@ import { Jsondata } from "../../../src/utils/Jsondata";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import SellerCard from "./SellerCard";
 
-interface Props {}
+interface Props { }
 
 const AllSellerPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -15,7 +15,7 @@ const AllSellerPage: React.FC<Props> = (props) => {
       <PageHeader slug="All Seller" link="/allseller" title="All Seller" />
       <div className="content-wrapper w-full mb-[60px]">
         <div className="container-x mx-auto w-full">
-          <div className="grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1  lg:gap-[30px] gap-5">
+          <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-[30px] gap-5">
             {Jsondata.sellerAddress.map((sellerAdd, index) => (
               <SellerCard key={index} sellerAdd={sellerAdd}></SellerCard>
             ))}

@@ -18,7 +18,7 @@ const SellerCard: React.FC<Props> = (props) => {
     <div>
       <div
         data-aos="fade-up"
-        className="item w-full aos-init aos-animate pb-[30px] mt-12"
+        className="item w-full aos-init aos-animate"
       >
         <div
           className={`w-full sm:h-[328px] sm:p-[30px] p-5 ${Styles["bg-image"]}`}
