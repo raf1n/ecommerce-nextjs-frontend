@@ -4,11 +4,12 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../../../src/state/StateController";
 import { Jsondata } from "../../../../../../src/utils/Jsondata";
 import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
-import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
+import DashboardBreadcrumb from "../../../../ProfilePage/AdminProfile/DashboardBreadcrumb";
+
 
 import styles from "./FeaturedCategoryAdmin.module.css";
 
-interface Props {}
+interface Props { }
 
 const FeaturedCaategoryAdmin: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);

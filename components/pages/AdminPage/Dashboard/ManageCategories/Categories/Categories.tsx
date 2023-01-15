@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../../../src/state/StateController";
-import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
 import styles from "./Categories.module.css";
 import { BiPlus } from "react-icons/bi";
 import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
@@ -15,8 +14,9 @@ import {
   FaTruck,
 } from "react-icons/fa";
 import ToggleButton from "../ToggleButton/ToggleButton";
+import DashboardBreadcrumb from "../../../../ProfilePage/AdminProfile/DashboardBreadcrumb";
 
-interface Props {}
+interface Props { }
 
 const Categories: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);

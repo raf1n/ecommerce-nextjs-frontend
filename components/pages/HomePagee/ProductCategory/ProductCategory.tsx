@@ -3,14 +3,14 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
 import styles from "./ProductCategory.module.css";
-interface Props {}
+interface Props { }
 
 const ProductCategory: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
     <div className="category-section-wrapper w-full">
-      <div className="container-x mx-auto pb-[60px]">
+      <div className="container-x mx-auto pb-[50px]">
         <div>
           <div className="w-full grid xl:grid-cols-8 md:grid-cols-4 grid-cols-2 gap-[30px]">
             {Jsondata.productCategories.map((item, index) => {

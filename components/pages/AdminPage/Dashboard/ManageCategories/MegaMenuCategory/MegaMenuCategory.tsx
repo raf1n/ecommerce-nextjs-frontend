@@ -10,11 +10,11 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../../../src/state/StateController";
 import { Jsondata } from "../../../../../../src/utils/Jsondata";
 import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
-import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
+import DashboardBreadcrumb from "../../../../AdminProfile/DashboardBreadcrumb";
 import ToggleButton from "../ToggleButton/ToggleButton";
 import styles from "./MegaMenuCategory.module.css";
 
-interface Props {}
+interface Props { }
 
 const MegaMenuCategory: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);

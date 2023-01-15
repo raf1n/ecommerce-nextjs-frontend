@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import DashboardBreadcrumb from "./DashboardBreadcrumb";
-import styles from "./Myprofile.module.css";
+import styles from "./AdminProfile.module.css";
 
 interface Props {
   // slug: string;
@@ -21,7 +21,7 @@ const AdminProfile: React.FC<Props> = (props) => {
           <DashboardBreadcrumb
             headline="My Profile"
             slug="My Profile"
-            link="/myprofile"
+            link="/AdminProfile"
           ></DashboardBreadcrumb>
           {/* </div> */}
           {/* </div> */}

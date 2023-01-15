@@ -12,12 +12,13 @@ const admin_profile: React.FC<Props> = (props) => {
     const states = useSelector(() => controller.states)
 
     return (
-        <div className="flex h-screen overflow-y-hidden">
-            <Sidebar />
-            <div className="flex-1 overflow-y-scroll py-8 px-14">
-                <AdminProfile />
-            </div>
-        </div>
+        // <div className="flex h-screen overflow-y-hidden">
+        //     <Sidebar />
+        //     <div className="flex-1 overflow-y-scroll py-8 px-14">
+        //         <AdminProfile />
+        //     </div>
+        // </div>
+        <></>
     )
 }
 
