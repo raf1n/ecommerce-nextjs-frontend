@@ -1,3 +1,7 @@
+.product-row-card-style-one {
+    border: 1px solid transparent;
+}
+
 .anim {
     position: absolute;
     background-color: #ffbb38;
@@ -6,35 +10,7 @@
 }
 
 .bottom {
-    height: 1px;
-    left: 0;
-    right: 0;
-    transform: scaleX(0);
-    
-}
-
-
-@keyframes color-me-in {
-
-    /* You could think of as "step 1" */
-    0% {
-        transform: scaleX(0);
-    }
-
-    /* You could think of as "step 2" */
-    100% {
-        transform: scaleX(1);
-    }
-}
-
-.left {
-    width: 1px;
-    top: 0;
     bottom: 0;
-    transform: scaleY(1);
-}
-
-.top {
     height: 1px;
     left: 0;
     right: 0;
@@ -42,8 +18,45 @@
 }
 
 .right {
+    right: 0;
     width: 1px;
     top: 0;
     bottom: 0;
     transform: scaleY(0);
+}
+
+.top {
+    top: 0;
+    height: 1px;
+    left: 0;
+    right: 0;
+    transform: scaleX(0);
+}
+
+.left {
+    left: 0;
+    width: 1px;
+    top: 0;
+    bottom: 0;
+    transform: scaleY(0);
+}
+
+.product-row-card-style-one:hover~span.bottom {
+    transform: scaleX(1);
+    cursor: pointer;
+}
+
+.product-row-card-style-one:hover~span.right {
+    transform: scaleY(1);
+    cursor: pointer;
+}
+
+.product-row-card-style-one:hover~span.top {
+    transform: scaleX(1);
+    cursor: pointer;
+}
+
+.product-row-card-style-one:hover~span.left {
+    transform: scaleY(1);
+    cursor: pointer;
 }

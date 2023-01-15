@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
@@ -1132,25 +1133,25 @@ const HeaderTop: React.FC<Props> = (props) => {
               <div className="topbar-nav">
                 <ul className="flex space-x-6">
                   <li>
-                    <a rel="noopener noreferrer" href="/">
+                    <Link rel="noopener noreferrer" href="/profile">
                       <span className="text-xs leading-6 text-qblack font-semibold cursor-pointer">
                         Account
                       </span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a rel="noopener noreferrer" href="/">
+                    <Link rel="noopener noreferrer" href="/track_order">
                       <span className="text-xs leading-6 text-qblack font-semibold cursor-pointer">
                         Track Order
                       </span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a rel="noopener noreferrer" href="/">
+                    <Link rel="noopener noreferrer" href="/faq">
                       <span className="text-xs leading-6 text-qblack font-semibold cursor-pointer">
                         Support
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -1399,7 +1400,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                   </div>
                   <div className="cart-wrapper group relative py-4">
                     <div className="cart relative cursor-pointer">
-                      <a rel="noopener noreferrer" href="/cart">
+                      <Link rel="noopener noreferrer" href="/cart">
                         <span className="cursor-pointer">
                           <svg
                             width="18"
@@ -1414,7 +1415,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                             ></path>
                           </svg>
                         </span>
-                      </a>
+                      </Link>
                       <span className="w-[18px] h-[18px] rounded-full absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px] bg-qyellow">
                         2
                       </span>
@@ -1640,11 +1641,11 @@ const HeaderTop: React.FC<Props> = (props) => {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M4 6h16M4 12h16M4 18h7"
                 ></path>
               </svg>

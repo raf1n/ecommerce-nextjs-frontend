@@ -9,8 +9,7 @@ import { EcommerceApi } from '../../src/API/EcommerceApi'
 import { controller } from '../../src/state/StateController'
 import { CookiesHandler } from '../../src/utils/CookiesHandler'
 
-interface Props {
-}
+interface Props {}
 
 const xavier: React.FC<Props> = (props) => {
     const router = useRouter();
@@ -20,7 +19,6 @@ const xavier: React.FC<Props> = (props) => {
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     const [displayName, setDisplayName] = useState('');
-
     const [error, setError] = useState(false);
     const [errorText, setErrorText] = useState('');
     const [success, setSuccess] = useState(false);
@@ -232,3 +230,4 @@ const xavier: React.FC<Props> = (props) => {
 
 
 export default xavier
+

@@ -4,8 +4,7 @@ import { controller } from "../../../src/state/StateController";
 import { Jsondata } from "../../../src/utils/Jsondata";
 import ProductCard from "../../shared/SharedProductCard/ProductCard";
 
-
-interface Props { }
+interface Props {}
 
 const CategoryItemsRight: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -22,26 +21,22 @@ const CategoryItemsRight: React.FC<Props> = (props) => {
           <span className="font-bold text-qblack text-[13px]">View by :</span>
           <button
             type="button"
-            className="hover:text-qgreen w-6 h-6 text-qgreen"
-          >
+            className="hover:text-qgreen w-6 h-6 text-qgreen">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-current"
-            >
+              className="fill-current">
               <path fill="none" d="M0 0h24v24H0z"></path>
               <path d="M11 5H5v14h6V5zm2 0v14h6V5h-6zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path>
             </svg>
           </button>
           <button
             type="button"
-            className="hover:text-qgreen w-6 h-6 text-qgray"
-          >
+            className="hover:text-qgreen w-6 h-6 text-qgray">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="fill-current"
-            >
+              className="fill-current">
               <path fill="none" d="M0 0h24v24H0z"></path>
               <path d="M19 11V5H5v6h14zm0 2H5v6h14v-6zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path>
             </svg>
@@ -49,21 +44,18 @@ const CategoryItemsRight: React.FC<Props> = (props) => {
         </div>
         <button
           type="button"
-          className="w-10 lg:hidden h-10 rounded flex justify-center items-center border border-qyellow text-qyellow"
-        >
+          className="w-10 lg:hidden h-10 rounded flex justify-center items-center border border-qyellow text-qyellow">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            stroke-width="2"
-          >
+            strokeWidth="2">
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-            ></path>
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
           </svg>
         </button>
       </div>

@@ -61,6 +61,8 @@ const FilterWidget: React.FC<Props> = (props) => {
         <FilterHeader title="Red" />
 
       </div>
+
+        
     </div>
   );
 };
