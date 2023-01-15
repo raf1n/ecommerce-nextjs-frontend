@@ -233,7 +233,7 @@ const SellerCard: React.FC<Props> = (props) => {
                   >
                     <img
                       alt=""
-                      src="https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&amp;w=3840&amp;q=75"
+                      src={props.sellerAdd.image}
                       decoding="async"
                       data-nimg="fill"
                       style={{

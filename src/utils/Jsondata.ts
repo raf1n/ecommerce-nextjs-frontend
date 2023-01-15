@@ -1084,36 +1084,48 @@ export class Jsondata {
       email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
     },
     {
       shopName: "Ryhans",
       email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
     },
     {
       shopName: "Ryhans",
       email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
     },
     {
       shopName: "Ryhans",
       email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
     },
     {
       shopName: "Ryhans",
       email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
     },
     {
       shopName: "Ryhans",
       email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
     },
   ];
 

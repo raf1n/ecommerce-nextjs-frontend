@@ -16,7 +16,7 @@ import PendingOrders from "./Orders/PendingOrders/PendingOrders";
 import ProgressOrders from "./Orders/ProgressOrders/ProgressOrders";
 import { MdArrowDropDown } from "react-icons/md";
 import { useState } from "react";
-import MyProfile from "../../AdminProfile/AdminProfile";
+
 import Table from "../../../shared/SharedTable/Table";
 import AdminDetailsSummary from "./AdminDetailsSummary/AdminDetailsSummary";
 import Categories from "./ManageCategories/Categories/Categories";

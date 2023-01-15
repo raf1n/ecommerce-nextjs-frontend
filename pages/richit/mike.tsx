@@ -20,6 +20,7 @@ import TermsAndConditions from "../../components/pages/TermsAndConditionsPage/Te
 import WishList from "../../components/pages/WishlistPage/Wishlist";
 import ProductCard from "../../components/shared/SharedProductCard/ProductCard";
 import { controller } from "../../src/state/StateController";
+import AdminProfile from "../../components/pages/AdminProfile/AdminProfile";
 
 interface Props {}
 
@@ -34,7 +35,7 @@ const sadab: React.FC<Props> = (props) => {
       <Contact />
       <FAQ />
       <WishList />
-      <MyProfile />
+      <AdminProfile />
       <TermsAndConditions />
       <PrivacyPolicy />
       <SellerTermsAndCondition />
