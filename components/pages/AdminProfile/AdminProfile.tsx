@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import DashboardBreadcrumb from "./DashboardBreadcrumb";
 import styles from "./AdminProfile.module.css";
+import { controller } from "../../../src/state/StateController";
 
 interface Props {
   // slug: string;
@@ -10,10 +11,8 @@ interface Props {
 }
 
 const AdminProfile: React.FC<Props> = (props) => {
-<<<<<<<< HEAD:components/pages/ProfilePage/AdminProfile/AdminProfile.tsx
-========
+
   const states = useSelector(() => controller.states);
->>>>>>>> 43a1c0e549e174ae26285ef7cfeabb9156710e58:components/pages/AdminProfile/AdminProfile.tsx
 
   return (
     <div>
