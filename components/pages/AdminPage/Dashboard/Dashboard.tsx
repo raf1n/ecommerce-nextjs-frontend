@@ -28,6 +28,7 @@ import PopularCategory from "../../HomePagee/PopularCategory/PopularCategory";
 import PopularCategoryAdmin from "./ManageCategories/PopularCategoryAdmin/PopularCategoryAdmin";
 import AdminProfile from "../../AdminProfile/AdminProfile";
 import AdminLogin from "../AdminLogin/AdminLogin";
+import SubCategories from "./ManageCategories/SubCategories/SubCategories";
 
 interface Props {
   open: boolean;
@@ -151,6 +152,7 @@ const Dashboard: React.FC<Props> = (props) => {
         <AdminLogin />
         <AdminDetailsSummary />
         <Categories />
+        <SubCategories />
         <ProductChildCategory />
         <ProductCategory />
         <MegaMenuCategory />
