@@ -14,7 +14,8 @@ const CashOnDelivery: React.FC<Props> = (props) => {
       <DashboardBreadcrumb
         headline="Cash On Delivery Orders"
         slug="Cash On Delivery Orders"
-        link="/CashOnDelivery-orders"></DashboardBreadcrumb>
+        link="/CashOnDelivery-orders"
+      ></DashboardBreadcrumb>
 
       <Table />
     </div>

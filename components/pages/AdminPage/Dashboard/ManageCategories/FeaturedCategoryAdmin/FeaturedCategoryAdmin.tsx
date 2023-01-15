@@ -4,8 +4,7 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../../../src/state/StateController";
 import { Jsondata } from "../../../../../../src/utils/Jsondata";
 import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
-import DashboardBreadcrumb from "../../../../ProfilePage/AdminProfile/DashboardBreadcrumb";
-
+import DashboardBreadcrumb from "../../../../AdminProfile/DashboardBreadcrumb";
 
 import styles from "./FeaturedCategoryAdmin.module.css";
 

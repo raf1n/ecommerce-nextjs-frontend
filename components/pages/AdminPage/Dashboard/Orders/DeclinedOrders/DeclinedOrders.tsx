@@ -14,7 +14,8 @@ const DeclinedOrders: React.FC<Props> = (props) => {
       <DashboardBreadcrumb
         headline="Declined Orders"
         slug="Declined Orders"
-        link="/Declined-orders"></DashboardBreadcrumb>
+        link="/Declined-orders"
+      ></DashboardBreadcrumb>
 
       <Table />
     </div>

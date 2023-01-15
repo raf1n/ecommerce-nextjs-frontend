@@ -16,14 +16,17 @@ import PendingOrders from "./Orders/PendingOrders/PendingOrders";
 import ProgressOrders from "./Orders/ProgressOrders/ProgressOrders";
 import { MdArrowDropDown } from "react-icons/md";
 import { useState } from "react";
+
+import Table from "../../../shared/SharedTable/Table";
 import AdminDetailsSummary from "./AdminDetailsSummary/AdminDetailsSummary";
 import Categories from "./ManageCategories/Categories/Categories";
 import ProductChildCategory from "./ManageCategories/ProductChildCategory/ProductChildCategory";
 import ProductCategory from "../../HomePagee/ProductCategory/ProductCategory";
 import MegaMenuCategory from "./ManageCategories/MegaMenuCategory/MegaMenuCategory";
 import FeaturedCaategoryAdmin from "./ManageCategories/FeaturedCategoryAdmin/FeaturedCategoryAdmin";
-import PopularCategory from "../../HomePagee/PopularCategory/PopularCategory";
 import PopularCategoryAdmin from "./ManageCategories/PopularCategoryAdmin/PopularCategoryAdmin";
+import AdminLogin from "../AdminLogin/AdminLogin";
+import SubCategories from "./ManageCategories/SubCategories/SubCategories";
 import AdminProfile from "../../ProfilePage/AdminProfile/AdminProfile";
 
 interface Props {
@@ -137,11 +140,18 @@ const Dashboard: React.FC<Props> = (props) => {
       {/* <Login /> */}
       <div className="mt-[-50px] absolute w-full">
         <AllOrders></AllOrders>
+        <PendingOrders />
+        <ProgressOrders />
+        <DeliveredOrders />
+        <CompletedOrders></CompletedOrders>
+        <DeclinedOrders></DeclinedOrders>
+        <CashOnDelivery></CashOnDelivery>
         <AdminProfile />
         {/* <Table /> */}
-        <Login />
+        <AdminLogin />
         <AdminDetailsSummary />
         <Categories />
+        <SubCategories />
         <ProductChildCategory />
         <ProductCategory />
         <MegaMenuCategory />

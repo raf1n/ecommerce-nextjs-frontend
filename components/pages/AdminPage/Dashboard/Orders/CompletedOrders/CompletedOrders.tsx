@@ -14,7 +14,8 @@ const CompletedOrders: React.FC<Props> = (props) => {
       <DashboardBreadcrumb
         headline="Completed Orders"
         slug="Completed Orders"
-        link="/completed-orders"></DashboardBreadcrumb>
+        link="/completed-orders"
+      ></DashboardBreadcrumb>
 
       <Table />
     </div>

@@ -14,7 +14,8 @@ const ProgressOrders: React.FC<Props> = (props) => {
       <DashboardBreadcrumb
         headline="Progress Orders"
         slug="Progress Orders"
-        link="/progress-orders"></DashboardBreadcrumb>
+        link="/progress-orders"
+      ></DashboardBreadcrumb>
 
       <Table />
     </div>
