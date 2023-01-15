@@ -104,7 +104,7 @@ const SubCategories: React.FC<Props> = (props) => {
                 </thead>
 
                 <tbody>
-                  {Jsondata.categoriesTableData.map((tabledata, index) => (
+                  {Jsondata.subCategoriesTableData.map((tabledata, index) => (
                     <tr className="even:bg-gray-50 odd:bg-white">
                       <td className="px-3 py-3   text-sm">
                         <p className="text-gray-900 whitespace-no-wrap">

@@ -920,7 +920,7 @@ export class Jsondata {
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
     },
   ];
-  static categoriesTableData = [
+  static subCategoriesTableData = [
     {
       id: 1,
       subCat: "Mobiles",

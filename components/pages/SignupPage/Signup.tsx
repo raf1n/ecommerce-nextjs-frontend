@@ -34,7 +34,7 @@ const Signup: React.FC<Props> = (props) => {
             </svg>
           </div>
         </div>
-        <div className="input-area">
+        <form className="input-area">
           <div className="flex sm:flex-row flex-col space-y-5 sm:space-y-0 sm:space-x-5 mb-5">
             <div className="h-full">
               <div className="input-com w-full h-full">
@@ -46,6 +46,7 @@ const Signup: React.FC<Props> = (props) => {
                 </label>
                 <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                   <input
+                    name="fname"
                     placeholder="Name"
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                     type="text"
@@ -64,6 +65,7 @@ const Signup: React.FC<Props> = (props) => {
                 </label>
                 <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                   <input
+                    name="lname"
                     placeholder="Name"
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                     type="text"
@@ -83,6 +85,7 @@ const Signup: React.FC<Props> = (props) => {
               </label>
               <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                 <input
+                  name="email"
                   placeholder="Email"
                   className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                   type="email"
@@ -102,6 +105,7 @@ const Signup: React.FC<Props> = (props) => {
                 </label>
                 <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                   <input
+                    name="password"
                     placeholder="* * * * * *"
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                     type="password"
@@ -120,6 +124,7 @@ const Signup: React.FC<Props> = (props) => {
                 </label>
                 <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                   <input
+                    name="rePassword"
                     placeholder="* * * * * *"
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                     type="password"
@@ -137,7 +142,10 @@ const Signup: React.FC<Props> = (props) => {
                 checked={checked}
                 className="w-5 h-5 text-qblack flex justify-center items-center border border-light-gray"
               ></input>
-              <Link href="/seller_terms_condition" className="text-base text-black cursor-pointer">
+              <Link
+                href="/seller_terms_condition"
+                className="text-base text-black cursor-pointer"
+              >
                 I agree all terms and condition in ecoShop
               </Link>
             </div>
@@ -161,7 +169,7 @@ const Signup: React.FC<Props> = (props) => {
               </Link>
             </p>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
