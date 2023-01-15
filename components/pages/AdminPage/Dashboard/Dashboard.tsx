@@ -27,6 +27,7 @@ import FeaturedCaategoryAdmin from "./ManageCategories/FeaturedCategoryAdmin/Fea
 import PopularCategory from "../../HomePagee/PopularCategory/PopularCategory";
 import PopularCategoryAdmin from "./ManageCategories/PopularCategoryAdmin/PopularCategoryAdmin";
 import AdminProfile from "../../AdminProfile/AdminProfile";
+import AdminLogin from "../AdminLogin/AdminLogin";
 
 interface Props {
   open: boolean;
@@ -139,9 +140,10 @@ const Dashboard: React.FC<Props> = (props) => {
       {/* <Login /> */}
       <div className="mt-[-50px] absolute w-full">
         <AllOrders></AllOrders>
+        
         <AdminProfile />
         {/* <Table /> */}
-        <Login />
+        <AdminLogin />
         <AdminDetailsSummary />
         <Categories />
         <ProductChildCategory />
