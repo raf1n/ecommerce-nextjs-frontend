@@ -133,7 +133,7 @@ export class Jsondata {
         },
         {
           title: "Terms Condition",
-          url: "terms-condition",
+          url: "terms_condition",
         },
         {
           title: "Best Products",
@@ -162,7 +162,7 @@ export class Jsondata {
       header: "Helpful",
       links: [
         {
-          title: "Helpful",
+          title: "About Us",
           url: "about",
         },
         {

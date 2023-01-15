@@ -13,7 +13,7 @@ import PopularCategory from "../../components/pages/HomePagee/PopularCategory/Po
 import ShopByBrand from "../../components/pages/HomePagee/ShopByBrandSection/ShopByBrand";
 import TopRated from "../../components/pages/HomePagee/TopRatedProductsSection/TopRatedSection";
 import MyCart from "../../components/pages/MyCartPage/MyCart";
-import MyProfile from "../../components/pages/MyProfile/MyProfile";
+import MyProfile from "../../components/pages/AdminProfile/AdminProfile";
 import PrivacyPolicy from "../../components/pages/PrivacyPolicyPage/PrivacyPolicy";
 import SellerTermsAndCondition from "../../components/pages/SellerTermsAndConditionPage/SellerTermsAndCondition";
 import TermsAndConditions from "../../components/pages/TermsAndConditionsPage/TermsAndConditions";

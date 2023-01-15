@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../../../src/state/StateController";
 import Table from "../../../../../shared/SharedTable/Table";
-import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
+import DashboardBreadcrumb from "../../../../AdminProfile/DashboardBreadcrumb";
 
 interface Props {}
 
@@ -14,7 +14,8 @@ const DeclinedOrders: React.FC<Props> = (props) => {
       <DashboardBreadcrumb
         headline="Declined Orders"
         slug="Declined Orders"
-        link="/Declined-orders"></DashboardBreadcrumb>
+        link="/Declined-orders"
+      ></DashboardBreadcrumb>
 
       <Table />
     </div>

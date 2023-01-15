@@ -16,7 +16,7 @@ import PendingOrders from "./Orders/PendingOrders/PendingOrders";
 import ProgressOrders from "./Orders/ProgressOrders/ProgressOrders";
 import { MdArrowDropDown } from "react-icons/md";
 import { useState } from "react";
-import MyProfile from "../../MyProfile/MyProfile";
+import MyProfile from "../../AdminProfile/AdminProfile";
 import Table from "../../../shared/SharedTable/Table";
 import AdminDetailsSummary from "./AdminDetailsSummary/AdminDetailsSummary";
 import Categories from "./ManageCategories/Categories/Categories";
@@ -26,6 +26,7 @@ import MegaMenuCategory from "./ManageCategories/MegaMenuCategory/MegaMenuCatego
 import FeaturedCaategoryAdmin from "./ManageCategories/FeaturedCategoryAdmin/FeaturedCategoryAdmin";
 import PopularCategory from "../../HomePagee/PopularCategory/PopularCategory";
 import PopularCategoryAdmin from "./ManageCategories/PopularCategoryAdmin/PopularCategoryAdmin";
+import AdminProfile from "../../AdminProfile/AdminProfile";
 
 interface Props {
   open: boolean;
@@ -138,7 +139,7 @@ const Dashboard: React.FC<Props> = (props) => {
       {/* <Login /> */}
       <div className="mt-[-50px] absolute w-full">
         <AllOrders></AllOrders>
-        <MyProfile />
+        <AdminProfile />
         {/* <Table /> */}
         <Login />
         <AdminDetailsSummary />

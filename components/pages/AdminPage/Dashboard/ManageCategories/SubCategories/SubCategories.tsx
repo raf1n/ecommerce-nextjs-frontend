@@ -7,7 +7,7 @@ import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
 import { controller } from "../../../../../../src/state/StateController";
 import { Jsondata } from "../../../../../../src/utils/Jsondata";
 import ToggleButton from "./ToggleButton";
-import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
+import DashboardBreadcrumb from "../../../../AdminProfile/DashboardBreadcrumb";
 import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
 interface Props {}
 

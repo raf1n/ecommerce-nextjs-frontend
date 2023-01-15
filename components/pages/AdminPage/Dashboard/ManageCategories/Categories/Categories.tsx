@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../../../src/state/StateController";
-import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
+import DashboardBreadcrumb from "../../../../AdminProfile/DashboardBreadcrumb";
 import styles from "./Categories.module.css";
 import { BiPlus } from "react-icons/bi";
 import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
