@@ -1,13 +1,87 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "./../../../src/state/StateController";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
+import { SocialLogin } from "../../helpers/SocialLogin";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { useRouter } from "next/router";
 
 interface Props {}
 
 const LoginForm: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [errorLogin, setErrorLogin] = useState(false);
+  const [errorTextLogin, setErrorTextLogin] = useState('');
+  const [successLogin, setSuccessLogin] = useState(false);
+  const [successTextLogin, setSuccessTextLogin] = useState('')
+  const [loggedinSendVerify, setLoggedinSendVerify] = useState(false)
+  const [loggedinSendVerifyText, setLoggedinSendVerifyText] = useState('')
+  const router = useRouter();
+
+  useEffect(() => {
+    SocialLogin.initFirebase()
+  }, [])
+  
+  const sendEmailVerify = async () => {
+    SocialLogin.sendEmail()
+    setErrorLogin(false)
+    setSuccessLogin(false)
+    setLoggedinSendVerifyText('Verification sent')
+  }
+  
+  const handleGoogleSignUp = async () => {
+    // actions.setDialogLoading(true)
+    const { token, user } = await SocialLogin.loginWithGoogle()
+    if (token && user?.email && user?.displayName && user?.photoURL) {
+        const { email, displayName, photoURL } = user
+        // window.smartlook('identify', email);
+        const { res, err } = await EcommerceApi.login(token, email, displayName, photoURL, "google");
+        if (err) {     
+            console.log('Login error')
+        }
+        else {
+            CookiesHandler.setAccessToken(res.access_token)
+            if (res.slug) {
+                CookiesHandler.setSlug(res.slug as string)
+            }           
+            router.push('/')
+        }
+    }
+
+}
+
+  const handleEmailPasswordLogin =async(e:any) => {
+    e.preventDefault();
+    const loginPassword=e.target.password.value
+    const loginEmail = e.target.email.value
+    
+    const { res, err } = await SocialLogin.loginWithEmailPassword(loginEmail, loginPassword)
+        if (err) {
+            setErrorLogin(true)
+            setSuccessLogin(false)
+            setErrorTextLogin(err)
+        }
+        else {
+            console.log('resss', res)
+            setErrorLogin(false)
+            if (!res.user.emailVerified) {
+                console.log('kkk');
+                setLoggedinSendVerify(true)
+                setLoggedinSendVerifyText('verify first and login again')
+            }
+            else {
+                setLoggedinSendVerify(false)
+                setSuccessLogin(true)
+                setSuccessTextLogin('SignIn Success')
+
+            }
+       
+       
+        }
+  }
 
   return (
     <div className="lg:w-[572px] w-full h-[783px] bg-white flex flex-col justify-center sm:p-10 p-5 border border-[#E0E0E0]">
@@ -32,7 +106,7 @@ const LoginForm: React.FC<Props> = (props) => {
           </div>
         </div>
 
-        <form>
+        <form onSubmit={(e)=>{handleEmailPasswordLogin(e)}}>
           <div className="mb-5">
             <div className="w-full h-full">
               <label
@@ -48,6 +122,7 @@ const LoginForm: React.FC<Props> = (props) => {
                   type="email"
                   id="email"
                   name="email"
+                  required
                 />
               </div>
             </div>
@@ -67,6 +142,7 @@ const LoginForm: React.FC<Props> = (props) => {
                   type="password"
                   id="password"
                   name="password"
+                  required
                 />
               </div>
             </div>
@@ -86,12 +162,13 @@ const LoginForm: React.FC<Props> = (props) => {
           </div>
           <div>
             <button
-              type="button"
+              type="submit"
               className="bg-[rgb(34,34,34)] text-white mb-3 text-sm w-full h-[50px] font-semibold flex justify-center bg-purple items-center"
             >
               Login
             </button>
             <button
+              onClick={()=>{handleGoogleSignUp()}}
               type="button"
               className="bg-[#4285F4] text-white mb-6 text-sm w-full h-[50px] font-semibold flex gap-x-2 justify-center bg-purple items-center"
             >
@@ -111,6 +188,9 @@ const LoginForm: React.FC<Props> = (props) => {
             </p>
           </div>
         </form>
+        {errorLogin && <div style={{ color: 'red' }}>{errorTextLogin}</div>}
+                {successLogin && <div style={{ color: 'black' }}>{successTextLogin}</div>}
+                {loggedinSendVerify && <button type="submit" style={{ backgroundColor: 'blue', borderRadius: '10px', margin: '10px 0', width: '300px', color: 'white' }} onClick={() => { sendEmailVerify() }}>{loggedinSendVerifyText}</button> }
       </div>
     </div>
   );
