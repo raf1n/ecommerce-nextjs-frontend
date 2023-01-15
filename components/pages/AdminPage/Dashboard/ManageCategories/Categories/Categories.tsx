@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../../../src/state/StateController";
 import styles from "./Categories.module.css";
-import { BiPlus } from "react-icons/bi";
 import SharedAddNewButton from "../../../../../shared/SharedAddNewButton/SharedAddNewButton";
 import { Jsondata } from "../../../../../../src/utils/Jsondata";
 import {
@@ -14,7 +13,8 @@ import {
   FaTruck,
 } from "react-icons/fa";
 import ToggleButton from "../ToggleButton/ToggleButton";
-import DashboardBreadcrumb from "../../../../ProfilePage/AdminProfile/DashboardBreadcrumb";
+import DashboardBreadcrumb from "../../../../AdminProfile/DashboardBreadcrumb";
+
 
 interface Props { }
 

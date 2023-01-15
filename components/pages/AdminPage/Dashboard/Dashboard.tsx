@@ -16,8 +16,6 @@ import PendingOrders from "./Orders/PendingOrders/PendingOrders";
 import ProgressOrders from "./Orders/ProgressOrders/ProgressOrders";
 import { MdArrowDropDown } from "react-icons/md";
 import { useState } from "react";
-
-import Table from "../../../shared/SharedTable/Table";
 import AdminDetailsSummary from "./AdminDetailsSummary/AdminDetailsSummary";
 import Categories from "./ManageCategories/Categories/Categories";
 import ProductChildCategory from "./ManageCategories/ProductChildCategory/ProductChildCategory";
@@ -27,7 +25,7 @@ import FeaturedCaategoryAdmin from "./ManageCategories/FeaturedCategoryAdmin/Fea
 import PopularCategoryAdmin from "./ManageCategories/PopularCategoryAdmin/PopularCategoryAdmin";
 import AdminLogin from "../AdminLogin/AdminLogin";
 import SubCategories from "./ManageCategories/SubCategories/SubCategories";
-import AdminProfile from "../../ProfilePage/AdminProfile/AdminProfile";
+import AdminProfile from "../../AdminProfile/AdminProfile";
 
 interface Props {
   open: boolean;
