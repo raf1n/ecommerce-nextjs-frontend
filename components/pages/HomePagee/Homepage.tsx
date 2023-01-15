@@ -15,8 +15,7 @@ import ProductCategory from "./ProductCategory/ProductCategory";
 import ShopByBrand from "./ShopByBrandSection/ShopByBrand";
 import TopRatedSection from "./TopRatedProductsSection/TopRatedSection";
 
-
-interface Props { }
+interface Props {}
 
 const Homepage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);

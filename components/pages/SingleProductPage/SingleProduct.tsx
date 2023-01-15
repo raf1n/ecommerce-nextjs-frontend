@@ -6,7 +6,7 @@ import ProductDetails from "./ProductDetails";
 import { Jsondata } from "../../../src/utils/Jsondata";
 import Breadcrumb from "../../shared/SharedBreadcrumb/Breadcrumb";
 
-interface Props {}
+interface Props { }
 
 const SingleProduct: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);

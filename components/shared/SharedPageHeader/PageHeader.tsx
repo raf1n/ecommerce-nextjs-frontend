@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import Breadcrumb from "../SharedBreadcrumb/Breadcrumb";
 
-
 interface Props {
   slug: string;
   link: string;
@@ -20,9 +19,7 @@ const PageHeader: React.FC<Props> = (props) => {
       <div className="container-x mx-auto">
         <Breadcrumb slug={slug} link={link} />
         <div className="flex justify-center">
-          <h1 className="text-3xl font-semibold text-qblack">
-            {title}
-          </h1>
+          <h1 className="text-3xl font-semibold text-qblack">{title}</h1>
         </div>
       </div>
     </div>

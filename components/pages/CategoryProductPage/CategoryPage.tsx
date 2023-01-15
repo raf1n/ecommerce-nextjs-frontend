@@ -6,7 +6,7 @@ import FilterWidget from "./FilterWidget";
 import ShopNowBtn from "./../../helpers/Buttons/ShopNowBtn";
 import FilterAd from "./FilterAd";
 
-interface Props {}
+interface Props { }
 
 const CategoryPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -14,11 +14,11 @@ const CategoryPage: React.FC<Props> = (props) => {
   return (
     <div className="container-x mx-auto pt-[30px]">
       <div className="lg:flex lg:gap-x-[30px]">
-        <div className="lg:w-[270px]">
+        <div className="lg:w-[270px] my-10">
           <FilterWidget />
           <FilterAd />
         </div>
-        <div className="flex-1 min-h-screen">
+        <div className="flex-1 min-h-screen my-10">
           <CategoryItemsRight />
         </div>
       </div>

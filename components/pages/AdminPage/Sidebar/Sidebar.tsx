@@ -1,22 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import { FaBars } from "react-icons/fa";
-
 import { Jsondata } from "../../../../src/utils/Jsondata";
 import MenuItem from "./MenuItem";
 import styles from "./Scrollbar.module.css";
 import { controller } from "../../../../src/state/StateController";
 import Link from "next/link";
 
-interface Props {}
+interface Props {
+  open: boolean;
+  responsiveOpen: boolean;
+}
 
 const Sidebar: React.FC<Props> = (props) => {
+  const { open, responsiveOpen } = props;
   const states = useSelector(() => controller.states);
 
-  const [open, setOpen] = useState(true);
   const [menuOpen, setMenuOpen] = useState(0);
-  const [responsiveOpen, setResponsiveOpen] = useState(false);
 
   return (
     <div
@@ -24,22 +24,6 @@ const Sidebar: React.FC<Props> = (props) => {
         responsiveOpen ? "left-0" : "left-[-250px]"
       } h-screen fixed z-50 lg:left-0 lg:relative bg-white duration-500`}
     >
-      <FaBars
-        className={`absolute cursor-pointer hidden lg:block -right-12 top-6 w-7 rounded-full duration-300`}
-        onClick={() => {
-          setOpen(!open);
-          setResponsiveOpen(false);
-        }}
-      />
-
-      <FaBars
-        className={`left-[270px] absolute cursor-pointer block lg:hidden top-6 w-7 rounded-full duration-300`}
-        onClick={() => {
-          setResponsiveOpen(!responsiveOpen);
-          setOpen(true);
-        }}
-      />
-
       <div className="text-center h-[60px] leading-[60px]">
         <Link href="/" className="font-bold text-sm tracking-widest">
           {open ? "SHOPO" : "SP"}
@@ -59,7 +43,6 @@ const Sidebar: React.FC<Props> = (props) => {
           />
         ))}
       </ul>
-      
     </div>
   );
 };

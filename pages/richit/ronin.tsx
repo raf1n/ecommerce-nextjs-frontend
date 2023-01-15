@@ -8,6 +8,7 @@ import SingleProduct from "../../components/pages/SingleProductPage/SingleProduc
 import BestProducts from "../../components/pages/HomePagee/BestProducts/BestProducts";
 import Footer from "../../components/shared/SharedFooter/Footer";
 import CategoryPage from "../../components/pages/CategoryProductPage/CategoryPage";
+import ProfilePage from "../../components/pages/ProfilePage/ProfilePage";
 
 interface Props {}
 
@@ -16,6 +17,7 @@ const Ronin: React.FC<Props> = (props) => {
 
   return (
     <div className="bg-gray-100">
+      <ProfilePage />
       <AdminPage />
       <CategoryPage />
       <Blogs />

@@ -19,7 +19,7 @@
  .nav-widget-wrapper .nav ul li .sub-menu {
     transition: all .5s ease-in-out;
     opacity: 0;
-    visibility: hidden;
+    visibility: visible;
     pointer-events: auto;
 }
 .nav-widget-wrapper .nav ul li:hover .sub-menu {

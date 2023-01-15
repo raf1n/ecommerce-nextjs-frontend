@@ -30,7 +30,7 @@ const HeroSlider: React.FC<Props> = (props) => {
         breakpoint: 700,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
           dots: true,
         },

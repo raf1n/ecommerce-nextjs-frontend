@@ -1,12 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
+import { SocialLogin } from "../../helpers/SocialLogin";
 import SharedLoginSignupImage from "../../shared/SharedLoginSignupImage/SharedLoginSignupImage";
 import Style from "./ForgetPassword.module.css";
 interface Props {}
 
 const ForgetPassword: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
+  const forgetPass = async (e:any) => {
+    SocialLogin.forgetEmail(e.target.email.value)
+  }
 
   return (
     <div className="w-full min-h-screen  pt-0 pb-0">
@@ -36,7 +41,7 @@ const ForgetPassword: React.FC<Props> = (props) => {
                     </svg>
                   </div>
                 </div>
-                <div className="input-area">
+                <form className="input-area" onSubmit={(e) => forgetPass(e) }>
                   <div className="input-item mb-5">
                     <div className="input-com w-full h-full">
                       <label
@@ -51,6 +56,7 @@ const ForgetPassword: React.FC<Props> = (props) => {
                           className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                           type="email"
                           id="email"
+                          name="email"
                         />
                       </div>
                     </div>
@@ -58,14 +64,14 @@ const ForgetPassword: React.FC<Props> = (props) => {
                   <div className="signin-area mb-3.5">
                     <div className="flex justify-center">
                       <button
-                        type="button"
+                        type="submit"
                         className={`${Style["black-btn"]} mb-6 text-sm text-white w-full h-[50px] font-semibold flex justify-center bg-purple items-center`}
                       >
                         <span>Send</span>
                       </button>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
             <SharedLoginSignupImage></SharedLoginSignupImage>

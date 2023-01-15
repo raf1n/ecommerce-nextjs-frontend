@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../../src/state/StateController";
 import Styles from "./AdminDetailsSummary.module.css";
 import { Jsondata } from "../../../../../src/utils/Jsondata";
-interface Props {}
+interface Props { }
 
 const AdminDetailsSummary: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div style={{ padding: "25px" }} className={`${Styles["section"]}`}>
+    <div style={{ padding: "25px" }} className={`${Styles["section"]} mt-12`}>
       <div className={`${Styles["section-header"]}`}>
         <h1>Dashboard</h1>
       </div>
