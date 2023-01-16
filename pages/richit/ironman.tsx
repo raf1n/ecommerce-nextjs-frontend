@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import AdminPage from "../../components/pages/AdminPage/AdminPage";
 import Dashboard from "../../components/pages/AdminPage/Dashboard/Dashboard";
 import AllSellerPage from "../../components/pages/AllSellerPage/AllSellerPage";
+import SellerHeader from "../../components/pages/AllSellerPage/SellerHeader";
 import CheckoutPage from "../../components/pages/CheckoutPage/CheckoutPage";
 import DeliveryComponents from "../../components/pages/HomePagee/DeliveryPolicyData/DeliveryComponents";
 import FeaturedProducts from "../../components/pages/HomePagee/FeaturedProducts/FeaturedProducts";
@@ -20,7 +21,7 @@ const ironman: React.FC<Props> = (props) => {
 
   return (
     <>
-      <AdminPage></AdminPage>
+      {/* <AdminPage></AdminPage> */}
       {/* <DeliveryComponents></DeliveryComponents> */}
       {/* <FeaturedProducts></FeaturedProducts> */}
       {/* <NewReleasedProducts></NewReleasedProducts>
@@ -30,10 +31,10 @@ const ironman: React.FC<Props> = (props) => {
 
       <br />
       <br />
-
-      <AllSellerPage></AllSellerPage>
-      <TrackOrder></TrackOrder>
-      <CheckoutPage></CheckoutPage>
+      <SellerHeader />
+      <AllSellerPage />
+      <TrackOrder />
+      <CheckoutPage />
     </>
   );
 };

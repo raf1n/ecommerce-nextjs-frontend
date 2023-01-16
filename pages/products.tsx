@@ -1,17 +1,15 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import CategoryPage from '../components/pages/CategoryProductPage/CategoryPage'
+import React from "react";
+import { useSelector } from "react-redux";
+import CategoryPage from "../components/pages/CategoryProductPage/CategoryPage";
 
-import { controller } from '../src/state/StateController'
+import { controller } from "../src/state/StateController";
 
-interface Props {
-}
+interface Props {}
 
 const products: React.FC<Props> = (props) => {
+  const states = useSelector(() => controller.states);
 
-    const states = useSelector(() => controller.states)
+  return <CategoryPage />;
+};
 
-    return <CategoryPage />
-}
-
-export default products
+export default products;

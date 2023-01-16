@@ -6,13 +6,13 @@ import FilterWidget from "./FilterWidget";
 import ShopNowBtn from "./../../helpers/Buttons/ShopNowBtn";
 import FilterAd from "./FilterAd";
 
-interface Props { }
+interface Props {}
 
 const CategoryPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div className="container-x mx-auto pt-[30px]">
+    <div className="container-x mx-auto">
       <div className="lg:flex lg:gap-x-[30px]">
         <div className="lg:w-[270px] my-10">
           <FilterWidget />
