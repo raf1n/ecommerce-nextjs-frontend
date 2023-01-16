@@ -4,7 +4,7 @@ import { controller } from "../../../../src/state/StateController";
 
 interface Props {}
 
-const Login: React.FC<Props> = (props) => {
+const AdminLogin: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
@@ -94,4 +94,4 @@ const Login: React.FC<Props> = (props) => {
   );
 };
 
-export default Login;
+export default AdminLogin;
