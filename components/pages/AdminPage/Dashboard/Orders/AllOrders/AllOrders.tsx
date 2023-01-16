@@ -2,19 +2,20 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../../../src/state/StateController";
 import Table from "../../../../../shared/SharedTable/Table";
-import DashboardBreadcrumb from "../../../../MyProfile/DashboardBreadcrumb";
+import DashboardBreadcrumb from "../../../../AdminProfile/DashboardBreadcrumb";
 
-interface Props {}
+interface Props { }
 
 const AllOrders: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div className="mt-[-50px] absolute">
+    <div className="">
       <DashboardBreadcrumb
         headline="All Orders"
         slug="All Orders"
-        link="/all-orders"></DashboardBreadcrumb>
+        link="/all-orders"
+      ></DashboardBreadcrumb>
 
       <Table />
     </div>

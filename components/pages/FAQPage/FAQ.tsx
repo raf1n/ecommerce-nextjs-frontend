@@ -17,7 +17,7 @@ const FAQ: React.FC<Props> = (props) => {
         <div className="container-x mx-auto w-full lg:flex lg:gap-x-[30px]">
       <FaqHeader /> */}
       <div className="w-full mb-10 ">
-        <div className="container-x mx-auto w-full lg:flex lg:gap-x-[30px] mt-6">
+        <div className="container-x mx-auto w-full lg:flex lg:gap-x-[30px] mt-10">
           <div className="lg:w-1/2 w-full mb-10 lg:mb-0">
             <Drawer></Drawer>
           </div>

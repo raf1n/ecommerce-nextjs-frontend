@@ -15,7 +15,7 @@ const ProductCard: React.FC<Props> = (props) => {
       <div data-aos="fade-up" className="item aos-init">
         <div className="main-wrapper-card relative">
           <div
-            className="product-card-one w-full h-[445px] bg-white relative group overflow-hidden"
+            className={`${styles["product-card-one"]} w-full h-[445px] bg-white relative group overflow-hidden`}
             style={{
               boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px 0px",
             }}
@@ -260,10 +260,10 @@ const ProductCard: React.FC<Props> = (props) => {
               </button>
             </div>
           </div>
-          <span className="anim bottom"></span>
-          <span className="anim right"></span>
-          <span className="anim top"></span>
-          <span className="anim left"></span>
+          <span className={`${styles["anim"]} ${styles["bottom"]} `}></span>
+          <span className={`${styles["anim"]} ${styles["right"]} `}></span>
+          <span className={`${styles["anim"]} ${styles["top"]} `}></span>
+          <span className={`${styles["anim"]} ${styles["left"]} `}></span>
         </div>
       </div>
     </div>
