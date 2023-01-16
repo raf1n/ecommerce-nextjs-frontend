@@ -6,6 +6,7 @@ import Table from "../../../shared/SharedTable/Table";
 import MyProfile from "../../MyProfile/MyProfile";
 import Login from "../Login/Login";
 import AdminDetailsSummary from "./AdminDetailsSummary/AdminDetailsSummary";
+import ToggleButton from "./ToggleButton";
 
 interface Props {}
 
@@ -41,6 +42,9 @@ const Dashboard: React.FC<Props> = (props) => {
 
   return (
     <div className="flex-1 overflow-y-scroll">
+      <div className="flex w-full justify-center">
+        <ToggleButton />
+      </div>
       <MyProfile />
       <Table
         tableHeaders={tableHeadersOne}
