@@ -98,3 +98,7 @@
     background-color: rgb(255 187 56/1);
     color: rgb(34 34 34/1);
 }
+
+.sideDropdownScrollStyle::-webkit-scrollbar {
+    visibility: hidden;
+}

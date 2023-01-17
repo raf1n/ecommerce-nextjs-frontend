@@ -5,7 +5,7 @@ import { controller } from "../../../../src/state/StateController";
 import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import styles from "./styles.module.css";
 
-interface Props {}
+interface Props { }
 
 const HeaderTop: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -38,9 +38,8 @@ const HeaderTop: React.FC<Props> = (props) => {
       )}
       {/* {sideDropdownOpen && ( */}
       <div
-        className={`w-[280px] transition-all duration-300 ease-in-out h-screen overflow-y-auto overflow-x-hidden overflow-style-none bg-white fixed left-0 top-0 z-50 ${
-          sideDropdownOpen ? "-left-[0px]" : "-left-[280px]"
-        } `}
+        className={`w-[280px] transition-all duration-300 ease-in-out h-screen overflow-y-auto overflow-x-hidden overflow-style-none bg-white fixed left-0 top-0 z-50 ${sideDropdownOpen ? "-left-[0px]" : "-left-[280px]"
+          } ${styles['sideDropdownScrollStyle']}`}
       >
         <div className="w-full px-5 mt-5 mb-4">
           <div className="flex justify-between items-center">
@@ -1129,7 +1128,7 @@ const HeaderTop: React.FC<Props> = (props) => {
       <header className="header-section-wrapper relative ">
         <div className="shop-topbar w-full bg-white h-10 border-b border-qgray-border">
           <div className="container-x mx-auto h-full ">
-            <div className="flex justify-between items-center h-full">
+            <div className="flex justify-between items-center h-full px-4">
               <div className="topbar-nav">
                 <ul className="flex space-x-6">
                   <li>
