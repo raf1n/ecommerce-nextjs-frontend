@@ -11,7 +11,7 @@ import Slider from "react-slick";
 import ViewMoreBtn from "../../helpers/Buttons/ViewMoreBtn";
 import { Jsondata } from "../../../src/utils/Jsondata";
 
-interface Props {}
+interface Props { }
 
 const About: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -72,6 +72,9 @@ const About: React.FC<Props> = (props) => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    arrows: false,
+    // className: "center",
+    centerMode: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -198,179 +201,99 @@ const About: React.FC<Props> = (props) => {
               Customers Feedback
             </h1>
           </div>
-          <Slider
-            ref={slider}
-            {...settings}
-            className="feedback-slider-wrapper  relative overflow-hidden mx-10"
-          >
-            {feedbacks.map((feedback, index) => (
-              <div className="mt-3 w-full inline-block">
-                <div className="item h-auto m-2">
-                  {/* sm:px-5 sm:py-5 p-10 */}
-                  <div className="bg-primarygray  p-10">
-                    <div className="rating flex space-x-1 items-center mb-4 ">
-                      <span>
-                        <svg
-                          className="fill-qyellow"
-                          width="18"
-                          height="17"
-                          viewBox="0 0 18 17"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
-                        </svg>
-                      </span>
-                      <span>
-                        <svg
-                          className="fill-qyellow"
-                          width="18"
-                          height="17"
-                          viewBox="0 0 18 17"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
-                        </svg>
-                      </span>
-                      <span>
-                        <svg
-                          className="fill-qyellow"
-                          width="18"
-                          height="17"
-                          viewBox="0 0 18 17"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
-                        </svg>
-                      </span>
-                      <span>
-                        <svg
-                          className="fill-qyellow"
-                          width="18"
-                          height="17"
-                          viewBox="0 0 18 17"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
-                        </svg>
-                      </span>
-                      <span>
-                        <svg
-                          className="fill-qyellow"
-                          width="18"
-                          height="17"
-                          viewBox="0 0 18 17"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
-                        </svg>
-                      </span>
-                      <div>
-                        <span className="text-[13px] text-qblack">(5)</span>
-                      </div>
-                    </div>
-                    <div className="text-[15px] text-qgray leading-[30px] line-clamp-6 mb-4">
-                      {feedback.description}
-                    </div>
-                    <div className="flex items-center space-x-2.5 mt-3">
-                      <div className="w-[50px] h-[50px] rounded-full overflow-hidden relative">
-                        <span>
-                          <img src={feedback.picture} alt="" />
-                        </span>
-                      </div>
-                      <div>
-                        <p className="text-[18px] text-qblack font-medium">
-                          {feedback.name}
-                        </p>
-                        <p className="text-qgray text-[13px]">
-                          {feedback.designation}
-                        </p>
-                      </div>
+          <div className="feedback-slider-wrapper w-vw relative overflow-hidden">
+            <Slider
+              ref={slider}
+              {...settings}
+            >
+              {feedbacks.map((feedback, index) => (
+                <div className="item h-auto bg-primarygray sm:px-10 sm:py-9 p-2">
+                  <div className="rating flex space-x-1 items-center mb-4 ">
+                    <span>
+                      <svg
+                        className="fill-qyellow"
+                        width="18"
+                        height="17"
+                        viewBox="0 0 18 17"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
+                      </svg>
+                    </span>
+                    <span>
+                      <svg
+                        className="fill-qyellow"
+                        width="18"
+                        height="17"
+                        viewBox="0 0 18 17"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
+                      </svg>
+                    </span>
+                    <span>
+                      <svg
+                        className="fill-qyellow"
+                        width="18"
+                        height="17"
+                        viewBox="0 0 18 17"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
+                      </svg>
+                    </span>
+                    <span>
+                      <svg
+                        className="fill-qyellow"
+                        width="18"
+                        height="17"
+                        viewBox="0 0 18 17"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
+                      </svg>
+                    </span>
+                    <span>
+                      <svg
+                        className="fill-qyellow"
+                        width="18"
+                        height="17"
+                        viewBox="0 0 18 17"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
+                      </svg>
+                    </span>
+                    <div>
+                      <span className="text-[13px] text-qblack">(5)</span>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                  <div className="text-[15px] text-qgray leading-[30px] line-clamp-6 mb-4">
+                    {feedback.description}
+                  </div>
+                  <div className="flex items-center space-x-2.5 mt-3">
+                    <div className="w-[50px] h-[50px] rounded-full overflow-hidden relative">
+                      <span>
+                        <img src={feedback.picture} alt="" />
+                      </span>
+                    </div>
+                    <div>
+                      <p className="text-[18px] text-qblack font-medium">
+                        {feedback.name}
+                      </p>
+                      <p className="text-qgray text-[13px]">
+                        {feedback.designation}
+                      </p>
+                    </div>
+                  </div>
 
-            {/* <div className='item h-auto sm:px-1 sm:py-9 p-10'>
-                            <div className='bg-primarygray p-10'>
-                                <div className='rating flex space-x-1 items-center mb-4'>
-                                    <span>
-                                        <svg
-                                            className="fill-qyellow"
-                                            width="18"
-                                            height="17"
-                                            viewBox="0 0 18 17"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
-                                        </svg>
-                                    </span>
-                                    <span>
-                                        <svg
-                                            className="fill-qyellow"
-                                            width="18"
-                                            height="17"
-                                            viewBox="0 0 18 17"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
-                                        </svg>
-                                    </span>
-                                    <span>
-                                        <svg
-                                            className="fill-qyellow"
-                                            width="18"
-                                            height="17"
-                                            viewBox="0 0 18 17"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
-                                        </svg>
-                                    </span>
-                                    <span>
-                                        <svg
-                                            className="fill-qyellow"
-                                            width="18"
-                                            height="17"
-                                            viewBox="0 0 18 17"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
-                                        </svg>
-                                    </span>
-                                    <span>
-                                        <svg
-                                            className="fill-qyellow"
-                                            width="18"
-                                            height="17"
-                                            viewBox="0 0 18 17"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d='M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z fill="currentColor"'></path>
-                                        </svg>
-                                    </span>
-                                    <div >
-                                        <span className='text-[13px] text-qblack'>(5)</span>
-                                    </div>
-                                </div>
-                                <div className='text-[15px] text-qgray leading-[30px] line-clamp-6 mb-4'>
-                                    As a digital marketing agency our team works day in and day out on websites of all kinds. Some of the most common errors we see are websites not optimized for SEO because of old, boring, or out of date website themes or designs.
-                                </div>
-                                <div className='flex items-center space-x-2.5 mt-3'>
-                                    <div className='w-[50px] h-[50px] rounded-full overflow-hidden relative'>
-                                        <span>
-                                            <img src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjohn-doe-20220922033955.png&w=1920&q=75" alt="" />
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <p className='text-[18px] text-qblack font-medium'>John Doe</p>
-                                        <p className='text-qgray text-[13px]'>CEO</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        */}
-          </Slider>
+                </div>
+
+              ))}
+
+            </Slider>
+          </div>
+
           <div className=" flex justify-center mt-[40px]">
             <div className="flex space-x-5 item-center">
               <button
