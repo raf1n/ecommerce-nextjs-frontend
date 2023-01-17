@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Dashboard from "../components/pages/AdminPage/Dashboard/Dashboard";
-import Sidebar from "../components/pages/AdminPage/Sidebar/Sidebar";
+import AdminPage from "../components/pages/AdminPage/AdminPage";
 import { controller } from "../src/state/StateController";
 
 interface Props {}
@@ -9,12 +8,7 @@ interface Props {}
 const admin: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  return (
-    <div className="flex h-screen overflow-y-hidden">
-      <Sidebar />
-      <Dashboard />
-    </div>
-  );
+  return <AdminPage />;
 };
 
 export default admin;

@@ -133,7 +133,7 @@ export class Jsondata {
         },
         {
           title: "Terms Condition",
-          url: "terms-condition",
+          url: "terms_condition",
         },
         {
           title: "Best Products",
@@ -162,7 +162,7 @@ export class Jsondata {
       header: "Helpful",
       links: [
         {
-          title: "Helpful",
+          title: "About Us",
           url: "about",
         },
         {
@@ -908,28 +908,7 @@ export class Jsondata {
     { title: "Contact Message", icon: FaEnvelope },
     { title: "Admin List", icon: FaUserAlt },
   ];
-
-  static wishlistData = [
-    {
-      name: "JBL Clip 4 Orange Portable Speaker",
-      price: 133.0,
-      imgUrl:
-        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
-    },
-    {
-      name: "JBL Clip 4 Orange Portable Speaker",
-      price: 133.0,
-      imgUrl:
-        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
-    },
-    {
-      name: "JBL Clip 4 Orange Portable Speaker",
-      price: 133.0,
-      imgUrl:
-        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
-    },
-  ];
-
+  //Categories Table Data
   static categoriesTableData = [
     {
       id: 1,
@@ -1018,138 +997,235 @@ export class Jsondata {
       status: "active",
     },
   ];
-
-  static testDynamicTableDataOne = [
-    {
-      sl: 1,
-      customer: "rumon",
-      orderId: "2342h",
-      date: "1-1-2023",
-      quantity: "420",
-      amount: "10200",
-      status: "pending",
-      payment: "success",
-    },
-    {
-      sl: 2,
-      customer: "rumon",
-      orderId: "2342h",
-      date: "1-1-2023",
-      quantity: "420",
-      amount: "10200",
-      status: "pending",
-      payment: "success",
-    },
-    {
-      sl: 3,
-      customer: "rumon",
-      orderId: "2342h",
-      date: "1-1-2023",
-      quantity: "420",
-      amount: "10200",
-      status: "pending",
-      payment: "success",
-    },
-    {
-      sl: 4,
-      customer: "rumon",
-      orderId: "2342h",
-      date: "1-1-2023",
-      quantity: "420",
-      amount: "10200",
-      status: "pending",
-      payment: "success",
-    },
-    {
-      sl: 5,
-      customer: "rumon",
-      orderId: "2342h",
-      date: "1-1-2023",
-      quantity: "420",
-      amount: "10200",
-      status: "pending",
-      payment: "success",
-    },
-  ];
-
-  static testDynamicTableDataTwo = [
+  //Child Category Table Data
+  static childCategoriesTableData = [
     {
       id: 1,
-      name: "Electronics",
-      image:
-        "https://api.websolutionus.com/shopo/uploads/custom-images/electronics-2022-11-19-02-48-28-5548.png",
-      icon: FaAnchor,
+      childCategory: "LG",
+      slug: "lg",
+      subCategory: "Monitor",
+      category: "Electronics",
       status: "active",
     },
     {
       id: 2,
-      name: "Game",
-      image:
-        "https://api.websolutionus.com/shopo/uploads/custom-images/game-2022-11-19-02-48-48-6382.png",
-      icon: FaGamepad,
-      status: "inactive",
+      childCategory: "HP",
+      slug: "hp",
+      subCategory: "Monitor",
+      category: "Electronics",
+      status: "Inactive",
     },
     {
       id: 3,
-      name: "Mobile",
-      image:
-        "https://api.websolutionus.com/shopo/uploads/custom-images/mobile-2022-11-19-02-49-20-2538.png",
-      icon: FaMobileAlt,
-      status: "active",
+      childCategory: "PlayStation 4",
+      slug: "playstation-4",
+      subCategory: "PlayStation",
+      category: "Game",
+      status: "Inactive",
     },
     {
       id: 4,
-      name: "Lifestyle",
-      image:
-        "https://api.websolutionus.com/shopo/uploads/custom-images/lifestyle-2022-11-19-02-49-38-3139.png",
-      icon: FaHome,
-      status: "active",
+      childCategory: "PlayStation 5",
+      slug: "playstation-5",
+      subCategory: "PlayStation",
+      category: "Game",
+      status: "Inactive",
     },
     {
       id: 5,
-      name: "Babies & Toys",
-      image:
-        "https://api.websolutionus.com/shopo/uploads/custom-images/babies-toys-2022-11-19-02-50-00-3811.png",
-      icon: FaBasketballBall,
-      status: "active",
+      childCategory: "Samsung",
+      slug: "samsung",
+      subCategory: "Mobiles",
+      category: "Electronics",
+      status: "Inactive",
     },
     {
       id: 6,
-      name: "Bike",
-      image:
-        "https://api.websolutionus.com/shopo/uploads/custom-images/bike-2022-11-19-02-50-18-4648.png",
-      icon: FaBicycle,
+      childCategory: "Apple",
+      slug: "apple",
+      subCategory: "Mobiles",
+      category: "Electronics",
       status: "active",
+    },
+  ];
+  static subCategoriesTableData = [
+    {
+      id: 1,
+      subCat: "Mobiles",
+      slug: "mobiles",
+      category: "Electronics",
+      status: "active",
+    },
+    {
+      id: 2,
+      subCat: "Laptop",
+      slug: "laptop",
+      category: "Electronics",
+      status: "active",
+    },
+    {
+      id: 3,
+      subCat: "Headphone",
+      slug: "headphone",
+      category: "Electronics",
+      status: "inactive",
+    },
+    {
+      id: 4,
+      subCat: "Mouse",
+      slug: "mouse",
+      category: "Electronics",
+      status: "inactive",
+    },
+  ];
+  static sellerAddress = [
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
+    },
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
+    },
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
+    },
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
+    },
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
+    },
+    {
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
+      phone: "01739446375",
+      address: "Chattogram , Bangladesh",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
+    },
+  ];
+
+  static tableDatas = [
+    {
+      id: 1,
+      Customer: "Rafin Robin",
+      OrderId: "8966896",
+      Date: "32 December, 2023",
+      Quantity: 2320,
+      Amount: 20343,
+      OrderStatus: "pending",
+      Payment: "success",
+      Action: "",
+    },
+    {
+      id: 2,
+      Customer: "Mr. Sadab",
+      OrderId: "8966896",
+      Date: "32 January, 2023",
+      Quantity: 540,
+      Amount: 65456,
+      OrderStatus: "delivered",
+      Payment: "success",
+      Action: "",
+    },
+    {
+      id: 3,
+      Customer: "Toukir khan",
+      OrderId: "4547544",
+      Date: "15 February, 2023",
+      Quantity: 1220,
+      Amount: 62324,
+      OrderStatus: "pending",
+      Payment: "pending",
+      Action: "",
+    },
+    {
+      id: 4,
+      Customer: "Iqbal Hasan",
+      OrderId: "7875876",
+      Date: "23 January, 2023",
+      Quantity: 767,
+      Amount: 77544,
+      OrderStatus: "delivered",
+      Payment: "success",
+      Action: "",
+    },
+    {
+      id: 5,
+      Customer: "Fayaz karim",
+      OrderId: "674454",
+      Date: "31 August, 2023",
+      Quantity: 1345,
+      Amount: 86647,
+      OrderStatus: "pending",
+      Payment: "pending",
+      Action: "",
+    },
+    {
+      id: 6,
+      Customer: "Mr Stark",
+      OrderId: "656568",
+      Date: "32 January, 2023",
+      Quantity: 110,
+      Amount: 65575,
+      OrderStatus: "pending",
+      Payment: "success",
+      Action: "",
     },
     {
       id: 7,
-      name: "Men's Fasion",
-      image:
-        "https://api.websolutionus.com/shopo/uploads/custom-images/mens-fasion-2022-11-19-02-50-39-5203.png",
-      icon: FaStreetView,
-      status: "active",
+      Customer: "Mr Xavier",
+      OrderId: "9676767",
+      Date: "32 July, 2023",
+      Quantity: 225,
+      Amount: 24242,
+      OrderStatus: "delivered",
+      Payment: "success",
+      Action: "",
+    },
+  ];
+  static wishlistData = [
+    {
+      name: "JBL Clip 4 Orange Portable Speaker",
+      price: 133.0,
+      imgUrl:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
     },
     {
-      id: 8,
-      name: "Woman Fashion",
-      image:
-        "https://api.websolutionus.com/shopo/uploads/custom-images/womans-fasion-2022-11-19-02-52-58-2850.png",
-      icon: FaAndroid,
-      status: "active",
+      name: "JBL Clip 4 Orange Portable Speaker",
+      price: 133.0,
+      imgUrl:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
     },
     {
-      id: 9,
-      name: "Talevision",
-      image: "",
-      icon: FaAdjust,
-      status: "active",
-    },
-    {
-      id: 10,
-      name: "Accessories",
-      image: "",
-      icon: FaCogs,
-      status: "active",
+      name: "JBL Clip 4 Orange Portable Speaker",
+      price: 133.0,
+      imgUrl:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
     },
   ];
 }

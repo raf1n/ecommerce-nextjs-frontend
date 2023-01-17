@@ -15,7 +15,7 @@ const TopRatedProduct: React.FC<Props> = (props) => {
         <div className="main-wrapper-card relative">
           <div
             data-aos="fade-left"
-            className="product-row-card-style-one w-full lg:h-[250px] h-[200px] bg-white group relative overflow-hidden aos-init aos-animate"
+            className={`${styles['product-row-card-style-one']} w-full lg:h-[250px] h-[200px] bg-white group relative overflow-hidden aos-init aos-animate`}
           >
             <div className="flex space-x-5 items-center w-full h-full lg:p-[30px] sm:p-5 p-2 ">
               <div className="lg:w-1/2 w-1/3 h-full relative transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out">

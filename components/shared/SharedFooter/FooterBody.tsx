@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
@@ -36,11 +37,11 @@ const FooterBody: React.FC<Props> = (props) => {
               <ul className="flex flex-col gap-y-4">
                 {links.map(({ title, url }, idx) => (
                   <li key={idx}>
-                    <a href={"/" + url}>
+                    <Link href={"/" + url}>
                       <span className="text-[#9A9A9A] text-[15px] hover:text-gray-900 border-b border-transparent hover:border-gray-900 cursor-pointer capitalize">
                         {title}
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

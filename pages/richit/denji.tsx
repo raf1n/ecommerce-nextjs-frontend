@@ -15,6 +15,8 @@ import ProfileAddress from "../../components/pages/ProfilePage/ProfileAddress/Pr
 import ProfilePage from "../../components/pages/ProfilePage/ProfilePage";
 import SharedLoginSignupImage from "../../components/shared/SharedLoginSignupImage/SharedLoginSignupImage";
 import SignupPage from "../../components/pages/SignupPage/SignupPage";
+import SubCategories from "../../components/pages/AdminPage/Dashboard/ManageCategories/SubCategories/SubCategories";
+import ForgetPassword from "../../components/pages/ForgetPassword/ForgetPassword";
 
 interface Props {}
 
@@ -32,6 +34,8 @@ const denji: React.FC<Props> = (props) => {
       <AdminDetailsSummary /> */}
       <ProfilePage></ProfilePage>
       <SignupPage />
+      <SubCategories></SubCategories>
+      <ForgetPassword></ForgetPassword>
     </>
   );
 };
