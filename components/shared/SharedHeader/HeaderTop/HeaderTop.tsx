@@ -1426,7 +1426,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                       }}
                     >
                       <div className="w-full h-full">
-                        <div className="product-items h-[310px] overflow-y-scroll">
+                        <div className={`${styles["productItems"]} h-[310px] overflow-y-scroll`}>
                           <ul>
                             <li className="w-full h-full flex justify-between">
                               <div className="flex space-x-[6px] justify-center items-center px-4 my-[20px]">
