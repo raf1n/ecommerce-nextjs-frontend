@@ -30,12 +30,21 @@
   .sub-category-lvl-three {
   display: none;
 }
+<<<<<<< HEAD
 
 .nav-widget-wrapper .nav ul li .sub-menu {
   transition: all 0.5s ease-in-out;
   opacity: 0;
   visibility: hidden;
   pointer-events: auto;
+=======
+ 
+ .nav-widget-wrapper .nav ul li .sub-menu {
+    transition: all .5s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: auto;
+>>>>>>> 8c179c8d10d49953eac6d14775b90293a0ab1442
 }
 .nav-widget-wrapper .nav ul li:hover .sub-menu {
   opacity: 1;

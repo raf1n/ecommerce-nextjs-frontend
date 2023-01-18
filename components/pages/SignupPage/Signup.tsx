@@ -74,6 +74,7 @@ const Signup: React.FC<Props> = (props) => {
             // setSendVerifyText(true)
             setError(true);
             // setSuccess(false)
+<<<<<<< HEAD
             setErrorText("Database Server Error");
             SocialLogin.loginWithEmailPasswordAfterServerError(email, password);
             SocialLogin.logOut();
@@ -92,6 +93,18 @@ const Signup: React.FC<Props> = (props) => {
           }
         }
       }
+=======
+            setErrorText(err)
+        }
+        else {      
+          SocialLogin.sendEmail()
+          setSendVerifyText(true)
+          setError(false)
+          // setSuccess(true)
+          // setSuccessText('SignUp Success')
+
+  }
+>>>>>>> 8c179c8d10d49953eac6d14775b90293a0ab1442
     }
   };
 

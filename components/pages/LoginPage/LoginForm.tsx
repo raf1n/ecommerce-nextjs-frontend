@@ -19,6 +19,7 @@ const LoginForm: React.FC<Props> = (props) => {
   const [successTextLogin, setSuccessTextLogin] = useState('')
   const [loggedinSendVerify, setLoggedinSendVerify] = useState(false)
   const [loggedinSendVerifyText, setLoggedinSendVerifyText] = useState('')
+
   const router = useRouter();
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const LoginForm: React.FC<Props> = (props) => {
     if (token && user?.email && user?.displayName && user?.photoURL) {
         const { email, displayName, photoURL } = user
         // window.smartlook('identify', email);
-        const { res, err } = await EcommerceApi.login(token, email, displayName, photoURL, "google");
+        const { res, err } = await EcommerceApi.login(token, email, displayName, photoURL, "google",'buyer');
         if (err) {     
             console.log('Login error')
         }
@@ -73,11 +74,36 @@ const LoginForm: React.FC<Props> = (props) => {
                 setLoggedinSendVerifyText('verify first and login again')
             }
             else {
-                setLoggedinSendVerify(false)
-                setSuccessLogin(true)
-                setSuccessTextLogin('SignIn Success')
+              setLoggedinSendVerify(false)
+              console.log('resooooo', res)
+              const token = res?.user?.accessToken;
+              const user = res.user
+              console.log('use,tok', user?.email);
+              console.log('dis', user?.displayName);
+              if (token && user?.email) {
+                  console.log('enter');
+                  const { email,displayName } = user
+                  const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email", 'buyer');
+                  if (err) {
+                      setErrorLogin(true)
+                      setSuccessLogin(false)
+                      setErrorTextLogin('Server Error')
+                  }
+                  else {
+                      CookiesHandler.setAccessToken(res.access_token)
+                      if (res.slug) {
+                        CookiesHandler.setSlug(res.slug as string)
+                        setSuccessLogin(true)
+                        setSuccessTextLogin('SignIn Success')
+                      }
+                  }
+               
+                 
 
-            }
+              }
+     
+     
+          }
        
        
         }

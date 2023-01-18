@@ -934,7 +934,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                     </div>
                   </li>
                   <li className="category-item">
-                    <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qgreen transition-all duration-300 ease-in-out cursor-pointer">
+                    <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                       <div className="flex items-center space-x-6">
                         <span className="text-sm font-normal capitalize">
                           Seller terms and conditions
