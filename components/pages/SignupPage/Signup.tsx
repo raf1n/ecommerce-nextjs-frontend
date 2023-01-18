@@ -52,43 +52,14 @@ const Signup: React.FC<Props> = (props) => {
             // setSuccess(false)
             setErrorText(err)
         }
-        else {
-            console.log('resooooo',res)
-            const token = res?.user?.accessToken;
-            const user = res.user
-            console.log('use,tok', user?.email);
-            console.log('dis',user?.displayName);
-            if (token && user?.email) {
-                console.log('enter');
-                const { email} = user
-                // window.smartlook('identify', email);
-                const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email");
-                if (err) {
-                    // SocialLogin.sendEmail()
-                    // setSendVerifyText(true)
-                    setError(true)
-                    // setSuccess(false)
-                    setErrorText('Database Server Error')
-                    SocialLogin.loginWithEmailPasswordAfterServerError(email, password)
-                    SocialLogin.logOut()
-                }
-                else {
-                    SocialLogin.sendEmail()
-                    setSendVerifyText(true)
-                    CookiesHandler.setAccessToken(res.access_token)
-                    if (res.slug) {
-                        CookiesHandler.setSlug(res.slug as string)
-                    }
-                    // router.push('/')
-                    setError(false)
-                    // setSuccess(true)
-                  // setSuccessText('SignUp Success')
-                  // e.target.reset()
-                  
-                }
-            }
-        
-        }
+        else {      
+          SocialLogin.sendEmail()
+          setSendVerifyText(true)
+          setError(false)
+          // setSuccess(true)
+          // setSuccessText('SignUp Success')
+
+  }
     }
 }
 

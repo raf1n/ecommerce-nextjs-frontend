@@ -13,7 +13,7 @@ export interface LoginInterface {
 
 export class EcommerceApi {
     //DEMO API CALLING STRUCTURE
-    static async login(token: string, email: string, fullName: string, avatar: string, tokenType: string): Promise<ILoginResponse> {
+    static async login(token: string, email: string, fullName: string, avatar: string, tokenType: string,userRole:string): Promise<ILoginResponse> {
         console.log(token);
         console.log(API_ENDPOINT)
         const myHeaders = new Headers();
@@ -24,6 +24,7 @@ export class EcommerceApi {
         urlencoded.append("email", email);
         urlencoded.append("fullName", fullName);
         urlencoded.append("avatar", avatar);
+        urlencoded.append("userRole", userRole);
         // urlencoded.append("userType", userType);
         const requestOptions = {
             method: 'POST',
