@@ -62,14 +62,49 @@ const xavier: React.FC<Props> = (props) => {
                 setErrorText(err)
             }
             else {
-           console.log('signUpWithEmailPassword',res);
+                console.log('resooooo', res)
+                const token = res?.user?.accessToken;
+                const user = res.user
+                console.log('use,tok', user?.email);
+                console.log('dis', user?.displayName);
+                if (token && user?.email) {
+                    console.log('enter');
+                    const { email } = user
+                    const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email",'buyer');
+                    if (err) {
+                        setError(true)
+                        setSuccess(false)
+                        setErrorText('Database Server Error')
+                        SocialLogin.loginWithEmailPasswordAfterServerError()
+                    }
+                    else {
+                        // CookiesHandler.setAccessToken(res.access_token)
+                        // if (res.slug) {
+                        //     CookiesHandler.setSlug(res.slug as string)
+                        // }
                         SocialLogin.sendEmail()
                         setSendVerifyText(true)
                         setError(false)
                         setSuccess(true)
                         setSuccessText('SignUp Success')
+                    }
+                    // setLoggedinSendVerify(false)
+                    // setSuccessLogin(true)
+                    // setSuccessTextLogin('SignIn Success')
 
                 }
+       
+       
+            }
+        //     else {
+        //    console.log('signUpWithEmailPassword',res);
+        //                 SocialLogin.sendEmail()
+        //                 setSendVerifyText(true)
+        //                 setError(false)
+        //                 setSuccess(true)
+        //                 setSuccessText('SignUp Success')
+
+        //         }
             
             }
         
@@ -98,33 +133,40 @@ const xavier: React.FC<Props> = (props) => {
                     setLoggedinSendVerifyText('verify first and login again')
                 }
                 else {
-                    console.log('resooooo', res)
-                    const token = res?.user?.accessToken;
-                    const user = res.user
-                    console.log('use,tok', user?.email);
-                    console.log('dis', user?.displayName);
-                    if (token && user?.email) {
-                        console.log('enter');
-                        const { email } = user
-                        const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email",'buyer');
-                        if (err) {
-                            setError(true)
-                            setSuccess(false)
-                            setErrorText('Database Server Error')
-                        }
-                        else {
-                            CookiesHandler.setAccessToken(res.access_token)
-                            if (res.slug) {
-                                CookiesHandler.setSlug(res.slug as string)
-                            }
-                        }
+                    // console.log('resooooo', res)
+                    // const token = res?.user?.accessToken;
+                    // const user = res.user
+                    // console.log('use,tok', user?.email);
+                    // console.log('dis', user?.displayName);
+                    // if (token && user?.email) {
+                    //     console.log('enter');
+                    //     const { email } = user
+                    //     const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email",'buyer');
+                    //     if (err) {
+                    //         setError(true)
+                    //         setSuccess(false)
+                    //         setErrorText('Database Server Error')
+                    //     }
+                    //     else {
+                    //         CookiesHandler.setAccessToken(res.access_token)
+                    //         if (res.slug) {
+                    //             CookiesHandler.setSlug(res.slug as string)
+                    //         }
+                    //     }
+                       
+                    // } 
+                    if (res.access_token == null) {
+                        // console.log('authentication error')
+                        setLoggedinSendVerifyText('authentication error')
+                    }
+                    else {
+                        CookiesHandler.setAccessToken(res.access_token)
+                        CookiesHandler.setSlug(res.slug as string)
                         setLoggedinSendVerify(false)
                         setSuccessLogin(true)
                         setSuccessTextLogin('SignIn Success')
-
                     }
-           
-           
+
                 }
             }
         }
@@ -138,18 +180,20 @@ const xavier: React.FC<Props> = (props) => {
             // window.smartlook('identify', email);
             const { res, err } = await EcommerceApi.login(token, email, displayName, photoURL, "google",'buyer');
             if (err) {
-                // enqueueSnackbar('Server Error', { variant: 'error', autoHideDuration: 2000 });
-                // setTimeout(() => {
-                //     actions.setDialogLoading(false)
-                // }, 1000)
-                console.log('Login error')
+                console.log('Login error', err)
+                SocialLogin.loginWithEmailPasswordAfterServerError()
             }
             else {
-                console.log('loginRes',res);
-                // CookiesHandler.setAccessToken(res.access_token)
-                // if (res.slug) {
-                //     CookiesHandler.setSlug(res.slug as string)
-                // }
+                if (res.access_token == null) {
+                    console.log('authentication error')
+                }
+                else {
+                    CookiesHandler.setAccessToken(res.access_token)
+                    if (res.slug) {
+                        CookiesHandler.setSlug(res.slug as string)
+                        router.push('/')
+                    }
+                }
                 // actions.setSocialPicture(user?.photoURL)
                 // localStorage.clear();
                 // sessionStorage.clear();
@@ -159,7 +203,7 @@ const xavier: React.FC<Props> = (props) => {
                 // Todo fix params
                 // enqueueSnackbar("Login successful !", { variant: 'success', autoHideDuration: 2000 })
             }
-            // router.push('/')
+          
         }
 
     }

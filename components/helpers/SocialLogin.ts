@@ -3,6 +3,7 @@ import { getAuth, signInWithPopup,signInWithEmailAndPassword,updateProfile,onAut
 import { initializeApp } from "firebase/app";
 // import { getDatabase } from "firebase/database";
 import { MyFetchInterface } from "../../interfaces/models";
+import { CookiesHandler } from '../../src/utils/CookiesHandler';
 
 
 
@@ -185,20 +186,20 @@ export class SocialLogin {
         //         })
         })
     }
-    // static async loginWithEmailPasswordAfterServerError(email: any, password: any){
-    //     // return new Promise((resolve) => {
-    //         const auth = getAuth();
-    //         if (!auth.currentUser) {
-    //             return
-    //         }
-    //         auth.currentUser.delete().then((res)=>{
-    //             // User deleted.
+    static async loginWithEmailPasswordAfterServerError(){
+        // return new Promise((resolve) => {
+            const auth = getAuth();
+            if (!auth.currentUser) {
+                return
+            }
+            auth.currentUser.delete().then((res)=>{
+                // User deleted.
                
-    //           }).catch((error)=> {
-    //             // An error happened.
-    //           });
-    //     // })
-    // }
+              }).catch((error)=> {
+                // An error happened.
+              });
+        // })
+    }
 
     static async forgetEmail(email:any): Promise<void> {
         const auth = getAuth();
@@ -226,8 +227,6 @@ export class SocialLogin {
         const provider = new GoogleAuthProvider();
         const auth = getAuth();
         const result = await signInWithPopup(auth, provider)
-        const email = result?.user?.email
-
         const credential = GoogleAuthProvider.credentialFromResult(result);
         console.log('result', result)
         console.log('credential',credential)
@@ -261,5 +260,8 @@ export class SocialLogin {
         console.log('loggedout');
         const auth = getAuth();
         await signOut(auth)
+        CookiesHandler.removeAccessToken();
+        localStorage.clear();
+        sessionStorage.clear();
     }
 }
