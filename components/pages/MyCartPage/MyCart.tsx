@@ -1,22 +1,21 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { controller } from '../../../src/state/StateController'
-import PageHeader from '../../shared/SharedPageHeader/PageHeader'
+import Link from "next/link";
+import React from "react";
+import { useSelector } from "react-redux";
+import { controller } from "../../../src/state/StateController";
+import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 
-interface Props {
-}
+interface Props {}
 
 const MyCart: React.FC<Props> = (props) => {
-
-  const states = useSelector(() => controller.states)
+  const states = useSelector(() => controller.states);
 
   return (
-    <div className='bg-white mb-10'>
+    <div className="bg-white mb-10">
       <PageHeader slug="Cart" link="/cart" title="Your Cart" />
-      <div className='w-full mt-[23px] '>
-        <div className='container-x mx-auto'>
-          <div className='w-full mb-[30px]'>
-            <div className='relative w-full overflow-x-auto border border-[#EDEDED]'>
+      <div className="w-full mt-[23px] ">
+        <div className="container-x mx-auto">
+          <div className="w-full mb-[30px]">
+            <div className="relative w-full overflow-x-auto border border-[#EDEDED]">
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <tbody>
                   <tr className="text-[13px] font-medium text-black bg-[#F6F6F6] whitespace-nowrap px-2 border-b default-border-bottom uppercase">
@@ -94,20 +93,23 @@ const MyCart: React.FC<Props> = (props) => {
                       </div>
                     </td>
                     <td className="text-center py-4 capitalize px-2">
-                      <div className='flex space-x-1 items-center justify-center '>
+                      <div className="flex space-x-1 items-center justify-center ">
                         <div className="w-[120px] h-full px-[26px] flex items-center border border-gray-200">
                           <div className="flex justify-between items-center w-full py-2">
-                            <button type="button" className="text-base text-qgray">
+                            <button
+                              type="button"
+                              className="text-base text-qgray">
                               -
                             </button>
                             <span className="text-qblack">1</span>
-                            <button type="button" className="text-base text-qgray">
+                            <button
+                              type="button"
+                              className="text-base text-qgray">
                               +
                             </button>
                           </div>
                         </div>
                       </div>
-
                     </td>
                     <td className="text-center py-4 capitalize px-2">
                       <div className="flex space-x-1 items-center justify-center">
@@ -189,20 +191,23 @@ const MyCart: React.FC<Props> = (props) => {
                       </div>
                     </td>
                     <td className="text-center py-4 capitalize px-2">
-                      <div className='flex space-x-1 items-center justify-center '>
+                      <div className="flex space-x-1 items-center justify-center ">
                         <div className="w-[120px] h-full px-[26px] flex items-center border border-gray-200">
                           <div className="flex justify-between items-center w-full py-2">
-                            <button type="button" className="text-base text-qgray">
+                            <button
+                              type="button"
+                              className="text-base text-qgray">
                               -
                             </button>
                             <span className="text-qblack">1</span>
-                            <button type="button" className="text-base text-qgray">
+                            <button
+                              type="button"
+                              className="text-base text-qgray">
                               +
                             </button>
                           </div>
                         </div>
                       </div>
-
                     </td>
                     <td className="text-center py-4 capitalize px-2">
                       <div className="flex space-x-1 items-center justify-center">
@@ -284,20 +289,23 @@ const MyCart: React.FC<Props> = (props) => {
                       </div>
                     </td>
                     <td className="text-center py-4 capitalize px-2">
-                      <div className='flex space-x-1 items-center justify-center '>
+                      <div className="flex space-x-1 items-center justify-center ">
                         <div className="w-[120px] h-full px-[26px] flex items-center border border-gray-200">
                           <div className="flex justify-between items-center w-full py-2">
-                            <button type="button" className="text-base text-qgray">
+                            <button
+                              type="button"
+                              className="text-base text-qgray">
                               -
                             </button>
                             <span className="text-qblack">1</span>
-                            <button type="button" className="text-base text-qgray">
+                            <button
+                              type="button"
+                              className="text-base text-qgray">
                               +
                             </button>
                           </div>
                         </div>
                       </div>
-
                     </td>
                     <td className="text-center py-4 capitalize px-2">
                       <div className="flex space-x-1 items-center justify-center">
@@ -325,25 +333,29 @@ const MyCart: React.FC<Props> = (props) => {
               </table>
             </div>
           </div>
-          <div className='w-full sm:flex justify-between '>
-            <div className='flex space-x-4 items-center mb-16'>
+          <div className="w-full sm:flex justify-between ">
+            <div className="flex space-x-4 items-center mb-16">
               <button>
-                <div className='w-full text-sm font-semibold text-qred mb-5 sm:mb-0'>
+                <div className="w-full text-sm font-semibold text-qred mb-5 sm:mb-0">
                   Clear Cart
                 </div>
               </button>
-              <div className='w-[140px] h-[50px] bg-[#F6F6F6] flex justify-center items-center cursor-pointer'>
-                <span className='text-sm font-semibold'>Update Cart</span>
+              <div className="w-[140px] h-[50px] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
+                <span className="text-sm font-semibold">Update Cart</span>
               </div>
-              <div className='w-[300px] h-[50px] bg-black flex justify-center items-center cursor-pointer'>
-                <span className='text-sm text-white font-semibold'>Proceed to Checkout</span>
+              <div className="w-[300px] h-[50px] bg-black flex justify-center items-center cursor-pointer">
+                <Link href="/checkout">
+                  <span className="text-sm text-white font-semibold">
+                    Proceed to Checkout
+                  </span>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MyCart
+export default MyCart;
