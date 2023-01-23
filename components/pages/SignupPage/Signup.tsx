@@ -7,6 +7,7 @@ import Link from "next/link";
 import { SocialLogin } from "../../helpers/SocialLogin";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
+import { IUser } from "../../../interfaces/models";
 interface Props { }
 
 const Signup: React.FC<Props> = (props) => {
@@ -58,8 +59,16 @@ const Signup: React.FC<Props> = (props) => {
         console.log('dis', user?.displayName);
         if (token && user?.email) {
           console.log('enter');
-          const { email } = user
-          const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email", 'buyer');
+          const { email } = user;
+          const data: Partial<IUser> = {
+            token: token,
+            tokenType: 'email',
+            email: email,
+            avatar: 'https://tinyurl.com/382e6w5t',
+            fullName: displayName,
+            role: 'buyer'
+          }
+          const { res, err } = await EcommerceApi.login(data);
           if (err) {
             setError(true)
             // setSuccess(false)
