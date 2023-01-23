@@ -38,13 +38,19 @@ const Signup: React.FC<Props> = (props) => {
     const email = e.target.email.value;
 
     if (e.target.password.value.length < 6) {
+<<<<<<< HEAD
       setError(true)
       // setSuccess(false)
       setErrorText('password must be 6 characters minimum')
+=======
+        setError(true)
+        setErrorText('password must be 6 characters minimum')
+>>>>>>> 7763415d1ce4687ff095e89553be20fa529c403d
     }
     else {
       console.log('display', displayName)
       console.log('email', email);
+<<<<<<< HEAD
       console.log('pass', password);
       const { res, err } = await SocialLogin.signUpWithEmailPassword(displayName, email, password)
       if (err) {
@@ -60,6 +66,40 @@ const Signup: React.FC<Props> = (props) => {
         // setSuccessText('SignUp Success')
 
       }
+=======
+      console.log('pass',password);
+        const { res, err } = await SocialLogin.signUpWithEmailPassword(displayName,email, password)
+        if (err) {
+            setError(true)
+            setErrorText(err)
+      }
+      else {
+        console.log('resooooo', res)
+        const token = res?.user?.accessToken;
+        const user = res.user
+        console.log('use,tok', user?.email);
+        console.log('dis', user?.displayName);
+        if (token && user?.email) {
+            console.log('enter');
+            const { email } = user
+            const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email",'buyer');
+            if (err) {
+                setError(true)
+                // setSuccess(false)
+                setErrorText('Database Server Error')
+                SocialLogin.loginWithEmailPasswordAfterServerError()
+            }
+            else {
+              
+                SocialLogin.sendEmail()
+                setSendVerifyText(true)
+                setError(false)
+            }
+          
+
+        }
+    }
+>>>>>>> 7763415d1ce4687ff095e89553be20fa529c403d
     }
   }
 

@@ -36,21 +36,48 @@ const LoginForm: React.FC<Props> = (props) => {
   const handleGoogleSignUp = async () => {
     // actions.setDialogLoading(true)
     const { token, user } = await SocialLogin.loginWithGoogle()
+
     if (token && user?.email && user?.displayName && user?.photoURL) {
-        const { email, displayName, photoURL } = user
-        // window.smartlook('identify', email);
-        const { res, err } = await EcommerceApi.login(token, email, displayName, photoURL, "google",'buyer');
-        if (err) {     
-            console.log('Login error')
-        }
-        else {
-            CookiesHandler.setAccessToken(res.access_token)
-            if (res.slug) {
+      const { email, displayName, photoURL } = user
+      // window.smartlook('identify', email);
+      const { res, err } = await EcommerceApi.login(token, email, displayName, photoURL, "google",'buyer');
+      if (err) {
+        console.log('Login error', err)
+        setErrorLogin(true)
+        setSuccessLogin(false)
+        setErrorTextLogin('Login error')
+        SocialLogin.loginWithEmailPasswordAfterServerError()
+      }
+      else {
+          if (res.access_token == null) {
+              console.log('authentication error')
+          }
+          else {
+              CookiesHandler.setAccessToken(res.access_token)
+              if (res.slug) {
                 CookiesHandler.setSlug(res.slug as string)
-            }           
-            router.push('/')
-        }
-    }
+                setErrorLogin(false)
+                router.push('/')
+              }
+          }
+      }
+    
+  }
+    // if (token && user?.email && user?.displayName && user?.photoURL) {
+    //     const { email, displayName, photoURL } = user
+    //     // window.smartlook('identify', email);
+    //     const { res, err } = await EcommerceApi.login(token, email, displayName, photoURL, "google",'buyer');
+    //     if (err) {     
+    //         console.log('Login error')
+    //     }
+    //     else {
+    //         CookiesHandler.setAccessToken(res.access_token)
+    //         if (res.slug) {
+    //             CookiesHandler.setSlug(res.slug as string)
+    //         }           
+    //         router.push('/')
+    //     }
+    // }
 
 }
 
@@ -68,41 +95,45 @@ const LoginForm: React.FC<Props> = (props) => {
         else {
             console.log('resss', res)
             setErrorLogin(false)
-            if (!res.user.emailVerified) {
-                console.log('kkk');
-                setLoggedinSendVerify(true)
-                setLoggedinSendVerifyText('verify first and login again')
-            }
-            else {
-              setLoggedinSendVerify(false)
-              console.log('resooooo', res)
-              const token = res?.user?.accessToken;
-              const user = res.user
-              console.log('use,tok', user?.email);
-              console.log('dis', user?.displayName);
-              if (token && user?.email) {
-                  console.log('enter');
-                  const { email,displayName } = user
-                  const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email", 'buyer');
-                  if (err) {
-                      setErrorLogin(true)
-                      setSuccessLogin(false)
-                      setErrorTextLogin('Server Error')
-                  }
-                  else {
-                      CookiesHandler.setAccessToken(res.access_token)
-                      if (res.slug) {
-                        CookiesHandler.setSlug(res.slug as string)
-                        setSuccessLogin(true)
-                        setSuccessTextLogin('SignIn Success')
-                      }
-                  }
-               
-                 
-
+          if (!res.user.emailVerified) {
+            console.log('kkk');
+            setLoggedinSendVerify(true)
+            setLoggedinSendVerifyText('verify first and login again')
+          }
+          else {
+            console.log('resooooo', res)
+            const token = res?.user?.accessToken;
+            const user = res.user
+            console.log('use,tok', user?.email);
+            console.log('dis', user?.displayName);
+            if (token && user?.email && user?.displayName) {
+              console.log('enter');
+              const { email, displayName } = user
+              const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email", 'buyer');
+              if (err) {
+                setErrorLogin(true)
+                setSuccessLogin(false)
+                setErrorTextLogin('Database Server Error')
+                SocialLogin.logOut()
               }
-     
-     
+              else {
+                if (res.access_token == null) {
+                  setErrorTextLogin('authentication Server Error')
+                }
+                else{
+                CookiesHandler.setAccessToken(res.access_token)
+                  if (res.slug) {
+                    CookiesHandler.setSlug(res.slug as string)
+                    setErrorLogin(false)
+                    setLoggedinSendVerify(false)
+                    setSuccessLogin(true)
+                    setSuccessTextLogin('SignIn Success')
+                    router.push('/')
+                  }
+                }
+              }
+              
+            }
           }
        
        
