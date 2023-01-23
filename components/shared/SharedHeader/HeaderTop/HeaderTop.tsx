@@ -1466,13 +1466,15 @@ const HeaderTop: React.FC<Props> = (props) => {
                               $40009.99
                             </span>
                           </div>
-                          <div className="product-action-btn">
+                          <div className=" product-action-btn">
                             <div className="gray-btn w-full h-[50px] mb-[10px] cursor-pointer ">
-                              <span>View Cart</span>
+                              <Link href="/cart">
+                                <span>View Cart</span>
+                              </Link>
                             </div>
                             <div className="w-full h-[50px] cursor-pointer">
                               <div className="yellow-btn">
-                                <Link href="checkout">
+                                <Link href="/checkout">
                                   <span className="text-sm">Checkout Now</span>
                                 </Link>
                               </div>
