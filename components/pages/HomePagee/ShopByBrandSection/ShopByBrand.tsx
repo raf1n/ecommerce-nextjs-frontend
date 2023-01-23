@@ -10,7 +10,7 @@ const ShopByBrand: React.FC<Props> = (props) => {
     const states = useSelector(() => controller.states);
 
     return (
-        <div className='w-full'>
+        <div className='w-full mt-10'>
             <div className='container-x mx-auto pb-[60px]'>
                 <div >
                     <h1 className='sm:text-3xl text-xl font-semibold mb-5'>Shop by Brand</h1>

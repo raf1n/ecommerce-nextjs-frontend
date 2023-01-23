@@ -5,8 +5,6 @@ import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import ContactInformation from "./ContactInformation";
 import GetInTouch from "./GetInTouchComponent/GetInTouch";
 
-
-
 interface Props { }
 
 const Contact: React.FC<Props> = (props) => {
@@ -15,14 +13,15 @@ const Contact: React.FC<Props> = (props) => {
   return (
     <>
       <PageHeader slug="Contact" link="/contact" title="Contact" />
-      <div className="w-full min-h-screen  pt-0 pb-0">
+      <div className="w-full min-h-screen mt-10 pt-0 pb-0">
         <div className="container-x mx-auto">
           <div className="main-wrapper w-full lg:flex lg:space-x-[30px] my-16">
             <div> <ContactInformation></ContactInformation> </div>
             <GetInTouch />
           </div>
         </div>
-      </div></>
+      </div>
+    </>
   );
 };
 

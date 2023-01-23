@@ -1,6 +1,10 @@
-.spanStyle{
+.cart-wrappwer {
+    border-color: rgb(255 187 56);
+}
+
+.spanStyle {
     box-sizing: border-box;
-    display:inline-block;
+    display: inline-block;
     overflow: hidden;
     width: initial;
     height: initial;
@@ -12,7 +16,8 @@
     position: relative;
     max-width: 100%
 }
-.spanStyle2{
+
+.spanStyle2 {
     box-sizing: border-box;
     display: block;
     width: initial;
@@ -25,7 +30,7 @@
     max-width: 100%
 }
 
-.imgStyle{
+.imgStyle {
     box-sizing: border-box;
     display: block;
     width: 0px;
@@ -41,7 +46,8 @@
     min-height: 100%;
     object-fit: scale-down,
 }
-.imgStyle2{
+
+.imgStyle2 {
     display: block;
     width: initial;
     height: initial;
@@ -52,6 +58,7 @@
     max-height: 100%;
     min-width: 100%
 }
+
 .modal {
     position: fixed;
     top: 0;
@@ -90,4 +97,26 @@
 .search-btn {
     background-color: rgb(255 187 56/1);
     color: rgb(34 34 34/1);
+}
+
+.sideDropdownScrollStyle::-webkit-scrollbar {
+    visibility: hidden;
+}
+
+
+
+.productItems::-webkit-scrollbar {
+    width: 2px !important;
+
+}
+
+.productItems::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+}
+
+.productItems::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    outline: 1px solid lightgray;
+    border-radius: 6px;
 }

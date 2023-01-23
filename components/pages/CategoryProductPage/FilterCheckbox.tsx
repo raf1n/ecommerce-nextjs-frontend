@@ -4,10 +4,10 @@ import { controller } from "../../../src/state/StateController";
 
 interface Props {
   filter: {
-    id: string,
-    name: number
-    label: string
-  }
+    id: string;
+    name: number;
+    label: string;
+  };
 }
 
 const FilterCheckbox: React.FC<Props> = (props) => {

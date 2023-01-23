@@ -6,7 +6,7 @@ import ShopNowBtn from "../../../../helpers/Buttons/ShopNowBtn";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 
-interface Props {}
+interface Props { }
 
 const HeroSlider: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -16,6 +16,7 @@ const HeroSlider: React.FC<Props> = (props) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -30,7 +31,7 @@ const HeroSlider: React.FC<Props> = (props) => {
         breakpoint: 700,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
           dots: true,
         },
@@ -55,7 +56,7 @@ const HeroSlider: React.FC<Props> = (props) => {
               className="w-full h-full "
             >
               <div
-                className="flex w-full max-w-full relative items-center h-[200px] xl:h-[600px] md:h-[500px] lg:h-[600px] pl-[30px]"
+                className="flex w-full max-w-full relative items-center h-[220px] xl:h-[600px] md:h-[500px] lg:h-[600px] pl-[30px]"
                 style={{
                   backgroundImage: `url(
        "https://api.websolutionus.com/shopo/uploads/custom-images/slider-2022-10-27-01-36-44-4193.png"

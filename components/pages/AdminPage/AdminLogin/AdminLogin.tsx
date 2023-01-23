@@ -13,7 +13,8 @@ const AdminLogin: React.FC<Props> = (props) => {
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0  ">
           <a
             href="#"
-            className="flex items-center mb-6 text-2xl font-semibold text-gray-900">
+            className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+          >
             <img
               className="mr-2"
               src="https://api.websolutionus.com/shopo/uploads/website-images/logo-2022-11-22-11-19-02-4634.png"
@@ -22,8 +23,9 @@ const AdminLogin: React.FC<Props> = (props) => {
             {/* ShopO */}
           </a>
           <div
-            className="w-full bg-white rounded shadow md:mt-0 sm:max-w-md xl:p-0"
-            style={{ borderTop: "2px solid blue" }}>
+            className="w-full bg-white rounded shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+            style={{ borderTop: "2px solid blue" }}
+          >
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-sm text-blue-600   md:text-2xl">
                 Login
@@ -33,7 +35,8 @@ const AdminLogin: React.FC<Props> = (props) => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900">
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
                     Email
                   </label>
                   <input
@@ -48,7 +51,8 @@ const AdminLogin: React.FC<Props> = (props) => {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900">
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
                     Password
                   </label>
                   <input
@@ -74,7 +78,8 @@ const AdminLogin: React.FC<Props> = (props) => {
                     <div className="ml-3 text-sm">
                       <label
                         htmlFor="remember"
-                        className="text-gray-500">
+                        className="text-gray-500 dark:text-gray-300"
+                      >
                         Remember me
                       </label>
                     </div>
@@ -82,7 +87,8 @@ const AdminLogin: React.FC<Props> = (props) => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-white bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                  className="w-full text-white bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
                   Login
                 </button>
               </form>
