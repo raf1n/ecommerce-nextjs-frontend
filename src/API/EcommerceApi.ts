@@ -19,14 +19,7 @@ export class EcommerceApi {
         console.log(API_ENDPOINT)
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        // const data = {
-        //     token: token,
-        //     tokenType: tokenType,
-        //     email: email,
-        //     avatar: avatar,
-        //     fullName: fullName,
-        //     userRole: userRole
-        // }
+
         const requestOptions = {
             method: 'POST',
             headers: myHeaders,
