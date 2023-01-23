@@ -8,8 +8,9 @@ import { SocialLogin } from "../../helpers/SocialLogin";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { useRouter } from "next/router";
+import { IUser } from "../../../interfaces/models";
 
-interface Props {}
+interface Props { }
 
 const LoginForm: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -19,68 +20,110 @@ const LoginForm: React.FC<Props> = (props) => {
   const [successTextLogin, setSuccessTextLogin] = useState('')
   const [loggedinSendVerify, setLoggedinSendVerify] = useState(false)
   const [loggedinSendVerifyText, setLoggedinSendVerifyText] = useState('')
+
   const router = useRouter();
 
   useEffect(() => {
     SocialLogin.initFirebase()
   }, [])
-  
+
   const sendEmailVerify = async () => {
     SocialLogin.sendEmail()
     setErrorLogin(false)
     setSuccessLogin(false)
     setLoggedinSendVerifyText('Verification sent')
   }
-  
+
   const handleGoogleSignUp = async () => {
     // actions.setDialogLoading(true)
     const { token, user } = await SocialLogin.loginWithGoogle()
     if (token && user?.email && user?.displayName && user?.photoURL) {
-        const { email, displayName, photoURL } = user
-        // window.smartlook('identify', email);
-        const { res, err } = await EcommerceApi.login(token, email, displayName, photoURL, "google");
-        if (err) {     
-            console.log('Login error')
+      const { email, displayName, photoURL } = user
+      // window.smartlook('identify', email);
+      const data: Partial<IUser> = {
+        token: token,
+        tokenType: 'google',
+        email: email,
+        avatar: photoURL,
+        fullName: displayName,
+        role: 'buyer'
+      }
+      const { res, err } = await EcommerceApi.login(data);
+      if (err) {
+        console.log('Login error')
+      }
+      else {
+        CookiesHandler.setAccessToken(res.access_token)
+        if (res.slug) {
+          CookiesHandler.setSlug(res.slug as string)
         }
-        else {
-            CookiesHandler.setAccessToken(res.access_token)
-            if (res.slug) {
-                CookiesHandler.setSlug(res.slug as string)
-            }           
-            router.push('/')
-        }
+        router.push('/')
+      }
     }
 
-}
+  }
 
-  const handleEmailPasswordLogin =async(e:any) => {
+  const handleEmailPasswordLogin = async (e: any) => {
     e.preventDefault();
-    const loginPassword=e.target.password.value
+    const loginPassword = e.target.password.value
     const loginEmail = e.target.email.value
-    
+
     const { res, err } = await SocialLogin.loginWithEmailPassword(loginEmail, loginPassword)
-        if (err) {
+    if (err) {
+      setErrorLogin(true)
+      setSuccessLogin(false)
+      setErrorTextLogin(err)
+    }
+    else {
+      console.log('resss', res)
+      setErrorLogin(false)
+      if (!res.user.emailVerified) {
+        console.log('kkk');
+        setLoggedinSendVerify(true)
+        setLoggedinSendVerifyText('verify first and login again')
+      }
+      else {
+        setLoggedinSendVerify(false)
+        console.log('resooooo', res)
+        const token = res?.user?.accessToken;
+        const user = res.user
+        console.log('use,tok', user?.email);
+        console.log('dis', user?.displayName);
+        if (token && user?.email) {
+          console.log('enter');
+          const { email, displayName } = user
+          const data: Partial<IUser> = {
+            token: token,
+            tokenType: 'email',
+            email: email,
+            avatar: 'https://tinyurl.com/382e6w5t',
+            fullName: displayName,
+            role: 'buyer'
+          }
+          const { res, err } = await EcommerceApi.login(data);
+          if (err) {
             setErrorLogin(true)
             setSuccessLogin(false)
-            setErrorTextLogin(err)
-        }
-        else {
-            console.log('resss', res)
-            setErrorLogin(false)
-            if (!res.user.emailVerified) {
-                console.log('kkk');
-                setLoggedinSendVerify(true)
-                setLoggedinSendVerifyText('verify first and login again')
+            setErrorTextLogin('Server Error')
+          }
+          else {
+            CookiesHandler.setAccessToken(res.access_token)
+            if (res.slug) {
+              CookiesHandler.setSlug(res.slug as string)
+              setSuccessLogin(true)
+              setSuccessTextLogin('SignIn Success')
             }
-            else {
-                setLoggedinSendVerify(false)
-                setSuccessLogin(true)
-                setSuccessTextLogin('SignIn Success')
+          }
 
-            }
-       
-       
+
+
         }
+
+
+      }
+
+
+    }
   }
 
   return (
@@ -106,7 +149,7 @@ const LoginForm: React.FC<Props> = (props) => {
           </div>
         </div>
 
-        <form onSubmit={(e)=>{handleEmailPasswordLogin(e)}}>
+        <form onSubmit={(e) => { handleEmailPasswordLogin(e) }}>
           <div className="mb-5">
             <div className="w-full h-full">
               <label
@@ -168,7 +211,7 @@ const LoginForm: React.FC<Props> = (props) => {
               Login
             </button>
             <button
-              onClick={()=>{handleGoogleSignUp()}}
+              onClick={() => { handleGoogleSignUp() }}
               type="button"
               className="bg-[#4285F4] text-white mb-6 text-sm w-full h-[50px] font-semibold flex gap-x-2 justify-center bg-purple items-center"
             >
@@ -189,8 +232,8 @@ const LoginForm: React.FC<Props> = (props) => {
           </div>
         </form>
         {errorLogin && <div style={{ color: 'red' }}>{errorTextLogin}</div>}
-                {successLogin && <div style={{ color: 'black' }}>{successTextLogin}</div>}
-                {loggedinSendVerify && <button type="submit" style={{ backgroundColor: 'blue', borderRadius: '10px', margin: '10px 0', width: '300px', color: 'white' }} onClick={() => { sendEmailVerify() }}>{loggedinSendVerifyText}</button> }
+        {successLogin && <div style={{ color: 'black' }}>{successTextLogin}</div>}
+        {loggedinSendVerify && <button type="submit" style={{ backgroundColor: 'blue', borderRadius: '10px', margin: '10px 0', width: '300px', color: 'white' }} onClick={() => { sendEmailVerify() }}>{loggedinSendVerifyText}</button>}
       </div>
     </div>
   );

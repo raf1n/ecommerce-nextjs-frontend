@@ -4,7 +4,8 @@ import { controller } from "../../../src/state/StateController";
 import SharedLoginSignupImage from "../../shared/SharedLoginSignupImage/SharedLoginSignupImage";
 import Signup from "./Signup";
 
-interface Props {}
+
+interface Props { }
 
 const SignupPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
