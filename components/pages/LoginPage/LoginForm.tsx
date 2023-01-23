@@ -133,39 +133,6 @@ const LoginForm: React.FC<Props> = (props) => {
                 }
               }
               
-              // }
-
-
-
-
-              // setLoggedinSendVerify(false)
-              // console.log('resooooo', res)
-              // const token = res?.user?.accessToken;
-              // const user = res.user
-              // console.log('use,tok', user?.email);
-              // console.log('dis', user?.displayName);
-              // if (token && user?.email) {
-              //     console.log('enter');
-              //     const { email,displayName } = user
-              //     const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email", 'buyer');
-              //     if (err) {
-              //         setErrorLogin(true)
-              //         setSuccessLogin(false)
-              //         setErrorTextLogin('Server Error')
-              //     }
-              //     else {
-              //         CookiesHandler.setAccessToken(res.access_token)
-              //         if (res.slug) {
-              //           CookiesHandler.setSlug(res.slug as string)
-              //           setSuccessLogin(true)
-              //           setSuccessTextLogin('SignIn Success')
-              //         }
-              //     }
-               
-                 
-
-              // }
-     
             }
           }
        
