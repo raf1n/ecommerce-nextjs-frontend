@@ -2,14 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 
-interface Props {
-  bannerImg?: string;
-}
+interface Props {}
 
 const BestDealBanner: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const bannerImg =
-    "https://api.websolutionus.com/shopo/uploads/website-images/Mega-menu-2022-10-27-01-43-51-3694.png";
+
   return (
     <div>
       <div className="one-column-ads-one md:h-[295px] h-[190px] md:mb-[60px] mb-[30px] w-full">
@@ -18,7 +15,8 @@ const BestDealBanner: React.FC<Props> = (props) => {
             data-aos="fade-right"
             className="w-full h-full flex justify-center items-center xl:py-[60px] md:py-[40px] py-4 group aos-init aos-animate"
             style={{
-              backgroundImage: `url(${bannerImg})`,
+              backgroundImage:
+                "url(https://api.websolutionus.com/shopo/uploads/website-images/Mega-menu-2022-10-27-01-43-51-3694.png)",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
             }}
