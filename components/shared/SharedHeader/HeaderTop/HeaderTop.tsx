@@ -1211,7 +1211,7 @@ const HeaderTop: React.FC<Props> = (props) => {
             <div className="relative h-full">
               <div className="flex justify-between items-center h-full">
                 <div className="relative">
-                  <a rel="noreferrer" href="/">
+                  <Link rel="noreferrer" href="/">
                     <span className={`${styles["spanStyle"]}`}>
                       <span className={`${styles["spanStyle2"]}`}>
                         <img
@@ -1226,7 +1226,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                         alt="logo"
                       />
                     </span>
-                  </a>
+                  </Link>
                 </div>
                 <div className="w-[517px] h-[44px]">
                   <div className="w-full h-full flex items-center  border border-qgray-border bg-white  search-com">
@@ -1352,7 +1352,7 @@ const HeaderTop: React.FC<Props> = (props) => {
 
                 <div className="flex space-x-6 items-center relative">
                   <div className="compaire relative">
-                    <a rel="noopener noreferrer" href="/login">
+                    <Link rel="noopener noreferrer" href="/login">
                       <span className="cursor-pointer">
                         <svg
                           width="20"
@@ -1371,13 +1371,13 @@ const HeaderTop: React.FC<Props> = (props) => {
                           ></path>
                         </svg>
                       </span>
-                    </a>
+                    </Link>
                     <span className="w-[18px] h-[18px] rounded-full absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px] bg-qyellow">
                       0
                     </span>
                   </div>
                   <div className="favorite relative">
-                    <a rel="noopener noreferrer" href="/wishlist">
+                    <Link rel="noopener noreferrer" href="/wishlist">
                       <span className="cursor-pointer">
                         <svg
                           width="21"
@@ -1392,7 +1392,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                           ></path>
                         </svg>
                       </span>
-                    </a>
+                    </Link>
                     <span className="w-[18px] h-[18px] rounded-full absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px] bg-qyellow">
                       0
                     </span>
@@ -1604,7 +1604,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                     </div>
                   </div>
                   <div>
-                    <a rel="noopener noreferrer" href="/login">
+                    <Link rel="noopener noreferrer" href="/login">
                       <span className="cursor-pointer">
                         <svg
                           width="21"
@@ -1619,7 +1619,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                           ></path>
                         </svg>
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -1649,7 +1649,7 @@ const HeaderTop: React.FC<Props> = (props) => {
               </svg>
             </div>
             <div className="w-[200px] h-full relative">
-              <a rel="noreferrer" href="/">
+              <Link rel="noreferrer" href="/">
                 <span className={`${styles["spanStyle"]}`}>
                   <span className={`${styles["spanStyle2"]}`}>
                     <img
@@ -1664,7 +1664,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                     alt="logo"
                   />
                 </span>
-              </a>
+              </Link>
             </div>
             <div className="cart relative cursor-pointer">
               <span>

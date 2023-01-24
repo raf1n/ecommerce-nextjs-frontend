@@ -14,9 +14,9 @@ const Breadcrumb: React.FC<Props> = (props) => {
   return (
     <div className="font-normal text-[13px] text-qblack mb-[23px] print:hidden">
       <span>
-        <a href="/">
+        <Link href="/">
           <span className="mx-1 capitalize">Home</span>
-        </a>
+        </Link>
         <span className="separator">/</span>
       </span>
       <span>
