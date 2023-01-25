@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
@@ -35,7 +36,7 @@ const BestDealBanner: React.FC<Props> = (props) => {
                 </div>
               </div>
               <div>
-                <a
+                <Link
                   rel="noopener noreferrer"
                   href="/products?category=electronics"
                 >
@@ -72,7 +73,7 @@ const BestDealBanner: React.FC<Props> = (props) => {
                       </span>
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

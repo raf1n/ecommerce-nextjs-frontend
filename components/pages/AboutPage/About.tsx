@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link';
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
@@ -186,11 +187,11 @@ const About: React.FC<Props> = (props) => {
                     </ul>
                   </div>
                 </div>
-                <a href="/contact">
+                <Link href="/contact">
                   <div className="w-[121px] h-10 mt-5 cursor-pointer">
                     <span className="yellow-btn">Contact Us</span>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

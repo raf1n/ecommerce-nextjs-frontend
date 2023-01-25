@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link';
 import { useSelector } from 'react-redux'
 import { controller } from '../../../../src/state/StateController'
 import styles from "./Ads.module.css";
@@ -26,7 +27,7 @@ const AD2: React.FC<Props> = (props) => {
                             </div>
                         </div>
                         <div className="group">
-                            <a href="" rel="noopener noreferrer">
+                            <Link href="" rel="noopener noreferrer">
                                 <div className="w-[136px] h-[40px] bg-white relative flex justify-center overflow-hidden">
                                     <div className="w-full h-full bg-qyellow absolute transition-all duration-300 ease-in-out -left-[140px] group-hover:left-0 top-0"></div>
                                     <div className="flex space-x-2 items-center relative z-10">
@@ -38,7 +39,7 @@ const AD2: React.FC<Props> = (props) => {
                                         </span>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
