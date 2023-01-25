@@ -31,11 +31,11 @@ const AdminProfile: React.FC<Props> = (props) => {
             <div className={`${styles["row"]} mt-4`}>
               <div>
                 <div
-                  className={`${styles["card"]} ${styles["profile-widget"]}`}
+                  className={`${styles["card"]} ${styles["profile-widget"]} `}
                 >
                   <div className={`${styles["profile-widget-header"]} `}>
                     <img
-                      className={`rounded-full ml-4   ${styles["profile-widget-picture"]} `}
+                      className={`rounded-full ml-6    ${styles["profile-widget-picture"]} `}
                       src="https://api.websolutionus.com/shopo/uploads/website-images/ibrahim-khalil-2022-01-30-02-48-50-5743.jpg"
                       alt=""
                     />
@@ -69,7 +69,7 @@ const AdminProfile: React.FC<Props> = (props) => {
                             <span className="text-red-500 ml-2">*</span>
                           </div>
                           <input
-                            className="w-full p-2 border border-cyan-200 rounded-md text-sm"
+                            className="w-full px-3 py-3 focus:outline-none focus:border-[#95a0f4] border border-[#e4e6fc] rounded-md text-sm text-qgray"
                             type="text"
                             value="Admin"
                             name="name"
@@ -79,7 +79,7 @@ const AdminProfile: React.FC<Props> = (props) => {
                         <div className="mt-4">
                           <div className="my-4">
                             <label
-                              className="text-qgray font-semibold mt-4	text-sm"
+                              className="text-qgray font-semibold mt-4 text-sm"
                               htmlFor=""
                             >
                               Email
@@ -87,7 +87,7 @@ const AdminProfile: React.FC<Props> = (props) => {
                             <span className="text-red-500 ml-2">*</span>
                           </div>
                           <input
-                            className="w-full p-2 border border-cyan-200 rounded-md text-sm"
+                            className="w-full px-3 py-3 focus:outline-none focus:border-[#95a0f4] border border-[#e4e6fc] rounded-md text-sm text-qgray"
                             type="email"
                             value="admin@gmail.com"
                             name="name"
@@ -105,7 +105,7 @@ const AdminProfile: React.FC<Props> = (props) => {
                             {/* <span className='text-red-500 ml-2'>*</span> */}
                           </div>
                           <input
-                            className="w-full p-2 border border-cyan-200 rounded-md text-sm"
+                            className="w-full px-3 py-3 focus:outline-none focus:border-[#95a0f4] border border-[#e4e6fc]  rounded-md text-sm"
                             type="password"
                             name=""
                             id=""
@@ -122,7 +122,7 @@ const AdminProfile: React.FC<Props> = (props) => {
                             {/* <span className='text-red-500 ml-2'>*</span> */}
                           </div>
                           <input
-                            className="w-full p-2 border border-cyan-200 rounded-md text-sm"
+                            className="w-full px-3 py-3 focus:outline-none focus:border-[#95a0f4] border border-[#e4e6fc] rounded-md text-sm"
                             type="password"
                             name=""
                             id=""

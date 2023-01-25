@@ -10,7 +10,8 @@ export const callFetch = async (url: string, requestOptions: unknown): Promise<M
         fetch(url, requestOptions)
             .then(response => { return response.json() })
             .then((result) => {
-                console.log('res', result)
+                console.log('res',result)
+               
                 if (result?.statusCode >= 400) {
                     resolve({
                         res: null,

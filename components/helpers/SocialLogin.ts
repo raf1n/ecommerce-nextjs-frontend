@@ -1,7 +1,10 @@
-import { getAuth, signInWithPopup,signInWithEmailAndPassword,updateProfile,onAuthStateChanged, GoogleAuthProvider, User, sendEmailVerification,FacebookAuthProvider, signOut,createUserWithEmailAndPassword, sendPasswordResetEmail  } from "firebase/auth";
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { getAuth, signInWithPopup,signInWithEmailAndPassword,updateProfile,onAuthStateChanged, GoogleAuthProvider, User, sendEmailVerification,FacebookAuthProvider, signOut,createUserWithEmailAndPassword, sendPasswordResetEmail, fetchSignInMethodsForEmail  } from "firebase/auth";
 import { initializeApp } from "firebase/app";
+// import { getDatabase } from "firebase/database";
 import { MyFetchInterface } from "../../interfaces/models";
-// var emailCheck = require('email-check');
+import { CookiesHandler } from '../../src/utils/CookiesHandler';
+
 
 
 
@@ -22,6 +25,8 @@ export class SocialLogin {
             // appId: "1:105572754219:web:11852ba2f50a6f9232db6e"
         }
         initializeApp(configs);
+        // const db = getFirestore(initializeApp(configs));
+        // return db
     }
     
 
@@ -47,6 +52,7 @@ export class SocialLogin {
             const auth = getAuth();
             createUserWithEmailAndPassword(auth, email, password)
                 .then((authUser) => {
+                
                     if (!auth.currentUser) {
                         return
                     }
@@ -109,9 +115,10 @@ export class SocialLogin {
     static async loginWithEmailPassword(email: any, password: any): Promise<MyFetchInterface> {
         return new Promise((resolve) => {
             const auth = getAuth();
+            
             signInWithEmailAndPassword(auth, email, password)
-            .then((result) => {
-                            // console.log('res', result)
+                .then((result) => {
+                console.log('loginWithEmailPassword',result)
                             resolve({
                                 res: result,
                                 err: null
@@ -123,6 +130,12 @@ export class SocialLogin {
                                 resolve({
                                     res: null,
                                     err: 'Not Registerd'
+                                });
+                            }
+                            else if(error.message === 'Firebase: Error (auth/network-request-failed).') {
+                                resolve({
+                                    res: null,
+                                    err: 'Internet not available'
                                 });
                             }
                             else if(error.message === 'Firebase: Error (auth/invalid-email).') {
@@ -173,7 +186,7 @@ export class SocialLogin {
         //         })
         })
     }
-    static async loginWithEmailPasswordAfterServerError(email: any, password: any){
+    static async loginWithEmailPasswordAfterServerError(){
         // return new Promise((resolve) => {
             const auth = getAuth();
             if (!auth.currentUser) {
@@ -247,5 +260,8 @@ export class SocialLogin {
         console.log('loggedout');
         const auth = getAuth();
         await signOut(auth)
+        CookiesHandler.removeAccessToken();
+        localStorage.clear();
+        sessionStorage.clear();
     }
 }

@@ -15,13 +15,13 @@ import ProductCategory from "./ProductCategory/ProductCategory";
 import ShopByBrand from "./ShopByBrandSection/ShopByBrand";
 import TopRatedSection from "./TopRatedProductsSection/TopRatedSection";
 
-interface Props {}
+interface Props { }
 
 const Homepage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div>
+    <div className="md:p-0 p-2">
       <HeroSection />
       <ProductCategory />
       <PopularCategory />

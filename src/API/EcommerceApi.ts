@@ -1,3 +1,4 @@
+import { IUser } from "../../interfaces/models";
 import { ILoginResponse } from "../../interfaces/response";
 import { callFetch } from "../utils/CallFetch";
 
@@ -13,22 +14,16 @@ export interface LoginInterface {
 
 export class EcommerceApi {
     //DEMO API CALLING STRUCTURE
-    static async login(token: string, email: string, fullName: string, avatar: string, tokenType: string): Promise<ILoginResponse> {
-        console.log(token);
+    static async login(data: Partial<IUser>): Promise<ILoginResponse> {
+        console.log(data.token);
         console.log(API_ENDPOINT)
         const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-        const urlencoded = new URLSearchParams();
-        urlencoded.append("token", token);
-        urlencoded.append("tokenType", tokenType);
-        urlencoded.append("email", email);
-        urlencoded.append("fullName", fullName);
-        urlencoded.append("avatar", avatar);
-        // urlencoded.append("userType", userType);
+        myHeaders.append("Content-Type", "application/json");
+
         const requestOptions = {
             method: 'POST',
             headers: myHeaders,
-            body: urlencoded,
+            body: JSON.stringify(data),
             redirect: 'follow'
         };
 

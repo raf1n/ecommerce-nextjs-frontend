@@ -1,15 +1,16 @@
 import { sendEmailVerification } from 'firebase/auth'
 import { useRouter } from 'next/router'
-import React, { useEffect,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { SocialLogin } from '../../components/helpers/SocialLogin'
 import Header from '../../components/shared/SharedHeader/Header'
+import { IUser } from '../../interfaces/models'
 import { EcommerceApi } from '../../src/API/EcommerceApi'
 
 import { controller } from '../../src/state/StateController'
 import { CookiesHandler } from '../../src/utils/CookiesHandler'
 
-interface Props {}
+interface Props { }
 
 const xavier: React.FC<Props> = (props) => {
     const router = useRouter();
@@ -30,8 +31,8 @@ const xavier: React.FC<Props> = (props) => {
     const [successTextLogin, setSuccessTextLogin] = useState('')
 
     const [sendVerifyText, setSendVerifyText] = useState(false)
-    
-    
+
+
     const [loggedinSendVerify, setLoggedinSendVerify] = useState(false)
     const [loggedinSendVerifyText, setLoggedinSendVerifyText] = useState('')
 
@@ -47,7 +48,7 @@ const xavier: React.FC<Props> = (props) => {
         setLoggedinSendVerifyText('Verification sent')
     }
 
-    const handleEmailPasswordSignUp =async(event: React.FormEvent<HTMLFormElement>) => {
+    const handleEmailPasswordSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (password.length < 6) {
             setError(true)
@@ -55,52 +56,70 @@ const xavier: React.FC<Props> = (props) => {
             setErrorText('password must be 6 characters minimum')
         }
         else {
-            const { res, err } = await SocialLogin.signUpWithEmailPassword(displayName,email, password)
+            const { res, err } = await SocialLogin.signUpWithEmailPassword(displayName, email, password)
             if (err) {
                 setError(true)
                 setSuccess(false)
                 setErrorText(err)
             }
             else {
-                console.log('resooooo',res)
+                console.log('resooooo', res)
                 const token = res?.user?.accessToken;
                 const user = res.user
                 console.log('use,tok', user?.email);
-                console.log('dis',user?.displayName);
+                console.log('dis', user?.displayName);
                 if (token && user?.email) {
                     console.log('enter');
-                    const { email} = user
-                    // window.smartlook('identify', email);
-                    const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email");
+                    const { email } = user
+                    const data: Partial<IUser> = {
+                        token: token,
+                        tokenType: 'email',
+                        email: email,
+                        avatar: 'https://tinyurl.com/382e6w5t',
+                        fullName: displayName,
+                        role: 'buyer'
+                    }
+                    const { res, err } = await EcommerceApi.login(data);
                     if (err) {
-                        // SocialLogin.sendEmail()
-                        // setSendVerifyText(true)
                         setError(true)
                         setSuccess(false)
                         setErrorText('Database Server Error')
-                        SocialLogin.loginWithEmailPasswordAfterServerError(email, password)
-                        SocialLogin.logOut()
+                        SocialLogin.loginWithEmailPasswordAfterServerError()
                     }
                     else {
+                        // CookiesHandler.setAccessToken(res.access_token)
+                        // if (res.slug) {
+                        //     CookiesHandler.setSlug(res.slug as string)
+                        // }
                         SocialLogin.sendEmail()
                         setSendVerifyText(true)
-                        CookiesHandler.setAccessToken(res.access_token)
-                        if (res.slug) {
-                            CookiesHandler.setSlug(res.slug as string)
-                        }
-                        // router.push('/')
                         setError(false)
                         setSuccess(true)
                         setSuccessText('SignUp Success')
-                      
                     }
+                    // setLoggedinSendVerify(false)
+                    // setSuccessLogin(true)
+                    // setSuccessTextLogin('SignIn Success')
+
                 }
-            
+
+
             }
+            //     else {
+            //    console.log('signUpWithEmailPassword',res);
+            //                 SocialLogin.sendEmail()
+            //                 setSendVerifyText(true)
+            //                 setError(false)
+            //                 setSuccess(true)
+            //                 setSuccessText('SignUp Success')
+
+            //         }
+
         }
+
     }
-    
-    const handleEmailPasswordLogin =async(event: React.FormEvent<HTMLFormElement>) => {
+
+    const handleEmailPasswordLogin = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (loginPassword.length === 0) {
             setErrorLogin(true)
@@ -123,16 +142,44 @@ const xavier: React.FC<Props> = (props) => {
                     setLoggedinSendVerifyText('verify first and login again')
                 }
                 else {
-                    setLoggedinSendVerify(false)
-                    setSuccessLogin(true)
-                    setSuccessTextLogin('SignIn Success')
+                    // console.log('resooooo', res)
+                    // const token = res?.user?.accessToken;
+                    // const user = res.user
+                    // console.log('use,tok', user?.email);
+                    // console.log('dis', user?.displayName);
+                    // if (token && user?.email) {
+                    //     console.log('enter');
+                    //     const { email } = user
+                    //     const { res, err } = await EcommerceApi.login(token, email, displayName, 'https://tinyurl.com/382e6w5t', "email",'buyer');
+                    //     if (err) {
+                    //         setError(true)
+                    //         setSuccess(false)
+                    //         setErrorText('Database Server Error')
+                    //     }
+                    //     else {
+                    //         CookiesHandler.setAccessToken(res.access_token)
+                    //         if (res.slug) {
+                    //             CookiesHandler.setSlug(res.slug as string)
+                    //         }
+                    //     }
+
+                    // } 
+                    if (res.access_token == null) {
+                        // console.log('authentication error')
+                        setLoggedinSendVerifyText('authentication error')
+                    }
+                    else {
+                        CookiesHandler.setAccessToken(res.access_token)
+                        CookiesHandler.setSlug(res.slug as string)
+                        setLoggedinSendVerify(false)
+                        setSuccessLogin(true)
+                        setSuccessTextLogin('SignIn Success')
+                    }
 
                 }
-           
-           
             }
         }
-      }
+    }
 
     const handleGoogleSignUp = async () => {
         // actions.setDialogLoading(true)
@@ -140,43 +187,56 @@ const xavier: React.FC<Props> = (props) => {
         if (token && user?.email && user?.displayName && user?.photoURL) {
             const { email, displayName, photoURL } = user
             // window.smartlook('identify', email);
-            const { res, err } = await EcommerceApi.login(token, email, displayName, photoURL, "google");
+
+            const data: Partial<IUser> = {
+                token: token,
+                tokenType: 'google',
+                email: email,
+                avatar: photoURL,
+                fullName: displayName,
+                role: 'buyer'
+            }
+
+            const { res, err } = await EcommerceApi.login(data);
             if (err) {
-                // enqueueSnackbar('Server Error', { variant: 'error', autoHideDuration: 2000 });
-                // setTimeout(() => {
-                //     actions.setDialogLoading(false)
-                // }, 1000)
-                console.log('Login error')
+                console.log('Login error', err)
+                SocialLogin.loginWithEmailPasswordAfterServerError()
             }
             else {
-                CookiesHandler.setAccessToken(res.access_token)
-                if (res.slug) {
-                    CookiesHandler.setSlug(res.slug as string)
+                if (res.access_token == null) {
+                    console.log('authentication error')
+                }
+                else {
+                    CookiesHandler.setAccessToken(res.access_token)
+                    if (res.slug) {
+                        CookiesHandler.setSlug(res.slug as string)
+                        router.push('/')
+                    }
                 }
                 // actions.setSocialPicture(user?.photoURL)
                 // localStorage.clear();
                 // sessionStorage.clear();
-                router.push('/')
                 // setTimeout(() => {
                 //     actions.setDialogLoading(false)
                 // }, 1000)
                 // Todo fix params
                 // enqueueSnackbar("Login successful !", { variant: 'success', autoHideDuration: 2000 })
             }
+
         }
 
     }
 
 
     return (
-            <div>
+        <div>
             <div style={{ width: '210px', margin: 'auto' }}>
                 <button style={{ height: '50px', width: '100%', borderRadius: '10px', backgroundColor: 'black', color: 'white' }}
-                    onClick={() =>handleGoogleSignUp()}>
+                    onClick={() => handleGoogleSignUp()}>
                     Login with Google
                 </button>
                 <form onSubmit={(e) => handleEmailPasswordSignUp(e)} method="post">
-                <input placeholder='Name'
+                    <input placeholder='Name'
                         style={{ margin: '10px 0' }}
                         onChange={(e) => { setDisplayName(e.target.value) }}
                     />
@@ -188,7 +248,7 @@ const xavier: React.FC<Props> = (props) => {
                         type="test"
                         onChange={(e) => { setPassword(e.target.value) }}
                     />
-                    <button type="submit" style={{backgroundColor:'blue',borderRadius:'10px', margin:'10px 0',width:'150px',color:'white'}}>Submit SignUp</button>
+                    <button type="submit" style={{ backgroundColor: 'blue', borderRadius: '10px', margin: '10px 0', width: '150px', color: 'white' }}>Submit SignUp</button>
                 </form>
                 {error && <div style={{ color: 'red' }}>{errorText}</div>}
                 {/* {success && <div style={{ color: 'black' }}>{successText}</div>} */}
@@ -199,7 +259,7 @@ const xavier: React.FC<Props> = (props) => {
                     onClick={() =>handleGoogleSignUp()}>
                     Login with Google
                 </button> */}
-                <form onSubmit={(e)=>handleEmailPasswordLogin(e)} method="post">
+                <form onSubmit={(e) => handleEmailPasswordLogin(e)} method="post">
                     <input placeholder='Email'
                         style={{ margin: '10px 0' }}
                         onChange={(e) => { setLoginEmail(e.target.value) }}
@@ -208,25 +268,25 @@ const xavier: React.FC<Props> = (props) => {
                         type="test"
                         onChange={(e) => { setLoginPassword(e.target.value) }}
                     />
-                    <button type="submit" style={{backgroundColor:'blue',borderRadius:'10px', margin:'10px 0',width:'150px',color:'white'}}>Submit SignIn</button>
+                    <button type="submit" style={{ backgroundColor: 'blue', borderRadius: '10px', margin: '10px 0', width: '150px', color: 'white' }}>Submit SignIn</button>
                 </form>
                 {errorLogin && <div style={{ color: 'red' }}>{errorTextLogin}</div>}
                 {successLogin && <div style={{ color: 'black' }}>{successTextLogin}</div>}
-                {loggedinSendVerify && <button type="submit" style={{ backgroundColor: 'blue', borderRadius: '10px', margin: '10px 0', width: '300px', color: 'white' }} onClick={() => { sendEmailVerify() }}>{loggedinSendVerifyText}</button> }
-               
+                {loggedinSendVerify && <button type="submit" style={{ backgroundColor: 'blue', borderRadius: '10px', margin: '10px 0', width: '300px', color: 'white' }} onClick={() => { sendEmailVerify() }}>{loggedinSendVerifyText}</button>}
+
             </div>
 
             <div>
-            <input placeholder='Forget Password Email'
-                        style={{ margin: '10px 0' }}
-                        onChange={(e) => { setForgerPasEmail(e.target.value) }}
-                    />
+                <input placeholder='Forget Password Email'
+                    style={{ margin: '10px 0' }}
+                    onChange={(e) => { setForgerPasEmail(e.target.value) }}
+                />
             </div>
             <button type="submit" style={{ backgroundColor: 'blue', borderRadius: '10px', margin: '10px 0', width: '150px', color: 'white' }} onClick={() => { SocialLogin.forgetEmail(forgerPasEmail) }}>Sent Forget Email</button>
 
-            </div>
-        )
-    }
+        </div>
+    )
+}
 
 
 export default xavier
