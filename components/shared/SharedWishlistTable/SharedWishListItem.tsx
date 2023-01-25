@@ -1,19 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { IProduct } from "../../../interfaces/models";
 import { controller } from "./../../../src/state/StateController";
 
 interface Props {
-  wishItem: {
-    name: string;
-    imgUrl: string;
-    price: number;
-  };
+  item: IProduct
 }
 
 const SharedWishListItem: React.FC<Props> = ({
-  wishItem: { name, imgUrl, price },
+  item
 }) => {
-  
+
   const states = useSelector(() => controller.states);
 
   return (
@@ -40,7 +37,7 @@ const SharedWishListItem: React.FC<Props> = ({
             >
               <img
                 alt="product"
-                src={imgUrl}
+                src={item.image}
                 decoding="async"
                 data-nimg="fill"
                 className="w-full h-full object-contain"
@@ -66,18 +63,20 @@ const SharedWishListItem: React.FC<Props> = ({
           </div>
           <div className="flex-1 flex flex-col">
             <p className="font-medium text-[15px] text-qblack hover:text-blue-500 cursor-pointer">
-              {name}
+              {item.name}
             </p>
           </div>
         </div>
       </td>
       <td className="text-center py-4 capitalize px-2">
         <div className="flex space-x-1 items-center justify-center">
-          <span className="text-[15px] font-normal">{price}</span>
+          <span className="text-[15px] font-normal">{item.currentPrice}</span>
         </div>
       </td>
       <td className="text-right py-4 capitalize">
-        <div className="flex space-x-1 items-center justify-center">
+        <div className="flex space-x-1 items-center justify-center"
+          onClick={() => controller.setRemoveWishlistSingleProduct(item)}
+        >
           <span className="cursor-pointer">
             <svg
               width="10"

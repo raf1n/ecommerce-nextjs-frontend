@@ -5,10 +5,11 @@ import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
 
-interface Props {}
+interface Props { }
 
 const PopularCategory: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
 
   return (
     <div>

@@ -18,3 +18,10 @@ export interface IUser {
     createdAt?: string
     updatedAt: string
 }
+
+export interface IProduct {
+    name: string
+    image: string
+    currentPrice: number
+    previousPrice: number
+}

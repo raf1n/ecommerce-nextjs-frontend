@@ -1,14 +1,23 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { action } from "usm-redux";
+import { IProduct } from "../../../interfaces/models";
 import { controller } from "../../../src/state/StateController";
 import styles from "./ProductCard.module.css";
 interface Props {
-  product: any;
+  product: IProduct;
 }
 
 const ProductCard: React.FC<Props> = (props) => {
   const { product } = props;
   const states = useSelector(() => controller.states);
+
+
+  const handleWishlist = () => {
+    // controller.setIncreaseWishlistCounter();
+    controller.setAddtoWishlist(product)
+    console.log(controller.states.wishlistData);
+  }
 
   return (
     <div>
@@ -40,7 +49,7 @@ const ProductCard: React.FC<Props> = (props) => {
                 >
                   <img
                     alt=""
-                    src={props.product.image}
+                    src={product.image}
                     decoding="async"
                     data-nimg="fill"
                     className="w-full h-full object-contain"
@@ -170,15 +179,15 @@ const ProductCard: React.FC<Props> = (props) => {
                 href="/single-product?slug=realme-mini-music"
               >
                 <p className="title mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
-                  {props.product.name}
+                  {product.name}
                 </p>
               </a>
               <p className="price">
                 <span className="main-price  font-semibold text-[18px] line-through text-qgray">
-                  <span>${props.product.previousPrice}</span>
+                  <span>${product.previousPrice}</span>
                 </span>
                 <span className="offer-price text-qred font-semibold text-[18px] ml-2">
-                  <span>${props.product.currentPrice}</span>
+                  <span>${product.currentPrice}</span>
                 </span>
               </p>
             </div>
@@ -218,6 +227,7 @@ const ProductCard: React.FC<Props> = (props) => {
               <button
                 className="absolute group-hover:right-4 -right-10 top-[120px] transition-all duration-300 ease-in-out"
                 type="button"
+                onClick={handleWishlist}
               >
                 <span className="w-10 h-10 flex text-black hover:text-white justify-center items-center transition-all duration-300 ease-in-out hover:bg-qyellow bg-primarygray rounded">
                   <svg

@@ -1,19 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { IProduct } from "../../../interfaces/models";
 import { controller } from "./../../../src/state/StateController";
 import SharedWishListItem from "./SharedWishListItem";
 
-interface wishItem {
-  name: string;
-  imgUrl: string;
-  price: number;
+
+interface Props {
+  wishlistData: Array<IProduct>
 }
 
-interface props  {
-  wishlistData: wishItem[]
-}
-
-const SharedWishlistTable: React.FC<props> = ({ wishlistData }) => {
+const SharedWishlistTable: React.FC<Props> = ({ wishlistData }) => {
   const states = useSelector(() => controller.states);
 
   return (
@@ -31,7 +27,7 @@ const SharedWishlistTable: React.FC<props> = ({ wishlistData }) => {
           </td>
         </tr>
         {wishlistData.map((item, idx) => (
-          <SharedWishListItem wishItem={item} key={idx} />
+          <SharedWishListItem item={item} key={idx} />
         ))}
       </tbody>
     </table>

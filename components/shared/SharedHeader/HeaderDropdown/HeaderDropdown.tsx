@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import styles from "./styles.module.css";
 
-interface Props {}
+interface Props { }
 
 const HeaderDropdown: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -93,11 +93,9 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                     </div>
                   </button>
                   <div
-                    className={`${styles["box"]} ${
-                      styles["category-dropdown"]
-                    } w-full absolute left-0 top-[53px] bg-white  ${
-                      openDropdown ? "block" : "hidden"
-                    }`}
+                    className={`${styles["box"]} ${styles["category-dropdown"]
+                      } w-full absolute left-0 top-[53px] bg-white  ${openDropdown ? "block" : "hidden"
+                      }`}
                   >
                     <ul className={`${styles["categories-list"]} relative`}>
                       <li className={`${styles["category-item"]}`}>
