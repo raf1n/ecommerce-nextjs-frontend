@@ -19,7 +19,8 @@ const BestDealBanner: React.FC<Props> = (props) => {
                 "url(https://api.websolutionus.com/shopo/uploads/website-images/Mega-menu-2022-10-27-01-43-51-3694.png)",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
-            }}>
+            }}
+          >
             <div className="w-full h-full flex flex-col justify-between items-center">
               <div>
                 <div className="md:mb-3 text-center">
@@ -36,7 +37,8 @@ const BestDealBanner: React.FC<Props> = (props) => {
               <div>
                 <a
                   rel="noopener noreferrer"
-                  href="/products?category=electronics">
+                  href="/products?category=electronics"
+                >
                   <div className="w-[136px] h-[40px] bg-white relative flex justify-center overflow-hidden">
                     <div className="w-full h-full bg-qyellow absolute transition-all duration-300 ease-in-out -left-[140px] group-hover:left-0 top-0"></div>
                     <div className="flex space-x-2 items-center relative z-10">
@@ -50,19 +52,22 @@ const BestDealBanner: React.FC<Props> = (props) => {
                           viewBox="0 0 6 11"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
-                          className="fill-current">
+                          className="fill-current"
+                        >
                           <rect
                             x="1.08984"
                             y="0.636719"
                             width="6.94219"
                             height="1.54271"
-                            transform="rotate(45 1.08984 0.636719)"></rect>
+                            transform="rotate(45 1.08984 0.636719)"
+                          ></rect>
                           <rect
                             x="6"
                             y="5.54492"
                             width="6.94219"
                             height="1.54271"
-                            transform="rotate(135 6 5.54492)"></rect>
+                            transform="rotate(135 6 5.54492)"
+                          ></rect>
                         </svg>
                       </span>
                     </div>
