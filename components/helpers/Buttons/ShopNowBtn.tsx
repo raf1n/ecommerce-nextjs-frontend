@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { controller } from '../../../src/state/StateController'
+import Link from 'next/link';
 
 interface Props {
     color: {
@@ -14,7 +15,7 @@ const ShopNowBtn: React.FC<Props> = ({ color }) => {
 
     return (
         <div className="w-[100px] group">
-            <a href="" rel="noopener noreferrer">
+            <Link href="" rel="noopener noreferrer">
                 <div className="cursor-pointer w-full relative">
                     <div className="inline-flex items-center relative z-20">
                         <span className={`text-sm ${color.textColor} font-medium leading-[30px]`}>Shop Now</span>
@@ -25,7 +26,7 @@ const ShopNowBtn: React.FC<Props> = ({ color }) => {
                     <div className="w-[82px] transition-all duration-300 ease-in-out group-hover:h-4 h-[2px] bg-qyellow absolute left-0 bottom-0 z-10">
                     </div>
                 </div>
-            </a>
+            </Link>
         </div>
     )
 }

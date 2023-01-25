@@ -13,11 +13,13 @@ const FooterBody: React.FC<Props> = (props) => {
   return (
     <div className="container-x mx-auto pt-[56px] px-2">
       <div className="w-full flex flex-col items-center mb-[50px]">
-        <img
-          className="mb-[40px]"
-          src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Flogo-2022-11-22-11-19-02-4634.png&w=256&q=75"
-          alt=""
-        />
+        <Link href="/">
+          <img
+            className="mb-[40px]"
+            src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Flogo-2022-11-22-11-19-02-4634.png&w=256&q=75"
+            alt=""
+          />
+        </Link>
         <div className="w-full h-px bg-[#E9E9E9]"></div>
       </div>
       <div className="lg:flex justify-between mb-[50px]">

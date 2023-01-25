@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import styles from "./TopRatedProduct.module.css";
+import Link from 'next/link';
 interface Props {
   product: any;
 }
@@ -116,11 +117,11 @@ const TopRatedProduct: React.FC<Props> = (props) => {
                       </svg>
                     </span>
                   </div>
-                  <a href="/single-product?slug=sony-joystick-sj-pro-vlv">
+                  <Link href="/single-product?slug=sony-joystick-sj-pro-vlv">
                     <p className="title mb-2 sm:text-[15px] text-[13px] font-600 text-slate-700 font-semibold leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
                       {name}
                     </p>
-                  </a>
+                  </Link>
                   <p className="price mb-[26px]">
                     <span className="main-price font-semibold  font-600 text-[18px] line-through text-gray-500">
                       <span>{mainPrice}</span>
