@@ -12,6 +12,7 @@ import PopularCategory from "../../components/pages/HomePagee/PopularCategory/Po
 import RelatedProductSection from "../../components/pages/HomePagee/RelatedProductSection/RelatedProductSection";
 import TrackOrder from "../../components/pages/TrackOrder/TrackOrder";
 import WishList from "../../components/pages/WishlistPage/Wishlist";
+import SharedEmptyCart from "../../components/shared/SharedEmptyCart/SharedEmptyCart";
 import { controller } from "../../src/state/StateController";
 
 interface Props {}
@@ -31,10 +32,11 @@ const ironman: React.FC<Props> = (props) => {
 
       <br />
       <br />
-      <SellerHeader />
+      {/* <SellerHeader />
       <AllSellerPage />
       <TrackOrder />
-      <CheckoutPage />
+      <CheckoutPage /> */}
+      <SharedEmptyCart />
     </>
   );
 };
