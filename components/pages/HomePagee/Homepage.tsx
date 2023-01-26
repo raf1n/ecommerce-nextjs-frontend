@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
 import AD1 from "./Ads/AD1";
 import AD2 from "./Ads/AD2";
@@ -15,10 +16,26 @@ import ProductCategory from "./ProductCategory/ProductCategory";
 import ShopByBrand from "./ShopByBrandSection/ShopByBrand";
 import TopRatedSection from "./TopRatedProductsSection/TopRatedSection";
 
-interface Props {}
+interface Props { }
 
 const Homepage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
+
+  const fetchAllProducts = async () => {
+    const { res, err } = await EcommerceApi.getAllProducts()
+    if (err) {
+      // enqueueSnackbar('Server Error', { variant: 'error', autoHideDuration: 2000 });
+    }
+    else {
+      console.log(res)
+      controller.setAllProducts(res)
+    }
+  }
+
+  useEffect(() => {
+    fetchAllProducts()
+  }, [])
 
   return (
     <div className="md:p-0 p-2">

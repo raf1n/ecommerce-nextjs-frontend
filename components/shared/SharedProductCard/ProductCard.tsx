@@ -52,7 +52,7 @@ const ProductCard: React.FC<Props> = (props) => {
                 >
                   <img
                     alt=""
-                    src={product.image}
+                    src={product?.imageURL}
                     decoding="async"
                     data-nimg="fill"
                     className="w-full h-full object-contain"
@@ -167,7 +167,7 @@ const ProductCard: React.FC<Props> = (props) => {
                 href="/single-product?slug=realme-mini-music"
               >
                 <p className="title mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
-                  {product.name}
+                  {product.productName}
                 </p>
               </a>
               <p className="price">

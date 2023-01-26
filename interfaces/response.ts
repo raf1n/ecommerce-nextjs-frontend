@@ -1,10 +1,10 @@
-import { MyFetchInterface } from './models';
+import { IProduct, IUser, MyFetchInterface } from './models';
 //here we will declare our response interfaces or in easy way type of our all response in our website
 
-import { User } from "./models";
 
 
-export interface IResponseUser extends User {
+
+export interface IResponseUser extends IUser {
     //with User model this particular extra data will come as response
     totalPictures: number
 }
@@ -14,4 +14,9 @@ export interface ILoginResponse extends MyFetchInterface {
         access_token: string
         userId: string
     }
+}
+
+
+export interface IProductResponse extends MyFetchInterface {
+    res: Array<IProduct>
 }
