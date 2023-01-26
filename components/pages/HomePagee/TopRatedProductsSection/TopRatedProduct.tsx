@@ -1,8 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
-import styles from "./TopRatedProduct.module.css";
-import Link from 'next/link';
 import { IProduct } from "../../../../interfaces/models";
 import ProductCardVertical from "../../../shared/SharedProductCard/ProductCardVertical";
 interface Props {
