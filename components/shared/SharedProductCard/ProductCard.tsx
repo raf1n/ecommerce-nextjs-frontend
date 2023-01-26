@@ -14,9 +14,7 @@ const ProductCard: React.FC<Props> = (props) => {
 
 
   const handleWishlist = () => {
-    // controller.setIncreaseWishlistCounter();
     controller.setAddtoWishlist(product)
-    console.log(controller.states.wishlistData);
   }
 
   return (
@@ -184,10 +182,10 @@ const ProductCard: React.FC<Props> = (props) => {
               </a>
               <p className="price">
                 <span className="main-price  font-semibold text-[18px] line-through text-qgray">
-                  <span>${product.previousPrice}</span>
+                  <span>${product.price}</span>
                 </span>
                 <span className="offer-price text-qred font-semibold text-[18px] ml-2">
-                  <span>${product.currentPrice}</span>
+                  <span>${product.offerPrice}</span>
                 </span>
               </p>
             </div>

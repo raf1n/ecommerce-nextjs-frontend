@@ -5,7 +5,9 @@ import { Jsondata } from "../../../../src/utils/Jsondata";
 import SectionHeader from "../SectionHeader";
 import BestProductCard from "./BestProductCard";
 
-interface Props {}
+interface Props {
+
+}
 
 const BestProducts: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);

@@ -70,7 +70,7 @@ const SharedWishListItem: React.FC<Props> = ({
       </td>
       <td className="text-center py-4 capitalize px-2">
         <div className="flex space-x-1 items-center justify-center">
-          <span className="text-[15px] font-normal">{item.currentPrice}</span>
+          <span className="text-[15px] font-normal">{item.offerPrice ? item.offerPrice : item.price}</span>
         </div>
       </td>
       <td className="text-right py-4 capitalize">

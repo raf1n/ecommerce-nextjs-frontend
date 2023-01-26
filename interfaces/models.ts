@@ -20,8 +20,10 @@ export interface IUser {
 }
 
 export interface IProduct {
-    name: string
-    image: string
-    currentPrice: number
-    previousPrice: number
+    name?: string
+    image?: string
+    offerPrice?: number
+    price?: number
+    rating?: string
+    slug?: string
 }

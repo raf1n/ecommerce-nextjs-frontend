@@ -180,98 +180,98 @@ export class Jsondata {
   static bestProductsData = [
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
     {
       name: "Mi Laptop Pro",
-      formerPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
       slug: "mi-laptop-pro",
-      imgUrl:
+      image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
     },
   ];
@@ -339,7 +339,7 @@ export class Jsondata {
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-joystick-sj-pro-2022-09-27-03-39-20-9931.png&w=2048&q=75",
       rating: 5,
-      mainPrice: "$7000",
+      price: "$7000",
       offerPrice: " $5000.00",
     },
     {
@@ -347,7 +347,7 @@ export class Jsondata {
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-headphon-max-2022-09-26-01-55-56-9123.png&w=1920&q=75",
       rating: 5,
-      mainPrice: "$700",
+      price: "$700",
       offerPrice: " $650.000",
     },
     {
@@ -355,7 +355,7 @@ export class Jsondata {
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-play-staton-5-2022-09-26-12-20-52-2324.png&w=1920&q=75",
       rating: 5,
-      mainPrice: "$88.88",
+      price: "$88.88",
       offerPrice: " $61.10",
     },
     {
@@ -363,7 +363,7 @@ export class Jsondata {
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Ffantech-octane-headset-2022-09-26-12-53-57-7709.png&w=1920&q=75",
       rating: 5,
-      mainPrice: "$88",
+      price: "$88",
       offerPrice: "$59.40",
     },
   ];
@@ -373,22 +373,22 @@ export class Jsondata {
       name: "Asus zenbook desktop",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=1920&q=75",
-      previousPrice: 3500,
-      currentPrice: 3300,
+      price: 3500,
+      offerPrice: 3300,
     },
     {
       name: "VISION ELITE CEILING FAN",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fvision-rice-cooker-2022-09-26-12-48-28-5516.png&w=1920&q=75",
-      previousPrice: 11.11,
-      currentPrice: 9.9,
+      price: 11.11,
+      offerPrice: 9.9,
     },
     {
       name: "VISION Rice Cooker",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fvision-elite-ceiling-fan-2022-09-26-12-29-33-2795.png&w=1920&q=75",
-      previousPrice: 99.88,
-      currentPrice: 35.43,
+      price: 99.88,
+      offerPrice: 35.43,
     },
   ];
   //New Release Products
@@ -397,266 +397,309 @@ export class Jsondata {
       name: "Apple watch pro",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fapple-watch-pro-2022-09-26-12-04-40-6657.png&w=1920&q=75",
-      previousPrice: 4500,
-      currentPrice: 4000,
+      price: 4500,
+      offerPrice: 4000,
     },
     {
       name: "Sony joystick SJ pro",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-joystick-sj-pro-2022-09-27-03-39-20-9931.png&w=1920&q=75",
-      previousPrice: 7000,
-      currentPrice: 5000,
+      price: 7000,
+      offerPrice: 5000,
     },
     {
       name: "Asus zenbook desktop",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=1920&q=75",
-      previousPrice: 35000,
-      currentPrice: 33000,
+      price: 35000,
+      offerPrice: 33000,
     },
     {
       name: "Realme mini music",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Frealme-mini-music-2022-09-26-01-34-10-1954.png&w=1920&q=75",
-      previousPrice: 800,
-      currentPrice: 569,
+      price: 800,
+      offerPrice: 569,
     },
     {
       name: "Mi Laptop pro",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
-      previousPrice: 50000,
-      currentPrice: 45000,
+      price: 50000,
+      offerPrice: 45000,
     },
     {
       name: "JBL Clip 4 Orange Portable Bluetooth Speaker",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-bluetooth-speaker-jblclip40rg-2022-09-26-12-42-09-8912.png&w=1920&q=75",
-      previousPrice: 332,
-      currentPrice: 299,
+      price: 332,
+      offerPrice: 299,
     },
     {
       name: "PlayStation 4",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fplaystation-4-2022-09-26-12-43-50-4261.png&w=1920&q=75",
-      previousPrice: 123,
-      currentPrice: 99,
+      price: 123,
+      offerPrice: 99,
     },
     {
       name: "Samsung Galaxy A52 (8/128 GB)",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsamsung-galaxy-a52-8128-gb-2022-09-26-12-12-12-9319.png&w=1920&q=75",
-      previousPrice: 11.11,
-      currentPrice: 9.9,
+      price: 11.11,
+      offerPrice: 9.9,
     },
     {
       name: "VISION Rice Cooker",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fvision-elite-ceiling-fan-2022-09-26-12-29-33-2795.png&w=1920&q=75",
-      previousPrice: 99.88,
-      currentPrice: 35.43,
+      price: 99.88,
+      offerPrice: 35.43,
     },
     {
       name: "Sony Play Staton 5",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fsony-play-staton-5-2022-09-26-12-20-52-2324.png&w=1920&q=75",
-      previousPrice: 88.88,
-      currentPrice: 69.99,
+      price: 88.88,
+      offerPrice: 69.99,
     },
     {
       name: "FANTECH OCTANE Headset",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Ffantech-octane-headset-2022-09-26-12-53-57-7709.png&w=1920&q=75",
-      previousPrice: 88.88,
-      currentPrice: 69.99,
+      price: 88.88,
+      offerPrice: 69.99,
     },
   ];
   //Single Item Detail
   static itemDetail = {
+    short_name: "zenbook",
     name: "Asus zenbook desktop",
-    slug: "jbl-clip-4-orange-portable-speake",
-    brand: "HUAWEI",
+    slug: "asus_zenbook_desktop",
+    category: "Electronic",
+    sub_category: "Electronic",
+    brand: "Asus",
+    sku: "kjhyy78",
     rating: 3,
     reviews: [],
-    formerPrice: 35000,
-    currentPrice: 33000.0,
-    description: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.`,
+    price: 45000,
+    offerPrice: 33000.0,
     availability: 3,
-    category: "Accessories",
-    sku: "kjhyy78",
+    weight: 2,
+    description: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.`,
+    long_description:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    highlight: ["Top Product", "New Arrival"],
+    status: "inactive",
+    SEO_title: "Asus zenbook desktop",
+    SEO_description: "Asus zenbook desktop",
     images: [
       "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=2048&q=75",
       "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
     ],
   };
+  static productReviews = [
+    {
+      id: 1,
+      name: "Amaya Hendrix",
+      product: "Apple watch pro",
+      rating: "5",
+      status: "active",
+      // email: "aa@gmail.com",
+    },
+    // {
+    //   id: 2,
+    //   name: "Amaya Hendrix",
+    //   product: "Apple watch pro",
+    //   rating: "5",
+    //   status: "active",
+    //   // email: "aa@gmail.com",
+    // },
+    // {
+    //   id: 3,
+    //   name: "Amaya Hendrix",
+    //   product: "Apple watch pro",
+    //   rating: "5",
+    //   status: "active",
+    //   // email: "aa@gmail.com",
+    // },
+    // {
+    //   id: 4,
+    //   name: "Amaya Hendrix",
+    //   product: "Apple watch pro",
+    //   rating: "5",
+    //   status: "active",
+    //   // email: "aa@gmail.com",
+    // },
+  ];
 
   static dashboardSummaryData = [
     {
       id: 1,
       title: "Today Order",
       icons: FaShoppingCart,
-      bgColor: "bg-blue-600",
+      bgColor: "#2563eb",
       value: "0",
     },
     {
       id: 2,
       title: "Today Pending Order",
       icons: FaShoppingCart,
-      bgColor: "bg-blue-600",
+      bgColor: "#2563eb",
       value: "0",
     },
     {
       id: 3,
       title: "Total Order",
       icons: FaShoppingCart,
-      bgColor: "bg-blue-600",
+      bgColor: "#2563eb",
       value: "0",
     },
     {
       id: 4,
       title: "Total Pending Order",
       icons: FaShoppingCart,
-      bgColor: "bg-blue-600",
+      bgColor: "#2563eb",
       value: "40",
     },
     {
       id: 5,
       title: "Total Declined Order",
       icons: FaShoppingCart,
-      bgColor: "bg-orange-700",
+      bgColor: "#c2410c",
       value: "0",
     },
     {
       id: 6,
       title: "Total Complete Order",
       icons: FaShoppingCart,
-      bgColor: "bg-orange-700",
+      bgColor: "#c2410c",
       value: "6",
     },
     {
       id: 7,
       title: "Total Earning",
       icons: FaNewspaper,
-      bgColor: "bg-orange-700",
+      bgColor: "#c2410c",
       value: "$0",
     },
     {
       id: 8,
       title: "Today Pending Earning",
       icons: FaNewspaper,
-      bgColor: "bg-orange-700",
+      bgColor: "#c2410c",
       value: "$0",
     },
     {
       id: 9,
       title: "This Month Earning",
       icons: FaNewspaper,
-      bgColor: "bg-green-600",
+      bgColor: "#16a34a",
       value: "$0",
     },
     {
       id: 10,
       title: "This Year Earning",
       icons: FaNewspaper,
-      bgColor: "bg-green-600",
+      bgColor: "#16a34a",
       value: "$0",
     },
     {
       id: 11,
       title: "Total Earning",
       icons: FaNewspaper,
-      bgColor: "bg-green-600",
+      bgColor: "#16a34a",
       value: "$0",
     },
     {
       id: 12,
       title: "Today Product Sale",
       icons: FaCircle,
-      bgColor: "bg-green-600",
+      bgColor: "#16a34a",
       value: "0",
     },
     {
       id: 13,
       title: "This Month Product Sale",
       icons: FaCircle,
-      bgColor: "bg-red-600",
+      bgColor: "#dc2626",
       value: "0",
     },
     {
       id: 14,
       title: "This Year Product Sale",
       icons: FaCircle,
-      bgColor: "bg-red-600",
+      bgColor: "#dc2626",
       value: "0",
     },
     {
       id: 15,
       title: "Total Product Sale",
       icons: FaCircle,
-      bgColor: "bg-red-600",
+      bgColor: "#dc2626",
       value: "0",
     },
     {
       id: 16,
       title: "Total Product",
       icons: FaCheckCircle,
-      bgColor: "bg-red-600",
+      bgColor: "#dc2626",
       value: "0",
     },
     {
       id: 17,
       title: "Total Product Report",
       icons: FaCheckCircle,
-      bgColor: "bg-green-600",
+      bgColor: "#16a34a",
       value: "0",
     },
     {
       id: 18,
       title: "Total Product Review",
       icons: FaCheckCircle,
-      bgColor: "bg-green-600",
+      bgColor: "#16a34a",
       value: "0",
     },
     {
       id: 19,
       title: "Total Seller",
       icons: FaUser,
-      bgColor: "bg-green-600",
+      bgColor: "#16a34a",
       value: "0",
     },
     {
       id: 20,
       title: "Total Seller",
       icons: FaUser,
-      bgColor: "bg-green-600",
+      bgColor: "#16a34a",
       value: "0",
     },
     {
       id: 21,
       title: "Total Subscriber",
       icons: FaUser,
-      bgColor: "bg-blue-600",
+      bgColor: "#2563eb",
       value: "0",
     },
     {
       id: 22,
       title: "Total Blog",
       icons: FaCheckCircle,
-      bgColor: "bg-blue-600",
+      bgColor: "#2563eb",
       value: "0",
     },
     {
       id: 23,
       title: "Product Category",
       icons: FaCheckCircle,
-      bgColor: "bg-blue-600",
+      bgColor: "#2563eb",
       value: "0",
     },
     {
       id: 24,
       title: "Total Brand",
       icons: FaCheckCircle,
-      bgColor: "bg-blue-600",
+      bgColor: "#2563eb",
       value: "40",
     },
   ];
@@ -782,7 +825,7 @@ export class Jsondata {
   ];
 
   static menus = [
-    { title: "Dashboard", icon: FaHome, gap: false },
+    { title: "Dashboard", icon: FaHome, gap: false, link: "/" },
     {
       title: "Orders",
       icon: FaShoppingCart,
@@ -790,31 +833,31 @@ export class Jsondata {
       nestedRoutes: [
         {
           title: "All Orders",
-          link: "/all-orders",
+          link: "/all_orders",
         },
         {
           title: "Pending Orders",
-          link: "/pending-orders",
+          link: "/pending_orders",
         },
         {
           title: "Progress Orders",
-          link: "/progress-orders",
+          link: "/progress_orders",
         },
         {
           title: "Delivered Orders",
-          link: "/delivered-orders",
+          link: "/delivered_orders",
         },
         {
           title: "Completed Orders",
-          link: "/completed-orders",
+          link: "/completed_orders",
         },
         {
           title: "Declined Orders",
-          link: "/declined-orders",
+          link: "/declined_orders",
         },
         {
           title: "Cash On Delivery",
-          link: "/cash-on-delivery",
+          link: "/cash_on_delivery",
         },
       ],
     },
@@ -825,27 +868,27 @@ export class Jsondata {
       nestedRoutes: [
         {
           title: "Categories",
-          link: "/categories",
+          link: "/product_categories",
         },
         {
           title: "Sub Categories",
-          link: "/sub-categories",
+          link: "/product_sub_categories",
         },
         {
           title: "Child Categories",
-          link: "/child-categories",
+          link: "/product_child_categories",
         },
         {
           title: "Mega Menu Category",
-          link: "/mega-menu-category",
+          link: "/mega_menu_category",
         },
         {
           title: "Popular Category",
-          link: "/popular-category",
+          link: "/popular_category",
         },
         {
           title: "Featured Category",
-          link: "/featured-category",
+          link: "/featured_category",
         },
       ],
     },
@@ -856,11 +899,11 @@ export class Jsondata {
       nestedRoutes: [
         {
           title: "Brands",
-          link: "/brands",
+          link: "/product_brands",
         },
         {
           title: "Create Product",
-          link: "/create-product",
+          link: "/products/create",
         },
         {
           title: "Products",
@@ -868,27 +911,27 @@ export class Jsondata {
         },
         {
           title: "Stock Out",
-          link: "/stock-out",
+          link: "/stock_out",
         },
         {
           title: "Seller Products",
-          link: "/seller-products",
+          link: "/seller_products",
         },
         {
           title: "Seller Pending Products",
-          link: "/seller-pending-products",
+          link: "/seller_pending_products",
         },
         {
           title: "Specification Key",
-          link: "/specification-key",
+          link: "/specification_key",
         },
         {
           title: "Product Reviews",
-          link: "/product-reviews",
+          link: "/product_reviews",
         },
         {
           title: "Product Report",
-          link: "/product-report",
+          link: "/product_report",
         },
       ],
     },
@@ -1080,48 +1123,48 @@ export class Jsondata {
   ];
   static sellerAddress = [
     {
-      shopName: "Rayhans",
-      email: "rayhan@gmail.com",
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
     },
     {
-      shopName: "Rayhans",
-      email: "rayhan@gmail.com",
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
     },
     {
-      shopName: "Rayhans",
-      email: "rayhan@gmail.com",
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
     },
     {
-      shopName: "Rayhans",
-      email: "rayhan@gmail.com",
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
     },
     {
-      shopName: "Rayhans",
-      email: "rayhan@gmail.com",
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
       image:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fseller-logo-2022-09-21-01-30-46-9044.png&w=1920&q=75",
     },
     {
-      shopName: "Rayhans",
-      email: "rayhan@gmail.com",
+      shopName: "Ryhans",
+      email: "ryhan@gmail.com",
       phone: "01739446375",
       address: "Chattogram , Bangladesh",
       image:
@@ -1226,6 +1269,111 @@ export class Jsondata {
       price: 133.0,
       imgUrl:
         "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
+    },
+  ];
+
+  static productBrandsData = [
+    {
+      id: 1,
+      name: "LG",
+      slug: "lg",
+      logo: "https://api.websolutionus.com/shopo/uploads/custom-images/oneplus-2022-09-25-04-15-53-8330.png",
+      status: "active",
+    },
+    {
+      id: 2,
+      name: "LG",
+      slug: "lg",
+      logo: "https://api.websolutionus.com/shopo/uploads/custom-images/oneplus-2022-09-25-04-15-53-8330.png",
+      status: "inactive",
+    },
+    {
+      id: 3,
+      name: "LG",
+      slug: "lg",
+      logo: "https://api.websolutionus.com/shopo/uploads/custom-images/oneplus-2022-09-25-04-15-53-8330.png",
+      status: "active",
+    },
+  ];
+
+  static adminProductsData = [
+    {
+      id: 1,
+      name: "Mi Laptop Pro",
+      price: 45000,
+      link: "mi-laptop-pro",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+      type: ["New", "Featured", "Best"],
+      status: "active",
+    },
+    {
+      id: 2,
+      name: "Mi Laptop Pro",
+      price: 45000,
+      link: "mi-laptop-pro",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+      type: ["New", "Featured", "Best"],
+      status: "inactive",
+    },
+  ];
+
+  static stockOutProductsData = [
+    {
+      id: 1,
+      name: "Mi Laptop Pro",
+      price: 45000,
+      link: "mi-laptop-pro",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+    },
+    {
+      id: 1,
+      name: "Mi Laptop Pro",
+      price: 45000,
+      link: "mi-laptop-pro",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+    },
+    {
+      id: 1,
+      name: "Mi Laptop Pro",
+      price: 45000,
+      link: "mi-laptop-pro",
+      image:
+        "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fmi-laptop-pro-2022-09-26-01-22-47-3531.png&w=1920&q=75",
+    },
+  ];
+
+  //for Order Summary
+  static orderSummaryDatas = [
+    {
+      id: 1,
+      name: "Xbox Wireless Game Controller",
+      variant: "",
+      shop_name: "",
+      unit_price: 15.49,
+      quantity: 5,
+      total: 6745,
+    },
+    {
+      id: 2,
+      name: "Mi Laptop Pro",
+      variant: "",
+      shop_name: "",
+      unit_price: 85.276,
+      quantity: 4,
+      total: 51245,
+    },
+    {
+      id: 3,
+      name: "JBL Clip 4 Orange Portable Speaker",
+      variant: "",
+      shop_name: "",
+      unit_price: 4.915,
+      quantity: 920,
+      total: 661245,
     },
   ];
 }

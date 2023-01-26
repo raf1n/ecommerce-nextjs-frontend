@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import TopRatedProduct from "./TopRatedProduct";
 import SectionHeader from "../SectionHeader";
-interface Props {}
+interface Props { }
 
 const TopRatedSection: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <div className="w-full">
