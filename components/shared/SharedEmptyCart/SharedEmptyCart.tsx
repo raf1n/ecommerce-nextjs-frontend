@@ -1,0 +1,62 @@
+import Link from "next/link";
+import React from "react";
+import { useSelector } from "react-redux";
+import { controller } from "../../../src/state/StateController";
+
+interface Props {
+  slug: string;
+  imgURL: string;
+}
+
+const SharedEmptyCart: React.FC<Props> = (props) => {
+  const states = useSelector(() => controller.states);
+  const { slug, imgURL } = props;
+
+  return (
+    <div className="mb-16">
+      <div className="container-x mx-auto">
+        <div className="font-400 text-[13px] text-qblack mb-[23px] print:hidden">
+          <span>
+            <Link href="/">
+              <span className="mx-1 capitalize">home</span>
+            </Link>
+            <span className="seperator">/</span>
+          </span>
+          <span>
+            <Link href="/">
+              {/* <span className="mx-1 capitalize">{slug}</span> */}
+              <span className="mx-1 capitalize">wishlist</span>
+            </Link>
+          </span>
+        </div>
+      </div>
+
+      <div className="flex justify-center items-center mb-12">
+        <div>
+          <img
+            src={
+              "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Fempty_wishlist-2022-11-17-11-23-16-9350.png&w=1920&q=75"
+            }
+            alt=""
+          />
+          {/* <img src={props.imgURL} alt="" /> */}
+        </div>
+      </div>
+
+      <div className="flex  justify-center">
+        <h1 className="sm:text-xl text-base font-semibold text-center mb-5">
+          Empty! You don't {slug} any Products
+        </h1>
+      </div>
+      <div className="flex justify-center items-center">
+        <Link href="/">
+          <div className="w-[180px] h-[50px] ">
+            <button className="yellow-btn ">Back to Shop</button>
+          </div>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default SharedEmptyCart;

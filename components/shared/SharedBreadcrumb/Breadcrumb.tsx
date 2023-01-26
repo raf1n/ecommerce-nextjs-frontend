@@ -23,7 +23,6 @@ const Breadcrumb: React.FC<Props> = (props) => {
         <Link href={props.link}>
           <span className="mx-1 capitalize">{props.slug}</span>
         </Link>
-        {/* <span className="separator">/</span> */}
       </span>
     </div>
   );
