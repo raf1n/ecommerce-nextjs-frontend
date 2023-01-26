@@ -12,7 +12,7 @@ interface Props {
 }
 const ProductCardVertical: React.FC<Props> = (props) => {
 
-    const { name, image, rating, offerPrice, price } = props.product;
+    const { product } = props;
     const states = useSelector(() => controller.states)
 
     return (
@@ -42,23 +42,27 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                                     }}
                                     className=""
                                 >
-                                    <img
-                                        decoding="async"
-                                        data-nimg="fill"
-                                        style={{
-                                            position: "absolute",
-                                            inset: 0,
-                                            boxSizing: "border-box",
-                                            padding: 0,
-                                            border: "none",
-                                            margin: "auto",
-                                            display: "block",
-                                            objectFit: "scale-down",
-                                        }}
-                                        className="w-full h-full object-contain"
-                                        src={image}
-                                        alt=""
-                                    />
+                                    <picture>
+                                        {
+                                            product && product?.imageURL?.length > 0 && <img
+                                                decoding="async"
+                                                data-nimg="fill"
+                                                style={{
+                                                    position: "absolute",
+                                                    inset: 0,
+                                                    boxSizing: "border-box",
+                                                    padding: 0,
+                                                    border: "none",
+                                                    margin: "auto",
+                                                    display: "block",
+                                                    objectFit: "scale-down",
+                                                }}
+                                                className="w-full h-full object-contain"
+                                                src={product?.imageURL[0]}
+                                                alt=""
+                                            />
+                                        }
+                                    </picture>
                                 </span>
                             </div>
                             <div className="flex-1 flex flex-col justify-center h-full">
@@ -118,15 +122,15 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                                     </div>
                                     <Link href="/single-product?slug=sony-joystick-sj-pro-vlv">
                                         <p className="title mb-2 sm:text-[15px] text-[13px] font-600 text-slate-700 font-semibold leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
-                                            {name}
+                                            {product.productName}
                                         </p>
                                     </Link>
                                     <p className="price mb-[26px]">
                                         <span className="main-price font-semibold  font-600 text-[18px] line-through text-gray-500">
-                                            <span>{price}</span>
+                                            <span>{product.price}</span>
                                         </span>
                                         <span className="offer-price text-red-500 font-600 font-semibold text-[18px] ml-2">
-                                            <span>{offerPrice}</span>
+                                            <span>{product.offerPrice}</span>
                                         </span>
                                     </p>
                                     <button type="button" className="w-[110px] h-[30px] ">

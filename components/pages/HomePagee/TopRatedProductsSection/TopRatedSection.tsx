@@ -18,7 +18,7 @@ const TopRatedSection: React.FC<Props> = (props) => {
       <div className="container-x mx-auto pb-[60px]">
         <SectionHeader title="Top Rated Products" link="/" />
         <div className="section-content w-full grid sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5  ">
-          {Jsondata.topRatedProducts.map((product: any, index) => {
+          {states.allProducts.filter((product) => product.isPopular === true).map((product, index) => {
             return (
               <TopRatedProduct key={index} product={product}></TopRatedProduct>
             );

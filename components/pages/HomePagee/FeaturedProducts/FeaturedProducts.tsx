@@ -5,7 +5,7 @@ import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
 
-interface Props {}
+interface Props { }
 
 const FeaturedProducts: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -79,7 +79,7 @@ const FeaturedProducts: React.FC<Props> = (props) => {
                   </div>
 
                   {/*********** * card *********/}
-                  {Jsondata.featuredProducts.map((product, index) => (
+                  {states.allProducts.filter((product) => product.isPopular === true).map((product, index) => (
                     <ProductCard key={index} product={product}></ProductCard>
                   ))}
 
