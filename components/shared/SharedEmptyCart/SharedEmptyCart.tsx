@@ -34,12 +34,9 @@ const SharedEmptyCart: React.FC<Props> = (props) => {
       <div className="flex justify-center items-center mb-12">
         <div>
           <img
-            src={
-              "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Fempty_wishlist-2022-11-17-11-23-16-9350.png&w=1920&q=75"
-            }
+            src={imgURL}
             alt=""
           />
-          {/* <img src={props.imgURL} alt="" /> */}
         </div>
       </div>
 
