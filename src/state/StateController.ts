@@ -16,6 +16,7 @@ export interface IStates {
     counter: number
     wishlistCounter: number
     wishlistData: Array<IProduct>
+    toggle: Boolean
 }
 
 export class Controller {
@@ -23,7 +24,8 @@ export class Controller {
     states: IStates = {
         counter: 0,
         wishlistCounter: 0,
-        wishlistData: []
+        wishlistData: [],
+        toggle: false,
     }
 
     @action
@@ -43,12 +45,18 @@ export class Controller {
 
     @action
     setAddtoWishlist(product: IProduct) {
-        this.states.wishlistCounter += 1;
-        this.states.wishlistData = [
-            ...this.states.wishlistData,
-            product
-        ]
-        // this.states.wishlistData.push(product)
+        if (!this.states.wishlistData.some((item) => item.name === product.name)) {
+            this.states.wishlistCounter += 1;
+            this.states.wishlistData = [
+                ...this.states.wishlistData,
+                product
+            ]
+            // this.states.wishlistData.push(product)
+        }
+        else {
+            this.states.wishlistData = this.states.wishlistData.filter((item) => item.name !== product.name)
+            this.states.wishlistCounter -= 1
+        }
     }
 
     @action
@@ -59,7 +67,6 @@ export class Controller {
 
     @action
     setRemoveWishlistSingleProduct(product: IProduct) {
-        console.log('clicked', product);
         this.states.wishlistData = this.states.wishlistData.filter((item) => item.name !== product.name)
         this.states.wishlistCounter -= 1
     }
