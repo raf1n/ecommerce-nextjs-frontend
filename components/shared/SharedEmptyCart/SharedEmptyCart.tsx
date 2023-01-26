@@ -33,16 +33,14 @@ const SharedEmptyCart: React.FC<Props> = (props) => {
 
       <div className="flex justify-center items-center mb-12">
         <div>
-          <img
-            src={imgURL}
-            alt=""
-          />
+          <img src={imgURL} alt="" />
         </div>
       </div>
 
       <div className="flex  justify-center">
         <h1 className="sm:text-xl text-base font-semibold text-center mb-5">
-          Empty! You don't {slug} any Products
+          Empty! You don't <span className="capitalize">{slug}</span> any
+          Products
         </h1>
       </div>
       <div className="flex justify-center items-center">
