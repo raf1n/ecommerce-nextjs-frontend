@@ -80,12 +80,9 @@ const PopularCategory: React.FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                {/*********** * card *********/}
-                {states.allProducts.map((product, index) => (
+                {states.allProducts.filter((product) => product.isPopular === true).map((product, index) => (
                   <ProductCard key={index} product={product}></ProductCard>
                 ))}
-
-                {/************ * card **********/}
               </div>
             </div>
           </div>

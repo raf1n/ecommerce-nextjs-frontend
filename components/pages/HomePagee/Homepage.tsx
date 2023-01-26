@@ -28,7 +28,6 @@ const Homepage: React.FC<Props> = (props) => {
       // enqueueSnackbar('Server Error', { variant: 'error', autoHideDuration: 2000 });
     }
     else {
-      console.log(res)
       controller.setAllProducts(res)
     }
   }

@@ -28,7 +28,7 @@ export interface IProduct {
     price?: number;
     description?: string;
     status?: string;
-    imageURL: string | undefined;
+    imageURL: Array<string | undefined>;
     offerPrice?: string;
     weight?: number;
     stock?: number;

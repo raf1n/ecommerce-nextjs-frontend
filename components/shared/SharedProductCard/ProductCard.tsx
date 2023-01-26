@@ -14,8 +14,13 @@ const ProductCard: React.FC<Props> = (props) => {
   const { product } = props;
   const states = useSelector(() => controller.states);
 
-  const handleToggle = () => {
-
+  const isInWishlist = (slug: string | undefined) => {
+    for (let i = 0; i < states?.wishlistData?.length; i++) {
+      if (states?.wishlistData[i]?.slug === slug) {
+        return true
+      }
+    }
+    return false
   }
 
   const handleWishlist = () => {
@@ -50,30 +55,34 @@ const ProductCard: React.FC<Props> = (props) => {
                     inset: 0,
                   }}
                 >
-                  <img
-                    alt=""
-                    src={product?.imageURL}
-                    decoding="async"
-                    data-nimg="fill"
-                    className="w-full h-full object-contain"
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      boxSizing: "border-box",
-                      padding: 0,
-                      border: "none",
-                      margin: "auto",
-                      display: "block",
-                      width: 0,
-                      height: 0,
-                      minWidth: "100%",
-                      maxWidth: "100%",
-                      minHeight: "100%",
-                      maxHeight: "100%",
-                      objectFit: "scale-down",
-                    }}
-                    sizes="100vw"
-                  />
+                  <picture>
+                    {
+                      product && product?.imageURL?.length > 0 && <img
+                        alt=""
+                        src={product?.imageURL[0]}
+                        decoding="async"
+                        data-nimg="fill"
+                        className="w-full h-full object-contain"
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          boxSizing: "border-box",
+                          padding: 0,
+                          border: "none",
+                          margin: "auto",
+                          display: "block",
+                          width: 0,
+                          height: 0,
+                          minWidth: "100%",
+                          maxWidth: "100%",
+                          minHeight: "100%",
+                          maxHeight: "100%",
+                          objectFit: "scale-down",
+                        }}
+                        sizes="100vw"
+                      />
+                    }
+                  </picture>
                 </span>
               </div>
             </div>
@@ -211,7 +220,7 @@ const ProductCard: React.FC<Props> = (props) => {
                     className={"fill-current"}
                     xmlns={"http://www.w3.org/2000/svg"}
                     path={SvgPaths.emptyHeart}
-                    pathFill={"black"}
+                    pathFill={isInWishlist(product.slug) ? "red" : "black"}
                   />
                 </span>
               </button>
