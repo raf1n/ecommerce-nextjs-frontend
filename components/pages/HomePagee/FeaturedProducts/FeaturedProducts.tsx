@@ -1,5 +1,8 @@
-import React from "react";
+import { useRouter } from "next/router";
+import React, {useEffect,useState} from "react";
 import { useSelector } from "react-redux";
+import { IProduct } from "../../../../interfaces/models";
+import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
@@ -9,8 +12,45 @@ interface Props {}
 
 const FeaturedProducts: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const router = useRouter();
+  const [featuredProducts, setFeaturedProducts] = useState<Array<IProduct>>([])
+  const [initialFeaturedProducts, setInitialFeaturedProducts] = useState<Array<IProduct>>([])
+  
+  const fetchOnePortfolioPaginated = async () => {
+    // console.log('back', states.countPortfolioPage)
+    const { res, err } = await EcommerceApi.getThreeFeaturedProducts({pageNumber: 1 })
+    if (err) {
+        // enqueueSnackbar('Server Error', { variant: 'error', autoHideDuration: 2000 });
+    }
+    else {
+      console.log('resFeatured', res)
+      setFeaturedProducts(res.featuredProducts)
+      setInitialFeaturedProducts(res.featuredProducts)
+    }
+  }
+  const accessoriesProductFilter = () => {
+    var newArray = featuredProducts.filter((el)=> {
+      return el.catSlug == "accessories_slug"
+    }
+    );
+    console.log('new', newArray);
+    setInitialFeaturedProducts(newArray)
+  }
 
+  const lifeStyleProductFilter = () => {
+    var newArray = featuredProducts.filter((el)=> {
+      return el.catSlug == "lifestyle_slug"
+    }
+    );
+    console.log('new', newArray);
+    setInitialFeaturedProducts(newArray)
+  }
+  useEffect(() => {
+    fetchOnePortfolioPaginated()
+},[])
   return (
+  <div>
+    {featuredProducts?.length > 0 &&
     <div>
       <div
         data-aos="fade-up"
@@ -35,19 +75,19 @@ const FeaturedProducts: React.FC<Props> = (props) => {
                         <div className="brands-list mb-[7px]">
                           <ul>
                             <li>
-                              <span className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
+                              <span className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer" onClick={()=>{accessoriesProductFilter()}}>
                                 Accessories
                               </span>
                             </li>
                             <li>
-                              <span className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
+                              <span className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer" onClick={()=>{lifeStyleProductFilter()}}>
                                 Lifestyle
                               </span>
                             </li>
                           </ul>
                         </div>
                         <div className="flex space-x-2 items-center">
-                          <span className="text-qblack font-semibold text-sm">
+                          <span className="text-qblack font-semibold text-sm" onClick={()=>{router.push('/products')}}>
                             Shop Now
                           </span>
                           <span>
@@ -79,7 +119,8 @@ const FeaturedProducts: React.FC<Props> = (props) => {
                   </div>
 
                   {/*********** * card *********/}
-                  {Jsondata.featuredProducts.map((product, index) => (
+                  {/* {Jsondata.featuredProducts.map((product, index) => ( */}
+                    {initialFeaturedProducts.slice(0,3).map((product, index) => (
                     <ProductCard key={index} product={product}></ProductCard>
                   ))}
 
@@ -90,7 +131,9 @@ const FeaturedProducts: React.FC<Props> = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
+      }
+      </div>
   );
 };
 

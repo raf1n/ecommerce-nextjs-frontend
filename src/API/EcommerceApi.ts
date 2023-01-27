@@ -1,6 +1,7 @@
-import { IUser } from "../../interfaces/models";
-import { ILoginResponse } from "../../interfaces/response";
+import { featuredProductLPObj, IProduct, IUser } from "../../interfaces/models";
+import { IGetFeaturedProductResponse, ILoginResponse } from "../../interfaces/response";
 import { callFetch } from "../utils/CallFetch";
+import { CookiesHandler } from "../utils/CookiesHandler";
 
 // import { callFetch, MyFetchInterface } from "../utils/CallFetch"
 export const API_ENDPOINT = process.env['NEXT_PUBLIC_API_ENDPOINT']
@@ -28,5 +29,17 @@ export class EcommerceApi {
         };
 
         return await callFetch(`${API_ENDPOINT}/users/login`, requestOptions)
+    }
+
+    static async getThreeFeaturedProducts(featuredProductLP:featuredProductLPObj): Promise<IGetFeaturedProductResponse> {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
+        const requestOptions = {
+            method: 'GET',
+            // headers: myHeaders,
+            redirect: 'follow'
+        };
+        return await callFetch(`${API_ENDPOINT}/products?page=${featuredProductLP.pageNumber}`, requestOptions)
     }
 }
