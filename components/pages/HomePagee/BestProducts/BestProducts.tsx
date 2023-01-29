@@ -20,7 +20,7 @@ const BestProducts: React.FC<Props> = (props) => {
           link="products?highlight=best_product"
         />
         <div className="grid lg:grid-cols-3 grid-cols-1 xl:gap-x-[30px] lg:gap-x-5">
-          {states.allProducts.filter((product) => product.isPopular === true).map((product, i) => (
+          {states.bestProducts.map((product, i) => (
             <BestProductCard key={i} product={product} />
           ))}
         </div>

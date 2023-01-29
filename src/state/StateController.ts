@@ -18,6 +18,11 @@ export interface IStates {
     wishlistData: Array<IProduct>
     toggle: Boolean
     allProducts: Array<IProduct>
+    featuredProducts: Array<IProduct>
+    topProducts: Array<IProduct>
+    popularProducts: Array<IProduct>
+    bestProducts: Array<IProduct>
+    newProducts: Array<IProduct>
 }
 
 export class Controller {
@@ -28,6 +33,11 @@ export class Controller {
         wishlistData: [],
         toggle: false,
         allProducts: [],
+        featuredProducts: [],
+        topProducts: [],
+        popularProducts: [],
+        bestProducts: [],
+        newProducts: [],
     }
 
     @action
@@ -41,7 +51,37 @@ export class Controller {
     @action
     setAllProducts(product: Array<IProduct>) {
         this.states.allProducts = product
+        this.states.popularProducts = product
+        this.states.topProducts = product
+        this.states.bestProducts = product
+        this.states.newProducts = product
     }
+
+    @action
+    setFeaturedProducts(product: Array<IProduct>) {
+        this.states.featuredProducts = product
+    }
+
+    @action
+    setPopularProducts(product: Array<IProduct>) {
+        this.states.popularProducts = product
+    }
+
+    @action
+    setTopProducts(product: Array<IProduct>) {
+        this.states.topProducts = product
+    }
+
+    @action
+    setBestProducts(product: Array<IProduct>) {
+        this.states.bestProducts = product
+    }
+
+    @action
+    setNewProducts(product: Array<IProduct>) {
+        this.states.newProducts = product
+    }
+
 
     @action
     setIncreaseWishlistCounter() {

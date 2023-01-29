@@ -80,7 +80,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                {states.allProducts.filter((product) => product.isPopular === true).map((product, index) => (
+                {states.popularProducts.slice(0, 3).map((product, index) => (
                   <ProductCard key={index} product={product}></ProductCard>
                 ))}
               </div>

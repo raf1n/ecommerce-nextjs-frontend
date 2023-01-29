@@ -18,5 +18,12 @@ export interface ILoginResponse extends MyFetchInterface {
 
 
 export interface IProductResponse extends MyFetchInterface {
-    res: Array<IProduct>
+    res: {
+        featuredProducts: Array<IProduct>,
+        topProducts: Array<IProduct>,
+        popularProducts: Array<IProduct>,
+        bestProducts: Array<IProduct>,
+        newProducts: Array<IProduct>,
+        allProductData: Array<IProduct>,
+    }
 }

@@ -79,7 +79,7 @@ const FeaturedProducts: React.FC<Props> = (props) => {
                   </div>
 
                   {/*********** * card *********/}
-                  {states.allProducts.filter((product) => product.isPopular === true).map((product, index) => (
+                  {states.featuredProducts.slice(0, 3).map((product, index) => (
                     <ProductCard key={index} product={product}></ProductCard>
                   ))}
 
