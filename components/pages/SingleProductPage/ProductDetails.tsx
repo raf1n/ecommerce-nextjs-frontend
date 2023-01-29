@@ -1,9 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
+// import { ShareSocial } from "react-share-social";
+import { FacebookShareButton, TwitterShareButton } from "react-share"; 
 import { FaRegHeart, FaFlag, FaFacebookF, FaTwitter } from "react-icons/fa";
 
 // import ReactStars from "react-rating-stars-component";
+import { useRouter } from "next/router";
+import FacebookIcon from "react-share/lib/FacebookIcon";
+import TwitterIcon from "react-share/lib/TwitterIcon";
 
 // const secondExample = {
 //   size: 50,
@@ -21,12 +26,47 @@ import { FaRegHeart, FaFlag, FaFacebookF, FaTwitter } from "react-icons/fa";
 //   },
 // };
 
+// const style = {
+//   root: {
+//     // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+//     borderRadius: 3,
+//     border: 0,
+//     padding: 0,
+//     // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+//     color: "white",
+//   },
+//   makeStylesContainer1: {
+//     padding: 0,
+//     "&:makeStyles-iconContainer-3": {
+//       padding: 0,
+//     }
+//   },
+//   makeStylesIconContainer3: {
+//     padding: 0,
+//   },
+//   copyContainer: {
+//     display: "none",
+//     border: "1px solid blue",
+//     background: "rgb(0,0,0,0.7)",
+//   },
+//   title: {
+//     color: "aquamarine",
+//     fontStyle: "italic",
+//   },
+// };
+
 interface Props {
   itemDetail: any;
 }
 
 const ProductDetails: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
+  const { asPath } = useRouter();
+
+  const shareableRoute = process.env.NEXT_PUBLIC_API_ENDPOINT + asPath;
+
+  console.log({ shareableRoute, asPath });
 
   return (
     <div className="mt-10 lg:mt-0">
@@ -196,13 +236,23 @@ const ProductDetails: React.FC<Props> = (props) => {
         <span className="text-qblack text-[13px] mr-[17px] inline-block">
           Share This
         </span>
-        <div className="flex space-x-5 items-center">
+        <div className="flex items-center">
+          {/* <ShareSocial
+            url={shareableRoute}
+            socialTypes={["facebook", "twitter"]}
+            onSocialButtonClicked={() => console.log(shareableRoute)}
+            style={style}
+          /> */}
+
           <button
             aria-label="facebook"
             className="bg-transparent border-none p-0 cursor-pointer"
           >
             <span className="cursor-pointer">
-              <FaFacebookF className="text-blue-900" />
+              {/* <FaFacebookF className="text-blue-900" /> */}
+              <FacebookShareButton url={shareableRoute} >
+                <FacebookIcon size={40} iconFillColor="#3E75B2" bgStyle={{display: "none"}}  />
+              </FacebookShareButton>
             </span>
           </button>
           <button
@@ -210,7 +260,10 @@ const ProductDetails: React.FC<Props> = (props) => {
             className="bg-transparent border-none p-0 cursor-pointer"
           >
             <span className="cursor-pointer">
-              <FaTwitter className="text-blue-400" />
+              {/* <FaTwitter className="text-blue-400" /> */}
+              <TwitterShareButton url={shareableRoute} >
+                <TwitterIcon size={40} iconFillColor="#3FD1FF" bgStyle={{display: "none"}}  />
+              </TwitterShareButton>
             </span>
           </button>
         </div>
