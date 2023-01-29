@@ -6,6 +6,8 @@ import { controller } from "../../../src/state/StateController";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import styles from "./ProductCard.module.css";
+import { BsHeart } from "react-icons/bs";
+import { BsHeartFill } from "react-icons/bs";
 interface Props {
   product: IProduct;
 }
@@ -14,7 +16,14 @@ const ProductCard: React.FC<Props> = (props) => {
   const { product } = props;
   const states = useSelector(() => controller.states);
 
-  const handleToggle = () => {};
+  const isInWishlist = (slug: string | undefined) => {
+    for (let i = 0; i < states?.wishlistData?.length; i++) {
+      if (states?.wishlistData[i]?.slug === slug) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   const handleWishlist = () => {
     controller.setAddtoWishlist(product);
@@ -46,30 +55,34 @@ const ProductCard: React.FC<Props> = (props) => {
                     position: "absolute",
                     inset: 0,
                   }}>
-                  <img
-                    alt=""
-                    src={product.image}
-                    decoding="async"
-                    data-nimg="fill"
-                    className="w-full h-full object-contain"
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      boxSizing: "border-box",
-                      padding: 0,
-                      border: "none",
-                      margin: "auto",
-                      display: "block",
-                      width: 0,
-                      height: 0,
-                      minWidth: "100%",
-                      maxWidth: "100%",
-                      minHeight: "100%",
-                      maxHeight: "100%",
-                      objectFit: "scale-down",
-                    }}
-                    sizes="100vw"
-                  />
+                  <picture>
+                    {product && product?.imageURL?.length > 0 && (
+                      <img
+                        alt=""
+                        src={product?.imageURL[0]}
+                        decoding="async"
+                        data-nimg="fill"
+                        className="w-full h-full object-contain"
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          boxSizing: "border-box",
+                          padding: 0,
+                          border: "none",
+                          margin: "auto",
+                          display: "block",
+                          width: 0,
+                          height: 0,
+                          minWidth: "100%",
+                          maxWidth: "100%",
+                          minHeight: "100%",
+                          maxHeight: "100%",
+                          objectFit: "scale-down",
+                        }}
+                        sizes="100vw"
+                      />
+                    )}
+                  </picture>
                 </span>
               </div>
             </div>
@@ -158,7 +171,7 @@ const ProductCard: React.FC<Props> = (props) => {
                 rel="noopener noreferrer"
                 href="/single-product?slug=realme-mini-music">
                 <p className="title mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
-                  {product.name}
+                  {product.productName}
                 </p>
               </a>
               <p className="price">
@@ -191,17 +204,18 @@ const ProductCard: React.FC<Props> = (props) => {
                 className="absolute group-hover:right-4 -right-10 top-[120px] transition-all duration-300 ease-in-out"
                 type="button"
                 onClick={handleWishlist}>
-                <span className="w-10 h-10 flex text-black hover:text-white justify-center items-center transition-all duration-300 ease-in-out hover:bg-qyellow bg-primarygray rounded">
-                  <SvgIconRenderer
-                    width={"21"}
-                    height={"18"}
-                    viewBox={"0 0 21 18"}
-                    fill={"none"}
-                    className={"fill-current"}
-                    xmlns={"http://www.w3.org/2000/svg"}
-                    path={SvgPaths.emptyHeart}
-                    pathFill={"black"}
-                  />
+                <span className="w-10 h-10 flex text-black hover:text-black justify-center items-center transition-all duration-300 ease-in-out hover:bg-qyellow bg-primarygray rounded">
+                  {isInWishlist(product.slug) ? (
+                    <BsHeartFill
+                      style={{
+                        width: "25px",
+                        height: "21px",
+                        color: "#EF272D",
+                      }}
+                    />
+                  ) : (
+                    <BsHeart style={{ width: "25px", height: "21px" }} />
+                  )}
                 </span>
               </button>
               <button

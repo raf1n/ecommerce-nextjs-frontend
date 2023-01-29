@@ -34,35 +34,41 @@ const SharedWishListItem: React.FC<Props> = ({
                 inset: 0,
               }}
             >
-              <img
-                alt="product"
-                src={item.image}
-                decoding="async"
-                data-nimg="fill"
-                className="w-full h-full object-contain"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  boxSizing: "border-box",
-                  padding: 0,
-                  border: "none",
-                  margin: "auto",
-                  display: "block",
-                  width: 0,
-                  height: 0,
-                  minWidth: "100%",
-                  maxWidth: "100%",
-                  minHeight: "100%",
-                  maxHeight: "100%",
-                }}
-                sizes="100vw"
-              />
+              <picture>
+                {
+                  item && item?.imageURL?.length > 0 &&
+                  <img
+                    alt="product"
+                    src={item?.imageURL[0]}
+                    decoding="async"
+                    data-nimg="fill"
+                    className="w-full h-full object-contain"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      boxSizing: "border-box",
+                      padding: 0,
+                      border: "none",
+                      margin: "auto",
+                      display: "block",
+                      width: 0,
+                      height: 0,
+                      minWidth: "100%",
+                      maxWidth: "100%",
+                      minHeight: "100%",
+                      maxHeight: "100%",
+                    }}
+                    sizes="100vw"
+                  />
+                }
+              </picture>
+
               <noscript></noscript>
             </span>
           </div>
           <div className="flex-1 flex flex-col">
             <p className="font-medium text-[15px] text-qblack hover:text-blue-500 cursor-pointer capitalize">
-              {item.name}
+              {item.productName}
             </p>
           </div>
         </div>

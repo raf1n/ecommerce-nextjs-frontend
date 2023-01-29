@@ -20,10 +20,23 @@ export interface IUser {
 }
 
 export interface IProduct {
-    name?: string
-    image?: string
-    offerPrice?: number
-    price?: number
-    rating?: string
-    slug?: string
+    productName?: string;
+    slug?: string;
+    catSlug?: string;
+    subCatSlug?: string;
+    brandSlug?: string;
+    price?: number;
+    description?: string;
+    status?: string;
+    imageURL: Array<string | undefined>;
+    offerPrice?: string;
+    weight?: number;
+    stock?: number;
+    seoTitle?: string;
+    seoDescription?: string;
+    isTopProduct?: boolean;
+    isNewArrival?: boolean;
+    isBestProduct?: boolean;
+    isFeatured?: boolean;
+    isPopular?: boolean;
 }

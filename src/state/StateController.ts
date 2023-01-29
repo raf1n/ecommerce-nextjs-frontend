@@ -17,6 +17,12 @@ export interface IStates {
     wishlistCounter: number
     wishlistData: Array<IProduct>
     toggle: Boolean
+    allProducts: Array<IProduct>
+    featuredProducts: Array<IProduct>
+    topProducts: Array<IProduct>
+    popularProducts: Array<IProduct>
+    bestProducts: Array<IProduct>
+    newProducts: Array<IProduct>
 }
 
 export class Controller {
@@ -26,6 +32,12 @@ export class Controller {
         wishlistCounter: 0,
         wishlistData: [],
         toggle: false,
+        allProducts: [],
+        featuredProducts: [],
+        topProducts: [],
+        popularProducts: [],
+        bestProducts: [],
+        newProducts: [],
     }
 
     @action
@@ -34,6 +46,40 @@ export class Controller {
             ...this.states,
             ...states
         }
+    }
+
+    @action
+    setAllProducts(product: Array<IProduct>) {
+        this.states.allProducts = product
+        this.states.popularProducts = product
+        this.states.topProducts = product
+        this.states.bestProducts = product
+        this.states.newProducts = product
+    }
+
+    @action
+    setFeaturedProducts(product: Array<IProduct>) {
+        this.states.featuredProducts = product
+    }
+
+    @action
+    setPopularProducts(product: Array<IProduct>) {
+        this.states.popularProducts = product
+    }
+
+    @action
+    setTopProducts(product: Array<IProduct>) {
+        this.states.topProducts = product
+    }
+
+    @action
+    setBestProducts(product: Array<IProduct>) {
+        this.states.bestProducts = product
+    }
+
+    @action
+    setNewProducts(product: Array<IProduct>) {
+        this.states.newProducts = product
     }
 
 
@@ -45,7 +91,7 @@ export class Controller {
 
     @action
     setAddtoWishlist(product: IProduct) {
-        if (!this.states.wishlistData.some((item) => item.name === product.name)) {
+        if (!this.states.wishlistData.some((item) => item.slug === product.slug)) {
             this.states.wishlistCounter += 1;
             this.states.wishlistData = [
                 ...this.states.wishlistData,
@@ -54,7 +100,7 @@ export class Controller {
             // this.states.wishlistData.push(product)
         }
         else {
-            this.states.wishlistData = this.states.wishlistData.filter((item) => item.name !== product.name)
+            this.states.wishlistData = this.states.wishlistData.filter((item) => item.slug !== product.slug)
             this.states.wishlistCounter -= 1
         }
     }
@@ -67,7 +113,7 @@ export class Controller {
 
     @action
     setRemoveWishlistSingleProduct(product: IProduct) {
-        this.states.wishlistData = this.states.wishlistData.filter((item) => item.name !== product.name)
+        this.states.wishlistData = this.states.wishlistData.filter((item) => item.slug !== product.slug)
         this.states.wishlistCounter -= 1
     }
 
