@@ -6,6 +6,8 @@ import { controller } from "../../../src/state/StateController";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import styles from "./ProductCard.module.css";
+import { BsHeart } from 'react-icons/bs';
+import { BsHeartFill } from 'react-icons/bs';
 interface Props {
   product: IProduct;
 }
@@ -211,17 +213,12 @@ const ProductCard: React.FC<Props> = (props) => {
                 type="button"
                 onClick={handleWishlist}
               >
-                <span className="w-10 h-10 flex text-black hover:text-white justify-center items-center transition-all duration-300 ease-in-out hover:bg-qyellow bg-primarygray rounded">
-                  <SvgIconRenderer
-                    width={'21'}
-                    height={'18'}
-                    viewBox={'0 0 21 18'}
-                    fill={'none'}
-                    className={"fill-current"}
-                    xmlns={"http://www.w3.org/2000/svg"}
-                    path={SvgPaths.emptyHeart}
-                    pathFill={isInWishlist(product.slug) ? "red" : "black"}
-                  />
+                <span className="w-10 h-10 flex text-black hover:text-black justify-center items-center transition-all duration-300 ease-in-out hover:bg-qyellow bg-primarygray rounded">
+                  {
+                    isInWishlist(product.slug) ? <BsHeartFill style={{ width: '25px', height: '21px', color: '#EF272D' }} />
+                      :
+                      <BsHeart style={{ width: '25px', height: '21px' }} />
+                  }
                 </span>
               </button>
               <button
