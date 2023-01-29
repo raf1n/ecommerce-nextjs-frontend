@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { IProduct } from "../../../../interfaces/models";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
 
-interface Props { }
+interface Props {}
 
 const PopularCategory: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/products")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.popularProducts), setProducts(data.popularProducts);
+      });
+  }, []);
 
   return (
     <div>
@@ -50,7 +58,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                         </ul>
                       </div>
                       <div className="flex space-x-2 items-center">
-                        <span className="text-qblack font-semibold text-sm">
+                        <span className=" text-qblack font-semibold text-sm">
                           Shop Now
                         </span>
                         <span>
@@ -80,12 +88,16 @@ const PopularCategory: React.FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                {/*********** * card *********/}
-                {Jsondata.featuredProducts.map((product, index) => (
+                {/************ card *********/}
+                {/* {Jsondata.featuredProducts.map((product, index) => (
                   <ProductCard key={index} product={product}></ProductCard>
+                ))} */}
+
+                {products.slice(0, 3).map((product: IProduct) => (
+                  <ProductCard product={product}></ProductCard>
                 ))}
 
-                {/************ * card **********/}
+                {/************* card **********/}
               </div>
             </div>
           </div>
