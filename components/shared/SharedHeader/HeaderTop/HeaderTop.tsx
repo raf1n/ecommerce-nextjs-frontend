@@ -1,11 +1,11 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import styles from "./styles.module.css";
 
-interface Props {}
+interface Props { }
 
 const HeaderTop: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -26,6 +26,10 @@ const HeaderTop: React.FC<Props> = (props) => {
     setShowTopAllCatgory(!showTopAllCatgory);
   };
 
+
+  useEffect(() => {
+
+  }, [states.wishlistData])
   return (
     <div>
       {sideDropdownOpen && (
@@ -37,9 +41,8 @@ const HeaderTop: React.FC<Props> = (props) => {
       )}
       {/* {sideDropdownOpen && ( */}
       <div
-        className={`w-[280px] transition-all duration-300 ease-in-out h-screen overflow-y-auto overflow-x-hidden overflow-style-none bg-white fixed left-0 top-0 z-50 ${
-          sideDropdownOpen ? "-left-[0px]" : "-left-[280px]"
-        } ${styles["sideDropdownScrollStyle"]}`}>
+        className={`w-[280px] transition-all duration-300 ease-in-out h-screen overflow-y-auto overflow-x-hidden overflow-style-none bg-white fixed left-0 top-0 z-50 ${sideDropdownOpen ? "-left-[0px]" : "-left-[280px]"
+          } ${styles["sideDropdownScrollStyle"]}`}>
         <div className="w-full px-5 mt-5 mb-4">
           <div className="flex justify-between items-center">
             <div className="flex space-x-5 items-center">
@@ -1286,7 +1289,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                       </span>
                     </Link>
                     <span className="w-[18px] h-[18px] rounded-full absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px] bg-qyellow">
-                      0
+                      {states.wishlistCounter}
                     </span>
                   </div>
                   <div className="cart-wrapper group relative py-4">

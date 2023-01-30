@@ -5,10 +5,11 @@ import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
 
-interface Props {}
+interface Props { }
 
 const PopularCategory: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
 
   return (
     <div>
@@ -79,12 +80,9 @@ const PopularCategory: React.FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                {/*********** * card *********/}
-                {Jsondata.featuredProducts.map((product, index) => (
+                {states.popularProducts.slice(0, 3).map((product, index) => (
                   <ProductCard key={index} product={product}></ProductCard>
                 ))}
-
-                {/************ * card **********/}
               </div>
             </div>
           </div>

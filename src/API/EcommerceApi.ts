@@ -1,5 +1,7 @@
 import { featuredProductLPObj, IProduct, IUser } from "../../interfaces/models";
-import { IGetFeaturedProductResponse, ILoginResponse } from "../../interfaces/response";
+import { ILoginResponse, IProductResponse } from "../../interfaces/response";
+// import { IUser } from "../../interfaces/models";
+// import { ILoginResponse, IProductResponse } from "../../interfaces/response";
 import { callFetch } from "../utils/CallFetch";
 import { CookiesHandler } from "../utils/CookiesHandler";
 
@@ -14,7 +16,6 @@ export interface LoginInterface {
 }
 
 export class EcommerceApi {
-    //DEMO API CALLING STRUCTURE
     static async login(data: Partial<IUser>): Promise<ILoginResponse> {
         console.log(data.token);
         console.log(API_ENDPOINT)
@@ -31,15 +32,26 @@ export class EcommerceApi {
         return await callFetch(`${API_ENDPOINT}/users/login`, requestOptions)
     }
 
-    static async getThreeFeaturedProducts(featuredProductLP:featuredProductLPObj): Promise<IGetFeaturedProductResponse> {
+    // static async getThreeFeaturedProducts(featuredProductLP: featuredProductLPObj): Promise<IGetFeaturedProductResponse> {
+    //     const myHeaders = new Headers();
+    //     myHeaders.append("Content-Type", "application/json");
+    //     // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
+    //     const requestOptions = {
+    //         method: 'GET',
+    //         // headers: myHeaders,
+    //         redirect: 'follow'
+    //     };
+    //     return await callFetch(`${API_ENDPOINT}/products?page=${featuredProductLP.pageNumber}`, requestOptions)
+    // }
+
+    static async getAllProducts(): Promise<IProductResponse> {
         const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
         // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
         const requestOptions = {
             method: 'GET',
-            // headers: myHeaders,
+            headers: myHeaders,
             redirect: 'follow'
         };
-        return await callFetch(`${API_ENDPOINT}/products?page=${featuredProductLP.pageNumber}`, requestOptions)
+        return await callFetch(`${API_ENDPOINT}/products`, requestOptions)
     }
 }

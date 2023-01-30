@@ -15,7 +15,7 @@ const ShopNowBtn: React.FC<Props> = ({ color }) => {
 
     return (
         <div className="w-[100px] group">
-            <Link href="" rel="noopener noreferrer">
+            <Link href="products?category=electronics" rel="noopener noreferrer">
                 <div className="cursor-pointer w-full relative">
                     <div className="inline-flex items-center relative z-20">
                         <span className={`text-sm ${color.textColor} font-medium leading-[30px]`}>Shop Now</span>

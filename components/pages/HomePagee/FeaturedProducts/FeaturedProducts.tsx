@@ -8,7 +8,7 @@ import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
 
-interface Props {}
+interface Props { }
 
 const FeaturedProducts: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -16,25 +16,26 @@ const FeaturedProducts: React.FC<Props> = (props) => {
   const [featuredProducts, setFeaturedProducts] = useState<Array<IProduct>>([])
   const [initialFeaturedProducts, setInitialFeaturedProducts] = useState<Array<IProduct>>([])
   
-  const fetchOnePortfolioPaginated = async () => {
-    // console.log('back', states.countPortfolioPage)
-    const { res, err } = await EcommerceApi.getThreeFeaturedProducts({pageNumber: 1 })
-    if (err) {
-        // enqueueSnackbar('Server Error', { variant: 'error', autoHideDuration: 2000 });
-    }
-    else {
-      console.log('resFeatured', res)
-      setFeaturedProducts(res.featuredProducts)
-      setInitialFeaturedProducts(res.featuredProducts)
-    }
-  }
+  // const fetchOnePortfolioPaginated = async () => {
+  //   // console.log('back', states.countPortfolioPage)
+  //   const { res, err } = await EcommerceApi.getThreeFeaturedProducts({pageNumber: 1 })
+  //   if (err) {
+  //       // enqueueSnackbar('Server Error', { variant: 'error', autoHideDuration: 2000 });
+  //   }
+  //   else {
+  //     console.log('resFeatured', res)
+  //     setFeaturedProducts(res.featuredProducts)
+  //     setInitialFeaturedProducts(res.featuredProducts)
+  //   }
+  // }
   const accessoriesProductFilter = () => {
     var newArray = featuredProducts.filter((el)=> {
       return el.catSlug == "accessories_slug"
     }
     );
     console.log('new', newArray);
-    setInitialFeaturedProducts(newArray)
+    // setInitialFeaturedProducts(newArray)
+    controller.setFeaturedProducts(newArray)
   }
 
   const lifeStyleProductFilter = () => {
@@ -43,11 +44,12 @@ const FeaturedProducts: React.FC<Props> = (props) => {
     }
     );
     console.log('new', newArray);
-    setInitialFeaturedProducts(newArray)
+    // setInitialFeaturedProducts(newArray)
+    controller.setFeaturedProducts(newArray)
   }
-  useEffect(() => {
-    fetchOnePortfolioPaginated()
-},[])
+//   useEffect(() => {
+//     fetchOnePortfolioPaginated()
+// },[])
   return (
   <div>
     {featuredProducts?.length > 0 &&
@@ -119,8 +121,7 @@ const FeaturedProducts: React.FC<Props> = (props) => {
                   </div>
 
                   {/*********** * card *********/}
-                  {/* {Jsondata.featuredProducts.map((product, index) => ( */}
-                    {initialFeaturedProducts.slice(0,3).map((product, index) => (
+                  {states.featuredProducts.slice(0, 3).map((product, index) => (
                     <ProductCard key={index} product={product}></ProductCard>
                   ))}
 

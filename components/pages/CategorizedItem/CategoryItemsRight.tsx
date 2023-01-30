@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { Jsondata } from "../../../src/utils/Jsondata";
+import ShopNowBtn from "../../helpers/Buttons/ShopNowBtn";
 import ProductCard from "../../shared/SharedProductCard/ProductCard";
 import BestDealBanner from "../HomePagee/BestDealBanner/BestDealBanner";
 
@@ -94,46 +95,7 @@ const CategoryItemsRight: React.FC<Props> = (props) => {
                   </h1>
                 </div>
               </div>
-              <div className="w-[90px]">
-                <a
-                  rel="noopener noreferrer"
-                  href="/products?category=electronics"
-                >
-                  <div className="cursor-pointer w-full relative ">
-                    <div className="inline-flex text-qred space-x-1.5 items-center relative z-20">
-                      <span className="text-sm font-semibold leading-[30px]">
-                        Shop Now
-                      </span>
-                      <span className="leading-[30px]">
-                        <svg
-                          width="7"
-                          height="11"
-                          viewBox="0 0 7 11"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="fill-current"
-                        >
-                          <rect
-                            x="2.08984"
-                            y="0.636719"
-                            width="6.94219"
-                            height="1.54271"
-                            transform="rotate(45 2.08984 0.636719)"
-                          ></rect>
-                          <rect
-                            x="7"
-                            y="5.54492"
-                            width="6.94219"
-                            height="1.54271"
-                            transform="rotate(135 7 5.54492)"
-                          ></rect>
-                        </svg>
-                      </span>
-                    </div>
-                    <div className="w-[82px] transition-all duration-300 ease-in-out group-hover:h-4 h-[0px] bg-qyellow absolute left-0 bottom-0 z-10"></div>
-                  </div>
-                </a>
-              </div>
+              <ShopNowBtn color={{ textColor: "text-qred" }} />
             </div>
           </div>
         </div>

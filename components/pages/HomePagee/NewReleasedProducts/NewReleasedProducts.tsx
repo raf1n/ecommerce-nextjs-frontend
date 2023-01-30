@@ -5,7 +5,7 @@ import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
 
-interface Props {}
+interface Props { }
 
 const NewReleasedProducts: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -19,7 +19,7 @@ const NewReleasedProducts: React.FC<Props> = (props) => {
             <div className="section-content">
               <div className="products-section w-full">
                 <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
-                  {Jsondata.newReleasedProducts.map((product, index) => (
+                  {states.newProducts.map((product, index) => (
                     <ProductCard key={index} product={product}></ProductCard>
                   ))}
                 </div>
