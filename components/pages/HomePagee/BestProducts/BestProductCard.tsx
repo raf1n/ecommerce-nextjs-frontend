@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import { IProduct } from "../../../../interfaces/models";
@@ -24,14 +25,13 @@ const BestProductCard: React.FC<Props> = (props) => {
         </picture>
 
         <div className="flex-1 flex flex-col justify-center h-full">
-          <a
+          <Link
             className="mb-2 sm:text-[15px] text-[13px] font-semibold leading-[24px] line-clamp-1 hover:text-blue-600 cursor-pointer"
-            href={"/single-product?slug=" + product.slug}
-            rel="noopener noreferrer"
+            href={"/single_product?slug=" + product.slug}
             title={product.productName}
           >
             {product.productName}
-          </a>
+          </Link>
           <div>
             <span className="font-semibold text-lg line-through text-gray-400">${product.price}</span>
             <span className="font-semibold text-lg ml-2 text-red-600">${product.offerPrice}.00</span>

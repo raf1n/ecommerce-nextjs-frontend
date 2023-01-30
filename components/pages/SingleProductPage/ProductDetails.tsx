@@ -62,11 +62,12 @@ interface Props {
 const ProductDetails: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  const { asPath } = useRouter();
+  const router = useRouter();
 
-  const shareableRoute = process.env.NEXT_PUBLIC_API_ENDPOINT + asPath;
+  const shareableRoute = process.env.NEXT_PUBLIC_API_ENDPOINT + router.asPath;
+  // const shareableRoute = "https://www.google.com" || undefined;
 
-  console.log({ shareableRoute, asPath });
+  // console.log({ shareableRoute, router });
 
   return (
     <div className="mt-10 lg:mt-0">
