@@ -135,7 +135,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                                             </svg>
                                         </span>
                                     </div>
-                                    <Link href="/single-product?slug=sony-joystick-sj-pro-vlv">
+                                    <Link href="/single_product?slug=sony-joystick-sj-pro-vlv">
                                         <p className="title mb-2 sm:text-[15px] text-[13px] font-600 text-slate-700 font-semibold leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
                                             {product.productName}
                                         </p>

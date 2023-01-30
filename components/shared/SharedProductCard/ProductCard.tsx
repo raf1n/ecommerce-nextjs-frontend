@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { useSelector } from "react-redux";
 import { action } from "usm-redux";
 import { IProduct } from "../../../interfaces/models";
@@ -167,13 +168,11 @@ const ProductCard: React.FC<Props> = (props) => {
                   />
                 </span>
               </div>
-              <a
-                rel="noopener noreferrer"
-                href="/single-product?slug=realme-mini-music">
+              <Link href="/single_product?slug=realme-mini-music">
                 <p className="title mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
                   {product.productName}
                 </p>
-              </a>
+              </Link>
               <p className="price">
                 <span className="main-price  font-semibold text-[18px] line-through text-qgray">
                   <span>${product.price}</span>

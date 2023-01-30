@@ -137,7 +137,7 @@ export class Jsondata {
         },
         {
           title: "Best Products",
-          url: "/products?highlight=best_product",
+          url: "products?highlight=best_product",
         },
       ],
     },
