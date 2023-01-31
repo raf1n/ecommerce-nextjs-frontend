@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { state, action, createStore } from "usm-redux";
 import { compose } from "redux";
 import { IProduct } from "../../interfaces/models";
@@ -7,16 +8,17 @@ const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? // @ts-ignore
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Speciffy extension’s options like name, actionsDenylist, actionsCreators, serialize...
+        // Speciffy extension's options like name, actionsDenylist, actionsCreators, serialize...
       })
     : compose;
 
 export interface IStates {
   counter: number;
   wishlistCounter: number;
-  cartlistCounter: number; //By Ironman
   wishlistData: Array<IProduct>;
-  cartlistData: Array<IProduct>; //By Ironman
+  cartlistCounter: number;
+  cartlistData: Array<IProduct>;
+  cartSubTotal: number;
   toggle: Boolean;
   allProducts: Array<IProduct>;
   featuredProducts: Array<IProduct>;
@@ -31,9 +33,10 @@ export class Controller {
   states: IStates = {
     counter: 0,
     wishlistCounter: 0,
-    cartlistCounter: 0, //By Ironman
     wishlistData: [],
-    cartlistData: [], //By ironman
+    cartSubTotal: 0,
+    cartlistCounter: 0,
+    cartlistData: [],
     toggle: false,
     allProducts: [],
     featuredProducts: [],
@@ -89,10 +92,6 @@ export class Controller {
   setIncreaseWishlistCounter() {
     this.states.wishlistCounter += 1;
   }
-  @action //By Ironman
-  setIncreaseCartlistCounter() {
-    this.states.cartlistCounter += 1;
-  }
 
   @action
   setAddtoWishlist(product: IProduct) {
@@ -107,28 +106,11 @@ export class Controller {
       this.states.wishlistCounter -= 1;
     }
   }
-  @action //By Ironman
-  setAddToCartlist(product: IProduct) {
-    if (!this.states.cartlistData.some((item) => item.slug === product.slug)) {
-      this.states.cartlistCounter += 1;
-      this.states.cartlistData = [...this.states.cartlistData, product];
-    } else {
-      this.states.cartlistData = this.states.cartlistData.filter(
-        (item) => item.slug !== product.slug
-      );
-      this.states.cartlistCounter -= 1;
-    }
-  }
 
   @action
   setClearWishlist() {
     this.states.wishlistData = [];
     this.states.wishlistCounter = 0;
-  }
-  @action //by ironman
-  setClearCartlist() {
-    this.states.cartlistData = [];
-    this.states.cartlistCounter = 0;
   }
 
   @action
@@ -137,6 +119,52 @@ export class Controller {
       (item) => item.slug !== product.slug
     );
     this.states.wishlistCounter -= 1;
+  }
+
+  //cartList
+  @action
+  setIncreaseCartlistCounter() {
+    this.states.cartlistCounter += 1;
+  }
+
+  @action
+  setAddtoCartlist(product: IProduct) {
+    var total: number = 0;
+    const totalFunc = () => {
+      for (let i = 0; i < this.states.cartlistData?.length; i++) {
+        if (this.states?.cartlistData[i]?.offerPrice) {
+          total = total + parseInt(this.states.cartlistData[i]?.offerPrice);
+        } else {
+          total = total + parseInt(states?.cartlistData[i]?.price);
+        }
+      }
+      this.states.cartSubTotal = total;
+    };
+    if (!this.states.cartlistData.some((item) => item.slug === product.slug)) {
+      this.states.cartlistCounter += 1;
+      this.states.cartlistData = [...this.states.cartlistData, product];
+      totalFunc();
+    } else {
+      this.states.cartlistData = this.states.cartlistData.filter(
+        (item) => item.slug !== product.slug
+      );
+      this.states.cartlistCounter -= 1;
+      totalFunc();
+    }
+  }
+
+  @action
+  setClearCartlist() {
+    this.states.cartlistData = [];
+    this.states.cartlistCounter = 0;
+  }
+
+  @action
+  setRemoveCartlistSingleProduct(product: IProduct) {
+    this.states.cartlistData = this.states.cartlistData.filter(
+      (item) => item.slug !== product.slug
+    );
+    this.states.cartlistCounter -= 1;
   }
 }
 

@@ -1,5 +1,6 @@
-import { IProduct, IUser, MyFetchInterface } from './models';
+import { MyFetchInterface, IProduct,IUser } from './models';
 //here we will declare our response interfaces or in easy way type of our all response in our website
+
 
 
 
@@ -13,6 +14,7 @@ export interface ILoginResponse extends MyFetchInterface {
         slug: string
         access_token: string
         userId: string
+        role: string
     }
 }
 

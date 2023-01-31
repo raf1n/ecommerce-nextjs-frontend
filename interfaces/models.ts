@@ -18,6 +18,10 @@ export interface IUser {
     createdAt?: string
     updatedAt: string
 }
+export interface featuredProductLPObj {
+    pageNumber: number | string
+}
+
 
 export interface IProduct {
     productName?: string;

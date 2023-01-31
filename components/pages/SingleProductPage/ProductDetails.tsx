@@ -192,7 +192,7 @@ const ProductDetails: React.FC<Props> = (props) => {
           </button>
         </div>
 
-        <div className="flex-1 h-full">
+        <div className="flex-1 h-full" >
           <button
             type="button"
             className="bg-black text-white text-sm font-semibold w-full h-full">

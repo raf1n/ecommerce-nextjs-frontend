@@ -1,9 +1,7 @@
-import { IUser } from "../../interfaces/models";
+import { featuredProductLPObj, IProduct, IUser } from "../../interfaces/models";
 import { ILoginResponse, IProductResponse } from "../../interfaces/response";
 import { callFetch } from "../utils/CallFetch";
-import { CookiesHandler } from "../utils/CookiesHandler";
 
-// import { callFetch, MyFetchInterface } from "../utils/CallFetch"
 export const API_ENDPOINT = process.env['NEXT_PUBLIC_API_ENDPOINT']
 
 export interface LoginInterface {
@@ -29,7 +27,6 @@ export class EcommerceApi {
 
         return await callFetch(`${API_ENDPOINT}/users/login`, requestOptions)
     }
-
 
     static async getAllProducts(): Promise<IProductResponse> {
         const myHeaders = new Headers();

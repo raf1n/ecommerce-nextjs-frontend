@@ -39,7 +39,7 @@ const MyCart: React.FC<Props> = (props) => {
                       {/* Action */}
                     </td>
                   </tr>
-                  {states?.cartlistData?.map((item, index) => {
+                  {states?.cartlistData?.map((item, ind) => {
                     return (
                       <tr className="bg-white border-b hover:bg-gray-50">
                         <td className="pl-10 py-4 capitalize w-[380px] ">
@@ -76,10 +76,10 @@ const MyCart: React.FC<Props> = (props) => {
                                     display: "block",
                                     width: 0,
                                     height: 0,
-                                    minWidth: "100%",
-                                    maxWidth: "100%",
-                                    minHeight: "100%",
-                                    maxHeight: "100%",
+                                    minWidth: 100,
+                                    maxWidth: 100,
+                                    minHeight: 100,
+                                    maxHeight: 100,
                                   }}
                                   sizes="100vw"
                                 />
@@ -96,7 +96,7 @@ const MyCart: React.FC<Props> = (props) => {
                         <td className="text-center py-4 capitalize px-2">
                           <div className="flex space-x-1 items-center justify-center">
                             <span className="text-[15px] font-normal">
-                              {item.price}
+                              ${item.price}
                             </span>
                           </div>
                         </td>
@@ -122,7 +122,7 @@ const MyCart: React.FC<Props> = (props) => {
                         <td className="text-center py-4 capitalize px-2">
                           <div className="flex space-x-1 items-center justify-center">
                             <span className="text-[15px] font-normal">
-                              $133.00
+                              ${item.price}
                             </span>
                           </div>
                         </td>

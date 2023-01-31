@@ -30,6 +30,10 @@ const ProductCardVertical: React.FC<Props> = (props) => {
         controller.setAddtoWishlist(product)
     }
 
+    const handleCartlist = () => {
+        controller.setAddtoCartlist(product)
+      }
+
     return (
         <div>
             <div className="item w-full group">
@@ -148,7 +152,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                                             <span>{product.offerPrice}</span>
                                         </span>
                                     </p>
-                                    <button type="button" className="w-[110px] h-[30px] ">
+                                    <button type="button" className="w-[110px] h-[30px] "  onClick={() =>handleCartlist()}>
                                         <span className="yellow-btn">Add To Cart</span>
                                     </button>
                                 </div>
