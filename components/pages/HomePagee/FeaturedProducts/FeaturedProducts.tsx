@@ -13,46 +13,32 @@ interface Props { }
 const FeaturedProducts: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const router = useRouter();
-  const [featuredProducts, setFeaturedProducts] = useState<Array<IProduct>>([])
   const [initialFeaturedProducts, setInitialFeaturedProducts] = useState<Array<IProduct>>([])
   
-  // const fetchOnePortfolioPaginated = async () => {
-  //   // console.log('back', states.countPortfolioPage)
-  //   const { res, err } = await EcommerceApi.getThreeFeaturedProducts({pageNumber: 1 })
-  //   if (err) {
-  //       // enqueueSnackbar('Server Error', { variant: 'error', autoHideDuration: 2000 });
-  //   }
-  //   else {
-  //     console.log('resFeatured', res)
-  //     setFeaturedProducts(res.featuredProducts)
-  //     setInitialFeaturedProducts(res.featuredProducts)
-  //   }
-  // }
+  
   const accessoriesProductFilter = () => {
-    var newArray = featuredProducts.filter((el)=> {
+    var newArray = initialFeaturedProducts.filter((el)=> {
       return el.catSlug == "accessories_slug"
     }
     );
     console.log('new', newArray);
-    // setInitialFeaturedProducts(newArray)
     controller.setFeaturedProducts(newArray)
   }
 
   const lifeStyleProductFilter = () => {
-    var newArray = featuredProducts.filter((el)=> {
+    var newArray = initialFeaturedProducts.filter((el)=> {
       return el.catSlug == "lifestyle_slug"
     }
     );
     console.log('new', newArray);
-    // setInitialFeaturedProducts(newArray)
     controller.setFeaturedProducts(newArray)
   }
-//   useEffect(() => {
-//     fetchOnePortfolioPaginated()
-// },[])
+  useEffect(() => {
+    setInitialFeaturedProducts(states.featuredProducts)
+  }, [])
+  
   return (
   <div>
-    {featuredProducts?.length > 0 &&
     <div>
       <div
         data-aos="fade-up"
@@ -124,7 +110,6 @@ const FeaturedProducts: React.FC<Props> = (props) => {
                   {states.featuredProducts.slice(0, 3).map((product, index) => (
                     <ProductCard key={index} product={product}></ProductCard>
                   ))}
-
                   {/************ * card **********/}
                 </div>
               </div>
@@ -133,7 +118,6 @@ const FeaturedProducts: React.FC<Props> = (props) => {
         </div>
       </div>
     </div >
-      }
       </div>
   );
 };

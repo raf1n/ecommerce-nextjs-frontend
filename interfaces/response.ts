@@ -17,11 +17,6 @@ export interface ILoginResponse extends MyFetchInterface {
         role: string
     }
 }
-// export interface IGetFeaturedProductResponse extends MyFetchInterface {
-//     res: {
-//         featuredProducts: Array<IProduct>
-//     }
-// }
 
 
 export interface IProductResponse extends MyFetchInterface {

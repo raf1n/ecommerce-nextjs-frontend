@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { state, action, createStore } from 'usm-redux';
 import { compose } from 'redux';
 import { IProduct } from '../../interfaces/models';
@@ -16,6 +17,9 @@ export interface IStates {
     counter: number
     wishlistCounter: number
     wishlistData: Array<IProduct>
+    cartlistCounter:number
+    cartlistData: Array<IProduct>
+    cartSubTotal:number
     toggle: Boolean
     allProducts: Array<IProduct>
     featuredProducts: Array<IProduct>
@@ -31,6 +35,9 @@ export class Controller {
         counter: 0,
         wishlistCounter: 0,
         wishlistData: [],
+        cartSubTotal:0,
+        cartlistCounter: 0,
+        cartlistData: [],
         toggle: false,
         allProducts: [],
         featuredProducts: [],
@@ -89,6 +96,7 @@ export class Controller {
     }
 
 
+
     @action
     setAddtoWishlist(product: IProduct) {
         if (!this.states.wishlistData.some((item) => item.slug === product.slug)) {
@@ -115,6 +123,53 @@ export class Controller {
     setRemoveWishlistSingleProduct(product: IProduct) {
         this.states.wishlistData = this.states.wishlistData.filter((item) => item.slug !== product.slug)
         this.states.wishlistCounter -= 1
+    }
+
+    //cartList
+    @action
+    setIncreaseCartlistCounter() {
+        this.states.cartlistCounter += 1;
+    }
+
+    @action
+    setAddtoCartlist(product: IProduct) {
+        var total: number = 0
+        const totalFunc = () => {
+            for (let i = 0; i < this.states.cartlistData?.length; i++) {
+                if (this.states?.cartlistData[i]?.offerPrice) {
+                  total = total + parseInt(this.states.cartlistData[i]?.offerPrice)
+                }
+                else {
+                  total= total + parseInt(states?.cartlistData[i]?.price)
+                }
+        }
+        this.states.cartSubTotal=total 
+        }
+        if (!this.states.cartlistData.some((item) => item.slug === product.slug)) {
+            this.states.cartlistCounter += 1;
+            this.states.cartlistData = [
+                ...this.states.cartlistData,
+                product
+            ]
+           totalFunc()
+        }
+        else {
+            this.states.cartlistData = this.states.cartlistData.filter((item) => item.slug !== product.slug)
+            this.states.cartlistCounter -= 1
+           totalFunc()
+        }
+    }
+
+    @action
+    setClearCartlist() {
+        this.states.cartlistData = [];
+        this.states.cartlistCounter = 0
+    }
+
+    @action
+    setRemoveCartlistSingleProduct(product: IProduct) {
+        this.states.cartlistData = this.states.cartlistData.filter((item) => item.slug !== product.slug)
+        this.states.cartlistCounter -= 1
     }
 
 }
