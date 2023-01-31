@@ -4,8 +4,6 @@ import { useSelector } from "react-redux";
 import { IProduct } from "../../../interfaces/models";
 import { controller } from "../../../src/state/StateController";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
-import MyCartRow from "./MyCartRow";
-
 interface Props {
   // cartlistData: Array<IProduct>;
 }
@@ -76,10 +74,10 @@ const MyCart: React.FC<Props> = (props) => {
                                     display: "block",
                                     width: 0,
                                     height: 0,
-                                    minWidth: 100,
-                                    maxWidth: 100,
-                                    minHeight: 100,
-                                    maxHeight: 100,
+                                    minWidth: "100%",
+                                    maxWidth: "100%",
+                                    minHeight: "100%",
+                                    maxHeight: "100%",
                                   }}
                                   sizes="100vw"
                                 />
