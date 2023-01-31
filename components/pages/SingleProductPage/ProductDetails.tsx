@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 // import { ShareSocial } from "react-share-social";
-import { FacebookShareButton, TwitterShareButton } from "react-share"; 
+import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { FaRegHeart, FaFlag, FaFacebookF, FaTwitter } from "react-icons/fa";
 
 // import ReactStars from "react-rating-stars-component";
@@ -86,12 +86,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -100,12 +98,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -114,12 +110,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -128,12 +122,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -142,12 +134,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
         </div>
@@ -158,7 +148,7 @@ const ProductDetails: React.FC<Props> = (props) => {
 
       <div className="flex gap-x-2 items-baseline mb-7">
         <span className="font-semibold line-through text-qgray text-[15px]">
-          ${props.itemDetail.formerPrice}
+          ${props.itemDetail.formerPrice}200
         </span>
         <span className="text-red-500 font-semibold text-[24px] ml-2">
           ${props.itemDetail.currentPrice}.00
@@ -205,8 +195,7 @@ const ProductDetails: React.FC<Props> = (props) => {
         <div className="flex-1 h-full">
           <button
             type="button"
-            className="bg-black text-white text-sm font-semibold w-full h-full"
-          >
+            className="bg-black text-white text-sm font-semibold w-full h-full">
             Add To Cart
           </button>
         </div>
@@ -232,8 +221,7 @@ const ProductDetails: React.FC<Props> = (props) => {
 
       <div
         data-aos="fade-up"
-        className="social-share flex items-center w-full aos-init aos-animate"
-      >
+        className="social-share flex items-center w-full aos-init aos-animate">
         <span className="text-qblack text-[13px] mr-[17px] inline-block">
           Share This
         </span>
@@ -247,23 +235,29 @@ const ProductDetails: React.FC<Props> = (props) => {
 
           <button
             aria-label="facebook"
-            className="bg-transparent border-none p-0 cursor-pointer"
-          >
+            className="bg-transparent border-none p-0 cursor-pointer">
             <span className="cursor-pointer">
               {/* <FaFacebookF className="text-blue-900" /> */}
-              <FacebookShareButton url={shareableRoute} >
-                <FacebookIcon size={40} iconFillColor="#3E75B2" bgStyle={{display: "none"}}  />
+              <FacebookShareButton url={shareableRoute}>
+                <FacebookIcon
+                  size={40}
+                  iconFillColor="#3E75B2"
+                  bgStyle={{ display: "none" }}
+                />
               </FacebookShareButton>
             </span>
           </button>
           <button
             aria-label="twitter"
-            className="bg-transparent border-none p-0 cursor-pointer"
-          >
+            className="bg-transparent border-none p-0 cursor-pointer">
             <span className="cursor-pointer">
               {/* <FaTwitter className="text-blue-400" /> */}
-              <TwitterShareButton url={shareableRoute} >
-                <TwitterIcon size={40} iconFillColor="#3FD1FF" bgStyle={{display: "none"}}  />
+              <TwitterShareButton url={shareableRoute}>
+                <TwitterIcon
+                  size={40}
+                  iconFillColor="#3FD1FF"
+                  bgStyle={{ display: "none" }}
+                />
               </TwitterShareButton>
             </span>
           </button>

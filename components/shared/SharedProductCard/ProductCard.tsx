@@ -27,7 +27,8 @@ const ProductCard: React.FC<Props> = (props) => {
   };
 
   const handleWishlist = () => {
-    controller.setAddtoWishlist(product);
+    controller.setAddtoWishlist(pro
+      duct);
   };
 
   return (

@@ -14,7 +14,9 @@ const composeEnhancers =
 export interface IStates {
   counter: number;
   wishlistCounter: number;
+  cartlistCounter: number; //By Ironman
   wishlistData: Array<IProduct>;
+  cartlistData: Array<IProduct>; //By Ironman
   toggle: Boolean;
   allProducts: Array<IProduct>;
   featuredProducts: Array<IProduct>;
@@ -29,7 +31,9 @@ export class Controller {
   states: IStates = {
     counter: 0,
     wishlistCounter: 0,
+    cartlistCounter: 0, //By Ironman
     wishlistData: [],
+    cartlistData: [], //By ironman
     toggle: false,
     allProducts: [],
     featuredProducts: [],
@@ -85,6 +89,10 @@ export class Controller {
   setIncreaseWishlistCounter() {
     this.states.wishlistCounter += 1;
   }
+  @action //By Ironman
+  setIncreaseCartlistCounter() {
+    this.states.cartlistCounter += 1;
+  }
 
   @action
   setAddtoWishlist(product: IProduct) {
@@ -99,11 +107,28 @@ export class Controller {
       this.states.wishlistCounter -= 1;
     }
   }
+  @action //By Ironman
+  setAddToCartlist(product: IProduct) {
+    if (!this.states.cartlistData.some((item) => item.slug === product.slug)) {
+      this.states.cartlistCounter += 1;
+      this.states.cartlistData = [...this.states.cartlistData, product];
+    } else {
+      this.states.cartlistData = this.states.cartlistData.filter(
+        (item) => item.slug !== product.slug
+      );
+      this.states.cartlistCounter -= 1;
+    }
+  }
 
   @action
   setClearWishlist() {
     this.states.wishlistData = [];
     this.states.wishlistCounter = 0;
+  }
+  @action //by ironman
+  setClearCartlist() {
+    this.states.cartlistData = [];
+    this.states.cartlistCounter = 0;
   }
 
   @action
