@@ -12,7 +12,6 @@ interface Props {
 
 const MyCart: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const arr = [1, 2, 3];
 
   return (
     <div className="bg-white mb-10">
@@ -138,9 +137,7 @@ const MyCart: React.FC<Props> = (props) => {
                       </div>
                     </td>
                   </tr> */}
-                  {arr.map((ar) => {
-                    <MyCartRow />;
-                  })}
+                  {}
                 </tbody>
               </table>
             </div>
