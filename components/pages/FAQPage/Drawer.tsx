@@ -60,12 +60,10 @@ const Drawer: React.FC<Props> = (props) => {
             key={item.id}
             className={`${
               activeIndex === index ? "bg-amber-400" : ""
-            }  bg-white m-3`}
-          >
+            }  bg-white m-3`}>
             <button
               className="block text-left w-full rounded-t-md py-2 font-semibold text-qblack hover:text-qblack focus:outline-none focus:text-qblack"
-              onClick={() => handleClick(index)}
-            >
+              onClick={() => handleClick(index)}>
               <div className="flex justify-between items-center ">
                 <div className="w-3/4 text-base leading-5 font-semibold text-qblack p-3 capitalize">
                   {item.question}
@@ -77,8 +75,7 @@ const Drawer: React.FC<Props> = (props) => {
                       className="minus w-6 h-6"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
+                      stroke="currentColor">
                       <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -92,8 +89,7 @@ const Drawer: React.FC<Props> = (props) => {
                       className="plus w-6 h-6"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
+                      stroke="currentColor">
                       <path
                         stroke-linecap="round"
                         stroke-linejoin="round"

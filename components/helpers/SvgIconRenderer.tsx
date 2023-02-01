@@ -19,6 +19,8 @@ interface Props {
   dataPrefix?: string;
   dataIcon?: string;
   role?: string;
+  fillRule?: string;
+  clipRule?: string;
 }
 
 const SvgIconRenderer: React.FC<Props> = (props) => {
@@ -41,6 +43,8 @@ const SvgIconRenderer: React.FC<Props> = (props) => {
     dataPrefix,
     dataIcon,
     role,
+    fillRule,
+    clipRule,
   } = props;
 
   return (
@@ -57,7 +61,12 @@ const SvgIconRenderer: React.FC<Props> = (props) => {
       data-prefix={dataPrefix}
       data-icon={dataIcon}
       role={role}>
-      <path fill={pathFill ?? "#FFF"} d={path} />
+      <path
+        fill={pathFill ?? "#FFF"}
+        d={path}
+        fill-rule={fillRule}
+        clip-rule={clipRule}
+      />
     </svg>
   );
 };
