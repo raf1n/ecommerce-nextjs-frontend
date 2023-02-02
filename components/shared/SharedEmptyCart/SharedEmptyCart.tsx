@@ -24,8 +24,7 @@ const SharedEmptyCart: React.FC<Props> = (props) => {
           </span>
           <span>
             <Link href="/">
-              {/* <span className="mx-1 capitalize">{slug}</span> */}
-              <span className="mx-1 capitalize">wishlist</span>
+              <span className="mx-1 capitalize">{slug}</span>
             </Link>
           </span>
         </div>
@@ -39,8 +38,8 @@ const SharedEmptyCart: React.FC<Props> = (props) => {
 
       <div className="flex  justify-center">
         <h1 className="sm:text-xl text-base font-semibold text-center mb-5">
-          Empty! You don't <span className="capitalize">{slug}</span> any
-          Products
+          Empty! You don't have any <span className="capitalize">{slug} </span>
+          products
         </h1>
       </div>
       <div className="flex justify-center items-center">

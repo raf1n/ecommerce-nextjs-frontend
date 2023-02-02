@@ -11,7 +11,7 @@ const WishList: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div className="w-full min-h-screen  pt-[30px] pb-[60px]">
+    <div className="w-full min-h-screen  pt-[30px] pb-[5px]">
       {states.wishlistData.length === 0 ? (
         <>
           <SharedEmptyCart

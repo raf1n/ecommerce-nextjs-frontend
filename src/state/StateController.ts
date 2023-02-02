@@ -26,7 +26,6 @@ export interface IStates {
   popularProducts: Array<IProduct>;
   bestProducts: Array<IProduct>;
   newProducts: Array<IProduct>;
-  // cartSingleProduct: number;
 }
 
 export class Controller {
@@ -45,7 +44,6 @@ export class Controller {
     popularProducts: [],
     bestProducts: [],
     newProducts: [],
-    // cartSingleProduct = 0,
   };
 
   @action
@@ -123,14 +121,10 @@ export class Controller {
     this.states.wishlistCounter -= 1;
   }
 
-  //cartList
-  @action
-  setIncreaseCartlistCounter() {
-    this.states.cartlistCounter += 1;
-  }
+  // //cartList
   // @action
-  // setIncreaseCartSingleProduct() {
-  //   this.states.cartSingleProduct += 1;
+  // setIncreaseCartlistCounter() {
+  //   this.states.cartlistCounter += 1;
   // }
 
   @action
