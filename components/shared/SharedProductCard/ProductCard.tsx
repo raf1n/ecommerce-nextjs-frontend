@@ -7,6 +7,7 @@ import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import styles from "./ProductCard.module.css";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
+import Link from "next/link";
 interface Props {
   product: IProduct;
 }
@@ -184,13 +185,13 @@ const ProductCard: React.FC<Props> = (props) => {
                   />
                 </span>
               </div>
-              <a
+              <Link
                 rel="noopener noreferrer"
-                href="/single-product?slug=realme-mini-music">
+                href={`/single_product?slug=${product.slug}`}>
                 <p className="title mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
                   {product.productName}
                 </p>
-              </a>
+              </Link>
               <p className="price">
                 <span className="main-price  font-semibold text-[18px] line-through text-qgray">
                   <span>${product.price}</span>
