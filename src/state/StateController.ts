@@ -7,9 +7,9 @@ const composeEnhancers =
   // @ts-ignore
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? // @ts-ignore
-      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Speciffy extension's options like name, actionsDenylist, actionsCreators, serialize...
-      })
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Speciffy extension's options like name, actionsDenylist, actionsCreators, serialize...
+    })
     : compose;
 
 export interface IStates {
@@ -88,11 +88,11 @@ export class Controller {
     this.states.newProducts = product;
   }
 
+  //wishlist
   @action
   setIncreaseWishlistCounter() {
     this.states.wishlistCounter += 1;
   }
-
   @action
   setAddtoWishlist(product: IProduct) {
     if (!this.states.wishlistData.some((item) => item.slug === product.slug)) {
