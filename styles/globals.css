@@ -22,7 +22,7 @@ body {
 }
 
 /* slider style  */
-.feedback-slider-wrapper .slick-slide>div {
+.feedback-slider-wrapper .slick-slide > div {
   margin: 0 15px;
 }
 
@@ -40,10 +40,13 @@ body {
   opacity: 60%;
 }
 
-.feedback-slider-wrapper .slick-slider .slick-list .slick-slide.slick-current .item {
+.feedback-slider-wrapper
+  .slick-slider
+  .slick-list
+  .slick-slide.slick-current
+  .item {
   opacity: 100%;
 }
-
 
 .slider-wrapper .slick-dots {
   width: auto;
@@ -217,4 +220,5 @@ body {
   font-weight: 600;
   color: rgb(29 29 29/1);
   line-height: 0;
+  cursor: pointer;
 }

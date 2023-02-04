@@ -18,3 +18,29 @@ export interface IUser {
     createdAt?: string
     updatedAt: string
 }
+export interface featuredProductLPObj {
+    pageNumber: number | string
+}
+
+
+export interface IProduct {
+    productName?: string;
+    slug?: string;
+    catSlug?: string;
+    subCatSlug?: string;
+    brandSlug?: string;
+    price?: number;
+    description?: string;
+    status?: string;
+    imageURL: Array<string | undefined>;
+    offerPrice?: string;
+    weight?: number;
+    stock?: number;
+    seoTitle?: string;
+    seoDescription?: string;
+    isTopProduct?: boolean;
+    isNewArrival?: boolean;
+    isBestProduct?: boolean;
+    isFeatured?: boolean;
+    isPopular?: boolean;
+}

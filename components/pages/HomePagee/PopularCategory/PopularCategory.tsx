@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { IProduct } from "../../../../interfaces/models";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
@@ -9,6 +10,7 @@ interface Props {}
 
 const PopularCategory: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [slug, setSlug] = useState("mobile_slug");
 
   return (
     <div>
@@ -32,24 +34,30 @@ const PopularCategory: React.FC<Props> = (props) => {
                       <div className="brands-list mb-[7px]">
                         <ul>
                           <li>
-                            <span className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
+                            <span
+                              onClick={() => setSlug("mobile_slug")}
+                              className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
                               Mobile
                             </span>
                           </li>
                           <li>
-                            <span className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
+                            <span
+                              onClick={() => setSlug("electronics_slug")}
+                              className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
                               Electronics
                             </span>
                           </li>
                           <li>
-                            <span className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
+                            <span
+                              onClick={() => setSlug("game_slug")}
+                              className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
                               Game
                             </span>
                           </li>
                         </ul>
                       </div>
                       <div className="flex space-x-2 items-center">
-                        <span className="text-qblack font-semibold text-sm">
+                        <span className=" text-qblack font-semibold text-sm">
                           Shop Now
                         </span>
                         <span>
@@ -79,12 +87,12 @@ const PopularCategory: React.FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                {/*********** * card *********/}
-                {Jsondata.featuredProducts.map((product, index) => (
-                  <ProductCard key={index} product={product}></ProductCard>
-                ))}
-
-                {/************ * card **********/}
+                {states.allProducts
+                  .filter((product) => product.catSlug === slug)
+                  .slice(0, 3)
+                  .map((pro) => (
+                    <ProductCard product={pro}></ProductCard>
+                  ))}
               </div>
             </div>
           </div>

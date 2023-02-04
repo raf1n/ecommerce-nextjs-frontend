@@ -3,15 +3,13 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import Styles from "./WishlistCart.module.css";
 import SharedWishlistTable from './../../shared/SharedWishlistTable/SharedWishlistTable';
-import { Jsondata } from "../../../src/utils/Jsondata";
 
+interface Props {
 
-interface Props { }
+}
 
 const WishlistCart: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-
-  const { wishlistData } = Jsondata;
 
   return (
     <div className="bg-white py-6">
@@ -19,11 +17,13 @@ const WishlistCart: React.FC<Props> = (props) => {
         <div className="container-x mx-auto">
           <div className="w-full mb-[30px]">
             <div className="relative w-full overflow-x-auto border border-[#EDEDED]">
-              <SharedWishlistTable wishlistData={wishlistData} />
+              <SharedWishlistTable wishlistData={states.wishlistData} />
             </div>
             <div className="w-full mt-[30px] flex sm:justify-end justify-start">
               <div className="sm:flex sm:space-x-[30px] items-center">
-                <button type="button">
+                <button type="button"
+                  onClick={() => controller.setClearWishlist()}
+                >
                   <div className=" w-full text-sm font-semibold text-qred mb-5 sm:mb-0">
                     Clean Wishlist
                   </div>

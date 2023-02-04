@@ -1,15 +1,14 @@
 //@ts-nocheck
-
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import InputRange from "react-input-range";
 import { controller } from "../../../src/state/StateController";
 import "react-input-range/lib/css/index.css";
-import { Jsondata } from '../../../src/utils/Jsondata';
+import { Jsondata } from "../../../src/utils/Jsondata";
 import FilterCheckbox from "./FilterCheckbox";
 import FilterHeader from "./FilterHeader";
 
-interface Props { }
+interface Props {}
 
 const FilterWidget: React.FC<Props> = (props) => {
   const [value, setValue] = useState({
@@ -59,10 +58,7 @@ const FilterWidget: React.FC<Props> = (props) => {
 
       <div className="pb-10 mt-10">
         <FilterHeader title="Red" />
-
       </div>
-
-        
     </div>
   );
 };
