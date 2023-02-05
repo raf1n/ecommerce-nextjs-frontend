@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-import { FaEnvelope } from "react-icons/fa";
+import { MdOutlineMail } from "react-icons/md";
 
 interface Props {}
 
@@ -9,7 +9,6 @@ const FooterCta: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    // <div className="w-full">
     <div
       className="h-[307px] bg-cover bg-center bg-no-repeat flex justify-center items-end"
       style={{
@@ -28,14 +27,13 @@ const FooterCta: React.FC<Props> = (props) => {
         >
           <div className="flex-1 bg-white pl-4 flex space-x-2 items-center h-full">
             <span>
-              <FaEnvelope className="text-lg text-[#9A9A9A]" />
+              <MdOutlineMail className="text-lg w-5 h-5 text-[#9A9A9A]" />
             </span>
             <input
               type="email"
               name="email"
               className="w-full h-full focus:outline-none text-sm placeholder:text-xs tracking-wider"
               placeholder="EMAIL ADDRESS"
-              // value=""
             />
           </div>
           <button
@@ -47,7 +45,6 @@ const FooterCta: React.FC<Props> = (props) => {
         </div>
       </div>
     </div>
-    // </div>
   );
 };
 

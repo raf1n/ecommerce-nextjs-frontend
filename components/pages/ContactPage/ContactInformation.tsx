@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { GoLocation } from "react-icons/go";
 import mapss from "./mapss.png";
 import { controller } from "../../../src/state/StateController";
+import SvgIconRenderer from "../../helpers/SvgIconRenderer";
+import { SvgPaths } from "../../../src/utils/SvgPaths";
 
 interface Props {}
 
@@ -21,19 +23,16 @@ const ContactInformation: React.FC<Props> = (props) => {
         <div className="xl:w-1/2 w-full h-[196px] flex flex-col item justify-center bg-[#FFEAE5] p-5">
           <div className="flex justify-center mb-3 ">
             <span className="h-11 w-11 border border-[#FFBB38] rounded-full">
-              <svg
+              <SvgIconRenderer
                 className="h-6 w-6 m-2"
                 xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
+                width="24"
+                height="24"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 24 24"
-              >
-                <path
-                  d="M19 11.95q0-2.925-2.038-4.963Q14.925 4.95 12 4.95v-2q1.875 0 3.513.712q1.637.713 2.85 1.926q1.212 1.212 1.925 2.85Q21 10.075 21 11.95Zm-4 0q0-1.25-.875-2.125T12 8.95v-2q2.075 0 3.538 1.462Q17 9.875 17 11.95ZM19.95 21q-3.225 0-6.287-1.438q-3.063-1.437-5.425-3.8q-2.363-2.362-3.8-5.425Q3 7.275 3 4.05q0-.45.3-.75t.75-.3H8.1q.35 0 .625.225t.325.575l.65 3.5q.05.35-.012.637q-.063.288-.288.513L7 10.9q1.05 1.8 2.625 3.375T13.1 17l2.35-2.35q.225-.225.588-.338q.362-.112.712-.062l3.45.7q.35.075.575.337q.225.263.225.613v4.05q0 .45-.3.75t-.75.3Z"
-                  fill="#FFBB38"
-                />
-              </svg>
+                path={SvgPaths.phoneIconInContact}
+                pathFill="#FFBB38"
+              />
             </span>
           </div>
           <p className="text-[22px] text-black leading-[30px] text-center font-semibold">

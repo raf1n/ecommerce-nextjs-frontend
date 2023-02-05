@@ -53,11 +53,22 @@ const LoginForm: React.FC<Props> = (props) => {
         console.log('Login error')
       }
       else {
-        CookiesHandler.setAccessToken(res.access_token)
-        if (res.slug) {
-          CookiesHandler.setSlug(res.slug as string)
+        if (res.role == "admin") {
+          setErrorLogin(true)
+          setErrorTextLogin('Already registered as Admin')
         }
-        router.push('/')
+        else if (res.role == "seller") {
+          setErrorLogin(true)
+          setErrorTextLogin('Already registered as Seller')
+        }
+        else if (res.slug && res.access_token) {
+          setErrorLogin(false)
+          setSuccessLogin(true)
+          CookiesHandler.setAccessToken(res.access_token)
+          CookiesHandler.setSlug(res.slug as string)
+          setSuccessTextLogin('SignIn Success')
+          router.push('/')
+        }
       }
     }
 
@@ -98,7 +109,7 @@ const LoginForm: React.FC<Props> = (props) => {
             email: email,
             avatar: 'https://tinyurl.com/382e6w5t',
             fullName: displayName,
-            role: 'buyer'
+            // role: 'buyer'
           }
           const { res, err } = await EcommerceApi.login(data);
           if (err) {
@@ -107,16 +118,23 @@ const LoginForm: React.FC<Props> = (props) => {
             setErrorTextLogin('Server Error')
           }
           else {
-            CookiesHandler.setAccessToken(res.access_token)
-            if (res.slug) {
-              CookiesHandler.setSlug(res.slug as string)
+            if (res.role == "admin") {
+              setErrorLogin(true)
+              setErrorTextLogin('Already registered as Admin')
+            }
+            else if (res.role == "seller") {
+              setErrorLogin(true)
+              setErrorTextLogin('Already registered as Seller')
+            }
+            else if (res.slug && res.access_token) {
+              setErrorLogin(false)
               setSuccessLogin(true)
+              CookiesHandler.setAccessToken(res.access_token)
+              CookiesHandler.setSlug(res.slug as string)
               setSuccessTextLogin('SignIn Success')
+              router.push('/')
             }
           }
-
-
-
         }
 
 
