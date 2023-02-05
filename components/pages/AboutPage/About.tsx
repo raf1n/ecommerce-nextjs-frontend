@@ -11,7 +11,7 @@ import Slider from "react-slick";
 import ViewMoreBtn from "../../helpers/Buttons/ViewMoreBtn";
 import { Jsondata } from "../../../src/utils/Jsondata";
 
-interface Props { }
+interface Props {}
 
 const About: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -123,10 +123,10 @@ const About: React.FC<Props> = (props) => {
               <div className="content flex-1">
                 <div className="about-content">
                   <div>
-                    <h1 className="text-2xl font-semibold mb-4 ">
+                    <h1 className="text-3xl font-semibold mb-4 ">
                       What is e-commerce business?
                     </h1>
-                    <br />
+                    {/* <br /> */}
                     <p className="text-base text-[#797979] leading-8 ">
                       Lorem Ipsum is simply dummy text of the printing and
                       typesetting industry. Lorem Ipsum has been the industry's
@@ -202,10 +202,7 @@ const About: React.FC<Props> = (props) => {
             </h1>
           </div>
           <div className="feedback-slider-wrapper w-vw relative overflow-hidden">
-            <Slider
-              ref={slider}
-              {...settings}
-            >
+            <Slider ref={slider} {...settings}>
               {feedbacks.map((feedback, index) => (
                 <div className="item h-auto bg-primarygray sm:px-10 sm:py-9 p-2">
                   <div className="rating flex space-x-1 items-center mb-4 ">
@@ -286,11 +283,8 @@ const About: React.FC<Props> = (props) => {
                       </p>
                     </div>
                   </div>
-
                 </div>
-
               ))}
-
             </Slider>
           </div>
 
