@@ -43,4 +43,5 @@ export interface IProduct {
     isBestProduct?: boolean;
     isFeatured?: boolean;
     isPopular?: boolean;
+    quantity?: number;
 }
