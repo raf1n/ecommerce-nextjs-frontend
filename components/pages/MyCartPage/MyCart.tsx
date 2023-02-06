@@ -12,6 +12,17 @@ interface Props {
 const MyCart: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
+  const handleMinusFromCart = (item: IProduct) => {
+    const selectedItem = states?.cartlistData?.find(
+      (product) => item.slug === product.slug
+    );
+    if (selectedItem?.quantity === 1) {
+      controller.setRemoveCartItem(item);
+    } else {
+      controller.setMinusFromCartlist(item)
+    }
+  }
+
   return (
     <div className="w-full min-h-screen  pt-[30px] pb-[5px]">
       {states.cartlistData.length === 0 ? (
@@ -117,9 +128,7 @@ const MyCart: React.FC<Props> = (props) => {
                                 <div className="w-[120px] h-full px-[26px] flex items-center border border-gray-200">
                                   <div className="flex justify-between items-center w-full py-2">
                                     <button
-                                      onClick={() =>
-                                        controller.setMinusFromCartlist(item)
-                                      }
+                                      onClick={() => handleMinusFromCart(item)}
                                       type="button"
                                       className="text-base text-qgray font-bold"
                                     >
