@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import Select from "react-select";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 
 interface Props {
   selectedOption: any;
@@ -28,6 +29,8 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
       city: e.target.city.value,
       address: e.target.address.value,
     };
+    EcommerceApi.createAddress(addresses);
+    e.target.reset();
   };
   const style = {
     control: (base: any) => ({

@@ -138,7 +138,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                             Selected
                           </span>
                         </div>
-                        <div className="w-full p-5 border cursor-pointer relative border-transparent bg-primarygray">
+                        {/* <div className="w-full p-5 border cursor-pointer relative border-transparent bg-primarygray">
                           <div className="flex justify-between items-center">
                             <p className="title text-[22px] font-semibold">
                               Address #2
@@ -212,7 +212,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                               </tbody>
                             </table>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     ) : (
                       <SharedAddNewAddress
