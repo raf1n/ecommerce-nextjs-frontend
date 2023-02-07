@@ -52,4 +52,5 @@ export interface IAddress {
   state: string;
   city: string;
   address: string;
+  slug: string;
 }

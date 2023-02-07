@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import Select from "react-select";
@@ -9,13 +9,22 @@ interface Props {
   setSelectedOption: any;
   setForm: any;
   form: any;
+  refresh: boolean;
+  setRefresh: Dispatch<SetStateAction<boolean>>;
 }
 
 const SharedAddNewAddress: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   // const [form, setForm] = useState(false);
   // const [selectedOption, setSelectedOption] = useState(null);
-  const { selectedOption, setSelectedOption, setForm, form } = props;
+  const {
+    selectedOption,
+    setSelectedOption,
+    setForm,
+    form,
+    setRefresh,
+    refresh,
+  } = props;
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -30,6 +39,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
       address: e.target.address.value,
     };
     EcommerceApi.createAddress(addresses);
+    setRefresh(!refresh);
     e.target.reset();
   };
   const style = {
@@ -244,12 +254,10 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
               </label>
             </div>
           </div>
-          <button type="button" className="w-full h-[50px]">
-            <div className="yellow-btn rounded">
-              <button type="submit" className="text-sm text-qblack">
-                Save Address
-              </button>
-            </div>
+          <button className="w-full h-[50px]">
+            <span className="yellow-btn rounded text-sm text-qblack">
+              Save Address
+            </span>
           </button>
         </form>
       </div>

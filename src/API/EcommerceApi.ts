@@ -3,6 +3,7 @@ import {
   IAddress,
   IProduct,
   IUser,
+  MyFetchInterface,
 } from "../../interfaces/models";
 import {
   IAddressResponse,
@@ -77,5 +78,21 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/addresses`, requestOptions);
+  }
+
+  //Delete Address Data
+
+  static async deleteAddress(slug: string): Promise<MyFetchInterface> {
+    console.log(API_ENDPOINT);
+    console.log(slug);
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/addresses/${slug}`, requestOptions);
   }
 }

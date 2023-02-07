@@ -8,6 +8,7 @@ import sslcommerze from "../../../public/images/sslcommerze.png";
 import SharedAddNewAddress from "../../shared/SharedAddNewAddress/SharedAddNewAddress";
 import { IAddress } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import SharedDeleteModal from "../../shared/SharedDeleteModal/SharedDeleteModal";
 interface Props {}
 
 const CheckoutPage: React.FC<Props> = (props) => {
@@ -15,6 +16,18 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const [form, setForm] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [addressData, setAddressData] = useState<IAddress[]>([]);
+  const [deleteModalSlug, setDeleteModalSlug] = useState<any | string>("");
+  const [refresh, setRefresh] = useState(false);
+  const handleDelete = async () => {
+    const { res, err } = await EcommerceApi.deleteAddress(deleteModalSlug);
+    if (res) {
+      setDeleteModalSlug("");
+      const remainingAddress = addressData.filter(
+        (product) => product.slug !== deleteModalSlug
+      );
+      setAddressData(remainingAddress);
+    }
+  };
 
   useEffect(() => {
     const allAddress = async () => {
@@ -28,7 +41,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
       }
     };
     allAddress();
-  }, []);
+  }, [refresh]);
 
   return (
     <div>
@@ -84,6 +97,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 {`Address ${index + 1}`}
                               </p>
                               <button
+                                onClick={() =>
+                                  setDeleteModalSlug(singleAddress.slug)
+                                }
                                 type="button"
                                 className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center"
                               >
@@ -98,6 +114,11 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 />
                               </button>
                             </div>
+                            <SharedDeleteModal
+                              deleteModalSlug={deleteModalSlug}
+                              handleDelete={handleDelete}
+                              setDeleteModalSlug={setDeleteModalSlug}
+                            />
                             <div className="mt-5">
                               <table>
                                 <tbody>
@@ -321,6 +342,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
                       </div>
                     ) : (
                       <SharedAddNewAddress
+                        setRefresh={setRefresh}
+                        refresh={refresh}
                         selectedOption={selectedOption}
                         setSelectedOption={setSelectedOption}
                         setForm={setForm}
