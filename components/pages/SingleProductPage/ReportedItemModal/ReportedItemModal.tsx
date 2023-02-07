@@ -5,7 +5,7 @@ import { controller } from "../../../../src/state/StateController";
 interface Props {
   reportModalSlug: string;
   setReportModalSlug: Dispatch<SetStateAction<string>>;
-  handleReport: () => void;
+  handleReport: Function;
 }
 
 const ReportedItemModal: React.FC<Props> = (props) => {
@@ -41,7 +41,7 @@ const ReportedItemModal: React.FC<Props> = (props) => {
                   </svg>
                 </span>
               </div>
-              <form className="inputs w-full">
+              <form onSubmit={(e) => handleReport(e)} className="inputs w-full">
                 <div className="w-full mb-5">
                   <div className="input-com w-full h-full">
                     <label
@@ -52,6 +52,7 @@ const ReportedItemModal: React.FC<Props> = (props) => {
                     </label>
                     <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                       <input
+                        name="title"
                         placeholder="Reports Headline here"
                         className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                         type="text"
@@ -65,7 +66,7 @@ const ReportedItemModal: React.FC<Props> = (props) => {
                     Enter Report Note*
                   </h6>
                   <textarea
-                    name=""
+                    name="note"
                     id=""
                     cols={30}
                     rows={6}

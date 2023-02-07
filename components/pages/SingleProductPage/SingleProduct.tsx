@@ -6,14 +6,28 @@ import ProductDetails from "./ProductDetails";
 import { Jsondata } from "../../../src/utils/Jsondata";
 import Breadcrumb from "../../shared/SharedBreadcrumb/Breadcrumb";
 import ReportedItemModal from "./ReportedItemModal/ReportedItemModal";
+import { useRouter } from "next/router";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 
 interface Props {}
 
 const SingleProduct: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const { itemDetail } = Jsondata;
+  const router = useRouter();
+  const { asPath } = router;
+  console.log(asPath.split("=")[1]);
+
   const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
-  const handleReport = () => {
+  const handleReport = (e: any) => {
+    e.preventDefault();
+    const reportedItem = {
+      product_slug: asPath.split("=")[1],
+      user_slug: "user_slug_1",
+      title: e.target.title.value,
+      note: e.target.note.value,
+    };
+    EcommerceApi.addReportedItem(reportedItem);
     setReportModalSlug("");
   };
   return (

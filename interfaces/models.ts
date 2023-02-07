@@ -32,7 +32,7 @@ export interface IProduct {
   description?: string;
   status?: string;
   imageURL: Array<string | undefined>;
-  offerPrice?: string;
+  offerPrice?: number;
   weight?: number;
   stock?: number;
   seoTitle?: string;
@@ -44,4 +44,12 @@ export interface IProduct {
   isPopular?: boolean;
   addedBy?: string;
   approvalStatus?: string;
+}
+
+export interface IReportedItem {
+  slug?: string;
+  product_slug?: string;
+  user_slug?: string;
+  title?: string;
+  note?: string;
 }

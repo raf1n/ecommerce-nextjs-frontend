@@ -58,7 +58,6 @@ import ReportedItemModal from "./ReportedItemModal/ReportedItemModal";
 
 interface Props {
   itemDetail: any;
-
   setReportModalSlug: Dispatch<SetStateAction<string>>;
 }
 
