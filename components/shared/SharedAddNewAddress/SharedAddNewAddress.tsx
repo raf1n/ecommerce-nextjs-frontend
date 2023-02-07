@@ -16,6 +16,19 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
   // const [selectedOption, setSelectedOption] = useState(null);
   const { selectedOption, setSelectedOption, setForm, form } = props;
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const addresses = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      phone: e.target.phone.value,
+      country: e.target.country.value,
+      state: e.target.state.value,
+      city: e.target.city.value,
+      address: e.target.address.value,
+    };
+  };
   const style = {
     control: (base: any) => ({
       ...base,
@@ -70,7 +83,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
         </span>
       </div>
       <div className="form-area">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-6">
             <div className="w-full mb-5 sm:mb-0">
               <div className="input-com w-full h-full">
@@ -79,6 +92,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                 </label>
                 <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                   <input
+                    name="name"
                     placeholder="Name"
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
@@ -94,6 +108,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                 </label>
                 <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                   <input
+                    name="email"
                     placeholder="Email"
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
@@ -107,6 +122,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                 </label>
                 <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                   <input
+                    name="phone"
                     placeholder="012 3 *******"
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
@@ -122,6 +138,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
               <div className="my-select-box w-full">
                 <div className="my-select-box-section ">
                   <Select
+                    name="country"
                     value={selectedOption}
                     onChange={handleChange}
                     options={countryOptions}
@@ -143,6 +160,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                 <div className="my-select-box w-full">
                   <div className="my-select-box-section ">
                     <Select
+                      name="state"
                       styles={style}
                       components={{
                         IndicatorSeparator: () => null,
@@ -160,6 +178,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                 <div className="my-select-box w-full">
                   <div className="my-select-box-section ">
                     <Select
+                      name="city"
                       styles={style}
                       components={{
                         IndicatorSeparator: () => null,
@@ -178,6 +197,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                 </label>
                 <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                   <input
+                    name="address"
                     placeholder="Your Address here"
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
@@ -211,7 +231,9 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
           </div>
           <button type="button" className="w-full h-[50px]">
             <div className="yellow-btn rounded">
-              <span className="text-sm text-qblack">Save Address</span>
+              <button type="submit" className="text-sm text-qblack">
+                Save Address
+              </button>
             </div>
           </button>
         </form>
