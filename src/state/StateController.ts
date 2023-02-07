@@ -95,7 +95,7 @@ export class Controller {
 
   @action
   setAddtoWishlist(product: IProduct) {
-    if (!this.states.wishlistData.some((item) => item.slug === product.slug)) {
+    if (!this.states.wishlistData?.some((item) => item.slug === product.slug)) {
       this.states.wishlistCounter += 1;
       this.states.wishlistData = [...this.states.wishlistData, product];
       // this.states.wishlistData.push(product)
@@ -112,20 +112,19 @@ export class Controller {
     this.states.wishlistData = [];
     this.states.wishlistCounter = 0;
   }
+  @action
+  setAllWishlistData(products: Array<IProduct>) {
+    console.log(products);
+    this.states.wishlistData = products;
+  }
 
   @action
   setRemoveWishlistSingleProduct(product: IProduct) {
-    this.states.wishlistData = this.states.wishlistData.filter(
+    this.states.wishlistData = this.states.wishlistData?.filter(
       (item) => item.slug !== product.slug
     );
     this.states.wishlistCounter -= 1;
   }
-
-  // //cartList
-  // @action
-  // setIncreaseCartlistCounter() {
-  //   this.states.cartlistCounter += 1;
-  // }
 
   @action
   setAddtoCartlist(product: IProduct) {

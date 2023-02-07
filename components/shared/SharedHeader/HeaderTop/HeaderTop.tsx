@@ -6,14 +6,14 @@ import { controller } from "../../../../src/state/StateController";
 import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import styles from "./styles.module.css";
 
-interface Props { }
+interface Props {}
 
 const HeaderTop: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [sideDropdownOpen, setSideDropdownOpen] = useState(false);
   const [showCategory, setShowCategory] = useState(true);
   const [showTopAllCatgory, setShowTopAllCatgory] = useState(false);
-  let total:number = 0
+  let total: number = 0;
 
   const sideDropdown = () => {
     console.log("open");
@@ -29,7 +29,7 @@ const HeaderTop: React.FC<Props> = (props) => {
   };
 
   // const cartSubTotal = () => {
-    
+
   //   for (let i = 0; i < states?.cartlistData?.length; i++) {
   //     if (states?.cartlistData[i]?.offerPrice) {
   //       total = total + parseInt(states?.cartlistData[i]?.offerPrice)
@@ -41,9 +41,7 @@ const HeaderTop: React.FC<Props> = (props) => {
   //   return total
   // }
 
-  useEffect(() => {
-
-  }, [])
+  useEffect(() => {}, []);
   return (
     <div>
       {sideDropdownOpen && (
@@ -55,8 +53,9 @@ const HeaderTop: React.FC<Props> = (props) => {
       )}
       {/* {sideDropdownOpen && ( */}
       <div
-        className={`w-[280px] transition-all duration-300 ease-in-out h-screen overflow-y-auto overflow-x-hidden overflow-style-none bg-white fixed left-0 top-0 z-50 ${sideDropdownOpen ? "-left-[0px]" : "-left-[280px]"
-          } ${styles["sideDropdownScrollStyle"]}`}>
+        className={`w-[280px] transition-all duration-300 ease-in-out h-screen overflow-y-auto overflow-x-hidden overflow-style-none bg-white fixed left-0 top-0 z-50 ${
+          sideDropdownOpen ? "-left-[0px]" : "-left-[280px]"
+        } ${styles["sideDropdownScrollStyle"]}`}>
         <div className="w-full px-5 mt-5 mb-4">
           <div className="flex justify-between items-center">
             <div className="flex space-x-5 items-center">
@@ -1091,7 +1090,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                       </svg>
                     </span>
                     <span className="text-xs text-qblack font-medium leading-none">
-                      +88 01682 825 123
+                      +88 01834 093 014
                     </span>
                   </div>
                   <div className="flex space-x-2 items-center">
@@ -1109,7 +1108,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                       </svg>
                     </span>
                     <span className="text-xs text-qblack font-medium leading-none">
-                      abdur.rohman2003@gmail.com
+                      iamhasan9501@gmail.com
                     </span>
                   </div>
                 </div>
@@ -1249,7 +1248,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                               </li>
                               <li>
                                 <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
-                                  John Doe
+                                  Mike Doe
                                 </span>
                               </li>
                             </ul>
@@ -1323,7 +1322,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                         </span>
                       </Link>
                       <span className="w-[18px] h-[18px] rounded-full absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px] bg-qyellow">
-                      {states.cartlistCounter}
+                        {states.cartlistCounter}
                       </span>
                     </div>
                     <div
@@ -1336,74 +1335,76 @@ const HeaderTop: React.FC<Props> = (props) => {
                           className={`${styles["productItems"]} h-[310px] overflow-y-scroll`}>
                           <ul>
                             {states.cartlistData.map((item, idx) => (
-                             <li className="w-full h-full flex justify-between">
-                             <div className="flex space-x-[6px] justify-center items-center px-4 my-[20px]">
+                              <li className="w-full h-full flex justify-between">
+                                <div className="flex space-x-[6px] justify-center items-center px-4 my-[20px]">
                                   <div className="w-[65px] h-full relative">
-                                 <span
-                                   style={{
-                                     boxSizing: "border-box",
-                                     display: "block",
-                                     overflow: "hidden",
-                                     width: "initial",
-                                     height: "initial",
-                                     background: "none",
-                                     opacity: 1,
-                                     border: "0px",
-                                     margin: "0px",
-                                     padding: "0px",
-                                     position: "absolute",
-                                     inset: "0px",
-                                   }}>
-                                   <img
-                                     alt=""
-                                     sizes="100vw"
-                                     src={item.imageURL[0]}
-                                     // src="/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fapple-watch-pro-2022-09-26-12-04-40-6657.png&amp;w=3840&amp;q=75"
-                                     decoding="async"
-                                     data-nimg="fill"
-                                     className="w-full h-full object-contain"
-                                     style={{
-                                       position: "absolute",
-                                       inset: "0px",
-                                       boxSizing: "border-box",
-                                       padding: "0px",
-                                       border: "none",
-                                       margin: "auto",
-                                       display: "block",
-                                       width: "0px",
-                                       height: "0px",
-                                       minWidth: "100%",
-                                       maxWidth: "100%",
-                                       minHeight: "100%",
-                                       maxHeight: "100%",
-                                     }}
-                                   />
-                                 </span>
-                               </div>
-                               <div className="flex-1 h-full flex flex-col justify-center ">
-                                 <p className="title mb-2 text-[13px] font-600 text-qblack leading-4 line-clamp-2 hover:text-blue-600">
-                                   {item.productName}
-                                 </p>
-                                 <p className="price">
-                                   <span className="offer-price text-qred font-600 text-[15px] ml-2">
-                                     {item.offerPrice? item.offerPrice : item.price}
-                                   </span>
-                                 </p>
-                               </div>
-                             </div>
-                             <span className="mt-[20px] mr-[15px] inline-flex cursor-pointer">
-                               <svg
-                                 width="8"
-                                 height="8"
-                                 viewBox="0 0 8 8"
-                                 fill="none"
-                                 className="inline fill-current text-[#AAAAAA] hover:text-qred"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M7.76 0.24C7.44 -0.08 6.96 -0.08 6.64 0.24L4 2.88L1.36 0.24C1.04 -0.08 0.56 -0.08 0.24 0.24C-0.08 0.56 -0.08 1.04 0.24 1.36L2.88 4L0.24 6.64C-0.08 6.96 -0.08 7.44 0.24 7.76C0.56 8.08 1.04 8.08 1.36 7.76L4 5.12L6.64 7.76C6.96 8.08 7.44 8.08 7.76 7.76C8.08 7.44 8.08 6.96 7.76 6.64L5.12 4L7.76 1.36C8.08 1.04 8.08 0.56 7.76 0.24Z"></path>
-                               </svg>
-                             </span>
-                           </li>
-                            ))}                  
+                                    <span
+                                      style={{
+                                        boxSizing: "border-box",
+                                        display: "block",
+                                        overflow: "hidden",
+                                        width: "initial",
+                                        height: "initial",
+                                        background: "none",
+                                        opacity: 1,
+                                        border: "0px",
+                                        margin: "0px",
+                                        padding: "0px",
+                                        position: "absolute",
+                                        inset: "0px",
+                                      }}>
+                                      <img
+                                        alt=""
+                                        sizes="100vw"
+                                        src={item.imageURL[0]}
+                                        // src="/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fapple-watch-pro-2022-09-26-12-04-40-6657.png&amp;w=3840&amp;q=75"
+                                        decoding="async"
+                                        data-nimg="fill"
+                                        className="w-full h-full object-contain"
+                                        style={{
+                                          position: "absolute",
+                                          inset: "0px",
+                                          boxSizing: "border-box",
+                                          padding: "0px",
+                                          border: "none",
+                                          margin: "auto",
+                                          display: "block",
+                                          width: "0px",
+                                          height: "0px",
+                                          minWidth: "100%",
+                                          maxWidth: "100%",
+                                          minHeight: "100%",
+                                          maxHeight: "100%",
+                                        }}
+                                      />
+                                    </span>
+                                  </div>
+                                  <div className="flex-1 h-full flex flex-col justify-center ">
+                                    <p className="title mb-2 text-[13px] font-600 text-qblack leading-4 line-clamp-2 hover:text-blue-600">
+                                      {item.productName}
+                                    </p>
+                                    <p className="price">
+                                      <span className="offer-price text-qred font-600 text-[15px] ml-2">
+                                        {item.offerPrice
+                                          ? item.offerPrice
+                                          : item.price}
+                                      </span>
+                                    </p>
+                                  </div>
+                                </div>
+                                <span className="mt-[20px] mr-[15px] inline-flex cursor-pointer">
+                                  <svg
+                                    width="8"
+                                    height="8"
+                                    viewBox="0 0 8 8"
+                                    fill="none"
+                                    className="inline fill-current text-[#AAAAAA] hover:text-qred"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.76 0.24C7.44 -0.08 6.96 -0.08 6.64 0.24L4 2.88L1.36 0.24C1.04 -0.08 0.56 -0.08 0.24 0.24C-0.08 0.56 -0.08 1.04 0.24 1.36L2.88 4L0.24 6.64C-0.08 6.96 -0.08 7.44 0.24 7.76C0.56 8.08 1.04 8.08 1.36 7.76L4 5.12L6.64 7.76C6.96 8.08 7.44 8.08 7.76 7.76C8.08 7.44 8.08 6.96 7.76 6.64L5.12 4L7.76 1.36C8.08 1.04 8.08 0.56 7.76 0.24Z"></path>
+                                  </svg>
+                                </span>
+                              </li>
+                            ))}
                           </ul>
                         </div>
                         <div className="w-full px-4 mt-[20px] mb-[12px]">
@@ -1419,7 +1420,8 @@ const HeaderTop: React.FC<Props> = (props) => {
                             </span>
                           </div>
                           <div className=" product-action-btn">
-                            <div className={`${styles["gray-btn"]} w-full h-[50px] mb-[10px] cursor-pointer`}>
+                            <div
+                              className={`${styles["gray-btn"]} w-full h-[50px] mb-[10px] cursor-pointer`}>
                               <Link href="/cart">
                                 <span>View Cart</span>
                               </Link>
