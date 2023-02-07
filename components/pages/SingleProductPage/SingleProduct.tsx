@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import ItemDetailsLeft from "./ItemDetailsLeft/ItemDetailsLeft";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import ProductDetails from "./ProductDetails";
 import { Jsondata } from "../../../src/utils/Jsondata";
 import Breadcrumb from "../../shared/SharedBreadcrumb/Breadcrumb";
+import ReportedItemModal from "./ReportedItemModal/ReportedItemModal";
 
-interface Props { }
+interface Props {}
 
 const SingleProduct: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const { itemDetail } = Jsondata;
-
+  const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
+  const handleReport = () => {
+    setReportModalSlug("");
+  };
   return (
     <div className="w-full min-h-screen  pt-0 pb-0">
       <div className="product-view-main-wrapper bg-white pt-[30px] w-full">
@@ -26,9 +30,17 @@ const SingleProduct: React.FC<Props> = (props) => {
                 <ItemDetailsLeft images={itemDetail.images}></ItemDetailsLeft>
               </div>
               <div className="flex-1">
-                <ProductDetails itemDetail={itemDetail}></ProductDetails>
+                <ProductDetails
+                  setReportModalSlug={setReportModalSlug}
+                  itemDetail={itemDetail}
+                ></ProductDetails>
               </div>
             </div>
+            <ReportedItemModal
+              setReportModalSlug={setReportModalSlug}
+              handleReport={handleReport}
+              reportModalSlug={reportModalSlug}
+            ></ReportedItemModal>
           </div>
         </div>
       </div>
