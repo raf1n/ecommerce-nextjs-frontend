@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { IProduct } from "../../../../interfaces/models";
 import { controller } from "../../../../src/state/StateController";
 import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import styles from "./styles.module.css";
@@ -40,6 +41,10 @@ const HeaderTop: React.FC<Props> = (props) => {
   //   }
   //   return total
   // }
+
+  const cartSubTotal = states.cartlistData.reduce((acc, currItem) => {
+    return acc + ((currItem.offerPrice ? currItem.offerPrice : currItem.price) * currItem.quantity);
+  }, 0)
 
   return (
     <div>
@@ -1413,7 +1418,8 @@ const HeaderTop: React.FC<Props> = (props) => {
                               Subtotal
                             </span>
                             <span className="text-[15px] font-medium text-qred ">
-                              ${states.cartSubTotal}
+                              {/* ${states.cartSubTotal} */}
+                              {cartSubTotal}
                             </span>
                           </div>
                           <div className=" product-action-btn">

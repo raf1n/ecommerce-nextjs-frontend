@@ -12,6 +12,10 @@ interface Props {
 const MyCart: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
+  const cartSubTotal = states.cartlistData.reduce((acc, currItem) => {
+    return acc + ((currItem.offerPrice ? currItem.offerPrice : currItem.price) * currItem.quantity);
+  }, 0)
+
   const handleMinusFromCart = (item: IProduct) => {
     const selectedItem = states?.cartlistData?.find(
       (product) => item.slug === product.slug
@@ -119,7 +123,7 @@ const MyCart: React.FC<Props> = (props) => {
                             <td className="text-center py-4 capitalize px-2">
                               <div className="flex space-x-1 items-center justify-center">
                                 <span className="text-[15px] font-normal">
-                                  ${item.price}
+                                  ${item.offerPrice ? item.offerPrice : item.price}
                                 </span>
                               </div>
                             </td>
@@ -153,7 +157,7 @@ const MyCart: React.FC<Props> = (props) => {
                             <td className="text-center py-4 capitalize px-2">
                               <div className="flex space-x-1 items-center justify-center">
                                 <span className="text-[15px] font-normal">
-                                  ${item.price}
+                                ${(item.offerPrice ? item.offerPrice : item.price) * item.quantity}
                                 </span>
                               </div>
                             </td>
