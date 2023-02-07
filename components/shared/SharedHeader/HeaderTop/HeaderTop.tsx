@@ -41,9 +41,6 @@ const HeaderTop: React.FC<Props> = (props) => {
   //   return total
   // }
 
-  useEffect(() => {
-
-  }, [])
   return (
     <div>
       {sideDropdownOpen && (
@@ -1323,7 +1320,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                         </span>
                       </Link>
                       <span className="w-[18px] h-[18px] rounded-full absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px] bg-qyellow">
-                      {states.cartlistCounter}
+                      {states.cartlistData.length}
                       </span>
                     </div>
                     <div
@@ -1381,18 +1378,19 @@ const HeaderTop: React.FC<Props> = (props) => {
                                  </span>
                                </div>
                                <div className="flex-1 h-full flex flex-col justify-center ">
-                                 <p className="title mb-2 text-[13px] font-600 text-qblack leading-4 line-clamp-2 hover:text-blue-600">
+                                 <Link href={"single_product?slug="+item.slug} className="title mb-2 text-[13px] font-semibold text-qblack leading-4 line-clamp-2 hover:text-blue-600 cursor-pointer">
                                    {item.productName}
-                                 </p>
+                                 </Link>
                                  <p className="price">
-                                   <span className="offer-price text-qred font-600 text-[15px] ml-2">
-                                     {item.offerPrice? item.offerPrice : item.price}
+                                   <span className="offer-price text-qred font-semibold text-[15px] ml-2">
+                                   <span className="text-qblack font-semibold">{item.quantity} &#10005;</span> ${item.offerPrice? item.offerPrice : item.price}
                                    </span>
                                  </p>
                                </div>
                              </div>
                              <span className="mt-[20px] mr-[15px] inline-flex cursor-pointer">
                                <svg
+                               onClick={() => controller.setRemoveCartItem(item)}
                                  width="8"
                                  height="8"
                                  viewBox="0 0 8 8"

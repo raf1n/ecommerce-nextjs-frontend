@@ -122,12 +122,6 @@ export class Controller {
     this.states.wishlistCounter -= 1;
   }
 
-  // //cartList
-  // @action
-  // setIncreaseCartlistCounter() {
-  //   this.states.cartlistCounter += 1;
-  // }
-
   @action
   setAddtoCartlist(productToAdd: IProduct) {
     // if found, increment quantity
@@ -157,6 +151,11 @@ export class Controller {
     this.states.cartlistData = this.states.cartlistData.filter((cartItem) => cartItem.slug !== productToRemove.slug);
   };
 
+  @action
+  setClearCartlist() {
+    this.states.cartlistData = [];
+  }
+
   // @action
   // setAddtoCartlist(product: IProduct) {
   //   var total: number = 0;
@@ -183,19 +182,13 @@ export class Controller {
   //   }
   // }
 
-  @action
-  setClearCartlist() {
-    this.states.cartlistData = [];
-    this.states.cartlistCounter = 0;
-  }
-
-  @action
-  setRemoveCartlistSingleProduct(product: IProduct) {
-    this.states.cartlistData = this.states.cartlistData.filter(
-      (item) => item.slug !== product.slug
-    );
-    this.states.cartlistCounter -= 1;
-  }
+  // @action
+  // setRemoveCartlistSingleProduct(product: IProduct) {
+  //   this.states.cartlistData = this.states.cartlistData.filter(
+  //     (item) => item.slug !== product.slug
+  //   );
+  //   this.states.cartlistCounter -= 1;
+  // }
 }
 
 export const controller = new Controller();
