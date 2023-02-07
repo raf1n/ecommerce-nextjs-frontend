@@ -57,6 +57,16 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
     { value: "india", label: "India" },
     { value: "qatar", label: "Qatar" },
   ];
+  const stateOptions = [
+    { value: "Dhaka", label: "Dhaka" },
+    { value: "Delhi", label: "Delhi" },
+    { value: "Dubai", label: "Dubai" },
+  ];
+  const cityOptions = [
+    { value: "Bashundhora", label: "Bashundhora" },
+    { value: "Calcutta", label: "Calcutta" },
+    { value: "Palm", label: "Palm" },
+  ];
   const handleChange = (selectedOption: any) => {
     setSelectedOption(selectedOption);
   };
@@ -164,6 +174,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                   <div className="my-select-box-section ">
                     <Select
                       name="state"
+                      options={stateOptions}
                       styles={style}
                       components={{
                         IndicatorSeparator: () => null,
@@ -182,6 +193,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                   <div className="my-select-box-section ">
                     <Select
                       name="city"
+                      options={cityOptions}
                       styles={style}
                       components={{
                         IndicatorSeparator: () => null,

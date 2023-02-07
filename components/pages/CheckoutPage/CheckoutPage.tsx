@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
@@ -6,12 +6,29 @@ import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import sslcommerze from "../../../public/images/sslcommerze.png";
 import SharedAddNewAddress from "../../shared/SharedAddNewAddress/SharedAddNewAddress";
+import { IAddress } from "../../../interfaces/models";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 interface Props {}
 
 const CheckoutPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [form, setForm] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [addressData, setAddressData] = useState<IAddress[]>([]);
+
+  useEffect(() => {
+    const allAddress = async () => {
+      const { res, err } = await EcommerceApi.allAddress();
+      if (err) {
+        console.log(err);
+      } else {
+        setAddressData(res);
+        console.log(res);
+        // console.log(res);
+      }
+    };
+    allAddress();
+  }, []);
 
   return (
     <div>
@@ -60,7 +77,95 @@ const CheckoutPage: React.FC<Props> = (props) => {
                         data-aos="zoom-in"
                         className="grid sm:grid-cols-2 grid-cols-1 gap-3 aos-init aos-animate"
                       >
-                        <div className="w-full p-5 border cursor-pointer relative border-qyellow bg-[#FFFAEF]">
+                        {addressData.map((singleAddress: IAddress, index) => (
+                          <div className="w-full p-5 border cursor-pointer relative border-qyellow bg-[#FFFAEF]">
+                            <div className="flex justify-between items-center">
+                              <p className="title text-[22px] font-semibold">
+                                {`Address ${index + 1}`}
+                              </p>
+                              <button
+                                type="button"
+                                className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center"
+                              >
+                                <SvgIconRenderer
+                                  width="17"
+                                  height="19"
+                                  viewBox="0 0 17 19"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  path={SvgPaths.deleteIcon}
+                                  pathFill="#EB5757"
+                                />
+                              </button>
+                            </div>
+                            <div className="mt-5">
+                              <table>
+                                <tbody>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      Name:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.name}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      Email:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.email}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      phone:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.phone}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      Country:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.country}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      State:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress?.state}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      City:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress?.city}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block  capitalize">
+                                      Address:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-2 font-medium">
+                                      {singleAddress.address}
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <span className="text-qblack bg-qyellow px-2 text-sm absolute right-2 -top-2 font-medium">
+                              Selected
+                            </span>
+                          </div>
+                        ))}
+                        {/* <div className="w-full p-5 border cursor-pointer relative border-qyellow bg-[#FFFAEF]">
                           <div className="flex justify-between items-center">
                             <p className="title text-[22px] font-semibold">
                               Address #1
@@ -137,7 +242,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                           <span className="text-qblack bg-qyellow px-2 text-sm absolute right-2 -top-2 font-medium">
                             Selected
                           </span>
-                        </div>
+                        </div> */}
                         {/* <div className="w-full p-5 border cursor-pointer relative border-transparent bg-primarygray">
                           <div className="flex justify-between items-center">
                             <p className="title text-[22px] font-semibold">

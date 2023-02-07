@@ -47,7 +47,7 @@ export class EcommerceApi {
     };
     return await callFetch(`${API_ENDPOINT}/products`, requestOptions);
   }
-
+  //Create a new address
   static async createAddress(
     data: Partial<IAddress>
   ): Promise<IAddressResponse> {
@@ -60,6 +60,19 @@ export class EcommerceApi {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(data),
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/addresses`, requestOptions);
+  }
+
+  //Get all address Data
+  static async allAddress(): Promise<IAddressResponse> {
+    console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
       redirect: "follow",
     };
 
