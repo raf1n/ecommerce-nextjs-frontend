@@ -18,6 +18,12 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const [addressData, setAddressData] = useState<IAddress[]>([]);
   const [deleteModalSlug, setDeleteModalSlug] = useState<any | string>("");
   const [refresh, setRefresh] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState<IAddress | null>(null);
+
+  const handleSelect = (addressData: IAddress) => {
+    setSelectedAddress(addressData);
+  };
+
   const handleDelete = async () => {
     const { res, err } = await EcommerceApi.deleteAddress(deleteModalSlug);
     if (res) {
@@ -91,7 +97,19 @@ const CheckoutPage: React.FC<Props> = (props) => {
                         className="grid sm:grid-cols-2 grid-cols-1 gap-3 aos-init aos-animate"
                       >
                         {addressData.map((singleAddress: IAddress, index) => (
-                          <div className="w-full p-5 border cursor-pointer relative border-qyellow bg-[#FFFAEF]">
+                          <div
+                            onClick={() => handleSelect(singleAddress)}
+                            className={
+                              singleAddress?.slug === selectedAddress?.slug
+                                ? `w-full p-5 border cursor-pointer relative    border-qyellow bg-[#FFFAEF]
+                                `
+                                : `w-full p-5 border cursor-pointer relative   bg-primarygray
+                                border-transparent
+                                `
+                            }
+
+                            // border-qyellow bg-[#FFFAEF]
+                          >
                             <div className="flex justify-between items-center">
                               <p className="title text-[22px] font-semibold">
                                 {`Address ${index + 1}`}
@@ -181,9 +199,11 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 </tbody>
                               </table>
                             </div>
-                            <span className="text-qblack bg-qyellow px-2 text-sm absolute right-2 -top-2 font-medium">
-                              Selected
-                            </span>
+                            {singleAddress?.slug === selectedAddress?.slug && (
+                              <span className="text-qblack bg-qyellow px-2 text-sm absolute right-2 -top-2 font-medium">
+                                Selected
+                              </span>
+                            )}
                           </div>
                         ))}
                         {/* <div className="w-full p-5 border cursor-pointer relative border-qyellow bg-[#FFFAEF]">
