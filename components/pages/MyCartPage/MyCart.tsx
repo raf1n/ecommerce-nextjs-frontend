@@ -150,7 +150,7 @@ const MyCart: React.FC<Props> = (props) => {
                                   >
                                     <img
                                       alt="product"
-                                      src={item.imageURL[0]}
+                                      src={item?.imageURL[0]}
                                       decoding="async"
                                       data-nimg="fill"
                                       className="w-full h-full object-contain"

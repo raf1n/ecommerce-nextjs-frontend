@@ -38,3 +38,6 @@ export interface ICartResponse extends MyFetchInterface {
 export interface IInitialCartResponse extends MyFetchInterface {
   res: ICartProduct[];
 }
+export interface ISingleProductResponse extends MyFetchInterface {
+  res: IProduct;
+}

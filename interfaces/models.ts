@@ -33,7 +33,7 @@ export interface IProduct {
   price?: number;
   description?: string;
   status?: string;
-  imageURL: Array<string | undefined>;
+  imageURL: Array<string>;
   offerPrice?: number;
   weight?: number;
   stock?: number;

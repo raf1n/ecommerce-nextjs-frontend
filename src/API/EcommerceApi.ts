@@ -11,6 +11,7 @@ import {
   IInitialCartResponse,
   ILoginResponse,
   IProductResponse,
+  ISingleProductResponse,
 } from "../../interfaces/response";
 import { callFetch } from "../utils/CallFetch";
 
@@ -49,6 +50,19 @@ export class EcommerceApi {
       redirect: "follow",
     };
     return await callFetch(`${API_ENDPOINT}/products`, requestOptions);
+  }
+
+  // get single product
+
+  static async getSingleProduct(slug: string): Promise<ISingleProductResponse> {
+    const myHeaders = new Headers();
+    // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(`${API_ENDPOINT}/products/${slug}`, requestOptions);
   }
 
   static async addReportedItem(

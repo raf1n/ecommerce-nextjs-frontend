@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import FacebookIcon from "react-share/lib/FacebookIcon";
 import TwitterIcon from "react-share/lib/TwitterIcon";
 import ReportedItemModal from "./ReportedItemModal/ReportedItemModal";
+import { IProduct } from "../../../interfaces/models";
 
 // const secondExample = {
 //   size: 50,
@@ -57,7 +58,7 @@ import ReportedItemModal from "./ReportedItemModal/ReportedItemModal";
 // };
 
 interface Props {
-  itemDetail: any;
+  singleProduct: IProduct | null;
   setReportModalSlug: Dispatch<SetStateAction<string>>;
 }
 
@@ -74,10 +75,10 @@ const ProductDetails: React.FC<Props> = (props) => {
   return (
     <div className="mt-10 lg:mt-0">
       <span className="text-xs text-qgray font-normal uppercase tracking-wider mb-2 inline-block">
-        {props.itemDetail.brand}
+        {/* {props.singleProduct.brand} */}
       </span>
       <h1 className="text-xl text-qblack font-medium mb-4">
-        {props.itemDetail.name}
+        {props.singleProduct?.productName}
       </h1>
 
       <div className="flex gap-x-[10px] items-center mb-6">
@@ -154,22 +155,23 @@ const ProductDetails: React.FC<Props> = (props) => {
           </span>
         </div>
         <span className="text-[13px] font-normal text-qblack">
-          {props.itemDetail?.reviews?.length} Reviews
+          {/* {props.itemDetail?.reviews?.length}  */}
+          Reviews
         </span>
       </div>
 
       <div className="flex gap-x-2 items-baseline mb-7">
         <span className="font-semibold line-through text-qgray text-[15px]">
-          ${props.itemDetail.formerPrice}200
+          ${props.singleProduct?.price}
         </span>
         <span className="text-red-500 font-semibold text-[24px] ml-2">
-          ${props.itemDetail.currentPrice}.00
+          ${props.singleProduct?.offerPrice}
         </span>
       </div>
 
       <div className="mb-[30px]">
         <p className="text-qgray text-sm font-normal leading-7">
-          {props.itemDetail.description}
+          {props.singleProduct?.description}
         </p>
         <button type="button" className="text-blue-500 text-xs font-bold">
           See Less
@@ -179,7 +181,7 @@ const ProductDetails: React.FC<Props> = (props) => {
       <div className="p-3 bg-[rgb(249,243,231)] flex items-center gap-x-2 mb-[30px] rounded-lg w-fit">
         <span className="text-base font-bold text-qblack">Availability :</span>
         <span className="text-base font-bold text-qyellow">
-          {props.itemDetail.availability} Products Available
+          {props.singleProduct?.stock} Products Available
         </span>
       </div>
 
@@ -217,11 +219,7 @@ const ProductDetails: React.FC<Props> = (props) => {
       <div className="mb-[20px]">
         <p className="text-[13px] text-qgray leading-7">
           <span className="text-qblack">Category :</span>{" "}
-          {props.itemDetail.category}
-        </p>
-        <p className="text-[13px] text-qgray leading-7">
-          <span className="text-qblack uppercase">SKU:</span>{" "}
-          {props.itemDetail.sku}
+          {/* {props.itemDetail.category} */}
         </p>
       </div>
 

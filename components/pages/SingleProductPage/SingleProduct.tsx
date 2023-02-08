@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ItemDetailsLeft from "./ItemDetailsLeft/ItemDetailsLeft";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
@@ -8,16 +8,28 @@ import Breadcrumb from "../../shared/SharedBreadcrumb/Breadcrumb";
 import ReportedItemModal from "./ReportedItemModal/ReportedItemModal";
 import { useRouter } from "next/router";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { IProduct } from "../../../interfaces/models";
+// import { IProduct } from "../../../interfaces/models";
 
 interface Props {}
 
 const SingleProduct: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const { itemDetail } = Jsondata;
   const router = useRouter();
   const { asPath } = router;
-  console.log(asPath.split("=")[1]);
+  const { itemDetail } = Jsondata;
+  const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
 
+  console.log(asPath.split("=")[1]);
+  useEffect(() => {
+    const fetchProductData = async () => {
+      const { res, err } = await EcommerceApi.getSingleProduct(
+        asPath.split("=")[1]
+      );
+      setSingleProduct(res);
+    };
+    fetchProductData();
+  }, []);
   const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
   const handleReport = (e: any) => {
     e.preventDefault();
@@ -41,12 +53,14 @@ const SingleProduct: React.FC<Props> = (props) => {
             ></Breadcrumb>
             <div className="lg:flex justify-between">
               <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
-                <ItemDetailsLeft images={itemDetail.images}></ItemDetailsLeft>
+                <ItemDetailsLeft
+                  singleProduct={singleProduct}
+                ></ItemDetailsLeft>
               </div>
               <div className="flex-1">
                 <ProductDetails
                   setReportModalSlug={setReportModalSlug}
-                  itemDetail={itemDetail}
+                  singleProduct={singleProduct}
                 ></ProductDetails>
               </div>
             </div>
@@ -61,5 +75,17 @@ const SingleProduct: React.FC<Props> = (props) => {
     </div>
   );
 };
+
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const router = useRouter();
+//   const { asPath } = router;
+//   const { res, err } = await EcommerceApi.getSingleProduct(
+//     asPath.split("=")[1]
+//   );
+//   console.log(res);
+//   // Pass data to the page via props
+//   return { props: { res } };
+// }
 
 export default SingleProduct;
