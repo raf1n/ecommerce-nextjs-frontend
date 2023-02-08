@@ -69,19 +69,19 @@ const CheckoutPage: React.FC<Props> = (props) => {
                   </h1>
                   <div className="addresses-widget w-full">
                     <div className="sm:flex justify-between items-center w-full mb-5">
-                      <div className="bg-[#FFFAEF] border border-qyellow rounded p-2">
+                      <div className="bg-[#FFFAEF] border border-qyellow rounded ">
                         <button
                           type="button"
                           className="px-4 py-3 text-md font-medium rounded-md  text-qblack bg-qyellow "
                         >
-                          Billing Address
+                          Shipping Address
                         </button>
-                        <button
+                        {/* <button
                           type="button"
                           className="px-4 py-3 text-md font-medium rounded-md ml-1 text-qyellow "
                         >
                           Shipping Address
-                        </button>
+                        </button> */}
                       </div>
                       <button
                         onClick={() => setForm(true)}
