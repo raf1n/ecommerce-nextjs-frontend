@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { state, action, createStore } from "usm-redux";
+import { state, action, computed, createStore } from "usm-redux";
 import { compose } from "redux";
 import { IProduct } from "../../interfaces/models";
 
@@ -95,6 +95,7 @@ export class Controller {
   }
   @action
   setAddtoWishlist(product: IProduct) {
+    console.log(this.states.wishlistData)
     if (!this.states.wishlistData.some((item) => item.slug === product.slug)) {
       this.states.wishlistCounter += 1;
       this.states.wishlistData = [...this.states.wishlistData, product];
@@ -121,51 +122,73 @@ export class Controller {
     this.states.wishlistCounter -= 1;
   }
 
-  // //cartList
-  // @action
-  // setIncreaseCartlistCounter() {
-  //   this.states.cartlistCounter += 1;
-  // }
+  @action
+  setAddtoCartlist(productToAdd: IProduct) {
+    // if found, increment quantity
+    if (this.states?.cartlistData?.some((item) => item.slug === productToAdd.slug)) {
+      this.states.cartlistData = this.states.cartlistData.map((cartItem) =>
+        cartItem.slug === productToAdd.slug
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      );
+    } else { 
+      // if not found new array with modified cartItems/ new cart item
+      this.states.cartlistData = [...this.states.cartlistData, { ...productToAdd, quantity: 1 }];
+    }
+  };
 
   @action
-  setAddtoCartlist(product: IProduct) {
-    var total: number = 0;
-    const totalFunc = () => {
-      for (let i = 0; i < this.states.cartlistData?.length; i++) {
-        if (this.states?.cartlistData[i]?.offerPrice) {
-          total = total + parseInt(this.states.cartlistData[i]?.offerPrice);
-        } else {
-          total = total + parseInt(states?.cartlistData[i]?.price);
-        }
-      }
-      this.states.cartSubTotal = total;
-    };
-    if (!this.states.cartlistData.some((item) => item.slug === product.slug)) {
-      this.states.cartlistCounter += 1;
-      this.states.cartlistData = [...this.states.cartlistData, product];
-      totalFunc();
-    } else {
-      this.states.cartlistData = this.states.cartlistData.filter(
-        (item) => item.slug !== product.slug
-      );
-      this.states.cartlistCounter -= 1;
-      totalFunc();
-    }
-  }
+  setMinusFromCartlist (productToMinus: IProduct) {
+    this.states.cartlistData = this.states.cartlistData.map((cartItem) =>
+      cartItem.slug === productToMinus.slug
+        ? { ...cartItem, quantity: cartItem.quantity - 1 }
+        : cartItem
+    );
+  };
+
+  @action
+  setRemoveCartItem(productToRemove: IProduct) {
+    this.states.cartlistData = this.states.cartlistData.filter((cartItem) => cartItem.slug !== productToRemove.slug);
+  };
 
   @action
   setClearCartlist() {
     this.states.cartlistData = [];
-    this.states.cartlistCounter = 0;
   }
 
-  @action
-  setRemoveCartlistSingleProduct(product: IProduct) {
-    this.states.cartlistData = this.states.cartlistData.filter(
-      (item) => item.slug !== product.slug
-    );
-    this.states.cartlistCounter -= 1;
-  }
+  // @action
+  // setAddtoCartlist(product: IProduct) {
+  //   var total: number = 0;
+  //   const totalFunc = () => {
+  //     for (let i = 0; i < this.states.cartlistData?.length; i++) {
+  //       if (this.states?.cartlistData[i]?.offerPrice) {
+  //         total = total + parseInt(this.states.cartlistData[i]?.offerPrice);
+  //       } else {
+  //         total = total + parseInt(states?.cartlistData[i]?.price);
+  //       }
+  //     }
+  //     this.states.cartSubTotal = total;
+  //   };
+  //   if (!this.states.cartlistData.some((item) => item.slug === product.slug)) {
+  //     this.states.cartlistCounter += 1;
+  //     this.states.cartlistData = [...this.states.cartlistData, product];
+  //     totalFunc();
+  //   } else {
+  //     this.states.cartlistData = this.states.cartlistData.filter(
+  //       (item) => item.slug !== product.slug
+  //     );
+  //     this.states.cartlistCounter -= 1;
+  //     totalFunc();
+  //   }
+  // }
+
+  // @action
+  // setRemoveCartlistSingleProduct(product: IProduct) {
+  //   this.states.cartlistData = this.states.cartlistData.filter(
+  //     (item) => item.slug !== product.slug
+  //   );
+  //   this.states.cartlistCounter -= 1;
+  // }
 }
 
 export const controller = new Controller();
