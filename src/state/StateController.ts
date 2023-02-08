@@ -1,3 +1,4 @@
+import { ICartProduct } from "./../../interfaces/models";
 //@ts-nocheck
 import { state, action, computed, createStore } from "usm-redux";
 import { compose } from "redux";
@@ -7,9 +8,9 @@ const composeEnhancers =
   // @ts-ignore
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? // @ts-ignore
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-      // Speciffy extension's options like name, actionsDenylist, actionsCreators, serialize...
-    })
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        // Speciffy extension's options like name, actionsDenylist, actionsCreators, serialize...
+      })
     : compose;
 
 export interface IStates {
@@ -17,7 +18,7 @@ export interface IStates {
   wishlistCounter: number;
   wishlistData: Array<IProduct>;
   cartlistCounter: number;
-  cartlistData: Array<IProduct>;
+  cartlistData: Array<ICartProduct>;
   cartSubTotal: number;
   toggle: Boolean;
   allProducts: Array<IProduct>;
@@ -95,7 +96,7 @@ export class Controller {
   }
   @action
   setAddtoWishlist(product: IProduct) {
-    console.log(this.states.wishlistData)
+    console.log(this.states.wishlistData);
     if (!this.states.wishlistData.some((item) => item.slug === product.slug)) {
       this.states.wishlistCounter += 1;
       this.states.wishlistData = [...this.states.wishlistData, product];
@@ -123,33 +124,45 @@ export class Controller {
   }
 
   @action
-  setAddtoCartlist(productToAdd: IProduct) {
+  setAllCartListData(products: ICartProduct[]) {
+    this.states.cartlistData = products;
+  }
+
+  @action
+  setAddtoCartlist(productToAdd: ICartProduct) {
     // if found, increment quantity
-    if (this.states?.cartlistData?.some((item) => item.slug === productToAdd.slug)) {
+    if (
+      this.states?.cartlistData?.some((item) => item.slug === productToAdd.slug)
+    ) {
       this.states.cartlistData = this.states.cartlistData.map((cartItem) =>
         cartItem.slug === productToAdd.slug
           ? { ...cartItem, quantity: cartItem.quantity + 1 }
           : cartItem
       );
-    } else { 
+    } else {
       // if not found new array with modified cartItems/ new cart item
-      this.states.cartlistData = [...this.states.cartlistData, { ...productToAdd, quantity: 1 }];
+      this.states.cartlistData = [
+        ...this.states.cartlistData,
+        { ...productToAdd, quantity: 1 },
+      ];
     }
-  };
+  }
 
   @action
-  setMinusFromCartlist (productToMinus: IProduct) {
+  setMinusFromCartlist(productToMinus: IProduct) {
     this.states.cartlistData = this.states.cartlistData.map((cartItem) =>
       cartItem.slug === productToMinus.slug
         ? { ...cartItem, quantity: cartItem.quantity - 1 }
         : cartItem
     );
-  };
+  }
 
   @action
   setRemoveCartItem(productToRemove: IProduct) {
-    this.states.cartlistData = this.states.cartlistData.filter((cartItem) => cartItem.slug !== productToRemove.slug);
-  };
+    this.states.cartlistData = this.states.cartlistData.filter(
+      (cartItem) => cartItem.slug !== productToRemove.slug
+    );
+  }
 
   @action
   setClearCartlist() {

@@ -16,31 +16,28 @@ import ProductCategory from "./ProductCategory/ProductCategory";
 import ShopByBrand from "./ShopByBrandSection/ShopByBrand";
 import TopRatedSection from "./TopRatedProductsSection/TopRatedSection";
 
-interface Props { }
+interface Props {}
 
 const Homepage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-
   const fetchAllProducts = async () => {
-    const { res, err } = await EcommerceApi.getAllProducts()
+    const { res, err } = await EcommerceApi.getAllProducts();
     if (err) {
       // enqueueSnackbar('Server Error', { variant: 'error', autoHideDuration: 2000 });
+    } else {
+      controller.setAllProducts(res.allProductData);
+      controller.setFeaturedProducts(res.featuredProducts);
+      controller.setPopularProducts(res.popularProducts);
+      controller.setTopProducts(res.topProducts);
+      controller.setBestProducts(res.bestProducts);
+      controller.setNewProducts(res.newProducts);
     }
-    else {
-      controller.setAllProducts(res.allProductData)
-      controller.setFeaturedProducts(res.featuredProducts)
-      controller.setPopularProducts(res.popularProducts)
-      controller.setTopProducts(res.topProducts)
-      controller.setBestProducts(res.bestProducts)
-      controller.setNewProducts(res.newProducts)
-
-    }
-  }
+  };
 
   useEffect(() => {
-    fetchAllProducts()
-  }, [])
+    fetchAllProducts();
+  }, []);
 
   return (
     <div className="md:p-0 p-2">

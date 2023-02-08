@@ -1,10 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
-import { IProduct } from "../../../interfaces/models";
+import { ICartProduct, IProduct } from "../../../interfaces/models";
 import { controller } from "../../../src/state/StateController";
 import SharedEmptyCart from "../../shared/SharedEmptyCart/SharedEmptyCart";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 interface Props {
   // cartlistData: Array<IProduct>;
 }
@@ -12,21 +13,81 @@ interface Props {
 const MyCart: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  const cartSubTotal = states.cartlistData.reduce((acc, currItem) => {
-    return acc + ((currItem.offerPrice ? currItem.offerPrice : currItem.price) * currItem.quantity);
-  }, 0)
+  const cartSubTotal = states?.cartlistData?.reduce((acc, currItem) => {
+    // return (
+    //   acc +
+    //   // (currItem?.offerPrice ? currItem?.offerPrice : currItem?.price) *
+    //   (currItem?.offerPrice ?? currItem?.price) * currItem?.quantity
+    // );
 
-  const handleMinusFromCart = (item: IProduct) => {
-    const selectedItem = states?.cartlistData?.find(
-      (product) => item.slug === product.slug
-    );
-    if (selectedItem?.quantity === 1) {
-      controller.setRemoveCartItem(item);
-    } else {
-      controller.setMinusFromCartlist(item)
+    if (currItem.offerPrice) {
+      return acc + currItem?.offerPrice * currItem?.quantity;
+    } else if (currItem?.price) {
+      return acc + currItem?.price * currItem?.quantity;
     }
-  }
+    return 0;
+  }, 0);
 
+  const getPrice = (currItem: ICartProduct) => {
+    // (item.offerPrice
+    //   ? item.offerPrice
+    //   : item.price) * item.quantity
+
+    if (currItem.offerPrice) {
+      return currItem?.offerPrice * currItem?.quantity;
+    } else if (currItem?.price) {
+      return currItem?.price * currItem?.quantity;
+    }
+    // return 0;
+  };
+
+  // const handleMinusFromCart = (item: IProduct) => {
+  //   const selectedItem = states?.cartlistData?.find(
+  //     (product) => item.slug === product.slug
+  //   );
+  //   if (selectedItem?.quantity === 1) {
+  //     controller.setRemoveCartItem(item);
+  //   } else {
+  //     controller.setMinusFromCartlist(item);
+  //   }
+  // };
+
+  const handleDeleteFromCart = async (product: IProduct) => {
+    const { res, err } = await EcommerceApi.deleteFromCart(product?.slug);
+    if (res) {
+      controller.setRemoveCartItem(product);
+    }
+  };
+  const handleIncreaseQuantity = async (item: ICartProduct) => {
+    const cartListProduct = states?.cartlistData?.find(
+      (cartProduct) => cartProduct?.slug === item?.slug
+    );
+
+    const { res, err } = await EcommerceApi.updateSingleCartProduct(
+      item?.cart_slug,
+      item?.quantity + 1
+    );
+    if (res) {
+      controller.setAddtoCartlist(item);
+    }
+  };
+  const handleDecreaseQuantity = async (item: ICartProduct) => {
+    const cartListProduct = states?.cartlistData?.find(
+      (cartProduct) => cartProduct?.slug === item?.slug
+    );
+
+    const { res, err } = await EcommerceApi.updateSingleCartProduct(
+      item?.cart_slug,
+      item?.quantity - 1
+    );
+    if (res) {
+      if (cartListProduct?.quantity === 1) {
+        handleDeleteFromCart(item);
+      } else {
+        controller.setMinusFromCartlist(item);
+      }
+    }
+  };
   return (
     <div className="w-full min-h-screen  pt-[30px] pb-[5px]">
       {states.cartlistData.length === 0 ? (
@@ -89,7 +150,7 @@ const MyCart: React.FC<Props> = (props) => {
                                   >
                                     <img
                                       alt="product"
-                                      src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75"
+                                      src={item.imageURL[0]}
                                       decoding="async"
                                       data-nimg="fill"
                                       className="w-full h-full object-contain"
@@ -123,7 +184,10 @@ const MyCart: React.FC<Props> = (props) => {
                             <td className="text-center py-4 capitalize px-2">
                               <div className="flex space-x-1 items-center justify-center">
                                 <span className="text-[15px] font-normal">
-                                  ${item.offerPrice ? item.offerPrice : item.price}
+                                  $
+                                  {item.offerPrice
+                                    ? item.offerPrice
+                                    : item.price}
                                 </span>
                               </div>
                             </td>
@@ -132,7 +196,9 @@ const MyCart: React.FC<Props> = (props) => {
                                 <div className="w-[120px] h-full px-[26px] flex items-center border border-gray-200">
                                   <div className="flex justify-between items-center w-full py-2">
                                     <button
-                                      onClick={() => handleMinusFromCart(item)}
+                                      onClick={() =>
+                                        handleDecreaseQuantity(item)
+                                      }
                                       type="button"
                                       className="text-base text-qgray font-bold"
                                     >
@@ -143,7 +209,7 @@ const MyCart: React.FC<Props> = (props) => {
                                     </span>
                                     <button
                                       onClick={() =>
-                                        controller.setAddtoCartlist(item)
+                                        handleIncreaseQuantity(item)
                                       }
                                       type="button"
                                       className="text-base text-qgray font-bold"
@@ -157,7 +223,7 @@ const MyCart: React.FC<Props> = (props) => {
                             <td className="text-center py-4 capitalize px-2">
                               <div className="flex space-x-1 items-center justify-center">
                                 <span className="text-[15px] font-normal">
-                                ${(item.offerPrice ? item.offerPrice : item.price) * item.quantity}
+                                  ${getPrice(item)}
                                 </span>
                               </div>
                             </td>
@@ -165,7 +231,7 @@ const MyCart: React.FC<Props> = (props) => {
                               <div className="flex space-x-1 items-center justify-center p-2">
                                 <span
                                   className="cursor-pointer"
-                                  onClick={() => controller.setRemoveCartItem(item)}
+                                  onClick={() => handleDeleteFromCart(item)}
                                 >
                                   <svg
                                     width="10"

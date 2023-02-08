@@ -1,3 +1,4 @@
+import { ICart } from "./../../interfaces/models";
 import { MyFetchInterface } from "../../interfaces/MyFetchInterface";
 import {
   featuredProductLPObj,
@@ -5,7 +6,12 @@ import {
   IReportedItem,
   IUser,
 } from "../../interfaces/models";
-import { ILoginResponse, IProductResponse } from "../../interfaces/response";
+import {
+  ICartResponse,
+  IInitialCartResponse,
+  ILoginResponse,
+  IProductResponse,
+} from "../../interfaces/response";
 import { callFetch } from "../utils/CallFetch";
 
 export const API_ENDPOINT = process.env["NEXT_PUBLIC_API_ENDPOINT"];
@@ -44,6 +50,7 @@ export class EcommerceApi {
     };
     return await callFetch(`${API_ENDPOINT}/products`, requestOptions);
   }
+
   static async addReportedItem(
     data: Partial<IReportedItem>
   ): Promise<MyFetchInterface> {
@@ -59,5 +66,68 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/reporteditems`, requestOptions);
+  }
+
+  static async getAllCartData(query: string): Promise<IInitialCartResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/cart?user_slug=${query}`,
+      requestOptions
+    );
+  }
+
+  static async addToCart(data: ICart): Promise<ICartResponse> {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(data),
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/cart`, requestOptions);
+  }
+  static async deleteFromCart(
+    slug: string | undefined
+  ): Promise<MyFetchInterface> {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "Delete",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/cart/${slug}`, requestOptions);
+  }
+
+  static async updateSingleCartProduct(
+    slug: string,
+    quantity: number
+  ): Promise<ICartResponse> {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "PATCH",
+      body: JSON.stringify({ quantity: quantity }),
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/cart?cart_slug=${slug}`,
+      requestOptions
+    );
   }
 }
