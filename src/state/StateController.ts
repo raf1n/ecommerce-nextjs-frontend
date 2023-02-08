@@ -2,6 +2,7 @@
 import { state, action, createStore } from "usm-redux";
 import { compose } from "redux";
 import { IProduct } from "../../interfaces/models";
+import { EcommerceApi } from "../API/EcommerceApi";
 
 const composeEnhancers =
   // @ts-ignore
@@ -118,11 +119,27 @@ export class Controller {
     this.states.wishlistData = products;
   }
 
+  // @action
+  // setRemoveWishlistSingleProduct(product: IProduct) {
+  //   this.states.wishlistData = this.states.wishlistData?.filter(
+  //     (item) => item.slug !== product.slug
+  //   );
+  //   this.states.wishlistCounter -= 1;
+  // }
+
   @action
   setRemoveWishlistSingleProduct(product: IProduct) {
+    // const { res, err } = EcommerceApi.deleteWishlistSingleProduct(
+    //   product?.slug
+    // );
+    // if (err) {
+    // } else {
+    // this.setAddtoWishlist(res);
     this.states.wishlistData = this.states.wishlistData?.filter(
       (item) => item.slug !== product.slug
     );
+    // }
+
     this.states.wishlistCounter -= 1;
   }
 

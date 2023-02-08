@@ -76,5 +76,20 @@ export class EcommerceApi {
     return await callFetch(`${API_ENDPOINT}/wishlist`, requestOptions);
   }
 
-  //
+  //delete single wishlist product
+  static async deleteWishlistSingleProduct(
+    slug: string
+  ): Promise<MyFetchInterface> {
+    console.log(API_ENDPOINT);
+    console.log(slug);
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/wishlist/${slug}`, requestOptions);
+  }
 }

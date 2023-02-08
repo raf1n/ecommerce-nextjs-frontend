@@ -1,6 +1,8 @@
 import React from "react";
+import { HiOutlineX } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { IProduct } from "../../../interfaces/models";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import { controller } from "./../../../src/state/StateController";
@@ -11,6 +13,16 @@ interface Props {
 
 const SharedWishListItem: React.FC<Props> = ({ item }) => {
   const states = useSelector(() => controller.states);
+
+  const deleteWishlistProduct = async (product: IProduct) => {
+    const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
+      product?.slug
+    );
+    if (err) {
+    } else {
+      controller.setRemoveWishlistSingleProduct(product);
+    }
+  };
 
   return (
     <tr className="bg-white border-b hover:bg-gray-50">
@@ -80,7 +92,7 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
       <td className="text-right py-4 capitalize">
         <div
           className="flex space-x-1 items-center justify-center"
-          onClick={() => controller.setRemoveWishlistSingleProduct(item)}>
+          onClick={() => deleteWishlistProduct(item)}>
           <span className="cursor-pointer">
             <SvgIconRenderer
               width="12"
