@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
-import {CartHandler} from "../../../../src/utils/CartHandler";
+import { CartHandler } from "../../../../src/utils/CartHandler";
 import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import styles from "./styles.module.css";
 
@@ -1524,7 +1524,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                                 <span className="mt-[20px] mr-[15px] inline-flex cursor-pointer">
                                   <svg
                                     onClick={() =>
-                                      controller.setRemoveCartItem(item)
+                                      CartHandler.handleDeleteFromCart(item)
                                     }
                                     width="8"
                                     height="8"
@@ -1553,19 +1553,19 @@ const HeaderTop: React.FC<Props> = (props) => {
                             </span>
                           </div>
                           <div className=" product-action-btn">
-                            <div
-                              className={`${styles["gray-btn"]} w-full h-[50px] mb-[10px] cursor-pointer`}
-                            >
-                              <Link href="/cart">
+                            <Link href="/cart">
+                              <div
+                                className={`${styles["gray-btn"]} w-full h-[50px] mb-[10px] cursor-pointer`}
+                              >
                                 <span>View Cart</span>
-                              </Link>
-                            </div>
-                            <div className="w-full h-[50px] cursor-pointer">
-                              <div className="yellow-btn">
-                                <Link href="/checkout">
-                                  <span className="text-sm">Checkout Now</span>
-                                </Link>
                               </div>
+                            </Link>
+                            <div className="w-full h-[50px] cursor-pointer">
+                              <Link href="/checkout">
+                                <div className="yellow-btn">
+                                  <span className="text-sm">Checkout Now</span>
+                                </div>
+                              </Link>
                             </div>
                           </div>
                         </div>
