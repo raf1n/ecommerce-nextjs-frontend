@@ -19,17 +19,26 @@ const SingleProduct: React.FC<Props> = (props) => {
   const { asPath } = router;
   const { itemDetail } = Jsondata;
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
+  const [brand, setBrand] = useState<string | any>("");
 
   console.log(asPath.split("=")[1]);
+  const productSlug = asPath.split("=")[1];
+
   useEffect(() => {
     const fetchProductData = async () => {
-      const { res, err } = await EcommerceApi.getSingleProduct(
-        asPath.split("=")[1]
-      );
+      const { res, err } = await EcommerceApi.getSingleProduct(productSlug);
       setSingleProduct(res);
+      console.log(states.brands);
+      const brandName = states.brands.find(
+        (brand) => brand.slug === res?.brandSlug
+      );
+      setBrand(brandName?.name);
     };
-    fetchProductData();
-  }, []);
+
+    if (!states.initialDataLoading) {
+      fetchProductData();
+    }
+  }, [productSlug, states.initialDataLoading]);
   const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
   const handleReport = (e: any) => {
     e.preventDefault();
@@ -59,6 +68,7 @@ const SingleProduct: React.FC<Props> = (props) => {
               </div>
               <div className="flex-1">
                 <ProductDetails
+                  brand={brand}
                   setReportModalSlug={setReportModalSlug}
                   singleProduct={singleProduct}
                 ></ProductDetails>

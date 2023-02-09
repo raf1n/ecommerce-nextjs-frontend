@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import styles from "./styles.module.css";
+import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 
 interface Props {}
 
@@ -39,7 +40,42 @@ const HeaderTop: React.FC<Props> = (props) => {
   //   }
   //   return total
   // }
+  const fetchAllCategories = async () => {
+    const { res, err } = await EcommerceApi.getCategories();
+    if (res) {
+      controller.setCategories(res);
+    }
+  };
 
+  const fetchAllSubCategories = async () => {
+    const { res, err } = await EcommerceApi.getSubCategories();
+    if (res) {
+      controller.setSubCategories(res);
+    }
+  };
+
+  const fetchAllBrands = async () => {
+    const { res, err } = await EcommerceApi.getBrands();
+
+    if (err) {
+    } else {
+      controller.setBrands(res);
+    }
+  };
+
+  useEffect(() => {
+    const getAllCartData = async () => {
+      const { res, err } = await EcommerceApi.getAllCartData("user_slug_1");
+      if (res) {
+        controller.setAllCartListData(res);
+      }
+    };
+    getAllCartData();
+    fetchAllCategories();
+    fetchAllSubCategories();
+    fetchAllBrands();
+    controller.setInitialDataLoading();
+  }, []);
   const cartSubTotal = states.cartlistData.reduce((acc, currItem) => {
     if (currItem.offerPrice) {
       return acc + currItem?.offerPrice * currItem?.quantity;

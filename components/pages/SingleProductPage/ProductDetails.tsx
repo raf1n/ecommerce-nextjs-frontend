@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction } from "react";
+import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 // import { ShareSocial } from "react-share-social";
@@ -11,6 +11,8 @@ import FacebookIcon from "react-share/lib/FacebookIcon";
 import TwitterIcon from "react-share/lib/TwitterIcon";
 import ReportedItemModal from "./ReportedItemModal/ReportedItemModal";
 import { IProduct } from "../../../interfaces/models";
+import SingleProduct from "./SingleProduct";
+import { state } from "usm-redux";
 
 // const secondExample = {
 //   size: 50,
@@ -58,6 +60,7 @@ import { IProduct } from "../../../interfaces/models";
 // };
 
 interface Props {
+  brand: string;
   singleProduct: IProduct | null;
   setReportModalSlug: Dispatch<SetStateAction<string>>;
 }
@@ -76,6 +79,8 @@ const ProductDetails: React.FC<Props> = (props) => {
     <div className="mt-10 lg:mt-0">
       <span className="text-xs text-qgray font-normal uppercase tracking-wider mb-2 inline-block">
         {/* {props.singleProduct.brand} */}
+        {/* {brand} */}
+        {props.brand}
       </span>
       <h1 className="text-xl text-qblack font-medium mb-4">
         {props.singleProduct?.productName}

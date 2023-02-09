@@ -66,3 +66,25 @@ export interface ICartProduct extends IProduct {
   cart_slug: string;
   quantity: number;
 }
+
+export interface ICategories {
+  cat_slug: string;
+  cat_name: string;
+  cat_image?: string;
+  cat_status: string;
+  cat_icon: string;
+}
+export interface ISubCategories {
+  slug: string;
+  cat_image?: string;
+  subcat_name: string;
+  subcat_status: string;
+  cat_name: string;
+  cat_slug: string;
+}
+export interface IBrands {
+  slug?: string;
+  logo: string;
+  name: string;
+  status: string;
+}

@@ -1,4 +1,4 @@
-import { ICart } from "./../../interfaces/models";
+import { ICart, ICategories } from "./../../interfaces/models";
 import { MyFetchInterface } from "../../interfaces/MyFetchInterface";
 import {
   featuredProductLPObj,
@@ -7,11 +7,14 @@ import {
   IUser,
 } from "../../interfaces/models";
 import {
+  IBrandsResponse,
   ICartResponse,
+  ICategoriesResponse,
   IInitialCartResponse,
   ILoginResponse,
   IProductResponse,
   ISingleProductResponse,
+  ISubCategoriesResponse,
 } from "../../interfaces/response";
 import { callFetch } from "../utils/CallFetch";
 
@@ -143,5 +146,39 @@ export class EcommerceApi {
       `${API_ENDPOINT}/cart?cart_slug=${slug}`,
       requestOptions
     );
+  }
+
+  static async getCategories(): Promise<ICategoriesResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/categories`, requestOptions);
+  }
+  static async getSubCategories(): Promise<ISubCategoriesResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/sub-categories`, requestOptions);
+  }
+  static async getBrands(): Promise<IBrandsResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/brands/allbrands`, requestOptions);
   }
 }
