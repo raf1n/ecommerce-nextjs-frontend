@@ -36,6 +36,7 @@ const ProductCard: React.FC<Props> = (props) => {
   };
 
   const handleWishlist = () => {
+    product.user_slug = "User2";
     const { res, err } = EcommerceApi.postWishlistProduct(product);
     if (err) {
       console.log(err);

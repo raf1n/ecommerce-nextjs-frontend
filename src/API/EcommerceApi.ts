@@ -49,7 +49,7 @@ export class EcommerceApi {
     };
     return await callFetch(`${API_ENDPOINT}/products`, requestOptions);
   }
-  //By Ironman
+  //Get all wishlist product
   static async getAllWishlistProducts(): Promise<IAllWishlistResponse> {
     const myHeaders = new Headers();
     const requestOptions = {
@@ -59,7 +59,8 @@ export class EcommerceApi {
     };
     return await callFetch(`${API_ENDPOINT}/wishlist`, requestOptions);
   }
-  //By Ironman
+
+  // Post single wishlist product
   static async postWishlistProduct(
     product: IProduct
   ): Promise<IWishlistResponse> {
@@ -91,5 +92,24 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/wishlist/${slug}`, requestOptions);
+  }
+  //delete all wishlist product
+  static async deleteAllWishlistProduct(
+    user_slug: string
+  ): Promise<MyFetchInterface> {
+    console.log(API_ENDPOINT);
+    console.log(user_slug);
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/wishlist/delete_all/${user_slug}`,
+      requestOptions
+    );
   }
 }

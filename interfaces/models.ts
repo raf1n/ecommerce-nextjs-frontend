@@ -42,4 +42,5 @@ export interface IProduct {
   isBestProduct?: boolean;
   isFeatured?: boolean;
   isPopular?: boolean;
+  user_slug?: string;
 }
