@@ -1,5 +1,7 @@
 //here we will declare our data models interfaces or in easy way type of our all datas in our website
 
+import exp from "constants";
+
 export interface MyFetchInterface {
   res: any;
   err: any;
@@ -42,5 +44,48 @@ export interface IProduct {
   isBestProduct?: boolean;
   isFeatured?: boolean;
   isPopular?: boolean;
+}
+
+export interface IWishlistProduct extends IProduct {
   user_slug?: string;
+}
+export interface IReportedItem {
+  slug?: string;
+  product_slug?: string;
+  user_slug?: string;
+  title?: string;
+  note?: string;
+}
+
+export interface ICart {
+  user_slug: string;
+  product_slug: string | undefined;
+  quantity: number;
+}
+
+export interface ICartProduct extends IProduct {
+  cart_slug: string;
+  quantity: number;
+}
+
+export interface ICategories {
+  cat_slug: string;
+  cat_name: string;
+  cat_image?: string;
+  cat_status: string;
+  cat_icon: string;
+}
+export interface ISubCategories {
+  slug: string;
+  cat_image?: string;
+  subcat_name: string;
+  subcat_status: string;
+  cat_name: string;
+  cat_slug: string;
+}
+export interface IBrand {
+  slug?: string;
+  logo: string;
+  name: string;
+  status: string;
 }

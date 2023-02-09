@@ -1,4 +1,3 @@
-//@ts-nocheck
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -41,7 +40,15 @@ const HeaderTop: React.FC<Props> = (props) => {
   //   return total
   // }
 
-  useEffect(() => {}, []);
+  const cartSubTotal = states.cartlistData.reduce((acc, currItem) => {
+    if (currItem.offerPrice) {
+      return acc + currItem?.offerPrice * currItem?.quantity;
+    } else if (currItem?.price) {
+      return acc + currItem?.price * currItem?.quantity;
+    }
+    return 0;
+  }, 0);
+
   return (
     <div>
       {sideDropdownOpen && (
@@ -1090,7 +1097,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                       </svg>
                     </span>
                     <span className="text-xs text-qblack font-medium leading-none">
-                      +88 01834 093 014
+                      +88 01682 825 123
                     </span>
                   </div>
                   <div className="flex space-x-2 items-center">
@@ -1108,7 +1115,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                       </svg>
                     </span>
                     <span className="text-xs text-qblack font-medium leading-none">
-                      iamhasan9501@gmail.com
+                      abdur.rohman2003@gmail.com
                     </span>
                   </div>
                 </div>
@@ -1248,7 +1255,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                               </li>
                               <li>
                                 <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
-                                  Mike Doe
+                                  John Doe
                                 </span>
                               </li>
                             </ul>
@@ -1322,7 +1329,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                         </span>
                       </Link>
                       <span className="w-[18px] h-[18px] rounded-full absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px] bg-qyellow">
-                        {states.cartlistCounter}
+                        {states.cartlistData.length}
                       </span>
                     </div>
                     <div
@@ -1380,11 +1387,17 @@ const HeaderTop: React.FC<Props> = (props) => {
                                     </span>
                                   </div>
                                   <div className="flex-1 h-full flex flex-col justify-center ">
-                                    <p className="title mb-2 text-[13px] font-600 text-qblack leading-4 line-clamp-2 hover:text-blue-600">
+                                    <Link
+                                      href={"single_product?slug=" + item.slug}
+                                      className="title mb-2 text-[13px] font-semibold text-qblack leading-4 line-clamp-2 hover:text-blue-600 cursor-pointer">
                                       {item.productName}
-                                    </p>
+                                    </Link>
                                     <p className="price">
-                                      <span className="offer-price text-qred font-600 text-[15px] ml-2">
+                                      <span className="offer-price text-qred font-semibold text-[15px] ml-2">
+                                        <span className="text-qblack font-semibold">
+                                          {item.quantity} &#10005;
+                                        </span>{" "}
+                                        $
                                         {item.offerPrice
                                           ? item.offerPrice
                                           : item.price}
@@ -1394,6 +1407,9 @@ const HeaderTop: React.FC<Props> = (props) => {
                                 </div>
                                 <span className="mt-[20px] mr-[15px] inline-flex cursor-pointer">
                                   <svg
+                                    onClick={() =>
+                                      controller.setRemoveCartItem(item)
+                                    }
                                     width="8"
                                     height="8"
                                     viewBox="0 0 8 8"
@@ -1416,7 +1432,8 @@ const HeaderTop: React.FC<Props> = (props) => {
                               Subtotal
                             </span>
                             <span className="text-[15px] font-medium text-qred ">
-                              ${states.cartSubTotal}
+                              {/* ${states.cartSubTotal} */}
+                              {cartSubTotal}
                             </span>
                           </div>
                           <div className=" product-action-btn">

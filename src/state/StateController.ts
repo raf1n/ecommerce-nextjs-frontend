@@ -1,5 +1,6 @@
+import { ICartProduct } from "./../../interfaces/models";
 //@ts-nocheck
-import { state, action, createStore } from "usm-redux";
+import { state, action, computed, createStore } from "usm-redux";
 import { compose } from "redux";
 import { IProduct } from "../../interfaces/models";
 import { EcommerceApi } from "../API/EcommerceApi";
@@ -18,7 +19,7 @@ export interface IStates {
   wishlistCounter: number;
   wishlistData: Array<IProduct>;
   cartlistCounter: number;
-  cartlistData: Array<IProduct>;
+  cartlistData: Array<ICartProduct>;
   cartSubTotal: number;
   toggle: Boolean;
   allProducts: Array<IProduct>;
@@ -89,11 +90,11 @@ export class Controller {
     this.states.newProducts = product;
   }
 
+  //wishlist
   @action
   setIncreaseWishlistCounter() {
     this.states.wishlistCounter += 1;
   }
-
   @action
   setAddtoWishlist(product: IProduct) {
     if (!this.states.wishlistData?.some((item) => item.slug === product.slug)) {
@@ -131,44 +132,79 @@ export class Controller {
   }
 
   @action
-  setAddtoCartlist(product: IProduct) {
-    var total: number = 0;
-    const totalFunc = () => {
-      for (let i = 0; i < this.states.cartlistData?.length; i++) {
-        if (this.states?.cartlistData[i]?.offerPrice) {
-          total = total + parseInt(this.states.cartlistData[i]?.offerPrice);
-        } else {
-          total = total + parseInt(states?.cartlistData[i]?.price);
-        }
-      }
-      this.states.cartSubTotal = total;
-    };
-    if (!this.states.cartlistData.some((item) => item.slug === product.slug)) {
-      this.states.cartlistCounter += 1;
-      this.states.cartlistData = [...this.states.cartlistData, product];
-      totalFunc();
-    } else {
-      this.states.cartlistData = this.states.cartlistData.filter(
-        (item) => item.slug !== product.slug
+  setAddtoCartlist(productToAdd: ICartProduct) {
+    // if found, increment quantity
+    if (
+      this.states?.cartlistData?.some((item) => item.slug === productToAdd.slug)
+    ) {
+      this.states.cartlistData = this.states.cartlistData.map((cartItem) =>
+        cartItem.slug === productToAdd.slug
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
       );
-      this.states.cartlistCounter -= 1;
-      totalFunc();
+    } else {
+      // if not found new array with modified cartItems/ new cart item
+      this.states.cartlistData = [
+        ...this.states.cartlistData,
+        { ...productToAdd, quantity: 1 },
+      ];
     }
+  }
+
+  @action
+  setMinusFromCartlist(productToMinus: IProduct) {
+    this.states.cartlistData = this.states.cartlistData.map((cartItem) =>
+      cartItem.slug === productToMinus.slug
+        ? { ...cartItem, quantity: cartItem.quantity - 1 }
+        : cartItem
+    );
+  }
+
+  @action
+  setRemoveCartItem(productToRemove: IProduct) {
+    this.states.cartlistData = this.states.cartlistData.filter(
+      (cartItem) => cartItem.slug !== productToRemove.slug
+    );
   }
 
   @action
   setClearCartlist() {
     this.states.cartlistData = [];
-    this.states.cartlistCounter = 0;
   }
 
-  @action
-  setRemoveCartlistSingleProduct(product: IProduct) {
-    this.states.cartlistData = this.states.cartlistData.filter(
-      (item) => item.slug !== product.slug
-    );
-    this.states.cartlistCounter -= 1;
-  }
+  // @action
+  // setAddtoCartlist(product: IProduct) {
+  //   var total: number = 0;
+  //   const totalFunc = () => {
+  //     for (let i = 0; i < this.states.cartlistData?.length; i++) {
+  //       if (this.states?.cartlistData[i]?.offerPrice) {
+  //         total = total + parseInt(this.states.cartlistData[i]?.offerPrice);
+  //       } else {
+  //         total = total + parseInt(states?.cartlistData[i]?.price);
+  //       }
+  //     }
+  //     this.states.cartSubTotal = total;
+  //   };
+  //   if (!this.states.cartlistData.some((item) => item.slug === product.slug)) {
+  //     this.states.cartlistCounter += 1;
+  //     this.states.cartlistData = [...this.states.cartlistData, product];
+  //     totalFunc();
+  //   } else {
+  //     this.states.cartlistData = this.states.cartlistData.filter(
+  //       (item) => item.slug !== product.slug
+  //     );
+  //     this.states.cartlistCounter -= 1;
+  //     totalFunc();
+  //   }
+  // }
+
+  // @action
+  // setRemoveCartlistSingleProduct(product: IProduct) {
+  //   this.states.cartlistData = this.states.cartlistData.filter(
+  //     (item) => item.slug !== product.slug
+  //   );
+  //   this.states.cartlistCounter -= 1;
+  // }
 }
 
 export const controller = new Controller();

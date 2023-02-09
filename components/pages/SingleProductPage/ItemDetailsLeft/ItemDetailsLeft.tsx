@@ -2,9 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
+import { IProduct } from "../../../../interfaces/models";
+import SingleProduct from "../SingleProduct";
 
 interface Props {
-  images: Array<string>;
+  singleProduct: IProduct | null;
 }
 
 const ItemDetailsLeft: React.FC<Props> = (props) => {
@@ -13,8 +15,9 @@ const ItemDetailsLeft: React.FC<Props> = (props) => {
   //   "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fasus-zenbook-desktop-2022-09-26-12-33-24-3339.png&w=2048&q=75",
   //   "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1920&q=75",
   // ];
-  const [image, setImage] = useState(props.images[0]);
-  const imageChange = (newImage: any) => {
+
+  const [image, setImage] = useState(props.singleProduct?.imageURL[0]);
+  const imageChange = (newImage: string) => {
     setImage(newImage);
   };
   return (
@@ -39,7 +42,7 @@ const ItemDetailsLeft: React.FC<Props> = (props) => {
           <img
             alt=""
             sizes="100vw"
-            src={image}
+            src={image ? image : props.singleProduct?.imageURL[0]}
             decoding="async"
             data-nimg="fill"
             className="object-contain transform scale-110"
@@ -65,7 +68,7 @@ const ItemDetailsLeft: React.FC<Props> = (props) => {
         </div>
       </div>
       <div className="flex gap-2 flex-wrap">
-        {props.images.map((img: any) => (
+        {props.singleProduct?.imageURL.map((img: any) => (
           <div className="w-[110px] h-[110px] p-[15px] border border-qgray-border cursor-pointer relative">
             <span
               style={{
