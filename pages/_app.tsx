@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/globals.css";
 import { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import { store } from "../src/state/StateController";
+import { controller, store } from "../src/state/StateController";
 import Header from "../components/shared/SharedHeader/Header";
 import Footer from "../components/shared/SharedFooter/Footer";
+import { EcommerceApi } from "../src/API/EcommerceApi";
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -16,7 +17,16 @@ export default function MyApp(props: AppProps) {
       jssStyles.parentElement!.removeChild(jssStyles);
     }
   }, []);
-
+  useEffect(() => {
+    const getAllCartData = async () => {
+      const { res, err } = await EcommerceApi.getAllCartData("user_slug_1");
+      if (res) {
+        controller.setAllCartListData(res);
+        console.log(res);
+      }
+    };
+    getAllCartData();
+  }, []);
   return (
     <Provider store={store}>
       <React.Fragment>
