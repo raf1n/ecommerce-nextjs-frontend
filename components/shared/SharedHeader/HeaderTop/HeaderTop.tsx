@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
+import { CartHandler } from "../../../../src/utils/CartHandler";
 import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import styles from "./styles.module.css";
 
@@ -26,28 +27,6 @@ const HeaderTop: React.FC<Props> = (props) => {
     console.log("open2");
     setShowTopAllCatgory(!showTopAllCatgory);
   };
-
-  // const cartSubTotal = () => {
-
-  //   for (let i = 0; i < states?.cartlistData?.length; i++) {
-  //     if (states?.cartlistData[i]?.offerPrice) {
-  //       total = total + parseInt(states?.cartlistData[i]?.offerPrice)
-  //     }
-  //     else {
-  //       total= total + parseInt(states?.cartlistData[i]?.price)
-  //     }
-  //   }
-  //   return total
-  // }
-
-  const cartSubTotal = states.cartlistData.reduce((acc, currItem) => {
-    if (currItem.offerPrice) {
-      return acc + currItem.offerPrice * currItem.quantity;
-    } else if (currItem?.price) {
-      return acc + currItem.price * currItem.quantity;
-    }
-    return 0;
-  }, 0);
 
   return (
     <div>
@@ -1432,8 +1411,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                               Subtotal
                             </span>
                             <span className="text-[15px] font-medium text-qred ">
-                              {/* ${states.cartSubTotal} */}
-                              {cartSubTotal}
+                              ${CartHandler.cartSubTotal(states)}
                             </span>
                           </div>
                           <div className=" product-action-btn">

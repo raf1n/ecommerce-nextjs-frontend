@@ -6,6 +6,7 @@ import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import sslcommerze from "../../../public/images/sslcommerze.png";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { CartHandler } from "../../../src/utils/CartHandler";
 interface Props {}
 
 const CheckoutPage: React.FC<Props> = (props) => {
@@ -21,6 +22,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
   useEffect(() => {
     fetchOrderSum();
   }, []);
+
   return (
     <div>
       <div className="w-full min-h-screen  pt-0 pb-0">
@@ -274,7 +276,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 </div>
                                 <div>
                                   <span className="text-[15px] text-qblack font-medium">
-                                    {pro.quantity * pro.offerPrice}
+                                    ${CartHandler.getPrice(pro)}
                                   </span>
                                 </div>
                               </div>
@@ -290,7 +292,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                           SUBTOTAL
                         </p>
                         <p className="text-[15px] font-bold text-qblack uppercase">
-                          $40049.95
+                          ${CartHandler.cartSubTotal(states)}
                         </p>
                       </div>
                       <div className=" flex justify-between mb-5">
@@ -317,7 +319,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                           Total
                         </p>
                         <p className="text-2xl font-medium text-qred">
-                          $40049.95
+                          ${CartHandler.cartSubTotal(states)}
                         </p>
                       </div>
                     </div>
