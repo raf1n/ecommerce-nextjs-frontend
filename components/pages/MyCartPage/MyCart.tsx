@@ -6,6 +6,7 @@ import { controller } from "../../../src/state/StateController";
 import SharedEmptyCart from "../../shared/SharedEmptyCart/SharedEmptyCart";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { CartHandler }  from "../../../src/utils/CartHandler";
 interface Props {
   // cartlistData: Array<IProduct>;
 }
@@ -13,56 +14,7 @@ interface Props {
 const MyCart: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  const cartSubTotal = states?.cartlistData?.reduce((acc, currItem) => {
-    // return (
-    //   acc +
-    //   // (currItem?.offerPrice ? currItem?.offerPrice : currItem?.price) *
-    //   (currItem?.offerPrice ?? currItem?.price) * currItem?.quantity
-    // );
-
-    if (currItem.offerPrice) {
-      return acc + currItem?.offerPrice * currItem?.quantity;
-    } else if (currItem?.price) {
-      return acc + currItem?.price * currItem?.quantity;
-    }
-    return 0;
-  }, 0);
-
-  const getPrice = (currItem: ICartProduct) => {
-    // (item.offerPrice
-    //   ? item.offerPrice
-    //   : item.price) * item.quantity
-
-    if (currItem.offerPrice) {
-      return currItem?.offerPrice * currItem?.quantity;
-    } else if (currItem?.price) {
-      return currItem?.price * currItem?.quantity;
-    }
-    // return 0;
-  };
-
-  // const handleMinusFromCart = (item: IProduct) => {
-  //   const selectedItem = states?.cartlistData?.find(
-  //     (product) => item.slug === product.slug
-  //   );
-  //   if (selectedItem?.quantity === 1) {
-  //     controller.setRemoveCartItem(item);
-  //   } else {
-  //     controller.setMinusFromCartlist(item);
-  //   }
-  // };
-
-  const handleDeleteFromCart = async (product: IProduct) => {
-    const { res, err } = await EcommerceApi.deleteFromCart(product?.slug);
-    if (res) {
-      controller.setRemoveCartItem(product);
-    }
-  };
   const handleIncreaseQuantity = async (item: ICartProduct) => {
-    const cartListProduct = states?.cartlistData?.find(
-      (cartProduct) => cartProduct?.slug === item?.slug
-    );
-
     const { res, err } = await EcommerceApi.updateSingleCartProduct(
       item?.cart_slug,
       item?.quantity + 1
@@ -71,23 +23,21 @@ const MyCart: React.FC<Props> = (props) => {
       controller.setAddtoCartlist(item);
     }
   };
-  const handleDecreaseQuantity = async (item: ICartProduct) => {
-    const cartListProduct = states?.cartlistData?.find(
-      (cartProduct) => cartProduct?.slug === item?.slug
-    );
 
+  const handleDecreaseQuantity = async (item: ICartProduct) => {
     const { res, err } = await EcommerceApi.updateSingleCartProduct(
       item?.cart_slug,
       item?.quantity - 1
     );
     if (res) {
-      if (cartListProduct?.quantity === 1) {
-        handleDeleteFromCart(item);
+      if (item?.quantity === 1) {
+        CartHandler.handleDeleteFromCart(item);
       } else {
         controller.setMinusFromCartlist(item);
       }
     }
   };
+
   return (
     <div className="w-full min-h-screen  pt-[30px] pb-[5px]">
       {states.cartlistData.length === 0 ? (
@@ -128,7 +78,7 @@ const MyCart: React.FC<Props> = (props) => {
                           (product) => item.slug === product.slug
                         );
                         return (
-                          <tr className="bg-white border-b hover:bg-gray-50">
+                          <tr key={item.slug} className="bg-white border-b hover:bg-gray-50">
                             <td className="pl-10 py-4 capitalize w-[380px] ">
                               <div className="flex space-x-6 items-center">
                                 <div className="w-[80px] h-[80px] overflow-hidden flex justify-center items-center border border-[#EDEDED] relative">
@@ -171,12 +121,13 @@ const MyCart: React.FC<Props> = (props) => {
                                       }}
                                       sizes="100vw"
                                     />
-                                    <noscript></noscript>
                                   </span>
                                 </div>
                                 <div className="flex-1 flex flex-col">
                                   <p className="font-medium text-[15px] text-qblack hover:text-blue-500 cursor-pointer">
+                                    <Link href={`/single_product?slug=${item.slug}`}>
                                     {item.productName}
+                                    </Link>
                                   </p>
                                 </div>
                               </div>
@@ -223,7 +174,7 @@ const MyCart: React.FC<Props> = (props) => {
                             <td className="text-center py-4 capitalize px-2">
                               <div className="flex space-x-1 items-center justify-center">
                                 <span className="text-[15px] font-normal">
-                                  ${getPrice(item)}
+                                  ${CartHandler.getPrice(item)}
                                 </span>
                               </div>
                             </td>
@@ -231,7 +182,7 @@ const MyCart: React.FC<Props> = (props) => {
                               <div className="flex space-x-1 items-center justify-center p-2">
                                 <span
                                   className="cursor-pointer"
-                                  onClick={() => handleDeleteFromCart(item)}
+                                  onClick={() => CartHandler.handleDeleteFromCart(item)}
                                 >
                                   <svg
                                     width="10"
@@ -265,13 +216,13 @@ const MyCart: React.FC<Props> = (props) => {
                   <div className="w-[140px] h-[50px] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
                     <span className="text-sm font-semibold">Update Cart</span>
                   </div>
-                  <div className="w-[300px] h-[50px] bg-black flex justify-center items-center cursor-pointer">
                     <Link href="/checkout">
+                  <div className="w-[300px] h-[50px] bg-black flex justify-center items-center cursor-pointer">
                       <span className="text-sm text-white font-semibold">
                         Proceed to Checkout
                       </span>
-                    </Link>
                   </div>
+                    </Link>
                 </div>
               </div>
             </div>
