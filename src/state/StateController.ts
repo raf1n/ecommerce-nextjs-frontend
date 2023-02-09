@@ -171,6 +171,10 @@ export class Controller {
   setClearCartlist() {
     this.states.cartlistData = [];
   }
+  @action
+  setAllCartListData(products: ICartProduct[]) {
+    this.states.cartlistData = products;
+  }
 
   // @action
   // setAddtoCartlist(product: IProduct) {

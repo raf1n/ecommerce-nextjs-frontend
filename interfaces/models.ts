@@ -34,7 +34,7 @@ export interface IProduct {
   description?: string;
   status?: string;
   imageURL: Array<string | undefined>;
-  offerPrice?: string;
+  offerPrice: number;
   weight?: number;
   stock?: number;
   seoTitle?: string;

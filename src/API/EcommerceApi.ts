@@ -4,6 +4,7 @@ import {
   IProduct,
   IReportedItem,
   IUser,
+  IWishlistProduct,
   MyFetchInterface,
 } from "../../interfaces/models";
 import {
@@ -66,7 +67,7 @@ export class EcommerceApi {
 
   // Post single wishlist product
   static async postWishlistProduct(
-    product: IProduct
+    product: IWishlistProduct
   ): Promise<IWishlistResponse> {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");

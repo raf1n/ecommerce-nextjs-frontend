@@ -1,7 +1,7 @@
 import React from "react";
 import { HiOutlineX } from "react-icons/hi";
 import { useSelector } from "react-redux";
-import { IProduct } from "../../../interfaces/models";
+import { IProduct, IWishlistProduct } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
@@ -14,7 +14,7 @@ interface Props {
 const SharedWishListItem: React.FC<Props> = ({ item }) => {
   const states = useSelector(() => controller.states);
 
-  const deleteWishlistProduct = async (product: IProduct) => {
+  const deleteWishlistProduct = async (product: IWishlistProduct) => {
     const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
       product?.slug
     );
@@ -71,8 +71,6 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
                   />
                 )}
               </picture>
-
-              <noscript></noscript>
             </span>
           </div>
           <div className="flex-1 flex flex-col">

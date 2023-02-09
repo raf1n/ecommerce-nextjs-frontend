@@ -42,9 +42,9 @@ const HeaderTop: React.FC<Props> = (props) => {
 
   const cartSubTotal = states.cartlistData.reduce((acc, currItem) => {
     if (currItem.offerPrice) {
-      return acc + currItem?.offerPrice * currItem?.quantity;
+      return acc + currItem.offerPrice * currItem.quantity;
     } else if (currItem?.price) {
-      return acc + currItem?.price * currItem?.quantity;
+      return acc + currItem.price * currItem.quantity;
     }
     return 0;
   }, 0);
