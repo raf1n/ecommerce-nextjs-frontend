@@ -24,15 +24,15 @@ export interface featuredProductLPObj {
 
 export interface IProduct {
   productName?: string;
-  slug?: string;
+  slug?: string | undefined;
   catSlug?: string;
   subCatSlug?: string;
   brandSlug?: string;
   price?: number;
   description?: string;
   status?: string;
-  imageURL: Array<string>;
-  offerPrice?: number;
+  imageURL: Array<string | undefined>;
+  offerPrice: number;
   weight?: number;
   stock?: number;
   seoTitle?: string;
@@ -42,10 +42,11 @@ export interface IProduct {
   isBestProduct?: boolean;
   isFeatured?: boolean;
   isPopular?: boolean;
-  addedBy?: string;
-  approvalStatus?: string;
 }
 
+export interface IWishlistProduct extends IProduct {
+  user_slug?: string;
+}
 export interface IReportedItem {
   slug?: string;
   product_slug?: string;

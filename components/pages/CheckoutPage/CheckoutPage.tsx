@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import sslcommerze from "../../../public/images/sslcommerze.png";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { CartHandler } from "../../../src/utils/CartHandler";
 interface Props {}
 
 const CheckoutPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
+  const fetchOrderSum = async () => {
+    const { res, err } = await EcommerceApi.getAllCartData("user_slug_1");
+    if (err) {
+    } else {
+      controller.setAllCartListData(res);
+    }
+  };
+  useEffect(() => {
+    fetchOrderSum();
+  }, []);
 
   return (
     <div>
@@ -246,126 +259,30 @@ const CheckoutPage: React.FC<Props> = (props) => {
                     </div>
                     <div className="product-list w-full mb-[30px]">
                       <ul className="flex flex-col space-y-5">
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Apple watch pro"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Apple watch pro{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $40000.00
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Samsung Galaxy A52 (8/128 GB)"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Samsung Galaxy A52{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $9.99
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Samsung Galaxy A52 (8/128 GB)"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Samsung Galaxy A52{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $9.99
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Samsung Galaxy A52 (8/128 GB)"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Samsung Galaxy A52{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $9.99
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Samsung Galaxy A52 (8/128 GB)"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Samsung Galaxy A52{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $9.99
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Samsung Galaxy A52 (8/128 GB)"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Samsung Galaxy A52{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $9.99
-                              </span>
-                            </div>
-                          </div>
-                        </li>
+                        {states.cartlistData.map((pro) => (
+                          <>
+                            <li>
+                              <div className="flex justify-between items-center">
+                                <div>
+                                  <h4
+                                    title="Apple watch pro"
+                                    className="text-[15px] text-qblack line-clamp-1 mb-2.5">
+                                    {pro.productName}
+                                    <sup className="text-[13px] text-qgray ml-2 mt-2">
+                                      x{pro.quantity}
+                                    </sup>
+                                  </h4>
+                                  <p className="text-[13px] text-qgray line-clamp-1"></p>
+                                </div>
+                                <div>
+                                  <span className="text-[15px] text-qblack font-medium">
+                                    ${CartHandler.getPrice(pro)}
+                                  </span>
+                                </div>
+                              </div>
+                            </li>
+                          </>
+                        ))}
                       </ul>
                     </div>
                     <div className="w-full h-[1px] bg-[#EDEDED]"></div>
@@ -375,7 +292,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                           SUBTOTAL
                         </p>
                         <p className="text-[15px] font-bold text-qblack uppercase">
-                          $40049.95
+                          ${CartHandler.cartSubTotal(states)}
                         </p>
                       </div>
                       <div className=" flex justify-between mb-5">
@@ -402,7 +319,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                           Total
                         </p>
                         <p className="text-2xl font-medium text-qred">
-                          $40049.95
+                          ${CartHandler.cartSubTotal(states)}
                         </p>
                       </div>
                     </div>

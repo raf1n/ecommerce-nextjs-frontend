@@ -1,12 +1,14 @@
-import { ICart, ICategories } from "./../../interfaces/models";
-import { MyFetchInterface } from "../../interfaces/MyFetchInterface";
 import {
-  featuredProductLPObj,
+  ICart,
+  ICategories,
   IProduct,
   IReportedItem,
   IUser,
+  IWishlistProduct,
+  MyFetchInterface,
 } from "../../interfaces/models";
 import {
+  IAllWishlistResponse,
   IBrandsResponse,
   ICartResponse,
   ICategoriesResponse,
@@ -15,6 +17,7 @@ import {
   IProductResponse,
   ISingleProductResponse,
   ISubCategoriesResponse,
+  IWishlistResponse,
 } from "../../interfaces/response";
 import { callFetch } from "../utils/CallFetch";
 
@@ -44,6 +47,97 @@ export class EcommerceApi {
     return await callFetch(`${API_ENDPOINT}/users/login`, requestOptions);
   }
 
+  // static async getAllProducts(): Promise<IProductResponse> {
+  //   const myHeaders = new Headers();
+  //   // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
+  //   const requestOptions = {
+  //     method: "GET",
+  //     headers: myHeaders,
+  //     redirect: "follow",
+  //   };
+  //   return await callFetch(`${API_ENDPOINT}/products`, requestOptions);
+  // }
+  //Get all wishlist product
+  static async getAllWishlistProducts(): Promise<IAllWishlistResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(`${API_ENDPOINT}/wishlist`, requestOptions);
+  }
+
+  // Post single wishlist product
+  static async postWishlistProduct(
+    product: IWishlistProduct
+  ): Promise<IWishlistResponse> {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    // console.log(productSlug);
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(product),
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/wishlist`, requestOptions);
+  }
+
+  //delete single wishlist product
+  static async deleteWishlistSingleProduct(
+    slug: string
+  ): Promise<MyFetchInterface> {
+    console.log(API_ENDPOINT);
+    console.log(slug);
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/wishlist/${slug}`, requestOptions);
+  }
+  //delete all wishlist product
+  static async deleteAllWishlistProduct(
+    user_slug: string
+  ): Promise<MyFetchInterface> {
+    console.log(API_ENDPOINT);
+    console.log(user_slug);
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/wishlist/delete_all/${user_slug}`,
+      requestOptions
+    );
+  }
+
+  //from denji
+  // static async login(data: Partial<IUser>): Promise<ILoginResponse> {
+  //   console.log(data.token);
+  //   console.log(API_ENDPOINT);
+  //   const myHeaders = new Headers();
+  //   myHeaders.append("Content-Type", "application/json");
+
+  //   const requestOptions = {
+  //     method: "POST",
+  //     headers: myHeaders,
+  //     body: JSON.stringify(data),
+  //     redirect: "follow",
+  //   };
+
+  //   return await callFetch(`${API_ENDPOINT}/users/login`, requestOptions);
+  // }
+
   static async getAllProducts(): Promise<IProductResponse> {
     const myHeaders = new Headers();
     // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
@@ -57,16 +151,16 @@ export class EcommerceApi {
 
   // get single product
 
-  static async getSingleProduct(slug: string): Promise<ISingleProductResponse> {
-    const myHeaders = new Headers();
-    // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-    return await callFetch(`${API_ENDPOINT}/products/${slug}`, requestOptions);
-  }
+  // static async getSingleProduct(slug: string): Promise<ISingleProductResponse> {
+  //   const myHeaders = new Headers();
+  //   // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
+  //   const requestOptions = {
+  //     method: "GET",
+  //     headers: myHeaders,
+  //     redirect: "follow",
+  //   };
+  //   return await callFetch(`${API_ENDPOINT}/products/${slug}`, requestOptions);
+  // }
 
   static async addReportedItem(
     data: Partial<IReportedItem>

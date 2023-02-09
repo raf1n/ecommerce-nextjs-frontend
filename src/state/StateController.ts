@@ -8,6 +8,7 @@ import {
 import { state, action, computed, createStore } from "usm-redux";
 import { compose } from "redux";
 import { IProduct } from "../../interfaces/models";
+import { EcommerceApi } from "../API/EcommerceApi";
 
 const composeEnhancers =
   // @ts-ignore
@@ -129,8 +130,7 @@ export class Controller {
   }
   @action
   setAddtoWishlist(product: IProduct) {
-    console.log(this.states.wishlistData);
-    if (!this.states.wishlistData.some((item) => item.slug === product.slug)) {
+    if (!this.states.wishlistData?.some((item) => item.slug === product.slug)) {
       this.states.wishlistCounter += 1;
       this.states.wishlistData = [...this.states.wishlistData, product];
       // this.states.wishlistData.push(product)
@@ -149,16 +149,19 @@ export class Controller {
   }
 
   @action
-  setRemoveWishlistSingleProduct(product: IProduct) {
-    this.states.wishlistData = this.states.wishlistData.filter(
-      (item) => item.slug !== product.slug
-    );
-    this.states.wishlistCounter -= 1;
+  setAllWishlistData(products: Array<IProduct>) {
+    console.log(products);
+    this.states.wishlistData = products;
   }
 
   @action
-  setAllCartListData(products: ICartProduct[]) {
-    this.states.cartlistData = products;
+  setRemoveWishlistSingleProduct(product: IProduct) {
+    this.states.wishlistData = this.states.wishlistData?.filter(
+      (item) => item.slug !== product.slug
+    );
+    // }
+
+    this.states.wishlistCounter -= 1;
   }
 
   @action
@@ -200,6 +203,10 @@ export class Controller {
   @action
   setClearCartlist() {
     this.states.cartlistData = [];
+  }
+  @action
+  setAllCartListData(products: ICartProduct[]) {
+    this.states.cartlistData = products;
   }
 
   // @action

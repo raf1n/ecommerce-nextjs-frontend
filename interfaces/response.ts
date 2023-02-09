@@ -33,7 +33,15 @@ export interface IProductResponse extends MyFetchInterface {
     allProductData: Array<IProduct>;
   };
 }
-
+export interface IWishlistResponse extends MyFetchInterface {
+  res: {
+    data: IProduct;
+    message: string;
+  };
+}
+export interface IAllWishlistResponse extends MyFetchInterface {
+  res: IProduct[];
+}
 export interface ICartResponse extends MyFetchInterface {
   res: {
     slug: string;

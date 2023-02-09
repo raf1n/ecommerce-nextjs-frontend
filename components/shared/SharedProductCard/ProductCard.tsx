@@ -36,7 +36,14 @@ const ProductCard: React.FC<Props> = (props) => {
   // };
 
   const handleWishlist = () => {
-    controller.setAddtoWishlist(product);
+    product.user_slug = "User2";
+    const { res, err } = EcommerceApi.postWishlistProduct(product);
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+      controller.setAddtoWishlist(product);
+    }
   };
 
   const cartListProduct = states?.cartlistData.find(
@@ -255,6 +262,7 @@ const ProductCard: React.FC<Props> = (props) => {
                   />
                 </span>
               </button>
+
               <button
                 className="absolute group-hover:right-4 -right-10 top-[120px] transition-all duration-300 ease-in-out"
                 type="button"
@@ -274,6 +282,7 @@ const ProductCard: React.FC<Props> = (props) => {
                   )}
                 </span>
               </button>
+
               <button
                 className="absolute group-hover:right-4 -right-10 top-[168px] transition-all duration-500 ease-in-out"
                 type="button"
