@@ -67,7 +67,7 @@ const MyCart: React.FC<Props> = (props) => {
                           (product) => item.slug === product.slug
                         );
                         return (
-                          <tr className="bg-white border-b hover:bg-gray-50">
+                          <tr key={item.slug} className="bg-white border-b hover:bg-gray-50">
                             <td className="pl-10 py-4 capitalize w-[380px] ">
                               <div className="flex space-x-6 items-center">
                                 <div className="w-[80px] h-[80px] overflow-hidden flex justify-center items-center border border-[#EDEDED] relative">
@@ -158,6 +158,8 @@ const MyCart: React.FC<Props> = (props) => {
                               <div className="flex space-x-1 items-center justify-center">
                                 <span className="text-[15px] font-normal">
                                 ${(item.offerPrice ? item.offerPrice : item.price) * item.quantity}
+                                {/* { item.offerPrice && <>{item.offerPrice * item.quantity}</> }
+                                { !item.offerPrice && <>{item.price * item.quantity}</> } */}
                                 </span>
                               </div>
                             </td>

@@ -29,11 +29,11 @@ export interface IProduct {
     catSlug?: string;
     subCatSlug?: string;
     brandSlug?: string;
-    price?: number;
+    price: number | undefined;
     description?: string;
     status?: string;
     imageURL: Array<string | undefined>;
-    offerPrice?: string;
+    offerPrice: number; 
     weight?: number;
     stock?: number;
     seoTitle?: string;
@@ -43,5 +43,5 @@ export interface IProduct {
     isBestProduct?: boolean;
     isFeatured?: boolean;
     isPopular?: boolean;
-    quantity?: number;
+    quantity: number | undefined;
 }
