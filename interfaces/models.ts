@@ -90,7 +90,7 @@ export interface ISubCategories {
   cat_name: string;
   cat_slug: string;
 }
-export interface IBrand {
+export interface IBrands {
   slug?: string;
   logo: string;
   name: string;

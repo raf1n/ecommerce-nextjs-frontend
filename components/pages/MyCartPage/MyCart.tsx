@@ -125,7 +125,9 @@ const MyCart: React.FC<Props> = (props) => {
                                 </div>
                                 <div className="flex-1 flex flex-col">
                                   <p className="font-medium text-[15px] text-qblack hover:text-blue-500 cursor-pointer">
+                                    <Link href={`/single_product?slug=${item.slug}`}>
                                     {item.productName}
+                                    </Link>
                                   </p>
                                 </div>
                               </div>
@@ -214,13 +216,13 @@ const MyCart: React.FC<Props> = (props) => {
                   <div className="w-[140px] h-[50px] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
                     <span className="text-sm font-semibold">Update Cart</span>
                   </div>
-                  <div className="w-[300px] h-[50px] bg-black flex justify-center items-center cursor-pointer">
                     <Link href="/checkout">
+                  <div className="w-[300px] h-[50px] bg-black flex justify-center items-center cursor-pointer">
                       <span className="text-sm text-white font-semibold">
                         Proceed to Checkout
                       </span>
-                    </Link>
                   </div>
+                    </Link>
                 </div>
               </div>
             </div>

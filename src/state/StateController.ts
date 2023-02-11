@@ -1,4 +1,10 @@
-import { ICartProduct, IWishlistProduct } from "./../../interfaces/models";
+import {
+  IBrands,
+  ICartProduct,
+  ICategories,
+  ISubCategories,
+  IWishlistProduct,
+} from "./../../interfaces/models";
 //@ts-nocheck
 import { state, action, computed, createStore } from "usm-redux";
 import { compose } from "redux";
@@ -28,6 +34,10 @@ export interface IStates {
   popularProducts: Array<IProduct>;
   bestProducts: Array<IProduct>;
   newProducts: Array<IProduct>;
+  categories: Array<ICategories>;
+  subCategories: Array<ISubCategories>;
+  brands: Array<IBrands>;
+  initialDataLoading: boolean;
 }
 
 export class Controller {
@@ -46,6 +56,10 @@ export class Controller {
     popularProducts: [],
     bestProducts: [],
     newProducts: [],
+    categories: [],
+    subCategories: [],
+    brands: [],
+    initialDataLoading: true,
   };
 
   @action
@@ -54,6 +68,11 @@ export class Controller {
       ...this.states,
       ...states,
     };
+  }
+
+  @action
+  setInitialDataLoading() {
+    this.states.initialDataLoading = !this.states.initialDataLoading;
   }
 
   @action
@@ -88,6 +107,21 @@ export class Controller {
   @action
   setNewProducts(product: Array<IProduct>) {
     this.states.newProducts = product;
+  }
+
+  @action
+  setCategories(categories: Array<ICategories>) {
+    this.states.categories = categories;
+  }
+
+  @action
+  setSubCategories(subCategories: Array<ISubCategories>) {
+    this.states.subCategories = subCategories;
+  }
+
+  @action
+  setBrands(brands: Array<IBrands>) {
+    this.states.brands = brands;
   }
 
   //wishlist

@@ -4,6 +4,8 @@ import {
   IReportedItem,
   ICartProduct,
   ICategories,
+  ISubCategories,
+  IBrands,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 //here we will declare our response interfaces or in easy way type of our all response in our website
@@ -69,5 +71,11 @@ export interface ISingleProductResponse extends MyFetchInterface {
   res: IProduct;
 }
 export interface ICategoriesResponse extends MyFetchInterface {
-  res: ICategories;
+  res: ICategories[];
+}
+export interface ISubCategoriesResponse extends MyFetchInterface {
+  res: ISubCategories[];
+}
+export interface IBrandsResponse extends MyFetchInterface {
+  res: IBrands[];
 }

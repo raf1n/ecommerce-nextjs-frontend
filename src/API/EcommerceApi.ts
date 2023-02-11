@@ -1,8 +1,8 @@
 import { ICartResponse } from "./../../interfaces/response";
 import { ICartProduct, IOrder } from "./../../interfaces/models";
 import {
-  featuredProductLPObj,
   ICart,
+  ICategories,
   IProduct,
   IReportedItem,
   IUser,
@@ -11,11 +11,13 @@ import {
 } from "../../interfaces/models";
 import {
   IAllWishlistResponse,
-  // ICartResponse,
+  IBrandsResponse,
   ICategoriesResponse,
   IInitialCartResponse,
   ILoginResponse,
   IProductResponse,
+  ISingleProductResponse,
+  ISubCategoriesResponse,
   IWishlistResponse,
 } from "../../interfaces/response";
 import { callFetch } from "../utils/CallFetch";
@@ -263,5 +265,27 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/categories`, requestOptions);
+  }
+  static async getSubCategories(): Promise<ISubCategoriesResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/sub-categories`, requestOptions);
+  }
+  static async getBrands(): Promise<IBrandsResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/brands/allbrands`, requestOptions);
   }
 }
