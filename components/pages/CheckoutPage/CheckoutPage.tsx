@@ -7,14 +7,13 @@ import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import sslcommerze from "../../../public/images/sslcommerze.png";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CartHandler } from "../../../src/utils/CartHandler";
-import { ICart, IProduct } from "../../../interfaces/models";
+import { ICart } from "../../../interfaces/models";
 import Link from "next/link";
 interface Props {
   cartlistData: ICart;
 }
 const CheckoutPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  // const { cartlistData } = props;
   const cartListProduct = states.cartlistData;
   console.log("ru cccart", cartListProduct);
 
@@ -29,7 +28,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
     fetchOrderSum();
   }, []);
   // -------------------------
-
   const order = {
     product_list: cartListProduct,
     user_slug: "User2",
@@ -44,8 +42,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
       console.log(err);
     } else {
       // console.log(res);
-
       alert("Order successfull");
+      controller.setClearCartlist();
     }
   };
   // ----------------------------
