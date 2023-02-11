@@ -7,10 +7,16 @@ import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import sslcommerze from "../../../public/images/sslcommerze.png";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CartHandler } from "../../../src/utils/CartHandler";
-interface Props {}
-
+import { ICart, IProduct } from "../../../interfaces/models";
+import Link from "next/link";
+interface Props {
+  cartlistData: ICart;
+}
 const CheckoutPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  // const { cartlistData } = props;
+  const cartListProduct = states.cartlistData;
+  console.log("ru cccart", cartListProduct);
 
   const fetchOrderSum = async () => {
     const { res, err } = await EcommerceApi.getAllCartData("user_slug_1");
@@ -22,6 +28,27 @@ const CheckoutPage: React.FC<Props> = (props) => {
   useEffect(() => {
     fetchOrderSum();
   }, []);
+  // -------------------------
+
+  const order = {
+    product_list: cartListProduct,
+    user_slug: "User2",
+    order_slug: "Order_slug_1",
+    payment_method: "Bkash",
+    transaction_id: "1HJGXX1222",
+  };
+  // console.log(order);
+  const handleCheckout = () => {
+    const { res, err } = EcommerceApi.postOrder(order);
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(res);
+
+      alert("Order successfull");
+    }
+  };
+  // ----------------------------
 
   return (
     <div>
@@ -506,7 +533,10 @@ const CheckoutPage: React.FC<Props> = (props) => {
                         </div>
                       </div>
                     </div>
-                    <button type="button" className="w-full">
+                    <button
+                      onClick={handleCheckout}
+                      type="button"
+                      className="w-full">
                       <div className="w-full h-[50px] bg-black text-white  flex justify-center items-center">
                         <span className="text-sm font-semibold">
                           Place Order Now

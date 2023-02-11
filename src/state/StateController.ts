@@ -1,4 +1,4 @@
-import { ICartProduct } from "./../../interfaces/models";
+import { ICartProduct, IWishlistProduct } from "./../../interfaces/models";
 //@ts-nocheck
 import { state, action, computed, createStore } from "usm-redux";
 import { compose } from "redux";
@@ -96,11 +96,10 @@ export class Controller {
     this.states.wishlistCounter += 1;
   }
   @action
-  setAddtoWishlist(product: IProduct) {
+  setAddtoWishlist(product: IWishlistProduct) {
     if (!this.states.wishlistData?.some((item) => item.slug === product.slug)) {
       this.states.wishlistCounter += 1;
       this.states.wishlistData = [...this.states.wishlistData, product];
-      // this.states.wishlistData.push(product)
     } else {
       this.states.wishlistData = this.states.wishlistData.filter(
         (item) => item.slug !== product.slug

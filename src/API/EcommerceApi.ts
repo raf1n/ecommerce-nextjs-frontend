@@ -1,3 +1,5 @@
+import { ICartResponse } from "./../../interfaces/response";
+import { ICartProduct, IOrder } from "./../../interfaces/models";
 import {
   featuredProductLPObj,
   ICart,
@@ -9,7 +11,7 @@ import {
 } from "../../interfaces/models";
 import {
   IAllWishlistResponse,
-  ICartResponse,
+  // ICartResponse,
   ICategoriesResponse,
   IInitialCartResponse,
   ILoginResponse,
@@ -71,17 +73,14 @@ export class EcommerceApi {
   ): Promise<IWishlistResponse> {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    // console.log(productSlug);
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(product),
       redirect: "follow",
     };
-
     return await callFetch(`${API_ENDPOINT}/wishlist`, requestOptions);
   }
-
   //delete single wishlist product
   static async deleteWishlistSingleProduct(
     slug: string
@@ -117,6 +116,21 @@ export class EcommerceApi {
       requestOptions
     );
   }
+  // order
+  static async postOrder(order: IOrder): Promise<Object> {
+    console.log("from api", order);
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(order),
+      redirect: "follow",
+    };
+    return await callFetch(`${API_ENDPOINT}/orders`, requestOptions);
+  }
+
+  // order
 
   //from denji
   // static async login(data: Partial<IUser>): Promise<ILoginResponse> {

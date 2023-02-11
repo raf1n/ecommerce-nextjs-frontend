@@ -47,6 +47,15 @@ export interface IProduct {
 export interface IWishlistProduct extends IProduct {
   user_slug?: string;
 }
+
+export interface IOrder extends IProduct {
+  productlist: any;
+  order_slug?: any;
+  payment_method: any;
+  user_slug?: any;
+  transaction_id: any;
+}
+
 export interface IReportedItem {
   slug?: string;
   product_slug?: string;

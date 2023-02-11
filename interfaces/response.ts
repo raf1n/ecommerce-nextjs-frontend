@@ -37,6 +37,19 @@ export interface IWishlistResponse extends MyFetchInterface {
     message: string;
   };
 }
+
+export interface IOrderResponse extends MyFetchInterface {
+  res: {
+    productlist: IProduct[];
+    user_slug: any;
+    order_slug: any;
+    payment_method: any;
+    transaction_id: any;
+    // data: IProduct[];
+    message: any;
+  };
+}
+
 export interface IAllWishlistResponse extends MyFetchInterface {
   res: IProduct[];
 }
