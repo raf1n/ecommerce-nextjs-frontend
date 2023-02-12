@@ -16,7 +16,7 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
 
   const deleteWishlistProduct = async (product: IWishlistProduct) => {
     const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
-      product?.slug
+      product.slug
     );
     if (err) {
     } else {

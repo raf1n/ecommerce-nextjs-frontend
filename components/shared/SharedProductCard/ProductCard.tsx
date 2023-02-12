@@ -28,14 +28,35 @@ const ProductCard: React.FC<Props> = (props) => {
     return false;
   };
 
+  const deleteWishlistProduct = async (product: IWishlistProduct) => {
+    const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
+      product.slug
+    );
+    if (err) {
+    } else {
+      controller.setRemoveWishlistSingleProduct(product);
+    }
+  };
+
   const handleWishlist = async () => {
     product.user_slug = "User2";
-    const { res, err } = await EcommerceApi.postWishlistProduct(product);
-    if (err) {
-      console.log(err);
+
+    if (!isInWishlist(product.slug)) {
+      const { res, err } = await EcommerceApi.postWishlistProduct(product);
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
+        controller.setAddtoWishlist(product);
+      }
     } else {
-      console.log(res);
-      controller.setAddtoWishlist(product);
+      const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
+        product.slug
+      );
+      if (err) {
+      } else {
+        controller.setRemoveWishlistSingleProduct(product);
+      }
     }
   };
 
