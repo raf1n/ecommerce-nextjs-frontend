@@ -43,6 +43,7 @@ const MyCart: React.FC<Props> = (props) => {
     if (err) {
       console.log(err);
     } else {
+      //
       controller.setClearCartlist();
     }
   }
