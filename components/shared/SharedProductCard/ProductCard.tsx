@@ -28,9 +28,9 @@ const ProductCard: React.FC<Props> = (props) => {
     return false;
   };
 
-  const handleWishlist = () => {
+  const handleWishlist = async () => {
     product.user_slug = "User2";
-    const { res, err } = EcommerceApi.postWishlistProduct(product);
+    const { res, err } = await EcommerceApi.postWishlistProduct(product);
     if (err) {
       console.log(err);
     } else {
@@ -59,7 +59,7 @@ const ProductCard: React.FC<Props> = (props) => {
       if (res) {
         const newProduct = {
           ...product,
-          cart_slug: res.cart_slug,
+          cart_slug: res.slug,
           quantity: res.quantity,
         };
         controller.setAddtoCartlist(newProduct);
