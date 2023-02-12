@@ -13,7 +13,9 @@ const WishList: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const fetchAllWishlistData = async () => {
-    const { res, err } = await EcommerceApi.getAllWishlistProducts();
+    const { res, err } = await EcommerceApi.getAllWishlistProducts(
+      "user_slug_1"
+    );
     if (err) {
     } else {
       console.log(res);

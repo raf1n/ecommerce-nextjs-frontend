@@ -29,13 +29,24 @@ const ProductCard: React.FC<Props> = (props) => {
   };
 
   const handleWishlist = async () => {
-    product.user_slug = "User2";
-    const { res, err } = await EcommerceApi.postWishlistProduct(product);
-    if (err) {
-      console.log(err);
+    product.user_slug = "user_slug_1";
+
+    if (!isInWishlist(product.slug)) {
+      const { res, err } = await EcommerceApi.postWishlistProduct(product);
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
+        controller.setAddtoWishlist(product);
+      }
     } else {
-      console.log(res);
-      controller.setAddtoWishlist(product);
+      const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
+        product.slug
+      );
+      if (err) {
+      } else {
+        controller.setRemoveWishlistSingleProduct(product);
+      }
     }
   };
 

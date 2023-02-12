@@ -1,5 +1,4 @@
 import React from "react";
-import { HiOutlineX } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { IProduct, IWishlistProduct } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
@@ -16,7 +15,7 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
 
   const deleteWishlistProduct = async (product: IWishlistProduct) => {
     const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
-      product?.slug
+      product.slug
     );
     if (err) {
     } else {
