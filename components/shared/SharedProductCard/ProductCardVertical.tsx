@@ -64,7 +64,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
       if (res) {
         const newProduct = {
           ...product,
-          cart_slug: res.cart_slug,
+          cart_slug: res.slug,
           quantity: res.quantity,
         };
         controller.setAddtoCartlist(newProduct);
@@ -236,9 +236,8 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                   <button
                     type="button"
                     onClick={handleCartToggle}
-                    className={`h-[30px] ${
-                      isInCartlist(product.slug) ? "w-[140px] " : "w-[110px] "
-                    } `}>
+                    className={`h-[30px] ${isInCartlist(product.slug) ? "w-[140px] " : "w-[110px] "
+                      } `}>
                     <span className="yellow-btn">
                       {isInCartlist(product.slug)
                         ? "Remove From Cart"

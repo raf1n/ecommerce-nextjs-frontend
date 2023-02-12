@@ -59,7 +59,7 @@ const ProductCard: React.FC<Props> = (props) => {
       if (res) {
         const newProduct = {
           ...product,
-          cart_slug: res.cart_slug,
+          cart_slug: res.slug,
           quantity: res.quantity,
         };
         controller.setAddtoCartlist(newProduct);

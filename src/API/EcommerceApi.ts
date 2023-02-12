@@ -336,4 +336,24 @@ export class EcommerceApi {
 
     return await callFetch(`${API_ENDPOINT}/addresses/${slug}`, requestOptions);
   }
+
+  //delete all cartlist product
+  static async deleteAllCartlistProduct(
+    user_slug: string
+  ): Promise<MyFetchInterface> {
+    console.log(API_ENDPOINT);
+    console.log(user_slug);
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/cart/delete_all/${user_slug}`,
+      requestOptions
+    );
+  }
 }
