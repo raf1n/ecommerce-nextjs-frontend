@@ -30,7 +30,8 @@ const ProductCardVertical: React.FC<Props> = (props) => {
       }
     } else {
       const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
-        product.slug
+        product.slug,
+        product.user_slug
       );
       if (err) {
       } else {

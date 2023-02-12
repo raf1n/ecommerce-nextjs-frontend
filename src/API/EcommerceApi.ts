@@ -91,19 +91,21 @@ export class EcommerceApi {
   }
   //delete single wishlist product
   static async deleteWishlistSingleProduct(
-    slug: string | undefined
+    product_slug: string | undefined,
+    user_slug: string
   ): Promise<MyFetchInterface> {
     console.log(API_ENDPOINT);
-    console.log(slug);
     const myHeaders = new Headers();
-
     const requestOptions = {
       method: "DELETE",
       headers: myHeaders,
       redirect: "follow",
     };
 
-    return await callFetch(`${API_ENDPOINT}/wishlist/${slug}`, requestOptions);
+    return await callFetch(
+      `${API_ENDPOINT}/wishlist?user_slug=${user_slug}&product_slug=${product_slug}`,
+      requestOptions
+    );
   }
   //delete all wishlist product
   static async deleteAllWishlistProduct(
