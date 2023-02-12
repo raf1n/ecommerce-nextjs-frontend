@@ -17,9 +17,9 @@ const ProductCardVertical: React.FC<Props> = (props) => {
   const { product } = props;
   const states = useSelector(() => controller.states);
 
-  const handleWishlist = () => {
+  const handleWishlist = async () => {
     product.user_slug = "User2";
-    const { res, err } = EcommerceApi.postWishlistProduct(product);
+    const { res, err } = await EcommerceApi.postWishlistProduct(product);
     if (err) {
       console.log(err);
     } else {
