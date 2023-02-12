@@ -2,18 +2,31 @@ import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import { action } from "usm-redux";
-import { IProduct } from "../../../interfaces/models";
+import { IProduct, IWishlistProduct } from "../../../interfaces/models";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import styles from "./ProductCardVertical.module.css";
 
 interface Props {
-  product: IProduct;
+  // product: IProduct;
+  product: IWishlistProduct;
 }
 const ProductCardVertical: React.FC<Props> = (props) => {
   const { product } = props;
   const states = useSelector(() => controller.states);
+
+  const handleWishlist = () => {
+    product.user_slug = "User2";
+    const { res, err } = EcommerceApi.postWishlistProduct(product);
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+      controller.setAddtoWishlist(product);
+    }
+  };
 
   const isInWishlist = (slug: string | undefined) => {
     for (let i = 0; i < states?.wishlistData?.length; i++) {
@@ -31,14 +44,44 @@ const ProductCardVertical: React.FC<Props> = (props) => {
     }
     return false;
   };
+  const cartListProduct = states?.cartlistData.find(
+    (cartProduct) => cartProduct.slug === product.slug
+  );
 
-  const handleWishlist = () => {
-    controller.setAddtoWishlist(product);
+  const handleCartToggle = async () => {
+    const cartProductData = {
+      user_slug: "user_slug_1",
+      product_slug: product.slug,
+      quantity: cartListProduct?.quantity || 1,
+    };
+    if (cartListProduct) {
+      const { res, err } = await EcommerceApi.deleteFromCart(product?.slug);
+      if (res) {
+        controller.setRemoveCartItem(product);
+      }
+    } else {
+      const { res, err } = await EcommerceApi.addToCart(cartProductData);
+      if (res) {
+        const newProduct = {
+          ...product,
+          cart_slug: res.cart_slug,
+          quantity: res.quantity,
+        };
+        controller.setAddtoCartlist(newProduct);
+      } else {
+        console.log(err);
+        alert("Failed");
+      }
+    }
   };
 
-  const handleCartlist = () => {
-    controller.setAddtoCartlist(product);
-  };
+  // const handleWishlist = () => {
+  //   controller.setAddtoWishlist(product);
+  // };
+
+  // const handleCartlist = () => {
+  //   controller.setAddtoCartlist(product);
+  // };
 
   return (
     <div>
@@ -161,9 +204,38 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                     </span>
                   </p>
 
+                  {/* <button
+                    onClick={handleCartToggle}
+                    type="button"
+                    className={`${styles["yellow-btn"]} group relative w-full h-full flex shadow justify-center items-center overflow-hidden`}>
+                    <div
+                      className={`${styles["btn-content"]} flex items-center space-x-3 relative z-10`}>
+                      <span>
+                        <SvgIconRenderer
+                          width="14"
+                          height="16"
+                          viewBox="0 0 14 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="fill-current"
+                          path={SvgPaths.cartIcon}
+                          pathFill="fill-current"
+                        />
+                      </span>
+
+                      {cartListProduct ? (
+                        <span>Remove from Cart</span>
+                      ) : (
+                        <span>Add to Cart</span>
+                      )}
+                    </div>
+                    <div
+                      className={`${styles["bg-shape"]} w-full h-full absolute bg-qblack`}></div>
+                  </button> */}
+
                   <button
                     type="button"
-                    onClick={() => handleCartlist()}
+                    onClick={handleCartToggle}
                     className={`h-[30px] ${
                       isInCartlist(product.slug) ? "w-[140px] " : "w-[110px] "
                     } `}>

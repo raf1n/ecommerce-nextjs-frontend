@@ -1,15 +1,23 @@
+import {
+  IBrands,
+  ICartProduct,
+  ICategories,
+  ISubCategories,
+  IWishlistProduct,
+} from "./../../interfaces/models";
 //@ts-nocheck
-import { state, action, createStore } from "usm-redux";
+import { state, action, computed, createStore } from "usm-redux";
 import { compose } from "redux";
 import { IProduct } from "../../interfaces/models";
+import { EcommerceApi } from "../API/EcommerceApi";
 
 const composeEnhancers =
   // @ts-ignore
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? // @ts-ignore
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-      // Speciffy extension's options like name, actionsDenylist, actionsCreators, serialize...
-    })
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        // Speciffy extension's options like name, actionsDenylist, actionsCreators, serialize...
+      })
     : compose;
 
 export interface IStates {
@@ -17,7 +25,7 @@ export interface IStates {
   wishlistCounter: number;
   wishlistData: Array<IProduct>;
   cartlistCounter: number;
-  cartlistData: Array<IProduct>;
+  cartlistData: Array<ICartProduct>;
   cartSubTotal: number;
   toggle: Boolean;
   allProducts: Array<IProduct>;
@@ -26,6 +34,10 @@ export interface IStates {
   popularProducts: Array<IProduct>;
   bestProducts: Array<IProduct>;
   newProducts: Array<IProduct>;
+  categories: Array<ICategories>;
+  subCategories: Array<ISubCategories>;
+  brands: Array<IBrands>;
+  initialDataLoading: boolean;
 }
 
 export class Controller {
@@ -44,6 +56,10 @@ export class Controller {
     popularProducts: [],
     bestProducts: [],
     newProducts: [],
+    categories: [],
+    subCategories: [],
+    brands: [],
+    initialDataLoading: true,
   };
 
   @action
@@ -52,6 +68,11 @@ export class Controller {
       ...this.states,
       ...states,
     };
+  }
+
+  @action
+  setInitialDataLoading() {
+    this.states.initialDataLoading = !this.states.initialDataLoading;
   }
 
   @action
@@ -88,17 +109,31 @@ export class Controller {
     this.states.newProducts = product;
   }
 
+  @action
+  setCategories(categories: Array<ICategories>) {
+    this.states.categories = categories;
+  }
+
+  @action
+  setSubCategories(subCategories: Array<ISubCategories>) {
+    this.states.subCategories = subCategories;
+  }
+
+  @action
+  setBrands(brands: Array<IBrands>) {
+    this.states.brands = brands;
+  }
+
   //wishlist
   @action
   setIncreaseWishlistCounter() {
     this.states.wishlistCounter += 1;
   }
   @action
-  setAddtoWishlist(product: IProduct) {
-    if (!this.states.wishlistData.some((item) => item.slug === product.slug)) {
+  setAddtoWishlist(product: IWishlistProduct) {
+    if (!this.states.wishlistData?.some((item) => item.slug === product.slug)) {
       this.states.wishlistCounter += 1;
       this.states.wishlistData = [...this.states.wishlistData, product];
-      // this.states.wishlistData.push(product)
     } else {
       this.states.wishlistData = this.states.wishlistData.filter(
         (item) => item.slug !== product.slug
@@ -114,58 +149,99 @@ export class Controller {
   }
 
   @action
+  setAllWishlistData(products: Array<IProduct>) {
+    console.log(products);
+    this.states.wishlistData = products;
+  }
+
+  @action
   setRemoveWishlistSingleProduct(product: IProduct) {
-    this.states.wishlistData = this.states.wishlistData.filter(
+    this.states.wishlistData = this.states.wishlistData?.filter(
       (item) => item.slug !== product.slug
     );
+    // }
+
     this.states.wishlistCounter -= 1;
   }
 
-  // //cartList
-  // @action
-  // setIncreaseCartlistCounter() {
-  //   this.states.cartlistCounter += 1;
-  // }
+  @action
+  setAddtoCartlist(productToAdd: ICartProduct) {
+    // if found, increment quantity
+    if (
+      this.states?.cartlistData?.some((item) => item.slug === productToAdd.slug)
+    ) {
+      this.states.cartlistData = this.states.cartlistData.map((cartItem) =>
+        cartItem.slug === productToAdd.slug
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      );
+    } else {
+      // if not found new array with modified cartItems/ new cart item
+      this.states.cartlistData = [
+        ...this.states.cartlistData,
+        { ...productToAdd, quantity: 1 },
+      ];
+    }
+  }
 
   @action
-  setAddtoCartlist(product: IProduct) {
-    var total: number = 0;
-    const totalFunc = () => {
-      for (let i = 0; i < this.states.cartlistData?.length; i++) {
-        if (this.states?.cartlistData[i]?.offerPrice) {
-          total = total + parseInt(this.states.cartlistData[i]?.offerPrice);
-        } else {
-          total = total + parseInt(states?.cartlistData[i]?.price);
-        }
-      }
-      this.states.cartSubTotal = total;
-    };
-    if (!this.states.cartlistData.some((item) => item.slug === product.slug)) {
-      this.states.cartlistCounter += 1;
-      this.states.cartlistData = [...this.states.cartlistData, product];
-      totalFunc();
-    } else {
-      this.states.cartlistData = this.states.cartlistData.filter(
-        (item) => item.slug !== product.slug
-      );
-      this.states.cartlistCounter -= 1;
-      totalFunc();
-    }
+  setMinusFromCartlist(productToMinus: IProduct) {
+    this.states.cartlistData = this.states.cartlistData.map((cartItem) =>
+      cartItem.slug === productToMinus.slug
+        ? { ...cartItem, quantity: cartItem.quantity - 1 }
+        : cartItem
+    );
+  }
+
+  @action
+  setRemoveCartItem(productToRemove: IProduct) {
+    this.states.cartlistData = this.states.cartlistData.filter(
+      (cartItem) => cartItem.slug !== productToRemove.slug
+    );
   }
 
   @action
   setClearCartlist() {
     this.states.cartlistData = [];
-    this.states.cartlistCounter = 0;
+  }
+  @action
+  setAllCartListData(products: ICartProduct[]) {
+    this.states.cartlistData = products;
   }
 
-  @action
-  setRemoveCartlistSingleProduct(product: IProduct) {
-    this.states.cartlistData = this.states.cartlistData.filter(
-      (item) => item.slug !== product.slug
-    );
-    this.states.cartlistCounter -= 1;
-  }
+  // @action
+  // setAddtoCartlist(product: IProduct) {
+  //   var total: number = 0;
+  //   const totalFunc = () => {
+  //     for (let i = 0; i < this.states.cartlistData?.length; i++) {
+  //       if (this.states?.cartlistData[i]?.offerPrice) {
+  //         total = total + parseInt(this.states.cartlistData[i]?.offerPrice);
+  //       } else {
+  //         total = total + parseInt(states?.cartlistData[i]?.price);
+  //       }
+  //     }
+  //     this.states.cartSubTotal = total;
+  //   };
+  //   if (!this.states.cartlistData.some((item) => item.slug === product.slug)) {
+  //     this.states.cartlistCounter += 1;
+  //     this.states.cartlistData = [...this.states.cartlistData, product];
+  //     totalFunc();
+  //   } else {
+  //     this.states.cartlistData = this.states.cartlistData.filter(
+  //       (item) => item.slug !== product.slug
+  //     );
+  //     this.states.cartlistCounter -= 1;
+  //     totalFunc();
+  //   }
+  // }
+
+  // @action
+  // setRemoveCartlistSingleProduct(product: IProduct) {
+  //   this.states.cartlistData = this.states.cartlistData.filter(
+  //     (item) => item.slug !== product.slug
+  //   );
+  //   this.states.cartlistCounter -= 1;
+  // }
 }
 
 export const controller = new Controller();

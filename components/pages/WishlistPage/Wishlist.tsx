@@ -1,5 +1,7 @@
-import React from "react";
+import { set } from "immer/dist/internal";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
 import SharedEmptyCart from "../../shared/SharedEmptyCart/SharedEmptyCart";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
@@ -10,9 +12,21 @@ interface Props {}
 const WishList: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
+  const fetchAllWishlistData = async () => {
+    const { res, err } = await EcommerceApi.getAllWishlistProducts();
+    if (err) {
+    } else {
+      console.log(res);
+      controller.setAllWishlistData(res);
+    }
+  };
+  useEffect(() => {
+    fetchAllWishlistData();
+  }, []);
+
   return (
-    <div className="w-full min-h-screen  pt-[30px] pb-[5px]">
-      {states.wishlistData.length === 0 ? (
+    <div className="w-full min-h-screen pb-[5px]">
+      {states.wishlistData?.length === 0 ? (
         <>
           <SharedEmptyCart
             slug="wishlist"
