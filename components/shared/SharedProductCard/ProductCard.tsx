@@ -28,18 +28,8 @@ const ProductCard: React.FC<Props> = (props) => {
     return false;
   };
 
-  const deleteWishlistProduct = async (product: IWishlistProduct) => {
-    const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
-      product.slug
-    );
-    if (err) {
-    } else {
-      controller.setRemoveWishlistSingleProduct(product);
-    }
-  };
-
   const handleWishlist = async () => {
-    product.user_slug = "User2";
+    product.user_slug = "user_slug_1";
 
     if (!isInWishlist(product.slug)) {
       const { res, err } = await EcommerceApi.postWishlistProduct(product);

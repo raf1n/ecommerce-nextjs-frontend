@@ -71,6 +71,15 @@ const HeaderTop: React.FC<Props> = (props) => {
         controller.setAllCartListData(res);
       }
     };
+    const getAllWishlistData = async () => {
+      const { res, err } = await EcommerceApi.getAllWishlistProducts(
+        "user_slug_1"
+      );
+      if (res) {
+        controller.setAllWishlistData(res);
+      }
+    };
+    getAllWishlistData();
     getAllCartData();
     fetchAllCategories();
     fetchAllSubCategories();

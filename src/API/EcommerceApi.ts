@@ -60,7 +60,9 @@ export class EcommerceApi {
   //   return await callFetch(`${API_ENDPOINT}/products`, requestOptions);
   // }
   //Get all wishlist product
-  static async getAllWishlistProducts(): Promise<IAllWishlistResponse> {
+  static async getAllWishlistProducts(
+    slug: string
+  ): Promise<IAllWishlistResponse> {
     const myHeaders = new Headers();
     const requestOptions = {
       method: "GET",
@@ -86,7 +88,7 @@ export class EcommerceApi {
   }
   //delete single wishlist product
   static async deleteWishlistSingleProduct(
-    slug: string
+    slug: string | undefined
   ): Promise<MyFetchInterface> {
     console.log(API_ENDPOINT);
     console.log(slug);

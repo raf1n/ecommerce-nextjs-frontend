@@ -155,7 +155,7 @@ export class Controller {
   }
 
   @action
-  setRemoveWishlistSingleProduct(product: IProduct) {
+  setRemoveWishlistSingleProduct(product: IWishlistProduct) {
     this.states.wishlistData = this.states.wishlistData?.filter(
       (item) => item.slug !== product.slug
     );

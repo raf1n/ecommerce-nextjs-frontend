@@ -1,5 +1,4 @@
 import React from "react";
-import { HiOutlineX } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { IProduct, IWishlistProduct } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";

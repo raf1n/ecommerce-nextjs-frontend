@@ -12,7 +12,9 @@ const WishlistCart: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const setClearWishlist = async () => {
-    const { res, err } = await EcommerceApi.deleteAllWishlistProduct("User2");
+    const { res, err } = await EcommerceApi.deleteAllWishlistProduct(
+      "user_slug_1"
+    );
     if (err) {
       console.log(err);
     } else {
