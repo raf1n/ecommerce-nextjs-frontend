@@ -12,11 +12,14 @@ import Link from "next/link";
 import SharedAddNewAddress from "../../shared/SharedAddNewAddress/SharedAddNewAddress";
 import { IAddress } from "../../../interfaces/models";
 import SharedDeleteModal from "../../shared/SharedDeleteModal/SharedDeleteModal";
+import { useRouter } from "next/navigation";
+
 interface Props {
   cartlistData: ICart;
 }
 const CheckoutPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  // -------- mike ----------
   const [form, setForm] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [addressData, setAddressData] = useState<IAddress[]>([]);
@@ -54,6 +57,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
   }, [refresh]);
 
   // ----------------Ironman -------------------
+  const router = useRouter();
   const cartListProduct = states.cartlistData;
   console.log("ru cccart", cartListProduct);
 
@@ -84,14 +88,10 @@ const CheckoutPage: React.FC<Props> = (props) => {
       // console.log(res);
       alert("Order successfull");
       controller.setClearCartlist();
+      router.push("/");
     }
   };
   // ----------------------------
-
-  // interface Props {}
-
-  // const CheckoutPage: React.FC<Props> = (props) => {
-  //   const states = useSelector(() => controller.states);
 
   return (
     <div>
@@ -245,159 +245,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
                             )}
                           </div>
                         ))}
-                        {/* <div className="w-full p-5 border cursor-pointer relative border-qyellow bg-[#FFFAEF]">
-                          <div className="flex justify-between items-center">
-                            <p className="title text-[22px] font-semibold">
-                              Address #1
-                            </p>
-                            <button
-                              type="button"
-                              className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center"
-                            >
-                              <SvgIconRenderer
-                                width="17"
-                                height="19"
-                                viewBox="0 0 17 19"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                path={SvgPaths.deleteIcon}
-                                pathFill="#EB5757"
-                              />
-                            </button>
-                          </div>
-                          <div className="mt-5">
-                            <table>
-                              <tbody>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    Name:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    Md Iqbal Hasan Rumon
-                                  </td>
-                                </tr>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    Email:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    iamhasan9501@gmail.com
-                                  </td>
-                                </tr>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    phone:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    01518618789
-                                  </td>
-                                </tr>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    Country:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    Bangladesh
-                                  </td>
-                                </tr>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    State:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    Chattogram
-                                  </td>
-                                </tr>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    City:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    Kazir Dewori
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                          <span className="text-qblack bg-qyellow px-2 text-sm absolute right-2 -top-2 font-medium">
-                            Selected
-                          </span>
-                        </div> */}
-                        {/* <div className="w-full p-5 border cursor-pointer relative border-transparent bg-primarygray">
-                          <div className="flex justify-between items-center">
-                            <p className="title text-[22px] font-semibold">
-                              Address #2
-                            </p>
-                            <button
-                              type="button"
-                              className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center"
-                            >
-                              <SvgIconRenderer
-                                width="17"
-                                height="19"
-                                viewBox="0 0 17 19"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                path={SvgPaths.deleteIcon}
-                                pathFill="#EB5757"
-                              />
-                            </button>
-                          </div>
-                          <div className="mt-5">
-                            <table>
-                              <tbody>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    Name:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    Md Iqbal Hasan
-                                  </td>
-                                </tr>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    Email:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    iqbal@gmail.com
-                                  </td>
-                                </tr>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    phone:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    01834093014
-                                  </td>
-                                </tr>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    Country:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    Bangladesh
-                                  </td>
-                                </tr>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    State:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    Chattogram
-                                  </td>
-                                </tr>
-                                <tr className="flex mb-3">
-                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                    City:
-                                  </td>
-                                  <td className="text-base text-qblack line-clamp-1 font-medium">
-                                    Muradpur
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div> */}
                       </div>
                     ) : (
                       <SharedAddNewAddress

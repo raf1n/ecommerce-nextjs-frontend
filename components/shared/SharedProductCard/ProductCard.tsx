@@ -28,15 +28,6 @@ const ProductCard: React.FC<Props> = (props) => {
     return false;
   };
 
-  // const isInCartlist = (slug: string | undefined) => {
-  //   for (let i = 0; i < states?.cartlistData?.length; i++) {
-  //     if (states?.cartlistData[i]?.slug === slug) {
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // };
-
   const handleWishlist = () => {
     product.user_slug = "User2";
     const { res, err } = EcommerceApi.postWishlistProduct(product);

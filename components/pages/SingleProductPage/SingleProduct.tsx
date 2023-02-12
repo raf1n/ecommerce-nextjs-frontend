@@ -9,7 +9,6 @@ import ReportedItemModal from "./ReportedItemModal/ReportedItemModal";
 import { useRouter } from "next/router";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { IProduct } from "../../../interfaces/models";
-// import { IProduct } from "../../../interfaces/models";
 
 interface Props {}
 
