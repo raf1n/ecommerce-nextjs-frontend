@@ -96,3 +96,14 @@ export interface IBrands {
   name: string;
   status: string;
 }
+
+export interface IAddress {
+  name: string;
+  email: string;
+  phone: string;
+  country: string;
+  state: string;
+  city: string;
+  address: string;
+  slug: string;
+}

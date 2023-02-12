@@ -8,6 +8,7 @@ import {
   IBrands,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
+import { IAddress } from "./models";
 //here we will declare our response interfaces or in easy way type of our all response in our website
 
 export interface IResponseUser extends IUser {
@@ -78,4 +79,7 @@ export interface ISubCategoriesResponse extends MyFetchInterface {
 }
 export interface IBrandsResponse extends MyFetchInterface {
   res: IBrands[];
+}
+export interface IAddressResponse extends MyFetchInterface {
+  res: Array<IAddress>;
 }

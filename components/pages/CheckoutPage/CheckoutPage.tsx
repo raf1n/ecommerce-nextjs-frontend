@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
@@ -9,11 +9,51 @@ import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CartHandler } from "../../../src/utils/CartHandler";
 import { ICart } from "../../../interfaces/models";
 import Link from "next/link";
+import SharedAddNewAddress from "../../shared/SharedAddNewAddress/SharedAddNewAddress";
+import { IAddress } from "../../../interfaces/models";
+import SharedDeleteModal from "../../shared/SharedDeleteModal/SharedDeleteModal";
 interface Props {
   cartlistData: ICart;
 }
 const CheckoutPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [form, setForm] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [addressData, setAddressData] = useState<IAddress[]>([]);
+  const [deleteModalSlug, setDeleteModalSlug] = useState<any | string>("");
+  const [refresh, setRefresh] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState<IAddress | null>(null);
+
+  const handleSelect = (addressData: IAddress) => {
+    setSelectedAddress(addressData);
+  };
+
+  const handleDelete = async () => {
+    const { res, err } = await EcommerceApi.deleteAddress(deleteModalSlug);
+    if (res) {
+      setDeleteModalSlug("");
+      const remainingAddress = addressData.filter(
+        (product) => product.slug !== deleteModalSlug
+      );
+      setAddressData(remainingAddress);
+    }
+  };
+
+  useEffect(() => {
+    const allAddress = async () => {
+      const { res, err } = await EcommerceApi.allAddress();
+      if (err) {
+        console.log(err);
+      } else {
+        setAddressData(res);
+        console.log(res);
+        // console.log(res);
+      }
+    };
+    allAddress();
+  }, [refresh]);
+
+  // ----------------Ironman -------------------
   const cartListProduct = states.cartlistData;
   console.log("ru cccart", cartListProduct);
 
@@ -48,6 +88,11 @@ const CheckoutPage: React.FC<Props> = (props) => {
   };
   // ----------------------------
 
+  // interface Props {}
+
+  // const CheckoutPage: React.FC<Props> = (props) => {
+  //   const states = useSelector(() => controller.states);
+
   return (
     <div>
       <div className="w-full min-h-screen  pt-0 pb-0">
@@ -67,179 +112,303 @@ const CheckoutPage: React.FC<Props> = (props) => {
                   </h1>
                   <div className="addresses-widget w-full">
                     <div className="sm:flex justify-between items-center w-full mb-5">
-                      <div className="bg-[#FFFAEF] border border-qyellow rounded p-2">
+                      <div className="bg-[#FFFAEF] border border-qyellow rounded ">
                         <button
                           type="button"
                           className="px-4 py-3 text-md font-medium rounded-md  text-qblack bg-qyellow ">
-                          Billing Address
-                        </button>
-                        <button
-                          type="button"
-                          className="px-4 py-3 text-md font-medium rounded-md ml-1 text-qyellow ">
                           Shipping Address
                         </button>
+                        {/* <button
+                          type="button"
+                          className="px-4 py-3 text-md font-medium rounded-md ml-1 text-qyellow "
+                        >
+                          Shipping Address
+                        </button> */}
                       </div>
                       <button
+                        onClick={() => setForm(true)}
                         type="button"
                         className="w-[100px] h-[40px] mt-2 sm:mt-0 border border-qblack hover:bg-qblack hover:text-white transition-all duration-300 ease-in-out">
                         <span className="text-sm font-semibold">Add New</span>
                       </button>
                     </div>
-                    <div
-                      data-aos="zoom-in"
-                      className="grid sm:grid-cols-2 grid-cols-1 gap-3 aos-init aos-animate">
-                      <div className="w-full p-5 border cursor-pointer relative border-qyellow bg-[#FFFAEF]">
-                        <div className="flex justify-between items-center">
-                          <p className="title text-[22px] font-semibold">
-                            Address #1
-                          </p>
-                          <button
-                            type="button"
-                            className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center">
-                            <SvgIconRenderer
-                              width="17"
-                              height="19"
-                              viewBox="0 0 17 19"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                              path={SvgPaths.deleteIcon}
-                              pathFill="#EB5757"
+                    {!form ? (
+                      <div
+                        data-aos="zoom-in"
+                        className="grid sm:grid-cols-2 grid-cols-1 gap-3 aos-init aos-animate">
+                        {addressData.map((singleAddress: IAddress, index) => (
+                          <div
+                            onClick={() => handleSelect(singleAddress)}
+                            className={
+                              singleAddress?.slug === selectedAddress?.slug
+                                ? `w-full p-5 border cursor-pointer relative    border-qyellow bg-[#FFFAEF]
+                                `
+                                : `w-full p-5 border cursor-pointer relative   bg-primarygray
+                                border-transparent
+                                `
+                            }
+
+                            // border-qyellow bg-[#FFFAEF]
+                          >
+                            <div className="flex justify-between items-center">
+                              <p className="title text-[22px] font-semibold">
+                                {`Address ${index + 1}`}
+                              </p>
+                              <button
+                                onClick={() =>
+                                  setDeleteModalSlug(singleAddress.slug)
+                                }
+                                type="button"
+                                className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center">
+                                <SvgIconRenderer
+                                  width="17"
+                                  height="19"
+                                  viewBox="0 0 17 19"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  path={SvgPaths.deleteIcon}
+                                  pathFill="#EB5757"
+                                />
+                              </button>
+                            </div>
+                            <SharedDeleteModal
+                              deleteModalSlug={deleteModalSlug}
+                              handleDelete={handleDelete}
+                              setDeleteModalSlug={setDeleteModalSlug}
                             />
-                          </button>
-                        </div>
-                        <div className="mt-5">
-                          <table>
-                            <tbody>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Name:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Md Iqbal Hasan Rumon
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Email:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  iamhasan9501@gmail.com
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  phone:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  01518618789
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Country:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Bangladesh
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  State:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Chattogram
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  City:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Kazir Dewori
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <span className="text-qblack bg-qyellow px-2 text-sm absolute right-2 -top-2 font-medium">
-                          Selected
-                        </span>
+                            <div className="mt-5">
+                              <table>
+                                <tbody>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      Name:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.name}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      Email:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.email}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      phone:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.phone}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      Country:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.country}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      State:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress?.state}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      City:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress?.city}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block  capitalize">
+                                      Address:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-2 font-medium">
+                                      {singleAddress.address}
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            {singleAddress?.slug === selectedAddress?.slug && (
+                              <span className="text-qblack bg-qyellow px-2 text-sm absolute right-2 -top-2 font-medium">
+                                Selected
+                              </span>
+                            )}
+                          </div>
+                        ))}
+                        {/* <div className="w-full p-5 border cursor-pointer relative border-qyellow bg-[#FFFAEF]">
+                          <div className="flex justify-between items-center">
+                            <p className="title text-[22px] font-semibold">
+                              Address #1
+                            </p>
+                            <button
+                              type="button"
+                              className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center"
+                            >
+                              <SvgIconRenderer
+                                width="17"
+                                height="19"
+                                viewBox="0 0 17 19"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                path={SvgPaths.deleteIcon}
+                                pathFill="#EB5757"
+                              />
+                            </button>
+                          </div>
+                          <div className="mt-5">
+                            <table>
+                              <tbody>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    Name:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    Md Iqbal Hasan Rumon
+                                  </td>
+                                </tr>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    Email:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    iamhasan9501@gmail.com
+                                  </td>
+                                </tr>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    phone:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    01518618789
+                                  </td>
+                                </tr>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    Country:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    Bangladesh
+                                  </td>
+                                </tr>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    State:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    Chattogram
+                                  </td>
+                                </tr>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    City:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    Kazir Dewori
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <span className="text-qblack bg-qyellow px-2 text-sm absolute right-2 -top-2 font-medium">
+                            Selected
+                          </span>
+                        </div> */}
+                        {/* <div className="w-full p-5 border cursor-pointer relative border-transparent bg-primarygray">
+                          <div className="flex justify-between items-center">
+                            <p className="title text-[22px] font-semibold">
+                              Address #2
+                            </p>
+                            <button
+                              type="button"
+                              className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center"
+                            >
+                              <SvgIconRenderer
+                                width="17"
+                                height="19"
+                                viewBox="0 0 17 19"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                path={SvgPaths.deleteIcon}
+                                pathFill="#EB5757"
+                              />
+                            </button>
+                          </div>
+                          <div className="mt-5">
+                            <table>
+                              <tbody>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    Name:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    Md Iqbal Hasan
+                                  </td>
+                                </tr>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    Email:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    iqbal@gmail.com
+                                  </td>
+                                </tr>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    phone:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    01834093014
+                                  </td>
+                                </tr>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    Country:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    Bangladesh
+                                  </td>
+                                </tr>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    State:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    Chattogram
+                                  </td>
+                                </tr>
+                                <tr className="flex mb-3">
+                                  <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                    City:
+                                  </td>
+                                  <td className="text-base text-qblack line-clamp-1 font-medium">
+                                    Muradpur
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div> */}
                       </div>
-                      <div className="w-full p-5 border cursor-pointer relative border-transparent bg-primarygray">
-                        <div className="flex justify-between items-center">
-                          <p className="title text-[22px] font-semibold">
-                            Address #2
-                          </p>
-                          <button
-                            type="button"
-                            className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center">
-                            <SvgIconRenderer
-                              width="17"
-                              height="19"
-                              viewBox="0 0 17 19"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                              path={SvgPaths.deleteIcon}
-                              pathFill="#EB5757"
-                            />
-                          </button>
-                        </div>
-                        <div className="mt-5">
-                          <table>
-                            <tbody>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Name:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Md Iqbal Hasan
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Email:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  iqbal@gmail.com
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  phone:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  01834093014
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Country:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Bangladesh
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  State:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Chattogram
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  City:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Muradpur
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
+                    ) : (
+                      <SharedAddNewAddress
+                        setRefresh={setRefresh}
+                        refresh={refresh}
+                        selectedOption={selectedOption}
+                        setSelectedOption={setSelectedOption}
+                        setForm={setForm}
+                        form={form}
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="flex-1">

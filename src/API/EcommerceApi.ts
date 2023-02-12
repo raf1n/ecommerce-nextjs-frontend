@@ -1,5 +1,5 @@
 import { ICartResponse } from "./../../interfaces/response";
-import { ICartProduct, IOrder } from "./../../interfaces/models";
+import { IAddress, ICartProduct, IOrder } from "./../../interfaces/models";
 import {
   ICart,
   ICategories,
@@ -14,11 +14,12 @@ import {
   IBrandsResponse,
   ICategoriesResponse,
   IInitialCartResponse,
-  ILoginResponse,
-  IProductResponse,
   ISingleProductResponse,
   ISubCategoriesResponse,
   IWishlistResponse,
+  IAddressResponse,
+  ILoginResponse,
+  IProductResponse,
 } from "../../interfaces/response";
 import { callFetch } from "../utils/CallFetch";
 
@@ -287,5 +288,52 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/brands/allbrands`, requestOptions);
+  }
+  // ---------Mkike
+  static async createAddress(
+    data: Partial<IAddress>
+  ): Promise<IAddressResponse> {
+    console.log(data);
+    console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(data),
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/addresses`, requestOptions);
+  }
+
+  //Get all address Data
+  static async allAddress(): Promise<IAddressResponse> {
+    console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/addresses`, requestOptions);
+  }
+
+  //Delete Address Data
+
+  static async deleteAddress(slug: string): Promise<MyFetchInterface> {
+    console.log(API_ENDPOINT);
+    console.log(slug);
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/addresses/${slug}`, requestOptions);
   }
 }

@@ -126,10 +126,10 @@ const About: React.FC<Props> = (props) => {
               <div className="content flex-1">
                 <div className="about-content">
                   <div>
-                    <h1 className="text-2xl font-semibold mb-4 ">
+                    <h1 className="text-3xl font-semibold mb-4 ">
                       What is e-commerce business?
                     </h1>
-                    <br />
+                    {/* <br /> */}
                     <p className="text-base text-[#797979] leading-8 ">
                       Lorem Ipsum is simply dummy text of the printing and
                       typesetting industry. Lorem Ipsum has been the industry's
