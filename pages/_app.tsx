@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/globals.css";
 import { AppProps } from "next/app";
-import { Provider } from "react-redux";
-import { store } from "../src/state/StateController";
+import { Provider, useSelector } from "react-redux";
+import { controller, store } from "../src/state/StateController";
 import Header from "../components/shared/SharedHeader/Header";
 import Footer from "../components/shared/SharedFooter/Footer";
+import { EcommerceApi } from "../src/API/EcommerceApi";
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;

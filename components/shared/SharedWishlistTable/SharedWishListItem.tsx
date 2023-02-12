@@ -1,17 +1,28 @@
 import React from "react";
+import { HiOutlineX } from "react-icons/hi";
 import { useSelector } from "react-redux";
-import { IProduct } from "../../../interfaces/models";
+import { IProduct, IWishlistProduct } from "../../../interfaces/models";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { SvgPaths } from "../../../src/utils/SvgPaths";
+import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import { controller } from "./../../../src/state/StateController";
 
 interface Props {
-  item: IProduct
+  item: IProduct;
 }
 
-const SharedWishListItem: React.FC<Props> = ({
-  item
-}) => {
-
+const SharedWishListItem: React.FC<Props> = ({ item }) => {
   const states = useSelector(() => controller.states);
+
+  const deleteWishlistProduct = async (product: IWishlistProduct) => {
+    const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
+      product?.slug
+    );
+    if (err) {
+    } else {
+      controller.setRemoveWishlistSingleProduct(product);
+    }
+  };
 
   return (
     <tr className="bg-white border-b hover:bg-gray-50">
@@ -32,11 +43,9 @@ const SharedWishListItem: React.FC<Props> = ({
                 padding: 0,
                 position: "absolute",
                 inset: 0,
-              }}
-            >
+              }}>
               <picture>
-                {
-                  item && item?.imageURL?.length > 0 &&
+                {item && item?.imageURL?.length > 0 && (
                   <img
                     alt="product"
                     src={item?.imageURL[0]}
@@ -60,10 +69,8 @@ const SharedWishListItem: React.FC<Props> = ({
                     }}
                     sizes="100vw"
                   />
-                }
+                )}
               </picture>
-
-              <noscript></noscript>
             </span>
           </div>
           <div className="flex-1 flex flex-col">
@@ -75,26 +82,24 @@ const SharedWishListItem: React.FC<Props> = ({
       </td>
       <td className="text-center py-4 capitalize px-2">
         <div className="flex space-x-1 items-center justify-center">
-          <span className="text-[15px] font-normal">${" "}{item.offerPrice ? item.offerPrice : item.price}</span>
+          <span className="text-[15px] font-normal">
+            $ {item.offerPrice ? item.offerPrice : item.price}
+          </span>
         </div>
       </td>
       <td className="text-right py-4 capitalize">
-        <div className="flex space-x-1 items-center justify-center"
-          onClick={() => controller.setRemoveWishlistSingleProduct(item)}
-        >
+        <div
+          className="flex space-x-1 items-center justify-center"
+          onClick={() => deleteWishlistProduct(item)}>
           <span className="cursor-pointer">
-            <svg
-              width="10"
-              height="10"
-              viewBox="0 0 10 10"
-              fill="none"
+            <SvgIconRenderer
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z"
-                fill="#AAAAAA"
-              ></path>
-            </svg>
+              path={SvgPaths.xrossIcon}
+              pathFill="#AAAAAA"
+            />
           </span>
         </div>
       </td>

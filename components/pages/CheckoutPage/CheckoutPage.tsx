@@ -1,14 +1,97 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import sslcommerze from "../../../public/images/sslcommerze.png";
-interface Props {}
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { CartHandler } from "../../../src/utils/CartHandler";
+import { ICart } from "../../../interfaces/models";
+import Link from "next/link";
+import SharedAddNewAddress from "../../shared/SharedAddNewAddress/SharedAddNewAddress";
+import { IAddress } from "../../../interfaces/models";
+import SharedDeleteModal from "../../shared/SharedDeleteModal/SharedDeleteModal";
+import { useRouter } from "next/navigation";
 
+interface Props {
+  cartlistData: ICart;
+}
 const CheckoutPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  // -------- mike ----------
+  const [form, setForm] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [addressData, setAddressData] = useState<IAddress[]>([]);
+  const [deleteModalSlug, setDeleteModalSlug] = useState<any | string>("");
+  const [refresh, setRefresh] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState<IAddress | null>(null);
+
+  const handleSelect = (addressData: IAddress) => {
+    setSelectedAddress(addressData);
+  };
+
+  const handleDelete = async () => {
+    const { res, err } = await EcommerceApi.deleteAddress(deleteModalSlug);
+    if (res) {
+      setDeleteModalSlug("");
+      const remainingAddress = addressData.filter(
+        (product) => product.slug !== deleteModalSlug
+      );
+      setAddressData(remainingAddress);
+    }
+  };
+
+  useEffect(() => {
+    const allAddress = async () => {
+      const { res, err } = await EcommerceApi.allAddress();
+      if (err) {
+        console.log(err);
+      } else {
+        setAddressData(res);
+        console.log(res);
+        // console.log(res);
+      }
+    };
+    allAddress();
+  }, [refresh]);
+
+  // ----------------Ironman -------------------
+  const router = useRouter();
+  const cartListProduct = states.cartlistData;
+  console.log("ru cccart", cartListProduct);
+
+  const fetchOrderSum = async () => {
+    const { res, err } = await EcommerceApi.getAllCartData("user_slug_1");
+    if (err) {
+    } else {
+      controller.setAllCartListData(res);
+    }
+  };
+  useEffect(() => {
+    fetchOrderSum();
+  }, []);
+  // -------------------------
+  const order = {
+    product_list: cartListProduct,
+    user_slug: "User2",
+    order_slug: "Order_slug_1",
+    payment_method: "Bkash",
+    transaction_id: "1HJGXX1222",
+  };
+  // console.log(order);
+  const handleCheckout = () => {
+    const { res, err } = EcommerceApi.postOrder(order);
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(res);
+      alert("Order successfull");
+      controller.setClearCartlist();
+      router.push("/");
+    }
+  };
+  // ----------------------------
 
   return (
     <div>
@@ -29,179 +112,150 @@ const CheckoutPage: React.FC<Props> = (props) => {
                   </h1>
                   <div className="addresses-widget w-full">
                     <div className="sm:flex justify-between items-center w-full mb-5">
-                      <div className="bg-[#FFFAEF] border border-qyellow rounded p-2">
+                      <div className="bg-[#FFFAEF] border border-qyellow rounded ">
                         <button
                           type="button"
                           className="px-4 py-3 text-md font-medium rounded-md  text-qblack bg-qyellow ">
-                          Billing Address
-                        </button>
-                        <button
-                          type="button"
-                          className="px-4 py-3 text-md font-medium rounded-md ml-1 text-qyellow ">
                           Shipping Address
                         </button>
+                        {/* <button
+                          type="button"
+                          className="px-4 py-3 text-md font-medium rounded-md ml-1 text-qyellow "
+                        >
+                          Shipping Address
+                        </button> */}
                       </div>
                       <button
+                        onClick={() => setForm(true)}
                         type="button"
                         className="w-[100px] h-[40px] mt-2 sm:mt-0 border border-qblack hover:bg-qblack hover:text-white transition-all duration-300 ease-in-out">
                         <span className="text-sm font-semibold">Add New</span>
                       </button>
                     </div>
-                    <div
-                      data-aos="zoom-in"
-                      className="grid sm:grid-cols-2 grid-cols-1 gap-3 aos-init aos-animate">
-                      <div className="w-full p-5 border cursor-pointer relative border-qyellow bg-[#FFFAEF]">
-                        <div className="flex justify-between items-center">
-                          <p className="title text-[22px] font-semibold">
-                            Address #1
-                          </p>
-                          <button
-                            type="button"
-                            className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center">
-                            <SvgIconRenderer
-                              width="17"
-                              height="19"
-                              viewBox="0 0 17 19"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                              path={SvgPaths.deleteIcon}
-                              pathFill="#EB5757"
+                    {!form ? (
+                      <div
+                        data-aos="zoom-in"
+                        className="grid sm:grid-cols-2 grid-cols-1 gap-3 aos-init aos-animate">
+                        {addressData.map((singleAddress: IAddress, index) => (
+                          <div
+                            onClick={() => handleSelect(singleAddress)}
+                            className={
+                              singleAddress?.slug === selectedAddress?.slug
+                                ? `w-full p-5 border cursor-pointer relative    border-qyellow bg-[#FFFAEF]
+                                `
+                                : `w-full p-5 border cursor-pointer relative   bg-primarygray
+                                border-transparent
+                                `
+                            }
+
+                            // border-qyellow bg-[#FFFAEF]
+                          >
+                            <div className="flex justify-between items-center">
+                              <p className="title text-[22px] font-semibold">
+                                {`Address ${index + 1}`}
+                              </p>
+                              <button
+                                onClick={() =>
+                                  setDeleteModalSlug(singleAddress.slug)
+                                }
+                                type="button"
+                                className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center">
+                                <SvgIconRenderer
+                                  width="17"
+                                  height="19"
+                                  viewBox="0 0 17 19"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  path={SvgPaths.deleteIcon}
+                                  pathFill="#EB5757"
+                                />
+                              </button>
+                            </div>
+                            <SharedDeleteModal
+                              deleteModalSlug={deleteModalSlug}
+                              handleDelete={handleDelete}
+                              setDeleteModalSlug={setDeleteModalSlug}
                             />
-                          </button>
-                        </div>
-                        <div className="mt-5">
-                          <table>
-                            <tbody>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Name:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Md Iqbal Hasan Rumon
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Email:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  iamhasan9501@gmail.com
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  phone:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  01518618789
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Country:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Bangladesh
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  State:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Chattogram
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  City:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Kazir Dewori
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <span className="text-qblack bg-qyellow px-2 text-sm absolute right-2 -top-2 font-medium">
-                          Selected
-                        </span>
+                            <div className="mt-5">
+                              <table>
+                                <tbody>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      Name:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.name}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      Email:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.email}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      phone:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.phone}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      Country:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress.country}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      State:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress?.state}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                                      City:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-1 font-medium">
+                                      {singleAddress?.city}
+                                    </td>
+                                  </tr>
+                                  <tr className="flex mb-3">
+                                    <td className="text-base text-qgraytwo w-[70px] block  capitalize">
+                                      Address:
+                                    </td>
+                                    <td className="text-base text-qblack line-clamp-2 font-medium">
+                                      {singleAddress.address}
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            {singleAddress?.slug === selectedAddress?.slug && (
+                              <span className="text-qblack bg-qyellow px-2 text-sm absolute right-2 -top-2 font-medium">
+                                Selected
+                              </span>
+                            )}
+                          </div>
+                        ))}
                       </div>
-                      <div className="w-full p-5 border cursor-pointer relative border-transparent bg-primarygray">
-                        <div className="flex justify-between items-center">
-                          <p className="title text-[22px] font-semibold">
-                            Address #2
-                          </p>
-                          <button
-                            type="button"
-                            className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center">
-                            <SvgIconRenderer
-                              width="17"
-                              height="19"
-                              viewBox="0 0 17 19"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                              path={SvgPaths.deleteIcon}
-                              pathFill="#EB5757"
-                            />
-                          </button>
-                        </div>
-                        <div className="mt-5">
-                          <table>
-                            <tbody>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Name:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Md Iqbal Hasan
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Email:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  iqbal@gmail.com
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  phone:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  01834093014
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  Country:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Bangladesh
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  State:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Chattogram
-                                </td>
-                              </tr>
-                              <tr className="flex mb-3">
-                                <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                  City:
-                                </td>
-                                <td className="text-base text-qblack line-clamp-1 font-medium">
-                                  Muradpur
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
+                    ) : (
+                      <SharedAddNewAddress
+                        setRefresh={setRefresh}
+                        refresh={refresh}
+                        selectedOption={selectedOption}
+                        setSelectedOption={setSelectedOption}
+                        setForm={setForm}
+                        form={form}
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="flex-1">
@@ -246,126 +300,30 @@ const CheckoutPage: React.FC<Props> = (props) => {
                     </div>
                     <div className="product-list w-full mb-[30px]">
                       <ul className="flex flex-col space-y-5">
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Apple watch pro"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Apple watch pro{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $40000.00
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Samsung Galaxy A52 (8/128 GB)"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Samsung Galaxy A52{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $9.99
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Samsung Galaxy A52 (8/128 GB)"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Samsung Galaxy A52{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $9.99
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Samsung Galaxy A52 (8/128 GB)"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Samsung Galaxy A52{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $9.99
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Samsung Galaxy A52 (8/128 GB)"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Samsung Galaxy A52{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $9.99
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h4
-                                title="Samsung Galaxy A52 (8/128 GB)"
-                                className="text-[15px] text-qblack line-clamp-1 mb-2.5">
-                                Samsung Galaxy A52{" "}
-                                <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                  x1
-                                </sup>
-                              </h4>
-                              <p className="text-[13px] text-qgray line-clamp-1"></p>
-                            </div>
-                            <div>
-                              <span className="text-[15px] text-qblack font-medium">
-                                $9.99
-                              </span>
-                            </div>
-                          </div>
-                        </li>
+                        {states.cartlistData.map((pro) => (
+                          <>
+                            <li>
+                              <div className="flex justify-between items-center">
+                                <div>
+                                  <h4
+                                    title="Apple watch pro"
+                                    className="text-[15px] text-qblack line-clamp-1 mb-2.5">
+                                    {pro.productName}
+                                    <sup className="text-[13px] text-qgray ml-2 mt-2">
+                                      x{pro.quantity}
+                                    </sup>
+                                  </h4>
+                                  <p className="text-[13px] text-qgray line-clamp-1"></p>
+                                </div>
+                                <div>
+                                  <span className="text-[15px] text-qblack font-medium">
+                                    ${CartHandler.getPrice(pro)}
+                                  </span>
+                                </div>
+                              </div>
+                            </li>
+                          </>
+                        ))}
                       </ul>
                     </div>
                     <div className="w-full h-[1px] bg-[#EDEDED]"></div>
@@ -375,7 +333,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                           SUBTOTAL
                         </p>
                         <p className="text-[15px] font-bold text-qblack uppercase">
-                          $40049.95
+                          ${CartHandler.cartSubTotal(states)}
                         </p>
                       </div>
                       <div className=" flex justify-between mb-5">
@@ -402,7 +360,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                           Total
                         </p>
                         <p className="text-2xl font-medium text-qred">
-                          $40049.95
+                          ${CartHandler.cartSubTotal(states)}
                         </p>
                       </div>
                     </div>
@@ -589,7 +547,10 @@ const CheckoutPage: React.FC<Props> = (props) => {
                         </div>
                       </div>
                     </div>
-                    <button type="button" className="w-full">
+                    <button
+                      onClick={handleCheckout}
+                      type="button"
+                      className="w-full">
                       <div className="w-full h-[50px] bg-black text-white  flex justify-center items-center">
                         <span className="text-sm font-semibold">
                           Place Order Now
