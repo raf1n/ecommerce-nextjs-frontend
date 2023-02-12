@@ -13,7 +13,7 @@ const SharedEmptyCart: React.FC<Props> = (props) => {
   const { slug, imgURL } = props;
 
   return (
-    <div className="mb-16">
+    <div className="mb-16 mt-10">
       <div className="container-x mx-auto">
         <div className="font-400 text-[13px] text-qblack mb-[23px] print:hidden">
           <span>

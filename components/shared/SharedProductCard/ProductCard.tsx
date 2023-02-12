@@ -73,6 +73,7 @@ const ProductCard: React.FC<Props> = (props) => {
           cart_slug: res.slug,
           quantity: res.quantity,
         };
+
         controller.setAddtoCartlist(newProduct);
       } else {
         console.log(err);

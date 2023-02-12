@@ -18,13 +18,24 @@ const ProductCardVertical: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const handleWishlist = async () => {
-    product.user_slug = "User2";
-    const { res, err } = await EcommerceApi.postWishlistProduct(product);
-    if (err) {
-      console.log(err);
+    product.user_slug = "user_slug_1";
+
+    if (!isInWishlist(product.slug)) {
+      const { res, err } = await EcommerceApi.postWishlistProduct(product);
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
+        controller.setAddtoWishlist(product);
+      }
     } else {
-      console.log(res);
-      controller.setAddtoWishlist(product);
+      const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
+        product.slug
+      );
+      if (err) {
+      } else {
+        controller.setRemoveWishlistSingleProduct(product);
+      }
     }
   };
 
@@ -36,6 +47,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
     }
     return false;
   };
+
   const isInCartlist = (slug: string | undefined) => {
     for (let i = 0; i < states?.cartlistData?.length; i++) {
       if (states?.cartlistData[i]?.slug === slug) {
@@ -236,8 +248,9 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                   <button
                     type="button"
                     onClick={handleCartToggle}
-                    className={`h-[30px] ${isInCartlist(product.slug) ? "w-[140px] " : "w-[110px] "
-                      } `}>
+                    className={`h-[30px] ${
+                      isInCartlist(product.slug) ? "w-[140px] " : "w-[110px] "
+                    } `}>
                     <span className="yellow-btn">
                       {isInCartlist(product.slug)
                         ? "Remove From Cart"
