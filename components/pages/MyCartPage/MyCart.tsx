@@ -6,7 +6,7 @@ import { controller } from "../../../src/state/StateController";
 import SharedEmptyCart from "../../shared/SharedEmptyCart/SharedEmptyCart";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
-import { CartHandler }  from "../../../src/utils/CartHandler";
+import { CartHandler } from "../../../src/utils/CartHandler";
 interface Props {
   // cartlistData: Array<IProduct>;
 }
@@ -37,6 +37,16 @@ const MyCart: React.FC<Props> = (props) => {
       }
     }
   };
+
+  const handleAllCartProductClear = async () => {
+    const { res, err } = await EcommerceApi.deleteAllCartlistProduct("user_slug_1");
+    if (err) {
+      console.log(err);
+    } else {
+      controller.setClearCartlist();
+    }
+  }
+
 
   return (
     <div className="w-full min-h-screen  pt-[30px] pb-[5px]">
@@ -126,7 +136,7 @@ const MyCart: React.FC<Props> = (props) => {
                                 <div className="flex-1 flex flex-col">
                                   <p className="font-medium text-[15px] text-qblack hover:text-blue-500 cursor-pointer">
                                     <Link href={`/single_product?slug=${item.slug}`}>
-                                    {item.productName}
+                                      {item.productName}
                                     </Link>
                                   </p>
                                 </div>
@@ -208,7 +218,7 @@ const MyCart: React.FC<Props> = (props) => {
               </div>
               <div className="w-full sm:flex justify-between ">
                 <div className="flex space-x-4 items-center mb-16">
-                  <button onClick={() => controller.setClearCartlist()}>
+                  <button onClick={handleAllCartProductClear}>
                     <div className="w-full text-sm font-semibold text-qred mb-5 sm:mb-0">
                       Clear Cart
                     </div>
@@ -216,13 +226,13 @@ const MyCart: React.FC<Props> = (props) => {
                   <div className="w-[140px] h-[50px] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
                     <span className="text-sm font-semibold">Update Cart</span>
                   </div>
-                    <Link href="/checkout">
-                  <div className="w-[300px] h-[50px] bg-black flex justify-center items-center cursor-pointer">
+                  <Link href="/checkout">
+                    <div className="w-[300px] h-[50px] bg-black flex justify-center items-center cursor-pointer">
                       <span className="text-sm text-white font-semibold">
                         Proceed to Checkout
                       </span>
-                  </div>
-                    </Link>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
