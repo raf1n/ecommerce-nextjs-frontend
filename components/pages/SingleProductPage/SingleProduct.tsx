@@ -58,27 +58,23 @@ const SingleProduct: React.FC<Props> = (props) => {
           <div className="container-x mx-auto ">
             <Breadcrumb
               slug={`${itemDetail.name}`}
-              link={`${itemDetail.slug}`}
-            ></Breadcrumb>
+              link={`${itemDetail.slug}`}></Breadcrumb>
             <div className="lg:flex justify-between">
               <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
                 <ItemDetailsLeft
-                  singleProduct={singleProduct}
-                ></ItemDetailsLeft>
+                  singleProduct={singleProduct}></ItemDetailsLeft>
               </div>
               <div className="flex-1">
                 <ProductDetails
                   brand={brand}
                   setReportModalSlug={setReportModalSlug}
-                  singleProduct={singleProduct}
-                ></ProductDetails>
+                  singleProduct={singleProduct}></ProductDetails>
               </div>
             </div>
             <ReportedItemModal
               setReportModalSlug={setReportModalSlug}
               handleReport={handleReport}
-              reportModalSlug={reportModalSlug}
-            ></ReportedItemModal>
+              reportModalSlug={reportModalSlug}></ReportedItemModal>
           </div>
         </div>
       </div>

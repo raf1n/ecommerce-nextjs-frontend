@@ -165,16 +165,16 @@ export class EcommerceApi {
 
   // get single product
 
-  // static async getSingleProduct(slug: string): Promise<ISingleProductResponse> {
-  //   const myHeaders = new Headers();
-  //   // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
-  //   const requestOptions = {
-  //     method: "GET",
-  //     headers: myHeaders,
-  //     redirect: "follow",
-  //   };
-  //   return await callFetch(`${API_ENDPOINT}/products/${slug}`, requestOptions);
-  // }
+  static async getSingleProduct(slug: string): Promise<ISingleProductResponse> {
+    const myHeaders = new Headers();
+    // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(`${API_ENDPOINT}/products/${slug}`, requestOptions);
+  }
 
   static async addReportedItem(
     data: Partial<IReportedItem>
