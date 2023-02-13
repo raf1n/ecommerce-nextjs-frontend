@@ -62,6 +62,7 @@ const LoginForm: React.FC<Props> = (props) => {
           setErrorTextLogin('Already registered as Seller')
         }
         else if (res.slug && res.access_token) {
+          controller.setUser(res)
           setErrorLogin(false)
           setSuccessLogin(true)
           CookiesHandler.setAccessToken(res.access_token)
@@ -127,6 +128,7 @@ const LoginForm: React.FC<Props> = (props) => {
               setErrorTextLogin('Already registered as Seller')
             }
             else if (res.slug && res.access_token) {
+              controller.setUser(res)
               setErrorLogin(false)
               setSuccessLogin(true)
               CookiesHandler.setAccessToken(res.access_token)

@@ -363,4 +363,22 @@ export class EcommerceApi {
       requestOptions
     );
   }
+
+  static async updateUserInfo(email: string, address: object): Promise<MyFetchInterface> {
+    console.log(address)
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "PATCH",
+      headers: myHeaders,
+      redirect: "follow",
+      body: JSON.stringify(address)
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/users/update-profile-info?email=${email}`,
+      requestOptions
+    );
+  }
 }

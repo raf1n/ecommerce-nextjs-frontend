@@ -38,6 +38,7 @@ export interface IStates {
   subCategories: Array<ISubCategories>;
   brands: Array<IBrands>;
   initialDataLoading: boolean;
+  user: any;
 }
 
 export class Controller {
@@ -60,6 +61,7 @@ export class Controller {
     subCategories: [],
     brands: [],
     initialDataLoading: true,
+    user: null,
   };
 
   @action
@@ -204,44 +206,16 @@ export class Controller {
   setClearCartlist() {
     this.states.cartlistData = [];
   }
+
   @action
   setAllCartListData(products: ICartProduct[]) {
     this.states.cartlistData = products;
   }
-
-  // @action
-  // setAddtoCartlist(product: IProduct) {
-  //   var total: number = 0;
-  //   const totalFunc = () => {
-  //     for (let i = 0; i < this.states.cartlistData?.length; i++) {
-  //       if (this.states?.cartlistData[i]?.offerPrice) {
-  //         total = total + parseInt(this.states.cartlistData[i]?.offerPrice);
-  //       } else {
-  //         total = total + parseInt(states?.cartlistData[i]?.price);
-  //       }
-  //     }
-  //     this.states.cartSubTotal = total;
-  //   };
-  //   if (!this.states.cartlistData.some((item) => item.slug === product.slug)) {
-  //     this.states.cartlistCounter += 1;
-  //     this.states.cartlistData = [...this.states.cartlistData, product];
-  //     totalFunc();
-  //   } else {
-  //     this.states.cartlistData = this.states.cartlistData.filter(
-  //       (item) => item.slug !== product.slug
-  //     );
-  //     this.states.cartlistCounter -= 1;
-  //     totalFunc();
-  //   }
-  // }
-
-  // @action
-  // setRemoveCartlistSingleProduct(product: IProduct) {
-  //   this.states.cartlistData = this.states.cartlistData.filter(
-  //     (item) => item.slug !== product.slug
-  //   );
-  //   this.states.cartlistCounter -= 1;
-  // }
+ 
+  @action
+  setUser(user: any) {
+    this.states.user = user;
+  }
 }
 
 export const controller = new Controller();
