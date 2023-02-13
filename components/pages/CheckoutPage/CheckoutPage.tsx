@@ -74,14 +74,13 @@ const CheckoutPage: React.FC<Props> = (props) => {
   // -------------------------
   const order = {
     product_list: cartListProduct,
-    user_slug: "User2",
-    order_slug: "Order_slug_1",
+    user_slug: "user_slug_1",
     payment_method: "Bkash",
     transaction_id: "1HJGXX1222",
   };
   // console.log(order);
-  const handleCheckout = () => {
-    const { res, err } = EcommerceApi.postOrder(order);
+  const handleCheckout = async () => {
+    const { res, err } = await EcommerceApi.postOrder(order);
     if (err) {
       console.log(err);
     } else {

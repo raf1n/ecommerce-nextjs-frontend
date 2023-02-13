@@ -1186,13 +1186,14 @@ const HeaderTop: React.FC<Props> = (props) => {
                       <span className={`${styles["spanStyle2"]}`}>
                         <img
                           className={`${styles["imgStyle2"]}`}
-                          src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27153%27%20height=%2744%27/%3e"
+                          src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Flogo-2023-01-26-01-30-26-1795.png&w=256&q=75"
                           alt="logo"
                         />
                       </span>
+
                       <img
                         className={`${styles["imgStyle"]}`}
-                        src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Flogo-2022-11-22-11-19-02-4634.png&w=256&q=75"
+                        src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Flogo-2023-01-26-01-30-26-1795.png&w=256&q=75"
                         alt="logo"
                       />
                     </span>

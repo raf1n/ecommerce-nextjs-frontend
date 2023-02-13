@@ -49,11 +49,11 @@ export interface IWishlistProduct extends IProduct {
 }
 
 export interface IOrder extends IProduct {
-  productlist: any;
-  order_slug?: any;
-  payment_method: any;
-  user_slug?: any;
-  transaction_id: any;
+  product_list: Array<object>;
+  // slug: string;
+  payment_method: string;
+  user_slug?: string;
+  transaction_id: string;
 }
 
 export interface IReportedItem {
