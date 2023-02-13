@@ -38,6 +38,7 @@ export interface IStates {
   subCategories: Array<ISubCategories>;
   brands: Array<IBrands>;
   initialDataLoading: boolean;
+  // brandName: string;
 }
 
 export class Controller {
@@ -60,6 +61,7 @@ export class Controller {
     subCategories: [],
     brands: [],
     initialDataLoading: true,
+    // brandName: "",
   };
 
   @action
@@ -69,6 +71,10 @@ export class Controller {
       ...states,
     };
   }
+  // @action
+  // setBrandName(name: string) {
+  //   this.states.brandName = name;
+  // }
 
   @action
   setInitialDataLoading() {
