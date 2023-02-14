@@ -54,6 +54,7 @@ export interface IOrder {
   payment_method: string;
   user_slug: string;
   transaction_id: string;
+  delivery_status: string;
   address: {
     country?: string;
     state?: string;

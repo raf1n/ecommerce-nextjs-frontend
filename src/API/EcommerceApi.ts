@@ -363,4 +363,24 @@ export class EcommerceApi {
       requestOptions
     );
   }
+  static async allOrders(
+    user_slug: string,
+    delivery_status?: string
+  ): Promise<IOrderResponse> {
+    console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    console.log(user_slug);
+    console.log(delivery_status);
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/orders?user_slug=${user_slug}&delivery_status=${
+        delivery_status ? delivery_status : ""
+      }`,
+      requestOptions
+    );
+  }
 }
