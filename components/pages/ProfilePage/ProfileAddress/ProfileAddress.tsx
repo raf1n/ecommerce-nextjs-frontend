@@ -17,6 +17,9 @@ const ProfileAddress: React.FC<Props> = (props) => {
   const [addressData, setAddressData] = useState<IAddress[]>([]);
   const [deleteModalSlug, setDeleteModalSlug] = useState<any | string>("");
   const [refresh, setRefresh] = useState(false);
+  const [singleAddressData, setSingleAddressData] = useState<
+    IAddress | undefined
+  >(undefined);
   const [selectedAddress, setSelectedAddress] = useState<IAddress | null>(null);
   const style = {
     control: (base: any) => ({
@@ -40,6 +43,13 @@ const ProfileAddress: React.FC<Props> = (props) => {
 
   const handleSelect = (addressData: IAddress) => {
     setSelectedAddress(addressData);
+  };
+
+  const handleEdit = (selected: IAddress) => {
+    const singleAddressData = addressData.find(
+      (single) => single.slug === selected.slug
+    );
+    setSingleAddressData(singleAddressData);
   };
 
   const handleDelete = async () => {
@@ -79,7 +89,10 @@ const ProfileAddress: React.FC<Props> = (props) => {
     <div className="item-body dashboard-wrapper w-full">
       <div className="w-[180px] h-[50px] mt-4 mb-5">
         <button
-          onClick={() => setForm(true)}
+          onClick={() => {
+            setForm(true);
+            setSingleAddressData(undefined);
+          }}
           type="button"
           className="yellow-btn rounded"
         >
@@ -96,7 +109,10 @@ const ProfileAddress: React.FC<Props> = (props) => {
                 }`}</p>
                 <div className="flex space-x-2.5 items-center">
                   <button
-                    onClick={() => setForm(true)}
+                    onClick={() => {
+                      setForm(true);
+                      handleEdit(singleAddress);
+                    }}
                     type="button"
                     className="border border-qgray text-qyellow w-[34px] h-[34px] rounded-full flex justify-center items-center"
                   >
@@ -410,6 +426,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
           setSelectedOption={setSelectedOption}
           setForm={setForm}
           form={form}
+          singleAddressData={singleAddressData}
         />
 
         // <div data-aos="zoom-in" className="w-full aos-init aos-animate">
