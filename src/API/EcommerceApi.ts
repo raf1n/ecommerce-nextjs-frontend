@@ -1,4 +1,7 @@
-import { ICartResponse } from "./../../interfaces/response";
+import {
+  ICartResponse,
+  ISingleAddressResponse,
+} from "./../../interfaces/response";
 import { IAddress, ICartProduct, IOrder } from "./../../interfaces/models";
 import {
   ICart,
@@ -263,6 +266,7 @@ export class EcommerceApi {
     );
   }
 
+  //get all categories
   static async getCategories(): Promise<ICategoriesResponse> {
     const myHeaders = new Headers();
 
@@ -274,6 +278,8 @@ export class EcommerceApi {
 
     return await callFetch(`${API_ENDPOINT}/categories`, requestOptions);
   }
+
+  //get sub categories
   static async getSubCategories(): Promise<ISubCategoriesResponse> {
     const myHeaders = new Headers();
 
@@ -313,6 +319,33 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/addresses`, requestOptions);
+  }
+  //Update Address
+
+  static async updateAddress(
+    data: Partial<IAddress>,
+    slug: string
+  ): Promise<ISingleAddressResponse> {
+    console.log(data);
+    console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: slug ? "PUT" : "POST",
+      headers: myHeaders,
+      body: JSON.stringify(data),
+      redirect: "follow",
+    };
+
+    if (slug) {
+      return await callFetch(
+        `${API_ENDPOINT}/addresses/${slug}`,
+        requestOptions
+      );
+    } else {
+      return await callFetch(`${API_ENDPOINT}/addresses`, requestOptions);
+    }
   }
 
   //Get all address Data

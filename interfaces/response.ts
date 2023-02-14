@@ -83,3 +83,7 @@ export interface IBrandsResponse extends MyFetchInterface {
 export interface IAddressResponse extends MyFetchInterface {
   res: Array<IAddress>;
 }
+
+export interface ISingleAddressResponse extends MyFetchInterface {
+  res: IAddress;
+}
