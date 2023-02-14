@@ -65,7 +65,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
 
   return (
     <div className="flex flex-col-reverse lg:flex-row space-x-8">
-      <div className="w-[570px]">
+      <div className="">
         <form onSubmit={handleSubmit}>
           <div className="mb-8">
             <div className="w-full mb-5 sm:mb-0">
@@ -77,6 +77,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
                   <input
                     name="name"
                     placeholder="Name"
+                    type="text"
+                    maxLength={50}
                     className="placeholder:text-sm text-sm px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
                 </div>
@@ -109,6 +111,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
                   <input
                     name="phone"
                     placeholder="012 3 *******"
+                    type="tel"
+                    maxLength={50}
                     className="placeholder:text-sm text-sm px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
                 </div>
@@ -133,6 +137,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
               <input
                 name="country"
                 placeholder="country"
+                type="text"
+                maxLength={50}
                 className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
               />
             </div>
@@ -152,6 +158,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 <input
                   name="state"
                   placeholder="State"
+                  type="text"
+                  maxLength={50}
                   className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                 />
               </div>
@@ -170,6 +178,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 <input
                   name="city"
                   placeholder="City"
+                  type="text"
+                  maxLength={50}
                   className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                 />
               </div>
@@ -185,6 +195,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
                   <input
                     name="address"
                     placeholder="Your Address here"
+                    type="text"
+                    maxLength={200}
                     className="placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
                 </div>

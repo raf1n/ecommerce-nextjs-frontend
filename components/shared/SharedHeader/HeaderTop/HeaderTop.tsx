@@ -1566,7 +1566,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                 </span>
               </Link>
             </div>
-            <div className="cart relative cursor-pointer">
+            <Link href="/checkout" className="cart relative cursor-pointer">
               <span>
                 <svg
                   width="18"
@@ -1582,7 +1582,7 @@ const HeaderTop: React.FC<Props> = (props) => {
               <span className="w-[18px] h-[18px] rounded-full bg-qyellow absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px]">
                 0
               </span>
-            </div>
+            </Link>
           </div>
         </div>
         <HeaderDropdown />
