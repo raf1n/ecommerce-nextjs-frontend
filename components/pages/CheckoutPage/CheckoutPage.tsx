@@ -15,7 +15,7 @@ import SharedDeleteModal from "../../shared/SharedDeleteModal/SharedDeleteModal"
 import { useRouter } from "next/navigation";
 
 interface Props {
-  cartlistData: ICart;
+  // cartlistData: ICart;
 }
 const CheckoutPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
@@ -34,11 +35,13 @@ const ProfileOrder: React.FC<Props> = (props) => {
                   $196566.95
                 </span>
               </td>
-              <td className="py-4 flex justify-center">
+              <td className="py-4 flex justify-center ">
                 <div className="flex space-x-2 items-center">
-                  <div className="w-[116px] h-[46px] bg-qyellow text-qblack font-bold flex justify-center items-center cursor-pointer">
-                    <span>View Details</span>
-                  </div>
+                  <Link href="/vieworder">
+                    <div className="w-[116px] h-[46px] bg-qyellow text-qblack font-bold flex justify-center items-center cursor-pointer">
+                      <span>View Details</span>
+                    </div>
+                  </Link>
                 </div>
               </td>
             </tr>

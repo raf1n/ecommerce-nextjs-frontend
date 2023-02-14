@@ -1400,7 +1400,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                                         width: "initial",
                                         height: "initial",
                                         background: "none",
-                                        opacity: 1,
+                                        opacity: "1",
                                         border: "0px",
                                         margin: "0px",
                                         padding: "0px",
