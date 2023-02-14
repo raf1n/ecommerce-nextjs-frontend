@@ -54,6 +54,12 @@ export interface IOrder {
   payment_method: string;
   user_slug: string;
   transaction_id: string;
+  address: {
+    country?: string;
+    state?: string;
+    city?: string;
+    address?: string;
+  };
 }
 
 export interface IReportedItem {
