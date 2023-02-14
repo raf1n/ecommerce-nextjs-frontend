@@ -1,4 +1,4 @@
-import { ICartResponse } from "./../../interfaces/response";
+import { ICartResponse, IOrderResponse } from "./../../interfaces/response";
 import { IAddress, ICartProduct, IOrder } from "./../../interfaces/models";
 import {
   ICart,
@@ -127,7 +127,7 @@ export class EcommerceApi {
     );
   }
   // order
-  static async postOrder(order: IOrder): Promise<Object> {
+  static async postOrder(order: IOrder): Promise<IOrderResponse> {
     console.log("from api", order);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");

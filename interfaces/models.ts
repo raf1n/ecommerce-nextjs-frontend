@@ -48,12 +48,11 @@ export interface IWishlistProduct extends IProduct {
   user_slug?: string;
 }
 
-export interface IOrder extends IProduct {
-  // product_list: Array<object>;
-  product_list: ICart;
-  // slug: string;
+export interface IOrder {
+  product_list: ICartProduct[];
+  order_slug?: string;
   payment_method: string;
-  user_slug?: string;
+  user_slug: string;
   transaction_id: string;
 }
 
