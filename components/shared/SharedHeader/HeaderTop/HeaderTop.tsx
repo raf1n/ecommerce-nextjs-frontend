@@ -1666,7 +1666,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                               Subtotal
                             </span>
                             <span className="text-[15px] font-medium text-qred ">
-                              ${CartHandler.cartSubTotal(states)}
+                              ${CartHandler.cartSubTotal(states.cartlistData)}
                             </span>
                           </div>
                           <div className=" product-action-btn">
