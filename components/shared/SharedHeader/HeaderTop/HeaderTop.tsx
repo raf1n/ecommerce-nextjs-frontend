@@ -15,6 +15,16 @@ const HeaderTop: React.FC<Props> = (props) => {
   const [sideDropdownOpen, setSideDropdownOpen] = useState(false);
   const [showCategory, setShowCategory] = useState(true);
   const [showTopAllCatgory, setShowTopAllCatgory] = useState(false);
+  const allCategories = [
+    {
+      cat_name: "All Categories",
+      cat_slug: "",
+    },
+    ...states.categories,
+  ];
+  const [searchCategory, setSearchCategory] = useState<ICategories | undefined>(
+    undefined
+  );
   let total: number = 0;
 
   const sideDropdown = () => {
@@ -1379,7 +1389,9 @@ const HeaderTop: React.FC<Props> = (props) => {
                         }}
                       >
                         <span className={styles["line-clamp-1"]}>
-                          All Categories
+                          {searchCategory
+                            ? searchCategory.cat_name
+                            : "All Categories"}
                         </span>
                         <span>
                           <svg
@@ -1417,7 +1429,12 @@ const HeaderTop: React.FC<Props> = (props) => {
                               {states.categories.map(
                                 (items: ICategories, index) => (
                                   <>
-                                    <li>
+                                    <li
+                                      onClick={() => {
+                                        topAllCategoriesDropdown();
+                                        setSearchCategory(items);
+                                      }}
+                                    >
                                       <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
                                         {items.cat_name}
                                       </span>
