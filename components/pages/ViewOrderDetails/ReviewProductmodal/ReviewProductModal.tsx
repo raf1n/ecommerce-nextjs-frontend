@@ -5,12 +5,12 @@ import { controller } from "../../../../src/state/StateController";
 interface Props {
   reportModalSlug: string;
   setReportModalSlug: Dispatch<SetStateAction<string>>;
-  handleReport: Function;
+  handleReview: Function;
 }
 
-const ReportedItemModal: React.FC<Props> = (props) => {
+const ReviewProductModal: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const { handleReport, reportModalSlug, setReportModalSlug } = props;
+  const { handleReview, reportModalSlug, setReportModalSlug } = props;
 
   return (
     <>
@@ -37,18 +37,83 @@ const ReportedItemModal: React.FC<Props> = (props) => {
                   </svg>
                 </span>
               </div>
-              <form onSubmit={(e) => handleReport(e)} className="inputs w-full">
+              <form onSubmit={(e) => handleReview(e)} className="inputs w-full">
                 <div className="w-full mb-5">
+                  {/* *******  Rating ********8 */}
+                  <div className="flex space-x-1 items-center mb-[30px]">
+                    <div className="star-rating flex">
+                      <button type="button" className="text-[#D2D8E1]">
+                        <svg
+                          width="19"
+                          height="18"
+                          viewBox="0 0 19 18"
+                          fill="none"
+                          className="fill-current"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.5 0L11.6329 6.56434H18.535L12.9511 10.6213L15.084 17.1857L9.5 13.1287L3.91604 17.1857L6.04892 10.6213L0.464963 6.56434H7.36712L9.5 0Z"></path>
+                        </svg>
+                      </button>
+                      <button type="button" className="text-[#D2D8E1]">
+                        <svg
+                          width="19"
+                          height="18"
+                          viewBox="0 0 19 18"
+                          fill="none"
+                          className="fill-current"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.5 0L11.6329 6.56434H18.535L12.9511 10.6213L15.084 17.1857L9.5 13.1287L3.91604 17.1857L6.04892 10.6213L0.464963 6.56434H7.36712L9.5 0Z"></path>
+                        </svg>
+                      </button>
+                      <button type="button" className="text-[#D2D8E1]">
+                        <svg
+                          width="19"
+                          height="18"
+                          viewBox="0 0 19 18"
+                          fill="none"
+                          className="fill-current"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.5 0L11.6329 6.56434H18.535L12.9511 10.6213L15.084 17.1857L9.5 13.1287L3.91604 17.1857L6.04892 10.6213L0.464963 6.56434H7.36712L9.5 0Z"></path>
+                        </svg>
+                      </button>
+                      <button type="button" className="text-[#D2D8E1]">
+                        <svg
+                          width="19"
+                          height="18"
+                          viewBox="0 0 19 18"
+                          fill="none"
+                          className="fill-current"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.5 0L11.6329 6.56434H18.535L12.9511 10.6213L15.084 17.1857L9.5 13.1287L3.91604 17.1857L6.04892 10.6213L0.464963 6.56434H7.36712L9.5 0Z"></path>
+                        </svg>
+                      </button>
+                      <button type="button" className="text-[#D2D8E1]">
+                        <svg
+                          width="19"
+                          height="18"
+                          viewBox="0 0 19 18"
+                          fill="none"
+                          className="fill-current"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.5 0L11.6329 6.56434H18.535L12.9511 10.6213L15.084 17.1857L9.5 13.1287L3.91604 17.1857L6.04892 10.6213L0.464963 6.56434H7.36712L9.5 0Z"></path>
+                        </svg>
+                      </button>
+                    </div>
+                    <span className="text-qblack text-[15px] font-normal mt-1">
+                      (0.0)
+                    </span>
+                  </div>
+                  {/* ****************** */}
+
                   <div className="input-com w-full h-full">
                     <label
                       className="input-label capitalize block  mb-2 text-[13px] font-600 leading-[24px] text-qblack"
                       htmlFor="name">
-                      Enter Report Title*
+                      Name
                     </label>
                     <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                       <input
-                        name="title"
-                        placeholder="Reports Headline here"
+                        name="name"
+                        placeholder=""
                         className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                         type="text"
                         id="name"
@@ -58,20 +123,20 @@ const ReportedItemModal: React.FC<Props> = (props) => {
                 </div>
                 <div className="w-full mb-[40px]">
                   <h6 className="input-label capitalize text-[13px] font-600 leading-[24px] text-qblack block mb-2 ">
-                    Enter Report Note*
+                    Message
                   </h6>
                   <textarea
-                    name="note"
+                    name="message"
                     id=""
                     cols={30}
                     rows={6}
                     className="w-full focus:ring-0 focus:outline-none py-3 px-4 border  placeholder:text-sm text-sm border-qgray-border"
-                    placeholder="Type Here"></textarea>
+                    placeholder=""></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="black-btn flex h-[50px] items-center justify-center w-full">
-                  <span>Submit Report</span>
+                  className="black-btn flex w-1/2 h-[50px] items-center justify-center ">
+                  <span>Submit Review</span>
                 </button>
               </form>
             </div>
@@ -84,4 +149,4 @@ const ReportedItemModal: React.FC<Props> = (props) => {
   );
 };
 
-export default ReportedItemModal;
+export default ReviewProductModal;

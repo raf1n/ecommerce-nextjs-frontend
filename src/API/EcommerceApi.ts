@@ -1,5 +1,10 @@
 import { ICartResponse, IOrderResponse } from "./../../interfaces/response";
-import { IAddress, ICartProduct, IOrder } from "./../../interfaces/models";
+import {
+  IAddress,
+  ICartProduct,
+  IOrder,
+  IReview,
+} from "./../../interfaces/models";
 import {
   ICart,
   ICategories,
@@ -182,22 +187,32 @@ export class EcommerceApi {
     };
     return await callFetch(`${API_ENDPOINT}/products/${slug}`, requestOptions);
   }
-
+  // ------------------------------------------------
   static async addReportedItem(
     data: Partial<IReportedItem>
   ): Promise<MyFetchInterface> {
     console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(data),
       redirect: "follow",
     };
-
     return await callFetch(`${API_ENDPOINT}/reporteditems`, requestOptions);
+  }
+  // ---------------------------------------------------
+  static async addReview(data: Partial<IReview>): Promise<MyFetchInterface> {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(data),
+      redirect: "follow",
+    };
+    return await callFetch(`${API_ENDPOINT}/xxxxx`, requestOptions);
   }
 
   static async getAllCartData(query: string): Promise<IInitialCartResponse> {

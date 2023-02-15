@@ -63,6 +63,13 @@ export interface IReportedItem {
   title?: string;
   note?: string;
 }
+export interface IReview {
+  slug?: string;
+  product_slug?: string;
+  user_slug?: string;
+  title?: string;
+  note?: string;
+}
 
 export interface ICart {
   user_slug: string;

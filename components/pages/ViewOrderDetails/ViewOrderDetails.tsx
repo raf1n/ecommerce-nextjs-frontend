@@ -1,11 +1,31 @@
-import React from "react";
+import { useRouter } from "next/router";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
+import ReviewProductModal from "./ReviewProductmodal/ReviewProductModal";
 
 interface Props {}
 
 const ViewOrderDetails: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
+  const router = useRouter();
+  const { asPath } = router;
+  const productSlug = asPath.split("=")[1];
+
+  const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
+  const handleReview = (e: any) => {
+    e.preventDefault();
+    const review = {
+      product_slug: asPath.split("=")[1],
+      user_slug: "user_slug_1",
+      name: e.target.name.value,
+      message: e.target.message.value,
+    };
+    EcommerceApi.addReview(review);
+    setReportModalSlug("");
+  };
 
   return (
     <div>
@@ -21,21 +41,18 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                   <span className="sperator">/</span>
                 </span>
                 <span>
-                  <a href="/order/188686703">
+                  <a href="/profile">
                     <span className="mx-1 capitalize">Order</span>
                   </a>
-                  <span className="sperator">/</span>
                 </span>
               </div>
             </div>
             <div className="w-full h-[168px] bg-[#CBECFF] rounded-2xl mb-10 relative print:hidden">
-              <div className="w-full px-10 flex justify-between pt-3 mb-7">
-                <div></div>
-                <div></div>
-              </div>
+              <div className="w-full px-10 flex justify-between pt-3 mb-7"></div>
               <div className="flex lg:space-x-[373px] space-x-[90px] rtl:space-x-reverse w-full h-full justify-center">
                 <div className="relative">
-                  <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-0"></div>
+                  <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
+                  <div className="lg:w-[400px] w-[100px] h-[8px] absolute ltr:lg:-left-[390px] ltr:-left-[92px] rtl:lg:-right-[390px] rtl:-right-[92px] top-[10px] z-10  bg-white"></div>
                   <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
                     Pending
                   </p>
@@ -49,7 +66,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                 </div>
                 <div className="relative">
                   <div className="w-[30px] h-[30px] border-[8px] rounded-full bg-white  relative z-20 border-qgray"></div>
-                  <div className="lg:w-[400px] w-[100px] h-[8px] absolute ltr:lg:-left-[390px] ltr:-left-[92px] rtl:lg:-right-[390px] rtl:-right-[92px] top-[10px] z-10 bg-white"></div>
+
                   <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
                     Delivered
                   </p>
@@ -61,7 +78,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                 <div className="sm:flex justify-between items-center mb-4">
                   <div>
                     <h1 className="text-[26px] font-semibold text-qblack mb-2.5">
-                      Sed et error eligend Minim aut molestiae
+                      Order Details
                     </h1>
                     <ul className="flex flex-col space-y-0.5">
                       <li className="text-[22px]n text-[#4F5562]">
@@ -71,13 +88,13 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                       <li className="text-[22px]n text-[#4F5562]">
                         Billing Address:
                         <span className="text-[#27AE60]">
-                          Aliquip accusantium,Gandhinagar,Gujarat
+                          255 Rich IT , Kazir Dewri ,Chattogram
                         </span>
                       </li>
                       <li className="text-[22px]n text-[#4F5562]">
                         Shipping Address:
                         <span className="text-[#27AE60]">
-                          Aliquip accusantium,Gandhinagar,Gujarat
+                          255 Rich IT , Kazir Dewri ,Chattogram
                         </span>
                       </li>
                       <li className="text-[22px]n text-[#4F5562]">
@@ -158,6 +175,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                         </td>
                         <td className="text-center py-4 px-2 print:hidden">
                           <button
+                            onClick={() => setReportModalSlug("rrr")}
                             type="button"
                             className="text-green-500 text-sm font-semibold capitalize">
                             review
@@ -205,6 +223,12 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
           </div>
         </div>
       </div>
+      {/*  */}
+      <ReviewProductModal
+        setReportModalSlug={setReportModalSlug}
+        reportModalSlug={reportModalSlug}
+        handleReview={handleReview}
+      />
     </div>
   );
 };
