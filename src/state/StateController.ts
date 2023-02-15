@@ -71,6 +71,10 @@ export class Controller {
       ...states,
     };
   }
+  // @action
+  // setBrandName(name: string) {
+  //   this.states.brandName = name;
+  // }
 
   @action
   setInitialDataLoading() {

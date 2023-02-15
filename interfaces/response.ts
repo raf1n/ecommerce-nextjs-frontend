@@ -6,6 +6,7 @@ import {
   ICategories,
   ISubCategories,
   IBrands,
+  IOrder,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -43,13 +44,8 @@ export interface IWishlistResponse extends MyFetchInterface {
 
 export interface IOrderResponse extends MyFetchInterface {
   res: {
-    productlist: IProduct[];
-    user_slug: any;
-    order_slug: any;
-    payment_method: any;
-    transaction_id: any;
-    // data: IProduct[];
-    message: any;
+    data: IOrder[];
+    message: string;
   };
 }
 
