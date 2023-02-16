@@ -7,16 +7,13 @@ import { controller } from "../../../../src/state/StateController";
 import { CartHandler } from "../../../../src/utils/CartHandler";
 
 interface Props {
-  res: {
-    data: IOrder[];
-  };
-  err: any;
+  orders: IOrder[];
 }
 
-const ProfileOrder: React.FC<Props> = ({ res, err }) => {
+const ProfileOrder: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  console.log(res);
+  // console.log(res);
 
   // const [allOrders, setAllOrders] = useState<IOrder[]>([]);
 
@@ -43,8 +40,8 @@ const ProfileOrder: React.FC<Props> = ({ res, err }) => {
             <td className="py-4 whitespace-nowrap text-center">Amount</td>
             <td className="py-4 whitespace-nowrap text-center">Action</td>
           </tr>
-          {res?.data.length !== 0 &&
-            res?.data.map((order: IOrder) => (
+          {props.orders.length !== 0 &&
+            props.orders.map((order: IOrder) => (
               <tr className="bg-white border-b hover:bg-gray-50">
                 <td className="text-center py-4">
                   <span className="text-lg text-qgray font-medium">
@@ -78,17 +75,5 @@ const ProfileOrder: React.FC<Props> = ({ res, err }) => {
     </div>
   );
 };
-
-export async function getStaticProps() {
-  const { res, err } = await EcommerceApi.allOrders("user_slug_1");
-
-  console.log("abcd");
-
-  console.log(res, err);
-
-  return {
-    props: { res, err }, // will be passed to the page component as props
-  };
-}
 
 export default ProfileOrder;

@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "./../../../../src/state/StateController";
 import Select, { components, MenuProps } from "react-select";
 import { useState } from "react";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
+import { IUser } from "../../../../interfaces/models";
 
-interface Props {}
+interface Props {
+  user: IUser | null;
+}
 
 const PersonalInfo: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
+  // console.log(props.user);
   // const [selectedOption, setSelectedOption] = useState(null);
 
   // const style = {
@@ -45,7 +49,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const email = "ahmdtoukir@gmail.com";
+    const email = "rafinc10@gmail.com";
 
     const address = {
       name: e.target.name.value,
@@ -75,6 +79,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 </label>
                 <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
                   <input
+                    defaultValue={props.user?.fullName}
                     name="name"
                     placeholder="Name"
                     type="text"
@@ -97,7 +102,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 <input
                   readOnly
                   name="email"
-                  value="placeholder@email.com"
+                  value={props.user?.email}
                   className="border border-yellow-500 px-6 w-full h-[50px] bg-yellow-50 text-dark-gray flex items-center cursor-not-allowed rounded"
                 />
               </div>

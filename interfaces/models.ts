@@ -5,18 +5,24 @@ export interface MyFetchInterface {
   err: any;
 }
 export interface IUser {
-  _id: string;
-  email?: string;
+  email: string;
   avatar: string;
   token: string;
   tokenType: string;
-  displayName: string;
+  displayName?: string;
   password: string;
   role: string;
   fullName: string;
   slug: string;
   createdAt?: string;
   updatedAt: string;
+  phone: string;
+  address: {
+    country?: string;
+    state?: string;
+    city?: string;
+    address?: string;
+  };
 }
 export interface featuredProductLPObj {
   pageNumber: number | string;

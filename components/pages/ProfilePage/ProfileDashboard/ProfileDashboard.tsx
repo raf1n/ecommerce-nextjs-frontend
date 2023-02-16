@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
-import { IOrder } from "../../../../interfaces/models";
+import { IOrder, IUser } from "../../../../interfaces/models";
 
 interface Props {
   allOrders: IOrder[];
   allCompletedOrders: IOrder[];
+  user: IUser | null;
 }
 
 const ProfileDashboard: React.FC<Props> = (props) => {
@@ -124,7 +125,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
                     <p>Name:</p>
                   </td>
                   <td className="text-base text-qblack font-medium">
-                    Amaya Hendrix
+                    {props.user?.fullName}
                   </td>
                 </tr>
                 <tr className="flex mb-5">
@@ -132,7 +133,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
                     <p>Email:</p>
                   </td>
                   <td className="text-base text-qblack font-medium">
-                    hijigov511@pahed.com
+                    {props.user?.email}
                   </td>
                 </tr>
                 <tr className="flex mb-5">
@@ -140,7 +141,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
                     <p>phone:</p>
                   </td>
                   <td className="text-base text-qblack font-medium">
-                    01792166627
+                    {props.user?.phone}
                   </td>
                 </tr>
                 <tr className="flex mb-5">
@@ -148,7 +149,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
                     <p>Address:</p>
                   </td>
                   <td className="text-base text-qblack font-medium">
-                    Gandhinagar,Gujarat,India{" "}
+                    {props.user?.address?.address}
                   </td>
                 </tr>
               </tbody>

@@ -438,4 +438,18 @@ export class EcommerceApi {
       requestOptions
     );
   }
+
+  static async getLoggedInUser(email: string): Promise<MyFetchInterface> {
+    console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    myHeaders.append("content-type", "application/json");
+    console.log(email);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/users/${email}`, requestOptions);
+  }
 }
