@@ -10,139 +10,129 @@ import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { useRouter } from "next/router";
 import { IUser } from "../../../interfaces/models";
 
-interface Props { }
+interface Props {}
 
 const LoginForm: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [errorLogin, setErrorLogin] = useState(false);
-  const [errorTextLogin, setErrorTextLogin] = useState('');
+  const [errorTextLogin, setErrorTextLogin] = useState("");
   const [successLogin, setSuccessLogin] = useState(false);
-  const [successTextLogin, setSuccessTextLogin] = useState('')
-  const [loggedinSendVerify, setLoggedinSendVerify] = useState(false)
-  const [loggedinSendVerifyText, setLoggedinSendVerifyText] = useState('')
+  const [successTextLogin, setSuccessTextLogin] = useState("");
+  const [loggedinSendVerify, setLoggedinSendVerify] = useState(false);
+  const [loggedinSendVerifyText, setLoggedinSendVerifyText] = useState("");
 
   const router = useRouter();
 
   useEffect(() => {
-    SocialLogin.initFirebase()
-  }, [])
+    SocialLogin.initFirebase();
+  }, []);
 
   const sendEmailVerify = async () => {
-    SocialLogin.sendEmail()
-    setErrorLogin(false)
-    setSuccessLogin(false)
-    setLoggedinSendVerifyText('Verification sent')
-  }
+    SocialLogin.sendEmail();
+    setErrorLogin(false);
+    setSuccessLogin(false);
+    setLoggedinSendVerifyText("Verification sent");
+  };
 
   const handleGoogleSignUp = async () => {
     // actions.setDialogLoading(true)
-    const { token, user } = await SocialLogin.loginWithGoogle()
+    const { token, user } = await SocialLogin.loginWithGoogle();
     if (token && user?.email && user?.displayName && user?.photoURL) {
-      const { email, displayName, photoURL } = user
+      const { email, displayName, photoURL } = user;
       // window.smartlook('identify', email);
       const data: Partial<IUser> = {
         token: token,
-        tokenType: 'google',
+        tokenType: "google",
         email: email,
         avatar: photoURL,
         fullName: displayName,
-        role: 'buyer'
-      }
+        role: "buyer",
+      };
       const { res, err } = await EcommerceApi.login(data);
       if (err) {
-        console.log('Login error')
-      }
-      else {
+        console.log("Login error");
+      } else {
         if (res.role == "admin") {
-          setErrorLogin(true)
-          setErrorTextLogin('Already registered as Admin')
-        }
-        else if (res.role == "seller") {
-          setErrorLogin(true)
-          setErrorTextLogin('Already registered as Seller')
-        }
-        else if (res.slug && res.access_token) {
-          setErrorLogin(false)
-          setSuccessLogin(true)
-          CookiesHandler.setAccessToken(res.access_token)
-          CookiesHandler.setSlug(res.slug as string)
-          setSuccessTextLogin('SignIn Success')
-          router.push('/')
+          setErrorLogin(true);
+          setErrorTextLogin("Already registered as Admin");
+        } else if (res.role == "seller") {
+          setErrorLogin(true);
+          setErrorTextLogin("Already registered as Seller");
+        } else if (res.slug && res.access_token) {
+          setErrorLogin(false);
+          setSuccessLogin(true);
+          CookiesHandler.setAccessToken(res.access_token);
+          CookiesHandler.setSlug(res.slug as string);
+          setSuccessTextLogin("SignIn Success");
+          router.push("/profile");
         }
       }
     }
-
-  }
+  };
 
   const handleEmailPasswordLogin = async (e: any) => {
     e.preventDefault();
-    const loginPassword = e.target.password.value
-    const loginEmail = e.target.email.value
+    const loginPassword = e.target.password.value;
+    const loginEmail = e.target.email.value;
 
-    const { res, err } = await SocialLogin.loginWithEmailPassword(loginEmail, loginPassword)
+    const { res, err } = await SocialLogin.loginWithEmailPassword(
+      loginEmail,
+      loginPassword
+    );
     if (err) {
-      setErrorLogin(true)
-      setSuccessLogin(false)
-      setErrorTextLogin(err)
-    }
-    else {
-      console.log('resss', res)
-      setErrorLogin(false)
+      setErrorLogin(true);
+      setSuccessLogin(false);
+      setErrorTextLogin(err);
+    } else {
+      console.log("resss", res);
+      setErrorLogin(false);
       if (!res.user.emailVerified) {
-        console.log('kkk');
-        setLoggedinSendVerify(true)
-        setLoggedinSendVerifyText('verify first and login again')
-      }
-      else {
-        setLoggedinSendVerify(false)
-        console.log('resooooo', res)
+        console.log("kkk");
+        setLoggedinSendVerify(true);
+        setLoggedinSendVerifyText("verify first and login again");
+      } else {
+        setLoggedinSendVerify(false);
+        console.log("resooooo", res);
         const token = res?.user?.accessToken;
-        const user = res.user
-        console.log('use,tok', user?.email);
-        console.log('dis', user?.displayName);
+        const user = res.user;
+        console.log("use,tok", user?.email);
+        console.log("dis", user?.displayName);
         if (token && user?.email) {
-          console.log('enter');
-          const { email, displayName } = user
+          console.log("enter");
+          const { email, displayName } = user;
           const data: Partial<IUser> = {
             token: token,
-            tokenType: 'email',
+            tokenType: "email",
             email: email,
-            avatar: 'https://tinyurl.com/382e6w5t',
+            avatar: "https://tinyurl.com/382e6w5t",
             fullName: displayName,
             // role: 'buyer'
-          }
+          };
           const { res, err } = await EcommerceApi.login(data);
           if (err) {
-            setErrorLogin(true)
-            setSuccessLogin(false)
-            setErrorTextLogin('Server Error')
-          }
-          else {
+            setErrorLogin(true);
+            setSuccessLogin(false);
+            setErrorTextLogin("Server Error");
+          } else {
             if (res.role == "admin") {
-              setErrorLogin(true)
-              setErrorTextLogin('Already registered as Admin')
-            }
-            else if (res.role == "seller") {
-              setErrorLogin(true)
-              setErrorTextLogin('Already registered as Seller')
-            }
-            else if (res.slug && res.access_token) {
-              setErrorLogin(false)
-              setSuccessLogin(true)
-              CookiesHandler.setAccessToken(res.access_token)
-              CookiesHandler.setSlug(res.slug as string)
-              setSuccessTextLogin('SignIn Success')
-              router.push('/')
+              setErrorLogin(true);
+              setErrorTextLogin("Already registered as Admin");
+            } else if (res.role == "seller") {
+              setErrorLogin(true);
+              setErrorTextLogin("Already registered as Seller");
+            } else if (res.slug && res.access_token) {
+              setErrorLogin(false);
+              setSuccessLogin(true);
+              CookiesHandler.setAccessToken(res.access_token);
+              CookiesHandler.setSlug(res.slug as string);
+              setSuccessTextLogin("SignIn Success");
+              router.push("/");
             }
           }
         }
-
-
       }
-
-
     }
-  }
+  };
 
   return (
     <div className="lg:w-[572px] w-full h-[783px] bg-white flex flex-col justify-center sm:p-10 p-5 border border-[#E0E0E0]">
@@ -157,23 +147,23 @@ const LoginForm: React.FC<Props> = (props) => {
               height="29"
               viewBox="0 0 172 29"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M1 5.08742C17.6667 19.0972 30.5 31.1305 62.5 27.2693C110.617 21.4634 150 -10.09 171 5.08727"
-                stroke="#FFBB38"
-              ></path>
+                stroke="#FFBB38"></path>
             </svg>
           </div>
         </div>
 
-        <form onSubmit={(e) => { handleEmailPasswordLogin(e) }}>
+        <form
+          onSubmit={(e) => {
+            handleEmailPasswordLogin(e);
+          }}>
           <div className="mb-5">
             <div className="w-full h-full">
               <label
                 className="capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                htmlFor="email"
-              >
+                htmlFor="email">
                 Email Address*
               </label>
               <div className="border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -192,8 +182,7 @@ const LoginForm: React.FC<Props> = (props) => {
             <div className="w-full h-full">
               <label
                 className="capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                htmlFor="password"
-              >
+                htmlFor="password">
                 Password
               </label>
               <div className="border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -224,15 +213,15 @@ const LoginForm: React.FC<Props> = (props) => {
           <div>
             <button
               type="submit"
-              className="bg-[rgb(34,34,34)] text-white mb-3 text-sm w-full h-[50px] font-semibold flex justify-center bg-purple items-center"
-            >
+              className="bg-[rgb(34,34,34)] text-white mb-3 text-sm w-full h-[50px] font-semibold flex justify-center bg-purple items-center">
               Login
             </button>
             <button
-              onClick={() => { handleGoogleSignUp() }}
+              onClick={() => {
+                handleGoogleSignUp();
+              }}
               type="button"
-              className="bg-[#4285F4] text-white mb-6 text-sm w-full h-[50px] font-semibold flex gap-x-2 justify-center bg-purple items-center"
-            >
+              className="bg-[#4285F4] text-white mb-6 text-sm w-full h-[50px] font-semibold flex gap-x-2 justify-center bg-purple items-center">
               <FaGoogle className="w-6 h-6" />
               Sign In With Google
             </button>
@@ -242,16 +231,32 @@ const LoginForm: React.FC<Props> = (props) => {
               Dont't have an account ?
               <Link
                 href="/signup"
-                className="ml-2 text-qblack cursor-pointer capitalize"
-              >
+                className="ml-2 text-qblack cursor-pointer capitalize">
                 sign up free
               </Link>
             </p>
           </div>
         </form>
-        {errorLogin && <div style={{ color: 'red' }}>{errorTextLogin}</div>}
-        {successLogin && <div style={{ color: 'black' }}>{successTextLogin}</div>}
-        {loggedinSendVerify && <button type="submit" style={{ backgroundColor: 'blue', borderRadius: '10px', margin: '10px 0', width: '300px', color: 'white' }} onClick={() => { sendEmailVerify() }}>{loggedinSendVerifyText}</button>}
+        {errorLogin && <div style={{ color: "red" }}>{errorTextLogin}</div>}
+        {successLogin && (
+          <div style={{ color: "black" }}>{successTextLogin}</div>
+        )}
+        {loggedinSendVerify && (
+          <button
+            type="submit"
+            style={{
+              backgroundColor: "blue",
+              borderRadius: "10px",
+              margin: "10px 0",
+              width: "300px",
+              color: "white",
+            }}
+            onClick={() => {
+              sendEmailVerify();
+            }}>
+            {loggedinSendVerifyText}
+          </button>
+        )}
       </div>
     </div>
   );

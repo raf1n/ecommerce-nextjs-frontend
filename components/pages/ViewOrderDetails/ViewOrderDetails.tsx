@@ -110,6 +110,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                   </div>
                   <div>
                     <button
+                      onClick={() => print()}
                       type="button"
                       className="w-[161px] h-[52px] rounded flex space-x-2.5 rtl:space-x-reverse items-center justify-center bg-qyellow print:hidden mt-5 sm:mt-0">
                       <span>
@@ -132,7 +133,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                   <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <tbody>
                       <tr className="text-[13px] font-medium text-black bg-[#F6F6F6] whitespace-nowrap px-2 border-b default-border-bottom uppercase">
-                        <td className=" py-4 ltr:pl-10 rtl:pr-10 block whitespace-nowrap rtl:text-right w-[380px]">
+                        <td className="pl-10 py-4 ltr:pl-10 rtl:pr-10 block whitespace-nowrap rtl:text-right w-[380px]">
                           Product
                         </td>
                         <td className="py-4 whitespace-nowrap text-center">
@@ -229,7 +230,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
           </div>
         </div>
       </div>
-      {/*  */}
+
       <ReviewProductModal
         rating={rating}
         ratingChanged={ratingChanged}

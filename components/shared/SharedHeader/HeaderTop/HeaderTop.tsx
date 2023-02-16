@@ -96,7 +96,7 @@ const HeaderTop: React.FC<Props> = (props) => {
   }, 0);
 
   return (
-    <div>
+    <div className="print:hidden">
       {sideDropdownOpen && (
         <div
           onClick={() => {
