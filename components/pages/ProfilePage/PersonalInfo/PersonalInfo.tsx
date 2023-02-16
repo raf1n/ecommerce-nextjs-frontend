@@ -1,50 +1,76 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "./../../../../src/state/StateController";
 import Select, { components, MenuProps } from "react-select";
 import { useState } from "react";
+import { EcommerceApi } from "../../../../src/API/EcommerceApi";
+import { IUser } from "../../../../interfaces/models";
 
-interface Props {}
+interface Props {
+  user: IUser | null;
+}
 
 const PersonalInfo: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  // console.log(props.user);
+  // const [selectedOption, setSelectedOption] = useState(null);
 
-  const style = {
-    control: (base: any) => ({
-      ...base,
-      border: "1px solid rgb(239 239 239)",
-      height: "50px",
-      width: "100%",
-      margin: "0",
-      paddingLeft: "12px",
-      paddingRight: "12px",
-      fontSize: "13px",
-      borderRadius: 0,
-      // This line disable the blue border
-      boxShadow: "none",
-      cursor: "pointer",
-      '&:hover': {
-        border: "1px solid rgb(239 239 239)",
-      },
-    }),
-  };
+  // const style = {
+  //   control: (base: any) => ({
+  //     ...base,
+  //     border: "1px solid rgb(239 239 239)",
+  //     height: "50px",
+  //     width: "100%",
+  //     margin: "0",
+  //     paddingLeft: "12px",
+  //     paddingRight: "12px",
+  //     fontSize: "13px",
+  //     borderRadius: 0,
+  //     // This line disable the blue border
+  //     boxShadow: "none",
+  //     cursor: "pointer",
+  //     "&:hover": {
+  //       border: "1px solid rgb(239 239 239)",
+  //     },
+  //   }),
+  // };
 
-  const countryOptions = [
-    { value: "bangladesh", label: "Bangladesh" },
-    { value: "india", label: "India" },
-    { value: "qatar", label: "Qatar" },
-  ];
+  // const countryOptions = [
+  //   { value: "bangladesh", label: "Bangladesh" },
+  //   { value: "india", label: "India" },
+  //   { value: "qatar", label: "Qatar" },
+  // ];
 
-  const handleChange = (selectedOption: any) => {
-    setSelectedOption(selectedOption);
+  // const handleChange = (selectedOption: any) => {
+  //   setSelectedOption(selectedOption);
+  // };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const email = "rafinc10@gmail.com";
+
+    const address = {
+      name: e.target.name.value,
+      phone: e.target.phone.value,
+      country: e.target.country.value,
+      state: e.target.state.value,
+      city: e.target.city.value,
+      address: e.target.address.value,
+    };
+
+    const { res, err } = await EcommerceApi.updateUserInfo(email, address);
+    if (res) {
+      e.target.reset();
+      controller.setUser(res);
+    }
   };
 
   return (
     <div className="flex flex-col-reverse lg:flex-row space-x-8">
-      <div className="w-[570px]">
-        <form>
+      <div className="">
+        <form onSubmit={handleSubmit}>
           <div className="mb-8">
             <div className="w-full mb-5 sm:mb-0">
               <div className="w-full h-full">
@@ -53,7 +79,11 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 </label>
                 <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
                   <input
+                    defaultValue={props.user?.fullName}
+                    name="name"
                     placeholder="Name"
+                    type="text"
+                    maxLength={50}
                     className="placeholder:text-sm text-sm px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
                 </div>
@@ -71,7 +101,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 </label>
                 <input
                   readOnly
-                  value="placeholder@email.com"
+                  name="email"
+                  value={props.user?.email}
                   className="border border-yellow-500 px-6 w-full h-[50px] bg-yellow-50 text-dark-gray flex items-center cursor-not-allowed rounded"
                 />
               </div>
@@ -83,7 +114,10 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 </label>
                 <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
                   <input
+                    name="phone"
                     placeholder="012 3 *******"
+                    type="tel"
+                    maxLength={50}
                     className="placeholder:text-sm text-sm px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
                 </div>
@@ -94,7 +128,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
             <h1 className="capitalize block mb-2 text-qgray text-[13px] font-normal">
               Country*
             </h1>
-            <Select
+            {/* <Select
               value={selectedOption}
               onChange={handleChange}
               options={countryOptions}
@@ -103,30 +137,57 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 // Menu,
                 IndicatorSeparator: () => null,
               }}
-            />
+            /> */}
+            <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
+              <input
+                name="country"
+                placeholder="country"
+                type="text"
+                maxLength={50}
+                className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+              />
+            </div>
           </div>
           <div className="flex space-x-5 items-center mb-6">
             <div className="w-1/2">
               <h1 className="capitalize block mb-2 text-qgray text-[13px] font-normal">
                 State*
               </h1>
-              <Select
+              {/* <Select
                 styles={style}
                 components={{
                   IndicatorSeparator: () => null,
                 }}
-              />
+              /> */}
+              <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
+                <input
+                  name="state"
+                  placeholder="State"
+                  type="text"
+                  maxLength={50}
+                  className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                />
+              </div>
             </div>
             <div className="w-1/2">
               <h1 className="capitalize block mb-2 text-qgray text-[13px] font-normal">
                 City*
               </h1>
-              <Select
+              {/* <Select
                 styles={style}
                 components={{
                   IndicatorSeparator: () => null,
                 }}
-              />
+              /> */}
+              <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
+                <input
+                  name="city"
+                  placeholder="City"
+                  type="text"
+                  maxLength={50}
+                  className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                />
+              </div>
             </div>
           </div>
           <div className="mb-8">
@@ -137,7 +198,10 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 </label>
                 <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
                   <input
+                    name="address"
                     placeholder="Your Address here"
+                    type="text"
+                    maxLength={200}
                     className="placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
                   />
                 </div>
@@ -150,7 +214,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
               Cancel
             </button>
             <button
-              type="button"
+              type="submit"
               className="w-[164px] h-[50px] bg-qyellow rounded text-qblack text-sm"
             >
               Update Profile

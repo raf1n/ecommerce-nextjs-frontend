@@ -1,10 +1,14 @@
-import { ICartResponse, IOrderResponse } from "./../../interfaces/response";
 import {
   IAddress,
   ICartProduct,
   IOrder,
   IReview,
 } from "./../../interfaces/models";
+import {
+  ICartResponse,
+  IOrderResponse,
+  ISingleAddressResponse,
+} from "./../../interfaces/response";
 import {
   ICart,
   ICategories,
@@ -279,6 +283,7 @@ export class EcommerceApi {
     );
   }
 
+  //get all categories
   static async getCategories(): Promise<ICategoriesResponse> {
     const myHeaders = new Headers();
 
@@ -290,6 +295,8 @@ export class EcommerceApi {
 
     return await callFetch(`${API_ENDPOINT}/categories`, requestOptions);
   }
+
+  //get sub categories
   static async getSubCategories(): Promise<ISubCategoriesResponse> {
     const myHeaders = new Headers();
 
@@ -329,6 +336,33 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/addresses`, requestOptions);
+  }
+  //Update Address
+
+  static async updateAddress(
+    data: Partial<IAddress>,
+    slug: string
+  ): Promise<ISingleAddressResponse> {
+    console.log(data);
+    console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: slug ? "PUT" : "POST",
+      headers: myHeaders,
+      body: JSON.stringify(data),
+      redirect: "follow",
+    };
+
+    if (slug) {
+      return await callFetch(
+        `${API_ENDPOINT}/addresses/${slug}`,
+        requestOptions
+      );
+    } else {
+      return await callFetch(`${API_ENDPOINT}/addresses`, requestOptions);
+    }
   }
 
   //Get all address Data
@@ -378,5 +412,60 @@ export class EcommerceApi {
       `${API_ENDPOINT}/cart/delete_all/${user_slug}`,
       requestOptions
     );
+  }
+
+  static async updateUserInfo(
+    email: string,
+    address: object
+  ): Promise<MyFetchInterface> {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "PATCH",
+      headers: myHeaders,
+      redirect: "follow",
+      body: JSON.stringify(address),
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/users/update-profile-info?email=${email}`,
+      requestOptions
+    );
+  }
+
+  static async allOrders(
+    user_slug: string,
+    delivery_status?: string
+  ): Promise<IOrderResponse> {
+    console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    console.log(user_slug);
+    console.log(delivery_status);
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/orders?user_slug=${user_slug}&delivery_status=${
+        delivery_status ? delivery_status : ""
+      }`,
+      requestOptions
+    );
+  }
+
+  static async getLoggedInUser(email: string): Promise<MyFetchInterface> {
+    console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    myHeaders.append("content-type", "application/json");
+    console.log(email);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/users/${email}`, requestOptions);
   }
 }

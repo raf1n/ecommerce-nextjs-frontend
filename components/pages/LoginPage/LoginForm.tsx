@@ -115,6 +115,7 @@ const LoginForm: React.FC<Props> = (props) => {
             setErrorTextLogin("Server Error");
           } else {
             if (res.role == "admin") {
+<<<<<<< HEAD
               setErrorLogin(true);
               setErrorTextLogin("Already registered as Admin");
             } else if (res.role == "seller") {
@@ -127,6 +128,23 @@ const LoginForm: React.FC<Props> = (props) => {
               CookiesHandler.setSlug(res.slug as string);
               setSuccessTextLogin("SignIn Success");
               router.push("/");
+=======
+              setErrorLogin(true)
+              setErrorTextLogin('Already registered as Admin')
+            }
+            else if (res.role == "seller") {
+              setErrorLogin(true)
+              setErrorTextLogin('Already registered as Seller')
+            }
+            else if (res.slug && res.access_token) {
+              controller.setUser(res)
+              setErrorLogin(false)
+              setSuccessLogin(true)
+              CookiesHandler.setAccessToken(res.access_token)
+              CookiesHandler.setSlug(res.slug as string)
+              setSuccessTextLogin('SignIn Success')
+              router.push('/')
+>>>>>>> 94c5b4c54d569e264d585b4c8451137a4dfd777e
             }
           }
         }

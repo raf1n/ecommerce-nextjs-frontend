@@ -1,8 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
+import { IOrder, IUser } from "../../../../interfaces/models";
 
-interface Props {}
+interface Props {
+  allOrders: IOrder[];
+  allCompletedOrders: IOrder[];
+  user: IUser | null;
+}
 
 const ProfileDashboard: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -71,7 +76,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
             Delivery Completed
           </p>
           <span className="text-[40px] text-white group-hover:text-qblacktext font-bold leading-none mt-1 block">
-            4
+            {props.allCompletedOrders.length}
           </span>
         </div>
         <div className="qv-item xl:w-[252px] xl:h-[208px] lg:w-1/2 w-full mb-5 xl:mb-0 bg-qblack group hover:bg-qyellow transition-all duration-300 ease-in-out p-6">
@@ -103,7 +108,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
             Total Orders
           </p>
           <span className="text-[40px] text-white group-hover:text-qblacktext font-bold leading-none mt-1 block">
-            30
+            {props.allOrders.length}
           </span>
         </div>
       </div>
@@ -120,7 +125,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
                     <p>Name:</p>
                   </td>
                   <td className="text-base text-qblack font-medium">
-                    Amaya Hendrix
+                    {props.user?.fullName}
                   </td>
                 </tr>
                 <tr className="flex mb-5">
@@ -128,7 +133,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
                     <p>Email:</p>
                   </td>
                   <td className="text-base text-qblack font-medium">
-                    hijigov511@pahed.com
+                    {props.user?.email}
                   </td>
                 </tr>
                 <tr className="flex mb-5">
@@ -136,7 +141,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
                     <p>phone:</p>
                   </td>
                   <td className="text-base text-qblack font-medium">
-                    01792166627
+                    {props.user?.phone}
                   </td>
                 </tr>
                 <tr className="flex mb-5">
@@ -144,7 +149,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
                     <p>Address:</p>
                   </td>
                   <td className="text-base text-qblack font-medium">
-                    Gandhinagar,Gujarat,India{" "}
+                    {props.user?.address?.address}
                   </td>
                 </tr>
               </tbody>

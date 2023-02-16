@@ -4,7 +4,7 @@ import { ICartProduct, IProduct } from './../../interfaces/models';
 import { EcommerceApi } from './../API/EcommerceApi';
 
 export const CartHandler = {
-   cartSubTotal: (states: IStates) => (states?.cartlistData?.reduce((acc, currItem) => {
+   cartSubTotal: (productsData: ICartProduct[]) => (productsData?.reduce((acc, currItem) => {
     if (currItem.offerPrice) {
       return acc + currItem?.offerPrice * currItem?.quantity;
     } else if (currItem?.price) {

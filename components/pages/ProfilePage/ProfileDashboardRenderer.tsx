@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import ChangePassword from "./ChangePassword/ChangePassword";
@@ -9,25 +9,66 @@ import ProfileDashboard from "./ProfileDashboard/ProfileDashboard";
 import ProfileOrder from "./ProfileOrder/ProfileOrder";
 import ProfileReviews from "./ProfileReviews/ProfileReviews";
 import ProfileWishlist from "./ProfileWishlist/ProfileWishlist";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { IOrder, IUser } from "../../../interfaces/models";
 
 interface Props {}
 
 const ProfileDashboardRenderer: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [allOrders, setAllOrders] = useState<IOrder[]>([]);
+  const [allCompletedOrders, setAllCompletedOrders] = useState<IOrder[]>([]);
+  const [loggedInUser, setLoggedInUser] = useState<IUser | null>(null);
 
   const { asPath } = useRouter();
 
   const hash = asPath.split("#")[1];
+  useEffect(() => {
+    const getAllOrders = async () => {
+      const { res, err } = await EcommerceApi.allOrders("User2");
+      if (res) {
+        setAllOrders(res.data);
+        const completedOrders = res.data.filter(
+          (dt) => dt.delivery_status === "completed"
+        );
+        setAllCompletedOrders(completedOrders);
+      }
+    };
 
+    const getLoggedInUser = async () => {
+      const { res, err } = await EcommerceApi.getLoggedInUser(
+        "rafinc10@gmail.com"
+      );
+      if (res) {
+        setLoggedInUser(res);
+      }
+    };
+
+    // const getAllCompletedOrders = async () => {
+    //   const { res, err } = await EcommerceApi.allOrders("User2", "completed");
+    //   if (res) {
+    //     console.log(res);
+    //   }
+    // };
+    // getAllCompletedOrders();
+    getAllOrders();
+    getLoggedInUser();
+  }, []);
   switch (hash) {
     case "dashboard": {
-      return <ProfileDashboard />;
+      return (
+        <ProfileDashboard
+          user={loggedInUser}
+          allCompletedOrders={allCompletedOrders}
+          allOrders={allOrders}
+        />
+      );
     }
     case "personal_info": {
-      return <PersonalInfo />;
+      return <PersonalInfo user={loggedInUser} />;
     }
     case "order": {
-      return <ProfileOrder />;
+      return <ProfileOrder orders={allOrders} />;
     }
     case "wishlist": {
       return <ProfileWishlist />;
@@ -42,7 +83,13 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
       return <ChangePassword />;
     }
     default: {
-      return <ProfileDashboard />;
+      return (
+        <ProfileDashboard
+          user={loggedInUser}
+          allCompletedOrders={allCompletedOrders}
+          allOrders={allOrders}
+        />
+      );
     }
   }
 };
