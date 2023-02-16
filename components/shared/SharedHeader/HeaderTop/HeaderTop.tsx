@@ -40,6 +40,10 @@ const HeaderTop: React.FC<Props> = (props) => {
     setShowTopAllCatgory(!showTopAllCatgory);
   };
 
+  const handleSearch = (e: any) => {
+    const input = e.target.searchInput.value;
+  };
+
   // const cartSubTotal = () => {
 
   //   for (let i = 0; i < states?.cartlistData?.length; i++) {
@@ -1374,6 +1378,8 @@ const HeaderTop: React.FC<Props> = (props) => {
                     <div className="flex-1 bg-red-500 h-full">
                       <div className="h-full">
                         <input
+                          onChange={handleSearch}
+                          name="searchInput"
                           type="text"
                           className={styles["search-input"]}
                           placeholder="Search Products ..."
