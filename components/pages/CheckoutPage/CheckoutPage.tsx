@@ -81,6 +81,10 @@ const CheckoutPage: React.FC<Props> = (props) => {
       city: selectedAddress?.city,
       address: selectedAddress?.address,
     },
+    subTotal: CartHandler.cartSubTotal(cartListProduct),
+    discount: 100,
+    shippingCost: 50,
+    total: CartHandler.cartSubTotal(cartListProduct) - 100 + 50,
   };
   // console.log(order);
   const handleCheckout = async () => {
@@ -93,7 +97,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
     } else {
       alert("Order successfull");
       controller.setClearCartlist();
-      router.push("/");
+      router.push("/profile");
     }
   };
   // ----------------------------

@@ -45,7 +45,7 @@ const ProfileOrder: React.FC<Props> = (props) => {
               <tr className="bg-white border-b hover:bg-gray-50">
                 <td className="text-center py-4">
                   <span className="text-lg text-qgray font-medium">
-                    {order.order_slug}
+                    {order.slug}
                   </span>
                 </td>
                 <td className="text-center py-4 px-2">
@@ -61,7 +61,7 @@ const ProfileOrder: React.FC<Props> = (props) => {
                 <td className="py-4 flex justify-center">
                   <div className="flex space-x-2 items-center">
                     <Link
-                      href={`/order/${order.order_slug}`}
+                      href={`/order/${order.slug}`}
                       className="w-[116px] h-[46px] bg-qyellow text-qblack font-bold flex justify-center items-center cursor-pointer">
                       <span>View Details</span>
                     </Link>

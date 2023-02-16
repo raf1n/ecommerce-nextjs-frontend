@@ -1,28 +1,33 @@
 import { useRouter } from "next/router";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { IOrder } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
 import ReviewProductModal from "./ReviewProductmodal/ReviewProductModal";
-
+import { CartHandler } from "../../../src/utils/CartHandler";
 interface Props {}
 
 const ViewOrderDetails: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [orderData, setOrderData] = useState<IOrder | null>(null);
 
   const router = useRouter();
   const { asPath } = router;
-  const productSlug = asPath.split("=")[1];
+  const orderSlug = asPath.split("/")[2];
+
+  // console.log(productSlug);
   const [rating, setRating] = useState(0);
   const ratingChanged = (newRating: number) => {
     setRating(newRating);
   };
+
   const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
   const handleReview = (e: any) => {
     e.preventDefault();
     const review = {
-      // product_slug: asPath.split("=")[1],
-      product_slug: "ggg",
+      product_slug: reportModalSlug,
+      order_slug: orderData?.slug,
       user_slug: "user_slug_1",
       name: e.target.name.value,
       message: e.target.message.value,
@@ -33,6 +38,17 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
     setReportModalSlug("");
   };
 
+  const fetchSingleOrder = async () => {
+    const { res, err } = await EcommerceApi.getSingleOrder(orderSlug);
+    if (res) {
+      setOrderData(res);
+    } else {
+    }
+  };
+  useEffect(() => {
+    fetchSingleOrder();
+  }, [orderSlug]);
+  console.log("orderData=", orderData);
   return (
     <div>
       <div className="w-full min-h-screen  pt-[30px] pb-[60px]">
@@ -89,18 +105,26 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                     <ul className="flex flex-col space-y-0.5">
                       <li className="text-[22px]n text-[#4F5562]">
                         Order ID:
-                        <span className="text-[#27AE60]">188686703</span>
+                        <span className="text-[#27AE60]">
+                          {orderData?.slug}
+                        </span>
                       </li>
                       <li className="text-[22px]n text-[#4F5562]">
                         Billing Address:
                         <span className="text-[#27AE60]">
-                          255 Rich IT , Kazir Dewri ,Chattogram
+                          {`City: ${orderData?.address.city}, 
+                         State: ${orderData?.address.state}, 
+                         Country: ${orderData?.address.country}
+                         Additional: ${orderData?.address.address}`}
                         </span>
                       </li>
                       <li className="text-[22px]n text-[#4F5562]">
                         Shipping Address:
                         <span className="text-[#27AE60]">
-                          255 Rich IT , Kazir Dewri ,Chattogram
+                          {`City: ${orderData?.address.city}, 
+                         State: ${orderData?.address.state}, 
+                         Country: ${orderData?.address.country}
+                         Additional: ${orderData?.address.address}`}
                         </span>
                       </li>
                       <li className="text-[22px]n text-[#4F5562]">
@@ -147,48 +171,57 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                           review
                         </td>
                       </tr>
-                      <tr className="bg-white border-b hover:bg-gray-50">
-                        <td className="pl-10 w-[400px] py-4 ">
-                          <div className="flex space-x-6 items-center">
-                            <div className="flex-1 flex flex-col">
-                              <p className="font-medium text-[15px] text-qblack rtl:text-right rtl:pr-10">
-                                JBL headphon max
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className=" py-4">
-                          <div className="flex justify-center items-center">
-                            <div className="w-[54px] h-[40px] justify-center flex items-center border border-qgray-border">
-                              <span>1</span>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="text-center py-4 px-2">
-                          <div className="flex space-x-1 items-center justify-center">
-                            <span className="text-[15px] font-normal">
-                              <span>$</span>
-                              <span>650</span>
-                            </span>
-                          </div>
-                        </td>
-                        <td className="text-center py-4 px-2">
-                          <div className="flex space-x-1 items-center justify-center">
-                            <span className="text-[15px] font-normal">
-                              <span>$</span>
-                              <span>650.00</span>
-                            </span>
-                          </div>
-                        </td>
-                        <td className="text-center py-4 px-2 print:hidden">
-                          <button
-                            onClick={() => setReportModalSlug("rrr")}
-                            type="button"
-                            className="text-green-500 text-sm font-semibold capitalize">
-                            review
-                          </button>
-                        </td>
-                      </tr>
+
+                      {orderData?.product_list.map((order) => (
+                        <>
+                          <tr className="bg-white border-b hover:bg-gray-50">
+                            <td className="pl-10 w-[400px] py-4 ">
+                              <div className="flex space-x-6 items-center">
+                                <div className="flex-1 flex flex-col">
+                                  <p className="font-medium text-[15px] text-qblack rtl:text-right rtl:pr-10">
+                                    {order.productName}
+                                  </p>
+                                </div>
+                              </div>
+                            </td>
+                            <td className=" py-4">
+                              <div className="flex justify-center items-center">
+                                <div className="w-[54px] h-[40px] justify-center flex items-center border border-qgray-border">
+                                  <span>{order.quantity}</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="text-center py-4 px-2">
+                              <div className="flex space-x-1 items-center justify-center">
+                                <span className="text-[15px] font-normal">
+                                  <span>$</span>
+                                  <span>
+                                    {order.offerPrice
+                                      ? order.offerPrice
+                                      : order.price}
+                                  </span>
+                                </span>
+                              </div>
+                            </td>
+                            <td className="text-center py-4 px-2">
+                              <div className="flex space-x-1 items-center justify-center">
+                                <span className="text-[15px] font-normal">
+                                  <span>$</span>
+                                  <span>{CartHandler.getPrice(order)}</span>
+                                </span>
+                              </div>
+                            </td>
+                            <td className="text-center py-4 px-2 print:hidden">
+                              <button
+                                onClick={() => setReportModalSlug(order.slug)}
+                                type="button"
+                                className="text-green-500 text-sm font-semibold capitalize">
+                                review
+                              </button>
+                            </td>
+                          </tr>
+                        </>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -198,21 +231,21 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                       <p className="text-sm text-qblack capitalize">SUBTOTAL</p>
                       <p className="text-sm text-qblack">
                         <span>$</span>
-                        <span>650</span>
+                        <span>{orderData?.subTotal}</span>
                       </p>
                     </div>
                     <div className="flex justify-between font-semibold w-[200px]">
                       <p className="text-sm text-qred">(-) Discount coupon</p>
                       <p className="text-sm text-qred">
                         -<span>$</span>
-                        <span>0</span>
+                        <span>{orderData?.discount}</span>
                       </p>
                     </div>
                     <div className="flex justify-between font-semibold w-[200px]">
                       <p className="text-sm text-qblack">(+) Shipping Cost</p>
                       <p className="text-sm text-qblack">
                         +<span>$</span>
-                        <span>0</span>
+                        <span>{orderData?.shippingCost}</span>
                       </p>
                     </div>
                     <div className="w-full h-[1px] bg-qgray-border mt-4"></div>
@@ -220,7 +253,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                       <p className="text-lg text-qblack">Total Paid</p>
                       <p className="text-lg text-qblack">
                         <span>$</span>
-                        <span>650</span>
+                        <span>{orderData?.total}</span>
                       </p>
                     </div>
                   </div>

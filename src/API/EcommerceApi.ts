@@ -8,6 +8,7 @@ import {
   ICartResponse,
   IOrderResponse,
   ISingleAddressResponse,
+  ISingleOrderResponse,
 } from "./../../interfaces/response";
 import {
   ICart,
@@ -149,24 +150,15 @@ export class EcommerceApi {
     return await callFetch(`${API_ENDPOINT}/orders`, requestOptions);
   }
 
-  // order
-
-  //from denji
-  // static async login(data: Partial<IUser>): Promise<ILoginResponse> {
-  //   console.log(data.token);
-  //   console.log(API_ENDPOINT);
-  //   const myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
-
-  //   const requestOptions = {
-  //     method: "POST",
-  //     headers: myHeaders,
-  //     body: JSON.stringify(data),
-  //     redirect: "follow",
-  //   };
-
-  //   return await callFetch(`${API_ENDPOINT}/users/login`, requestOptions);
-  // }
+  static async getSingleOrder(slug: string): Promise<ISingleOrderResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(`${API_ENDPOINT}/orders/${slug}`, requestOptions);
+  }
 
   static async getAllProducts(): Promise<IProductResponse> {
     const myHeaders = new Headers();
