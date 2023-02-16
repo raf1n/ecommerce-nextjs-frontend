@@ -76,7 +76,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const order = {
     product_list: cartListProduct,
     user_slug: "User2",
-    order_slug: "Order_slug_1",
+
     payment_method: "Bkash",
     transaction_id: "1HJGXX1222",
     delivery_status: "pending",
