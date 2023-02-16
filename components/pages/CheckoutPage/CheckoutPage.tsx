@@ -270,6 +270,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                         setSelectedOption={setSelectedOption}
                         setForm={setForm}
                         form={form}
+                        singleAddressData={undefined}
                       />
                     )}
                   </div>

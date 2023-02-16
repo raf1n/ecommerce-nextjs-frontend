@@ -1,5 +1,6 @@
 import {
   ICartResponse,
+  IOrderResponse,
   ISingleAddressResponse,
   IOrderResponse,
 } from "./../../interfaces/response";
