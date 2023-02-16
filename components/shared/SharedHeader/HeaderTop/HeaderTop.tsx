@@ -7,6 +7,7 @@ import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import styles from "./styles.module.css";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { ICategories } from "../../../../interfaces/models";
+import { useRouter } from "next/router";
 
 interface Props {}
 
@@ -19,6 +20,10 @@ const HeaderTop: React.FC<Props> = (props) => {
   const [searchCategory, setSearchCategory] = useState<ICategories | undefined>(
     undefined
   );
+
+  const [searchString, setSearchString] = useState("");
+
+  const router = useRouter();
 
   const sideDropdown = () => {
     console.log("open");
@@ -36,14 +41,15 @@ const HeaderTop: React.FC<Props> = (props) => {
   };
 
   const handleSearch = (e: any) => {
-    const input = e.target.searchInput.value;
-    console.log(input);
+    const input = e.target.value;
+    setSearchString(input);
   };
 
   const fetchAllCategories = async () => {
     const { res, err } = await EcommerceApi.getCategories();
     if (res) {
       controller.setCategories(res);
+      console.log(res);
     }
   };
 
@@ -817,7 +823,24 @@ const HeaderTop: React.FC<Props> = (props) => {
                         </div>
                       )}
                     </div>
-                    <button className="search-btn w-[93px] bg-qyellow h-full text-sm font-semibold">
+                    <button
+                      onClick={() => {
+                        if (searchCategory || searchString) {
+                          router.push(
+                            `/products?${
+                              searchString ? `search=${searchString}` : ""
+                            }${
+                              searchCategory
+                                ? `${searchString ? "&" : ""}category=${
+                                    searchCategory.cat_name
+                                  }`
+                                : ""
+                            }`
+                          );
+                        }
+                      }}
+                      className="search-btn w-[93px] bg-qyellow h-full text-sm font-semibold"
+                    >
                       Search
                     </button>
                   </div>
