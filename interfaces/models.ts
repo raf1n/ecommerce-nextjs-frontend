@@ -49,8 +49,9 @@ export interface IWishlistProduct extends IProduct {
 }
 
 export interface IOrder {
+  order_slug: string;
+  createdAt?: string;
   product_list: ICartProduct[];
-  order_slug?: string;
   payment_method: string;
   user_slug: string;
   transaction_id: string;

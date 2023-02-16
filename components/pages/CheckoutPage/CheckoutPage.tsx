@@ -352,7 +352,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                           SUBTOTAL
                         </p>
                         <p className="text-[15px] font-bold text-qblack uppercase">
-                          ${CartHandler.cartSubTotal(states)}
+                          ${CartHandler.cartSubTotal(states.cartlistData)}
                         </p>
                       </div>
                       <div className=" flex justify-between mb-5">
@@ -379,7 +379,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                           Total
                         </p>
                         <p className="text-2xl font-medium text-qred">
-                          ${CartHandler.cartSubTotal(states)}
+                          ${CartHandler.cartSubTotal(states.cartlistData)}
                         </p>
                       </div>
                     </div>
