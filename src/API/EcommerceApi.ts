@@ -1,5 +1,6 @@
 import {
   ICartResponse,
+  IOrderResponse,
   ISingleAddressResponse,
 } from "./../../interfaces/response";
 import { IAddress, ICartProduct, IOrder } from "./../../interfaces/models";
@@ -130,7 +131,7 @@ export class EcommerceApi {
     );
   }
   // order
-  static async postOrder(order: IOrder): Promise<Object> {
+  static async postOrder(order: IOrder): Promise<IOrderResponse> {
     console.log("from api", order);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -393,6 +394,26 @@ export class EcommerceApi {
 
     return await callFetch(
       `${API_ENDPOINT}/cart/delete_all/${user_slug}`,
+      requestOptions
+    );
+  }
+  static async allOrders(
+    user_slug: string,
+    delivery_status?: string
+  ): Promise<IOrderResponse> {
+    console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    console.log(user_slug);
+    console.log(delivery_status);
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/orders?user_slug=${user_slug}&delivery_status=${
+        delivery_status ? delivery_status : ""
+      }`,
       requestOptions
     );
   }

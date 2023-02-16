@@ -18,7 +18,7 @@ const SingleProduct: React.FC<Props> = (props) => {
   const { asPath } = router;
   const { itemDetail } = Jsondata;
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
-  const [brand, setBrand] = useState<string | any>("");
+  // const [brand, setBrand] = useState<string | any>("");
 
   console.log(asPath.split("=")[1]);
   const productSlug = asPath.split("=")[1];
@@ -27,11 +27,11 @@ const SingleProduct: React.FC<Props> = (props) => {
     const fetchProductData = async () => {
       const { res, err } = await EcommerceApi.getSingleProduct(productSlug);
       setSingleProduct(res);
-      console.log(states.brands);
-      const brandName = states.brands.find(
-        (brand) => brand.slug === res?.brandSlug
-      );
-      setBrand(brandName?.name);
+      // console.log(states.brands);
+      // const brandName = states.brands.find(
+      //   (brand) => brand.slug === res?.brandSlug
+      // );
+      // setBrand(brandName?.name);
     };
 
     if (!states.initialDataLoading) {
@@ -57,23 +57,27 @@ const SingleProduct: React.FC<Props> = (props) => {
           <div className="container-x mx-auto ">
             <Breadcrumb
               slug={`${itemDetail.name}`}
-              link={`${itemDetail.slug}`}></Breadcrumb>
+              link={`${itemDetail.slug}`}
+            ></Breadcrumb>
             <div className="lg:flex justify-between">
               <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
                 <ItemDetailsLeft
-                  singleProduct={singleProduct}></ItemDetailsLeft>
+                  singleProduct={singleProduct}
+                ></ItemDetailsLeft>
               </div>
               <div className="flex-1">
                 <ProductDetails
-                  brand={brand}
+                  // brand={brand}
                   setReportModalSlug={setReportModalSlug}
-                  singleProduct={singleProduct}></ProductDetails>
+                  singleProduct={singleProduct}
+                ></ProductDetails>
               </div>
             </div>
             <ReportedItemModal
               setReportModalSlug={setReportModalSlug}
               handleReport={handleReport}
-              reportModalSlug={reportModalSlug}></ReportedItemModal>
+              reportModalSlug={reportModalSlug}
+            ></ReportedItemModal>
           </div>
         </div>
       </div>

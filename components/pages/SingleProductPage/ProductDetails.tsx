@@ -1,18 +1,15 @@
 import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-// import { ShareSocial } from "react-share-social";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
-import { FaRegHeart, FaFlag, FaFacebookF, FaTwitter } from "react-icons/fa";
+import { FaRegHeart, FaFlag } from "react-icons/fa";
 
 // import ReactStars from "react-rating-stars-component";
 import { useRouter } from "next/router";
 import FacebookIcon from "react-share/lib/FacebookIcon";
 import TwitterIcon from "react-share/lib/TwitterIcon";
-import ReportedItemModal from "./ReportedItemModal/ReportedItemModal";
+
 import { IProduct } from "../../../interfaces/models";
-import SingleProduct from "./SingleProduct";
-import { state } from "usm-redux";
 
 // const secondExample = {
 //   size: 50,
@@ -60,13 +57,26 @@ import { state } from "usm-redux";
 // };
 
 interface Props {
-  brand: string;
+  // brand: string;
   singleProduct: IProduct | null;
   setReportModalSlug: Dispatch<SetStateAction<string>>;
 }
 
 const ProductDetails: React.FC<Props> = (props) => {
+  const { singleProduct } = props;
   const states = useSelector(() => controller.states);
+  const [brandName, setBrandName] = useState<string | undefined>("");
+  useEffect(() => {
+    const handleBrand = () => {
+      if (states.brands && singleProduct && singleProduct.brandSlug) {
+        let brand = states.brands.find(
+          (b) => b.slug === singleProduct.brandSlug
+        );
+        setBrandName(brand?.name);
+      }
+    };
+    handleBrand();
+  }, [singleProduct]);
   const { setReportModalSlug } = props;
   const router = useRouter();
 
@@ -78,10 +88,9 @@ const ProductDetails: React.FC<Props> = (props) => {
   return (
     <div className="mt-10 lg:mt-0">
       <span className="text-xs text-qgray font-normal uppercase tracking-wider mb-2 inline-block">
-        {/* {props.singleProduct.brand} */}
-        {/* {brand} */}
-        {props.brand}
+        {brandName}
       </span>
+
       <h1 className="text-xl text-qblack font-medium mb-4">
         {props.singleProduct?.productName}
       </h1>
@@ -254,12 +263,11 @@ const ProductDetails: React.FC<Props> = (props) => {
             style={style}
           /> */}
 
-          <button
+          {/* <button
             aria-label="facebook"
             className="bg-transparent border-none p-0 cursor-pointer"
           >
             <span className="cursor-pointer">
-              {/* <FaFacebookF className="text-blue-900" /> */}
               <FacebookShareButton url={shareableRoute}>
                 <FacebookIcon
                   size={40}
@@ -274,7 +282,6 @@ const ProductDetails: React.FC<Props> = (props) => {
             className="bg-transparent border-none p-0 cursor-pointer"
           >
             <span className="cursor-pointer">
-              {/* <FaTwitter className="text-blue-400" /> */}
               <TwitterShareButton url={shareableRoute}>
                 <TwitterIcon
                   size={40}
@@ -283,7 +290,7 @@ const ProductDetails: React.FC<Props> = (props) => {
                 />
               </TwitterShareButton>
             </span>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

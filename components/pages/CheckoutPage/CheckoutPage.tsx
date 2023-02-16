@@ -15,7 +15,7 @@ import SharedDeleteModal from "../../shared/SharedDeleteModal/SharedDeleteModal"
 import { useRouter } from "next/navigation";
 
 interface Props {
-  cartlistData: ICart;
+  // cartlistData: ICart;
 }
 const CheckoutPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -72,15 +72,26 @@ const CheckoutPage: React.FC<Props> = (props) => {
     fetchOrderSum();
   }, []);
   // -------------------------
+
   const order = {
     product_list: cartListProduct,
     user_slug: "User2",
     order_slug: "Order_slug_1",
     payment_method: "Bkash",
     transaction_id: "1HJGXX1222",
+    delivery_status: "pending",
+    address: {
+      country: selectedAddress?.country,
+      state: selectedAddress?.state,
+      city: selectedAddress?.city,
+      address: selectedAddress?.address,
+    },
   };
   // console.log(order);
   const handleCheckout = async () => {
+    if (!selectedAddress) {
+      return;
+    }
     const { res, err } = await EcommerceApi.postOrder(order);
     if (err) {
       console.log(err);
