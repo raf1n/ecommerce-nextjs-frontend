@@ -13,16 +13,22 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
   const router = useRouter();
   const { asPath } = router;
   const productSlug = asPath.split("=")[1];
-
+  const [rating, setRating] = useState(0);
+  const ratingChanged = (newRating: number) => {
+    setRating(newRating);
+  };
   const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
   const handleReview = (e: any) => {
     e.preventDefault();
     const review = {
-      product_slug: asPath.split("=")[1],
+      // product_slug: asPath.split("=")[1],
+      product_slug: "ggg",
       user_slug: "user_slug_1",
       name: e.target.name.value,
       message: e.target.message.value,
+      rating: rating,
     };
+
     EcommerceApi.addReview(review);
     setReportModalSlug("");
   };
@@ -225,6 +231,8 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
       </div>
       {/*  */}
       <ReviewProductModal
+        rating={rating}
+        ratingChanged={ratingChanged}
         setReportModalSlug={setReportModalSlug}
         reportModalSlug={reportModalSlug}
         handleReview={handleReview}

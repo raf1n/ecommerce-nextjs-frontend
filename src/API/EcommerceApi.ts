@@ -203,7 +203,7 @@ export class EcommerceApi {
     return await callFetch(`${API_ENDPOINT}/reporteditems`, requestOptions);
   }
   // ---------------------------------------------------
-  static async addReview(data: Partial<IReview>): Promise<MyFetchInterface> {
+  static async addReview(data: IReview): Promise<MyFetchInterface> {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const requestOptions = {
@@ -212,7 +212,8 @@ export class EcommerceApi {
       body: JSON.stringify(data),
       redirect: "follow",
     };
-    return await callFetch(`${API_ENDPOINT}/xxxxx`, requestOptions);
+
+    return await callFetch(`${API_ENDPOINT}/reviews`, requestOptions);
   }
 
   static async getAllCartData(query: string): Promise<IInitialCartResponse> {

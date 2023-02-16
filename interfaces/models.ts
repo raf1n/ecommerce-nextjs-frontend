@@ -64,9 +64,9 @@ export interface IReportedItem {
   note?: string;
 }
 export interface IReview {
-  slug?: string;
-  product_slug?: string;
+  // slug?: string;
   user_slug?: string;
+  product_slug?: string;
   title?: string;
   note?: string;
 }

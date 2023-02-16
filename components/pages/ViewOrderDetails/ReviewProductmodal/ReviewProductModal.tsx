@@ -1,16 +1,26 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
+//@ts-ignore
+import ReactStars from "react-rating-stars-component";
 
 interface Props {
   reportModalSlug: string;
   setReportModalSlug: Dispatch<SetStateAction<string>>;
   handleReview: Function;
+  ratingChanged: Function;
+  rating: number;
 }
 
 const ReviewProductModal: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const { handleReview, reportModalSlug, setReportModalSlug } = props;
+  const {
+    handleReview,
+    reportModalSlug,
+    setReportModalSlug,
+    ratingChanged,
+    rating,
+  } = props;
 
   return (
     <>
@@ -41,65 +51,18 @@ const ReviewProductModal: React.FC<Props> = (props) => {
                 <div className="w-full mb-5">
                   {/* *******  Rating ********8 */}
                   <div className="flex space-x-1 items-center mb-[30px]">
-                    <div className="star-rating flex">
-                      <button type="button" className="text-[#D2D8E1]">
-                        <svg
-                          width="19"
-                          height="18"
-                          viewBox="0 0 19 18"
-                          fill="none"
-                          className="fill-current"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9.5 0L11.6329 6.56434H18.535L12.9511 10.6213L15.084 17.1857L9.5 13.1287L3.91604 17.1857L6.04892 10.6213L0.464963 6.56434H7.36712L9.5 0Z"></path>
-                        </svg>
-                      </button>
-                      <button type="button" className="text-[#D2D8E1]">
-                        <svg
-                          width="19"
-                          height="18"
-                          viewBox="0 0 19 18"
-                          fill="none"
-                          className="fill-current"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9.5 0L11.6329 6.56434H18.535L12.9511 10.6213L15.084 17.1857L9.5 13.1287L3.91604 17.1857L6.04892 10.6213L0.464963 6.56434H7.36712L9.5 0Z"></path>
-                        </svg>
-                      </button>
-                      <button type="button" className="text-[#D2D8E1]">
-                        <svg
-                          width="19"
-                          height="18"
-                          viewBox="0 0 19 18"
-                          fill="none"
-                          className="fill-current"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9.5 0L11.6329 6.56434H18.535L12.9511 10.6213L15.084 17.1857L9.5 13.1287L3.91604 17.1857L6.04892 10.6213L0.464963 6.56434H7.36712L9.5 0Z"></path>
-                        </svg>
-                      </button>
-                      <button type="button" className="text-[#D2D8E1]">
-                        <svg
-                          width="19"
-                          height="18"
-                          viewBox="0 0 19 18"
-                          fill="none"
-                          className="fill-current"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9.5 0L11.6329 6.56434H18.535L12.9511 10.6213L15.084 17.1857L9.5 13.1287L3.91604 17.1857L6.04892 10.6213L0.464963 6.56434H7.36712L9.5 0Z"></path>
-                        </svg>
-                      </button>
-                      <button type="button" className="text-[#D2D8E1]">
-                        <svg
-                          width="19"
-                          height="18"
-                          viewBox="0 0 19 18"
-                          fill="none"
-                          className="fill-current"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9.5 0L11.6329 6.56434H18.535L12.9511 10.6213L15.084 17.1857L9.5 13.1287L3.91604 17.1857L6.04892 10.6213L0.464963 6.56434H7.36712L9.5 0Z"></path>
-                        </svg>
-                      </button>
-                    </div>
+                    <ReactStars
+                      count={5}
+                      onChange={ratingChanged}
+                      size={24}
+                      isHalf={true}
+                      emptyIcon={<i className="far fa-star"></i>}
+                      halfIcon={<i className="fa fa-star-half-alt"></i>}
+                      fullIcon={<i className="fa fa-star"></i>}
+                      activeColor="#ffd700"
+                    />
                     <span className="text-qblack text-[15px] font-normal mt-1">
-                      (0.0)
+                      {rating}
                     </span>
                   </div>
                   {/* ****************** */}
