@@ -1,11 +1,33 @@
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { IProduct } from "../../../../interfaces/models";
+import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { controller } from "../../../../src/state/StateController";
+import ReviewCard from "../../SingleProductPage/ReviewCard";
 
 interface Props {}
 
-const Itemdetails: React.FC<Props> = (props) => {
+const ItemDetails: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
+  const router = useRouter();
+  const { asPath } = router;
+  const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
+
+  console.log(asPath.split("=")[1]);
+  const productSlug = asPath.split("=")[1];
+
+  useEffect(() => {
+    const fetchProductData = async () => {
+      const { res, err } = await EcommerceApi.getSingleProduct(productSlug);
+      setSingleProduct(res);
+    };
+
+    if (!states.initialDataLoading) {
+      fetchProductData();
+    }
+  }, [productSlug, states.initialDataLoading]);
 
   return (
     <div className="w-full bg-qgrayBorder">
@@ -18,9 +40,6 @@ const Itemdetails: React.FC<Props> = (props) => {
                   Description
                 </span>
               </li>
-              {/* <li>
-                                <span className='py-[15px] sm:text-[15px] text-sm sm:block border-b font-medium cursor-pointer border-transparent text-qgray'>Reviews</span>
-                            </li> */}
             </ul>
           </div>
           <div className="w-full h-[1px] bg-[#c1cccc] relative left-0 sm:top-[00px] top-[36px] -z-1"></div>
@@ -58,14 +77,15 @@ const Itemdetails: React.FC<Props> = (props) => {
           </div>
           <div>
             <h6 className="text-[20px] font-bold text-qblack mb-5 ">Reviews</h6>
-            <div className="text-qgray">
+            {/* <div className="text-qgray">
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
                 aut labore deleniti accusamus laboriosam? Eum non, ipsum sit
                 debitis consectetur sunt ut autem dolore, molestiae est vel
                 explicabo dignissimos voluptatibus.
               </p>
-            </div>
+            </div> */}
+            <ReviewCard />
           </div>
         </div>
       </div>
@@ -73,4 +93,4 @@ const Itemdetails: React.FC<Props> = (props) => {
   );
 };
 
-export default Itemdetails;
+export default ItemDetails;
