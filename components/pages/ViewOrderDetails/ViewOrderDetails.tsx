@@ -110,13 +110,13 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                         </span>
                       </li>
                       <li className="text-[22px]n text-[#4F5562]">
-                        Billing Address:
+                        {/* Billing Address:
                         <span className="text-[#27AE60]">
                           {`City: ${orderData?.address.city}, 
                          State: ${orderData?.address.state}, 
                          Country: ${orderData?.address.country}
                          Additional: ${orderData?.address.address}`}
-                        </span>
+                        </span> */}
                       </li>
                       <li className="text-[22px]n text-[#4F5562]">
                         Shipping Address:
