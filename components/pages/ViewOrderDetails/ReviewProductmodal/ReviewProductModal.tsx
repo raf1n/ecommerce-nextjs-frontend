@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 interface Props {
   reportModalSlug: string;
@@ -56,16 +57,17 @@ const ReviewProductModal: React.FC<Props> = (props) => {
                       onChange={ratingChanged}
                       size={24}
                       isHalf={true}
-                      emptyIcon={<i className="far fa-star"></i>}
-                      halfIcon={<i className="fa fa-star-half-alt"></i>}
-                      fullIcon={<i className="fa fa-star"></i>}
+                      emptyIcon={<FaRegStar />}
+                      halfIcon={<FaStarHalfAlt />}
+                      fullIcon={<FaStar />}
                       activeColor="#ffd700"
+                      color="#d3d3d3"
                     />
                     <span className="text-qblack text-[15px] font-normal mt-1">
                       {rating}
                     </span>
                   </div>
-                  {/* ****************** */}
+                  {/* ****************** */}          
 
                   <div className="input-com w-full h-full">
                     <label
