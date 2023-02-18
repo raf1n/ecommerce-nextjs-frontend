@@ -131,4 +131,5 @@ export interface IAddress {
   city: string;
   address: string;
   slug: string;
+  user_slug: string;
 }
