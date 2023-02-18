@@ -1,16 +1,26 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
+//@ts-ignore
+import ReactStars from "react-rating-stars-component";
 
 interface Props {
   reportModalSlug: string;
   setReportModalSlug: Dispatch<SetStateAction<string>>;
-  handleReport: Function;
+  handleReview: Function;
+  ratingChanged: Function;
+  rating: number;
 }
 
-const ReportedItemModal: React.FC<Props> = (props) => {
+const ReviewProductModal: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const { handleReport, reportModalSlug, setReportModalSlug } = props;
+  const {
+    handleReview,
+    reportModalSlug,
+    setReportModalSlug,
+    ratingChanged,
+    rating,
+  } = props;
 
   return (
     <>
@@ -37,18 +47,36 @@ const ReportedItemModal: React.FC<Props> = (props) => {
                   </svg>
                 </span>
               </div>
-              <form onSubmit={(e) => handleReport(e)} className="inputs w-full">
+              <form onSubmit={(e) => handleReview(e)} className="inputs w-full">
                 <div className="w-full mb-5">
+                  {/* *******  Rating ********8 */}
+                  <div className="flex space-x-1 items-center mb-[30px]">
+                    <ReactStars
+                      count={5}
+                      onChange={ratingChanged}
+                      size={24}
+                      isHalf={true}
+                      emptyIcon={<i className="far fa-star"></i>}
+                      halfIcon={<i className="fa fa-star-half-alt"></i>}
+                      fullIcon={<i className="fa fa-star"></i>}
+                      activeColor="#ffd700"
+                    />
+                    <span className="text-qblack text-[15px] font-normal mt-1">
+                      {rating}
+                    </span>
+                  </div>
+                  {/* ****************** */}
+
                   <div className="input-com w-full h-full">
                     <label
                       className="input-label capitalize block  mb-2 text-[13px] font-600 leading-[24px] text-qblack"
                       htmlFor="name">
-                      Enter Report Title*
+                      Name
                     </label>
                     <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                       <input
-                        name="title"
-                        placeholder="Reports Headline here"
+                        name="name"
+                        placeholder=""
                         className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                         type="text"
                         id="name"
@@ -58,20 +86,20 @@ const ReportedItemModal: React.FC<Props> = (props) => {
                 </div>
                 <div className="w-full mb-[40px]">
                   <h6 className="input-label capitalize text-[13px] font-600 leading-[24px] text-qblack block mb-2 ">
-                    Enter Report Note*
+                    Message
                   </h6>
                   <textarea
-                    name="note"
+                    name="message"
                     id=""
                     cols={30}
                     rows={6}
                     className="w-full focus:ring-0 focus:outline-none py-3 px-4 border  placeholder:text-sm text-sm border-qgray-border"
-                    placeholder="Type Here"></textarea>
+                    placeholder=""></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="black-btn flex h-[50px] items-center justify-center w-full">
-                  <span>Submit Report</span>
+                  className="black-btn flex w-1/2 h-[50px] items-center justify-center ">
+                  <span>Submit Review</span>
                 </button>
               </form>
             </div>
@@ -84,4 +112,4 @@ const ReportedItemModal: React.FC<Props> = (props) => {
   );
 };
 
-export default ReportedItemModal;
+export default ReviewProductModal;

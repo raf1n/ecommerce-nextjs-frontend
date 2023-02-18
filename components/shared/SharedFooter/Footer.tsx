@@ -11,11 +11,11 @@ const Footer: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <>
+    <div className="print:hidden">
       <FooterCta />
       <FooterBody />
       <FooterBottom />
-    </>
+    </div>
   );
 };
 

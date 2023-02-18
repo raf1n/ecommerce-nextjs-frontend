@@ -25,7 +25,9 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
   const hash = asPath.split("#")[1];
   useEffect(() => {
     const getAllOrders = async () => {
-      const { res, err } = await EcommerceApi.allOrders("User2");
+      const { res, err } = await EcommerceApi.allOrders("user_slug_1");
+      console.log(res);
+      console.log(err);
       if (res) {
         setAllOrders(res.data);
         const completedOrders = res.data.filter(

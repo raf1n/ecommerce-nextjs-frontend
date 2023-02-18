@@ -55,7 +55,11 @@ export interface IWishlistProduct extends IProduct {
 }
 
 export interface IOrder {
-  order_slug?: string;
+  subTotal: number;
+  discount: number;
+  shippingCost: number;
+  total: number;
+  slug?: string;
   createdAt?: string;
   product_list: ICartProduct[];
   payment_method: string;
@@ -74,6 +78,13 @@ export interface IReportedItem {
   slug?: string;
   product_slug?: string;
   user_slug?: string;
+  title?: string;
+  note?: string;
+}
+export interface IReview {
+  // slug?: string;
+  user_slug?: string;
+  product_slug?: string;
   title?: string;
   note?: string;
 }
