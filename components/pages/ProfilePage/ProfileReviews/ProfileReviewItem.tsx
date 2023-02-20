@@ -23,8 +23,7 @@ const ProfileReviewItem: React.FC<Props> = ({
   return (
     <div
       className="min-h-[170px] bg-white group"
-      style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px" }}
-    >
+      style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px" }}>
       <div className="flex gap-x-2 items-center w-full h-full p-2 relative">
         <div className="w-1/3 h-full flex justify-center">
           <img className="max-h-[152px] object-contain" src={imageUrl} alt="" />
@@ -44,12 +43,10 @@ const ProfileReviewItem: React.FC<Props> = ({
                   viewBox="0 0 18 17"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="fill-current"
-                >
+                  className="fill-current">
                   <path
                     d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                    fill="#FFA800"
-                  ></path>
+                    fill="#FFA800"></path>
                 </svg>
               </span>
               <span>
@@ -59,12 +56,10 @@ const ProfileReviewItem: React.FC<Props> = ({
                   viewBox="0 0 18 17"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="fill-current"
-                >
+                  className="fill-current">
                   <path
                     d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                    fill="#FFA800"
-                  ></path>
+                    fill="#FFA800"></path>
                 </svg>
               </span>
               <span>
@@ -74,12 +69,10 @@ const ProfileReviewItem: React.FC<Props> = ({
                   viewBox="0 0 18 17"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="fill-current"
-                >
+                  className="fill-current">
                   <path
                     d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                    fill="#FFA800"
-                  ></path>
+                    fill="#FFA800"></path>
                 </svg>
               </span>
               <span>
@@ -89,12 +82,10 @@ const ProfileReviewItem: React.FC<Props> = ({
                   viewBox="0 0 18 17"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="fill-current"
-                >
+                  className="fill-current">
                   <path
                     d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                    fill="#FFA800"
-                  ></path>
+                    fill="#FFA800"></path>
                 </svg>
               </span>
               <span>
@@ -104,20 +95,18 @@ const ProfileReviewItem: React.FC<Props> = ({
                   viewBox="0 0 18 17"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="fill-current"
-                >
+                  className="fill-current">
                   <path
                     d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                    fill="#FFA800"
-                  ></path>
+                    fill="#FFA800"></path>
                 </svg>
               </span>
             </div>
             <div className="flex mb-1.5"></div>
             <Link href={`/single_product/slug=${slug}`}>
-            <h6 className="title mb-2 sm:text-[15px] text-[13px] font-600 text-qblack leading-[24px] line-clamp-1 hover:text-blue-600 cursor-pointer">
-              {productName}
-            </h6>
+              <h6 className="title mb-2 sm:text-[15px] text-[13px] font-600 text-qblack leading-[24px] line-clamp-1 hover:text-blue-600 cursor-pointer">
+                {productName}
+              </h6>
             </Link>
             <p className="price mb-[26px] text-sm text-qgray line-clamp-2">
               {message}
