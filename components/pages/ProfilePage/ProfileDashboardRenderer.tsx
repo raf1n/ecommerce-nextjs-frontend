@@ -31,7 +31,7 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
       if (res) {
         setAllOrders(res.data);
         const completedOrders = res.data.filter(
-          (dt) => dt.delivery_status === "completed"
+          (dt) => dt.order_status === "completed"
         );
         setAllCompletedOrders(completedOrders);
       }
