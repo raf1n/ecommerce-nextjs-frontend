@@ -428,20 +428,20 @@ export class EcommerceApi {
 
   static async allOrders(
     user_slug: string,
-    delivery_status?: string
+    order_status?: string
   ): Promise<IOrderResponse> {
     console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     console.log(user_slug);
-    console.log(delivery_status);
+    console.log(order_status);
     const requestOptions = {
       headers: myHeaders,
       redirect: "follow",
     };
 
     return await callFetch(
-      `${API_ENDPOINT}/orders?user_slug=${user_slug}&delivery_status=${
-        delivery_status ? delivery_status : ""
+      `${API_ENDPOINT}/orders?user_slug=${user_slug}&order_status=${
+        order_status ? order_status : ""
       }`,
       requestOptions
     );
