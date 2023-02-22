@@ -5,12 +5,16 @@ import { controller } from "../../../src/state/StateController";
 
 interface Props {
   brand: IBrands;
+  handleBrandSelect: Function;
 }
 
 const FilterCheckBrand: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  const { slug, name } = props.brand;
+  const {
+    brand: { slug, name },
+    handleBrandSelect,
+  } = props;
 
   return (
     <li className="mb-5 flex gap-x-[14px] items-center">
@@ -19,6 +23,7 @@ const FilterCheckBrand: React.FC<Props> = (props) => {
         value={slug}
         type="checkbox"
         name={`${name}`}
+        onChange={(e) => handleBrandSelect(e.target.value)}
       />
       <label
         htmlFor={"brand_" + slug}

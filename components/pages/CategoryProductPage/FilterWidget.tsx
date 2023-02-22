@@ -7,7 +7,8 @@ import "react-input-range/lib/css/index.css";
 import { Jsondata } from "../../../src/utils/Jsondata";
 import FilterCheckCategory from "./FilterCheckCategory";
 import FilterHeader from "./FilterHeader";
-import FilterCheckBrand from './FilterCheckBrand';
+import FilterCheckBrand from "./FilterCheckBrand";
+import { useEffect } from "react";
 
 interface Props {
   value: { min: number; max: number };
@@ -17,6 +18,29 @@ interface Props {
 const FilterWidget: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const { value, setValue } = props;
+
+  const [filterCategory, setFilterCategory] = useState("");
+  const [filterBrand, setFilterBrand] = useState("");
+
+  useEffect(() => {}, [])
+
+  
+  const handleCategorySelect = (category) => {
+    if (filterCategory.includes(category)) {
+      setFilterCategory((prevCategory) => prevCategory.replace("+" + category, ""));
+    } else {
+      setFilterCategory((prevCategory) => prevCategory + "+" + category);
+    }
+  };
+  
+  const handleBrandSelect = (brand) => {
+    if (filterBrand.includes(brand)) {
+      setFilterBrand((prevBrand) => prevBrand.replace("+" + brand, ""));
+    } else {
+      setFilterBrand((prevBrand) => prevBrand + "+" + brand);
+    }
+  };
+
   return (
     <div className="w-full bg-white px-[30px] pt-[40px] mb-[30px] hidden lg:block">
       <div className="pb-10 border-b border-gray-200">
@@ -24,7 +48,11 @@ const FilterWidget: React.FC<Props> = (props) => {
 
         <ul>
           {states.categories.map((category, i) => (
-            <FilterCheckCategory key={category.cat_slug} category={category} />
+            <FilterCheckCategory
+              key={category.cat_slug}
+              category={category}
+              handleCategorySelect={handleCategorySelect}
+            />
           ))}
         </ul>
       </div>
@@ -51,7 +79,7 @@ const FilterWidget: React.FC<Props> = (props) => {
 
         <ul>
           {states.brands.map((brand, i) => (
-            <FilterCheckBrand key={brand.slug} brand={brand} />
+            <FilterCheckBrand key={brand.slug} brand={brand} handleBrandSelect={handleBrandSelect} />
           ))}
         </ul>
       </div>

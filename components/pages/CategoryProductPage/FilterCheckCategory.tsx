@@ -5,12 +5,13 @@ import { controller } from "../../../src/state/StateController";
 
 interface Props {
   category: ICategories;
+  handleCategorySelect: Function;
 }
 
 const FilterCheckCategory: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  const { cat_name, cat_slug } = props.category;
+  const { category: { cat_slug, cat_name}, handleCategorySelect } = props;
 
   return (
     <li className="mb-5 flex gap-x-[14px] items-center">
@@ -19,6 +20,7 @@ const FilterCheckCategory: React.FC<Props> = (props) => {
         value={cat_slug}
         type="checkbox"
         name={`${cat_name}`}
+        onChange={(e) => handleCategorySelect(e.target.value)}
       />
       <label
         htmlFor={"cat_" + cat_slug}
