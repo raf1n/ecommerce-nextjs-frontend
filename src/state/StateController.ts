@@ -156,7 +156,6 @@ export class Controller {
 
   @action
   setAllWishlistData(products: Array<IProduct>) {
-    console.log(products);
     this.states.wishlistData = products;
   }
 

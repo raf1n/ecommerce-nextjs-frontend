@@ -26,17 +26,17 @@ const HeaderTop: React.FC<Props> = (props) => {
   const router = useRouter();
 
   const sideDropdown = () => {
-    console.log("open");
+    // console.log("open");
     setSideDropdownOpen(!sideDropdownOpen);
   };
 
   const routeSideDropdown = () => {
-    console.log("open2");
+    // console.log("open2");
     setShowCategory(!showCategory);
   };
 
   const topAllCategoriesDropdown = () => {
-    console.log("open2");
+    // console.log("open2");
     setShowTopAllCatgory(!showTopAllCatgory);
   };
 
@@ -49,7 +49,7 @@ const HeaderTop: React.FC<Props> = (props) => {
     const { res, err } = await EcommerceApi.getCategories();
     if (res) {
       controller.setCategories(res);
-      console.log(res);
+      // console.log(res);
     }
   };
 
