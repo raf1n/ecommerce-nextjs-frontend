@@ -5,8 +5,9 @@ import InputRange from "react-input-range";
 import { controller } from "../../../src/state/StateController";
 import "react-input-range/lib/css/index.css";
 import { Jsondata } from "../../../src/utils/Jsondata";
-import FilterCheckbox from "./FilterCheckbox";
+import FilterCheckCategory from "./FilterCheckCategory";
 import FilterHeader from "./FilterHeader";
+import FilterCheckBrand from './FilterCheckBrand';
 
 interface Props {
   value: { min: number; max: number };
@@ -22,8 +23,8 @@ const FilterWidget: React.FC<Props> = (props) => {
         <FilterHeader title="Product categories" />
 
         <ul>
-          {Jsondata.checkCategoryFilterData.map((filter, i) => (
-            <FilterCheckbox key={i} filter={filter} />
+          {states.categories.map((category, i) => (
+            <FilterCheckCategory key={category.cat_slug} category={category} />
           ))}
         </ul>
       </div>
@@ -49,8 +50,8 @@ const FilterWidget: React.FC<Props> = (props) => {
         <FilterHeader title="Brands" />
 
         <ul>
-          {Jsondata.checkBrandFilterData.map((filter, i) => (
-            <FilterCheckbox key={i} filter={filter} />
+          {states.brands.map((brand, i) => (
+            <FilterCheckBrand key={brand.slug} brand={brand} />
           ))}
         </ul>
       </div>
