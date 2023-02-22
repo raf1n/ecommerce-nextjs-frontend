@@ -20,7 +20,11 @@ const ShopByBrand: React.FC<Props> = (props) => {
               <>
                 <Link href={`/products?brand=${brand.slug}`}>
                   <div className="grid bg-white border border-primarygray place-items-center border-gray-200 h-32 px-5">
-                    <img src={brand.logo} alt="" />{" "}
+                    <img
+                      style={{ objectFit: "cover" }}
+                      src={brand.logo}
+                      alt=""
+                    />{" "}
                   </div>
                 </Link>
               </>
