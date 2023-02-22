@@ -12,7 +12,7 @@ const CategoryPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div className="container-x mx-auto">
+    <div className="container-x mx-auto px-2">
       <div className="lg:flex lg:gap-x-[30px]">
         <div className="lg:w-[270px] my-10">
           <FilterWidget />
