@@ -13,35 +13,13 @@ import { useEffect } from "react";
 interface Props {
   value: { min: number; max: number };
   setValue: React.Dispatch<React.SetStateAction<{ min: number; max: number }>>;
+  handleCategorySelect: Function;
+  handleBrandSelect: Function;
 }
 
 const FilterWidget: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const { value, setValue } = props;
-
-  const [filterCategory, setFilterCategory] = useState("");
-  const [filterBrand, setFilterBrand] = useState("");
-
-  useEffect(() => {
-    
-  }, [])
-
-  
-  const handleCategorySelect = (category) => {
-    if (filterCategory.includes(category)) {
-      setFilterCategory((prevCategory) => prevCategory.replace("+" + category, ""));
-    } else {
-      setFilterCategory((prevCategory) => prevCategory + "+" + category);
-    }
-  };
-  
-  const handleBrandSelect = (brand) => {
-    if (filterBrand.includes(brand)) {
-      setFilterBrand((prevBrand) => prevBrand.replace("+" + brand, ""));
-    } else {
-      setFilterBrand((prevBrand) => prevBrand + "+" + brand);
-    }
-  };
+  const { value, setValue, handleCategorySelect, handleBrandSelect } = props;
 
   return (
     <div className="w-full bg-white px-[30px] pt-[40px] mb-[30px] hidden lg:block">
@@ -63,7 +41,7 @@ const FilterWidget: React.FC<Props> = (props) => {
         <FilterHeader title="Price Range" />
         <div className="mb-5">
           <InputRange
-            maxValue={250000}
+            maxValue={15000}
             minValue={0}
             value={value}
             onChange={(value) => {

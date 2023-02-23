@@ -85,7 +85,7 @@ const CategoryItemsRight: React.FC<Props> = (props) => {
             : "lg:grid-cols-2"
         }  grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]`}
       >
-        {Jsondata.newReleasedProducts.slice(0, 6).map((product) => {
+        {states.filteredProducts.slice(0, 6).map((product) => {
           if (cardType === "normal") {
             return <ProductCard product={product} />;
           } else {
@@ -117,6 +117,22 @@ const CategoryItemsRight: React.FC<Props> = (props) => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div
+        className={`grid ${
+          cardType === "normal"
+            ? "xl:grid-cols-3 sm:grid-cols-2"
+            : "lg:grid-cols-2"
+        }  grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]`}
+      >
+        {states.filteredProducts.slice(6).map((product) => {
+          if (cardType === "normal") {
+            return <ProductCard product={product} />;
+          } else {
+            return <ProductCardVertical product={product} />;
+          }
+        })}
       </div>
 
       {/* ekhane abar keno product add kora holo ???*/}

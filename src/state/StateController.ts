@@ -28,6 +28,9 @@ export interface IStates {
   cartlistData: Array<ICartProduct>;
   cartSubTotal: number;
   toggle: Boolean;
+  searchString: string;
+  searchCategory: string;
+  filteredProducts: Array<IProduct>;
   allProducts: Array<IProduct>;
   featuredProducts: Array<IProduct>;
   topProducts: Array<IProduct>;
@@ -51,6 +54,9 @@ export class Controller {
     cartlistCounter: 0,
     cartlistData: [],
     toggle: false,
+    searchString: "",
+  searchCategory: "",
+    filteredProducts: [],
     allProducts: [],
     featuredProducts: [],
     topProducts: [],
@@ -79,6 +85,21 @@ export class Controller {
   @action
   setInitialDataLoading() {
     this.states.initialDataLoading = !this.states.initialDataLoading;
+  }
+
+  @action
+  setSearchString(search: string) {
+    this.states.searchString = search;
+  }
+
+  @action
+  setSearchCategory(cat: string) {
+    this.states.searchCategory = cat;
+  }
+
+  @action
+  setFilteredProducts(products: Array<IProduct>) {
+    this.states.filteredProducts = [...products];
   }
 
   @action

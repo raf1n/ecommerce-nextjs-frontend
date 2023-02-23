@@ -6,6 +6,7 @@ import {
 } from "./../../interfaces/models";
 import {
   ICartResponse,
+  IFilteredProductResponse,
   IOrderResponse,
   ISingleAddressResponse,
   ISingleOrderResponse,
@@ -172,12 +173,12 @@ export class EcommerceApi {
   }
 
   static async getFilteredProducts(
-    search: string,
+    search: string | string[],
     categories: string,
     brands: string,
     min: number,
     max: number
-  ): Promise<IProductResponse> {
+  ): Promise<IFilteredProductResponse> {
     const myHeaders = new Headers();
     
     const requestOptions = {
