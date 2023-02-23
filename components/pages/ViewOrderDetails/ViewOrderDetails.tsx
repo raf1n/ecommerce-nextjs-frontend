@@ -23,6 +23,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
   };
 
   const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
+
   const handleReview = (e: any) => {
     e.preventDefault();
     const review = {
@@ -110,13 +111,13 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                         </span>
                       </li>
                       <li className="text-[22px]n text-[#4F5562]">
-                        {/* Billing Address:
+                        Billing Address:
                         <span className="text-[#27AE60]">
                           {`City: ${orderData?.address.city}, 
                          State: ${orderData?.address.state}, 
                          Country: ${orderData?.address.country}
                          Additional: ${orderData?.address.address}`}
-                        </span> */}
+                        </span>
                       </li>
                       <li className="text-[22px]n text-[#4F5562]">
                         Shipping Address:
@@ -168,7 +169,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                           SUBTOTAL
                         </td>
                         <td className="py-4 whitespace-nowrap text-center print:hidden">
-                          review
+                          Review
                         </td>
                       </tr>
 
