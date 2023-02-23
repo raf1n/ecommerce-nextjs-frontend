@@ -171,6 +171,27 @@ export class EcommerceApi {
     return await callFetch(`${API_ENDPOINT}/products`, requestOptions);
   }
 
+  static async getFilteredProducts(
+    search: string,
+    categories: string,
+    brands: string,
+    min: number,
+    max: number
+  ): Promise<IProductResponse> {
+    const myHeaders = new Headers();
+    
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    
+    return await callFetch(
+      `${API_ENDPOINT}/products/filter?search=${search}&categories=${categories}&brands=${brands}&min=${min}&max=${max}`,
+      requestOptions
+    );
+  }
+
   // get single product
 
   static async getSingleProduct(slug: string): Promise<ISingleProductResponse> {

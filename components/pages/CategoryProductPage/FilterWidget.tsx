@@ -22,7 +22,9 @@ const FilterWidget: React.FC<Props> = (props) => {
   const [filterCategory, setFilterCategory] = useState("");
   const [filterBrand, setFilterBrand] = useState("");
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    
+  }, [])
 
   
   const handleCategorySelect = (category) => {
