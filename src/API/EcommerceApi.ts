@@ -7,6 +7,7 @@ import {
 import {
   ICartResponse,
   IOrderResponse,
+  IReviewsResponse,
   ISingleAddressResponse,
   ISingleOrderResponse,
 } from "./../../interfaces/response";
@@ -81,6 +82,19 @@ export class EcommerceApi {
     };
     return await callFetch(
       `${API_ENDPOINT}/wishlist?user_slug=${user_slug}`,
+      requestOptions
+    );
+  }
+  //Get all reviews
+  static async getAllReviews(user_slug: string): Promise<IReviewsResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/reviews?user_slug=${user_slug}`,
       requestOptions
     );
   }

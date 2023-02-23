@@ -53,6 +53,11 @@ export interface IProduct {
 export interface IWishlistProduct extends IProduct {
   user_slug?: string;
 }
+// export interface IReview {
+//   slug: string;
+//   name: string;
+//   message: string;
+// }
 
 export interface IOrder {
   subTotal: number;
