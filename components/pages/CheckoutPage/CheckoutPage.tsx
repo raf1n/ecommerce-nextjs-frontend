@@ -74,7 +74,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
     user_slug: "user_slug_1",
     payment_method: "Bkash",
     transaction_id: "1HJGXX1222",
-    order_status: "pending",
     address: {
       country: selectedAddress?.country,
       state: selectedAddress?.state,
