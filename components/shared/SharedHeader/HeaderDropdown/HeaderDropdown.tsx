@@ -22,8 +22,8 @@ const HeaderDropdown: React.FC<Props> = (props) => {
   //     controller.setCategories(res);
   //   }
   // };
-  console.log(states.categories);
-  console.log(states.subCategories);
+  // console.log(states.categories);
+  // console.log(states.subCategories);
   // useEffect(() => {
   //   const getAllCartData = async () => {
   //     const { res, err } = await EcommerceApi.getAllCartData("user_slug_1");

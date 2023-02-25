@@ -6,6 +6,7 @@ import {
 } from "./../../interfaces/models";
 import {
   ICartResponse,
+  IFilteredProductResponse,
   IOrderResponse,
   IReviewsResponse,
   ISingleAddressResponse,
@@ -183,6 +184,27 @@ export class EcommerceApi {
       redirect: "follow",
     };
     return await callFetch(`${API_ENDPOINT}/products`, requestOptions);
+  }
+
+  static async getFilteredProducts(
+    search: string | string[],
+    categories: string,
+    brands: string,
+    min: number,
+    max: number
+  ): Promise<IFilteredProductResponse> {
+    const myHeaders = new Headers();
+    
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    
+    return await callFetch(
+      `${API_ENDPOINT}/products/filter?search=${search}&categories=${categories}&brands=${brands}&min=${min}&max=${max}`,
+      requestOptions
+    );
   }
 
   // get single product

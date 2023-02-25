@@ -24,32 +24,28 @@ const HeaderTop: React.FC<Props> = (props) => {
   const [searchString, setSearchString] = useState("");
 
   const router = useRouter();
+  const { asPath } = router;
 
   const sideDropdown = () => {
-    console.log("open");
+    // console.log("open");
     setSideDropdownOpen(!sideDropdownOpen);
   };
 
   const routeSideDropdown = () => {
-    console.log("open2");
+    // console.log("open2");
     setShowCategory(!showCategory);
   };
 
   const topAllCategoriesDropdown = () => {
-    console.log("open2");
+    // console.log("open2");
     setShowTopAllCatgory(!showTopAllCatgory);
-  };
-
-  const handleSearch = (e: any) => {
-    const input = e.target.value;
-    setSearchString(input);
   };
 
   const fetchAllCategories = async () => {
     const { res, err } = await EcommerceApi.getCategories();
     if (res) {
       controller.setCategories(res);
-      console.log(res);
+      // console.log(res);
     }
   };
 
@@ -76,6 +72,7 @@ const HeaderTop: React.FC<Props> = (props) => {
         controller.setAllCartListData(res);
       }
     };
+
     const getAllWishlistData = async () => {
       const { res, err } = await EcommerceApi.getAllWishlistProducts(
         "user_slug_1"
@@ -84,6 +81,7 @@ const HeaderTop: React.FC<Props> = (props) => {
         controller.setAllWishlistData(res);
       }
     };
+
     getAllWishlistData();
     getAllCartData();
     fetchAllCategories();
@@ -91,6 +89,38 @@ const HeaderTop: React.FC<Props> = (props) => {
     fetchAllBrands();
     controller.setInitialDataLoading();
   }, []);
+
+  const handleChangeSearch = (e: any) => {
+    const input = e.target.value;
+    setSearchString(input);
+  };
+
+  const handleSearch = () => {
+
+    if (searchString) {
+      controller.setSearchString(searchString);
+    }
+
+    if (searchCategory) {
+      const selectedCategory = states.categories.find(
+        (cat) => cat.cat_name === searchCategory.cat_name
+      );
+
+      if (selectedCategory) {
+        controller.setSearchCategory(selectedCategory.cat_slug, true);
+      }
+    }
+
+    if (searchCategory || searchString) {
+      router.push(
+        `/products?${searchString ? `search=${searchString}` : ""}${
+          searchCategory
+            ? `${searchString ? "&" : ""}category=${searchCategory.cat_name}`
+            : ""
+        }`
+      );
+    }
+  };
 
   return (
     <div className="print:hidden">
@@ -749,7 +779,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                     <div className="flex-1 bg-red-500 h-full">
                       <div className="h-full">
                         <input
-                          onChange={handleSearch}
+                          onChange={handleChangeSearch}
                           name="searchInput"
                           type="text"
                           className={styles["search-input"]}
@@ -825,21 +855,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                       )}
                     </div>
                     <button
-                      onClick={() => {
-                        if (searchCategory || searchString) {
-                          router.push(
-                            `/products?${
-                              searchString ? `search=${searchString}` : ""
-                            }${
-                              searchCategory
-                                ? `${searchString ? "&" : ""}category=${
-                                    searchCategory.cat_name
-                                  }`
-                                : ""
-                            }`
-                          );
-                        }
-                      }}
+                      onClick={() => handleSearch()}
                       className="search-btn w-[93px] bg-qyellow h-full text-sm font-semibold"
                     >
                       Search

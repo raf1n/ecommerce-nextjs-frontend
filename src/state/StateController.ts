@@ -28,6 +28,10 @@ export interface IStates {
   cartlistData: Array<ICartProduct>;
   cartSubTotal: number;
   toggle: Boolean;
+  searchString: string;
+  searchCategory: string;
+  searchBrand: string;
+  filteredProducts: Array<IProduct>;
   allProducts: Array<IProduct>;
   featuredProducts: Array<IProduct>;
   topProducts: Array<IProduct>;
@@ -51,6 +55,10 @@ export class Controller {
     cartlistCounter: 0,
     cartlistData: [],
     toggle: false,
+    searchString: "",
+    searchCategory: "",
+    searchBrand: "",
+    filteredProducts: [],
     allProducts: [],
     featuredProducts: [],
     topProducts: [],
@@ -79,6 +87,47 @@ export class Controller {
   @action
   setInitialDataLoading() {
     this.states.initialDataLoading = !this.states.initialDataLoading;
+  }
+
+  @action
+  setSearchString(search: string) {
+    this.states.searchString = search;
+  }
+
+  @action
+  setSearchCategory(cat: string, fromHeader: boolean) {
+    if (fromHeader) {
+      this.states.searchCategory = "+" + cat
+    } else {
+      if (this.states.searchCategory.includes(cat)) {
+        this.states.searchCategory = this.states.searchCategory.replace("+" + cat, "")
+      } else {
+        this.states.searchCategory = this.states.searchCategory + "+" + cat
+      }
+    }
+
+    // if (states.searchCategory.includes(category)) {
+    //   setFilterCategory((prevCategory) =>
+    //     prevCategory.replace("+" + category, "")
+    //   );
+    // } else {
+    //   setFilterCategory((prevCategory) => prevCategory + "+" + category);
+    // }
+    // this.states.searchCategory = cat;
+  }
+
+  @action
+  setSearchBrand(brand: string) {
+    if (this.states.searchBrand.includes(brand)) {
+      this.states.searchBrand = this.states.searchBrand.replace("+" + brand, "")
+    } else {
+      this.states.searchBrand = this.states.searchBrand + "+" + brand
+    }
+  }
+
+  @action
+  setFilteredProducts(products: Array<IProduct>) {
+    this.states.filteredProducts = [...products];
   }
 
   @action
@@ -156,7 +205,6 @@ export class Controller {
 
   @action
   setAllWishlistData(products: Array<IProduct>) {
-    console.log(products);
     this.states.wishlistData = products;
   }
 

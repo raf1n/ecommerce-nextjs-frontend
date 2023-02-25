@@ -45,7 +45,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
         console.log(err);
       } else {
         setAddressData(res);
-        console.log(res);
+        // console.log(res);
         // console.log(res);
       }
     };
@@ -55,7 +55,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
   // ----------------Ironman -------------------
   const router = useRouter();
   const cartListProduct = states.cartlistData;
-  console.log("ru cccart", cartListProduct);
+  // console.log("ru cccart", cartListProduct);
 
   const fetchOrderSum = async () => {
     const { res, err } = await EcommerceApi.getAllCartData("user_slug_1");
@@ -74,7 +74,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
     user_slug: "user_slug_1",
     payment_method: "Bkash",
     transaction_id: "1HJGXX1222",
-    order_status: "pending",
     address: {
       country: selectedAddress?.country,
       state: selectedAddress?.state,

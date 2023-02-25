@@ -16,7 +16,7 @@ interface Props {
 
 const ProductCard: React.FC<Props> = (props) => {
   const { product } = props;
-  console.log(product);
+  // console.log(product);
   const states = useSelector(() => controller.states);
 
   const isInWishlist = (slug: string | undefined) => {
