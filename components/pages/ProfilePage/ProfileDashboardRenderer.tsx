@@ -78,7 +78,7 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
     case "address": {
       return <ProfileAddress />;
     }
-    case "review": {
+    case "reviews": {
       return <ProfileReviews />;
     }
     case "change_password": {
