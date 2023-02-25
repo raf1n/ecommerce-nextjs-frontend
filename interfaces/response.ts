@@ -26,6 +26,10 @@ export interface ILoginResponse extends MyFetchInterface {
   };
 }
 
+export interface IFilteredProductResponse extends MyFetchInterface {
+  res: IProduct[];
+}
+
 export interface IProductResponse extends MyFetchInterface {
   res: {
     featuredProducts: Array<IProduct>;
