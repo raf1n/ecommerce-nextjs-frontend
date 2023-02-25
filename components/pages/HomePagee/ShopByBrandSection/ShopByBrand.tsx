@@ -19,12 +19,8 @@ const ShopByBrand: React.FC<Props> = (props) => {
             {states.brands.map((brand) => (
               <>
                 <Link href={`/products?brand=${brand.slug}`}>
-                  <div className="grid bg-white border border-primarygray place-items-center border-gray-200 h-32 px-5">
-                    <img
-                      style={{ objectFit: "cover" }}
-                      src={brand.logo}
-                      alt=""
-                    />{" "}
+                  <div className="grid bg-white border border-primarygray place-items-center border-gray-200 px-5 h-full">
+                    <img className="object-contain" src={brand.logo} alt="" />
                   </div>
                 </Link>
               </>
