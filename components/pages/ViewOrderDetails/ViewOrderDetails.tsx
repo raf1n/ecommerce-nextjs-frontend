@@ -33,6 +33,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
       name: e.target.name.value,
       message: e.target.message.value,
       rating: rating,
+      status: "active",
     };
 
     EcommerceApi.addReview(review);
