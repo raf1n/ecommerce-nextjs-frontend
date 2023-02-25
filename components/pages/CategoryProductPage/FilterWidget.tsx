@@ -20,7 +20,6 @@ const FilterWidget: React.FC<Props> = (props) => {
     <div className="w-full bg-white px-[30px] pt-[40px] mb-[30px] hidden lg:block">
       <div className="pb-10 border-b border-gray-200">
         <FilterHeader title="Product categories" />
-
         <ul>
           {Jsondata.checkCategoryFilterData.map((filter, i) => (
             <FilterCheckbox key={i} filter={filter} />
