@@ -8,15 +8,14 @@ import { Jsondata } from "../../../src/utils/Jsondata";
 import FilterCheckbox from "./FilterCheckbox";
 import FilterHeader from "./FilterHeader";
 
-interface Props {}
+interface Props {
+  value: { min: number; max: number };
+  setValue: React.Dispatch<React.SetStateAction<{ min: number; max: number }>>;
+}
 
 const FilterWidget: React.FC<Props> = (props) => {
-  const [value, setValue] = useState({
-    min: 10,
-    max: 250000,
-  });
   const states = useSelector(() => controller.states);
-
+  const { value, setValue } = props;
   return (
     <div className="w-full bg-white px-[30px] pt-[40px] mb-[30px] hidden lg:block">
       <div className="pb-10 border-b border-gray-200">
@@ -34,7 +33,7 @@ const FilterWidget: React.FC<Props> = (props) => {
         <div className="mb-5">
           <InputRange
             maxValue={250000}
-            minValue={10}
+            minValue={0}
             value={value}
             onChange={(value) => {
               setValue(value);
