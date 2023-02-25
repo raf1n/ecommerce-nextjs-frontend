@@ -5,15 +5,13 @@ import { controller } from "../../../src/state/StateController";
 
 interface Props {
   brand: IBrands;
-  handleBrandSelect: Function;
 }
 
 const FilterCheckBrand: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const {
-    brand: { slug, name },
-    handleBrandSelect,
+    brand: { slug, name }
   } = props;
 
   return (
@@ -23,7 +21,8 @@ const FilterCheckBrand: React.FC<Props> = (props) => {
         value={slug}
         type="checkbox"
         name={`${name}`}
-        onChange={(e) => handleBrandSelect(e.target.value)}
+        onChange={(e) => controller.setSearchBrand(e.target.value)}
+        // checked={states.searchBrand.includes(slug)}
       />
       <label
         htmlFor={"brand_" + slug}

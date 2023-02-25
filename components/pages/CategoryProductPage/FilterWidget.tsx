@@ -13,13 +13,11 @@ import { useEffect } from "react";
 interface Props {
   value: { min: number; max: number };
   setValue: React.Dispatch<React.SetStateAction<{ min: number; max: number }>>;
-  handleCategorySelect: Function;
-  handleBrandSelect: Function;
 }
 
 const FilterWidget: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const { value, setValue, handleCategorySelect, handleBrandSelect } = props;
+  const { value, setValue } = props;
 
   return (
     <div className="w-full bg-white px-[30px] pt-[40px] mb-[30px] hidden lg:block">
@@ -31,7 +29,6 @@ const FilterWidget: React.FC<Props> = (props) => {
             <FilterCheckCategory
               key={category.cat_slug}
               category={category}
-              handleCategorySelect={handleCategorySelect}
             />
           ))}
         </ul>
@@ -59,7 +56,7 @@ const FilterWidget: React.FC<Props> = (props) => {
 
         <ul>
           {states.brands.map((brand, i) => (
-            <FilterCheckBrand key={brand.slug} brand={brand} handleBrandSelect={handleBrandSelect} />
+            <FilterCheckBrand key={brand.slug} brand={brand} />
           ))}
         </ul>
       </div>

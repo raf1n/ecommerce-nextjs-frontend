@@ -24,6 +24,7 @@ const HeaderTop: React.FC<Props> = (props) => {
   const [searchString, setSearchString] = useState("");
 
   const router = useRouter();
+  const { asPath } = router;
 
   const sideDropdown = () => {
     // console.log("open");
@@ -95,6 +96,7 @@ const HeaderTop: React.FC<Props> = (props) => {
   };
 
   const handleSearch = () => {
+
     if (searchString) {
       controller.setSearchString(searchString);
     }
@@ -105,7 +107,7 @@ const HeaderTop: React.FC<Props> = (props) => {
       );
 
       if (selectedCategory) {
-        controller.setSearchCategory( "+" + selectedCategory.cat_slug );
+        controller.setSearchCategory(selectedCategory.cat_slug, true);
       }
     }
 
