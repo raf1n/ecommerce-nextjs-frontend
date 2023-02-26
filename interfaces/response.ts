@@ -7,6 +7,7 @@ import {
   ISubCategories,
   IBrands,
   IOrder,
+  IReview,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -23,6 +24,10 @@ export interface ILoginResponse extends MyFetchInterface {
     userId: string;
     role: string;
   };
+}
+
+export interface IFilteredProductResponse extends MyFetchInterface {
+  res: IProduct[];
 }
 
 export interface IProductResponse extends MyFetchInterface {
@@ -54,6 +59,12 @@ export interface ISingleOrderResponse extends MyFetchInterface {
 
 export interface IAllWishlistResponse extends MyFetchInterface {
   res: IProduct[];
+}
+export interface IReviewsResponse extends MyFetchInterface {
+  res: {
+    data: IReview;
+    message: string;
+  };
 }
 export interface ICartResponse extends MyFetchInterface {
   res: {

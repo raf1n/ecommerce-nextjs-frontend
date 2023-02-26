@@ -6,7 +6,9 @@ import {
 } from "./../../interfaces/models";
 import {
   ICartResponse,
+  IFilteredProductResponse,
   IOrderResponse,
+  IReviewsResponse,
   ISingleAddressResponse,
   ISingleOrderResponse,
 } from "./../../interfaces/response";
@@ -81,6 +83,19 @@ export class EcommerceApi {
     };
     return await callFetch(
       `${API_ENDPOINT}/wishlist?user_slug=${user_slug}`,
+      requestOptions
+    );
+  }
+  //Get all reviews
+  static async getAllReviews(user_slug: string): Promise<IReviewsResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/reviews?user_slug=${user_slug}`,
       requestOptions
     );
   }
@@ -169,6 +184,27 @@ export class EcommerceApi {
       redirect: "follow",
     };
     return await callFetch(`${API_ENDPOINT}/products`, requestOptions);
+  }
+
+  static async getFilteredProducts(
+    search: string | string[],
+    categories: string,
+    brands: string,
+    min: number,
+    max: number
+  ): Promise<IFilteredProductResponse> {
+    const myHeaders = new Headers();
+    
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    
+    return await callFetch(
+      `${API_ENDPOINT}/products/filter?search=${search}&categories=${categories}&brands=${brands}&min=${min}&max=${max}`,
+      requestOptions
+    );
   }
 
   // get single product
@@ -428,20 +464,20 @@ export class EcommerceApi {
 
   static async allOrders(
     user_slug: string,
-    delivery_status?: string
+    order_status?: string
   ): Promise<IOrderResponse> {
     console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     console.log(user_slug);
-    console.log(delivery_status);
+    console.log(order_status);
     const requestOptions = {
       headers: myHeaders,
       redirect: "follow",
     };
 
     return await callFetch(
-      `${API_ENDPOINT}/orders?user_slug=${user_slug}&delivery_status=${
-        delivery_status ? delivery_status : ""
+      `${API_ENDPOINT}/orders?user_slug=${user_slug}&order_status=${
+        order_status ? order_status : ""
       }`,
       requestOptions
     );
