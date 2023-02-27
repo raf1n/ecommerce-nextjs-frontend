@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "./../../../../src/state/StateController";
+//@ts-ignore
 import ReactStars from "react-rating-stars-component";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
