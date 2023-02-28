@@ -54,11 +54,11 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <label
                         className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
                         htmlFor="phone">
-                        phone*
+                        phone no
                       </label>
                       <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                         <input
-                          placeholder="0213 *********"
+                          placeholder="+880 1796-306262"
                           className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                           type="text"
                           id="phone"
@@ -87,7 +87,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       </label>
                       <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                         <input
-                          placeholder="Name"
+                          placeholder="Shop Name"
                           className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                           type="text"
                           id="shopname"
