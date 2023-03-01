@@ -44,7 +44,6 @@ const CategoryPage: React.FC<Props> = (props) => {
       <div className="lg:flex lg:gap-x-[30px]">
         <div className="lg:w-[270px] my-10">
           <FilterWidget
-            value={value}
             setValue={setValue}
           />
           <FilterAd />
