@@ -530,7 +530,6 @@ export class EcommerceApi {
   }
 
   //Get single Advertisement
-  // get single Category
   static async getSingleAd(
     name: string | undefined
   ): Promise<ISingleAdResponse> {

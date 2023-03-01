@@ -1,24 +1,57 @@
-import React from "react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { IAd } from "../../../../../interfaces/models";
+import { EcommerceApi } from "../../../../../src/API/EcommerceApi";
 import { controller } from "../../../../../src/state/StateController";
-import ShopNowBtn from '../../../../helpers/Buttons/ShopNowBtn';
+import ShopNowBtn from "../../../../helpers/Buttons/ShopNowBtn";
 
-interface Props { }
+interface Props {}
 
 const HeroStatic: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [singleAdData, setSingleAdData] = useState<IAd>();
+  const [singleSecondAdData, setSingleSecondAdData] = useState<IAd>();
+
+  useEffect(() => {
+    const fetchSingleAdData = async () => {
+      const { res, err } = await EcommerceApi.getSingleAd("Slider Banner One");
+      if (err) {
+        console.log(err);
+      } else {
+        setSingleAdData(res);
+        console.log(singleAdData);
+      }
+    };
+    fetchSingleAdData();
+  }, []);
+
+  useEffect(() => {
+    const fetchSingleSecondAdData = async () => {
+      const { res, err } = await EcommerceApi.getSingleAd("Slider Banner Two");
+      if (err) {
+        console.log(err);
+      } else {
+        setSingleSecondAdData(res);
+        console.log(singleSecondAdData);
+      }
+    };
+    fetchSingleSecondAdData();
+  }, []);
 
   return (
     <div className="flex-1 flex xl:flex-col flex-row xl:space-y-[30px] xl:h-full md:h-[350px] h-[150px] aos-init aos-animate">
       <div
         className="w-full xl:h-1/2 xl:mr-o mr-2 relative flex items-center group md:pl-[40px] pl-[30px]"
         style={{
-          backgroundImage: `url(
-            "https://api.websolutionus.com/shopo/uploads/website-images/Mega-menu-2022-10-27-01-41-46-7345.png"
+          // "https://api.websolutionus.com/shopo/uploads/website-images/Mega-menu-2022-10-27-01-41-46-7345.png"
+          backgroundImage: `url(${singleAdData?.adImage}
+            
           )`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-        }}>
+        }}
+      >
         <div className="flex flex-col justify-between">
           <div>
             <div className="md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
@@ -35,18 +68,24 @@ const HeroStatic: React.FC<Props> = (props) => {
               </h1>
             </div>
           </div>
-          <ShopNowBtn color={{ textColor: 'text-qblack' }} />
+          {/* products?category=electronics */}
+          <Link href={`products?category=${singleAdData?.category_link}`}>
+            <ShopNowBtn color={{ textColor: "text-qblack" }} />
+          </Link>
         </div>
       </div>
       <div
         className="w-full xl:h-1/2 relative flex items-center pl-[40px] group"
         style={{
+          // "https://api.websolutionus.com/shopo/uploads/website-images/Mega-menu-2022-10-27-01-42-01-1798.png"
           backgroundImage: `url(
-            "https://api.websolutionus.com/shopo/uploads/website-images/Mega-menu-2022-10-27-01-42-01-1798.png"
+            
+            ${singleSecondAdData?.adImage}
           )`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-        }}>
+        }}
+      >
         <div className="flex flex-col justify-between">
           <div>
             <div className="md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
@@ -63,7 +102,9 @@ const HeroStatic: React.FC<Props> = (props) => {
               </h1>
             </div>
           </div>
-          <ShopNowBtn color={{ textColor: 'text-qblack' }} />
+          <Link href={`products?category=${singleSecondAdData?.category_link}`}>
+            <ShopNowBtn color={{ textColor: "text-qblack" }} />
+          </Link>
         </div>
       </div>
     </div>

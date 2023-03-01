@@ -1,21 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import styles from "./Ads.module.css";
 import SvgIconRenderer from "../../../helpers/SvgIconRenderer";
 import { SvgPaths } from "../../../../src/utils/SvgPaths";
+import { EcommerceApi } from "../../../../src/API/EcommerceApi";
+import { IAd } from "../../../../interfaces/models";
 
 interface Props {}
 
 const AD2: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [singleAdData, setSingleAdData] = useState<IAd>();
+
+  useEffect(() => {
+    const fetchSingleAdData = async () => {
+      const { res, err } = await EcommerceApi.getSingleAd(
+        "Homepage Single Banner One"
+      );
+      if (err) {
+        console.log(err);
+      } else {
+        setSingleAdData(res);
+        console.log(singleAdData);
+      }
+    };
+    fetchSingleAdData();
+  }, []);
 
   return (
     <div className="one-column-ads-one md:h-[295px] h-[190px] md:mb-[60px] mb-[30px] w-full">
       <div className="container-x mx-auto h-full">
         <div
-          className={`${styles["ad2-bg"]} w-full h-full flex justify-center items-center xl:py-[60px] md:py-[40px] py-4 `}>
+          // ${styles["ad2-bg"]}
+          style={{
+            backgroundImage: `url(${singleAdData?.adImage})`,
+            backgroundSize: `cover`,
+            backgroundRepeat: `no-repeat`,
+          }}
+          className={` w-full h-full flex justify-center items-center xl:py-[60px] md:py-[40px] py-4 `}
+        >
           <div className="w-full h-full flex flex-col justify-between items-center">
             <div>
               <div className="md:mb-3 text-center">
@@ -30,7 +55,10 @@ const AD2: React.FC<Props> = (props) => {
               </div>
             </div>
             <div className="group">
-              <Link href="" rel="noopener noreferrer">
+              <Link
+                href={`products?category=${singleAdData?.category_link}`}
+                rel="noopener noreferrer"
+              >
                 <div className="w-[136px] h-[40px] bg-white relative flex justify-center overflow-hidden">
                   <div className="w-full h-full bg-qyellow absolute transition-all duration-300 ease-in-out -left-[140px] group-hover:left-0 top-0"></div>
                   <div className="flex space-x-2 items-center relative z-10">

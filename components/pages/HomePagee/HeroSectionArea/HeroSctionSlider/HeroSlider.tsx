@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import ShopNowBtn from "../../../../helpers/Buttons/ShopNowBtn";
 import { ISlider } from "../../../../../interfaces/models";
 import { EcommerceApi } from "../../../../../src/API/EcommerceApi";
+import Link from "next/link";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 
@@ -100,7 +101,9 @@ const HeroSlider: React.FC<Props> = (props) => {
                       {el.titleTWo}
                     </h1>
                   </div>
-                  <ShopNowBtn color={{ textColor: "text-qblack" }} />
+                  <Link href={`single_product?slug=${el.slug}`}>
+                    <ShopNowBtn color={{ textColor: "text-qblack" }} />
+                  </Link>
                 </div>
               </div>
             </div>

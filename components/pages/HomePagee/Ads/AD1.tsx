@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { IAd } from "../../../../interfaces/models";
+import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { controller } from "../../../../src/state/StateController";
 import ShopNowBtn from "../../../helpers/Buttons/ShopNowBtn";
 import styles from "./Ads.module.css";
@@ -8,6 +10,7 @@ interface Props {}
 
 const AD1: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
   return (
     <div className="two-column-ads-section md:mb-[60px] lg:h-[295px] h-[200px] mb-[30px] w-full">
       <div className="container-x mx-auto h-full">
@@ -15,6 +18,8 @@ const AD1: React.FC<Props> = (props) => {
           <div className="h-full sm:w-1/2 w-full">
             <div
               style={{
+                // ${singleAdData?.adImage}
+                //
                 backgroundImage: `url("https://api.websolutionus.com/shopo/uploads/website-images/Mega-menu-2022-10-27-01-43-02-7910.png")`,
                 backgroundSize: `cover`,
                 backgroundRepeat: `no-repeat`,
