@@ -10,7 +10,9 @@ import {
   IOrderResponse,
   IReviewsResponse,
   ISingleAddressResponse,
+  ISingleAdResponse,
   ISingleOrderResponse,
+  ISliderResponse,
 } from "./../../interfaces/response";
 import {
   ICart,
@@ -194,13 +196,13 @@ export class EcommerceApi {
     max: number
   ): Promise<IFilteredProductResponse> {
     const myHeaders = new Headers();
-    
+
     const requestOptions = {
       method: "GET",
       headers: myHeaders,
       redirect: "follow",
     };
-    
+
     return await callFetch(
       `${API_ENDPOINT}/products/filter?search=${search}&categories=${categories}&brands=${brands}&min=${min}&max=${max}`,
       requestOptions
@@ -495,5 +497,53 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/users/${email}`, requestOptions);
+  }
+
+  // get all sliders
+
+  // static async allSlidersAdmin(query: string): Promise<ISliderResponse> {
+  //   console.log(API_ENDPOINT);
+  //   const myHeaders = new Headers();
+  //   console.log(query);
+  //   const requestOptions = {
+  //     headers: myHeaders,
+  //     redirect: "follow",
+  //   };
+
+  //   return await callFetch(
+  //     `${API_ENDPOINT}/slider/admin?${query}`,
+  //     requestOptions
+  //   );
+  // }
+
+  //get all Slider
+  static async getAllSlider(): Promise<ISliderResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/slider`, requestOptions);
+  }
+
+  //Get single Advertisement
+  // get single Category
+  static async getSingleAd(
+    name: string | undefined
+  ): Promise<ISingleAdResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/advertisements/${name}`,
+      requestOptions
+    );
   }
 }

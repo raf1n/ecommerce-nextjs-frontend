@@ -139,3 +139,26 @@ export interface IAddress {
   slug: string;
   user_slug: string;
 }
+
+export interface ISlider {
+  slug?: string;
+  image: string;
+  badge: string;
+  titleOne: string;
+  titleTWo: string;
+  productLink: string;
+  serial: number;
+  status: string;
+}
+
+export interface IAd {
+  slug?: string;
+  adName?: string;
+  adImage?: string;
+  title?: string;
+  title_one?: string;
+  title_two?: string;
+  badge?: string;
+  category_link?: string;
+  status?: string;
+}
