@@ -7,8 +7,11 @@ interface Props {
 }
 
 const Header: React.FC<Props> = (props) => {
+    const states = useSelector(() => controller.states);
 
-    const states = useSelector(() => controller.states)
+    const previousRoute = document;
+
+    console.log(previousRoute)
 
     return <>
         <HeaderTop />
