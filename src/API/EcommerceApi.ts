@@ -7,10 +7,12 @@ import {
 import {
   ICartResponse,
   IFilteredProductResponse,
+  IMegaCategoriesResponse,
   IOrderResponse,
   IReviewsResponse,
   ISingleAddressResponse,
   ISingleAdResponse,
+  ISingleMegaCategoryResponse,
   ISingleOrderResponse,
   ISliderResponse,
 } from "./../../interfaces/response";
@@ -542,6 +544,39 @@ export class EcommerceApi {
 
     return await callFetch(
       `${API_ENDPOINT}/advertisements/${name}`,
+      requestOptions
+    );
+  }
+
+  //Get MegaMenuCategories
+  static async getMegaMenuCategories(): Promise<IMegaCategoriesResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/mega-menu-categories/header`,
+      requestOptions
+    );
+  }
+
+  //Get Single Mega Menue Category
+
+  static async getSingleMegaMenuCategory(
+    slug: string
+  ): Promise<ISingleMegaCategoryResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/mega-menu-categories/${slug}`,
       requestOptions
     );
   }

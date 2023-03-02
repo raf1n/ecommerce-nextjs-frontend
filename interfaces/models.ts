@@ -162,3 +162,12 @@ export interface IAd {
   category_link?: string;
   status?: string;
 }
+
+export interface IMegaCategory {
+  slug?: string;
+  cat_name?: string;
+  cat_slug?: string;
+  serial: number;
+  sub_cat_list: object[];
+  status: "active" | "inactive";
+}

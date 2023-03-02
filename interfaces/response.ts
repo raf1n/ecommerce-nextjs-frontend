@@ -10,6 +10,7 @@ import {
   IReview,
   ISlider,
   IAd,
+  IMegaCategory,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -113,4 +114,12 @@ export interface IAdResponse extends MyFetchInterface {
 
 export interface ISingleAdResponse extends MyFetchInterface {
   res: IAd;
+}
+
+export interface IMegaCategoriesResponse extends MyFetchInterface {
+  res: IMegaCategory[];
+}
+
+export interface ISingleMegaCategoryResponse extends MyFetchInterface {
+  res: IMegaCategory;
 }
