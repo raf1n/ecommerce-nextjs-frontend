@@ -6,6 +6,7 @@ import FilterWidget from "./FilterWidget";
 import ShopNowBtn from "./../../helpers/Buttons/ShopNowBtn";
 import FilterAd from "./FilterAd";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { useRouter } from "next/router";
 
 interface Props {}
 
@@ -15,6 +16,19 @@ const CategoryPage: React.FC<Props> = (props) => {
     min: 0,
     max: 15000,
   });
+
+  const router = useRouter();
+
+  const { search, category } = router.query;
+
+  if(search) {
+    controller.setSearchString(search as string);
+  } 
+
+  if (category && states.categories) {
+    const queryCat = states.categories.find(cat => cat.cat_name === category);
+    controller.setSearchCategory(queryCat?.cat_slug as string, true);
+  }
 
   useEffect(() => {
     const handleFilteredProducts = async () => {
@@ -44,7 +58,6 @@ const CategoryPage: React.FC<Props> = (props) => {
       <div className="lg:flex lg:gap-x-[30px]">
         <div className="lg:w-[270px] my-10">
           <FilterWidget
-            value={value}
             setValue={setValue}
           />
           <FilterAd />
