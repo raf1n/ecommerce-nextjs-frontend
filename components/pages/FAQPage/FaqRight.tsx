@@ -149,10 +149,10 @@ const FaqRight: React.FC<Props> = (props) => {
           <input
             value="Send Now"
             disabled={
-              (formValue.email === "" &&
-                formValue.name === "" &&
-                formValue.message === "",
-              formValue.message === "")
+              formValue.email === "" ||
+              formValue.name === "" ||
+              formValue.subject === "" ||
+              formValue.message === ""
             }
             type="submit"
             className="disabled:bg-gray-400 disabled:cursor-not-allowed bg-qblack text-white text-sm font-semibold w-full h-[50px] flex justify-center items-center"
