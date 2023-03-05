@@ -8,6 +8,9 @@ import {
   IBrands,
   IOrder,
   IReview,
+  ISlider,
+  IAd,
+  IMegaCategory,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -96,4 +99,27 @@ export interface IAddressResponse extends MyFetchInterface {
 
 export interface ISingleAddressResponse extends MyFetchInterface {
   res: IAddress;
+}
+export interface ISliderResponse extends MyFetchInterface {
+  res: Array<ISlider>;
+}
+
+export interface ISingleSliderResponse extends MyFetchInterface {
+  res: ISlider;
+}
+
+export interface IAdResponse extends MyFetchInterface {
+  res: IAd[];
+}
+
+export interface ISingleAdResponse extends MyFetchInterface {
+  res: IAd;
+}
+
+export interface IMegaCategoriesResponse extends MyFetchInterface {
+  res: IMegaCategory[];
+}
+
+export interface ISingleMegaCategoryResponse extends MyFetchInterface {
+  res: IMegaCategory;
 }
