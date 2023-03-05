@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import { controller } from "./../../../../src/state/StateController";
+//@ts-ignore
 import ReactStars from "react-rating-stars-component";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
@@ -26,7 +27,8 @@ const ProfileReviewItem: React.FC<Props> = ({
   return (
     <div
       className="min-h-[170px] bg-white group"
-      style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px" }}>
+      style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px" }}
+    >
       <div className="flex gap-x-2 items-center w-full h-full p-2 relative">
         <div className="w-1/3 h-full flex justify-center">
           <img

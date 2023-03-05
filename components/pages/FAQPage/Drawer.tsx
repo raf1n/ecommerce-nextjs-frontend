@@ -52,7 +52,7 @@ const Drawer: React.FC<Props> = (props) => {
   return (
     <div>
       <div className="accordion">
-        <h1 className="text-qblack font-bold text-[22px]  mb-4 ml-3">
+        <h1 className="text-qblack font-bold text-[22px]  mb-4 ">
           Frequently Asked Questions
         </h1>
         {items.map((item, index) => (
@@ -60,22 +60,25 @@ const Drawer: React.FC<Props> = (props) => {
             key={item.id}
             className={`${
               activeIndex === index ? "bg-amber-400" : ""
-            }  bg-white m-3`}>
+            }  bg-white  mb-6`}
+          >
             <button
-              className="block text-left w-full rounded-t-md py-2 font-semibold text-qblack hover:text-qblack focus:outline-none focus:text-qblack"
-              onClick={() => handleClick(index)}>
+              className="block text-left w-full rounded-t-md py-1 font-semibold text-qblack hover:text-qblack focus:outline-none focus:text-qblack"
+              onClick={() => handleClick(index)}
+            >
               <div className="flex justify-between items-center ">
-                <div className="w-3/4 text-base leading-5 font-semibold text-qblack p-3 capitalize">
+                <div className="w-3/4 text-base leading-5 font-semibold text-qblack px-5  capitalize">
                   {item.question}
                 </div>
                 <div className="w-2/10 text-qgray bg-transparent rounded-full p-3 ">
                   {activeIndex === index ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="minus w-6 h-6"
+                      className="minus w-8 h-8"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="currentColor">
+                      stroke="currentColor"
+                    >
                       <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -86,10 +89,11 @@ const Drawer: React.FC<Props> = (props) => {
                   ) : (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="plus w-6 h-6"
+                      className="plus w-8 h-8"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="currentColor">
+                      stroke="currentColor"
+                    >
                       <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
