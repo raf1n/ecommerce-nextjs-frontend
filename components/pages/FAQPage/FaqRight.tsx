@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import emailjs from "@emailjs/browser";
@@ -7,6 +7,12 @@ interface Props {}
 
 const FaqRight: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [formValue, setformValue] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
   let form = useRef<any>();
   console.log(form);
 
@@ -64,6 +70,9 @@ const FaqRight: React.FC<Props> = (props) => {
             </label>
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
               <input
+                onChange={(e) => {
+                  setformValue({ ...formValue, name: e.target.value });
+                }}
                 placeholder="Name"
                 className="input-field placeholder:text-sm text-sm px-6 w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                 id="first_name"
@@ -82,6 +91,9 @@ const FaqRight: React.FC<Props> = (props) => {
             </label>
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
               <input
+                onChange={(e) => {
+                  setformValue({ ...formValue, email: e.target.value });
+                }}
                 placeholder="Email Address"
                 className="input-field placeholder:text-sm text-sm px-6 w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                 id="email"
@@ -100,6 +112,9 @@ const FaqRight: React.FC<Props> = (props) => {
             </label>
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
               <input
+                onChange={(e) => {
+                  setformValue({ ...formValue, subject: e.target.value });
+                }}
                 placeholder="Subject"
                 className="input-field placeholder:text-sm text-sm px-6 w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                 id="subject"
@@ -118,6 +133,9 @@ const FaqRight: React.FC<Props> = (props) => {
             </label>
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
               <textarea
+                onChange={(e) => {
+                  setformValue({ ...formValue, message: e.target.value });
+                }}
                 placeholder="Type your message here"
                 className="input-field placeholder:text-sm text-sm px-6 py-3 w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                 id="message"
@@ -130,7 +148,12 @@ const FaqRight: React.FC<Props> = (props) => {
           </div>
           <input
             value="Send Now"
-            disabled={false}
+            disabled={
+              formValue.email === "" ||
+              formValue.name === "" ||
+              formValue.subject === "" ||
+              formValue.message === ""
+            }
             type="submit"
             className="disabled:bg-gray-400 disabled:cursor-not-allowed bg-qblack text-white text-sm font-semibold w-full h-[50px] flex justify-center items-center"
           />

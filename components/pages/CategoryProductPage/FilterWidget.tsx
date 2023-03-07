@@ -8,16 +8,19 @@ import { Jsondata } from "../../../src/utils/Jsondata";
 import FilterCheckCategory from "./FilterCheckCategory";
 import FilterHeader from "./FilterHeader";
 import FilterCheckBrand from "./FilterCheckBrand";
-import { useEffect } from "react";
 
 interface Props {
-  value: { min: number; max: number };
   setValue: React.Dispatch<React.SetStateAction<{ min: number; max: number }>>;
 }
 
 const FilterWidget: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const { value, setValue } = props;
+  const { setValue } = props;
+
+  const [changingValue, setChangingValue] = useState({
+    min: 0,
+    max: 15000,
+  });
 
   return (
     <div className="w-full bg-white px-[30px] pt-[40px] mb-[30px] hidden lg:block">
@@ -25,10 +28,7 @@ const FilterWidget: React.FC<Props> = (props) => {
         <FilterHeader title="Product categories" />
         <ul>
           {states.categories.map((category, i) => (
-            <FilterCheckCategory
-              key={category.cat_slug}
-              category={category}
-            />
+            <FilterCheckCategory key={category.cat_slug} category={category} />
           ))}
         </ul>
       </div>
@@ -39,14 +39,16 @@ const FilterWidget: React.FC<Props> = (props) => {
           <InputRange
             maxValue={15000}
             minValue={0}
-            value={value}
+            value={changingValue}
+            draggableTrack={true}
             onChange={(value) => {
-              setValue(value);
+              setChangingValue(value)
             }}
+            onChangeComplete={(value) => setValue(changingValue)}
           />
         </div>
         <p className="text-xs text-qblack font-normal">
-          Price: ${value.min} - ${value.max}
+          Price: ${changingValue.min} - ${changingValue.max}
         </p>
       </div>
 
