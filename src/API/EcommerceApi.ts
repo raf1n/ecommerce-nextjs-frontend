@@ -9,6 +9,7 @@ import {
   IFilteredProductResponse,
   IMegaCategoriesResponse,
   IOrderResponse,
+  IPopularCategoriesResponse,
   IReviewsResponse,
   ISingleAddressResponse,
   ISingleAdResponse,
@@ -577,6 +578,22 @@ export class EcommerceApi {
 
     return await callFetch(
       `${API_ENDPOINT}/mega-menu-categories/${slug}`,
+      requestOptions
+    );
+  }
+
+  //get all popular categories
+
+  static async allPopularCategories(): Promise<IPopularCategoriesResponse> {
+    // console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/popular-categories`,
       requestOptions
     );
   }
