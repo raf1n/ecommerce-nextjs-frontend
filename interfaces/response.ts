@@ -11,6 +11,7 @@ import {
   ISlider,
   IAd,
   IMegaCategory,
+  ISeller,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -48,6 +49,10 @@ export interface IWishlistResponse extends MyFetchInterface {
     data: IProduct;
     message: string;
   };
+}
+
+export interface ISellerResponse extends MyFetchInterface {
+  res: ISeller;
 }
 
 export interface IOrderResponse extends MyFetchInterface {
