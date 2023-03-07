@@ -6,6 +6,7 @@ import {
 } from "./../../interfaces/models";
 import {
   ICartResponse,
+  IFeaturedCategoriesResponse,
   IFilteredProductResponse,
   IMegaCategoriesResponse,
   IOrderResponse,
@@ -577,6 +578,22 @@ export class EcommerceApi {
 
     return await callFetch(
       `${API_ENDPOINT}/mega-menu-categories/${slug}`,
+      requestOptions
+    );
+  }
+
+  // get all featured
+
+  static async allFeaturedCategories(): Promise<IFeaturedCategoriesResponse> {
+    // console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/featured-categories`,
       requestOptions
     );
   }
