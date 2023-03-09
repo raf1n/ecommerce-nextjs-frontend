@@ -17,18 +17,18 @@ const CategoryPage: React.FC<Props> = (props) => {
     max: 15000,
   });
 
-  const router = useRouter();
+  // const router = useRouter();
 
-  const { search, category } = router.query;
+  // const { search, category } = router.query;
 
-  if(search) {
-    controller.setSearchString(search as string);
-  } 
+  // if(search) {
+  //   controller.setSearchString(search as string);
+  // } 
 
-  if (category && states.categories) {
-    const queryCat = states.categories.find(cat => cat.cat_name === category);
-    controller.setSearchCategory(queryCat?.cat_slug as string, true);
-  }
+  // if (category && states.categories) {
+  //   const queryCat = states.categories.find(cat => cat.cat_name === category);
+  //   controller.setSearchCategory(queryCat?.cat_slug as string, true);
+  // }
 
   useEffect(() => {
     const handleFilteredProducts = async () => {
