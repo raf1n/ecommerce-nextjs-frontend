@@ -11,6 +11,7 @@ import {
   ISlider,
   IAd,
   IMegaCategory,
+  IFeaturedCategories,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -122,4 +123,8 @@ export interface IMegaCategoriesResponse extends MyFetchInterface {
 
 export interface ISingleMegaCategoryResponse extends MyFetchInterface {
   res: IMegaCategory;
+}
+
+export interface IFeaturedCategoriesResponse extends MyFetchInterface {
+  res: IFeaturedCategories[];
 }
