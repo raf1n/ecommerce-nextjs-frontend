@@ -171,3 +171,12 @@ export interface IMegaCategory {
   sub_cat_list: object[];
   status: "active" | "inactive";
 }
+
+export interface IFeaturedCategories {
+  slug: string;
+  cat_slug: string;
+  // subcat_name: string;
+  // subcat_status: string;
+  cat_name: string;
+  cat_image: string;
+}
