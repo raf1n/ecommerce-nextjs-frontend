@@ -3,6 +3,7 @@ import {
   ICartProduct,
   IOrder,
   IReview,
+  ISeller,
 } from "./../../interfaces/models";
 import {
   ICartResponse,
@@ -12,6 +13,7 @@ import {
   IOrderResponse,
   IPopularCategoriesResponse,
   IReviewsResponse,
+  ISellerResponse,
   ISingleAddressResponse,
   ISingleAdResponse,
   ISingleMegaCategoryResponse,
@@ -89,6 +91,39 @@ export class EcommerceApi {
     };
     return await callFetch(
       `${API_ENDPOINT}/wishlist?user_slug=${user_slug}`,
+      requestOptions
+    );
+  }
+
+  //seller logo & cover image upload
+  static async uploadLogoandCover(
+    data: Partial<any>
+  ): Promise<MyFetchInterface> {
+    console.log("data logo cover img -", data);
+    const requestOptions = {
+      method: "POST",
+      body: data,
+      redirect: "follow",
+      cors: "no-cors",
+    };
+    return await callFetch(
+      `https://api.imgbb.com/1/upload?key=f8e6d4200bc9ef812af367efe95dc229`,
+      requestOptions
+    );
+  }
+
+  // add seller information
+  static async addSeller(data: Partial<ISeller>): Promise<ISellerResponse> {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(data),
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/users/seller_apply`,
       requestOptions
     );
   }

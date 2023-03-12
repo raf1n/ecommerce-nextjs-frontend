@@ -23,6 +23,8 @@ const ReviewProductModal: React.FC<Props> = (props) => {
     rating,
   } = props;
 
+  console.log(handleReview);
+
   return (
     <>
       {reportModalSlug ? (
@@ -60,14 +62,14 @@ const ReviewProductModal: React.FC<Props> = (props) => {
                       emptyIcon={<FaRegStar />}
                       halfIcon={<FaStarHalfAlt />}
                       fullIcon={<FaStar />}
-                      activeColor="#ffd700"
+                      activeColor="rgb(255, 168, 0)"
                       color="#d3d3d3"
                     />
                     <span className="text-qblack text-[15px] font-normal mt-1">
                       {rating}
                     </span>
                   </div>
-                  {/* ****************** */}          
+                  {/* ****************** */}
 
                   <div className="input-com w-full h-full">
                     <label

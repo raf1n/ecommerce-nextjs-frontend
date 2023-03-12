@@ -24,7 +24,7 @@ const ProfileReviews: React.FC<Props> = (props) => {
   useEffect(() => {
     getAllReviews();
   }, []);
-  console.log("reviewDatas= ", reviewDatas);
+  // console.log("reviewDatas= ", reviewDatas);
 
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
