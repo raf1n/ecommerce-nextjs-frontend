@@ -10,6 +10,7 @@ import {
   IFilteredProductResponse,
   IMegaCategoriesResponse,
   IOrderResponse,
+  IPopularCategoriesResponse,
   IReviewsResponse,
   ISingleAddressResponse,
   ISingleAdResponse,
@@ -594,6 +595,20 @@ export class EcommerceApi {
 
     return await callFetch(
       `${API_ENDPOINT}/featured-categories`,
+      requestOptions
+    );
+  }
+
+  static async allPopularCategories(): Promise<IPopularCategoriesResponse> {
+    // console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/popular-categories`,
       requestOptions
     );
   }

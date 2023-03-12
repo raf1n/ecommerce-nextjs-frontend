@@ -12,6 +12,7 @@ import {
   IAd,
   IMegaCategory,
   IFeaturedCategories,
+  IPopularCategories,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -127,4 +128,8 @@ export interface ISingleMegaCategoryResponse extends MyFetchInterface {
 
 export interface IFeaturedCategoriesResponse extends MyFetchInterface {
   res: IFeaturedCategories[];
+}
+
+export interface IPopularCategoriesResponse extends MyFetchInterface {
+  res: IPopularCategories[];
 }
