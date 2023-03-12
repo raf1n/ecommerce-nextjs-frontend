@@ -112,7 +112,6 @@ export class EcommerceApi {
 
   // add seller information
   static async addSeller(data: Partial<ISeller>): Promise<ISellerResponse> {
-    console.log("sellerData--ecom api ", data);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const requestOptions = {
@@ -121,9 +120,11 @@ export class EcommerceApi {
       body: JSON.stringify(data),
       redirect: "follow",
     };
-    return await callFetch(`${API_ENDPOINT}/seller`, requestOptions);
+    return await callFetch(
+      `${API_ENDPOINT}/users/seller_apply`,
+      requestOptions
+    );
   }
-
   //Get all reviews
   static async getAllReviews(user_slug: string): Promise<IReviewsResponse> {
     const myHeaders = new Headers();

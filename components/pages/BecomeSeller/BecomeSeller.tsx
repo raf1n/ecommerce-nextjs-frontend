@@ -8,11 +8,6 @@ interface Props {}
 
 const BecomeSeller: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const [logoUrl, setLogoUrl] = useState(null);
-  const [coverUrl, setCoverUrl] = useState(null);
-
-  // const logoChange = (e: any) => {};
-  // const coverChange = (e: any) => {};
 
   const handleSellerAdd = async (e: any) => {
     e.preventDefault();
@@ -44,16 +39,23 @@ const BecomeSeller: React.FC<Props> = (props) => {
         }
 
         const sellerData = {
+          user_email: states.user.email,
+          fullName: states.user.fullName,
+          avatar: states.user.avatar,
           email: e.target.email.value,
-          phone: parseInt(e.target.phone.value),
-          shop_name: e.target.shopname.value,
-          address: e.target.shopaddress.value,
-          logo: logoUrl,
-          cover: coverUrl,
-          status: "pending",
+          phone: e.target.phone.value,
+          shop: {
+            shop_name: e.target.shopname.value,
+            shop_address: e.target.shopaddress.value,
+            shop_logo: logoUrl,
+            shop_cover: coverUrl,
+          },
+          status: "inactive",
+          role: "seller",
         };
 
         EcommerceApi.addSeller(sellerData);
+        console.log(sellerData);
         // e.target.reset();
       }
     }
@@ -116,7 +118,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
                           <input
                             placeholder="+880 1796-306262"
                             className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
-                            type="number"
+                            type="text"
                             id="phone"
                             name="phone"
                           />
