@@ -44,11 +44,11 @@ const Homepage: React.FC<Props> = (props) => {
       <HeroSection />
       <ProductCategory />
       <PopularCategory />
-      <ShopByBrand />
+      {/* <ShopByBrand /> */}
       <Campaign />
       <TopRatedSection />
-      <BestSeller />
-      <AD1 />
+      {/* <BestSeller /> */}
+      {/* <AD1 /> */}
       <FeaturedProducts />
       <AD2 />
       <NewReleasedProducts />
