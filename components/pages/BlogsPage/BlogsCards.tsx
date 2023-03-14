@@ -195,7 +195,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                             </p>
                           </div>
                           <div className="mt-4">
-                            <ViewMoreBtn link="/blogs/blog" />
+                            <ViewMoreBtn link={`/blogs/blog?slug=${idx}`} />
                           </div>
                         </div>
                       </div>
