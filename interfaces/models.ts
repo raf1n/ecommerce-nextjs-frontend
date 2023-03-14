@@ -198,3 +198,10 @@ export interface IFeaturedCategories {
   cat_name: string;
   cat_image: string;
 }
+
+export interface IFlashSaleProducts {
+  slug: string;
+  product_slug: string;
+  status: string;
+  productsData: IProduct;
+}

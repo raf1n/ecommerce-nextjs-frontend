@@ -9,6 +9,7 @@ import {
   ICartResponse,
   IFeaturedCategoriesResponse,
   IFilteredProductResponse,
+  IFlashSaleProductsResponse,
   IMegaCategoriesResponse,
   IOrderResponse,
   IPopularCategoriesResponse,
@@ -646,5 +647,18 @@ export class EcommerceApi {
       `${API_ENDPOINT}/popular-categories`,
       requestOptions
     );
+  }
+
+  //  flash sales apis
+
+  static async getFlashSaleProductsData(): Promise<IFlashSaleProductsResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/flash-sale/user`, requestOptions);
   }
 }

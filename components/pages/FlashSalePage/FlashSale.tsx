@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 // @ts-ignore
 import CountdownTimer from "react-component-countdown-timer";
 import ProductCard from "../../shared/SharedProductCard/ProductCard";
+import { IFlashSaleProducts } from "../../../interfaces/models";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 interface Props {}
 
 const FlashSale: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [flashSaleData, setFlashSaleData] = useState<IFlashSaleProducts[]>([]);
+
+  useEffect(() => {
+    const fetchAllFlashSalesData = async () => {
+      const { res, err } = await EcommerceApi.getFlashSaleProductsData();
+      if (err) {
+        console.log(err);
+      } else {
+        // setSlug(res[0]?.cat_slug);
+        setFlashSaleData(res);
+
+        console.log(res);
+      }
+    };
+    fetchAllFlashSalesData();
+  }, []);
 
   class SimpleCountdownTimer extends React.Component {
     render() {
@@ -114,11 +132,14 @@ const FlashSale: React.FC<Props> = (props) => {
             </div>
           </div>
         </div>
-        <div className="section-content">
+        <div className="section-content mb-10">
           <div className="products-section w-full">
             <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
-              {states.newProducts.map((product, index) => (
-                <ProductCard key={index} product={product}></ProductCard>
+              {flashSaleData.map((product, index) => (
+                <ProductCard
+                  key={index}
+                  product={product.productsData}
+                ></ProductCard>
               ))}
             </div>
           </div>

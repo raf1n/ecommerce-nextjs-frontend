@@ -14,6 +14,7 @@ import {
   IFeaturedCategories,
   IPopularCategories,
   ISeller,
+  IFlashSaleProducts,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -137,4 +138,8 @@ export interface IFeaturedCategoriesResponse extends MyFetchInterface {
 
 export interface IPopularCategoriesResponse extends MyFetchInterface {
   res: IPopularCategories[];
+}
+
+export interface IFlashSaleProductsResponse extends MyFetchInterface {
+  res: IFlashSaleProducts[];
 }
