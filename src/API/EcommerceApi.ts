@@ -6,6 +6,7 @@ import {
   ISeller,
 } from "./../../interfaces/models";
 import {
+  IBlogResponse,
   ICartResponse,
   IFeaturedCategoriesResponse,
   IFilteredProductResponse,
@@ -660,5 +661,19 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/flash-sale/user`, requestOptions);
+  }
+
+  //Get all blogs
+  //get all categories
+  static async getAllBlogs(): Promise<IBlogResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/blogs`, requestOptions);
   }
 }

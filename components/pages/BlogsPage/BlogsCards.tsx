@@ -5,11 +5,15 @@ import { Jsondata } from "../../../src/utils/Jsondata";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import ViewMoreBtn from "../../helpers/Buttons/ViewMoreBtn";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
-interface Props {}
+interface Props {
+  blogsData: any;
+  setBlogsData: any;
+}
 
 const BlogsCards: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [showAll, setShowAll] = useState(false);
+  const { blogsData, setBlogsData } = props;
 
   return (
     <div className="w-full pt-[60px] bg-white">
@@ -17,7 +21,7 @@ const BlogsCards: React.FC<Props> = (props) => {
         <div className="w-full">
           <div className="grid md:grid-cols-2 grid-cols-1 lg:gap-[30px] gap-5 pb-[60px]">
             {!showAll
-              ? Jsondata.blogsData.slice(0, 2).map((data, idx) => (
+              ? blogsData.slice(0, 2).map((data: any, idx: any) => (
                   <div
                     key={idx}
                     data-aos="fade-up"
@@ -29,7 +33,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                           <img
                             alt="blog"
                             sizes="100vw"
-                            src={data.blogThum}
+                            src={data.imageURL}
                             decoding="async"
                             data-nimg="fill"
                             className="w-full h-full object-cover"
@@ -77,9 +81,9 @@ const BlogsCards: React.FC<Props> = (props) => {
                             href="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads"
                           >
                             <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalizen cursor-pointer">
-                              {data?.tittle?.length > 72
-                                ? data?.tittle?.slice(0, 72) + "..."
-                                : data?.tittle}
+                              {data?.title?.length > 72
+                                ? data?.title?.slice(0, 72) + "..."
+                                : data?.title}
                             </h1>
                           </a>
                           <div className="article-area line-clamp-2">
@@ -95,9 +99,9 @@ const BlogsCards: React.FC<Props> = (props) => {
                             ></p>
 
                             <p className="opacity-50">
-                              {data.desciption.length > 130
-                                ? data.desciption.slice(0, 130) + "..."
-                                : data.desciption}
+                              {data.description.length > 130
+                                ? data.description.slice(0, 130) + "..."
+                                : data.description}
                             </p>
                           </div>
                           <div
@@ -111,7 +115,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                     </div>
                   </div>
                 ))
-              : Jsondata.blogsData.map((data, idx) => (
+              : blogsData.map((data: any, idx: any) => (
                   <div
                     key={idx}
                     data-aos="fade-up"
@@ -123,7 +127,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                           <img
                             alt="blog"
                             sizes="100vw"
-                            src={data.blogThum}
+                            src={data.imageURL}
                             decoding="async"
                             data-nimg="fill"
                             className="w-full h-full object-cover"
@@ -171,9 +175,9 @@ const BlogsCards: React.FC<Props> = (props) => {
                             href="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads"
                           >
                             <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalizen cursor-pointer">
-                              {data?.tittle?.length > 72
-                                ? data?.tittle?.slice(0, 72) + "..."
-                                : data?.tittle}
+                              {data?.title?.length > 72
+                                ? data?.title?.slice(0, 72) + "..."
+                                : data?.title}
                             </h1>
                           </a>
                           <div className="article-area line-clamp-2">
@@ -189,9 +193,9 @@ const BlogsCards: React.FC<Props> = (props) => {
                             ></p>
 
                             <p className="opacity-50">
-                              {data.desciption.length > 130
-                                ? data.desciption.slice(0, 130) + "..."
-                                : data.desciption}
+                              {data.description.length > 130
+                                ? data.description.slice(0, 130) + "..."
+                                : data.description}
                             </p>
                           </div>
                           <div className="mt-4">
