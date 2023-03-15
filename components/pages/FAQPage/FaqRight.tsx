@@ -34,6 +34,7 @@ const FaqRight: React.FC<Props> = (props) => {
           console.log(error.text);
         }
       );
+    e.target.reset();
   };
 
   return (
@@ -48,14 +49,12 @@ const FaqRight: React.FC<Props> = (props) => {
             height="30"
             viewBox="0 0 354 30"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+            xmlns="http://www.w3.org/2000/svg">
             <path
               d="M1 28.8027C17.6508 20.3626 63.9476 8.17089 113.509 17.8802C166.729 28.3062 341.329 42.704 353 1"
               stroke="#FFBB38"
               strokeWidth="2"
-              strokeLinecap="round"
-            ></path>
+              strokeLinecap="round"></path>
           </svg>
         </span>
       </div>
@@ -64,8 +63,7 @@ const FaqRight: React.FC<Props> = (props) => {
           <div className="input-com w-full h-full mb-4">
             <label
               className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-              htmlFor="first_name"
-            >
+              htmlFor="first_name">
               Name*
             </label>
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -85,8 +83,7 @@ const FaqRight: React.FC<Props> = (props) => {
           <div className="input-com w-full h-full mb-4">
             <label
               className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-              htmlFor="email"
-            >
+              htmlFor="email">
               Email Address*
             </label>
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -106,8 +103,7 @@ const FaqRight: React.FC<Props> = (props) => {
           <div className="input-com w-full h-full mb-4">
             <label
               className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-              htmlFor="subject"
-            >
+              htmlFor="subject">
               Subject*
             </label>
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -127,8 +123,7 @@ const FaqRight: React.FC<Props> = (props) => {
           <div className="input-com w-full h-full mb-5">
             <label
               className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-              htmlFor="message"
-            >
+              htmlFor="message">
               Message*
             </label>
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
