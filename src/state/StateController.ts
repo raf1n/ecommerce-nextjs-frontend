@@ -3,6 +3,7 @@ import {
   ICartProduct,
   ICategories,
   ISubCategories,
+  IUser,
   IWishlistProduct,
 } from "./../../interfaces/models";
 //@ts-nocheck
@@ -42,7 +43,7 @@ export interface IStates {
   subCategories: Array<ISubCategories>;
   brands: Array<IBrands>;
   initialDataLoading: boolean;
-  user: any;
+  user: IUser | null;
 }
 
 export class Controller {
@@ -97,12 +98,15 @@ export class Controller {
   @action
   setSearchCategory(cat: string, fromHeader: boolean) {
     if (fromHeader) {
-      this.states.searchCategory = "+" + cat
+      this.states.searchCategory = "+" + cat;
     } else {
       if (this.states.searchCategory.includes(cat)) {
-        this.states.searchCategory = this.states.searchCategory.replace("+" + cat, "")
+        this.states.searchCategory = this.states.searchCategory.replace(
+          "+" + cat,
+          ""
+        );
       } else {
-        this.states.searchCategory = this.states.searchCategory + "+" + cat
+        this.states.searchCategory = this.states.searchCategory + "+" + cat;
       }
     }
 
@@ -119,9 +123,12 @@ export class Controller {
   @action
   setSearchBrand(brand: string) {
     if (this.states.searchBrand.includes(brand)) {
-      this.states.searchBrand = this.states.searchBrand.replace("+" + brand, "")
+      this.states.searchBrand = this.states.searchBrand.replace(
+        "+" + brand,
+        ""
+      );
     } else {
-      this.states.searchBrand = this.states.searchBrand + "+" + brand
+      this.states.searchBrand = this.states.searchBrand + "+" + brand;
     }
   }
 
@@ -263,7 +270,7 @@ export class Controller {
   setAllCartListData(products: ICartProduct[]) {
     this.states.cartlistData = products;
   }
- 
+
   @action
   setUser(user: any) {
     this.states.user = user;
