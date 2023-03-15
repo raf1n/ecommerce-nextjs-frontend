@@ -219,3 +219,9 @@ export interface IBlog {
   seo_description?: string;
   postBy: string;
 }
+
+export interface IBlogCategory extends MyFetchInterface {
+  name: string;
+  slug?: string;
+  status: string;
+}

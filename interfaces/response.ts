@@ -16,6 +16,7 @@ import {
   ISeller,
   IFlashSaleProducts,
   IBlog,
+  IBlogCategory,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -147,4 +148,8 @@ export interface IFlashSaleProductsResponse extends MyFetchInterface {
 
 export interface IBlogResponse extends MyFetchInterface {
   res: Array<IBlog>;
+}
+
+export interface IBlogCategoryResponse extends MyFetchInterface {
+  res: IBlogCategory[];
 }

@@ -24,8 +24,6 @@ const PopularCategory: React.FC<Props> = (props) => {
       } else {
         setSlug(res[0]?.cat_slug);
         setPopularCategoriesData(res);
-
-        // console.log(res);
       }
     };
     fetchAllPopularCategoriesData();
@@ -45,8 +43,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                     style={{
                       background:
                         "url(https://api.websolutionus.com/shopo/uploads/website-images/popular-cat-banner-2022-09-20-01-15-44-7577.jpg) 0% 0% / cover no-repeat",
-                    }}
-                  >
+                    }}>
                     <div>
                       <h1 className="text-base font-semibold tracking-wide mb-2">
                         Popular Category
@@ -58,8 +55,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                               <li>
                                 <span
                                   onClick={() => setSlug(singlePop?.cat_slug)}
-                                  className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
-                                >
+                                  className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
                                   {singlePop.cat_name}
                                 </span>
                               </li>
@@ -99,24 +95,21 @@ const PopularCategory: React.FC<Props> = (props) => {
                             height="11"
                             viewBox="0 0 7 11"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
+                            xmlns="http://www.w3.org/2000/svg">
                             <rect
                               x="2.08984"
                               y="0.636719"
                               width="6.94219"
                               height="1.54271"
                               transform="rotate(45 2.08984 0.636719)"
-                              fill="#1D1D1D"
-                            ></rect>
+                              fill="#1D1D1D"></rect>
                             <rect
                               x="7"
                               y="5.54492"
                               width="6.94219"
                               height="1.54271"
                               transform="rotate(135 7 5.54492)"
-                              fill="#1D1D1D"
-                            ></rect>
+                              fill="#1D1D1D"></rect>
                           </svg>
                         </span>
                       </div>

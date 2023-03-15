@@ -19,11 +19,8 @@ const Blogs: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
-        // setSlug(res[0]?.cat_slug);
         setBlogsData(res);
         console.log(res);
-
-        // console.log(res);
       }
     };
     fetchAllBlogsData();
@@ -32,10 +29,7 @@ const Blogs: React.FC<Props> = (props) => {
   return (
     <div>
       <PageHeader slug="Blogs" link="/blogs" title="Blogs" />
-      <BlogsCards
-        blogsData={blogsData}
-        setBlogsData={setBlogsData}
-      ></BlogsCards>
+      <BlogsCards blogsData={blogsData} setBlogsData={setBlogsData} />
     </div>
   );
 };
