@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-// @ts-ignore
-import CountdownTimer from "react-component-countdown-timer";
 import ProductCard from "../../shared/SharedProductCard/ProductCard";
 import { IFlashSaleProducts } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
@@ -28,17 +26,17 @@ const FlashSale: React.FC<Props> = (props) => {
     fetchAllFlashSalesData();
   }, []);
 
-  class SimpleCountdownTimer extends React.Component {
-    render() {
-      var settings = {
-        count: 5432,
-        border: true,
-        showTitle: true,
-        noPoints: true,
-      };
-      return <CountdownTimer {...settings} />;
-    }
-  }
+  // class SimpleCountdownTimer extends React.Component {
+  //   render() {
+  //     var settings = {
+  //       count: 5432,
+  //       border: true,
+  //       showTitle: true,
+  //       noPoints: true,
+  //     };
+  //     return <CountdownTimer {...settings} />;
+  //   }
+  // }
 
   return (
     <div className="w-full min-h-screen mt-10 pt-0 pb-0">
@@ -59,15 +57,6 @@ const FlashSale: React.FC<Props> = (props) => {
               <div className="countdown-item ">
                 <div className="  countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
                   <span className=" font-700 sm:text-[30px] font-bold text-base text-[#EB5757]">
-                    {/* <CountdownTimer
-                      count={5432}
-                      border
-                      showTitle
-                      responsive
-                      size={22}
-                      color="#fff"
-                      backgroundColor="#e6e46f"
-                    /> */}
                     {days}
                   </span>
                 </div>
@@ -78,14 +67,6 @@ const FlashSale: React.FC<Props> = (props) => {
               <div className="countdown-item">
                 <div className="countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
                   <span className="font-700 sm:text-[30px] font-bold text-base text-[#d557eb]">
-                    {/* <CountdownTimer
-                      count={5432}
-                      showTitle
-                      size={20}
-                      hideHours
-                      hideMinutes
-                      noPoints
-                    /> */}
                     {hours}
                   </span>
                 </div>
@@ -96,15 +77,6 @@ const FlashSale: React.FC<Props> = (props) => {
               <div className="countdown-item">
                 <div className="countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
                   <span className="font-700 sm:text-[30px] font-bold text-base text-[#5772eb]">
-                    {/* <CountdownTimer
-                      count={5432}
-                      showTitle
-                      size={20}
-                      hideDay
-                      hideHours
-                      hideSeconds
-                      noPoints
-                    /> */}
                     {minutes}
                   </span>
                 </div>
@@ -115,15 +87,6 @@ const FlashSale: React.FC<Props> = (props) => {
               <div className="countdown-item">
                 <div className="countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
                   <span className="font-700 sm:text-[30px] font-bold text-base text-[#57ebd7]">
-                    {/* <CountdownTimer
-                      count={5432}
-                      // showTitle
-                      size={20}
-                      hideDay
-                      hideHours
-                      hideMinutes
-                      noPoints
-                    /> */}
                     {seconds}
                   </span>
                 </div>
