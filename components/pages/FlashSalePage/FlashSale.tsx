@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-// @ts-ignore
-import CountdownTimer from "react-component-countdown-timer";
 import ProductCard from "../../shared/SharedProductCard/ProductCard";
 import { IFlashSaleProducts } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import useCountDown from "../../shared/hooks/useCountDown";
 interface Props {}
 
 const FlashSale: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [flashSaleData, setFlashSaleData] = useState<IFlashSaleProducts[]>([]);
+  const { days, hours, minutes, seconds } = useCountDown("12 April, 2023");
 
   useEffect(() => {
     const fetchAllFlashSalesData = async () => {
@@ -18,7 +18,6 @@ const FlashSale: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
-        // setSlug(res[0]?.cat_slug);
         setFlashSaleData(res);
 
         console.log(res);
@@ -27,17 +26,17 @@ const FlashSale: React.FC<Props> = (props) => {
     fetchAllFlashSalesData();
   }, []);
 
-  class SimpleCountdownTimer extends React.Component {
-    render() {
-      var settings = {
-        count: 5432,
-        border: true,
-        showTitle: true,
-        noPoints: true,
-      };
-      return <CountdownTimer {...settings} />;
-    }
-  }
+  // class SimpleCountdownTimer extends React.Component {
+  //   render() {
+  //     var settings = {
+  //       count: 5432,
+  //       border: true,
+  //       showTitle: true,
+  //       noPoints: true,
+  //     };
+  //     return <CountdownTimer {...settings} />;
+  //   }
+  // }
 
   return (
     <div className="w-full min-h-screen mt-10 pt-0 pb-0">
@@ -57,17 +56,8 @@ const FlashSale: React.FC<Props> = (props) => {
             <div className="countdown-wrapper  w-full flex sm:space-x-6 rtl:space-x-reverse space-x-3 sm:justify-between justify-evenly">
               <div className="countdown-item ">
                 <div className="  countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
-                  <span className=" font-700 sm:text-[30px] text-base text-[#EB5757]">
-                    {/* <CountdownTimer
-                      count={5432}
-                      border
-                      showTitle
-                      responsive
-                      size={22}
-                      color="#fff"
-                      backgroundColor="#e6e46f"
-                    /> */}
-                    5
+                  <span className=" font-700 sm:text-[30px] font-bold text-base text-[#EB5757]">
+                    {days}
                   </span>
                 </div>
                 <p className="sm:text-[18px] text-xs font-500 text-center leading-8 text-white">
@@ -76,16 +66,8 @@ const FlashSale: React.FC<Props> = (props) => {
               </div>
               <div className="countdown-item">
                 <div className="countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
-                  <span className="font-700 sm:text-[30px] text-base text-[#EB5757]">
-                    {/* <CountdownTimer
-                      count={5432}
-                      showTitle
-                      size={20}
-                      hideHours
-                      hideMinutes
-                      noPoints
-                    /> */}
-                    5
+                  <span className="font-700 sm:text-[30px] font-bold text-base text-[#d557eb]">
+                    {hours}
                   </span>
                 </div>
                 <p className="sm:text-[18px] text-xs font-500 text-center leading-8 text-white">
@@ -94,17 +76,8 @@ const FlashSale: React.FC<Props> = (props) => {
               </div>
               <div className="countdown-item">
                 <div className="countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
-                  <span className="font-700 sm:text-[30px] text-base text-[#EB5757]">
-                    {/* <CountdownTimer
-                      count={5432}
-                      showTitle
-                      size={20}
-                      hideDay
-                      hideHours
-                      hideSeconds
-                      noPoints
-                    /> */}
-                    15
+                  <span className="font-700 sm:text-[30px] font-bold text-base text-[#5772eb]">
+                    {minutes}
                   </span>
                 </div>
                 <p className="sm:text-[18px] text-xs font-500 text-center leading-8 text-white">
@@ -113,16 +86,8 @@ const FlashSale: React.FC<Props> = (props) => {
               </div>
               <div className="countdown-item">
                 <div className="countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
-                  <span className="font-700 sm:text-[30px] text-base text-[#EB5757]">
-                    <CountdownTimer
-                      count={5432}
-                      // showTitle
-                      size={20}
-                      hideDay
-                      hideHours
-                      hideMinutes
-                      noPoints
-                    />
+                  <span className="font-700 sm:text-[30px] font-bold text-base text-[#57ebd7]">
+                    {seconds}
                   </span>
                 </div>
                 <p className="sm:text-[18px] text-xs font-500 text-center leading-8 text-white">

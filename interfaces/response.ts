@@ -153,3 +153,7 @@ export interface ISingleBlogResponse extends MyFetchInterface {
 export interface IBlogCommentsResponse extends MyFetchInterface {
   res: IBlogComment[];
 }
+
+export interface IBlogResponse extends MyFetchInterface {
+  res: Array<IBlog>;
+}

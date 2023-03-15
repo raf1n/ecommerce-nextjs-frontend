@@ -13,15 +13,11 @@ const BecomeSeller: React.FC<Props> = (props) => {
     e.preventDefault();
     const logo = e.target.logoUrl.files[0];
     const cover = e.target.coverUrl.files[0];
-
     const formData1 = new FormData();
     formData1.append("image", logo);
-
     const formData2 = new FormData();
     formData2.append("image", cover);
-
     const { res: res1, err } = await EcommerceApi.uploadLogoandCover(formData1);
-
     if (res1?.data?.url || !res1?.data?.url) {
       let logoUrl;
       logoUrl = res1?.data?.url;
@@ -56,7 +52,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
 
         EcommerceApi.addSeller(sellerData);
         console.log(sellerData);
-        // e.target.reset();
+        e.target.reset();
       }
     }
   };

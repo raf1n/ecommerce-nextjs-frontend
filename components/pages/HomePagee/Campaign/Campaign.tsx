@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
@@ -7,22 +7,43 @@ import styles from "./Campaign.module.css";
 import img1 from "./googlePlay.png";
 import img2 from "./app.png";
 import Link from "next/link";
+import useCountDown from "../../../shared/hooks/useCountDown";
 
 interface Props {}
 
 const Campaign: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const { days, hours, minutes, seconds } = useCountDown("22 April, 2023");
+  console.log(days, hours, minutes, seconds);
+
+  const saleTime = [
+    {
+      name: "Days",
+      duration: days,
+    },
+    {
+      name: "Hours",
+      duration: hours,
+    },
+    {
+      name: "Minutes",
+      duration: minutes,
+    },
+    {
+      name: "Seconds",
+      duration: seconds,
+    },
+  ];
 
   return (
     <div className="w-full lg:h-[460px] md:mb-[60px] mb-[30px]">
       <div className="container-x mx-auto h-full">
         <div className="lg:flex xl:space-x-[30px] lg:space-x-5 items-center h-full">
           <div
-            className={`${styles["campaign-countdown"]} lg:w-1/2 h-[300px] sm:h-[400px] lg:h-full w-full mb-5 lg:mb-0`}
-          >
+            className={`${styles["campaign-countdown"]} lg:w-1/2 h-[300px] sm:h-[400px] lg:h-full w-full mb-5 lg:mb-0`}>
             <div className="w-full xl:p-12 p-5">
               <div className="w-full flex lg:justify-between justify-evenly lg:mb-10 mb-2">
-                {Jsondata.saleTime.map((item, index) => {
+                {saleTime.map((item, index) => {
                   return (
                     <div>
                       <div className="sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
@@ -48,8 +69,7 @@ const Campaign: React.FC<Props> = (props) => {
             </div>
           </div>
           <div
-            className={`${styles["download-app"]} flex-1 lg:h-full h-[430px] xl:p-12 p-5 aos-init aos-animate`}
-          >
+            className={`${styles["download-app"]} flex-1 lg:h-full h-[430px] xl:p-12 p-5 aos-init aos-animate`}>
             <div className="flex flex-col h-full justify-between">
               <div>
                 <p className="text-[13px] font-semibold text-qblack mb-3">
@@ -64,17 +84,29 @@ const Campaign: React.FC<Props> = (props) => {
                   It's Make easy for you life!
                 </h1>
                 <div className="flex space-x-5 items-center">
-                  {[img1, img2].map((item) => {
-                    return (
-                      <div className="bg-white w-[170px] h-[60px] flex justify-center items-center cursor-pointer">
-                        <a href="" rel="noopener noreferrer">
-                          <picture>
-                            <img src={item.src} alt="" />
-                          </picture>
-                        </a>
-                      </div>
-                    );
-                  })}
+                  {/* {[img1, img2].map((item) => {
+                    return ( */}
+                  <div className="bg-white w-[170px] h-[60px] flex justify-center items-center cursor-pointer">
+                    <Link
+                      href={`https://play.google.com/store/apps`}
+                      rel="noopener noreferrer">
+                      <picture>
+                        <img src={img1.src} alt="" />
+                      </picture>
+                    </Link>
+                  </div>
+                  <div className="bg-white w-[170px] h-[60px] flex justify-center items-center cursor-pointer">
+                    <Link
+                      href={`https://www.apple.com/app-store/`}
+                      rel="noopener noreferrer">
+                      <picture>
+                        <img src={img2.src} alt="" />
+                      </picture>
+                    </Link>
+                  </div>
+
+                  {/* );
+                  })} */}
                 </div>
               </div>
             </div>

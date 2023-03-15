@@ -6,6 +6,7 @@ import {
   ISeller,
 } from "./../../interfaces/models";
 import {
+  IBlogResponse,
   ICartResponse,
   IFeaturedCategoriesResponse,
   IFilteredProductResponse,
@@ -712,5 +713,17 @@ export class EcommerceApi {
       `${API_ENDPOINT}/blog-comments`,
       requestOptions
     );
+  }
+
+  static async getAllBlogs(): Promise<IBlogResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/blogs`, requestOptions);
   }
 }
