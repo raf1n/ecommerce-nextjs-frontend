@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import { useSelector, useStore } from "react-redux";
 import { controller } from "../../../src/state/StateController";
@@ -72,8 +73,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                           </div>
                         </div>
                         <div className="details">
-                          <a
-                            rel="noopener noreferrer"
+                          <Link
                             href="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads"
                           >
                             <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalizen cursor-pointer">
@@ -81,7 +81,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                                 ? data?.tittle?.slice(0, 72) + "..."
                                 : data?.tittle}
                             </h1>
-                          </a>
+                          </Link>
                           <div className="article-area line-clamp-2">
                             <p
                               style={{
@@ -166,16 +166,13 @@ const BlogsCards: React.FC<Props> = (props) => {
                           </div>
                         </div>
                         <div className="details">
-                          <a
-                            rel="noopener noreferrer"
-                            href="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads"
-                          >
+                          <Link href="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads">
                             <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalizen cursor-pointer">
                               {data?.tittle?.length > 72
                                 ? data?.tittle?.slice(0, 72) + "..."
                                 : data?.tittle}
                             </h1>
-                          </a>
+                          </Link>
                           <div className="article-area line-clamp-2">
                             <p
                               style={{

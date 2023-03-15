@@ -101,10 +101,12 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"></path>
+                fill="#D2D8E1"
+              ></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -113,10 +115,12 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"></path>
+                fill="#D2D8E1"
+              ></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -125,10 +129,12 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"></path>
+                fill="#D2D8E1"
+              ></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -137,10 +143,12 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"></path>
+                fill="#D2D8E1"
+              ></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -149,10 +157,12 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"></path>
+                fill="#D2D8E1"
+              ></path>
             </svg>
           </span>
         </div>
@@ -211,7 +221,8 @@ const ProductDetails: React.FC<Props> = (props) => {
         <div className="flex-1 h-full">
           <button
             type="button"
-            className="bg-black text-white text-sm font-semibold w-full h-full">
+            className="bg-black text-white text-sm font-semibold w-full h-full"
+          >
             Add To Cart
           </button>
         </div>
@@ -228,18 +239,45 @@ const ProductDetails: React.FC<Props> = (props) => {
         <button
           onClick={() => setReportModalSlug("aaa")}
           type="button"
-          className="font-semibold text-[13px]">
+          className="font-semibold text-[13px]"
+        >
           Report This Item
         </button>
       </div>
 
       <div
         data-aos="fade-up"
-        className="social-share flex items-center w-full aos-init aos-animate">
+        className="social-share flex items-center w-full aos-init aos-animate"
+      >
         <span className="text-qblack text-[13px] mr-[17px] inline-block">
           Share This
         </span>
-        <div className="flex items-center"></div>
+        <div className="flex items-center">
+          <div
+            aria-label="facebook"
+            className="bg-transparent border-none p-0 cursor-pointer"
+          >
+            <FacebookShareButton url={shareableRoute}>
+              <FacebookIcon
+                size={40}
+                iconFillColor="#3E75B2"
+                bgStyle={{ display: "none" }}
+              />
+            </FacebookShareButton>
+          </div>
+          <div
+            aria-label="twitter"
+            className="bg-transparent border-none p-0 cursor-pointer"
+          >
+            <TwitterShareButton url={shareableRoute}>
+              <TwitterIcon
+                size={40}
+                iconFillColor="#3FD1FF"
+                bgStyle={{ display: "none" }}
+              />
+            </TwitterShareButton>
+          </div>
+        </div>
       </div>
     </div>
   );

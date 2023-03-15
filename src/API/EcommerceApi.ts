@@ -17,6 +17,7 @@ import {
   ISellerResponse,
   ISingleAddressResponse,
   ISingleAdResponse,
+  ISingleBlogResponse,
   ISingleMegaCategoryResponse,
   ISingleOrderResponse,
   ISliderResponse,
@@ -660,5 +661,56 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/flash-sale/user`, requestOptions);
+  }
+
+  static async getSingleBlog(
+    slug: string
+  ): Promise<ISingleBlogResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/blogs/${slug}`,
+      requestOptions
+    );
+  }
+
+  static async getBlogComments(
+    slug: string
+  ): Promise<ISingleBlogResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/blog-comments/single-blog/${slug}`,
+      requestOptions
+    );
+  }
+
+  static async postBlogComments(
+    data: any
+  ): Promise<any> {
+    const myHeaders = new Headers();
+    myHeaders.append("content-type", "application/json");
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      redirect: "follow",
+      body: JSON.stringify(data)
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/blog-comments`,
+      requestOptions
+    );
   }
 }

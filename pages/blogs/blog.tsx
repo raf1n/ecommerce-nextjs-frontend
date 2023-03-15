@@ -1,25 +1,44 @@
-import { useRouter } from 'next/router'
-import React from 'react'
-import { useSelector } from 'react-redux'
-import SingleBlogPage from '../../components/pages/BlogsPage/SingleBlogPage'
-import { controller } from '../../src/state/StateController'
+import { useRouter } from "next/router";
+import React from "react";
+import { useSelector } from "react-redux";
+import SingleBlogPage from "../../components/pages/BlogsPage/SingleBlogPage";
+import { IBlog, IBlogComment } from "../../interfaces/models";
+import { EcommerceApi } from "../../src/API/EcommerceApi";
+import { controller } from "../../src/state/StateController";
 
 interface Props {
+  blogData: IBlog | null;
+  blogComments: IBlogComment[] | null;
 }
 
-const blog: React.FC<Props> = (props) => {
+const blog: React.FC<Props> = ({ blogData, blogComments }) => {
+  console.log(blogData);
 
-  const states = useSelector(() => controller.states)
-  
-  return <SingleBlogPage />
-}
+  const states = useSelector(() => controller.states);
+
+  return <SingleBlogPage blogData={blogData} blogComments={blogComments} />;
+};
 
 export async function getServerSideProps(context: any) {
+  console.log(context.query.slug);
 
-  console.log(context.query.slug)
-  return {
-    props: {}, // will be passed to the page component as props
+  const slug = "iphone_12_is_very_good_1rr2-Op57";
+
+  const { res, err } = await EcommerceApi.getSingleBlog(slug);
+  const { res: blogCommentsRes, err: commentErr } = await EcommerceApi.getBlogComments(slug);
+
+  if (res && blogCommentsRes) {
+    return {
+      props: {
+        blogData: res,
+        blogComments: blogCommentsRes
+      }, // will be passed to the page component as props
+    };
+  } else {
+    return {
+      props: null, // will be passed to the page component as props
+    };
   }
 }
 
-export default blog
+export default blog;

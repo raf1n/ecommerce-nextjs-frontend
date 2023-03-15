@@ -205,3 +205,29 @@ export interface IFlashSaleProducts {
   status: string;
   productsData: IProduct;
 }
+
+export interface IBlog {
+  slug: string;
+  title: string;
+  catSlug: string;
+  description: string;
+  createdAt: string;
+
+  isShowHomepage?: string;
+  status?: string;
+  imageURL?: string | undefined;
+
+  seo_title?: string;
+  seo_description?: string;
+  postBy: string;
+}
+
+export interface IBlogComment {
+  slug: string;
+  userSlug: string;
+  name: string;
+  email: string;
+  avatar: string;
+  comment: string;
+  status: string;
+}
