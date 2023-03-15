@@ -49,6 +49,15 @@ export interface IProduct {
   isFeatured?: boolean;
   isPopular?: boolean;
 }
+export interface ISeller {
+  email?: string;
+  phone?: number;
+  shopname?: string;
+  shopaddress?: string;
+  logoUrl?: string;
+  coverUrl?: string;
+  status?: string;
+}
 
 export interface IWishlistProduct extends IProduct {
   user_slug?: string;
@@ -172,6 +181,15 @@ export interface IMegaCategory {
   status: "active" | "inactive";
 }
 
+export interface IPopularCategories {
+  slug: string;
+  cat_slug: string;
+  // subcat_name: string;
+  // subcat_status: string;
+  cat_name: string;
+  cat_image: string;
+}
+
 export interface IFeaturedCategories {
   slug: string;
   cat_slug: string;
@@ -179,4 +197,37 @@ export interface IFeaturedCategories {
   // subcat_status: string;
   cat_name: string;
   cat_image: string;
+}
+
+export interface IFlashSaleProducts {
+  slug: string;
+  product_slug: string;
+  status: string;
+  productsData: IProduct;
+}
+
+export interface IBlog {
+  slug: string;
+  title: string;
+  catSlug: string;
+  description: string;
+  createdAt: string;
+
+  isShowHomepage?: string;
+  status?: string;
+  imageURL?: string | undefined;
+
+  seo_title?: string;
+  seo_description?: string;
+  postBy: string;
+}
+
+export interface IBlogComment {
+  slug: string;
+  userSlug: string;
+  name: string;
+  email: string;
+  avatar: string;
+  comment: string;
+  status: string;
 }

@@ -12,6 +12,11 @@ import {
   IAd,
   IMegaCategory,
   IFeaturedCategories,
+  IPopularCategories,
+  ISeller,
+  IFlashSaleProducts,
+  IBlog,
+  IBlogComment,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -49,6 +54,10 @@ export interface IWishlistResponse extends MyFetchInterface {
     data: IProduct;
     message: string;
   };
+}
+
+export interface ISellerResponse extends MyFetchInterface {
+  res: ISeller;
 }
 
 export interface IOrderResponse extends MyFetchInterface {
@@ -127,4 +136,20 @@ export interface ISingleMegaCategoryResponse extends MyFetchInterface {
 
 export interface IFeaturedCategoriesResponse extends MyFetchInterface {
   res: IFeaturedCategories[];
+}
+
+export interface IPopularCategoriesResponse extends MyFetchInterface {
+  res: IPopularCategories[];
+}
+
+export interface IFlashSaleProductsResponse extends MyFetchInterface {
+  res: IFlashSaleProducts[];
+}
+
+export interface ISingleBlogResponse extends MyFetchInterface {
+  res: IBlog;
+}
+
+export interface IBlogCommentsResponse extends MyFetchInterface {
+  res: IBlogComment[];
 }

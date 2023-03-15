@@ -54,17 +54,18 @@ const HeroStatic: React.FC<Props> = (props) => {
       >
         <div className="flex flex-col justify-between">
           <div>
-            <div className="md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
+            {/* md:h-[25px] h-[18px] */}
+            <div className=" w-fit px-3 py-1 h-fit shadow  flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
               <span className="text-qblack uppercase md:text-xs text-[10px] font-semibold">
-                Gaming
+                {singleAdData?.badge}
               </span>
             </div>
             <div className="md:mb-[30px] mb-2.5">
               <p className="md:text-[30px] leading-none text-qblack font-semibold md:mb-3">
-                Apple
+                {singleAdData?.title_one}
               </p>
               <h1 className="md:text-[30px] md:leading-[40px] text-qblack font-semibold">
-                Smart Watch
+                {singleAdData?.title_two}
               </h1>
             </div>
           </div>
@@ -88,17 +89,17 @@ const HeroStatic: React.FC<Props> = (props) => {
       >
         <div className="flex flex-col justify-between">
           <div>
-            <div className="md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
+            <div className=" w-fit px-3 py-1 h-fit shadow  flex items-center justify-center bg-white rounded-full md:mb-[22px] mb-[15px]">
               <span className="text-qblack uppercase md:text-xs text-[10px] font-semibold">
-                Gaming
+                {singleSecondAdData?.badge}
               </span>
             </div>
             <div className="md:mb-[30px] mb-2.5">
               <p className="md:text-[30px] leading-none text-qblack font-semibold md:mb-3">
-                Xbox
+                {singleSecondAdData?.title_one}
               </p>
               <h1 className="md:text-[30px] md:leading-[40px] text-qblack font-semibold">
-                5th Version
+                {singleSecondAdData?.title_two}
               </h1>
             </div>
           </div>

@@ -3,16 +3,21 @@ import {
   ICartProduct,
   IOrder,
   IReview,
+  ISeller,
 } from "./../../interfaces/models";
 import {
   ICartResponse,
   IFeaturedCategoriesResponse,
   IFilteredProductResponse,
+  IFlashSaleProductsResponse,
   IMegaCategoriesResponse,
   IOrderResponse,
+  IPopularCategoriesResponse,
   IReviewsResponse,
+  ISellerResponse,
   ISingleAddressResponse,
   ISingleAdResponse,
+  ISingleBlogResponse,
   ISingleMegaCategoryResponse,
   ISingleOrderResponse,
   ISliderResponse,
@@ -88,6 +93,39 @@ export class EcommerceApi {
     };
     return await callFetch(
       `${API_ENDPOINT}/wishlist?user_slug=${user_slug}`,
+      requestOptions
+    );
+  }
+
+  //seller logo & cover image upload
+  static async uploadLogoandCover(
+    data: Partial<any>
+  ): Promise<MyFetchInterface> {
+    console.log("data logo cover img -", data);
+    const requestOptions = {
+      method: "POST",
+      body: data,
+      redirect: "follow",
+      cors: "no-cors",
+    };
+    return await callFetch(
+      `https://api.imgbb.com/1/upload?key=f8e6d4200bc9ef812af367efe95dc229`,
+      requestOptions
+    );
+  }
+
+  // add seller information
+  static async addSeller(data: Partial<ISeller>): Promise<ISellerResponse> {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(data),
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/users/seller_apply`,
       requestOptions
     );
   }
@@ -594,6 +632,84 @@ export class EcommerceApi {
 
     return await callFetch(
       `${API_ENDPOINT}/featured-categories`,
+      requestOptions
+    );
+  }
+
+  static async allPopularCategories(): Promise<IPopularCategoriesResponse> {
+    // console.log(API_ENDPOINT);
+    const myHeaders = new Headers();
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/popular-categories`,
+      requestOptions
+    );
+  }
+
+  //  flash sales apis
+
+  static async getFlashSaleProductsData(): Promise<IFlashSaleProductsResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/flash-sale/user`, requestOptions);
+  }
+
+  static async getSingleBlog(
+    slug: string
+  ): Promise<ISingleBlogResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/blogs/${slug}`,
+      requestOptions
+    );
+  }
+
+  static async getBlogComments(
+    slug: string
+  ): Promise<ISingleBlogResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/blog-comments/single-blog/${slug}`,
+      requestOptions
+    );
+  }
+
+  static async postBlogComments(
+    data: any
+  ): Promise<any> {
+    const myHeaders = new Headers();
+    myHeaders.append("content-type", "application/json");
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      redirect: "follow",
+      body: JSON.stringify(data)
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/blog-comments`,
       requestOptions
     );
   }

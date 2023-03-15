@@ -8,27 +8,27 @@ import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 interface Props {
   review: {
-    reviewDate: string;
+    createdAt: string;
     status: string;
     rating: number;
     message: string;
     reviewProducts: any;
   };
 }
+// console.log(props.review);
 
 const ProfileReviewItem: React.FC<Props> = ({
-  review: { reviewDate, reviewProducts, status, rating, message },
+  review: { createdAt, reviewProducts, status, rating, message },
 }) => {
   const states = useSelector(() => controller.states);
   console.log({
-    review: { reviewDate, reviewProducts, status, rating, message },
+    review: { createdAt, reviewProducts, status, rating, message },
   });
 
   return (
     <div
       className="min-h-[170px] bg-white group"
-      style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px" }}
-    >
+      style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px" }}>
       <div className="flex gap-x-2 items-center w-full h-full p-2 relative">
         <div className="w-1/3 h-full flex justify-center">
           <img
@@ -41,7 +41,7 @@ const ProfileReviewItem: React.FC<Props> = ({
         <div className="flex-1 flex flex-col justify-center h-full">
           <div>
             <span className="text-qgray text-sm mb-1.5 block">
-              {reviewDate}
+              {createdAt?.split("T")[0]}
             </span>
 
             {rating > 0 ? (

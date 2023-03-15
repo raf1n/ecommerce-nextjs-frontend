@@ -1,5 +1,5 @@
 //@ts-ignore
-import ReactStars from 'react-rating-stars-component';
+import ReactStars from "react-rating-stars-component";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
@@ -39,7 +39,7 @@ const ReviewCard: React.FC<Props> = (props) => {
             emptyIcon={<FaRegStar />}
             halfIcon={<FaStarHalfAlt />}
             fullIcon={<FaStar />}
-            activeColor="#ffd700"
+            activeColor="rgb(255, 168, 0)"
             color="#d3d3d3"
           />
           <span className="text-[13px] font-normal text-qblack mt-1 inline-block">

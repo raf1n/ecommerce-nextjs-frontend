@@ -14,7 +14,7 @@ export const callFetch = async (
         return response.json();
       })
       .then((result) => {
-        console.log("res", result);
+        // console.log("res", result);
 
         if (result?.statusCode >= 400) {
           resolve({

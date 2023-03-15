@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { IProduct } from "../../../../interfaces/models";
+import { IPopularCategories, IProduct } from "../../../../interfaces/models";
+import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
@@ -10,7 +11,25 @@ interface Props {}
 
 const PopularCategory: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const [slug, setSlug] = useState("mobile_slug");
+  const [popularCategoriesData, setPopularCategoriesData] = useState<
+    IPopularCategories[]
+  >([]);
+  const [slug, setSlug] = useState("");
+
+  useEffect(() => {
+    const fetchAllPopularCategoriesData = async () => {
+      const { res, err } = await EcommerceApi.allPopularCategories();
+      if (err) {
+        console.log(err);
+      } else {
+        setSlug(res[0]?.cat_slug);
+        setPopularCategoriesData(res);
+
+        // console.log(res);
+      }
+    };
+    fetchAllPopularCategoriesData();
+  }, []);
 
   return (
     <div>
@@ -26,21 +45,35 @@ const PopularCategory: React.FC<Props> = (props) => {
                     style={{
                       background:
                         "url(https://api.websolutionus.com/shopo/uploads/website-images/popular-cat-banner-2022-09-20-01-15-44-7577.jpg) 0% 0% / cover no-repeat",
-                    }}>
+                    }}
+                  >
                     <div>
                       <h1 className="text-base font-semibold tracking-wide mb-2">
                         Popular Category
                       </h1>
                       <div className="brands-list mb-[7px]">
                         <ul>
-                          <li>
+                          {popularCategoriesData.map((singlePop) => (
+                            <>
+                              <li>
+                                <span
+                                  onClick={() => setSlug(singlePop?.cat_slug)}
+                                  className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
+                                >
+                                  {singlePop.cat_name}
+                                </span>
+                              </li>
+                            </>
+                          ))}
+                          {/* <li>
                             <span
                               onClick={() => setSlug("mobile_slug")}
-                              className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
+                              className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
+                            >
                               Mobile
                             </span>
-                          </li>
-                          <li>
+                          </li> */}
+                          {/* <li>
                             <span
                               onClick={() => setSlug("electronics_slug")}
                               className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
@@ -53,7 +86,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                               className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
                               Game
                             </span>
-                          </li>
+                          </li> */}
                         </ul>
                       </div>
                       <div className="flex space-x-2 items-center">
@@ -66,21 +99,24 @@ const PopularCategory: React.FC<Props> = (props) => {
                             height="11"
                             viewBox="0 0 7 11"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
                             <rect
                               x="2.08984"
                               y="0.636719"
                               width="6.94219"
                               height="1.54271"
                               transform="rotate(45 2.08984 0.636719)"
-                              fill="#1D1D1D"></rect>
+                              fill="#1D1D1D"
+                            ></rect>
                             <rect
                               x="7"
                               y="5.54492"
                               width="6.94219"
                               height="1.54271"
                               transform="rotate(135 7 5.54492)"
-                              fill="#1D1D1D"></rect>
+                              fill="#1D1D1D"
+                            ></rect>
                           </svg>
                         </span>
                       </div>

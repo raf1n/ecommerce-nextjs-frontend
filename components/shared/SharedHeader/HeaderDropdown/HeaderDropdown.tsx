@@ -213,7 +213,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                                 {s.subcat_name}
                                               </span>
                                             </div>
-                                            <div>
+                                            {/* <div>
                                               <span>
                                                 <svg
                                                   width="6"
@@ -237,10 +237,12 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                                     fill="#1D1D1D"></rect>
                                                 </svg>
                                               </span>
-                                            </div>
+                                            </div> */}
                                           </div>
                                         </Link>
-                                        <div
+
+                                        {/* child category dropdown */}
+                                        {/* <div
                                           className={`${styles["height"]} ${styles["sub-category-lvl-three"]} absolute left-[270px] top-0 z-10 w-[270px] bg-white`}>
                                           <ul className="">
                                             <li
@@ -258,7 +260,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                               </Link>
                                             </li>
                                           </ul>
-                                        </div>
+                                        </div> */}
                                       </li>
                                     </>
                                   ))}
