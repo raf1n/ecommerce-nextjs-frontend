@@ -9,7 +9,7 @@ interface Props {
 
 const BlogCommentCard: React.FC<Props> = ({ blogComment }) => {
   const states = useSelector(() => controller.states);
-  console.log(blogComment)
+  console.log(blogComment);
 
   return (
     <div className="comment-item bg-white px-10 py-[32px] mb-2.5">
@@ -17,17 +17,21 @@ const BlogCommentCard: React.FC<Props> = ({ blogComment }) => {
         <div className="flex space-x-3 rtl:space-x-reverse items-center">
           <div className="w-[50px] h-[50px] rounded-full overflow-hidden relative">
             <span>
-              <img
-                alt=""
-                src={blogComment.avatar}
-                decoding="async"
-                data-nimg="fill"
-                className="w-full h-full object-cover"
-              />
+              <picture>
+                <img
+                  alt=""
+                  src={blogComment.avatar}
+                  decoding="async"
+                  data-nimg="fill"
+                  className="w-full h-full object-cover"
+                />
+              </picture>
             </span>
           </div>
           <div>
-            <p className="text-[18px] font-medium text-qblack">{blogComment.name}</p>
+            <p className="text-[18px] font-medium text-qblack">
+              {blogComment.name}
+            </p>
           </div>
         </div>
       </div>
