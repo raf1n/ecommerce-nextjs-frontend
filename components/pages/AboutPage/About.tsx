@@ -302,7 +302,8 @@ const About: React.FC<Props> = (props) => {
                 //@ts-ignore
                 onClick={() => slider?.current?.slickNext()}
                 type="button"
-                className="w-[48px] h-[48px] rounded-full overflow-hidden flex justify-center items-center border border-qyellow text-qyellow focus:bg-qyellow focus:text-white">
+                className="w-[48px] h-[48px] rounded-full overflow-hidden flex justify-center items-center border border-qyellow text-qyellow focus:bg-qyellow focus:text-white"
+              >
                 {/* <SvgIconRenderer
                   xmlns={"http://www.w3.org/2000/svg"}
                   className={"h-6 w-6"}
@@ -318,29 +319,34 @@ const About: React.FC<Props> = (props) => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2">
+                  stroke-width="2"
+                >
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M15 19l-7-7 7-7"></path>
+                    d="M15 19l-7-7 7-7"
+                  ></path>
                 </svg>
               </button>
               <button
                 //@ts-ignore
                 onClick={() => slider?.current?.slickPrev()}
                 type="button"
-                className="w-[48px] h-[48px] rounded-full overflow-hidden flex justify-center items-center border border-qyellow text-qyellow focus:bg-qyellow focus:text-white">
+                className="w-[48px] h-[48px] rounded-full overflow-hidden flex justify-center items-center border border-qyellow text-qyellow focus:bg-qyellow focus:text-white"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 transform rotate-180"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2">
+                  stroke-width="2"
+                >
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M15 19l-7-7 7-7"></path>
+                    d="M15 19l-7-7 7-7"
+                  ></path>
                 </svg>
               </button>
             </div>
@@ -349,7 +355,8 @@ const About: React.FC<Props> = (props) => {
         <div className="container-x mx-auto my-[60px]">
           <div
             data-aos="fade-up"
-            className="best-services w-full bg-qyellow flex flex-col space-y-10 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center lg:h-[110px] px-10 lg:py-0 py-10 aos-init aos-animate">
+            className="best-services w-full bg-qyellow flex flex-col space-y-10 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center lg:h-[110px] px-10 lg:py-0 py-10 aos-init aos-animate"
+          >
             <div className="item">
               <div className="flex space-x-5 items-center">
                 <div>
@@ -479,7 +486,8 @@ const About: React.FC<Props> = (props) => {
                   <div
                     key={idx}
                     data-aos="fade-up"
-                    className="item w-full aos-init aos-animate">
+                    className="item w-full aos-init aos-animate"
+                  >
                     <div className="blog-card-wrapper w-full border border-[#D3D3D3] ">
                       <div className="img w-full h-[340px] relative">
                         <span>
@@ -519,7 +527,7 @@ const About: React.FC<Props> = (props) => {
                                 viewBox="0 0 16 15"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
-                                path={SvgPaths.ddd}
+                                path={SvgPaths.commentIcon}
                                 pathFill={"#FFBB38"}
                               />
                             </span>
@@ -531,7 +539,8 @@ const About: React.FC<Props> = (props) => {
                         <div className="details">
                           <a
                             rel="noopener noreferrer"
-                            href="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads">
+                            href="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads"
+                          >
                             <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalizen cursor-pointer">
                               {data?.tittle?.length > 72
                                 ? data?.tittle?.slice(0, 72) + "..."
@@ -547,7 +556,8 @@ const About: React.FC<Props> = (props) => {
                                 padding: "0px",
                                 textAlign: "justify",
                                 color: "rgb(0, 0, 0)",
-                              }}></p>
+                              }}
+                            ></p>
 
                             <p className="opacity-50">
                               {data.desciption.length > 130

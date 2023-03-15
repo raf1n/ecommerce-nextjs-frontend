@@ -6,6 +6,7 @@ import ShopNowBtn from "../../../helpers/Buttons/ShopNowBtn";
 import styles from "./Campaign.module.css";
 import img1 from "./googlePlay.png";
 import img2 from "./app.png";
+import Link from "next/link";
 
 interface Props {}
 
@@ -41,7 +42,9 @@ const Campaign: React.FC<Props> = (props) => {
                   WOO! Flash Sale
                 </h1>
               </div>
-              <ShopNowBtn color={{ textColor: "text-qblack" }} />
+              <Link href={"/flash_sale"}>
+                <ShopNowBtn color={{ textColor: "text-qblack" }} />
+              </Link>
             </div>
           </div>
           <div

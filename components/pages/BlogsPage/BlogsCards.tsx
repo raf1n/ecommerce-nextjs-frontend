@@ -104,7 +104,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                             onClick={() => setShowAll(true)}
                             className="mt-4"
                           >
-                            <ViewMoreBtn link="/blogs/blog" />
+                            <ViewMoreBtn link="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads" />
                           </div>
                         </div>
                       </div>
@@ -195,7 +195,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                             </p>
                           </div>
                           <div className="mt-4">
-                            <ViewMoreBtn link="/blogs/blog" />
+                            <ViewMoreBtn link={`/blogs/blog?slug=${idx}`} />
                           </div>
                         </div>
                       </div>
