@@ -18,7 +18,6 @@ const FlashSale: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
-        // setSlug(res[0]?.cat_slug);
         setFlashSaleData(res);
 
         console.log(res);
@@ -47,8 +46,7 @@ const FlashSale: React.FC<Props> = (props) => {
             backgroundImage:
               "url(https://api.websolutionus.com/shopo/uploads/website-images/flash_sale--2022-09-20-10-54-12-8555.png)",
           }}
-          className="flash-ad w-full h-[400px] flex sm:justify-end justify-center items-center mb-10 aos-init aos-animate"
-        >
+          className="flash-ad w-full h-[400px] flex sm:justify-end justify-center items-center mb-10 aos-init aos-animate">
           {/* <img
             src="https://api.websolutionus.com/shopo/uploads/website-images/flash_sale--2022-09-20-10-54-12-8555.png"
             alt=""
@@ -138,8 +136,7 @@ const FlashSale: React.FC<Props> = (props) => {
               {flashSaleData.map((product, index) => (
                 <ProductCard
                   key={index}
-                  product={product.productsData}
-                ></ProductCard>
+                  product={product.productsData}></ProductCard>
               ))}
             </div>
           </div>
