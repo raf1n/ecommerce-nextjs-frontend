@@ -208,7 +208,7 @@ export interface IFlashSaleProducts {
 
 export interface IBlog {
   title: string;
-  catSlug: string;
+  category?: string;
   description?: string;
 
   isShowHomepage?: string;
@@ -218,10 +218,17 @@ export interface IBlog {
   seo_title?: string;
   seo_description?: string;
   postBy: string;
+
+  createdAt?: string;
+  updatedAt: string;
 }
 
 export interface IBlogCategory extends MyFetchInterface {
   name: string;
   slug?: string;
   status: string;
+}
+
+export interface ISubscriber {
+  email?: string;
 }

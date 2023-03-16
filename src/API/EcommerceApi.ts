@@ -1,9 +1,9 @@
 import {
   IAddress,
-  ICartProduct,
   IOrder,
   IReview,
   ISeller,
+  ISubscriber,
 } from "./../../interfaces/models";
 import {
   IBlogCategoryResponse,
@@ -22,6 +22,7 @@ import {
   ISingleMegaCategoryResponse,
   ISingleOrderResponse,
   ISliderResponse,
+  ISubscriberResponse,
 } from "./../../interfaces/response";
 import {
   ICart,
@@ -58,7 +59,6 @@ export interface LoginInterface {
 export class EcommerceApi {
   static async login(data: Partial<IUser>): Promise<ILoginResponse> {
     console.log(data.token);
-    console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -72,16 +72,6 @@ export class EcommerceApi {
     return await callFetch(`${API_ENDPOINT}/users/login`, requestOptions);
   }
 
-  // static async getAllProducts(): Promise<IProductResponse> {
-  //   const myHeaders = new Headers();
-  //   // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
-  //   const requestOptions = {
-  //     method: "GET",
-  //     headers: myHeaders,
-  //     redirect: "follow",
-  //   };
-  //   return await callFetch(`${API_ENDPOINT}/products`, requestOptions);
-  // }
   //Get all wishlist product
   static async getAllWishlistProducts(
     user_slug: string
@@ -110,7 +100,7 @@ export class EcommerceApi {
       cors: "no-cors",
     };
     return await callFetch(
-      `https://api.imgbb.com/1/upload?key=f8e6d4200bc9ef812af367efe95dc229`,
+      `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
       requestOptions
     );
   }
@@ -686,5 +676,33 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/blogcategories`, requestOptions);
+  }
+
+  // get filtered blog
+  static async getFilteredBlog(cat: string): Promise<IBlogResponse> {
+    console.log("act api", cat);
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/blogs/category?category=${cat}`,
+      requestOptions
+    );
+  }
+
+  // add subscriber
+  static async addSubscriber(data: ISubscriber): Promise<ISubscriberResponse> {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(data),
+      redirect: "follow",
+    };
+    return await callFetch(`${API_ENDPOINT}/subscriber`, requestOptions);
   }
 }

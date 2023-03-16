@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { IBlogCategory } from "../../../interfaces/models";
+import { IBlog, IBlogCategory } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
 
@@ -11,6 +11,24 @@ const SingleBlogPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [categories, setCategories] = useState<IBlogCategory[]>([]);
   const [cat, setCat] = useState("");
+  const [byCategoryData, setByCategoryData] = useState<IBlog[]>([]);
+
+  const FetchByCat = async () => {
+    if (cat) {
+      const { res, err } = await EcommerceApi.getFilteredBlog(cat);
+      if (res) {
+        setByCategoryData(res);
+      } else {
+        console.log(err);
+      }
+    }
+  };
+  console.log("byCategoryData-", byCategoryData);
+  console.log("cat-", cat);
+
+  useEffect(() => {
+    FetchByCat();
+  }, [cat]);
 
   const FetchBlogCat = async () => {
     const { res, err } = await EcommerceApi.getAllBlogCategories();
@@ -23,6 +41,19 @@ const SingleBlogPage: React.FC<Props> = (props) => {
   useEffect(() => {
     FetchBlogCat();
   }, []);
+
+  const addSubscriber = async (e: any) => {
+    e.preventDefault();
+    const subs = {
+      email: e.target.email.value,
+    };
+    const { res, err } = await EcommerceApi.addSubscriber(subs);
+    if (res) {
+      console.log(res);
+    }
+    console.log(subs);
+    e.target.reset();
+  };
 
   return (
     <div>
@@ -93,7 +124,7 @@ const SingleBlogPage: React.FC<Props> = (props) => {
                 </div>
                 <div className="details">
                   <h1 className="text-[22px] text-qblack font-semibold line-clamp-2 mb-1 capitalize">
-                    It’s official! The iPhone 14 Series is on its way! Rumors
+                    It's official! The iPhone 14 Series is on its way! Rumors
                     turned out to be true. The Goods & the Bads.
                   </h1>
                   <div className="mb-10 text-qgraytwo">
@@ -154,6 +185,7 @@ const SingleBlogPage: React.FC<Props> = (props) => {
                   </div>
                 </div>
               </div>
+
               <div className="extra-content w-full">
                 <div className="w-full h-[1px] bg-[#DCDCDC]"></div>
                 <div className="comment-area w-full mt-8">
@@ -168,6 +200,7 @@ const SingleBlogPage: React.FC<Props> = (props) => {
                 <div className="ronin bhai"></div>
               </div>
             </div>
+
             <div className="lg:w-[370px] w-full">
               <div className="search-widget w-full p-[30px] bg-white mb-[30px] aos-init aos-animate">
                 <h1 className="text-[22px] text-qblack font-bold mb-5">
@@ -182,6 +215,7 @@ const SingleBlogPage: React.FC<Props> = (props) => {
                   <span className="absolute right-5 top-[17px]"></span>
                 </div>
               </div>
+
               <div className="latest-post-widget w-full bg-white p-[30px] mb-[30px] aos-init aos-animate">
                 <h1 className="text-[22px] text-qblack font-bold mb-5">
                   Latest Post
@@ -291,7 +325,7 @@ const SingleBlogPage: React.FC<Props> = (props) => {
                 </ul>
               </div>
 
-              {/*********************************************** */}
+              {/*******************  Categories  *****************************/}
               <div className="categories-widget w-full bg-white p-[30px] mb-[30px] aos-init aos-animate">
                 <h1 className="text-[22px] text-qblack font-bold mb-5">
                   Categories
@@ -300,7 +334,7 @@ const SingleBlogPage: React.FC<Props> = (props) => {
                 <ul className="flex flex-col space-y-5">
                   {categories.map((cat, i) => (
                     <li className="flex justify-between items-center group">
-                      <Link href={`/category-by-blogs?category=${cat.name}`}>
+                      <Link href={``}>
                         <span
                           onClick={() => setCat(cat?.name)}
                           className="text-base text-qgraytwo group-hover:text-qyellow cursor-pointer">
@@ -311,33 +345,40 @@ const SingleBlogPage: React.FC<Props> = (props) => {
                   ))}
                 </ul>
               </div>
+              {/****************************************************/}
+
+              {/****************************************************/}
+
               <div className="w-full h-[358px] aos-init aos-animate">
                 <div className="w-full h-full p-[30px] bg-black bg-opacity-75 flex flex-col justify-between">
-                  <div>
-                    <h1 className="text-[22px] text-white font-bold mb-5">
-                      Our Newsletter
-                    </h1>
-                    <div className="w-full h-[1px] bg-[#615B9C] mb-5"></div>
-                    <p className="text-base text-white leading-[26px] line-clamp-2">
-                      Follow our newsletter to stay updated about us.
-                    </p>
-                  </div>
-                  <div>
-                    <div className="w-full mb-3.5">
-                      <input
-                        placeholder="Enter Your Email Address"
-                        type="text"
-                        className="w-full h-[60px] bg-[#ECEAEC] pl-5 rtl:pr-5 focus:outline-none focus:ring-0 placeholder:text-[#9A9A9A]"
-                      />
+                  <form onSubmit={addSubscriber}>
+                    <div>
+                      <h1 className="text-[22px] text-white font-bold mb-5">
+                        Our Newsletter
+                      </h1>
+                      <div className="w-full h-[1px] bg-[#615B9C] mb-5"></div>
+                      <p className="text-base text-white leading-[26px] line-clamp-2">
+                        Follow our newsletter to stay updated about us.
+                      </p>
                     </div>
-                    <button className="w-full h-[60px]">
-                      <span
-                        style={{ fontSize: "18px" }}
-                        className="yellow-btn w-full h-full text-[18px]">
-                        Subscribe
-                      </span>
-                    </button>
-                  </div>
+                    <div>
+                      <div className="w-full mb-3.5">
+                        <input
+                          placeholder="Enter Your Email Address"
+                          type="email"
+                          className="w-full h-[60px] bg-[#ECEAEC] pl-5 rtl:pr-5 focus:outline-none focus:ring-0 placeholder:text-[#9A9A9A]"
+                          name="email"
+                        />
+                      </div>
+                      <button className="w-full h-[60px]">
+                        <span
+                          style={{ fontSize: "18px" }}
+                          className="yellow-btn w-full h-full text-[18px]">
+                          Subscribe
+                        </span>
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

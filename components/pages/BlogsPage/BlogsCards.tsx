@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useSelector, useStore } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-import { Jsondata } from "../../../src/utils/Jsondata";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import ViewMoreBtn from "../../helpers/Buttons/ViewMoreBtn";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 interface Props {
-  blogsData: any;
-  setBlogsData: any;
+  blogsData?: any;
+  setBlogsData?: any;
+  byCategoryData?: any;
 }
 
 const BlogsCards: React.FC<Props> = (props) => {
@@ -21,12 +21,11 @@ const BlogsCards: React.FC<Props> = (props) => {
         <div className="w-full">
           <div className="grid md:grid-cols-2 grid-cols-1 lg:gap-[30px] gap-5 pb-[60px]">
             {!showAll
-              ? blogsData.slice(0, 2).map((data: any, idx: any) => (
+              ? blogsData?.slice(0, 10).map((data: any, idx: any) => (
                   <div
                     key={idx}
                     data-aos="fade-up"
-                    className="item w-full aos-init aos-animate"
-                  >
+                    className="item w-full aos-init aos-animate">
                     <div className="blog-card-wrapper w-full border border-[#D3D3D3] ">
                       <div className="img w-full h-[340px] relative">
                         <span>
@@ -78,8 +77,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                         <div className="details">
                           <a
                             rel="noopener noreferrer"
-                            href="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads"
-                          >
+                            href="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads">
                             <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalizen cursor-pointer">
                               {data?.title?.length > 72
                                 ? data?.title?.slice(0, 72) + "..."
@@ -95,8 +93,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                                 padding: "0px",
                                 textAlign: "justify",
                                 color: "rgb(0, 0, 0)",
-                              }}
-                            ></p>
+                              }}></p>
 
                             <p className="opacity-50">
                               {data.description.length > 130
@@ -106,8 +103,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                           </div>
                           <div
                             onClick={() => setShowAll(true)}
-                            className="mt-4"
-                          >
+                            className="mt-4">
                             <ViewMoreBtn link="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads" />
                           </div>
                         </div>
@@ -119,8 +115,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                   <div
                     key={idx}
                     data-aos="fade-up"
-                    className="item w-full aos-init aos-animate"
-                  >
+                    className="item w-full aos-init aos-animate">
                     <div className="blog-card-wrapper w-full border border-[#D3D3D3] ">
                       <div className="img w-full h-[340px] relative">
                         <span>
@@ -172,8 +167,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                         <div className="details">
                           <a
                             rel="noopener noreferrer"
-                            href="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads"
-                          >
+                            href="/blogs/blog?slug=its-official-the-iphone-14-series-is-on-its-way-rumors-turned-out-to-be-true-the-goods-the-bads">
                             <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalizen cursor-pointer">
                               {data?.title?.length > 72
                                 ? data?.title?.slice(0, 72) + "..."
@@ -189,8 +183,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                                 padding: "0px",
                                 textAlign: "justify",
                                 color: "rgb(0, 0, 0)",
-                              }}
-                            ></p>
+                              }}></p>
 
                             <p className="opacity-50">
                               {data.description.length > 130
@@ -212,8 +205,7 @@ const BlogsCards: React.FC<Props> = (props) => {
               <button
                 onClick={() => setShowAll(true)}
                 type="button"
-                className="w-[180px] h-[54px] bg-qyellow rounded mt-10 text-white"
-              >
+                className="w-[180px] h-[54px] bg-qyellow rounded mt-10 text-white">
                 <div className="flex justify-center w-full h-full items-center group rounded relative transition-all duration-300 ease-in-out overflow-hidden cursor-pointer">
                   <div className="flex items-center transition-all duration-300 ease-in-out relative z-10 text-qblack group-hover:text-white">
                     <span className="text-sm font-semibold tracking-wide leading-7 mr-2">
@@ -224,8 +216,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                     className="w-full h-full bg-black text-white absolute top-0 left-0 right-0 bottom-0 transform scale-x-0 group-hover:scale-x-100 origin-[center_left] group-hover:origin-[center_right]"
                     style={{
                       transition: "transform 0.25s ease-in-out 0s",
-                    }}
-                  ></div>
+                    }}></div>
                 </div>
               </button>
             )}

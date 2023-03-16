@@ -35,9 +35,9 @@ const BecomeSeller: React.FC<Props> = (props) => {
         }
 
         const sellerData = {
-          user_email: states.user.email,
-          fullName: states.user.fullName,
-          avatar: states.user.avatar,
+          user_email: states.user?.email,
+          fullName: states.user?.fullName,
+          avatar: states.user?.avatar,
           email: e.target.email.value,
           phone: e.target.phone.value,
           shop: {
