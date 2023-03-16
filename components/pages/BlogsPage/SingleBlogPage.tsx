@@ -24,35 +24,30 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
 
   const [blogCommentsState, setBlogCommentsState] = useState(blogComments);
 
-  console.log(blogData);
-
   if (!blogData) return <></>;
 
   const router = useRouter();
 
   const shareableRoute = process.env.NEXT_PUBLIC_API_ENDPOINT + router.asPath;
 
-  const handlePostComment = async (e: any) => {
+  const handlePostComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = {
       userSlug: states.user.slug,
       avatar: states.user.avatar,
-      //@ts-ignore
-      blogSlug: blogData.slug,
-      name: e.target.name.value,
-      email: e.target.email.value,
-      comment: e.target.comment.value,
+      blogSlug: blogData?.slug,
+      name: e.currentTarget.userName.value,
+      email: e.currentTarget.email.value,
+      comment: e.currentTarget.comment.value,
     };
-
-    console.log(formData);
 
     const { res, err } = await EcommerceApi.postBlogComments(formData);
 
     console.log(res, err);
     if (res) {
       setBlogCommentsState((blogCommentsState) => [res, ...blogCommentsState]);
-      e.target.reset();
+      e.currentTarget.reset();
     }
   };
 
@@ -195,7 +190,7 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                             Leave a Comment
                           </h1>
                           <form
-                            onSubmit={(e) => handlePostComment(e)}
+                            onSubmit={handlePostComment}
                             className="w-full review-form "
                           >
                             <div className="sm:flex sm:space-x-[30px] rtl:space-x-reverse items-center mb-5 w-full">
@@ -212,7 +207,7 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                                       placeholder="Name"
                                       className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                                       type="text"
-                                      id="name"
+                                      id="userName"
                                       required
                                       // value=""
                                     />

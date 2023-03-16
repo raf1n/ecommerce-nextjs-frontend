@@ -234,6 +234,7 @@ export class EcommerceApi {
     search: string | string[],
     categories: string,
     brands: string,
+    highlight: string,
     min: number,
     max: number
   ): Promise<IFilteredProductResponse> {
@@ -246,7 +247,7 @@ export class EcommerceApi {
     };
 
     return await callFetch(
-      `${API_ENDPOINT}/products/filter?search=${search}&categories=${categories}&brands=${brands}&min=${min}&max=${max}`,
+      `${API_ENDPOINT}/products/filter?search=${search}&categories=${categories}&brands=${brands}&highlight=${highlight}&min=${min}&max=${max}`,
       requestOptions
     );
   }

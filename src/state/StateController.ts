@@ -31,6 +31,7 @@ export interface IStates {
   searchString: string;
   searchCategory: string;
   searchBrand: string;
+  searchHighlight: string;
   filteredProducts: Array<IProduct>;
   allProducts: Array<IProduct>;
   featuredProducts: Array<IProduct>;
@@ -58,6 +59,7 @@ export class Controller {
     searchString: "",
     searchCategory: "",
     searchBrand: "",
+    searchHighlight: "",
     filteredProducts: [],
     allProducts: [],
     featuredProducts: [],
@@ -123,6 +125,11 @@ export class Controller {
     } else {
       this.states.searchBrand = this.states.searchBrand + "+" + brand
     }
+  }
+
+  @action
+  setSearchHighlight(highlight: string) {
+    this.states.searchHighlight = highlight;
   }
 
   @action
