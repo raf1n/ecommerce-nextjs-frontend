@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-// @ts-ignore
-import CountdownTimer from "react-component-countdown-timer";
 import ProductCard from "../../shared/SharedProductCard/ProductCard";
 import { IFlashSaleProducts } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
@@ -28,6 +26,21 @@ const FlashSale: React.FC<Props> = (props) => {
     fetchAllFlashSalesData();
   }, []);
 
+<<<<<<< HEAD
+=======
+  // class SimpleCountdownTimer extends React.Component {
+  //   render() {
+  //     var settings = {
+  //       count: 5432,
+  //       border: true,
+  //       showTitle: true,
+  //       noPoints: true,
+  //     };
+  //     return <CountdownTimer {...settings} />;
+  //   }
+  // }
+
+>>>>>>> 6a00e5c8bc9b1717221b1a2bfc41578950f3ab6e
   return (
     <div className="w-full min-h-screen mt-10 pt-0 pb-0">
       <div className="container-x mx-auto">

@@ -207,6 +207,7 @@ export interface IFlashSaleProducts {
 }
 
 export interface IBlog {
+  slug: string;
   title: string;
   category?: string;
   description?: string;
@@ -231,4 +232,14 @@ export interface IBlogCategory extends MyFetchInterface {
 
 export interface ISubscriber {
   email?: string;
+}
+
+export interface IBlogComment {
+  slug: string;
+  userSlug: string;
+  name: string;
+  email: string;
+  avatar: string;
+  comment: string;
+  status: string;
 }

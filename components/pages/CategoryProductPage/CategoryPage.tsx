@@ -36,6 +36,7 @@ const CategoryPage: React.FC<Props> = (props) => {
         states.searchString,
         states.searchCategory,
         states.searchBrand,
+        states.searchHighlight,
         value.min,
         value.max
       );
