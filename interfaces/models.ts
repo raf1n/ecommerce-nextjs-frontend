@@ -208,9 +208,11 @@ export interface IFlashSaleProducts {
 }
 
 export interface IBlog {
+  slug: string;
   title: string;
   catSlug: string;
-  description?: string;
+  description: string;
+  createdAt: string;
 
   isShowHomepage?: string;
   status?: string;
@@ -221,4 +223,14 @@ export interface IBlog {
   postBy: string;
   latestBlogs: IBlog;
   createdAt: string;
+}
+
+export interface IBlogComment {
+  slug: string;
+  userSlug: string;
+  name: string;
+  email: string;
+  avatar: string;
+  comment: string;
+  status: string;
 }

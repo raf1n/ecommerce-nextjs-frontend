@@ -18,6 +18,7 @@ import {
   ISellerResponse,
   ISingleAddressResponse,
   ISingleAdResponse,
+  ISingleBlogResponse,
   ISingleMegaCategoryResponse,
   ISingleOrderResponse,
   ISliderResponse,
@@ -233,6 +234,7 @@ export class EcommerceApi {
     search: string | string[],
     categories: string,
     brands: string,
+    highlight: string,
     min: number,
     max: number
   ): Promise<IFilteredProductResponse> {
@@ -245,7 +247,7 @@ export class EcommerceApi {
     };
 
     return await callFetch(
-      `${API_ENDPOINT}/products/filter?search=${search}&categories=${categories}&brands=${brands}&min=${min}&max=${max}`,
+      `${API_ENDPOINT}/products/filter?search=${search}&categories=${categories}&brands=${brands}&highlight=${highlight}&min=${min}&max=${max}`,
       requestOptions
     );
   }
@@ -663,8 +665,57 @@ export class EcommerceApi {
     return await callFetch(`${API_ENDPOINT}/flash-sale/user`, requestOptions);
   }
 
-  //Get all blogs
-  //get all categories
+  static async getSingleBlog(
+    slug: string
+  ): Promise<ISingleBlogResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/blogs/${slug}`,
+      requestOptions
+    );
+  }
+
+  static async getBlogComments(
+    slug: string
+  ): Promise<ISingleBlogResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/blog-comments/single-blog/${slug}`,
+      requestOptions
+    );
+  }
+
+  static async postBlogComments(
+    data: any
+  ): Promise<any> {
+    const myHeaders = new Headers();
+    myHeaders.append("content-type", "application/json");
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      redirect: "follow",
+      body: JSON.stringify(data)
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/blog-comments`,
+      requestOptions
+    );
+  }
+
   static async getAllBlogs(): Promise<IBlogResponse> {
     const myHeaders = new Headers();
 
