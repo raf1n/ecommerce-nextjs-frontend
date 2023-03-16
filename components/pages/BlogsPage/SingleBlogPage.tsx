@@ -1,12 +1,42 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { IBlog } from "../../../interfaces/models";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
 
 interface Props {}
 
 const SingleBlogPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [latestBlogsData, setLatestBlogsData] = useState<IBlog[]>([]);
+
+  const timeline = (createdAt: string): string => {
+    const xmas95 = new Date(createdAt);
+    // const options = { month: "long" };
+    const year = xmas95.getFullYear();
+    const date = xmas95.getDate();
+    const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+      xmas95
+    );
+    return `${date} ${month} ${year}`;
+  };
+
+  useEffect(() => {
+    const fetchAllLatestBlogsData = async () => {
+      const { res, err } = await EcommerceApi.getAllBlogs();
+      if (err) {
+        console.log(err);
+      } else {
+        // setSlug(res[0]?.cat_slug);
+        setLatestBlogsData(res.latestBlogs);
+        console.log(res.latestBlogs);
+
+        // console.log(res);
+      }
+    };
+    fetchAllLatestBlogsData();
+  }, []);
 
   return (
     <div>
@@ -174,7 +204,64 @@ const SingleBlogPage: React.FC<Props> = (props) => {
                 </h1>
                 <div className="w-full h-[1px] bg-[#DCDCDC] mb-5"></div>
                 <ul className="flex flex-col space-y-5">
-                  <li className="flex space-x-5 rtl:space-x-reverse">
+                  {latestBlogsData
+                    .map((latestData) => (
+                      <>
+                        <li className="flex space-x-5 rtl:space-x-reverse">
+                          <div className="w-[85px] h-[92px] overflow-hidden rounded relative">
+                            <span>
+                              <img
+                                //"https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fblog--2022-09-22-04-09-44-5529.jpg&w=1920&q=75"
+                                className="h-full"
+                                src={latestData.imageURL}
+                                alt=""
+                              />
+                            </span>
+                          </div>
+                          <div className="flex-1 h-full flex flex-col justify-between">
+                            <a href="/blogs/blog?slug=businesstoconsumer-that-involves-selling-fight-products-and-services">
+                              <p className="text-[18px] text-qblack leading-7 cursor-pointer mb-3">
+                                {latestData.title}
+                              </p>
+                            </a>
+                            <div className="flex space-x-3 rtl:space-x-reverse items-center">
+                              <span></span>
+                              <span className="text-sm text-qgraytwo">
+                                {/* 22 Sep 2022 */}
+                                {timeline(latestData.createdAt)}
+                              </span>
+                            </div>
+                          </div>
+                        </li>
+                      </>
+                    ))
+                    .slice(0, 4)}
+                  {/* <li className="flex space-x-5 rtl:space-x-reverse">
+                    <div className="w-[85px] h-[92px] overflow-hidden rounded relative">
+                      <span>
+                        <img
+                          className="h-full"
+                          src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fblog--2022-09-22-04-09-44-5529.jpg&w=1920&q=75"
+                          alt=""
+                        />
+                      </span>
+                    </div>
+                    <div className="flex-1 h-full flex flex-col justify-between">
+                      <a href="/blogs/blog?slug=businesstoconsumer-that-involves-selling-fight-products-and-services">
+                        <p className="text-[18px] text-qblack leading-7 cursor-pointer mb-3">
+                          Business-to-consumer that involves selling fight
+                          products and services
+                        </p>
+                      </a>
+                      <div className="flex space-x-3 rtl:space-x-reverse items-center">
+                        <span></span>
+                        <span className="text-sm text-qgraytwo">
+                          22 Sep 2022
+                        </span>
+                      </div>
+                    </div>
+                  </li> */}
+                  {/* <li className="flex space-x-5 rtl:space-x-reverse">
                     <div className="w-[85px] h-[92px] overflow-hidden rounded relative">
                       <span>
                         <img
@@ -248,32 +335,7 @@ const SingleBlogPage: React.FC<Props> = (props) => {
                         </span>
                       </div>
                     </div>
-                  </li>
-                  <li className="flex space-x-5 rtl:space-x-reverse">
-                    <div className="w-[85px] h-[92px] overflow-hidden rounded relative">
-                      <span>
-                        <img
-                          className="h-full"
-                          src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fblog--2022-09-22-04-09-44-5529.jpg&w=1920&q=75"
-                          alt=""
-                        />
-                      </span>
-                    </div>
-                    <div className="flex-1 h-full flex flex-col justify-between">
-                      <a href="/blogs/blog?slug=businesstoconsumer-that-involves-selling-fight-products-and-services">
-                        <p className="text-[18px] text-qblack leading-7 cursor-pointer mb-3">
-                          Business-to-consumer that involves selling fight
-                          products and services
-                        </p>
-                      </a>
-                      <div className="flex space-x-3 rtl:space-x-reverse items-center">
-                        <span></span>
-                        <span className="text-sm text-qgraytwo">
-                          22 Sep 2022
-                        </span>
-                      </div>
-                    </div>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
               <div className="categories-widget w-full bg-white p-[30px] mb-[30px] aos-init aos-animate">

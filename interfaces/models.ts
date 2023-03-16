@@ -218,4 +218,6 @@ export interface IBlog {
   seo_title?: string;
   seo_description?: string;
   postBy: string;
+  latestBlogs: IBlog;
+  createdAt: string;
 }

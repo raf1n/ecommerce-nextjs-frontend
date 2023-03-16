@@ -146,5 +146,8 @@ export interface IFlashSaleProductsResponse extends MyFetchInterface {
 }
 
 export interface IBlogResponse extends MyFetchInterface {
-  res: Array<IBlog>;
+  res: {
+    allBlogs: Array<IBlog>;
+    latestBlogs: Array<IBlog>;
+  };
 }

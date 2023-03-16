@@ -20,7 +20,7 @@ const Blogs: React.FC<Props> = (props) => {
         console.log(err);
       } else {
         // setSlug(res[0]?.cat_slug);
-        setBlogsData(res);
+        setBlogsData(res.allBlogs);
         console.log(res);
 
         // console.log(res);
