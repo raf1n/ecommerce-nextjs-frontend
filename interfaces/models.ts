@@ -222,7 +222,6 @@ export interface IBlog {
   seo_description?: string;
   postBy: string;
   latestBlogs: IBlog;
-  createdAt: string;
 }
 
 export interface IBlogComment {
