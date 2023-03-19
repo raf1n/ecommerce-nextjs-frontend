@@ -122,7 +122,8 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
 
     if (res) {
       setBlogCommentsState((blogCommentsState) => [res, ...blogCommentsState]);
-      e.currentTarget.reset();
+      //@ts-ignore
+      e.target.reset();
     }
   };
 
@@ -209,8 +210,7 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                 </div>
                 <div className="details">
                   <h1 className="text-[22px] text-qblack font-semibold line-clamp-2 mb-1 capitalize">
-                    {/* {blogData?.title} */}
-                    blog titleeeeeee
+                    {blogData?.title}
                   </h1>
                   <div
                     id="blog-description"

@@ -76,7 +76,7 @@ export class EcommerceApi {
 
   //Get all wishlist product
   static async getAllWishlistProducts(
-    user_slug: string
+    user_slug: string | undefined
   ): Promise<IAllWishlistResponse> {
     const myHeaders = new Headers();
     const requestOptions = {
@@ -123,7 +123,9 @@ export class EcommerceApi {
     );
   }
   //Get all reviews
-  static async getAllReviews(user_slug: string): Promise<IReviewsResponse> {
+  static async getAllReviews(
+    user_slug: string | undefined
+  ): Promise<IReviewsResponse> {
     const myHeaders = new Headers();
     const requestOptions = {
       method: "GET",
@@ -272,7 +274,7 @@ export class EcommerceApi {
     return await callFetch(`${API_ENDPOINT}/reporteditems`, requestOptions);
   }
   // ---------------------------------------------------
-  static async addReview(data: IReview): Promise<MyFetchInterface> {
+  static async addReview(data: Partial<IReview>): Promise<MyFetchInterface> {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const requestOptions = {
@@ -482,7 +484,7 @@ export class EcommerceApi {
   }
 
   static async updateUserInfo(
-    email: string,
+    email: string | undefined,
     address: object
   ): Promise<MyFetchInterface> {
     const myHeaders = new Headers();
@@ -502,7 +504,7 @@ export class EcommerceApi {
   }
 
   static async allOrders(
-    user_slug: string,
+    user_slug: string | undefined,
     order_status?: string
   ): Promise<IOrderResponse> {
     console.log(API_ENDPOINT);
@@ -522,7 +524,9 @@ export class EcommerceApi {
     );
   }
 
-  static async getLoggedInUser(email: string): Promise<MyFetchInterface> {
+  static async getLoggedInUser(
+    email: string | undefined
+  ): Promise<MyFetchInterface> {
     console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     myHeaders.append("content-type", "application/json");

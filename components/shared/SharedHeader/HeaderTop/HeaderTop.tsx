@@ -8,8 +8,11 @@ import styles from "./styles.module.css";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { ICategories } from "../../../../interfaces/models";
 import { useRouter } from "next/router";
+import { CookiesHandler } from "../../../../src/utils/CookiesHandler";
 
 interface Props {}
+
+const user_slug = CookiesHandler.getSlug();
 
 const HeaderTop: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -67,16 +70,14 @@ const HeaderTop: React.FC<Props> = (props) => {
 
   useEffect(() => {
     const getAllCartData = async () => {
-      const { res, err } = await EcommerceApi.getAllCartData("user_slug_1");
+      const { res, err } = await EcommerceApi.getAllCartData(user_slug);
       if (res) {
         controller.setAllCartListData(res);
       }
     };
 
     const getAllWishlistData = async () => {
-      const { res, err } = await EcommerceApi.getAllWishlistProducts(
-        "user_slug_1"
-      );
+      const { res, err } = await EcommerceApi.getAllWishlistProducts(user_slug);
       if (res) {
         controller.setAllWishlistData(res);
       }
@@ -808,7 +809,7 @@ const HeaderTop: React.FC<Props> = (props) => {
 
                 <div className="flex space-x-6 items-center relative">
                   <div className="compaire relative">
-                    <Link rel="noopener noreferrer" href="/login">
+                    <Link rel="noopener noreferrer" href="/profile">
                       <span className="cursor-pointer">
                         <svg
                           width="20"
@@ -999,7 +1000,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                     </div>
                   </div>
                   <div>
-                    <Link rel="noopener noreferrer" href="/login">
+                    <Link rel="noopener noreferrer" href="/profile">
                       <span className="cursor-pointer">
                         <svg
                           width="21"

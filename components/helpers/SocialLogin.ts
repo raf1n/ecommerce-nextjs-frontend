@@ -18,6 +18,7 @@ import { initializeApp } from "firebase/app";
 // import { getDatabase } from "firebase/database";
 import { MyFetchInterface } from "../../interfaces/MyFetchInterface";
 import { CookiesHandler } from "../../src/utils/CookiesHandler";
+import Router from "next/router";
 
 export class SocialLogin {
   static initFirebase() {
@@ -282,5 +283,6 @@ export class SocialLogin {
     CookiesHandler.removeAccessToken();
     localStorage.clear();
     sessionStorage.clear();
+    Router.push("/");
   }
 }

@@ -9,6 +9,7 @@ import ReportedItemModal from "./ReportedItemModal/ReportedItemModal";
 import { useRouter } from "next/router";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { IProduct } from "../../../interfaces/models";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 
 interface Props {}
 
@@ -19,7 +20,7 @@ const SingleProduct: React.FC<Props> = (props) => {
   const { itemDetail } = Jsondata;
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
   // const [brand, setBrand] = useState<string | any>("");
-
+  const user_slug = CookiesHandler.getSlug();
   console.log(asPath.split("=")[1]);
   const productSlug = asPath.split("=")[1];
 
@@ -43,7 +44,7 @@ const SingleProduct: React.FC<Props> = (props) => {
     e.preventDefault();
     const reportedItem = {
       product_slug: asPath.split("=")[1],
-      user_slug: "user_slug_1",
+      user_slug: user_slug,
       title: e.target.title.value,
       note: e.target.note.value,
     };

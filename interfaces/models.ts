@@ -103,6 +103,11 @@ export interface IReview {
   product_slug?: string;
   title?: string;
   note?: string;
+  createdAt: string | undefined;
+  status: string;
+  rating: number;
+  message: string;
+  reviewProducts: any;
 }
 
 export interface ICart {

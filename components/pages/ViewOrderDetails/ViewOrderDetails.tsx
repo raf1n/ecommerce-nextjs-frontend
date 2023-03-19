@@ -6,7 +6,10 @@ import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
 import ReviewProductModal from "./ReviewProductmodal/ReviewProductModal";
 import { CartHandler } from "../../../src/utils/CartHandler";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 interface Props {}
+
+const user_slug = CookiesHandler.getSlug();
 
 const ViewOrderDetails: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -29,7 +32,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
     const review = {
       product_slug: reportModalSlug,
       order_slug: orderData?.slug,
-      user_slug: "user_slug_1",
+      user_slug: user_slug,
       name: e.target.name.value,
       message: e.target.message.value,
       rating: rating,

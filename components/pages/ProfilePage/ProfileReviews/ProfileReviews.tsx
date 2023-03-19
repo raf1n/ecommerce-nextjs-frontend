@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IReview } from "../../../../interfaces/models";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
+import { CookiesHandler } from "../../../../src/utils/CookiesHandler";
 import { controller } from "./../../../../src/state/StateController";
 import ProfileReviewItem from "./ProfileReviewItem";
 
@@ -10,10 +11,12 @@ interface Props {}
 const ProfileReviews: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  const [reviewDatas, setReviewDatas] = useState([]);
+  const [reviewDatas, setReviewDatas] = useState<IReview[]>([]);
+
+  const user_slug = CookiesHandler.getSlug();
 
   const getAllReviews = async () => {
-    const { res, err } = await EcommerceApi.getAllReviews("user_slug_1");
+    const { res, err } = await EcommerceApi.getAllReviews(user_slug);
     if (res) {
       console.log("res from get-all-reviews =", res);
       setReviewDatas(res);

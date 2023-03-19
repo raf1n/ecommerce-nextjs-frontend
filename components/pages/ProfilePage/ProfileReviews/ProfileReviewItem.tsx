@@ -8,7 +8,7 @@ import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 interface Props {
   review: {
-    createdAt: string;
+    createdAt: string | undefined;
     status: string;
     rating: number;
     message: string;

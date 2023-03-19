@@ -9,10 +9,13 @@ import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
 import Link from "next/link";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 interface Props {
   // product: IProduct;
   product: IWishlistProduct;
 }
+
+const user_slug = CookiesHandler.getSlug();
 
 const ProductCard: React.FC<Props> = (props) => {
   const { product } = props;
@@ -29,24 +32,27 @@ const ProductCard: React.FC<Props> = (props) => {
   };
 
   const handleWishlist = async () => {
-    product.user_slug = states.user?.slug;
+    const newProduct = { ...product };
+    //@ts-ignore
+    delete newProduct._id;
+    newProduct.user_slug = user_slug;
 
     if (!isInWishlist(product.slug)) {
-      const { res, err } = await EcommerceApi.postWishlistProduct(product);
+      const { res, err } = await EcommerceApi.postWishlistProduct(newProduct);
       if (err) {
         console.log(err);
       } else {
         console.log(res);
-        controller.setAddtoWishlist(product);
+        controller.setAddtoWishlist(newProduct);
       }
     } else {
       const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
-        product.slug,
-        product?.user_slug
+        newProduct.slug,
+        newProduct?.user_slug
       );
       if (err) {
       } else {
-        controller.setRemoveWishlistSingleProduct(product);
+        controller.setRemoveWishlistSingleProduct(newProduct);
       }
     }
   };
@@ -57,7 +63,7 @@ const ProductCard: React.FC<Props> = (props) => {
 
   const handleCartToggle = async () => {
     const cartProductData = {
-      user_slug: states.user?.slug,
+      user_slug: user_slug,
       product_slug: product.slug,
       quantity: cartListProduct?.quantity || 1,
     };

@@ -64,7 +64,7 @@ export interface ISellerResponse extends MyFetchInterface {
 
 export interface IOrderResponse extends MyFetchInterface {
   res: {
-    data: string;
+    data: IOrder[];
     message: string;
   };
 }
@@ -76,10 +76,7 @@ export interface IAllWishlistResponse extends MyFetchInterface {
   res: IProduct[];
 }
 export interface IReviewsResponse extends MyFetchInterface {
-  res: {
-    data: IReview;
-    message: string;
-  };
+  res: IReview[];
 }
 export interface ICartResponse extends MyFetchInterface {
   res: {

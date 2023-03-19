@@ -11,6 +11,7 @@ import ProfileReviews from "./ProfileReviews/ProfileReviews";
 import ProfileWishlist from "./ProfileWishlist/ProfileWishlist";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { IOrder, IUser } from "../../../interfaces/models";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 
 interface Props {}
 
@@ -21,11 +22,11 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
   const [loggedInUser, setLoggedInUser] = useState<IUser | null>(null);
 
   const { asPath } = useRouter();
-
+  const user_slug = CookiesHandler.getSlug();
   const hash = asPath.split("#")[1];
   useEffect(() => {
     const getAllOrders = async () => {
-      const { res, err } = await EcommerceApi.allOrders("user_slug_1");
+      const { res, err } = await EcommerceApi.allOrders(user_slug);
       console.log(res);
       console.log(err);
       if (res) {
@@ -39,7 +40,7 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
 
     const getLoggedInUser = async () => {
       const { res, err } = await EcommerceApi.getLoggedInUser(
-        "rafinc10@gmail.com"
+        states.user?.email
       );
       if (res) {
         setLoggedInUser(res);
