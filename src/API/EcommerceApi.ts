@@ -227,6 +227,7 @@ export class EcommerceApi {
   static async getFilteredProducts(
     search: string | string[],
     categories: string,
+    subCategory: string,
     brands: string,
     highlight: string,
     min: number,
@@ -241,7 +242,7 @@ export class EcommerceApi {
     };
 
     return await callFetch(
-      `${API_ENDPOINT}/products/filter?search=${search}&categories=${categories}&brands=${brands}&highlight=${highlight}&min=${min}&max=${max}`,
+      `${API_ENDPOINT}/products/filter?search=${search}&categories=${categories}&sub_category=${subCategory}&brands=${brands}&highlight=${highlight}&min=${min}&max=${max}`,
       requestOptions
     );
   }
