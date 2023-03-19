@@ -120,7 +120,6 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
 
     const { res, err } = await EcommerceApi.postBlogComments(formData);
 
-    console.log(res, err);
     if (res) {
       setBlogCommentsState((blogCommentsState) => [res, ...blogCommentsState]);
       e.currentTarget.reset();
@@ -213,12 +212,12 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                     {/* {blogData?.title} */}
                     blog titleeeeeee
                   </h1>
-                  <div className="mb-10 text-qgraytwo">
-                    <p className="text-[15px] leading-8 text-qgraytwo mb-4 ">
-                      {/* {blogData?.description} */}
-                      aaaaaaaaaaaa
-                    </p>
-                  </div>
+                  <div
+                    id="blog-description"
+                    className="mb-10  prose prose-w-full dark:prose-invert prose-strong:text-black prose-headings:text-gray-700 prose-blockquote:text-gray-500 prose-base focus:outline-none leading-1 text-black"
+                    dangerouslySetInnerHTML={{
+                      __html: blogData.description,
+                    }}></div>
                 </div>
               </div>
 

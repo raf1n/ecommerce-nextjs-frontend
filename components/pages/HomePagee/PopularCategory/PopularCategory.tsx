@@ -32,7 +32,7 @@ const PopularCategory: React.FC<Props> = (props) => {
     <div>
       <div className="section-wrapper w-full md:mb-[60px] mb-[30px]">
         <div className="container-x mx-auto">
-          <SectionHeader title="Popular Category" link="/" />
+          <SectionHeader title="Popular Category" link="/products?highlight=popular_category" />
           <div className="section-content">
             <div className="products-section w-full">
               <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
