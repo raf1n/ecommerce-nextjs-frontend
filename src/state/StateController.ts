@@ -31,6 +31,7 @@ export interface IStates {
   toggle: Boolean;
   searchString: string;
   searchCategory: string;
+  searchSubCategory: string;
   searchBrand: string;
   searchHighlight: string;
   filteredProducts: Array<IProduct>;
@@ -59,6 +60,7 @@ export class Controller {
     toggle: false,
     searchString: "",
     searchCategory: "",
+    searchSubCategory: "",
     searchBrand: "",
     searchHighlight: "",
     filteredProducts: [],
@@ -95,6 +97,11 @@ export class Controller {
   @action
   setSearchString(search: string) {
     this.states.searchString = search;
+  }
+
+  @action
+  setSearchSubCategory(subCat: string) {
+    this.states.searchSubCategory = subCat;
   }
 
   @action

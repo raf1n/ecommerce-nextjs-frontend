@@ -12,7 +12,7 @@ const products: React.FC<Props> = (props) => {
 
   const router = useRouter();
 
-  const { search, category, highlight } = router.query;
+  const { search, category, highlight, sub_category } = router.query;
 
   if (search) {
     controller.setSearchString(search as string);
@@ -47,10 +47,12 @@ const products: React.FC<Props> = (props) => {
     controller.setSearchHighlight(highQuery?.query as string);
   }
 
-  // if (category && states.categories) {
-  //   const queryCat = states.categories.find((cat) => cat.cat_name === category);
-  //   controller.setSearchCategory(queryCat?.cat_slug as string, true);
-  // }
+  if (sub_category && states.subCategories) {
+    const querySubCat = states.subCategories.find((subCat) => subCat.subcat_name === sub_category);
+    controller.setSearchSubCategory(querySubCat?.slug as string);
+  }
+
+
 
   return <CategoryPage />;
 };

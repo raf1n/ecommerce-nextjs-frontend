@@ -35,6 +35,7 @@ const CategoryPage: React.FC<Props> = (props) => {
       const { res, err } = await EcommerceApi.getFilteredProducts(
         states.searchString,
         states.searchCategory,
+        states.searchSubCategory,
         states.searchBrand,
         states.searchHighlight,
         value.min,
@@ -50,7 +51,9 @@ const CategoryPage: React.FC<Props> = (props) => {
   }, [
     states.searchString,
     states.searchCategory,
+    states.searchSubCategory,
     states.searchBrand,
+    states.searchHighlight,
     value,
   ]);
 
