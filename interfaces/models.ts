@@ -221,7 +221,7 @@ export interface IBlog {
   seo_description?: string;
   postBy: string;
 
-  createdAt?: string;
+  createdAt: string;
   updatedAt: string;
 }
 
