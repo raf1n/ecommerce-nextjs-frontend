@@ -11,6 +11,7 @@ import {
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import BlogCommentCard from "./BlogCommentCard";
 import { controller } from "../../../src/state/StateController";
+import { useSelector } from "react-redux";
 
 interface Props {
   blogData: IBlog | any;
@@ -18,7 +19,6 @@ interface Props {
 }
 
 const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
-  // const states = useSelector(() => controller.states);
   const states = useSelector(() => controller.states);
   const [categories, setCategories] = useState<IBlogCategory[]>([]);
   const [cat, setCat] = useState("");
@@ -109,9 +109,10 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                 <span className="separator">/</span>
               </span>
               <span>
-                <Link href={`${asPath}/blogs/blog?slug=${blogData.slug}`}>
+                {/* <Link href={`${asPath}/blogs/blog?slug=${blogData.slug}`}> */}
+                <Link href={`${asPath}/blogs/blog`}>
                   <span className="mx-1 capitalize">
-                    blogs / {blogData.slug}
+                    blogs /{/* {blogData.slug} */}
                   </span>
                 </Link>
               </span>
@@ -178,11 +179,13 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                 </div>
                 <div className="details">
                   <h1 className="text-[22px] text-qblack font-semibold line-clamp-2 mb-1 capitalize">
-                    {blogData?.title}
+                    {/* {blogData?.title} */}
+                    blog titleeeeeee
                   </h1>
                   <div className="mb-10 text-qgraytwo">
                     <p className="text-[15px] leading-8 text-qgraytwo mb-4 ">
-                      {blogData?.description}
+                      {/* {blogData?.description} */}
+                      aaaaaaaaaaaa
                     </p>
                   </div>
                 </div>

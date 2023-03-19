@@ -20,8 +20,7 @@ const ShopNowBtn: React.FC<Props> = ({ color }) => {
       <div className="cursor-pointer w-full relative">
         <div className="inline-flex items-center relative z-20">
           <span
-            className={`text-sm ${color.textColor} font-medium leading-[30px]`}
-          >
+            className={`text-sm ${color.textColor} font-medium leading-[30px]`}>
             Shop Now
           </span>
           <span className={`leading-[30px] ${color.textColor}`}>
@@ -38,7 +37,6 @@ const ShopNowBtn: React.FC<Props> = ({ color }) => {
         </div>
         <div className="w-[82px] transition-all duration-300 ease-in-out group-hover:h-4 h-[2px] bg-qyellow absolute left-0 bottom-0 z-10"></div>
       </div>
-      {/* </Link> */}
     </div>
   );
 };
