@@ -64,7 +64,7 @@ export interface ISellerResponse extends MyFetchInterface {
 
 export interface IOrderResponse extends MyFetchInterface {
   res: {
-    data: IOrder[];
+    data: string;
     message: string;
   };
 }
@@ -157,7 +157,10 @@ export interface IBlogCommentsResponse extends MyFetchInterface {
 }
 
 export interface IBlogResponse extends MyFetchInterface {
-  res: Array<IBlog>;
+  res: {
+    allBlogs: Array<IBlog>;
+    latestBlogs: Array<IBlog>;
+  };
 }
 
 export interface IBlogCategoryResponse extends MyFetchInterface {
@@ -166,4 +169,8 @@ export interface IBlogCategoryResponse extends MyFetchInterface {
 
 export interface ISubscriberResponse extends MyFetchInterface {
   res: ISubscriber;
+}
+
+export interface IFilteredBlogResponse extends MyFetchInterface {
+  res: IBlog[];
 }

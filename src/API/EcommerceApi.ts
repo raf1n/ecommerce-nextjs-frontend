@@ -10,6 +10,7 @@ import {
   IBlogResponse,
   ICartResponse,
   IFeaturedCategoriesResponse,
+  IFilteredBlogResponse,
   IFilteredProductResponse,
   IFlashSaleProductsResponse,
   IMegaCategoriesResponse,
@@ -656,9 +657,7 @@ export class EcommerceApi {
     return await callFetch(`${API_ENDPOINT}/flash-sale/user`, requestOptions);
   }
 
-  static async getSingleBlog(
-    slug: string
-  ): Promise<ISingleBlogResponse> {
+  static async getSingleBlog(slug: string): Promise<ISingleBlogResponse> {
     const myHeaders = new Headers();
 
     const requestOptions = {
@@ -666,15 +665,10 @@ export class EcommerceApi {
       redirect: "follow",
     };
 
-    return await callFetch(
-      `${API_ENDPOINT}/blogs/${slug}`,
-      requestOptions
-    );
+    return await callFetch(`${API_ENDPOINT}/blogs/${slug}`, requestOptions);
   }
 
-  static async getBlogComments(
-    slug: string
-  ): Promise<ISingleBlogResponse> {
+  static async getBlogComments(slug: string): Promise<ISingleBlogResponse> {
     const myHeaders = new Headers();
 
     const requestOptions = {
@@ -688,9 +682,7 @@ export class EcommerceApi {
     );
   }
 
-  static async postBlogComments(
-    data: any
-  ): Promise<any> {
+  static async postBlogComments(data: any): Promise<any> {
     const myHeaders = new Headers();
     myHeaders.append("content-type", "application/json");
 
@@ -698,13 +690,10 @@ export class EcommerceApi {
       method: "POST",
       headers: myHeaders,
       redirect: "follow",
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     };
 
-    return await callFetch(
-      `${API_ENDPOINT}/blog-comments`,
-      requestOptions
-    );
+    return await callFetch(`${API_ENDPOINT}/blog-comments`, requestOptions);
   }
 
   static async getAllBlogs(): Promise<IBlogResponse> {
@@ -730,7 +719,7 @@ export class EcommerceApi {
   }
 
   // get filtered blog
-  static async getFilteredBlog(cat: string): Promise<IBlogResponse> {
+  static async getFilteredBlog(cat: string): Promise<IFilteredBlogResponse> {
     console.log("act api", cat);
     const myHeaders = new Headers();
     const requestOptions = {

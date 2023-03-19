@@ -77,8 +77,9 @@ export interface IOrder {
   createdAt?: string;
   product_list: ICartProduct[];
   payment_method: string;
-  user_slug: string;
-  transaction_id: string;
+  user_slug: string | undefined;
+  user_email: string | undefined;
+  // transaction_id: string;
   payment_status?: string;
   order_status?: string;
   address: {
@@ -232,6 +233,7 @@ export interface IBlogCategory extends MyFetchInterface {
 
 export interface ISubscriber {
   email?: string;
+  latestBlogs?: IBlog;
 }
 
 export interface IBlogComment {
