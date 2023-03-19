@@ -22,7 +22,7 @@ const BlogsCards: React.FC<Props> = (props) => {
         <div className="w-full">
           <div className="grid md:grid-cols-2 grid-cols-1 lg:gap-[30px] gap-5 pb-[60px]">
             {!showAll
-              ? blogsData?.slice(0, 10).map((data: any, idx: any) => (
+              ? blogsData?.slice(0, 2).map((data: any, idx: any) => (
                   <div
                     key={idx}
                     data-aos="fade-up"
@@ -76,9 +76,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                           </div>
                         </div>
                         <div className="details">
-                          <Link
-                            href={`/blogs/blog?slug=${data.slug}`}
-                          >
+                          <Link href={`/blogs/blog?slug=${data.slug}`}>
                             <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalizen cursor-pointer">
                               {data?.title?.length > 72
                                 ? data?.title?.slice(0, 72) + "..."
@@ -104,9 +102,10 @@ const BlogsCards: React.FC<Props> = (props) => {
                           </div>
                           <div
                             onClick={() => setShowAll(true)}
-                            className="mt-4"
-                          >
-                            <ViewMoreBtn link={`/blogs/blog?slug=${data.slug}`} />
+                            className="mt-4">
+                            <ViewMoreBtn
+                              link={`/blogs/blog?slug=${data.slug}`}
+                            />
                           </div>
                         </div>
                       </div>

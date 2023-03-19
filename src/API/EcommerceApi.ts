@@ -153,7 +153,7 @@ export class EcommerceApi {
   //delete single wishlist product
   static async deleteWishlistSingleProduct(
     product_slug: string | undefined,
-    user_slug: string
+    user_slug: string | undefined
   ): Promise<MyFetchInterface> {
     console.log(API_ENDPOINT);
     const myHeaders = new Headers();
@@ -285,7 +285,9 @@ export class EcommerceApi {
     return await callFetch(`${API_ENDPOINT}/reviews`, requestOptions);
   }
 
-  static async getAllCartData(query: string): Promise<IInitialCartResponse> {
+  static async getAllCartData(
+    query: string | undefined
+  ): Promise<IInitialCartResponse> {
     const myHeaders = new Headers();
 
     const requestOptions = {

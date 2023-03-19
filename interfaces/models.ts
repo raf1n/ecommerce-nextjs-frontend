@@ -106,7 +106,7 @@ export interface IReview {
 }
 
 export interface ICart {
-  user_slug: string;
+  user_slug: string | undefined;
   product_slug: string | undefined;
   quantity: number;
 }
