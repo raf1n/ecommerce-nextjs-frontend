@@ -391,7 +391,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
                               </span>
                             </div>
                           </div>
-                          <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
+                          {/* Razor Pay */}
+                          {/* <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
                             <div className="w-full flex justify-center">
                               <span>
                                 <svg
@@ -407,8 +408,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 </svg>
                               </span>
                             </div>
-                          </div>
-                          <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
+                          </div> */}
+                          {/* Flutter wave */}
+                          {/* <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
                             <div className="w-full flex justify-center">
                               <span>
                                 <svg
@@ -431,8 +433,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 </svg>
                               </span>
                             </div>
-                          </div>
-                          <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
+                          </div> */}
+                          {/* mollie */}
+                          {/* <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
                             <div className="w-full flex justify-center">
                               <span>
                                 <svg
@@ -449,8 +452,10 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 </svg>
                               </span>
                             </div>
-                          </div>
-                          <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
+                          </div> */}
+
+                          {/* insta mojo */}
+                          {/* <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
                             <div className="w-full flex justify-center">
                               <span>
                                 <svg
@@ -478,8 +483,10 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 </svg>
                               </span>
                             </div>
-                          </div>
-                          <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
+                          </div> */}
+
+                          {/* pay stack */}
+                          {/* <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
                             <div className="w-full flex justify-center">
                               <span>
                                 <svg
@@ -496,8 +503,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 </svg>
                               </span>
                             </div>
-                          </div>
-                          <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
+                          </div> */}
+                          {/* paypal */}
+                          {/* <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
                             <div className="w-full flex justify-center">
                               <span>
                                 <svg
@@ -525,7 +533,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 </svg>
                               </span>
                             </div>
-                          </div>
+                          </div> */}
+
                           <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
                             <div className="w-full">
                               <span className="text-qblack font-bold text-base">
@@ -535,7 +544,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                           </div>
                           <div className="payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer border border-gray-200">
                             <div className="w-full flex justify-center ">
-                              <span className=" w-[130px] ">
+                              <span className=" w-[120px] ">
                                 <img src={sslcommerze.src} alt="sslcommerze" />
                               </span>
                             </div>
