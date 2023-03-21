@@ -9,9 +9,10 @@ import ProductCardVertical from "./../../shared/SharedProductCard/ProductCardVer
 
 interface Props {
   bannerImg?: string;
+  setShowFilterWidget: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CategoryItemsRight: React.FC<Props> = (props) => {
+const CategoryItemsRight: React.FC<Props> = ({ setShowFilterWidget }) => {
   const states = useSelector(() => controller.states);
 
   const [cardType, setCardType] = useState("normal");
@@ -31,7 +32,9 @@ const CategoryItemsRight: React.FC<Props> = (props) => {
           <span className="font-bold text-qblack text-[13px]">View by :</span>
           <button
             type="button"
-            className={`hover:text-qgreen w-6 h-6 ${cardType === "normal" ? "text-qgreen" : "text-qgray"}`}
+            className={`hover:text-qgreen w-6 h-6 ${
+              cardType === "normal" ? "text-qgreen" : "text-qgray"
+            }`}
             onClick={() => setCardType("normal")}
           >
             <svg
@@ -45,7 +48,9 @@ const CategoryItemsRight: React.FC<Props> = (props) => {
           </button>
           <button
             type="button"
-            className={`hover:text-qgreen w-6 h-6 ${cardType === "vertical" ? "text-qgreen" : "text-qgray"}`}
+            className={`hover:text-qgreen w-6 h-6 ${
+              cardType === "vertical" ? "text-qgreen" : "text-qgray"
+            }`}
             onClick={() => setCardType("vertical")}
           >
             <svg
@@ -60,6 +65,7 @@ const CategoryItemsRight: React.FC<Props> = (props) => {
         </div>
         <button
           type="button"
+          onClick={() => setShowFilterWidget(true)}
           className="w-10 lg:hidden h-10 rounded flex justify-center items-center border border-qyellow text-qyellow"
         >
           <svg
