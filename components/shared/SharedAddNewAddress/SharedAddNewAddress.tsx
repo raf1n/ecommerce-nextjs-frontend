@@ -4,6 +4,7 @@ import { controller } from "../../../src/state/StateController";
 import Select from "react-select";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { useRouter } from "next/router";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 
 interface Props {
   selectedOption: any;
@@ -16,6 +17,8 @@ interface Props {
 }
 
 const SharedAddNewAddress: React.FC<Props> = (props) => {
+  const user_slug = CookiesHandler.getSlug();
+
   const states = useSelector(() => controller.states);
   const router = useRouter();
   // const [form, setForm] = useState(false);
@@ -41,7 +44,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
       state: e.target.state.value,
       city: e.target.city.value,
       address: e.target.address.value,
-      user_slug: "user_slug_1",
+      user_slug: user_slug,
     };
     const { res, err } = await EcommerceApi.updateAddress(
       addresses,
@@ -100,16 +103,19 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
         </h1>
         <span
           onClick={() => setForm(false)}
-          className="text-qyellow cursor-pointer">
+          className="text-qyellow cursor-pointer"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
             viewBox="0 0 20 20"
-            fill="currentColor">
+            fill="currentColor"
+          >
             <path
               fill-rule="evenodd"
               d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-              clip-rule="evenodd"></path>
+              clip-rule="evenodd"
+            ></path>
           </svg>
         </span>
       </div>
@@ -140,7 +146,8 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                 </label>
                 <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                   <input
-                    defaultValue={singleAddressData?.email}
+                    readOnly
+                    defaultValue={states.user?.email}
                     name="email"
                     placeholder="Email"
                     className="input-field placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
@@ -172,7 +179,10 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
               <div className="my-select-box w-full">
                 <div className="my-select-box-section ">
                   <Select
-                    defaultValue={singleAddressData?.country}
+                    defaultValue={{
+                      label: singleAddressData?.country,
+                      value: singleAddressData?.country,
+                    }}
                     name="country"
                     value={selectedOption}
                     onChange={handleChange}
@@ -195,13 +205,17 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                 <div className="my-select-box w-full">
                   <div className="my-select-box-section ">
                     <Select
-                      defaultValue={singleAddressData?.state}
+                      defaultValue={{
+                        label: singleAddressData?.state,
+                        value: singleAddressData?.state,
+                      }}
                       name="state"
                       options={stateOptions}
                       styles={style}
                       components={{
                         IndicatorSeparator: () => null,
-                      }}></Select>
+                      }}
+                    ></Select>
                   </div>
                 </div>
               </div>
@@ -214,13 +228,17 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                 <div className="my-select-box w-full">
                   <div className="my-select-box-section ">
                     <Select
-                      defaultValue={singleAddressData?.city}
+                      defaultValue={{
+                        label: singleAddressData?.city,
+                        value: singleAddressData?.city,
+                      }}
                       name="city"
                       options={cityOptions}
                       styles={style}
                       components={{
                         IndicatorSeparator: () => null,
-                      }}></Select>
+                      }}
+                    ></Select>
                   </div>
                 </div>
               </div>
@@ -250,7 +268,8 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
               </div>
               <label
                 htmlFor="home"
-                className="text-qblack text-[15px] select-none capitalize">
+                className="text-qblack text-[15px] select-none capitalize"
+              >
                 home
               </label>
             </div>
@@ -260,7 +279,8 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
               </div>
               <label
                 htmlFor="office"
-                className="text-qblack text-[15px] select-none">
+                className="text-qblack text-[15px] select-none"
+              >
                 Office
               </label>
             </div>

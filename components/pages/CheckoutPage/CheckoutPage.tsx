@@ -40,7 +40,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     const allAddress = async () => {
-      const { res, err } = await EcommerceApi.allAddress();
+      const { res, err } = await EcommerceApi.allAddress(states.user?.email);
       if (err) {
         console.log(err);
       } else {

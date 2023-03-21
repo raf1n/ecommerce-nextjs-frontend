@@ -65,7 +65,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
 
   useEffect(() => {
     const allAddress = async () => {
-      const { res, err } = await EcommerceApi.allAddress();
+      const { res, err } = await EcommerceApi.allAddress(states.user?.email);
       if (err) {
         console.log(err);
       } else {
@@ -75,7 +75,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
       }
     };
     allAddress();
-  }, [refresh]);
+  }, [refresh, states.user]);
 
   const countryOptions = [
     { value: "bangladesh", label: "Bangladesh" },

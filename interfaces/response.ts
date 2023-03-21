@@ -68,6 +68,14 @@ export interface IOrderResponse extends MyFetchInterface {
     message: string;
   };
 }
+
+export interface IAllOrderResponse extends MyFetchInterface {
+  res: {
+    data: IOrder[];
+    message: string;
+  };
+}
+
 export interface ISingleOrderResponse extends MyFetchInterface {
   res: IOrder;
 }
