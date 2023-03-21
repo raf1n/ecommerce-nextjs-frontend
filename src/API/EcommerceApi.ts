@@ -173,7 +173,7 @@ export class EcommerceApi {
   }
   //delete all wishlist product
   static async deleteAllWishlistProduct(
-    user_slug: string
+    user_slug: string | undefined
   ): Promise<MyFetchInterface> {
     console.log(API_ENDPOINT);
     console.log(user_slug);
@@ -472,7 +472,7 @@ export class EcommerceApi {
 
   //delete all cartlist product
   static async deleteAllCartlistProduct(
-    user_slug: string
+    user_slug: string | undefined
   ): Promise<MyFetchInterface> {
     console.log(API_ENDPOINT);
     console.log(user_slug);

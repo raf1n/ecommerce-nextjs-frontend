@@ -36,7 +36,10 @@ const FeaturedCategory: React.FC<Props> = (props) => {
     <div>
       <div className="section-wrapper w-full md:mb-[60px] mb-[30px]">
         <div className="container-x mx-auto">
-          <SectionHeader title="Featured Category" link="/products?highlight=featured_product" />
+          <SectionHeader
+            title="Featured Category"
+            link="/products?highlight=featured_product"
+          />
           <div className="section-content">
             <div className="products-section w-full">
               <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
@@ -50,7 +53,7 @@ const FeaturedCategory: React.FC<Props> = (props) => {
                   >
                     <div>
                       <h1 className="text-base font-semibold tracking-wide mb-2">
-                        Popular Category
+                        Featured Category
                       </h1>
                       <div className="brands-list mb-[7px]">
                         <ul>

@@ -11,6 +11,7 @@ import SharedAddNewAddress from "../../shared/SharedAddNewAddress/SharedAddNewAd
 import { IAddress } from "../../../interfaces/models";
 import SharedDeleteModal from "../../shared/SharedDeleteModal/SharedDeleteModal";
 import { useRouter } from "next/navigation";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 
 interface Props {}
 const CheckoutPage: React.FC<Props> = (props) => {
@@ -52,7 +53,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
 
   // ---------------- ------------------- //
   const router = useRouter();
-  const cartListProduct = states.cartlistData;
 
   const fetchOrderSum = async () => {
     const { res, err } = await EcommerceApi.getAllCartData(states.user?.slug);
@@ -61,15 +61,20 @@ const CheckoutPage: React.FC<Props> = (props) => {
       controller.setAllCartListData(res);
     }
   };
+
+  const cartListProduct = states.cartlistData;
+
   useEffect(() => {
     fetchOrderSum();
   }, [states.user]);
   // -------------------------------- //
 
+  const user_slug = CookiesHandler.getSlug();
+
   const order = {
     product_list: cartListProduct,
     user_name: states.user?.fullName,
-    user_slug: states.user?.slug,
+    user_slug: user_slug,
     user_email: states.user?.email,
     // user_phone: states.user?.phone,
     user_phone: states.user?.phone,
@@ -95,7 +100,11 @@ const CheckoutPage: React.FC<Props> = (props) => {
       console.log(err);
     } else if (res) {
       controller.setClearCartlist();
-      router.push(res.data);
+      const { res: cardelRes, err } =
+        await EcommerceApi.deleteAllCartlistProduct(user_slug);
+      if (cardelRes) {
+        router.push(res.data);
+      }
     }
   };
   // ------------------------------------ //

@@ -5,6 +5,7 @@ import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import { controller } from "./../../../src/state/StateController";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 
 interface Props {
   item: IProduct;
@@ -12,9 +13,10 @@ interface Props {
 
 const SharedWishListItem: React.FC<Props> = ({ item }) => {
   const states = useSelector(() => controller.states);
+  const user_slug = CookiesHandler.getSlug();
 
   const deleteWishlistProduct = async (product: IWishlistProduct) => {
-    product.user_slug = "user_slug_1";
+    product.user_slug = user_slug;
     const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
       product.slug,
       product.user_slug
@@ -44,7 +46,8 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
                 padding: 0,
                 position: "absolute",
                 inset: 0,
-              }}>
+              }}
+            >
               <picture>
                 {item && item?.imageURL?.length > 0 && (
                   <img
@@ -91,7 +94,8 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
       <td className="text-right py-4 capitalize">
         <div
           className="flex space-x-1 items-center justify-center"
-          onClick={() => deleteWishlistProduct(item)}>
+          onClick={() => deleteWishlistProduct(item)}
+        >
           <span className="cursor-pointer">
             <SvgIconRenderer
               width="12"
