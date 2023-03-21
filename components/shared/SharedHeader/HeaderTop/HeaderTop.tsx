@@ -13,6 +13,7 @@ import { CookiesHandler } from "../../../../src/utils/CookiesHandler";
 interface Props {}
 
 const user_slug = CookiesHandler.getSlug();
+console.log(user_slug)
 
 const HeaderTop: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -68,6 +69,17 @@ const HeaderTop: React.FC<Props> = (props) => {
     }
   };
 
+
+  const getSingleUser = async () => {
+    const { res, err } = await EcommerceApi.getSingleUser(user_slug);
+
+    if (err) {
+    } else if(res){
+      console.log(res)
+      controller.setUser(res);
+    }
+  };
+
   useEffect(() => {
     const getAllCartData = async () => {
       const { res, err } = await EcommerceApi.getAllCartData(user_slug);
@@ -83,6 +95,7 @@ const HeaderTop: React.FC<Props> = (props) => {
       }
     };
 
+    getSingleUser()
     getAllWishlistData();
     getAllCartData();
     fetchAllCategories();
