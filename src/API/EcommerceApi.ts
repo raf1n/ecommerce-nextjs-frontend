@@ -589,7 +589,7 @@ export class EcommerceApi {
     };
 
     return await callFetch(
-      `${API_ENDPOINT}/advertisements/${name}`,
+      `${API_ENDPOINT}/advertisements/home/${name}`,
       requestOptions
     );
   }
