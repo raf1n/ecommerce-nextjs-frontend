@@ -752,4 +752,17 @@ export class EcommerceApi {
     };
     return await callFetch(`${API_ENDPOINT}/subscriber`, requestOptions);
   }
+
+
+  static async getSingleUser(slug:string | undefined): Promise<MyFetchInterface> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/users/private/${slug}`, requestOptions);
+  }
 }

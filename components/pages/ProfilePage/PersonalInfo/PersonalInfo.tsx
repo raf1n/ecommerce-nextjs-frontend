@@ -141,7 +141,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
             /> */}
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
               <input
-                defaultValue={props.user?.address.country}
+                defaultValue={props.user?.address?.country}
                 name="country"
                 placeholder="country"
                 type="text"
@@ -163,7 +163,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
               /> */}
               <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                 <input
-                  defaultValue={props.user?.address.state}
+                  defaultValue={props.user?.address?.state}
                   name="state"
                   placeholder="State"
                   type="text"
@@ -184,7 +184,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
               /> */}
               <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                 <input
-                  defaultValue={props.user?.address.city}
+                  defaultValue={props.user?.address?.city}
                   name="city"
                   placeholder="City"
                   type="text"
@@ -202,7 +202,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 </label>
                 <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
                   <input
-                    defaultValue={props.user?.address.address}
+                    defaultValue={props.user?.address?.address}
                     name="address"
                     placeholder="Your Address here"
                     type="text"

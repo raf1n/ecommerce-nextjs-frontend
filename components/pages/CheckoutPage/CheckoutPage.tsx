@@ -63,7 +63,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
   };
   useEffect(() => {
     fetchOrderSum();
-  }, []);
+  }, [states.user]);
   // -------------------------------- //
 
   const order = {
