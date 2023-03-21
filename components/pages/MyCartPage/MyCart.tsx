@@ -19,6 +19,24 @@ const MyCart: React.FC<Props> = (props) => {
 
   const handleIncreaseQuantity = async (item: ICartProduct) => {
     if (states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
+      const selectedItem = states?.cartlistData?.find(
+        (prd) => prd.slug === item.slug
+      );
+
+      if (
+        selectedItem &&
+        selectedItem.stock &&
+        selectedItem?.quantity >= selectedItem?.stock
+      ) {
+        alert("Cart quantity cannot be more than available stock");
+        return;
+      }
+
+      if (selectedItem && selectedItem.stock && selectedItem?.quantity >= 10) {
+        alert("Sorry, One can not buy more than 10 units of a single product.");
+        return;
+      }
+
       controller.setAddtoCartlist(item);
     } else {
       const { res, err } = await EcommerceApi.updateSingleCartProduct(
@@ -33,7 +51,7 @@ const MyCart: React.FC<Props> = (props) => {
 
   const handleDecreaseQuantity = async (item: ICartProduct) => {
     if (item?.quantity === 1) {
-      await CartHandler.handleDeleteFromCart(item);
+      await CartHandler.handleDeleteFromCart(item, user_slug as string);
     } else {
       controller.setMinusFromCartlist(item);
     }
@@ -203,7 +221,10 @@ const MyCart: React.FC<Props> = (props) => {
                                 <span
                                   className="cursor-pointer"
                                   onClick={() =>
-                                    CartHandler.handleDeleteFromCart(item)
+                                    CartHandler.handleDeleteFromCart(
+                                      item,
+                                      user_slug as string
+                                    )
                                   }
                                 >
                                   <svg
@@ -235,9 +256,6 @@ const MyCart: React.FC<Props> = (props) => {
                       Clear Cart
                     </div>
                   </button>
-                  <div className="w-[140px] h-[50px] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
-                    <span className="text-sm font-semibold">Update Cart</span>
-                  </div>
                   <Link href="/checkout">
                     <div className="w-[300px] h-[50px] bg-black flex justify-center items-center cursor-pointer">
                       <span className="text-sm text-white font-semibold">

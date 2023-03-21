@@ -7,10 +7,15 @@ import { FaRegHeart, FaFlag } from "react-icons/fa";
 import { useRouter } from "next/router";
 import FacebookIcon from "react-share/lib/FacebookIcon";
 import TwitterIcon from "react-share/lib/TwitterIcon";
-import { ICartProduct, IProduct } from "../../../interfaces/models";
+import {
+  ICartProduct,
+  IProduct,
+  IWishlistProduct,
+} from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CartHandler } from "../../../src/utils/CartHandler";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 interface Props {
   // brand: string;
@@ -57,7 +62,15 @@ const ProductDetails: React.FC<Props> = (props) => {
   // console.log({ shareableRoute, router });
 
   const handleIncreaseQuantity = async (item: ICartProduct) => {
-    // item.quantity === cartQuantity;
+    if (item.stock && cartQuantity >= item.stock) {
+      alert("Cart quantity cannot be more than available stock");
+      return;
+    }
+
+    if (cartQuantity > 10) {
+      alert("Sorry, One can not buy more than 10 units of a single product.");
+    }
+
     if (user_slug) {
       if (!states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
         const cartProductData = {
@@ -93,11 +106,39 @@ const ProductDetails: React.FC<Props> = (props) => {
     }
   };
 
-  const handleDecreaseQuantity = async (item: ICartProduct) => {
-    if (item?.quantity === 1) {
-      await CartHandler.handleDeleteFromCart(item);
-    } else if (item?.quantity >= 1) {
-      controller.setMinusFromCartlist(item);
+  const isInWishlist = (slug: string | undefined) => {
+    for (let i = 0; i < states?.wishlistData?.length; i++) {
+      if (states?.wishlistData[i]?.slug === slug) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const handleWishlist = async () => {
+    //@ts-ignore
+    const newProduct: IWishlistProduct = { ...singleProduct };
+    //@ts-ignore
+    delete newProduct._id;
+    newProduct.user_slug = user_slug;
+
+    if (!isInWishlist(newProduct.slug)) {
+      const { res, err } = await EcommerceApi.postWishlistProduct(newProduct);
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
+        controller.setAddtoWishlist(newProduct);
+      }
+    } else {
+      const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
+        newProduct.slug,
+        newProduct?.user_slug
+      );
+      if (err) {
+      } else {
+        controller.setRemoveWishlistSingleProduct(newProduct);
+      }
     }
   };
 
@@ -219,7 +260,11 @@ const ProductDetails: React.FC<Props> = (props) => {
         <div className="w-[120px] h-full px-[26px] flex items-center border border-gray-200">
           <div className="flex justify-between items-center w-full">
             <button
-              onClick={() => setCartQuantity(cartQuantity - 1)}
+              onClick={() => {
+                if (!(cartQuantity <= 1)) {
+                  setCartQuantity(cartQuantity - 1);
+                }
+              }}
               type="button"
               className="text-base text-qgray"
             >
@@ -227,7 +272,11 @@ const ProductDetails: React.FC<Props> = (props) => {
             </button>
             <span className="text-qblack">{cartQuantity}</span>
             <button
-              onClick={() => setCartQuantity(cartQuantity + 1)}
+              onClick={() => {
+                if (!(cartQuantity >= 10)) {
+                  setCartQuantity(cartQuantity + 1);
+                }
+              }}
               type="button"
               className="text-base text-qgray"
             >
@@ -236,13 +285,28 @@ const ProductDetails: React.FC<Props> = (props) => {
           </div>
         </div>
 
-        <div className="w-[60px] h-full flex justify-center items-center border border-qgray-border">
-          <button type="button">
-            <span className="w-10 h-10 flex justify-center items-center">
-              <FaRegHeart className="w-5 h-5" />
-            </span>
-          </button>
-        </div>
+        <button
+          onClick={handleWishlist}
+          className="w-[60px] h-full flex justify-center items-center border border-qgray-border"
+        >
+          <span className="w-10 h-10 flex text-black hover:text-black justify-center items-center transition-all duration-300 ease-in-out   rounded">
+            {
+              //@ts-ignore
+              singleProduct && isInWishlist(singleProduct.slug as string) ? (
+                <BsHeartFill
+                  style={{
+                    width: "25px",
+                    height: "21px",
+                    color: "#EF272D",
+                  }}
+                />
+              ) : (
+                <BsHeart style={{ width: "25px", height: "21px" }} />
+              )
+            }
+          </span>
+          {/* </> */}
+        </button>
 
         <div className="flex-1 h-full">
           <button

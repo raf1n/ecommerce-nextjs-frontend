@@ -5,6 +5,7 @@ import { action } from "usm-redux";
 import { IProduct, IWishlistProduct } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import styles from "./ProductCardVertical.module.css";
@@ -13,11 +14,19 @@ interface Props {
   // product: IProduct;
   product: IWishlistProduct;
 }
+
+const user_slug = CookiesHandler.getSlug();
+
 const ProductCardVertical: React.FC<Props> = (props) => {
   const { product } = props;
   const states = useSelector(() => controller.states);
 
   const handleWishlist = async () => {
+    if (!user_slug) {
+      alert("Please login first");
+      return;
+    }
+
     product.user_slug = states.user?.slug;
 
     if (!isInWishlist(product.slug)) {
@@ -57,18 +66,27 @@ const ProductCardVertical: React.FC<Props> = (props) => {
     }
     return false;
   };
+
   const cartListProduct = states?.cartlistData.find(
     (cartProduct) => cartProduct.slug === product.slug
   );
 
   const handleCartToggle = async () => {
+    if (!user_slug) {
+      alert("Please login first");
+      return;
+    }
+
     const cartProductData = {
-      user_slug: states.user?.slug,
+      user_slug: user_slug,
       product_slug: product.slug,
       quantity: cartListProduct?.quantity || 1,
     };
     if (cartListProduct) {
-      const { res, err } = await EcommerceApi.deleteFromCart(product?.slug);
+      const { res, err } = await EcommerceApi.deleteFromCart(
+        user_slug,
+        product?.slug
+      );
       if (res) {
         controller.setRemoveCartItem(product);
       }
@@ -102,7 +120,8 @@ const ProductCardVertical: React.FC<Props> = (props) => {
         <div className="main-wrapper-card relative">
           <div
             data-aos="fade-left"
-            className={`${styles["product-row-card-style-one"]} w-full lg:h-[250px] h-[200px] bg-white group relative overflow-hidden aos-init aos-animate`}>
+            className={`${styles["product-row-card-style-one"]} w-full lg:h-[250px] h-[200px] bg-white group relative overflow-hidden aos-init aos-animate`}
+          >
             <div className="flex space-x-5 items-center w-full h-full lg:p-[30px] sm:p-5 p-2 ">
               <div className="lg:w-1/2 w-1/3 h-full relative transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out">
                 <span
@@ -120,7 +139,8 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                     position: "absolute",
                     inset: 0,
                   }}
-                  className="">
+                  className=""
+                >
                   <picture>
                     {product && product?.imageURL?.length > 0 && (
                       <img
@@ -251,7 +271,8 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                     onClick={handleCartToggle}
                     className={`h-[30px] ${
                       isInCartlist(product.slug) ? "w-[140px] " : "w-[110px] "
-                    } `}>
+                    } `}
+                  >
                     <span className="yellow-btn">
                       {isInCartlist(product.slug)
                         ? "Remove From Cart"
@@ -264,7 +285,8 @@ const ProductCardVertical: React.FC<Props> = (props) => {
             <div className="quick-access-btns flex flex-col space-y-2">
               <button
                 className=" absolute group-hover:left-4 -left-10 top-5 transition-all ease-in-out"
-                type="button">
+                type="button"
+              >
                 <span className="w-10 h-10 flex justify-center text-black hover:text-white items-center transition-all duration-300 ease-in-out hover:bg-qyellow bg-primarygray rounded">
                   <SvgIconRenderer
                     width={"20"}
@@ -281,7 +303,8 @@ const ProductCardVertical: React.FC<Props> = (props) => {
               <button
                 className="absolute group-hover:left-4 -left-10 top-[60px] transition-all duration-300 ease-in-out"
                 type="button"
-                onClick={handleWishlist}>
+                onClick={handleWishlist}
+              >
                 <span className="w-10 h-10 flex text-black hover:text-white justify-center items-center transition-all duration-300 ease-in-out hover:bg-qyellow bg-primarygray rounded">
                   <SvgIconRenderer
                     width={"21"}
@@ -301,7 +324,8 @@ const ProductCardVertical: React.FC<Props> = (props) => {
               </button>
               <button
                 className="absolute group-hover:left-4 -left-10 top-[107px] transition-all duration-500 ease-in-out"
-                type="button">
+                type="button"
+              >
                 <span className="w-10 h-10 flex justify-center text-black hover:text-white transition-all duration-300 ease-in-out items-center hover:bg-qyellow bg-primarygray rounded">
                   <SvgIconRenderer
                     width={"20"}

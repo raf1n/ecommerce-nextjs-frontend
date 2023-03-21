@@ -22,9 +22,9 @@ export const CartHandler = {
     }
   },
 
-  handleDeleteFromCart: async (product: ICartProduct) => {
+  handleDeleteFromCart: async (product: ICartProduct, user_slug: string) => {
     console.log(product);
-    const { res, err } = await EcommerceApi.deleteFromCart(product?.cart_slug);
+    const { res, err } = await EcommerceApi.deleteFromCart(user_slug, product?.slug);
     if (res) {
       controller.setRemoveCartItem(product);
     }
