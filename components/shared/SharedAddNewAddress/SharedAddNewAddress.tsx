@@ -4,6 +4,7 @@ import { controller } from "../../../src/state/StateController";
 import Select from "react-select";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { useRouter } from "next/router";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 
 interface Props {
   selectedOption: any;
@@ -14,6 +15,8 @@ interface Props {
   refresh: boolean;
   setRefresh: Dispatch<SetStateAction<boolean>>;
 }
+
+const user_slug = CookiesHandler.getSlug();
 
 const SharedAddNewAddress: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
@@ -31,28 +34,33 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
   } = props;
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault();
+    if (user_slug) {
+      e.preventDefault();
 
-    const addresses = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      phone: e.target.phone.value,
-      country: e.target.country.value,
-      state: e.target.state.value,
-      city: e.target.city.value,
-      address: e.target.address.value,
-      user_slug: "user_slug_1",
-    };
-    const { res, err } = await EcommerceApi.updateAddress(
-      addresses,
-      singleAddressData?.slug
-    );
-    setRefresh(!refresh);
-    if (res) {
-      setForm(false);
+      const addresses = {
+        name: e.target.name.value,
+        email: e.target.email.value,
+        phone: e.target.phone.value,
+        country: e.target.country.value,
+        state: e.target.state.value,
+        city: e.target.city.value,
+        address: e.target.address.value,
+        user_slug: user_slug,
+      };
+      const { res, err } = await EcommerceApi.updateAddress(
+        addresses,
+        singleAddressData?.slug
+      );
+      setRefresh(!refresh);
+      if (res) {
+        setForm(false);
+      }
+      e.target.reset();
+    } else {
+      alert("Please Login First");
     }
-    e.target.reset();
   };
+
   const style = {
     control: (base: any) => ({
       ...base,
@@ -100,16 +108,19 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
         </h1>
         <span
           onClick={() => setForm(false)}
-          className="text-qyellow cursor-pointer">
+          className="text-qyellow cursor-pointer"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
             viewBox="0 0 20 20"
-            fill="currentColor">
+            fill="currentColor"
+          >
             <path
               fill-rule="evenodd"
               d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-              clip-rule="evenodd"></path>
+              clip-rule="evenodd"
+            ></path>
           </svg>
         </span>
       </div>
@@ -201,7 +212,8 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                       styles={style}
                       components={{
                         IndicatorSeparator: () => null,
-                      }}></Select>
+                      }}
+                    ></Select>
                   </div>
                 </div>
               </div>
@@ -220,7 +232,8 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                       styles={style}
                       components={{
                         IndicatorSeparator: () => null,
-                      }}></Select>
+                      }}
+                    ></Select>
                   </div>
                 </div>
               </div>
@@ -250,7 +263,8 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
               </div>
               <label
                 htmlFor="home"
-                className="text-qblack text-[15px] select-none capitalize">
+                className="text-qblack text-[15px] select-none capitalize"
+              >
                 home
               </label>
             </div>
@@ -260,7 +274,8 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
               </div>
               <label
                 htmlFor="office"
-                className="text-qblack text-[15px] select-none">
+                className="text-qblack text-[15px] select-none"
+              >
                 Office
               </label>
             </div>

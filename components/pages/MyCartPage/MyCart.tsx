@@ -7,47 +7,51 @@ import SharedEmptyCart from "../../shared/SharedEmptyCart/SharedEmptyCart";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CartHandler } from "../../../src/utils/CartHandler";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 interface Props {
   // cartlistData: Array<IProduct>;
 }
+
+const user_slug = CookiesHandler.getSlug();
 
 const MyCart: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const handleIncreaseQuantity = async (item: ICartProduct) => {
-    const { res, err } = await EcommerceApi.updateSingleCartProduct(
-      item?.cart_slug,
-      item?.quantity + 1
-    );
-    if (res) {
+    if (states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
       controller.setAddtoCartlist(item);
-    }
-  };
-
-  const handleDecreaseQuantity = async (item: ICartProduct) => {
-    const { res, err } = await EcommerceApi.updateSingleCartProduct(
-      item?.cart_slug,
-      item?.quantity - 1
-    );
-    if (res) {
-      if (item?.quantity === 1) {
-        CartHandler.handleDeleteFromCart(item);
-      } else {
-        controller.setMinusFromCartlist(item);
+    } else {
+      const { res, err } = await EcommerceApi.updateSingleCartProduct(
+        item?.cart_slug,
+        item?.quantity + 1
+      );
+      if (res) {
+        controller.setAddtoCartlist(item);
       }
     }
   };
 
-  const handleAllCartProductClear = async () => {
-    const { res, err } = await EcommerceApi.deleteAllCartlistProduct("user_slug_1");
-    if (err) {
-      console.log(err);
+  const handleDecreaseQuantity = async (item: ICartProduct) => {
+    if (item?.quantity === 1) {
+      await CartHandler.handleDeleteFromCart(item);
     } else {
-      //
-      controller.setClearCartlist();
+      controller.setMinusFromCartlist(item);
     }
-  }
+  };
 
+  const handleAllCartProductClear = async () => {
+    if (user_slug) {
+      const { res, err } = await EcommerceApi.deleteAllCartlistProduct(
+        user_slug
+      );
+      if (err) {
+        console.log(err);
+      } else {
+        //
+        controller.setClearCartlist();
+      }
+    }
+  };
 
   return (
     <div className="w-full min-h-screen  pt-[30px] pb-[5px]">
@@ -89,7 +93,10 @@ const MyCart: React.FC<Props> = (props) => {
                           (product) => item.slug === product.slug
                         );
                         return (
-                          <tr key={item.slug} className="bg-white border-b hover:bg-gray-50">
+                          <tr
+                            key={item.slug}
+                            className="bg-white border-b hover:bg-gray-50"
+                          >
                             <td className="pl-10 py-4 capitalize w-[380px] ">
                               <div className="flex space-x-6 items-center">
                                 <div className="w-[80px] h-[80px] overflow-hidden flex justify-center items-center border border-[#EDEDED] relative">
@@ -136,7 +143,9 @@ const MyCart: React.FC<Props> = (props) => {
                                 </div>
                                 <div className="flex-1 flex flex-col">
                                   <p className="font-medium text-[15px] text-qblack hover:text-blue-500 cursor-pointer">
-                                    <Link href={`/single_product?slug=${item.slug}`}>
+                                    <Link
+                                      href={`/single_product?slug=${item.slug}`}
+                                    >
                                       {item.productName}
                                     </Link>
                                   </p>
@@ -193,7 +202,9 @@ const MyCart: React.FC<Props> = (props) => {
                               <div className="flex space-x-1 items-center justify-center p-2">
                                 <span
                                   className="cursor-pointer"
-                                  onClick={() => CartHandler.handleDeleteFromCart(item)}
+                                  onClick={() =>
+                                    CartHandler.handleDeleteFromCart(item)
+                                  }
                                 >
                                   <svg
                                     width="10"

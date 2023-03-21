@@ -7,52 +7,10 @@ import { FaRegHeart, FaFlag } from "react-icons/fa";
 import { useRouter } from "next/router";
 import FacebookIcon from "react-share/lib/FacebookIcon";
 import TwitterIcon from "react-share/lib/TwitterIcon";
-import { IProduct } from "../../../interfaces/models";
-
-// const secondExample = {
-//   size: 50,
-//   count: 10,
-//   color: "black",
-//   activeColor: "red",
-//   value: 7.5,
-//   a11y: true,
-//   isHalf: true,
-//   emptyIcon: <i className="far fa-star" />,
-//   halfIcon: <i className="fa fa-star-half-alt" />,
-//   filledIcon: <i className="fa fa-star" />,
-//   onChange: (newValue: string) => {
-//     console.log(`Example 2: new value is ${newValue}`);
-//   },
-// };
-
-// const style = {
-//   root: {
-//     // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-//     borderRadius: 3,
-//     border: 0,
-//     padding: 0,
-//     // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-//     color: "white",
-//   },
-//   makeStylesContainer1: {
-//     padding: 0,
-//     "&:makeStyles-iconContainer-3": {
-//       padding: 0,
-//     }
-//   },
-//   makeStylesIconContainer3: {
-//     padding: 0,
-//   },
-//   copyContainer: {
-//     display: "none",
-//     border: "1px solid blue",
-//     background: "rgb(0,0,0,0.7)",
-//   },
-//   title: {
-//     color: "aquamarine",
-//     fontStyle: "italic",
-//   },
-// };
+import { ICartProduct, IProduct } from "../../../interfaces/models";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { CartHandler } from "../../../src/utils/CartHandler";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 
 interface Props {
   // brand: string;
@@ -60,10 +18,25 @@ interface Props {
   setReportModalSlug: Dispatch<SetStateAction<string>>;
 }
 
+const user_slug = CookiesHandler.getSlug();
+
 const ProductDetails: React.FC<Props> = (props) => {
   const { singleProduct } = props;
   const states = useSelector(() => controller.states);
   const [brandName, setBrandName] = useState<string | undefined>("");
+
+  let selectedItem: ICartProduct | undefined;
+
+  if (singleProduct) {
+    selectedItem = states?.cartlistData?.find(
+      (product) => singleProduct.slug === product.slug
+    );
+  }
+
+  const [cartQuantity, setCartQuantity] = useState<number>(
+    selectedItem?.quantity || 1
+  );
+
   useEffect(() => {
     const handleBrand = () => {
       if (states.brands && singleProduct && singleProduct.brandSlug) {
@@ -82,6 +55,51 @@ const ProductDetails: React.FC<Props> = (props) => {
   // const shareableRoute = "https://www.google.com" || undefined;
 
   // console.log({ shareableRoute, router });
+
+  const handleIncreaseQuantity = async (item: ICartProduct) => {
+    // item.quantity === cartQuantity;
+    if (user_slug) {
+      if (!states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
+        const cartProductData = {
+          user_slug: user_slug,
+          product_slug: singleProduct?.slug,
+          quantity: 1,
+        };
+
+        const { res, err } = await EcommerceApi.addToCart(cartProductData);
+
+        if (res) {
+          const newProduct = {
+            ...singleProduct,
+            cart_slug: res.slug,
+          };
+
+          //@ts-ignore
+          controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
+        } else {
+          console.log(err);
+          alert("Failed");
+        }
+      } else {
+        const newProduct = {
+          ...singleProduct,
+        };
+
+        //@ts-ignore
+        controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
+      }
+    } else {
+      alert("Please Login First");
+    }
+  };
+
+  const handleDecreaseQuantity = async (item: ICartProduct) => {
+    if (item?.quantity === 1) {
+      await CartHandler.handleDeleteFromCart(item);
+    } else if (item?.quantity >= 1) {
+      controller.setMinusFromCartlist(item);
+    }
+  };
 
   return (
     <div className="mt-10 lg:mt-0">
@@ -200,11 +218,19 @@ const ProductDetails: React.FC<Props> = (props) => {
       <div className="w-full flex items-center h-[50px] gap-x-[10px] mb-[30px]">
         <div className="w-[120px] h-full px-[26px] flex items-center border border-gray-200">
           <div className="flex justify-between items-center w-full">
-            <button type="button" className="text-base text-qgray">
+            <button
+              onClick={() => setCartQuantity(cartQuantity - 1)}
+              type="button"
+              className="text-base text-qgray"
+            >
               -
             </button>
-            <span className="text-qblack">1</span>
-            <button type="button" className="text-base text-qgray">
+            <span className="text-qblack">{cartQuantity}</span>
+            <button
+              onClick={() => setCartQuantity(cartQuantity + 1)}
+              type="button"
+              className="text-base text-qgray"
+            >
               +
             </button>
           </div>
@@ -221,6 +247,9 @@ const ProductDetails: React.FC<Props> = (props) => {
         <div className="flex-1 h-full">
           <button
             type="button"
+            onClick={() =>
+              handleIncreaseQuantity(props.singleProduct as ICartProduct)
+            }
             className="bg-black text-white text-sm font-semibold w-full h-full"
           >
             Add To Cart

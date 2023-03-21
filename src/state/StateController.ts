@@ -260,6 +260,28 @@ export class Controller {
   }
 
   @action
+  setAddToCartListWithQuantity(
+    productToAdd: ICartProduct,
+    cartQuantity: number
+  ) {
+    if (
+      this.states?.cartlistData?.some((item) => item.slug === productToAdd.slug)
+    ) {
+      this.states.cartlistData = this.states.cartlistData.map((cartItem) =>
+        cartItem.slug === productToAdd.slug
+          ? { ...cartItem, quantity: cartQuantity }
+          : cartItem
+      );
+    } else {
+      // if not found new array with modified cartItems/ new cart item
+      this.states.cartlistData = [
+        ...this.states.cartlistData,
+        { ...productToAdd, quantity: cartQuantity },
+      ];
+    }
+  }
+
+  @action
   setMinusFromCartlist(productToMinus: IProduct) {
     this.states.cartlistData = this.states.cartlistData.map((cartItem) =>
       cartItem.slug === productToMinus.slug

@@ -54,18 +54,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const router = useRouter();
   const cartListProduct = states.cartlistData;
 
-  const fetchOrderSum = async () => {
-    const { res, err } = await EcommerceApi.getAllCartData(states.user?.slug);
-    if (err) {
-    } else {
-      controller.setAllCartListData(res);
-    }
-  };
-  useEffect(() => {
-    fetchOrderSum();
-  }, [states.user]);
-  // -------------------------------- //
-
   const order = {
     product_list: cartListProduct,
     user_name: states.user?.fullName,
