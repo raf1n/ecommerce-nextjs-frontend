@@ -41,6 +41,10 @@ export interface IFilteredProductResponse extends MyFetchInterface {
   res: IProduct[];
 }
 
+export interface IFilteredProductBySellerResponse extends MyFetchInterface {
+  res: { sellerData: ISeller; filteredProducts: IProduct[] };
+}
+
 export interface IProductResponse extends MyFetchInterface {
   res: {
     featuredProducts: Array<IProduct>;
@@ -178,4 +182,8 @@ export interface ISubscriberResponse extends MyFetchInterface {
 
 export interface IFilteredBlogResponse extends MyFetchInterface {
   res: IBlog[];
+}
+
+export interface IGetAllSellerResponse extends MyFetchInterface {
+  res: ISeller[];
 }

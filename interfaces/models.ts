@@ -49,14 +49,24 @@ export interface IProduct {
   isFeatured?: boolean;
   isPopular?: boolean;
 }
-export interface ISeller {
-  email?: string;
-  phone?: number;
-  shopname?: string;
-  shopaddress?: string;
-  logoUrl?: string;
-  coverUrl?: string;
-  status?: string;
+// export interface ISeller {
+//   email?: string;
+//   phone?: number;
+//   shopname?: string;
+//   shopaddress?: string;
+//   logoUrl?: string;
+//   coverUrl?: string;
+//   status?: string;
+// }
+
+export interface ISeller extends IUser {
+  shop: {
+    shop_name: string;
+    shop_address: string;
+    shop_logo: string;
+    shop_cover: string;
+  };
+  user_email: string;
 }
 
 export interface IWishlistProduct extends IProduct {

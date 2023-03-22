@@ -12,8 +12,10 @@ import {
   ICartResponse,
   IFeaturedCategoriesResponse,
   IFilteredBlogResponse,
+  IFilteredProductBySellerResponse,
   IFilteredProductResponse,
   IFlashSaleProductsResponse,
+  IGetAllSellerResponse,
   IMegaCategoriesResponse,
   IOrderResponse,
   IPopularCategoriesResponse,
@@ -244,6 +246,32 @@ export class EcommerceApi {
 
     return await callFetch(
       `${API_ENDPOINT}/products/filter?search=${search}&categories=${categories}&sub_category=${subCategory}&brands=${brands}&highlight=${highlight}&min=${min}&max=${max}`,
+      requestOptions
+    );
+  }
+
+  static async getFilteredProductsBySeller(
+    shopName: string,
+    search: string | string[],
+    categories: string,
+    subCategory: string,
+    brands: string,
+    highlight: string,
+    min: number,
+    max: number
+  ): Promise<IFilteredProductBySellerResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    console.log(shopName);
+
+    return await callFetch(
+      `${API_ENDPOINT}/products/filter-by-shop/${shopName}?search=${search}&categories=${categories}&sub_category=${subCategory}&brands=${brands}&highlight=${highlight}&min=${min}&max=${max}`,
       requestOptions
     );
   }
@@ -776,4 +804,17 @@ export class EcommerceApi {
       requestOptions
     );
   }
+
+    //Get all seller
+    static async getAllSeller(query: string): Promise<IGetAllSellerResponse> {
+      const myHeaders = new Headers();
+      const requestOptions = {
+        headers: myHeaders,
+        redirect: "follow",
+      };
+      return await callFetch(
+        `${API_ENDPOINT}/users/sellers?${query}`,
+        requestOptions
+      );
+    }
 }
