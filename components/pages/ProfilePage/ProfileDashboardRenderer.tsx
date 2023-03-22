@@ -19,11 +19,13 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [allOrders, setAllOrders] = useState<IOrder[]>([]);
   const [allCompletedOrders, setAllCompletedOrders] = useState<IOrder[]>([]);
-  const [loggedInUser, setLoggedInUser] = useState<IUser | null>(null);
+  // const [, setLoggedInUser] = useState<IUser | null>(null);
 
   const { asPath } = useRouter();
   const user_slug = CookiesHandler.getSlug();
   const hash = asPath.split("#")[1];
+  const loggedInUser = states.user;
+  
   useEffect(() => {
     const getAllOrders = async () => {
       const { res, err } = await EcommerceApi.allOrders(user_slug);
@@ -38,14 +40,15 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
       }
     };
 
-    const getLoggedInUser = async () => {
-      const { res, err } = await EcommerceApi.getLoggedInUser(
-        states.user?.email
-      );
-      if (res) {
-        setLoggedInUser(res);
-      }
-    };
+    
+    // const getLoggedInUser = async () => {
+      //   const { res, err } = await EcommerceApi.getLoggedInUser(
+        //     states.user?.email
+        //   );
+        //   if (res) {
+    //     setLoggedInUser(res);
+    //   }
+    // };
 
     // const getAllCompletedOrders = async () => {
     //   const { res, err } = await EcommerceApi.allOrders("User2", "completed");
@@ -55,7 +58,7 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
     // };
     // getAllCompletedOrders();
     getAllOrders();
-    getLoggedInUser();
+    // getLoggedInUser();
   }, []);
   switch (hash) {
     case "dashboard": {

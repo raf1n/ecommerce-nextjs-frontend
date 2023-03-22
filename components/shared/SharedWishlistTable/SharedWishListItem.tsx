@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { IProduct, IWishlistProduct } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import { controller } from "./../../../src/state/StateController";
@@ -10,18 +11,24 @@ interface Props {
   item: IProduct;
 }
 
+const user_slug = CookiesHandler.getSlug();
+
 const SharedWishListItem: React.FC<Props> = ({ item }) => {
   const states = useSelector(() => controller.states);
 
   const deleteWishlistProduct = async (product: IWishlistProduct) => {
-    product.user_slug = "user_slug_1";
-    const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
-      product.slug,
-      product.user_slug
-    );
-    if (err) {
+    if (user_slug) {
+      product.user_slug = user_slug;
+      const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
+        product.slug,
+        product.user_slug
+      );
+      if (err) {
+      } else {
+        controller.setRemoveWishlistSingleProduct(product);
+      }
     } else {
-      controller.setRemoveWishlistSingleProduct(product);
+      alert("Please login first");
     }
   };
 
@@ -44,7 +51,8 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
                 padding: 0,
                 position: "absolute",
                 inset: 0,
-              }}>
+              }}
+            >
               <picture>
                 {item && item?.imageURL?.length > 0 && (
                   <img
@@ -91,7 +99,8 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
       <td className="text-right py-4 capitalize">
         <div
           className="flex space-x-1 items-center justify-center"
-          onClick={() => deleteWishlistProduct(item)}>
+          onClick={() => deleteWishlistProduct(item)}
+        >
           <span className="cursor-pointer">
             <SvgIconRenderer
               width="12"

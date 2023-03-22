@@ -62,13 +62,22 @@ const ProductCard: React.FC<Props> = (props) => {
   );
 
   const handleCartToggle = async () => {
+    if (!user_slug) {
+      alert("Please login first");
+      return;
+    }
+
     const cartProductData = {
       user_slug: user_slug,
       product_slug: product.slug,
       quantity: cartListProduct?.quantity || 1,
     };
+    
     if (cartListProduct) {
-      const { res, err } = await EcommerceApi.deleteFromCart(product?.slug);
+      const { res, err } = await EcommerceApi.deleteFromCart(
+        user_slug,
+        product?.slug
+      );
       if (res) {
         controller.setRemoveCartItem(product);
       }
@@ -97,7 +106,8 @@ const ProductCard: React.FC<Props> = (props) => {
             className={`${styles["product-card-one"]} w-full h-[445px] bg-white relative group overflow-hidden`}
             style={{
               boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px 0px",
-            }}>
+            }}
+          >
             <div className="product-card-img w-full h-[300px] -mt-2">
               <div className="w-full h-full relative flex justify-center items-center transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out">
                 <span
@@ -114,7 +124,8 @@ const ProductCard: React.FC<Props> = (props) => {
                     padding: 0,
                     position: "absolute",
                     inset: 0,
-                  }}>
+                  }}
+                >
                   <picture>
                     {product && product?.imageURL?.length > 0 && (
                       <img
@@ -151,9 +162,11 @@ const ProductCard: React.FC<Props> = (props) => {
                 <button
                   onClick={handleCartToggle}
                   type="button"
-                  className={`${styles["yellow-btn"]} group relative w-full h-full flex shadow justify-center items-center overflow-hidden`}>
+                  className={`${styles["yellow-btn"]} group relative w-full h-full flex shadow justify-center items-center overflow-hidden`}
+                >
                   <div
-                    className={`${styles["btn-content"]} flex items-center space-x-3 relative z-10`}>
+                    className={`${styles["btn-content"]} flex items-center space-x-3 relative z-10`}
+                  >
                     <span>
                       <SvgIconRenderer
                         width="14"
@@ -174,7 +187,8 @@ const ProductCard: React.FC<Props> = (props) => {
                     )}
                   </div>
                   <div
-                    className={`${styles["bg-shape"]} w-full h-full absolute bg-qblack`}></div>
+                    className={`${styles["bg-shape"]} w-full h-full absolute bg-qblack`}
+                  ></div>
                 </button>
               </div>
               <div className="reviews flex space-x-[1px] mb-3">
@@ -236,7 +250,8 @@ const ProductCard: React.FC<Props> = (props) => {
               </div>
               <Link
                 rel="noopener noreferrer"
-                href={`/single_product?slug=${product.slug}`}>
+                href={`/single_product?slug=${product.slug}`}
+              >
                 <p className="title mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
                   {product.productName}
                 </p>
@@ -253,7 +268,8 @@ const ProductCard: React.FC<Props> = (props) => {
             <div className="quick-access-btns flex flex-col space-y-2">
               <button
                 className=" absolute group-hover:right-4 -right-10 top-20 transition-all ease-in-out"
-                type="button">
+                type="button"
+              >
                 <span className="w-10 h-10 flex justify-center text-black hover:text-white items-center transition-all duration-300 ease-in-out hover:bg-qyellow bg-primarygray rounded">
                   <SvgIconRenderer
                     width={"20"}
@@ -271,7 +287,8 @@ const ProductCard: React.FC<Props> = (props) => {
               <button
                 className="absolute group-hover:right-4 -right-10 top-[120px] transition-all duration-300 ease-in-out"
                 type="button"
-                onClick={handleWishlist}>
+                onClick={handleWishlist}
+              >
                 <span className="w-10 h-10 flex text-black hover:text-black justify-center items-center transition-all duration-300 ease-in-out hover:bg-qyellow bg-primarygray rounded">
                   {isInWishlist(product.slug) ? (
                     <BsHeartFill
@@ -287,9 +304,10 @@ const ProductCard: React.FC<Props> = (props) => {
                 </span>
               </button>
 
-              <button
+              {/* <button
                 className="absolute group-hover:right-4 -right-10 top-[168px] transition-all duration-500 ease-in-out"
-                type="button">
+                type="button"
+              >
                 <span className="w-10 h-10 flex justify-center text-black hover:text-white transition-all duration-300 ease-in-out items-center hover:bg-qyellow bg-primarygray rounded">
                   <SvgIconRenderer
                     width={"20"}
@@ -301,7 +319,7 @@ const ProductCard: React.FC<Props> = (props) => {
                     pathFill={"black"}
                   />
                 </span>
-              </button>
+              </button> */}
             </div>
           </div>
           <span className={`${styles["anim"]} ${styles["bottom"]} `}></span>
