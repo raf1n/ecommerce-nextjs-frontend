@@ -4,12 +4,16 @@ import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 import { controller } from "../../../src/state/StateController";
+import { IReview } from "../../../interfaces/models";
 
-interface Props {}
+interface Props {
+  review: IReview;
+}
 
 const ReviewCard: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-
+  const { review } = props;
+  console.log(review);
   return (
     <div className="comment-item bg-white px-10 py-[32px] mb-2.5">
       <div className="comment-author flex justify-between items-center mb-3">
@@ -18,21 +22,21 @@ const ReviewCard: React.FC<Props> = (props) => {
             <span>
               <img
                 alt=""
-                src="https://shopo-ecom.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fcomment-user-1.png&w=1920&q=75"
+                src={review.user?.avatar}
                 className="w-full h-full object-cover"
               />
             </span>
           </div>
           <div>
             <p className="text-[18px] font-medium text-qblack">
-              Autumn Decker Dean
+              {review.user?.fullName}
             </p>
           </div>
         </div>
         <div className="flex items-center space-x-2">
           <ReactStars
             count={5}
-            value={3.5}
+            value={review.rating}
             edit={false}
             size={24}
             isHalf={true}
@@ -49,7 +53,7 @@ const ReviewCard: React.FC<Props> = (props) => {
       </div>
       <div className="comment mb-[30px]">
         <p className="text-[15px] text-qgray leading-7 text-normal">
-          Enim et ducimus fug
+          {review.message}
         </p>
       </div>
     </div>

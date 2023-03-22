@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { IProduct } from "../../../../interfaces/models";
+import { IProduct, IReview } from "../../../../interfaces/models";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { controller } from "../../../../src/state/StateController";
 import ReviewCard from "../../SingleProductPage/ReviewCard";
@@ -14,9 +14,18 @@ const ItemDetails: React.FC<Props> = (props) => {
   const router = useRouter();
   const { asPath } = router;
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
+  const [reviews, setReviews] = useState<IReview[]>([]);
 
   console.log(asPath.split("=")[1]);
   const productSlug = asPath.split("=")[1];
+
+  const getProductReviews = async () => {
+    const { res, err } = await EcommerceApi.getAllProductReviews(productSlug);
+    if (res) {
+      console.log(res);
+      setReviews(res);
+    }
+  };
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -27,6 +36,7 @@ const ItemDetails: React.FC<Props> = (props) => {
     if (!states.initialDataLoading) {
       fetchProductData();
     }
+    getProductReviews();
   }, [productSlug, states.initialDataLoading]);
 
   return (
@@ -75,18 +85,16 @@ const ItemDetails: React.FC<Props> = (props) => {
               </p>
             </div>
           </div>
-          <div>
-            <h6 className="text-[20px] font-bold text-qblack mb-5 ">Reviews</h6>
-            {/* <div className="text-qgray">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
-                aut labore deleniti accusamus laboriosam? Eum non, ipsum sit
-                debitis consectetur sunt ut autem dolore, molestiae est vel
-                explicabo dignissimos voluptatibus.
-              </p>
-            </div> */}
-            <ReviewCard />
-          </div>
+          {reviews.length > 0 && (
+            <div>
+              <h6 className="text-[20px] font-bold text-qblack mb-5 ">
+                Reviews
+              </h6>
+              {reviews.map((review) => (
+                <ReviewCard review={review} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

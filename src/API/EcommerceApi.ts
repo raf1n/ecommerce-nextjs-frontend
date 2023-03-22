@@ -139,6 +139,22 @@ export class EcommerceApi {
     );
   }
 
+  //Get all reviews
+  static async getAllProductReviews(
+    product_slug: string | undefined
+  ): Promise<IReviewsResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/reviews/reviewProducts/${product_slug}`,
+      requestOptions
+    );
+  }
+
   // Post single wishlist product
   static async postWishlistProduct(
     product: IWishlistProduct
@@ -332,7 +348,10 @@ export class EcommerceApi {
       redirect: "follow",
     };
 
-    return await callFetch(`${API_ENDPOINT}/cart?user_slug=${user_slug}&product_slug=${product_slug}`, requestOptions);
+    return await callFetch(
+      `${API_ENDPOINT}/cart?user_slug=${user_slug}&product_slug=${product_slug}`,
+      requestOptions
+    );
   }
 
   static async updateSingleCartProduct(

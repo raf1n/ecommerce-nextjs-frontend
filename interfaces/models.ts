@@ -108,6 +108,7 @@ export interface IReview {
   rating: number;
   message: string;
   reviewProducts: any;
+  user?: IUser;
 }
 
 export interface ICart {

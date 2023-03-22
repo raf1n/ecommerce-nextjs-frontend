@@ -28,7 +28,8 @@ const ProfileReviewItem: React.FC<Props> = ({
   return (
     <div
       className="min-h-[170px] bg-white group"
-      style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px" }}>
+      style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px" }}
+    >
       <div className="flex gap-x-2 items-center w-full h-full p-2 relative">
         <div className="w-1/3 h-full flex justify-center">
           <img
@@ -68,7 +69,8 @@ const ProfileReviewItem: React.FC<Props> = ({
 
             <div className="flex mb-1.5"></div>
             <Link
-              href={`http://localhost:3000/single_product?slug=${reviewProducts.slug}`}>
+              href={`http://localhost:3000/single_product?slug=${reviewProducts.slug}`}
+            >
               <h6 className=" mb-2 sm:text-[15px] text-[13px] font-bold leading-[24px] line-clamp-1 hover:text-blue-600 cursor-pointer">
                 {reviewProducts.productName}
               </h6>
