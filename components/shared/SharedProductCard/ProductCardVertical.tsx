@@ -5,6 +5,7 @@ import { action } from "usm-redux";
 import { IProduct, IWishlistProduct } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
+import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import styles from "./ProductCardVertical.module.css";
@@ -13,11 +14,19 @@ interface Props {
   // product: IProduct;
   product: IWishlistProduct;
 }
+
+const user_slug = CookiesHandler.getSlug();
+
 const ProductCardVertical: React.FC<Props> = (props) => {
   const { product } = props;
   const states = useSelector(() => controller.states);
 
   const handleWishlist = async () => {
+    if (!user_slug) {
+      alert("Please login first");
+      return;
+    }
+
     product.user_slug = states.user?.slug;
 
     if (!isInWishlist(product.slug)) {
@@ -57,18 +66,27 @@ const ProductCardVertical: React.FC<Props> = (props) => {
     }
     return false;
   };
+
   const cartListProduct = states?.cartlistData.find(
     (cartProduct) => cartProduct.slug === product.slug
   );
 
   const handleCartToggle = async () => {
+    if (!user_slug) {
+      alert("Please login first");
+      return;
+    }
+
     const cartProductData = {
-      user_slug: states.user?.slug,
+      user_slug: user_slug,
       product_slug: product.slug,
       quantity: cartListProduct?.quantity || 1,
     };
     if (cartListProduct) {
-      const { res, err } = await EcommerceApi.deleteFromCart(product?.slug);
+      const { res, err } = await EcommerceApi.deleteFromCart(
+        user_slug,
+        product?.slug
+      );
       if (res) {
         controller.setRemoveCartItem(product);
       }
@@ -306,7 +324,8 @@ const ProductCardVertical: React.FC<Props> = (props) => {
               </button>
               {/* <button
                 className="absolute group-hover:left-4 -left-10 top-[107px] transition-all duration-500 ease-in-out"
-                type="button">
+                type="button"
+              >
                 <span className="w-10 h-10 flex justify-center text-black hover:text-white transition-all duration-300 ease-in-out items-center hover:bg-qyellow bg-primarygray rounded">
                   <SvgIconRenderer
                     width={"20"}

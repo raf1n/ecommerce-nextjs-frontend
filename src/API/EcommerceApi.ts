@@ -320,7 +320,8 @@ export class EcommerceApi {
     return await callFetch(`${API_ENDPOINT}/cart`, requestOptions);
   }
   static async deleteFromCart(
-    slug: string | undefined
+    user_slug: string | undefined,
+    product_slug: string | undefined
   ): Promise<MyFetchInterface> {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -331,7 +332,7 @@ export class EcommerceApi {
       redirect: "follow",
     };
 
-    return await callFetch(`${API_ENDPOINT}/cart/${slug}`, requestOptions);
+    return await callFetch(`${API_ENDPOINT}/cart?user_slug=${user_slug}&product_slug=${product_slug}`, requestOptions);
   }
 
   static async updateSingleCartProduct(

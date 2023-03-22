@@ -13,40 +13,62 @@ interface Props {
 }
 const user_slug = CookiesHandler.getSlug();
 
+// const user_slug = CookiesHandler.getSlug();
+
 const MyCart: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const handleIncreaseQuantity = async (item: ICartProduct) => {
-    const { res, err } = await EcommerceApi.updateSingleCartProduct(
-      item?.cart_slug,
-      item?.quantity + 1
-    );
-    if (res) {
-      controller.setAddtoCartlist(item);
-    }
-  };
+    if (states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
+      const selectedItem = states?.cartlistData?.find(
+        (prd) => prd.slug === item.slug
+      );
 
-  const handleDecreaseQuantity = async (item: ICartProduct) => {
-    const { res, err } = await EcommerceApi.updateSingleCartProduct(
-      item?.cart_slug,
-      item?.quantity - 1
-    );
-    if (res) {
-      if (item?.quantity === 1) {
-        CartHandler.handleDeleteFromCart(item);
-      } else {
-        controller.setMinusFromCartlist(item);
+      if (
+        selectedItem &&
+        selectedItem.stock &&
+        selectedItem?.quantity >= selectedItem?.stock
+      ) {
+        alert("Cart quantity cannot be more than available stock");
+        return;
+      }
+
+      if (selectedItem && selectedItem.stock && selectedItem?.quantity >= 10) {
+        alert("Sorry, One can not buy more than 10 units of a single product.");
+        return;
+      }
+
+      controller.setAddtoCartlist(item);
+    } else {
+      const { res, err } = await EcommerceApi.updateSingleCartProduct(
+        item?.cart_slug,
+        item?.quantity + 1
+      );
+      if (res) {
+        controller.setAddtoCartlist(item);
       }
     }
   };
 
-  const handleAllCartProductClear = async () => {
-    const { res, err } = await EcommerceApi.deleteAllCartlistProduct(user_slug);
-    if (err) {
-      console.log(err);
+  const handleDecreaseQuantity = async (item: ICartProduct) => {
+    if (item?.quantity === 1) {
+      await CartHandler.handleDeleteFromCart(item, user_slug as string);
     } else {
-      //
-      controller.setClearCartlist();
+      controller.setMinusFromCartlist(item);
+    }
+  };
+
+  const handleAllCartProductClear = async () => {
+    if (user_slug) {
+      const { res, err } = await EcommerceApi.deleteAllCartlistProduct(
+        user_slug
+      );
+      if (err) {
+        console.log(err);
+      } else {
+        //
+        controller.setClearCartlist();
+      }
     }
   };
 
@@ -200,7 +222,10 @@ const MyCart: React.FC<Props> = (props) => {
                                 <span
                                   className="cursor-pointer"
                                   onClick={() =>
-                                    CartHandler.handleDeleteFromCart(item)
+                                    CartHandler.handleDeleteFromCart(
+                                      item,
+                                      user_slug as string
+                                    )
                                   }
                                 >
                                   <svg
@@ -232,9 +257,6 @@ const MyCart: React.FC<Props> = (props) => {
                       Clear Cart
                     </div>
                   </button>
-                  <div className="w-[140px] h-[50px] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
-                    <span className="text-sm font-semibold">Update Cart</span>
-                  </div>
                   <Link href="/checkout">
                     <div className="w-[300px] h-[50px] bg-black flex justify-center items-center cursor-pointer">
                       <span className="text-sm text-white font-semibold">

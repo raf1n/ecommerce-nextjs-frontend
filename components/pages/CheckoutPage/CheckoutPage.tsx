@@ -53,22 +53,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
 
   // ---------------- ------------------- //
   const router = useRouter();
-
-  const fetchOrderSum = async () => {
-    const { res, err } = await EcommerceApi.getAllCartData(states.user?.slug);
-    if (err) {
-    } else {
-      controller.setAllCartListData(res);
-    }
-  };
-
   const cartListProduct = states.cartlistData;
-
-  useEffect(() => {
-    fetchOrderSum();
-  }, [states.user]);
-  // -------------------------------- //
-
   const user_slug = CookiesHandler.getSlug();
 
   const order = {
@@ -100,9 +85,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
       console.log(err);
     } else if (res) {
       controller.setClearCartlist();
-      const { res: cardelRes, err } =
+      const { res: cartdelRes, err } =
         await EcommerceApi.deleteAllCartlistProduct(user_slug);
-      if (cardelRes) {
+      if (cartdelRes) {
         router.push(res.data);
       }
     }

@@ -12,6 +12,7 @@ interface Props {}
 
 const CategoryPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [showFilterWidget, setShowFilterWidget] = useState(false);
   const [value, setValue] = useState({
     min: 0,
     max: 15000,
@@ -23,7 +24,7 @@ const CategoryPage: React.FC<Props> = (props) => {
 
   // if(search) {
   //   controller.setSearchString(search as string);
-  // } 
+  // }
 
   // if (category && states.categories) {
   //   const queryCat = states.categories.find(cat => cat.cat_name === category);
@@ -62,12 +63,14 @@ const CategoryPage: React.FC<Props> = (props) => {
       <div className="lg:flex lg:gap-x-[30px]">
         <div className="lg:w-[270px] my-10">
           <FilterWidget
+            showFilterWidget={showFilterWidget}
+            setShowFilterWidget={setShowFilterWidget}
             setValue={setValue}
           />
           <FilterAd />
         </div>
         <div className="flex-1 min-h-screen my-10">
-          <CategoryItemsRight />
+          <CategoryItemsRight setShowFilterWidget={setShowFilterWidget} />
         </div>
       </div>
     </div>

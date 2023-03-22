@@ -3,23 +3,26 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import Styles from "./WishlistCart.module.css";
 import SharedWishlistTable from "./../../shared/SharedWishlistTable/SharedWishlistTable";
-import { async } from "@firebase/util";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 
 interface Props {}
 
+const user_slug = CookiesHandler.getSlug();
+
 const WishlistCart: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  const user_slug = CookiesHandler.getSlug();
-
   const setClearWishlist = async () => {
-    const { res, err } = await EcommerceApi.deleteAllWishlistProduct(user_slug);
-    if (err) {
-      console.log(err);
-    } else {
-      controller.setClearWishlist();
+    if (user_slug) {
+      const { res, err } = await EcommerceApi.deleteAllWishlistProduct(
+        user_slug
+      );
+      if (err) {
+        console.log(err);
+      } else {
+        controller.setClearWishlist();
+      }
     }
   };
 

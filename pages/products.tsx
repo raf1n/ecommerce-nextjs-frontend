@@ -14,7 +14,10 @@ const products: React.FC<Props> = (props) => {
 
   const { search, category, highlight, sub_category } = router.query;
 
-  if (search) {
+  if (!search) {
+    controller.setSearchString("");
+  }
+  else if (search) {
     controller.setSearchString(search as string);
   }
 

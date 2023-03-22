@@ -14,7 +14,7 @@ interface Props {}
 const Campaign: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const { days, hours, minutes, seconds } = useCountDown("15 March, 2024");
-  console.log(days, hours, minutes, seconds);
+  // console.log(days, hours, minutes, seconds);
 
   const saleTime = [
     {

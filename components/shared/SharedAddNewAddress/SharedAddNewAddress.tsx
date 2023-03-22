@@ -16,6 +16,8 @@ interface Props {
   setRefresh: Dispatch<SetStateAction<boolean>>;
 }
 
+const user_slug = CookiesHandler.getSlug();
+
 const SharedAddNewAddress: React.FC<Props> = (props) => {
   const user_slug = CookiesHandler.getSlug();
 
@@ -34,28 +36,33 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
   } = props;
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault();
+    if (user_slug) {
+      e.preventDefault();
 
-    const addresses = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      phone: e.target.phone.value,
-      country: e.target.country.value,
-      state: e.target.state.value,
-      city: e.target.city.value,
-      address: e.target.address.value,
-      user_slug: user_slug,
-    };
-    const { res, err } = await EcommerceApi.updateAddress(
-      addresses,
-      singleAddressData?.slug
-    );
-    setRefresh(!refresh);
-    if (res) {
-      setForm(false);
+      const addresses = {
+        name: e.target.name.value,
+        email: e.target.email.value,
+        phone: e.target.phone.value,
+        country: e.target.country.value,
+        state: e.target.state.value,
+        city: e.target.city.value,
+        address: e.target.address.value,
+        user_slug: user_slug,
+      };
+      const { res, err } = await EcommerceApi.updateAddress(
+        addresses,
+        singleAddressData?.slug
+      );
+      setRefresh(!refresh);
+      if (res) {
+        setForm(false);
+      }
+      e.target.reset();
+    } else {
+      alert("Please Login First");
     }
-    e.target.reset();
   };
+
   const style = {
     control: (base: any) => ({
       ...base,

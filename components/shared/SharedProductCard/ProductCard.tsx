@@ -62,13 +62,22 @@ const ProductCard: React.FC<Props> = (props) => {
   );
 
   const handleCartToggle = async () => {
+    if (!user_slug) {
+      alert("Please login first");
+      return;
+    }
+
     const cartProductData = {
       user_slug: user_slug,
       product_slug: product.slug,
       quantity: cartListProduct?.quantity || 1,
     };
+    
     if (cartListProduct) {
-      const { res, err } = await EcommerceApi.deleteFromCart(product?.slug);
+      const { res, err } = await EcommerceApi.deleteFromCart(
+        user_slug,
+        product?.slug
+      );
       if (res) {
         controller.setRemoveCartItem(product);
       }
@@ -297,7 +306,8 @@ const ProductCard: React.FC<Props> = (props) => {
 
               {/* <button
                 className="absolute group-hover:right-4 -right-10 top-[168px] transition-all duration-500 ease-in-out"
-                type="button">
+                type="button"
+              >
                 <span className="w-10 h-10 flex justify-center text-black hover:text-white transition-all duration-300 ease-in-out items-center hover:bg-qyellow bg-primarygray rounded">
                   <SvgIconRenderer
                     width={"20"}

@@ -976,7 +976,10 @@ const HeaderTop: React.FC<Props> = (props) => {
                                 <span className="mt-[20px] mr-[15px] inline-flex cursor-pointer">
                                   <svg
                                     onClick={() =>
-                                      CartHandler.handleDeleteFromCart(item)
+                                      CartHandler.handleDeleteFromCart(
+                                        item,
+                                        user_slug as string
+                                      )
                                     }
                                     width="8"
                                     height="8"
