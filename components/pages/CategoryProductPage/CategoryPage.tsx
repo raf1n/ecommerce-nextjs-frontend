@@ -3,10 +3,8 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import CategoryItemsRight from "../CategorizedItem/CategoryItemsRight";
 import FilterWidget from "./FilterWidget";
-import ShopNowBtn from "./../../helpers/Buttons/ShopNowBtn";
 import FilterAd from "./FilterAd";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
-import { useRouter } from "next/router";
 
 interface Props {}
 

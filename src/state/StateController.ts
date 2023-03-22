@@ -147,6 +147,25 @@ export class Controller {
   }
 
   @action
+  setClearSearchCategory() {
+    this.states.searchCategory = "";
+  }
+
+  @action
+  setClearSearchBrand() {
+    this.states.searchBrand = "";
+  }
+
+  // @action
+  // setClearSearchState() {
+  //   this.states.searchString = "";
+  //   this.states.searchCategory = "";
+  //   this.states.searchBrand = "";
+  //   this.states.searchSubCategory = "";
+  //   this.states.searchHighlight = "";
+  // }
+
+  @action
   setFilteredProducts(products: Array<IProduct>) {
     this.states.filteredProducts = [...products];
   }
