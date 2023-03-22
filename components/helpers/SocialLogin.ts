@@ -285,4 +285,39 @@ export class SocialLogin {
     sessionStorage.clear();
     Router.push("/");
   }
+  // -----------------------------------
+  static async updateLoggedInUserProfile(
+    slug: string | undefined,
+    userProfile: {
+      fullName: string;
+      avatar: string;
+    }
+  ): Promise<MyFetchInterface> {
+    return new Promise((resolve) => {
+      const auth = getAuth();
+      if (!auth.currentUser) {
+        resolve({
+          res: null,
+          err: "User not signed in",
+        });
+        return;
+      }
+      updateProfile(auth.currentUser, {
+        displayName: userProfile.fullName,
+        photoURL: userProfile.avatar,
+      })
+        .then(() => {
+          resolve({
+            res: "Profile updated",
+            err: null,
+          });
+        })
+        .catch((error) => {
+          resolve({
+            res: null,
+            err: "An error occurred. Please try again.",
+          });
+        });
+    });
+  }
 }

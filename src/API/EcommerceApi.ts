@@ -108,6 +108,21 @@ export class EcommerceApi {
     );
   }
 
+  // image add
+  static async uploadImage(data: Partial<any>): Promise<MyFetchInterface> {
+    console.log("uploadImage-", data);
+    const requestOptions = {
+      method: "POST",
+      body: data,
+      redirect: "follow",
+      cors: "no-cors",
+    };
+    return await callFetch(
+      `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+      requestOptions
+    );
+  }
+
   // add seller information
   static async addSeller(data: Partial<ISeller>): Promise<ISellerResponse> {
     const myHeaders = new Headers();
@@ -332,7 +347,10 @@ export class EcommerceApi {
       redirect: "follow",
     };
 
-    return await callFetch(`${API_ENDPOINT}/cart?user_slug=${user_slug}&product_slug=${product_slug}`, requestOptions);
+    return await callFetch(
+      `${API_ENDPOINT}/cart?user_slug=${user_slug}&product_slug=${product_slug}`,
+      requestOptions
+    );
   }
 
   static async updateSingleCartProduct(
