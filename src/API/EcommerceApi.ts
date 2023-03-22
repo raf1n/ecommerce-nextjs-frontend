@@ -26,6 +26,7 @@ import {
   ISingleOrderResponse,
   ISliderResponse,
   ISubscriberResponse,
+  IUserResponse,
 } from "./../../interfaces/response";
 import {
   ICart,
@@ -792,6 +793,23 @@ export class EcommerceApi {
 
     return await callFetch(
       `${API_ENDPOINT}/users/private/${slug}`,
+      requestOptions
+    );
+  }
+  // getsellerwithProducts
+
+  static async getSellerWithProducts(
+    seller_slug: string | undefined
+  ): Promise<IUserResponse> {
+    const myHeaders = new Headers();
+    // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/users/sellerWithProducts/${seller_slug}`,
       requestOptions
     );
   }
