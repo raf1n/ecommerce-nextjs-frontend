@@ -86,7 +86,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="email">
+                          htmlFor="email"
+                        >
                           Email Address*
                         </label>
 
@@ -107,11 +108,13 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="phone">
+                          htmlFor="phone"
+                        >
                           phone no
                         </label>
                         <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                           <input
+                            required
                             placeholder="+880 1796-306262"
                             className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                             type="text"
@@ -136,11 +139,13 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="shopname">
+                          htmlFor="shopname"
+                        >
                           Shop Name*
                         </label>
                         <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                           <input
+                            required
                             placeholder="Shop Name"
                             className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                             type="text"
@@ -154,11 +159,13 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="shopaddress">
+                          htmlFor="shopaddress"
+                        >
                           Address
                         </label>
                         <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                           <input
+                            required
                             placeholder="Your address Here"
                             className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full  font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
                             type="text"
@@ -171,7 +178,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                     <div className="remember-checkbox flex items-center space-x-2.5 mb-5">
                       <button
                         type="button"
-                        className="w-5 h-5 text-qblack flex justify-center items-center border border-light-gray"></button>
+                        className="w-5 h-5 text-qblack flex justify-center items-center border border-light-gray"
+                      ></button>
                       <span className="text-base text-black cursor-pointer">
                         I agree all terms and condition in Shopo
                       </span>
@@ -181,7 +189,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                         <button
                           // disabled={disabled}
                           type="submit"
-                          className="black-btn disabled:bg-opacity-50 disabled:cursor-not-allowed text-sm text-white w-[490px] h-[50px] font-semibold flex justify-center bg-purple items-center">
+                          className="black-btn disabled:bg-opacity-50 disabled:cursor-not-allowed text-sm text-white w-[490px] h-[50px] font-semibold flex justify-center bg-purple items-center"
+                        >
                           <span>Create Seller Account</span>
                         </button>
                       </div>
@@ -221,7 +230,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                               padding: "0px",
                               position: "absolute",
                               inset: "0px",
-                            }}>
+                            }}
+                          >
                             <img
                               alt=""
                               sizes="100vw"
@@ -250,26 +260,35 @@ const BecomeSeller: React.FC<Props> = (props) => {
                         <div>
                           {/* logo  */}
                           <div>
-                            <input type="file" className="" name="logoUrl" />
+                            <input
+                              type="file"
+                              className=""
+                              name="logoUrl"
+                              required
+                            />
                           </div>
                           <div>
                             {/* absolute bottom-7 sm:right-0 right-[105px] */}
                             <div
                               className="w-[32px] h-[32px] 
                           
-                             hover:bg-[#F539F8] bg-[#F539F8] rounded-full cursor-pointer">
+                             hover:bg-[#F539F8] bg-[#F539F8] rounded-full cursor-pointer"
+                            >
                               <svg
                                 width="32"
                                 height="32"
                                 viewBox="0 0 32 32"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
                                 <path
                                   d="M16.5147 11.5C17.7284 12.7137 18.9234 13.9087 20.1296 15.115C19.9798 15.2611 19.8187 15.4109 19.6651 15.5683C17.4699 17.7635 15.271 19.9587 13.0758 22.1539C12.9334 22.2962 12.7948 22.4386 12.6524 22.5735C12.6187 22.6034 12.5663 22.6296 12.5213 22.6296C11.3788 22.6334 10.2362 22.6297 9.09365 22.6334C9.01498 22.6334 9 22.6034 9 22.536C9 21.4009 9 20.2621 9.00375 19.1271C9.00375 19.0746 9.02997 19.0109 9.06368 18.9772C10.4123 17.6249 11.7609 16.2763 13.1095 14.9277C14.2295 13.8076 15.3459 12.6913 16.466 11.5712C16.4884 11.5487 16.4997 11.5187 16.5147 11.5Z"
-                                  fill="white"></path>
+                                  fill="white"
+                                ></path>
                                 <path
                                   d="M20.9499 14.2904C19.7436 13.0842 18.5449 11.8854 17.3499 10.6904C17.5634 10.4694 17.7844 10.2446 18.0054 10.0199C18.2639 9.76139 18.5261 9.50291 18.7884 9.24443C19.118 8.91852 19.5713 8.91852 19.8972 9.24443C20.7251 10.0611 21.5492 10.8815 22.3771 11.6981C22.6993 12.0165 22.7105 12.4698 22.3996 12.792C21.9238 13.2865 21.4443 13.7772 20.9686 14.2717C20.9648 14.2792 20.9536 14.2867 20.9499 14.2904Z"
-                                  fill="white"></path>
+                                  fill="white"
+                                ></path>
                               </svg>
                             </div>
                           </div>
@@ -304,7 +323,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                               padding: "0",
                               // position: "absolute",
                               inset: "0",
-                            }}>
+                            }}
+                          >
                             <img
                               alt=""
                               sizes="100vw"
@@ -332,7 +352,12 @@ const BecomeSeller: React.FC<Props> = (props) => {
 
                         {/* cover ///////absolute -bottom-4 right-4*/}
                         <div>
-                          <input type="file" className="" name="coverUrl" />
+                          <input
+                            type="file"
+                            className=""
+                            name="coverUrl"
+                            required
+                          />
                         </div>
                         <div className="w-[32px] h-[32px]  bg-[#F539F8] hover:bg-[#F539F8] rounded-full cursor-pointer">
                           <svg
@@ -340,13 +365,16 @@ const BecomeSeller: React.FC<Props> = (props) => {
                             height="32"
                             viewBox="0 0 32 32"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
                             <path
                               d="M16.5147 11.5C17.7284 12.7137 18.9234 13.9087 20.1296 15.115C19.9798 15.2611 19.8187 15.4109 19.6651 15.5683C17.4699 17.7635 15.271 19.9587 13.0758 22.1539C12.9334 22.2962 12.7948 22.4386 12.6524 22.5735C12.6187 22.6034 12.5663 22.6296 12.5213 22.6296C11.3788 22.6334 10.2362 22.6297 9.09365 22.6334C9.01498 22.6334 9 22.6034 9 22.536C9 21.4009 9 20.2621 9.00375 19.1271C9.00375 19.0746 9.02997 19.0109 9.06368 18.9772C10.4123 17.6249 11.7609 16.2763 13.1095 14.9277C14.2295 13.8076 15.3459 12.6913 16.466 11.5712C16.4884 11.5487 16.4997 11.5187 16.5147 11.5Z"
-                              fill="white"></path>
+                              fill="white"
+                            ></path>
                             <path
                               d="M20.9499 14.2904C19.7436 13.0842 18.5449 11.8854 17.3499 10.6904C17.5634 10.4694 17.7844 10.2446 18.0054 10.0199C18.2639 9.76139 18.5261 9.50291 18.7884 9.24443C19.118 8.91852 19.5713 8.91852 19.8972 9.24443C20.7251 10.0611 21.5492 10.8815 22.3771 11.6981C22.6993 12.0165 22.7105 12.4698 22.3996 12.792C21.9238 13.2865 21.4443 13.7772 20.9686 14.2717C20.9648 14.2792 20.9536 14.2867 20.9499 14.2904Z"
-                              fill="white"></path>
+                              fill="white"
+                            ></path>
                           </svg>
                         </div>
                       </div>
