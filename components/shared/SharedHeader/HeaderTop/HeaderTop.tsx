@@ -349,42 +349,50 @@ const HeaderTop: React.FC<Props> = (props) => {
               <div className="topbar-dropdowns lg:block hidden">
                 <div className="flex space-x-6 items-center">
                   <div className="flex space-x-2 items-center">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                        preserveAspectRatio="xMidYMid meet"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M10 20h4v-1h-4Zm-3 3q-.825 0-1.412-.587Q5 21.825 5 21V3q0-.825.588-1.413Q6.175 1 7 1h10q.825 0 1.413.587Q19 2.175 19 3v18q0 .825-.587 1.413Q17.825 23 17 23Zm0-5v3h10v-3Zm0-2h10V6H7ZM7 4h10V3H7Zm0 14v3ZM7 4V3v1Z"
-                        />
-                      </svg>
-                    </span>
-                    <span className="text-xs text-qblack font-medium leading-none">
-                      +88 01682 825 123
-                    </span>
+                    {states.user?.phone && (
+                      <>
+                        <span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M10 20h4v-1h-4Zm-3 3q-.825 0-1.412-.587Q5 21.825 5 21V3q0-.825.588-1.413Q6.175 1 7 1h10q.825 0 1.413.587Q19 2.175 19 3v18q0 .825-.587 1.413Q17.825 23 17 23Zm0-5v3h10v-3Zm0-2h10V6H7ZM7 4h10V3H7Zm0 14v3ZM7 4V3v1Z"
+                            />
+                          </svg>
+                        </span>
+                        <span className="text-xs text-qblack font-medium leading-none">
+                          {states.user.phone}
+                        </span>
+                      </>
+                    )}
                   </div>
                   <div className="flex space-x-2 items-center">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                        preserveAspectRatio="xMidYMid meet"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8l6.94 4.34c.65.41 1.47.41 2.12 0L20 8v9c0 .55-.45 1-1 1zm-7-7L4 6h16l-8 5z"
-                        />
-                      </svg>
-                    </span>
-                    <span className="text-xs text-qblack font-medium leading-none">
-                      abdur.rohman2003@gmail.com
-                    </span>
+                    {states.user && (
+                      <>
+                        <span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V8l6.94 4.34c.65.41 1.47.41 2.12 0L20 8v9c0 .55-.45 1-1 1zm-7-7L4 6h16l-8 5z"
+                            />
+                          </svg>
+                        </span>
+                        <span className="text-xs text-qblack font-medium leading-none">
+                          {states.user.email}
+                        </span>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -564,6 +572,11 @@ const HeaderTop: React.FC<Props> = (props) => {
                         <div
                           className={`${styles["productItems"]} h-[310px] overflow-y-scroll`}
                         >
+                          {states.cartlistData.length === 0 && (
+                            <p className="text-sm text-gray-400 mt-10 text-center">
+                              No items found
+                            </p>
+                          )}
                           <ul>
                             {states.cartlistData.map((item, idx) => (
                               <li className="w-full h-full flex justify-between">
