@@ -5,6 +5,7 @@ import Styles from "./WishlistCart.module.css";
 import SharedWishlistTable from "./../../shared/SharedWishlistTable/SharedWishlistTable";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
+import Link from "next/link";
 
 interface Props {}
 
@@ -41,13 +42,13 @@ const WishlistCart: React.FC<Props> = (props) => {
                     Clean Wishlist
                   </div>
                 </button>
-                <div
+                <Link href="/cart"
                   className={`${Styles["yellow-btn"]}  w-[180px] h-[50px]  flex justify-center items-center cursor-pointer`}
                 >
                   <span className="w-full text-sm font-semibold text-center">
                     View Cart
                   </span>
-                </div>
+                </Link>
               </div>
             </div>
           </div>

@@ -13,22 +13,34 @@ interface Props {
 const ProfileOrder: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  // console.log(res);
+  if (props.orders.length === 0) {
+    return (
+      <div>
+        <div className="flex justify-center items-center mb-12">
+          <div>
+            <img
+              src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2F%2Fuploads%2Fwebsite-images%2Fempty_cart-2022-11-17-11-10-20-7795.png&w=1920&q=75"
+              alt=""
+            />
+          </div>
+        </div>
 
-  // const [allOrders, setAllOrders] = useState<IOrder[]>([]);
-
-  // useEffect(() => {
-  //   const getAllOrders = async () => {
-  //     const { res, err } = await EcommerceApi.allOrders("user_slug_1");
-  //     if (res) {
-  //       setAllOrders(res.data);
-  //     }
-  //   };
-
-  //   getAllOrders();
-  // }, []);
-
-  // console.log(allOrders)
+        <div className="flex  justify-center">
+          <h1 className="sm:text-xl text-base font-semibold text-center mb-5">
+            Empty! You don't have any{" "}
+            <span className="capitalize"> orders </span>
+          </h1>
+        </div>
+        <div className="flex justify-center items-center">
+          <Link href="/">
+            <div className="w-[180px] h-[50px] ">
+              <button className="yellow-btn ">Back to Shop</button>
+            </div>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full overflow-x-auto sm:rounded-lg">
@@ -62,7 +74,8 @@ const ProfileOrder: React.FC<Props> = (props) => {
                   <div className="flex space-x-2 items-center">
                     <Link
                       href={`/order/${order.slug}`}
-                      className="w-[116px] h-[46px] bg-qyellow text-qblack font-bold flex justify-center items-center cursor-pointer">
+                      className="w-[116px] h-[46px] bg-qyellow text-qblack font-bold flex justify-center items-center cursor-pointer"
+                    >
                       <span>View Details</span>
                     </Link>
                   </div>

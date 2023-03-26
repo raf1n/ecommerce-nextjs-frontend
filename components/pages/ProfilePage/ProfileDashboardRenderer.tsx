@@ -10,7 +10,7 @@ import ProfileOrder from "./ProfileOrder/ProfileOrder";
 import ProfileReviews from "./ProfileReviews/ProfileReviews";
 import ProfileWishlist from "./ProfileWishlist/ProfileWishlist";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
-import { IOrder, IUser } from "../../../interfaces/models";
+import { IOrder } from "../../../interfaces/models";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 
 interface Props {}
@@ -19,7 +19,6 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [allOrders, setAllOrders] = useState<IOrder[]>([]);
   const [allCompletedOrders, setAllCompletedOrders] = useState<IOrder[]>([]);
-  // const [, setLoggedInUser] = useState<IUser | null>(null);
 
   const { asPath } = useRouter();
   const user_slug = CookiesHandler.getSlug();
@@ -40,25 +39,7 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
       }
     };
 
-    
-    // const getLoggedInUser = async () => {
-      //   const { res, err } = await EcommerceApi.getLoggedInUser(
-        //     states.user?.email
-        //   );
-        //   if (res) {
-    //     setLoggedInUser(res);
-    //   }
-    // };
-
-    // const getAllCompletedOrders = async () => {
-    //   const { res, err } = await EcommerceApi.allOrders("User2", "completed");
-    //   if (res) {
-    //     console.log(res);
-    //   }
-    // };
-    // getAllCompletedOrders();
     getAllOrders();
-    // getLoggedInUser();
   }, []);
   switch (hash) {
     case "dashboard": {

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IReview } from "../../../../interfaces/models";
@@ -24,10 +25,39 @@ const ProfileReviews: React.FC<Props> = (props) => {
       console.log(" reviews=", err);
     }
   };
+
   useEffect(() => {
     getAllReviews();
   }, []);
-  // console.log("reviewDatas= ", reviewDatas);
+
+  if (reviewDatas.length === 0) {
+    return (
+      <div>
+        <div className="flex justify-center items-center mb-12">
+          <div>
+            <img
+              src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Fempty_wishlist-2022-11-17-11-23-16-9350.png&w=1920&q=75"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div className="flex  justify-center">
+          <h1 className="sm:text-xl text-base font-semibold text-center mb-5">
+            Empty! You don't have any{" "}
+            <span className="capitalize"> reviews </span>
+          </h1>
+        </div>
+        <div className="flex justify-center items-center">
+          <Link href="/">
+            <div className="w-[180px] h-[50px] ">
+              <button className="yellow-btn ">Back to Shop</button>
+            </div>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
