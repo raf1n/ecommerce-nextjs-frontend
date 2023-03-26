@@ -7,7 +7,6 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import styles from "./About.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Component } from "react";
 import Slider from "react-slick";
 import ViewMoreBtn from "../../helpers/Buttons/ViewMoreBtn";
 import { Jsondata } from "../../../src/utils/Jsondata";
