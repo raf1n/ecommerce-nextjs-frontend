@@ -16,7 +16,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
     <div className="item-body dashboard-wrapper w-full">
       <div className="welcome-msg w-full">
         <div>
-          <p className="text-qblack text-lg">Hello, Amaya Hendrix</p>
+          <p className="text-qblack text-lg">Hello, {props.user?.fullName}</p>
           <h1 className="font-bold text-[24px] text-qblack">
             Welcome to your Profile
           </h1>
