@@ -29,15 +29,15 @@ const ChangePassword: React.FC<Props> = (props) => {
               <div className="sm:flex sm:space-x-[30px] items-center">
                 <div className="w-[180px] h-[50px] lg:mb-0 mb-5">
                   <button type="button" className="yellow-btn ">
-                    <div className="w-full text-sm font-semibold ">
+                    <span className="w-full text-sm font-semibold ">
                       Update Password
-                    </div>
+                    </span>
                   </button>
                 </div>
                 <button type="button">
-                  <div className="w-full text-sm font-semibold text-qblack mb-5 sm:mb-0">
+                  <span className="w-full text-sm font-semibold text-qblack mb-5 sm:mb-0">
                     Cancel
-                  </div>
+                  </span>
                 </button>
               </div>
             </div>

@@ -38,9 +38,9 @@ const WishlistCart: React.FC<Props> = (props) => {
             <div className="w-full mt-[30px] flex sm:justify-end justify-start">
               <div className="sm:flex sm:space-x-[30px] items-center">
                 <button type="button" onClick={setClearWishlist}>
-                  <div className=" w-full text-sm font-semibold text-qred mb-5 sm:mb-0">
+                  <span className=" w-full text-sm font-semibold text-qred mb-5 sm:mb-0">
                     Clean Wishlist
-                  </div>
+                  </span>
                 </button>
                 <Link href="/cart"
                   className={`${Styles["yellow-btn"]}  w-[180px] h-[50px]  flex justify-center items-center cursor-pointer`}

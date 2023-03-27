@@ -109,7 +109,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
               <div className="w-full mb-5 sm:mb-0">
                 <div className="w-full h-full">
                   <label className="capitalize block  mb-2 text-qgray text-[13px] font-normal">
-                    Name ---------------------Role- <b>{props.user?.role}</b>
+                    Name
                   </label>
                   <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
                     <input
