@@ -62,7 +62,12 @@ const ProductDetails: React.FC<Props> = (props) => {
   // console.log({ shareableRoute, router });
 
   const handleIncreaseQuantity = async (item: ICartProduct) => {
-    if (item.stock && cartQuantity >= item.stock) {
+    if (!item.stock) {
+      alert("Sorry, this product is out of stock. Please add to wishlist instead.");
+      return;
+    }
+
+    if (item.stock && cartQuantity > item.stock) {
       alert("Cart quantity cannot be more than available stock");
       return;
     }
