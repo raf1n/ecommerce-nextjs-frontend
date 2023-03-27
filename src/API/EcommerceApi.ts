@@ -28,6 +28,7 @@ import {
   ISingleOrderResponse,
   ISliderResponse,
   ISubscriberResponse,
+  IUserResponse,
 } from "./../../interfaces/response";
 import {
   ICart,
@@ -152,6 +153,22 @@ export class EcommerceApi {
     };
     return await callFetch(
       `${API_ENDPOINT}/reviews?user_slug=${user_slug}`,
+      requestOptions
+    );
+  }
+
+  //Get all reviews
+  static async getAllProductReviews(
+    product_slug: string | undefined
+  ): Promise<IReviewsResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/reviews/reviewProducts/${product_slug}`,
       requestOptions
     );
   }
@@ -823,16 +840,34 @@ export class EcommerceApi {
     );
   }
 
-    //Get all seller
-    static async getAllSeller(query: string): Promise<IGetAllSellerResponse> {
-      const myHeaders = new Headers();
-      const requestOptions = {
-        headers: myHeaders,
-        redirect: "follow",
-      };
-      return await callFetch(
-        `${API_ENDPOINT}/users/sellers?${query}`,
-        requestOptions
-      );
-    }
+  //Get all seller
+  static async getAllSeller(query: string): Promise<IGetAllSellerResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/users/sellers?${query}`,
+      requestOptions
+    );
+  }
+
+  // getsellerwithProducts
+
+  static async getSellerWithProducts(
+    seller_slug: string | undefined
+  ): Promise<IUserResponse> {
+    const myHeaders = new Headers();
+    // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/users/sellerWithProducts/${seller_slug}`,
+      requestOptions
+    );
+  }
 }

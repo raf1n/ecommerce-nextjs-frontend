@@ -184,6 +184,10 @@ export interface IFilteredBlogResponse extends MyFetchInterface {
   res: IBlog[];
 }
 
+export interface IUserResponse extends MyFetchInterface {
+  res: IUser;
+}
+
 export interface IGetAllSellerResponse extends MyFetchInterface {
   res: ISeller[];
 }

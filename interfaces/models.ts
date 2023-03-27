@@ -23,6 +23,22 @@ export interface IUser {
     city?: string;
     address?: string;
   };
+  shop?: IShop;
+  sellerProducts?: IProduct[];
+}
+
+export interface IShop {
+  shop_name: string;
+  shop_address: string;
+  shop_logo: string;
+  shop_cover: string;
+  opens_at: string;
+  close_at: string;
+  geetings_message: string;
+  social_icon: string;
+  social_link: string;
+  seo_title: string;
+  seo_des: string;
 }
 export interface featuredProductLPObj {
   pageNumber: number | string;
@@ -48,6 +64,7 @@ export interface IProduct {
   isBestProduct?: boolean;
   isFeatured?: boolean;
   isPopular?: boolean;
+  seller_slug?: string;
 }
 // export interface ISeller {
 //   email?: string;
@@ -118,6 +135,7 @@ export interface IReview {
   rating: number;
   message: string;
   reviewProducts: any;
+  user?: IUser;
 }
 
 export interface ICart {

@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { IProduct } from "../../../../interfaces/models";
+import { IProduct, IReview, IUser } from "../../../../interfaces/models";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { controller } from "../../../../src/state/StateController";
 import ReviewCard from "../../SingleProductPage/ReviewCard";
+import SellerInfo from "./SellerInfo";
 
 interface Props {}
 
@@ -14,9 +15,27 @@ const ItemDetails: React.FC<Props> = (props) => {
   const router = useRouter();
   const { asPath } = router;
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
+  const [reviews, setReviews] = useState<IReview[]>([]);
+  const [seller, setSeller] = useState<IUser | null>(null);
 
   console.log(asPath.split("=")[1]);
   const productSlug = asPath.split("=")[1];
+
+  const getProductReviews = async () => {
+    const { res, err } = await EcommerceApi.getAllProductReviews(productSlug);
+    if (res) {
+      console.log(res);
+      setReviews(res);
+    }
+  };
+  console.log(singleProduct?.seller_slug);
+
+  const getSeller = async () => {
+    const { res, err } = await EcommerceApi.getSellerWithProducts(
+      singleProduct?.seller_slug
+    );
+    setSeller(res);
+  };
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -27,7 +46,9 @@ const ItemDetails: React.FC<Props> = (props) => {
     if (!states.initialDataLoading) {
       fetchProductData();
     }
-  }, [productSlug, states.initialDataLoading]);
+    getProductReviews();
+    getSeller();
+  }, [productSlug, states.initialDataLoading, singleProduct?.seller_slug]);
 
   return (
     <div className="w-full bg-qgrayBorder">
@@ -75,17 +96,21 @@ const ItemDetails: React.FC<Props> = (props) => {
               </p>
             </div>
           </div>
+          {reviews.length > 0 && (
+            <div>
+              <h6 className="text-[20px] font-bold text-qblack mb-5 ">
+                Reviews
+              </h6>
+              {reviews.map((review) => (
+                <ReviewCard review={review} />
+              ))}
+            </div>
+          )}
           <div>
-            <h6 className="text-[20px] font-bold text-qblack mb-5 ">Reviews</h6>
-            {/* <div className="text-qgray">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
-                aut labore deleniti accusamus laboriosam? Eum non, ipsum sit
-                debitis consectetur sunt ut autem dolore, molestiae est vel
-                explicabo dignissimos voluptatibus.
-              </p>
-            </div> */}
-            <ReviewCard />
+            <h6 className="text-[20px] font-bold text-qblack mb-5 ">
+              Seller Info
+            </h6>
+            <SellerInfo seller={seller}></SellerInfo>
           </div>
         </div>
       </div>

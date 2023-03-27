@@ -45,7 +45,7 @@ const FeaturedCategory: React.FC<Props> = (props) => {
               <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
                 <div className="category-card hidden xl:block w-full">
                   <div
-                    className="category-card-wrappwer w-full h-full p-[30px]"
+                    className="category-card-wrappwer w-full h-[445px] p-[30px]"
                     style={{
                       background:
                         "url(https://api.websolutionus.com/shopo/uploads/website-images/featured-cat-banner-2022-09-21-02-43-49-4710.jpg) 0% 0% / cover no-repeat",
