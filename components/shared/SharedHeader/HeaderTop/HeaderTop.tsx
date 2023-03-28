@@ -414,11 +414,11 @@ const HeaderTop: React.FC<Props> = (props) => {
                 </div>
               </div>
               <div className="block lg:hidden">
-                <a rel="noopener noreferrer" href="/become-seller">
+                <Link rel="noopener noreferrer" href="/become-seller">
                   <span className="text-xs leading-6 text-qblack px-3 py-1 bg-qyellow font-medium cursor-pointer">
                     Become seller
                   </span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -773,34 +773,34 @@ const HeaderTop: React.FC<Props> = (props) => {
                                         </span>
                                       </li>
                                       <li className="text-base text-qgraytwo cursor-pointer hover:text-qblack hover:font-semibold">
-                                        <a
+                                        <Link
                                           rel="noopener noreferrer"
                                           href="/profile#dashboard"
                                         >
                                           <span className="capitalize">
                                             profile
                                           </span>
-                                        </a>
+                                        </Link>
                                       </li>
                                       <li className="text-base text-qgraytwo cursor-pointer hover:text-qblack hover:font-semibold">
-                                        <a
+                                        <Link
                                           rel="noopener noreferrer"
                                           href="/contact"
                                         >
                                           <span className="capitalize">
                                             Support
                                           </span>
-                                        </a>
+                                        </Link>
                                       </li>
                                       <li className="text-base text-qgraytwo cursor-pointer hover:text-qblack hover:font-semibold">
-                                        <a
+                                        <Link
                                           rel="noopener noreferrer"
                                           href="/faq"
                                         >
                                           <span className="capitalize">
                                             FAQ
                                           </span>
-                                        </a>
+                                        </Link>
                                       </li>
                                     </ul>
                                     <div className="w-full flex justify-center items-center border-t border-qgray-border">
