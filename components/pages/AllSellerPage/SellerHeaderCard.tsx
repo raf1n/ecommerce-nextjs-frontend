@@ -5,13 +5,11 @@ import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 
 interface Props {
-  sellerheadercard: any;
+  sellerData: any;
 }
 
 const SellerHeaderCard: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-
-  const { sellerheadercard } = props;
 
   return (
     <div className="w-full">
@@ -36,7 +34,7 @@ const SellerHeaderCard: React.FC<Props> = (props) => {
                   pathFill="black"
                 />
               </span>
-              <span>{props.sellerheadercard.email}</span>
+              <span>{props.sellerData.email}</span>
             </li>
             <li className="text-black flex space-x-5 items-center leading-9 text-base font-normal">
               <span>
@@ -64,13 +62,13 @@ const SellerHeaderCard: React.FC<Props> = (props) => {
                   pathFill="black"
                 />
               </span>
-              <span>{props.sellerheadercard.address}</span>
+              <span>{props.sellerData.shop.shop_address}</span>
             </li>
           </ul>
         </div>
         <div className="saller-name lg:block hidden">
           <h1 className="text-[60px] font-bold">
-            {props.sellerheadercard.shopName}
+            {props.sellerData.shop.shop_name}
           </h1>
           <div className="flex justify-center">
             <span>
@@ -149,8 +147,8 @@ const SellerHeaderCard: React.FC<Props> = (props) => {
                   inset: "0",
                 }}>
                 <img
-                  alt="loooooooooooooooooooooogoooooooooooooooo"
-                  src={props.sellerheadercard.image}
+                  alt="logo"
+                  src={props.sellerData.shop.shop_logo}
                   sizes="100vw"
                   decoding="async"
                   data-nimg="fill"
@@ -177,7 +175,7 @@ const SellerHeaderCard: React.FC<Props> = (props) => {
           </div>
           <div className="flex sm:justify-center justify-start">
             <span className="text-[30px] font-medium text-center">
-              {props.sellerheadercard.shopName}
+              {props.sellerData.shop.shop_name}
             </span>
           </div>
         </div>

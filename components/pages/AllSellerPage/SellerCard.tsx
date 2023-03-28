@@ -7,26 +7,23 @@ import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import Styles from "./SellerCard.module.css";
 interface Props {
   sellerAdd: any;
-  //   shopName: string;
-  //   email: string;
-  //   phone: string;
-  //   address: string;
 }
 
 const SellerCard: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const { sellerAdd } = props;
 
   return (
     <div>
-      <div data-aos="fade-up" className="item w-full aos-init aos-animate">
+      <div
+        data-aos="fade-up"
+        className="item w-full aos-init aos-animate mt-[55px]">
         <div
           className={`w-full sm:h-[328px] sm:p-[30px] p-5 ${Styles["bg-image"]}`}>
           <div className="flex sm:flex-row flex-col-reverse sm:items-center justify-between w-full h-full">
             <div className="flex flex-col justify-between h-full">
               <div className="">
                 <h1 className="text-[30px] font-semibold text-qblack">
-                  {props.sellerAdd.shopName}
+                  {props.sellerAdd.shop.shop_name}
                 </h1>
                 <div className="flex space-x-2 items-center mb-[30px]">
                   <div className="flex ">
@@ -132,7 +129,7 @@ const SellerCard: React.FC<Props> = (props) => {
                           pathFill="black"
                         />
                       </span>
-                      <span>{props.sellerAdd.address}</span>
+                      <span>{props.sellerAdd.shop.shop_address}</span>
                     </li>
                   </ul>
                 </div>
@@ -196,7 +193,7 @@ const SellerCard: React.FC<Props> = (props) => {
                     }}>
                     <img
                       alt=""
-                      src={props.sellerAdd.image}
+                      src={props.sellerAdd.shop.shop_logo}
                       decoding="async"
                       data-nimg="fill"
                       style={{
@@ -220,8 +217,8 @@ const SellerCard: React.FC<Props> = (props) => {
                   </span>
                 </div>
               </div>
-              <h1 className="sm:block hidden text-[30px] font-semibold text-qblack text-center leading-none">
-                Rayhans
+              <h1 className="sm:block hidden text-[25px] font-semibold text-qblack text-center leading-none">
+                {props.sellerAdd.shop.shop_name}
               </h1>
             </div>
           </div>

@@ -12,6 +12,7 @@ interface Props {}
 
 const CategoryPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
   const [showFilterWidget, setShowFilterWidget] = useState(false);
   const [value, setValue] = useState({
     min: 0,
@@ -38,7 +39,7 @@ const CategoryPage: React.FC<Props> = (props) => {
         states.searchCategory,
         states.searchSubCategory,
         states.searchBrand,
-        states.searchHighlight,
+        states.searchHighlight, //isPopular
         value.min,
         value.max
       );

@@ -14,6 +14,7 @@ import {
   IFilteredBlogResponse,
   IFilteredProductResponse,
   IFlashSaleProductsResponse,
+  IGetAllSellerResponse,
   IMegaCategoriesResponse,
   IOrderResponse,
   IPopularCategoriesResponse,
@@ -791,6 +792,18 @@ export class EcommerceApi {
 
     return await callFetch(
       `${API_ENDPOINT}/users/private/${slug}`,
+      requestOptions
+    );
+  }
+  //Get all seller
+  static async getAllSeller(query: string): Promise<IGetAllSellerResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/users/sellers?${query}`,
       requestOptions
     );
   }

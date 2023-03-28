@@ -179,3 +179,7 @@ export interface ISubscriberResponse extends MyFetchInterface {
 export interface IFilteredBlogResponse extends MyFetchInterface {
   res: IBlog[];
 }
+
+export interface IGetAllSellerResponse extends MyFetchInterface {
+  res: ISeller[];
+}

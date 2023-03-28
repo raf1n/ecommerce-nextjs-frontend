@@ -62,7 +62,7 @@ export class Controller {
     searchCategory: "",
     searchSubCategory: "",
     searchBrand: "",
-    searchHighlight: "",
+    searchHighlight: "", //isPopular
     filteredProducts: [],
     allProducts: [],
     featuredProducts: [],

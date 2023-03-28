@@ -5,7 +5,7 @@ export interface MyFetchInterface {
   err: any;
 }
 export interface IUser {
-  email: string;
+  email?: string;
   avatar: string;
   token: string;
   tokenType: string;
@@ -16,7 +16,7 @@ export interface IUser {
   slug: string;
   createdAt?: string;
   updatedAt: string;
-  phone: string;
+  phone?: string;
   address: {
     country?: string;
     state?: string;
@@ -24,6 +24,17 @@ export interface IUser {
     address?: string;
   };
 }
+
+// export interface ISeller extends IUser {
+//   shop: {
+//     shop_name: string;
+//     shop_address: string;
+//     shop_logo: string;
+//     shop_cover: string;
+//   };
+//   email?: string;
+// }
+
 export interface featuredProductLPObj {
   pageNumber: number | string;
 }
@@ -49,9 +60,9 @@ export interface IProduct {
   isFeatured?: boolean;
   isPopular?: boolean;
 }
-export interface ISeller {
+export interface ISeller extends IUser {
   email?: string;
-  phone?: number;
+  phone?: string;
   shopname?: string;
   shopaddress?: string;
   logoUrl?: string;
