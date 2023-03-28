@@ -768,8 +768,8 @@ const HeaderTop: React.FC<Props> = (props) => {
                                     <ul className="w-full flex flex-col space-y-7 text-left ">
                                       <li className="text-base text-qgraytwo">
                                         <span>
-                                          Hi, Amaya Hendrix
-                                          {/* {states.user?.displayName} */}
+                                          Hi,
+                                          {states.user?.fullName}
                                         </span>
                                       </li>
                                       <li className="text-base text-qgraytwo cursor-pointer hover:text-qblack hover:font-semibold">
@@ -866,7 +866,8 @@ const HeaderTop: React.FC<Props> = (props) => {
                       className={`${styles["imgStyle2"]}`}
                       src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27153%27%20height=%2744%27/%3e"
                       alt="logo"
-                    />6
+                    />
+                    6
                   </span>
                   <img
                     className={`${styles["imgStyle"]}`}
