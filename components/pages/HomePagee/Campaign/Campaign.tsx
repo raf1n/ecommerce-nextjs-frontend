@@ -40,7 +40,8 @@ const Campaign: React.FC<Props> = (props) => {
       <div className="container-x mx-auto h-full">
         <div className="lg:flex xl:space-x-[30px] lg:space-x-5 items-center h-full">
           <div
-            className={`${styles["campaign-countdown"]} lg:w-1/2 h-[300px] sm:h-[400px] lg:h-full w-full mb-5 lg:mb-0`}>
+            className={`${styles["campaign-countdown"]} lg:w-1/2 h-[300px] sm:h-[400px] lg:h-full w-full mb-5 lg:mb-0`}
+          >
             <div className="w-full xl:p-12 p-5">
               <div className="w-full flex lg:justify-between justify-evenly lg:mb-10 mb-2">
                 {saleTime.map((item, index) => {
@@ -69,7 +70,8 @@ const Campaign: React.FC<Props> = (props) => {
             </div>
           </div>
           <div
-            className={`${styles["download-app"]} flex-1 lg:h-full h-[430px] xl:p-12 p-5 aos-init aos-animate`}>
+            className={`${styles["download-app"]} flex-1 lg:h-full h-[430px] xl:p-12 p-5 aos-init aos-animate`}
+          >
             <div className="flex flex-col h-full justify-between">
               <div>
                 <p className="text-[13px] font-semibold text-qblack mb-3">
@@ -89,7 +91,8 @@ const Campaign: React.FC<Props> = (props) => {
                   <div className="bg-white w-[170px] h-[60px] flex justify-center items-center cursor-pointer">
                     <Link
                       href={`https://play.google.com/store/apps`}
-                      rel="noopener noreferrer">
+                      rel="noopener noreferrer"
+                    >
                       <picture>
                         <img src={img1.src} alt="" />
                       </picture>
@@ -98,7 +101,8 @@ const Campaign: React.FC<Props> = (props) => {
                   <div className="bg-white w-[170px] h-[60px] flex justify-center items-center cursor-pointer">
                     <Link
                       href={`https://www.apple.com/app-store/`}
-                      rel="noopener noreferrer">
+                      rel="noopener noreferrer"
+                    >
                       <picture>
                         <img src={img2.src} alt="" />
                       </picture>
