@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { ISeller } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
-import { Jsondata } from "../../../src/utils/Jsondata";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import SellerCard from "./SellerCard";
 
@@ -28,9 +27,10 @@ const AllSellerPage: React.FC<Props> = (props) => {
         setSellersData(res);
       }
     };
-
     fetchAllSeller();
   }, [searchString, sortBy, sortType]);
+
+  console.log(sellersData);
 
   return (
     <div className="w-full min-h-screen  pt-0 pb-0 mb-[60px]">

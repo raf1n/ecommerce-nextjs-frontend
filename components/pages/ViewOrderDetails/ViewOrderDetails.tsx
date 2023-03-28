@@ -13,6 +13,7 @@ const user_slug = CookiesHandler.getSlug();
 
 const ViewOrderDetails: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
   const [orderData, setOrderData] = useState<IOrder | null>(null);
 
   const router = useRouter();
@@ -78,14 +79,25 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
               <div className="w-full px-10 flex justify-between pt-3 mb-7"></div>
               <div className="flex lg:space-x-[373px] space-x-[90px] rtl:space-x-reverse w-full h-full justify-center">
                 <div className="relative">
-                  <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
+                  {orderData ? (
+                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
+                  ) : (
+                    <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
+                  )}
+
                   <div className="lg:w-[400px] w-[100px] h-[8px] absolute ltr:lg:-left-[390px] ltr:-left-[92px] rtl:lg:-right-[390px] rtl:-right-[92px] top-[10px] z-10  bg-white"></div>
                   <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
                     Pending
                   </p>
                 </div>
                 <div className="relative">
-                  <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
+                  {/* circle */}
+                  {orderData ? (
+                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
+                  ) : (
+                    <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
+                  )}
+
                   <div className="lg:w-[400px] w-[100px] h-[8px] absolute ltr:lg:-left-[390px] ltr:-left-[92px] rtl:lg:-right-[390px] rtl:-right-[92px] top-[10px] z-10  bg-white"></div>
                   <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
                     Progress
@@ -114,7 +126,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                           {orderData?.slug}
                         </span>
                       </li>
-                      <li className="text-[22px]n text-[#4F5562]">
+                      {/* <li className="text-[22px]n text-[#4F5562]">
                         Billing Address:
                         <span className="text-[#27AE60]">
                           {`City: ${orderData?.address.city}, 
@@ -122,7 +134,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                          Country: ${orderData?.address.country}
                          Additional: ${orderData?.address.address}`}
                         </span>
-                      </li>
+                      </li> */}
                       <li className="text-[22px]n text-[#4F5562]">
                         Shipping Address:
                         <span className="text-[#27AE60]">

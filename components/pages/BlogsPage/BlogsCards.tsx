@@ -22,7 +22,7 @@ const BlogsCards: React.FC<Props> = (props) => {
         <div className="w-full">
           <div className="grid md:grid-cols-2 grid-cols-1 lg:gap-[30px] gap-5 pb-[60px]">
             {!showAll
-              ? blogsData?.slice(0, 2).map((data: any, idx: any) => (
+              ? blogsData?.slice(0, 10).map((data: any, idx: any) => (
                   <div
                     key={idx}
                     data-aos="fade-up"
@@ -191,7 +191,9 @@ const BlogsCards: React.FC<Props> = (props) => {
                             </p>
                           </div>
                           <div className="mt-4">
-                            <ViewMoreBtn link={`/blogs/blog?slug=${data.slug}`} />
+                            <ViewMoreBtn
+                              link={`/blogs/blog?slug=${data.slug}`}
+                            />
                           </div>
                         </div>
                       </div>

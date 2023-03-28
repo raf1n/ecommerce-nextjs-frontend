@@ -839,7 +839,6 @@ export class EcommerceApi {
       requestOptions
     );
   }
-
   //Get all seller
   static async getAllSeller(query: string): Promise<IGetAllSellerResponse> {
     const myHeaders = new Headers();

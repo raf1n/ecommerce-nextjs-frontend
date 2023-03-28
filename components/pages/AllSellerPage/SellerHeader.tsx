@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ISeller } from "../../../interfaces/models";
 import { controller } from "../../../src/state/StateController";
 import { Jsondata } from "../../../src/utils/Jsondata";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
+import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import SellerHeaderCard from "./SellerHeaderCard";
 
 interface Props {
@@ -13,6 +14,25 @@ interface Props {
 
 const SellerHeader: React.FC<Props> = ({ sellerData }) => {
   const states = useSelector(() => controller.states);
+
+  const [sellersData, setSellersData] = useState<ISeller[]>([]);
+  const [sortBy, setSortBy] = useState("createdAt");
+  const [sortType, setSortType] = useState("desc");
+  const [searchString, setSearchString] = useState("");
+
+  useEffect(() => {
+    const fetchAllSeller = async () => {
+      const { res, err } = await EcommerceApi.getAllSeller(
+        `sortBy=${sortBy}&sortType=${sortType}&search=${searchString}&status=active`
+      );
+      if (err) {
+        console.log(err);
+      } else {
+        setSellersData(res);
+      }
+    };
+    fetchAllSeller();
+  }, [searchString, sortBy, sortType]);
 
   return (
     <div className="w-full sm:h-[328px]  mx-auto ">
@@ -67,13 +87,13 @@ const SellerHeader: React.FC<Props> = ({ sellerData }) => {
                     pathFill="black"
                   />
                 </span>
-                <span>{sellerData?.address?.address}</span>
+                <span>{sellerData?.shop?.shop_address}</span>
               </li>
             </ul>
           </div>
           <div className="saller-name lg:block hidden">
             <h1 className="text-[60px] font-bold">
-              {sellerData?.shop.shop_name}
+              {sellerData?.shop?.shop_name}
             </h1>
             <div className="flex justify-center">
               <span>

@@ -23,16 +23,14 @@ const AdminProfile: React.FC<Props> = (props) => {
           <DashboardBreadcrumb
             headline="My Profile"
             slug="My Profile"
-            link="/AdminProfile"
-          ></DashboardBreadcrumb>
+            link="/AdminProfile"></DashboardBreadcrumb>
           {/* </div> */}
           {/* </div> */}
           <div className={`${styles["main-content"]}`}>
             <div className={`${styles["row"]} mt-4`}>
               <div>
                 <div
-                  className={`${styles["card"]} ${styles["profile-widget"]} `}
-                >
+                  className={`${styles["card"]} ${styles["profile-widget"]} `}>
                   <div className={`${styles["profile-widget-header"]} `}>
                     <img
                       className={`rounded-full ml-6    ${styles["profile-widget-picture"]} `}
@@ -46,8 +44,7 @@ const AdminProfile: React.FC<Props> = (props) => {
                         <div className="form-group grid text-sm">
                           <label
                             className="text-sm text-qgray font-semibold"
-                            htmlFor=""
-                          >
+                            htmlFor="">
                             New Image
                           </label>
                           <input
@@ -62,8 +59,7 @@ const AdminProfile: React.FC<Props> = (props) => {
                           <div className="my-4 ">
                             <label
                               className="text-qgray font-semibold mt-4	text-sm"
-                              htmlFor=""
-                            >
+                              htmlFor="">
                               Name
                             </label>
                             <span className="text-red-500 ml-2">*</span>
@@ -80,8 +76,7 @@ const AdminProfile: React.FC<Props> = (props) => {
                           <div className="my-4">
                             <label
                               className="text-qgray font-semibold mt-4 text-sm"
-                              htmlFor=""
-                            >
+                              htmlFor="">
                               Email
                             </label>
                             <span className="text-red-500 ml-2">*</span>
@@ -98,8 +93,7 @@ const AdminProfile: React.FC<Props> = (props) => {
                           <div className="my-4">
                             <label
                               className="text-qgray font-semibold mt-4	text-sm"
-                              htmlFor=""
-                            >
+                              htmlFor="">
                               Password
                             </label>
                             {/* <span className='text-red-500 ml-2'>*</span> */}
@@ -115,8 +109,7 @@ const AdminProfile: React.FC<Props> = (props) => {
                           <div className="my-4">
                             <label
                               className="text-qgray font-semibold mt-4	text-sm"
-                              htmlFor=""
-                            >
+                              htmlFor="">
                               Confirm Password
                             </label>
                             {/* <span className='text-red-500 ml-2'>*</span> */}

@@ -92,9 +92,10 @@ const PersonalInfo: React.FC<Props> = (props) => {
           address
         );
         if (dbRes) {
-          console.log("db res", dbRes);
           controller.setUser(dbRes);
-          console.log("address", address);
+          alert("Updated successfully !");
+          // console.log("address", address);
+          // console.log("db res", dbRes);
         }
       }
     }

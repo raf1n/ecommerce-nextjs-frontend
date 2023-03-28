@@ -20,7 +20,9 @@ const SellerCard: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <div data-aos="fade-up" className="item w-full aos-init aos-animate">
+      <div
+        data-aos="fade-up"
+        className="item w-full aos-init aos-animate mt-[55px]">
         <div
           className={`w-full sm:h-[328px] sm:p-[30px] p-5 ${Styles["bg-image"]}`}
         >
@@ -28,7 +30,7 @@ const SellerCard: React.FC<Props> = (props) => {
             <div className="flex flex-col justify-between h-full">
               <div className="">
                 <h1 className="text-[30px] font-semibold text-qblack">
-                  {props.seller.shop.shop_name}
+                  {props.seller.shop?.shop_name}
                 </h1>
                 <div className="flex space-x-2 items-center mb-[30px]">
                   <div className="flex ">
@@ -134,7 +136,7 @@ const SellerCard: React.FC<Props> = (props) => {
                           pathFill="black"
                         />
                       </span>
-                      <span>{props.seller.shop.shop_address}</span>
+                      <span>{props.seller?.shop?.shop_address}</span>
                     </li>
                   </ul>
                 </div>
@@ -142,7 +144,7 @@ const SellerCard: React.FC<Props> = (props) => {
               <div>
                 <div className="w-[116px] h-[40px] cursor-pointer">
                   <Link
-                    href={`/seller_products?seller=${props.seller.shop.shop_name}`}
+                    href={`/seller_products?seller=${props.seller?.shop?.shop_name}`}
                   >
                     <div className="yellow-btn flex justify-center">
                       <div className="flex space-x-2 items-center">
@@ -200,7 +202,7 @@ const SellerCard: React.FC<Props> = (props) => {
                   >
                     <img
                       alt=""
-                      src={props.seller.shop.shop_logo}
+                      src={props.seller?.shop?.shop_logo}
                       decoding="async"
                       data-nimg="fill"
                       style={{
@@ -225,7 +227,7 @@ const SellerCard: React.FC<Props> = (props) => {
                 </div>
               </div>
               <h1 className="sm:block hidden text-[30px] font-semibold text-qblack text-center leading-none">
-                {props.seller.shop.shop_name}
+                {props.seller?.shop?.shop_name}
               </h1>
             </div>
           </div>

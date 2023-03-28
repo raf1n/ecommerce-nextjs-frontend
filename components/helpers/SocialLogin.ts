@@ -13,6 +13,9 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   fetchSignInMethodsForEmail,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updatePassword,
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 // import { getDatabase } from "firebase/database";
@@ -320,4 +323,49 @@ export class SocialLogin {
         });
     });
   }
+  // ----------------pass change-------//
+  static async changePassword(
+    email: string,
+    oldPassword: string,
+    newPassword: string
+  ): Promise<MyFetchInterface> {
+    return new Promise((resolve) => {
+      const auth = getAuth();
+
+      if (!auth.currentUser) {
+        resolve({
+          res: null,
+          err: "User not signed in",
+        });
+        return;
+      }
+
+      const user = auth.currentUser;
+      const credential = EmailAuthProvider.credential(email, oldPassword);
+
+      reauthenticateWithCredential(auth.currentUser, credential).catch(
+        (error) => {
+          resolve({
+            res: null,
+            err: "Wrong Password",
+          });
+        }
+      );
+
+      updatePassword(user, newPassword)
+        .then(() => {
+          resolve({
+            res: "password updated",
+            err: null,
+          });
+        })
+        .catch((error) => {
+          resolve({
+            res: null,
+            err: "An error occurred. Please try again.",
+          });
+        });
+    });
+  }
+  // ----------------pass change-------//
 }

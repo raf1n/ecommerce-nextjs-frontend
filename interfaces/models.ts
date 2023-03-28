@@ -5,7 +5,7 @@ export interface MyFetchInterface {
   err: any;
 }
 export interface IUser {
-  email: string;
+  email?: string;
   avatar: string;
   token: string;
   tokenType: string;
@@ -16,30 +16,39 @@ export interface IUser {
   slug: string;
   createdAt?: string;
   updatedAt: string;
-  phone: string;
+  phone?: string;
   address: {
     country?: string;
     state?: string;
     city?: string;
     address?: string;
   };
-  shop?: IShop;
-  sellerProducts?: IProduct[];
 }
 
 export interface IShop {
-  shop_name: string;
-  shop_address: string;
-  shop_logo: string;
-  shop_cover: string;
-  opens_at: string;
-  close_at: string;
-  geetings_message: string;
-  social_icon: string;
-  social_link: string;
-  seo_title: string;
-  seo_des: string;
+  shop_name?: string;
+  shop_address?: string;
+  shop_logo?: string;
+  shop_cover?: string;
+  opens_at?: string;
+  close_at?: string;
+  geetings_message?: string;
+  social_icon?: string;
+  social_link?: string;
+  seo_title?: string;
+  seo_des?: string;
 }
+
+// export interface ISeller extends IUser {
+//   shop: {
+//     shop_name: string;
+//     shop_address: string;
+//     shop_logo: string;
+//     shop_cover: string;
+//   };
+//   email?: string;
+// }
+
 export interface featuredProductLPObj {
   pageNumber: number | string;
 }
@@ -66,24 +75,18 @@ export interface IProduct {
   isPopular?: boolean;
   seller_slug?: string;
 }
-// export interface ISeller {
-//   email?: string;
-//   phone?: number;
-//   shopname?: string;
-//   shopaddress?: string;
-//   logoUrl?: string;
-//   coverUrl?: string;
-//   status?: string;
-// }
 
 export interface ISeller extends IUser {
-  shop: {
-    shop_name: string;
-    shop_address: string;
-    shop_logo: string;
-    shop_cover: string;
-  };
+  email?: string;
+  phone?: string;
+  shopname?: string;
+  shopaddress?: string;
+  logoUrl?: string;
+  coverUrl?: string;
+  status?: string;
   user_email: string;
+  shop?: IShop;
+  sellerProducts?: IProduct[];
 }
 
 export interface IWishlistProduct extends IProduct {

@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useSelector } from "react-redux";
 import CategoryPage from "../components/pages/CategoryProductPage/CategoryPage";
-
 import { controller } from "../src/state/StateController";
 
 interface Props {}
@@ -36,6 +35,7 @@ const products: React.FC<Props> = (props) => {
   const router = useRouter();
 
   const { search, category, highlight, sub_category } = router.query;
+  console.log("router.query--", router.query);
 
   if (search) {
     controller.setSearchString(search as string);
@@ -43,7 +43,7 @@ const products: React.FC<Props> = (props) => {
 
   if (highlight) {
     const highQuery = highlightArr.find((high) => high.highlight === highlight);
-    console.log(highlight, highQuery);
+    console.log("sss", highlight, highQuery);
     controller.setSearchHighlight(highQuery?.query as string);
   } else if (!highlight) {
     controller.setSearchHighlight("");
