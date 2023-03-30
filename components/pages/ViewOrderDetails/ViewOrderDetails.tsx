@@ -7,6 +7,7 @@ import { controller } from "../../../src/state/StateController";
 import ReviewProductModal from "./ReviewProductmodal/ReviewProductModal";
 import { CartHandler } from "../../../src/utils/CartHandler";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
+import Link from "next/link";
 interface Props {}
 
 const user_slug = CookiesHandler.getSlug();
@@ -79,7 +80,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
               <div className="w-full px-10 flex justify-between pt-3 mb-7"></div>
               <div className="flex lg:space-x-[373px] space-x-[90px] rtl:space-x-reverse w-full h-full justify-center">
                 <div className="relative">
-                  {orderData ? (
+                  {orderData && orderData.order_status === "pending" ? (
                     <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
                   ) : (
                     <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
@@ -91,8 +92,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                   </p>
                 </div>
                 <div className="relative">
-                  {/* circle */}
-                  {orderData ? (
+                  {orderData && orderData.order_status === "progress" ? (
                     <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
                   ) : (
                     <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
@@ -104,8 +104,11 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                   </p>
                 </div>
                 <div className="relative">
-                  <div className="w-[30px] h-[30px] border-[8px] rounded-full bg-white  relative z-20 border-qgray"></div>
-
+                  {orderData && orderData.order_status === "delivered" ? (
+                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
+                  ) : (
+                    <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
+                  )}
                   <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
                     Delivered
                   </p>
@@ -195,8 +198,11 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                             <td className="pl-10 w-[400px] py-4 ">
                               <div className="flex space-x-6 items-center">
                                 <div className="flex-1 flex flex-col">
-                                  <p className="font-medium text-[15px] text-qblack rtl:text-right rtl:pr-10">
-                                    {order.productName}
+                                  <p className="font-medium text-[15px] text-blue-500 rtl:text-right rtl:pr-10">
+                                    <Link
+                                      href={`http://localhost:3000/single_product?slug=${order.slug}`}>
+                                      {order.productName}
+                                    </Link>
                                   </p>
                                 </div>
                               </div>
