@@ -6,7 +6,7 @@ import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import { controller } from "./../../../src/state/StateController";
-
+import toast from "react-hot-toast";
 interface Props {
   item: IProduct;
 }
@@ -28,7 +28,7 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
         controller.setRemoveWishlistSingleProduct(product);
       }
     } else {
-      alert("Please login first");
+      toast.error("Please login first");
     }
   };
 

@@ -8,6 +8,7 @@ import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CartHandler } from "../../../src/utils/CartHandler";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
+import toast from "react-hot-toast";
 interface Props {
   // cartlistData: Array<IProduct>;
 }
@@ -29,12 +30,14 @@ const MyCart: React.FC<Props> = (props) => {
         selectedItem.stock &&
         selectedItem?.quantity >= selectedItem?.stock
       ) {
-        alert("Cart quantity cannot be more than available stock");
+        toast.error("Cart quantity cannot be more than available stock");
         return;
       }
 
       if (selectedItem && selectedItem.stock && selectedItem?.quantity >= 10) {
-        alert("Sorry, One can not buy more than 10 units of a single product.");
+        toast.error(
+          "Sorry, One can not buy more than 10 units of a single product."
+        );
         return;
       }
 

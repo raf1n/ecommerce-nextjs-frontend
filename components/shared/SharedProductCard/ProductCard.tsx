@@ -10,6 +10,7 @@ import { BsHeartFill } from "react-icons/bs";
 import Link from "next/link";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
+import toast from "react-hot-toast";
 interface Props {
   // product: IProduct;
   product: IWishlistProduct;
@@ -63,7 +64,7 @@ const ProductCard: React.FC<Props> = (props) => {
 
   const handleCartToggle = async () => {
     if (!user_slug) {
-      alert("Please login first");
+      toast.error("Please login first");
       return;
     }
 
@@ -72,7 +73,7 @@ const ProductCard: React.FC<Props> = (props) => {
       product_slug: product.slug,
       quantity: cartListProduct?.quantity || 1,
     };
-    
+
     if (cartListProduct) {
       const { res, err } = await EcommerceApi.deleteFromCart(
         user_slug,
@@ -91,9 +92,10 @@ const ProductCard: React.FC<Props> = (props) => {
         };
 
         controller.setAddtoCartlist(newProduct);
+        toast.success("hhhhh");
       } else {
         console.log(err);
-        alert("Failed");
+        toast.error("Failed");
       }
     }
   };

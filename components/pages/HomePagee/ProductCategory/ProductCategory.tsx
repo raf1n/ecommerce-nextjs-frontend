@@ -33,7 +33,13 @@ const ProductCategory: React.FC<Props> = (props) => {
             {categoriesData.map((item: ICategories, index) => {
               return (
                 <div className="item w-full cursor-pointer group">
-                  <Link href="/products" rel="noopener noreferrer">
+                  <Link
+                    href={`products?category=${item?.cat_name}`}
+                    rel="noopener noreferrer"
+                    onClick={() =>
+                      controller.setSearchCategory(item?.cat_slug, true)
+                    }
+                  >
                     <div className="w-full h-[120px] relative rounded bg-white flex justify-center items-center">
                       <div className="w-full h-full relative transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out">
                         <span className={styles["h"]}>
