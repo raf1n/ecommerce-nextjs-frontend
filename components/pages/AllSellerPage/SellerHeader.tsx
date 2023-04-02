@@ -41,8 +41,7 @@ const SellerHeader: React.FC<Props> = ({ sellerData }) => {
           data-aos="fade-right"
           className="saller-info w-full mb-[40px] sm:h-[328px] sm:flex justify-between items-center px-11 overflow-hidden relative py-10 sm:py-0 aos-init aos-animate"
           style={{
-            background:
-              "url('https://shopo-ecom.vercel.app/assets/images/saller-cover.png') 0% 0% / cover no-repeat",
+            background: `url(${sellerData?.shop?.shop_cover}) 0% 0% / cover no-repeat`,
           }}
         >
           <div className="saller-text-details w-72">
@@ -174,7 +173,7 @@ const SellerHeader: React.FC<Props> = ({ sellerData }) => {
                 >
                   <img
                     alt="loooooooooooooooooooooogoooooooooooooooo"
-                    src={sellerData?.shop?.shop_cover}
+                    src={sellerData?.shop?.shop_logo}
                     sizes="100vw"
                     decoding="async"
                     data-nimg="fill"

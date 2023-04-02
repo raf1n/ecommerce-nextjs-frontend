@@ -153,7 +153,10 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                           <li className={`${styles["category-item"]}`}>
                             <Link
                               rel="noopener noreferrer"
-                              href="/products?category=electronics"
+                              href={`/products?category=${single.cat_name}`}
+                              onClick={() =>
+                                controller.setSelectCategory(single.cat_slug)
+                              }
                             >
                               <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                 <div className="flex items-center space-x-6">
@@ -225,6 +228,11 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                         <Link
                                           rel="noopener noreferrer"
                                           href={`/products?sub_category=${s.subcat_name}`}
+                                          onClick={() =>
+                                            controller.setSelectSubCategory(
+                                              s.slug
+                                            )
+                                          }
                                         >
                                           <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                             <div>
@@ -331,7 +339,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                               <div className="w-[90px]">
                                 <Link
                                   rel="noopener noreferrer"
-                                  href="/products?category=electronics"
+                                  href={`/products?category=electronics`}
                                 >
                                   <div className="cursor-pointer w-full relative ">
                                     <div className="inline-flex space-x-1.5 items-center relative z-20">

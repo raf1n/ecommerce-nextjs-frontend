@@ -163,6 +163,41 @@ export class Controller {
     this.states.searchBrand = "";
   }
 
+  @action
+  setSelectSubCategory(subCategory: string) {
+    this.states.searchCategory = "";
+    this.states.searchBrand = "";
+    this.states.searchSubCategory = subCategory;
+    this.states.searchHighlight = "";
+    this.states.searchString = "";
+    this.states.searchSeller = "";
+  }
+
+  @action
+  setSelectCategory(category: string) {
+    this.states.searchCategory = "+" + category;
+    this.states.searchBrand = "";
+    this.states.searchSubCategory = "";
+    this.states.searchHighlight = "";
+    this.states.searchString = "";
+    this.states.searchSeller = "";
+  }
+
+  // @action
+  // setClearSearchHighlight() {
+  //   this.states.searchHighlight = "";
+  // }
+
+  // @action
+  // setClearSearchSeller() {
+  //   this.states.searchSeller = "";
+  // }
+
+  // @action
+  // setClearSearchSubCategory() {
+  //   this.states.searchSubCategory = "";
+  // }
+
   // @action
   // setClearSearchState() {
   //   this.states.searchString = "";
