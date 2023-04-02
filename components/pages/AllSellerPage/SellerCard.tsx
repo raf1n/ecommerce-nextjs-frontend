@@ -136,7 +136,7 @@ const SellerCard: React.FC<Props> = (props) => {
                           pathFill="black"
                         />
                       </span>
-                      <span>{props.seller?.shop?.shop_address}</span>
+                      <span className="line-clamp-1">{props.seller?.shop?.shop_address}</span>
                     </li>
                   </ul>
                 </div>
