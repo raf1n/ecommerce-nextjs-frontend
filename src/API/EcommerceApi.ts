@@ -1,5 +1,6 @@
 import {
   IAddress,
+  IFlashSale,
   IOrder,
   IReview,
   ISeller,
@@ -15,6 +16,7 @@ import {
   IFilteredProductBySellerResponse,
   IFilteredProductResponse,
   IFlashSaleProductsResponse,
+  IflashSaleResponse,
   IGetAllSellerResponse,
   IMegaCategoriesResponse,
   IOrderResponse,
@@ -883,6 +885,22 @@ export class EcommerceApi {
     };
     return await callFetch(
       `${API_ENDPOINT}/users/sellerWithProducts/${seller_slug}`,
+      requestOptions
+    );
+  }
+
+  //flash sale content get
+
+  static async getFlashSaleContent(name: string): Promise<IflashSaleResponse> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/flash-sale/content/${name}`,
       requestOptions
     );
   }

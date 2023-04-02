@@ -1,7 +1,12 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { IProduct, IReview, IUser } from "../../../../interfaces/models";
+import {
+  IProduct,
+  IReview,
+  ISeller,
+  IUser,
+} from "../../../../interfaces/models";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { controller } from "../../../../src/state/StateController";
 import ReviewCard from "../../SingleProductPage/ReviewCard";
@@ -16,7 +21,7 @@ const ItemDetails: React.FC<Props> = (props) => {
   const { asPath } = router;
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
   const [reviews, setReviews] = useState<IReview[]>([]);
-  const [seller, setSeller] = useState<IUser | null>(null);
+  const [seller, setSeller] = useState<ISeller | null>(null);
 
   console.log(asPath.split("=")[1]);
   const productSlug = asPath.split("=")[1];
@@ -106,12 +111,14 @@ const ItemDetails: React.FC<Props> = (props) => {
               ))}
             </div>
           )}
-          <div>
-            <h6 className="text-[20px] font-bold text-qblack mb-5 ">
-              Seller Info
-            </h6>
-            <SellerInfo seller={seller}></SellerInfo>
-          </div>
+          {seller && (
+            <div>
+              <h6 className="text-[20px] font-bold text-qblack mb-5 ">
+                Seller Info
+              </h6>
+              <SellerInfo seller={seller}></SellerInfo>
+            </div>
+          )}
         </div>
       </div>
     </div>

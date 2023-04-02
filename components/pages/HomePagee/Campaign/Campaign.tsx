@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
 import { Jsondata } from "../../../../src/utils/Jsondata";
@@ -8,13 +8,35 @@ import img1 from "./googlePlay.png";
 import img2 from "./app.png";
 import Link from "next/link";
 import useCountDown from "../../../shared/hooks/useCountDown";
+import { IFlashSale } from "../../../../interfaces/models";
+import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 
-interface Props {}
+interface Props {
+  // saleData: any;
+}
 
 const Campaign: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const { days, hours, minutes, seconds } = useCountDown("15 March, 2024");
-  // console.log(days, hours, minutes, seconds);
+  // console.log(days, hours, minutes, seconds); //"15 March, 2024"
+
+  const [saleData, setSaleData] = useState<IFlashSale>();
+
+  useEffect(() => {
+    const fetchAllflashData = async () => {
+      const { res, err } = await EcommerceApi.getFlashSaleContent(
+        "flashcontnet"
+      );
+      if (err) {
+        console.log(err);
+      } else {
+        setSaleData(res);
+
+        // console.log(res);
+      }
+    };
+    fetchAllflashData();
+  }, []);
 
   const saleTime = [
     {
@@ -61,7 +83,7 @@ const Campaign: React.FC<Props> = (props) => {
               </div>
               <div className="mb-4">
                 <h1 className="text-[44px] text-qblack font-semibold">
-                  WOO! Flash Sale
+                  {saleData?.title}
                 </h1>
               </div>
               <Link href={"/flash_sale"}>

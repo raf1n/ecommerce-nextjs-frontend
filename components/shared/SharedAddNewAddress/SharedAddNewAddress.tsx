@@ -5,7 +5,7 @@ import Select from "react-select";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { useRouter } from "next/router";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
-
+import toast from "react-hot-toast";
 interface Props {
   selectedOption: any;
   setSelectedOption: any;
@@ -59,7 +59,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
       }
       e.target.reset();
     } else {
-      alert("Please Login First");
+      toast.error("Please Login First");
     }
   };
 

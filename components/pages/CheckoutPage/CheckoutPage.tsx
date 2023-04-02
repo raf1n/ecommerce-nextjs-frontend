@@ -12,6 +12,7 @@ import { IAddress } from "../../../interfaces/models";
 import SharedDeleteModal from "../../shared/SharedDeleteModal/SharedDeleteModal";
 import { useRouter } from "next/navigation";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
+import toast from "react-hot-toast";
 
 interface Props {}
 
@@ -82,7 +83,14 @@ const CheckoutPage: React.FC<Props> = (props) => {
     total: CartHandler.cartSubTotal(cartListProduct) - 100 + 50,
   };
   const handleCheckout = async () => {
+    if (selectedMethod === "") {
+      toast.error("Please Select Payment Method");
+    }
+    if (selectedMethod === "cod") {
+      toast.success("Your Order is Placed");
+    }
     if (!selectedAddress) {
+      toast.error("Please Select Shipping Address");
       return;
     }
     const { res, err } = await EcommerceApi.postOrder(order);

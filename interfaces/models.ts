@@ -84,7 +84,7 @@ export interface ISeller extends IUser {
   logoUrl?: string;
   coverUrl?: string;
   status?: string;
-  user_email: string;
+  user_email?: string;
   shop?: IShop;
   sellerProducts?: IProduct[];
 }
@@ -280,4 +280,13 @@ export interface IBlogComment {
   avatar: string;
   comment: string;
   status: string;
+}
+export interface IFlashSale {
+  name?: string;
+  title: string;
+  offer: string;
+  time: string;
+  status: string;
+  imageHome: Array<string>;
+  imageFlash: Array<string>;
 }

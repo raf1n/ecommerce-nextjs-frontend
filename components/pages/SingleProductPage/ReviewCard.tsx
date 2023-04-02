@@ -46,8 +46,8 @@ const ReviewCard: React.FC<Props> = (props) => {
             activeColor="rgb(255, 168, 0)"
             color="#d3d3d3"
           />
-          <span className="text-[13px] font-normal text-qblack mt-1 inline-block">
-            (4.0)
+          <span className="text-[15px] font-normal text-qblack mt-1 inline-block">
+            {review.rating}
           </span>
         </div>
       </div>
