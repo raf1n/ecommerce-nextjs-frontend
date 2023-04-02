@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { IFlashSale } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
 import AD1 from "./Ads/AD1";
@@ -20,6 +21,23 @@ interface Props {}
 
 const Homepage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [saleData, setSaleData] = useState<IFlashSale>();
+
+  useEffect(() => {
+    const fetchAllflashData = async () => {
+      const { res, err } = await EcommerceApi.getFlashSaleContent(
+        "flashcontnet"
+      );
+      if (err) {
+        console.log(err);
+      } else {
+        setSaleData(res);
+
+        // console.log(res);
+      }
+    };
+    fetchAllflashData();
+  }, []);
 
   const fetchAllProducts = async () => {
     const { res, err } = await EcommerceApi.getAllProducts();
@@ -45,6 +63,7 @@ const Homepage: React.FC<Props> = (props) => {
       <ProductCategory />
       <PopularCategory />
       {/* <ShopByBrand /> */}
+      {/* {saleData=saleData} */}
       <Campaign />
       <TopRatedSection />
       {/* <BestSeller /> */}

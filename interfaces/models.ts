@@ -281,3 +281,12 @@ export interface IBlogComment {
   comment: string;
   status: string;
 }
+export interface IFlashSale {
+  name?: string;
+  title: string;
+  offer: string;
+  time: string;
+  status: string;
+  imageHome: Array<string>;
+  imageFlash: Array<string>;
+}
