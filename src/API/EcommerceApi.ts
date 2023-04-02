@@ -839,6 +839,23 @@ export class EcommerceApi {
       requestOptions
     );
   }
+
+  static async getSellerByUser(
+    email: string | undefined
+  ): Promise<MyFetchInterface> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/users/seller/${email}`,
+      requestOptions
+    );
+  }
   //Get all seller
   static async getAllSeller(query: string): Promise<IGetAllSellerResponse> {
     const myHeaders = new Headers();

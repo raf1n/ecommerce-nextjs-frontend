@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
-import { IOrder, IUser } from "../../../../interfaces/models";
+import { IOrder, ISeller, IUser } from "../../../../interfaces/models";
+import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 
 interface Props {
   allOrders: IOrder[];
@@ -11,6 +12,25 @@ interface Props {
 
 const ProfileDashboard: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const [sellerData, setSellerData] = useState<ISeller>();
+
+  const getSellerData = async () => {
+    if (states.user?.email) {
+      const { res, err } = await EcommerceApi.getSellerByUser(
+        states.user?.email
+      );
+
+      if (err) {
+      } else if (res) {
+        console.log(res);
+        setSellerData(res);
+      }
+    }
+  };
+
+  useEffect(() => {
+    getSellerData();
+  }, [states.user?.email]);
 
   return (
     <div className="item-body dashboard-wrapper w-full">
@@ -112,7 +132,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
           </span>
         </div>
       </div>
-      <div className="dashboard-info mt-8 xl:flex justify-between items-center bg-primarygray xl:p-7 p-3">
+      <div className="dashboard-info mt-8 xl:flex justify-between justify-items-start bg-primarygray xl:p-7 p-3">
         <div className="mb-10 xl:mb-0">
           <p className="title text-[22px] font-semibold">
             Personal Information
@@ -156,48 +176,54 @@ const ProfileDashboard: React.FC<Props> = (props) => {
             </table>
           </div>
         </div>
-        <div className="w-[1px] h-0 lg:h-[164px] bg-[#E4E4E4]"></div>
-        {/* <div className="ml-6">
-          <p className="title text-[22px] font-semibold">Shop Information</p>
-          <div className="mt-5">
-            <table>
-              <tbody>
-                <tr className="flex mb-5">
-                  <td className="text-base text-qgraytwo w-[100px] block capitalize">
-                    <p>Name:</p>
-                  </td>
-                  <td className="text-base text-qblack font-medium">
-                    Eecoms Shop
-                  </td>
-                </tr>
-                <tr className="flex mb-5">
-                  <td className="text-base text-qgraytwo w-[100px] block capitalize">
-                    <p>Email:</p>
-                  </td>
-                  <td className="text-base text-qblack font-medium">
-                    hijigov511@pahed.com
-                  </td>
-                </tr>
-                <tr className="flex mb-5">
-                  <td className="text-base text-qgraytwo w-[100px] block capitalize">
-                    <p>phone:</p>
-                  </td>
-                  <td className="text-base text-qblack font-medium">
-                    01792166627
-                  </td>
-                </tr>
-                <tr className="flex mb-5">
-                  <td className="text-base text-qgraytwo w-[100px] block capitalize">
-                    <p>Address:</p>
-                  </td>
-                  <td className="text-base text-qblack font-medium">
-                    Dhaka,Bangladesh
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div> */}
+        {sellerData && (
+          <>
+            <div className="w-[1px] h-0 lg:h-[164px] bg-[#E4E4E4]"></div>
+            <div className="ml-6">
+              <p className="title text-[22px] font-semibold">
+                Shop Information
+              </p>
+              <div className="mt-5">
+                <table>
+                  <tbody>
+                    <tr className="flex mb-5">
+                      <td className="text-base text-qgraytwo w-[100px] block capitalize">
+                        <p>Name:</p>
+                      </td>
+                      <td className="text-base text-qblack font-medium">
+                        {sellerData.shop?.shop_name}
+                      </td>
+                    </tr>
+                    <tr className="flex mb-5">
+                      <td className="text-base text-qgraytwo w-[100px] block capitalize">
+                        <p>Email:</p>
+                      </td>
+                      <td className="text-base text-qblack font-medium">
+                        {sellerData.email}
+                      </td>
+                    </tr>
+                    <tr className="flex mb-5">
+                      <td className="text-base text-qgraytwo w-[100px] block capitalize">
+                        <p>phone:</p>
+                      </td>
+                      <td className="text-base text-qblack font-medium">
+                        {sellerData.phone}
+                      </td>
+                    </tr>
+                    <tr className="flex mb-5">
+                      <td className="text-base text-qgraytwo w-[100px] block capitalize">
+                        <p>Address:</p>
+                      </td>
+                      <td className="text-base text-qblack font-medium max-w-[170px]">
+                        {sellerData.shop?.shop_address}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
