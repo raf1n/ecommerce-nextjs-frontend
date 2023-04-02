@@ -67,7 +67,7 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
         toast.success("Successfuly subscribed  !");
       }
     } else {
-      toast.success("Please , Log In first  !");
+      toast.error("Please , Log In first  !");
     }
   };
   //---------------------------------------------------

@@ -8,6 +8,7 @@ import { IUser } from "../../../../interfaces/models";
 import { updateProfile } from "firebase/auth";
 import { SocialLogin } from "../../../helpers/SocialLogin";
 import style from "./PersonalInfo.module.css";
+import pen from "../../../../public/images/pen3.png";
 
 interface Props {
   user: IUser | null;
@@ -310,11 +311,12 @@ const PersonalInfo: React.FC<Props> = (props) => {
                   </div>
                   <input
                     type="file"
-                    className={`${style["file"]}   `}
+                    className={`${style["file"]}    absolute`}
                     id="file"
                     name="user_avatar"
                   />
-                  <div className="w-[32px] h-[32px] z-index bottom-8 right-0 bg-qyellow rounded-full cursor-pointer">
+
+                  <div className="w-[32px] h-[32px] hidden absolute z-index bottom-8  right-1 bg-qyellow rounded-full cursor-pointer">
                     <svg
                       width="32"
                       height="32"
@@ -331,8 +333,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
                   </div>
                 </div>
                 {/* <div className="sm:w-[198px] sm:h-[198px] w-[199px] h-[199px] rounded-full overflow-hidden relative">
-              <img src={states.user?.avatar} alt="profile" />
-            </div> */}
+                  <img src={states.user?.avatar} alt="profile" />
+                </div> */}
               </div>
             </div>
           </div>
