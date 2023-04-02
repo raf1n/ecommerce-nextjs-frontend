@@ -10,6 +10,7 @@ import { SocialLogin } from "../../../helpers/SocialLogin";
 import style from "./PersonalInfo.module.css";
 import pen from "../../../../public/images/pen3.png";
 
+import toast from "react-hot-toast";
 interface Props {
   user: IUser | null;
 }
@@ -94,7 +95,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
         );
         if (dbRes) {
           controller.setUser(dbRes);
-          alert("Updated successfully !");
+          toast("Updated successfully !");
           // console.log("address", address);
           // console.log("db res", dbRes);
         }

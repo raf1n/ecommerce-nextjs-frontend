@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
+import toast from "react-hot-toast";
 
 interface Props {}
 
@@ -66,9 +67,9 @@ const BecomeSeller: React.FC<Props> = (props) => {
         );
         if (!sellerRes) {
           console.log(sellerRes);
-          alert("Already exists !");
+          toast.error("Already exists !");
         } else {
-          alert("Successfully Applied ! !");
+          toast.success("Successfully Applied ! !");
           // console.log(err);
         }
         console.log(sellerData, email);

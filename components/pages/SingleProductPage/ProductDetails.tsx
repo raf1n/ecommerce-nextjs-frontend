@@ -16,6 +16,7 @@ import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CartHandler } from "../../../src/utils/CartHandler";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
+import toast from "react-hot-toast";
 
 interface Props {
   // brand: string;
@@ -63,17 +64,21 @@ const ProductDetails: React.FC<Props> = (props) => {
 
   const handleIncreaseQuantity = async (item: ICartProduct) => {
     if (!item.stock) {
-      alert("Sorry, this product is out of stock. Please add to wishlist instead.");
+      toast.error(
+        "Sorry, this product is out of stock. Please add to wishlist instead."
+      );
       return;
     }
 
     if (item.stock && cartQuantity > item.stock) {
-      alert("Cart quantity cannot be more than available stock");
+      toast.error("Cart quantity cannot be more than available stock");
       return;
     }
 
     if (cartQuantity > 10) {
-      alert("Sorry, One can not buy more than 10 units of a single product.");
+      toast.error(
+        "Sorry, One can not buy more than 10 units of a single product."
+      );
     }
 
     if (user_slug) {
@@ -96,7 +101,7 @@ const ProductDetails: React.FC<Props> = (props) => {
           controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
         } else {
           console.log(err);
-          alert("Failed");
+          toast.error("Failed");
         }
       } else {
         const newProduct = {
@@ -107,7 +112,7 @@ const ProductDetails: React.FC<Props> = (props) => {
         controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
       }
     } else {
-      alert("Please Login First");
+      toast.error("Please Login First");
     }
   };
 

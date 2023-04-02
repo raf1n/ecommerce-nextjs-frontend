@@ -20,6 +20,7 @@ const LoginForm: React.FC<Props> = (props) => {
   const [successTextLogin, setSuccessTextLogin] = useState("");
   const [loggedinSendVerify, setLoggedinSendVerify] = useState(false);
   const [loggedinSendVerifyText, setLoggedinSendVerifyText] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -73,6 +74,7 @@ const LoginForm: React.FC<Props> = (props) => {
 
   const handleEmailPasswordLogin = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
     const loginPassword = e.target.password.value;
     const loginEmail = e.target.email.value;
 
@@ -81,12 +83,14 @@ const LoginForm: React.FC<Props> = (props) => {
       loginPassword
     );
     if (err) {
+      setLoading(false);
       setErrorLogin(true);
       setSuccessLogin(false);
       setErrorTextLogin(err);
     } else {
       console.log("resss", res);
       setErrorLogin(false);
+      setLoading(false);
       if (!res.user.emailVerified) {
         console.log("kkk");
         setLoggedinSendVerify(true);
@@ -111,10 +115,12 @@ const LoginForm: React.FC<Props> = (props) => {
           };
           const { res, err } = await EcommerceApi.login(data);
           if (err) {
+            setLoading(false);
             setErrorLogin(true);
             setSuccessLogin(false);
             setErrorTextLogin("Server Error");
           } else {
+            setLoading(false);
             if (res.role == "admin") {
               setErrorLogin(true);
               setErrorTextLogin("Already registered as Admin");
@@ -149,10 +155,12 @@ const LoginForm: React.FC<Props> = (props) => {
               height="29"
               viewBox="0 0 172 29"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M1 5.08742C17.6667 19.0972 30.5 31.1305 62.5 27.2693C110.617 21.4634 150 -10.09 171 5.08727"
-                stroke="#FFBB38"></path>
+                stroke="#FFBB38"
+              ></path>
             </svg>
           </div>
         </div>
@@ -160,12 +168,14 @@ const LoginForm: React.FC<Props> = (props) => {
         <form
           onSubmit={(e) => {
             handleEmailPasswordLogin(e);
-          }}>
+          }}
+        >
           <div className="mb-5">
             <div className="w-full h-full">
               <label
                 className="capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                htmlFor="email">
+                htmlFor="email"
+              >
                 Email Address*
               </label>
               <div className="border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -184,7 +194,8 @@ const LoginForm: React.FC<Props> = (props) => {
             <div className="w-full h-full">
               <label
                 className="capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                htmlFor="password">
+                htmlFor="password"
+              >
                 Password
               </label>
               <div className="border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -214,16 +225,21 @@ const LoginForm: React.FC<Props> = (props) => {
           </div>
           <div>
             <button
+              disabled={loading}
               type="submit"
-              className="bg-[rgb(34,34,34)] text-white mb-3 text-sm w-full h-[50px] font-semibold flex justify-center bg-purple items-center">
-              Login
+              className={`bg-[rgb(34,34,34)]  text-white mb-3 text-sm w-full h-[50px] font-semibold flex justify-center bg-purple items-center ${
+                loading ? "bg-gray-300" : ""
+              }`}
+            >
+              {loading ? "Loading" : "Login"}
             </button>
             <button
               onClick={() => {
                 handleGoogleSignUp();
               }}
               type="button"
-              className="bg-[#4285F4] text-white mb-6 text-sm w-full h-[50px] font-semibold flex gap-x-2 justify-center bg-purple items-center">
+              className="bg-[#4285F4] text-white mb-6 text-sm w-full h-[50px] font-semibold flex gap-x-2 justify-center bg-purple items-center"
+            >
               <FaGoogle className="w-6 h-6" />
               Sign In With Google
             </button>
@@ -233,7 +249,8 @@ const LoginForm: React.FC<Props> = (props) => {
               Dont't have an account ?
               <Link
                 href="/signup"
-                className="ml-2 text-qblack cursor-pointer capitalize">
+                className="ml-2 text-qblack cursor-pointer capitalize"
+              >
                 sign up free
               </Link>
             </p>
@@ -255,7 +272,8 @@ const LoginForm: React.FC<Props> = (props) => {
             }}
             onClick={() => {
               sendEmailVerify();
-            }}>
+            }}
+          >
             {loggedinSendVerifyText}
           </button>
         )}

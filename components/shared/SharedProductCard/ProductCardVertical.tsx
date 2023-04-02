@@ -9,7 +9,7 @@ import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import styles from "./ProductCardVertical.module.css";
-
+import toast from "react-hot-toast";
 interface Props {
   // product: IProduct;
   product: IWishlistProduct;
@@ -23,7 +23,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
 
   const handleWishlist = async () => {
     if (!user_slug) {
-      alert("Please login first");
+      toast.error("Please login first");
       return;
     }
 
@@ -73,7 +73,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
 
   const handleCartToggle = async () => {
     if (!user_slug) {
-      alert("Please login first");
+      toast.error("Please login first");
       return;
     }
 
@@ -99,9 +99,10 @@ const ProductCardVertical: React.FC<Props> = (props) => {
           quantity: res.quantity,
         };
         controller.setAddtoCartlist(newProduct);
+        toast.success("Added to Cart");
       } else {
         console.log(err);
-        alert("Failed");
+        toast.error("Failed");
       }
     }
   };

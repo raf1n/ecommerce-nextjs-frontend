@@ -84,7 +84,7 @@ export interface ISeller extends IUser {
   logoUrl?: string;
   coverUrl?: string;
   status?: string;
-  user_email: string;
+  user_email?: string;
   shop?: IShop;
   sellerProducts?: IProduct[];
 }
