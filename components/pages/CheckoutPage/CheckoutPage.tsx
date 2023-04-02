@@ -86,6 +86,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
     if (selectedMethod === "") {
       toast.error("Please Select Payment Method");
     }
+    if (selectedMethod === "cod") {
+      toast.success("Your Order is Placed");
+    }
     if (!selectedAddress) {
       toast.error("Please Select Shipping Address");
       return;

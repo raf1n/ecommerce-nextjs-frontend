@@ -99,6 +99,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
           quantity: res.quantity,
         };
         controller.setAddtoCartlist(newProduct);
+        toast.success("Added to Cart");
       } else {
         console.log(err);
         toast.error("Failed");

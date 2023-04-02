@@ -92,7 +92,7 @@ const ProductCard: React.FC<Props> = (props) => {
         };
 
         controller.setAddtoCartlist(newProduct);
-        toast.success("hhhhh");
+        toast.success("Added to Cart");
       } else {
         console.log(err);
         toast.error("Failed");
