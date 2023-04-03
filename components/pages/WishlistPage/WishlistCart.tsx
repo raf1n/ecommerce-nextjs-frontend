@@ -6,6 +6,7 @@ import SharedWishlistTable from "./../../shared/SharedWishlistTable/SharedWishli
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 
 interface Props {}
 
@@ -22,6 +23,7 @@ const WishlistCart: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
+        toast.success("Wishlish Cleared");
         controller.setClearWishlist();
       }
     }
@@ -42,7 +44,8 @@ const WishlistCart: React.FC<Props> = (props) => {
                     Clean Wishlist
                   </span>
                 </button>
-                <Link href="/cart"
+                <Link
+                  href="/cart"
                   className={`${Styles["yellow-btn"]}  w-[180px] h-[50px]  flex justify-center items-center cursor-pointer`}
                 >
                   <span className="w-full text-sm font-semibold text-center">

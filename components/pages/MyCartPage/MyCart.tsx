@@ -70,6 +70,7 @@ const MyCart: React.FC<Props> = (props) => {
         console.log(err);
       } else {
         //
+        toast.success("Cart Cleared");
         controller.setClearCartlist();
       }
     }
@@ -224,12 +225,13 @@ const MyCart: React.FC<Props> = (props) => {
                               <div className="flex space-x-1 items-center justify-center p-2">
                                 <span
                                   className="cursor-pointer"
-                                  onClick={() =>
+                                  onClick={() => {
                                     CartHandler.handleDeleteFromCart(
                                       item,
                                       user_slug as string
-                                    )
-                                  }
+                                    );
+                                    toast.success("Item Removed From Cart");
+                                  }}
                                 >
                                   <svg
                                     width="10"
