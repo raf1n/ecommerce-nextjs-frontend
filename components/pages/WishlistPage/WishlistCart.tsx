@@ -16,6 +16,7 @@ const WishlistCart: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const setClearWishlist = async () => {
+    controller.setApiLoading(true);
     if (user_slug) {
       const { res, err } = await EcommerceApi.deleteAllWishlistProduct(
         user_slug
@@ -27,6 +28,7 @@ const WishlistCart: React.FC<Props> = (props) => {
         controller.setClearWishlist();
       }
     }
+    controller.setApiLoading(false);
   };
 
   return (

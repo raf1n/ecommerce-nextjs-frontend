@@ -22,6 +22,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const handleWishlist = async () => {
+    controller.setApiLoading(true);
     if (!user_slug) {
       toast.error("Please login first");
       return;
@@ -49,6 +50,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
         controller.setRemoveWishlistSingleProduct(product);
       }
     }
+    controller.setApiLoading(false);
   };
 
   const isInWishlist = (slug: string | undefined) => {
@@ -79,6 +81,8 @@ const ProductCardVertical: React.FC<Props> = (props) => {
       return;
     }
 
+    controller.setApiLoading(true);
+
     const cartProductData = {
       user_slug: user_slug,
       product_slug: product.slug,
@@ -108,6 +112,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
         toast.error("Failed");
       }
     }
+    controller.setApiLoading(false);
   };
 
   // const handleWishlist = () => {

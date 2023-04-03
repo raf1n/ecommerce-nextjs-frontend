@@ -62,6 +62,7 @@ const MyCart: React.FC<Props> = (props) => {
   };
 
   const handleAllCartProductClear = async () => {
+    controller.setApiLoading(true);
     if (user_slug) {
       const { res, err } = await EcommerceApi.deleteAllCartlistProduct(
         user_slug
@@ -74,6 +75,17 @@ const MyCart: React.FC<Props> = (props) => {
         controller.setClearCartlist();
       }
     }
+    controller.setApiLoading(false);
+  };
+
+  const handleDeleteFromCart = async (
+    item: ICartProduct,
+    user_slug: string
+  ) => {
+    controller.setApiLoading(true);
+    await CartHandler.handleDeleteFromCart(item, user_slug as string);
+    toast.success("Item Removed From Cart");
+    controller.setApiLoading(false);
   };
 
   return (
@@ -225,13 +237,12 @@ const MyCart: React.FC<Props> = (props) => {
                               <div className="flex space-x-1 items-center justify-center p-2">
                                 <span
                                   className="cursor-pointer"
-                                  onClick={() => {
-                                    CartHandler.handleDeleteFromCart(
+                                  onClick={() =>
+                                    handleDeleteFromCart(
                                       item,
                                       user_slug as string
-                                    );
-                                    toast.success("Item Removed From Cart");
-                                  }}
+                                    )
+                                  }
                                 >
                                   <svg
                                     width="10"

@@ -31,6 +31,7 @@ const CategoryPage: React.FC<Props> = (props) => {
   // }
 
   useEffect(() => {
+    controller.setApiLoading(true);
     const handleFilteredProducts = async () => {
       const { res, err } = await EcommerceApi.getFilteredProducts(
         states.searchString,
@@ -48,6 +49,7 @@ const CategoryPage: React.FC<Props> = (props) => {
     };
 
     handleFilteredProducts();
+    controller.setApiLoading(false);
   }, [
     states.searchString,
     states.searchCategory,

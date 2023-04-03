@@ -81,6 +81,7 @@ const ProductDetails: React.FC<Props> = (props) => {
       );
     }
 
+    controller.setApiLoading(true);
     if (user_slug) {
       if (!states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
         const cartProductData = {
@@ -114,6 +115,8 @@ const ProductDetails: React.FC<Props> = (props) => {
     } else {
       toast.error("Please Login First");
     }
+
+    controller.setApiLoading(false);
   };
 
   const isInWishlist = (slug: string | undefined) => {
@@ -126,6 +129,7 @@ const ProductDetails: React.FC<Props> = (props) => {
   };
 
   const handleWishlist = async () => {
+    controller.setApiLoading(true);
     //@ts-ignore
     const newProduct: IWishlistProduct = { ...singleProduct };
     //@ts-ignore
@@ -150,6 +154,8 @@ const ProductDetails: React.FC<Props> = (props) => {
         controller.setRemoveWishlistSingleProduct(newProduct);
       }
     }
+
+    controller.setApiLoading(false);
   };
 
   return (

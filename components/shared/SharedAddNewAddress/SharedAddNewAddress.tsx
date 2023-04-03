@@ -36,6 +36,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
   } = props;
 
   const handleSubmit = async (e: any) => {
+    controller.setApiLoading(true);
     if (user_slug) {
       e.preventDefault();
 
@@ -61,6 +62,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
     } else {
       toast.error("Please Login First");
     }
+    controller.setApiLoading(false);
   };
 
   const style = {

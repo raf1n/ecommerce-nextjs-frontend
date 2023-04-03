@@ -6,7 +6,7 @@ import { CartHandler } from "../../../../src/utils/CartHandler";
 import HeaderDropdown from "../HeaderDropdown/HeaderDropdown";
 import styles from "./styles.module.css";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
-import { ICategories } from "../../../../interfaces/models";
+import { ICartProduct, ICategories } from "../../../../interfaces/models";
 import { useRouter } from "next/router";
 import { CookiesHandler } from "../../../../src/utils/CookiesHandler";
 import { SocialLogin } from "../../../helpers/SocialLogin";
@@ -151,6 +151,16 @@ const HeaderTop: React.FC<Props> = (props) => {
       );
     }
   };
+
+  const handleDeleteFromCart = async (item: ICartProduct, user_slug: string) => {
+    controller.setApiLoading(true)
+    await CartHandler.handleDeleteFromCart(
+      item,
+      user_slug as string
+    );
+    toast.success("Item Removed From Cart");
+    controller.setApiLoading(false)
+  }
 
   return (
     <div className="print:hidden">
@@ -664,13 +674,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                                 </div>
                                 <span className="mt-[20px] mr-[15px] inline-flex cursor-pointer">
                                   <svg
-                                    onClick={() => {
-                                      CartHandler.handleDeleteFromCart(
-                                        item,
-                                        user_slug as string
-                                      );
-                                      toast.success("Item Removed From Cart");
-                                    }}
+                                    onClick={() => handleDeleteFromCart(item, user_slug as string)}
                                     width="8"
                                     height="8"
                                     viewBox="0 0 8 8"

@@ -30,14 +30,17 @@ const LoginForm: React.FC<Props> = (props) => {
   }, []);
 
   const sendEmailVerify = async () => {
+    controller.setApiLoading(true);
     SocialLogin.sendEmail();
     setErrorLogin(false);
     setSuccessLogin(false);
     toast.success("Verification sent");
+    controller.setApiLoading(false);
     // setLoggedinSendVerifyText("Verification sent");
   };
 
   const handleGoogleSignUp = async () => {
+    controller.setApiLoading(true);
     // actions.setDialogLoading(true)
     const { token, user } = await SocialLogin.loginWithGoogle();
     if (token && user?.email && user?.displayName && user?.photoURL) {
@@ -75,11 +78,14 @@ const LoginForm: React.FC<Props> = (props) => {
         }
       }
     }
+    controller.setApiLoading(false);
   };
 
   const handleEmailPasswordLogin = async (e: any) => {
     e.preventDefault();
     setLoading(true);
+    controller.setApiLoading(true);
+
     const loginPassword = e.target.password.value;
     const loginEmail = e.target.email.value;
 
@@ -151,6 +157,8 @@ const LoginForm: React.FC<Props> = (props) => {
         }
       }
     }
+
+    controller.setApiLoading(false);
   };
 
   return (
