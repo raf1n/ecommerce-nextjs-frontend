@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/globals.css";
 import { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import NextNProgress from 'nextjs-progressbar';
+import NextNProgress from "nextjs-progressbar";
 import { store } from "../src/state/StateController";
 import Header from "../components/shared/SharedHeader/Header";
 import Footer from "../components/shared/SharedFooter/Footer";
@@ -25,12 +25,13 @@ export default function MyApp(props: AppProps) {
   return (
     <Provider store={store}>
       <React.Fragment>
-      <NextNProgress
+        <NextNProgress
           color="#ffbb38"
           startPosition={0.3}
           stopDelayMs={200}
-          height={9}
+          height={6}
           showOnShallow={true}
+          options={{ showSpinner: false }}
         />
         <Toaster />
         <Header />
