@@ -25,6 +25,7 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
       );
       if (err) {
       } else {
+        toast.success("Item Removed From Wishlist");
         controller.setRemoveWishlistSingleProduct(product);
       }
     } else {

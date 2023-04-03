@@ -85,14 +85,18 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const handleCheckout = async () => {
     if (selectedMethod === "") {
       toast.error("Please Select Payment Method");
-    }
-    if (selectedMethod === "cod") {
+    } else if (selectedMethod === "cod") {
       toast.success("Your Order is Placed");
     }
-    if (!selectedAddress) {
+
+    if (addressData?.length === 0) {
+      toast.error("Please Add Shipping Address");
+      return;
+    } else if (!selectedAddress && addressData?.length !== 0) {
       toast.error("Please Select Shipping Address");
       return;
     }
+
     const { res, err } = await EcommerceApi.postOrder(order);
     if (err) {
       console.log(err);

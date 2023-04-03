@@ -44,6 +44,7 @@ const ProductCard: React.FC<Props> = (props) => {
         console.log(err);
       } else {
         console.log(res);
+        toast.success("Added To Wishlist");
         controller.setAddtoWishlist(newProduct);
       }
     } else {
@@ -53,6 +54,7 @@ const ProductCard: React.FC<Props> = (props) => {
       );
       if (err) {
       } else {
+        toast.success("Removed from Wishlist");
         controller.setRemoveWishlistSingleProduct(newProduct);
       }
     }
@@ -82,6 +84,7 @@ const ProductCard: React.FC<Props> = (props) => {
         product?.slug
       );
       if (res) {
+        toast.success("Item Deleted From Cart");
         controller.setRemoveCartItem(product);
       }
     } else {
