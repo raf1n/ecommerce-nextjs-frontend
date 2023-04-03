@@ -68,6 +68,8 @@ const ProductCard: React.FC<Props> = (props) => {
       return;
     }
 
+    controller.setApiLoading(true);
+
     const cartProductData = {
       user_slug: user_slug,
       product_slug: product.slug,
@@ -98,6 +100,8 @@ const ProductCard: React.FC<Props> = (props) => {
         toast.error("Failed");
       }
     }
+
+    controller.setApiLoading(false);
   };
 
   return (
