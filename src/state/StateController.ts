@@ -47,6 +47,7 @@ export interface IStates {
   brands: Array<IBrands>;
   initialDataLoading: boolean;
   user: IUser | null;
+  apiLoading: boolean;
 }
 
 export class Controller {
@@ -77,6 +78,7 @@ export class Controller {
     brands: [],
     initialDataLoading: true,
     user: null,
+    apiLoading: false,
   };
 
   @action
@@ -371,6 +373,11 @@ export class Controller {
   @action
   setUser(user: any) {
     this.states.user = user;
+  }
+
+  @action
+  setApiLoading(loading: boolean) {
+    this.states.apiLoading = loading;
   }
 }
 

@@ -9,6 +9,7 @@ import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { useRouter } from "next/router";
 import { IUser } from "../../../interfaces/models";
+import toast from "react-hot-toast";
 
 interface Props {}
 
@@ -32,7 +33,8 @@ const LoginForm: React.FC<Props> = (props) => {
     SocialLogin.sendEmail();
     setErrorLogin(false);
     setSuccessLogin(false);
-    setLoggedinSendVerifyText("Verification sent");
+    toast.success("Verification sent");
+    // setLoggedinSendVerifyText("Verification sent");
   };
 
   const handleGoogleSignUp = async () => {
@@ -55,17 +57,20 @@ const LoginForm: React.FC<Props> = (props) => {
       } else {
         if (res.role == "admin") {
           setErrorLogin(true);
-          setErrorTextLogin("Already registered as Admin");
+          toast.error("Already registered as Admin");
+          // setErrorTextLogin("Already registered as Admin");
         } else if (res.role == "seller") {
           setErrorLogin(true);
-          setErrorTextLogin("Already registered as Seller");
+          toast.error("Already registered as Seller");
+          // setErrorTextLogin("Already registered as Seller");
         } else if (res.slug && res.access_token) {
           controller.setUser(res);
           setErrorLogin(false);
           setSuccessLogin(true);
           CookiesHandler.setAccessToken(res.access_token);
           CookiesHandler.setSlug(res.slug as string);
-          setSuccessTextLogin("SignIn Success");
+          toast.success("SignIn Success");
+          // setSuccessTextLogin("SignIn Success");
           router.push("/profile");
         }
       }
@@ -86,15 +91,17 @@ const LoginForm: React.FC<Props> = (props) => {
       setLoading(false);
       setErrorLogin(true);
       setSuccessLogin(false);
-      setErrorTextLogin(err);
+      toast.error(err);
+      // setErrorTextLogin(err);
     } else {
       console.log("resss", res);
       setErrorLogin(false);
       setLoading(false);
       if (!res.user.emailVerified) {
-        console.log("kkk");
         setLoggedinSendVerify(true);
-        setLoggedinSendVerifyText("verify first and login again");
+        toast.error("verify first and login again");
+        // setLoggedinSendVerifyText("verify first and login again");
+        setLoggedinSendVerifyText("Click to send verification");
       } else {
         setLoggedinSendVerify(false);
         console.log("resooooo", res);
@@ -118,22 +125,26 @@ const LoginForm: React.FC<Props> = (props) => {
             setLoading(false);
             setErrorLogin(true);
             setSuccessLogin(false);
-            setErrorTextLogin("Server Error");
+            toast.error("Server Error");
+            // setErrorTextLogin("Server Error");
           } else {
             setLoading(false);
             if (res.role == "admin") {
               setErrorLogin(true);
-              setErrorTextLogin("Already registered as Admin");
+              toast.error("Already registered as Admin");
+              // setErrorTextLogin("Already registered as Admin");
             } else if (res.role == "seller") {
               setErrorLogin(true);
-              setErrorTextLogin("Already registered as Seller");
+              toast.error("Already registered as Seller");
+              // setErrorTextLogin("Already registered as Seller");
             } else if (res.slug && res.access_token) {
               controller.setUser(res);
               setErrorLogin(false);
               setSuccessLogin(true);
               CookiesHandler.setAccessToken(res.access_token);
               CookiesHandler.setSlug(res.slug as string);
-              setSuccessTextLogin("SignIn Success");
+              toast.success("SignIn Success");
+              // setSuccessTextLogin("SignIn Success");
               router.push("/");
             }
           }
@@ -260,23 +271,25 @@ const LoginForm: React.FC<Props> = (props) => {
         {successLogin && (
           <div style={{ color: "black" }}>{successTextLogin}</div>
         )}
-        {loggedinSendVerify && (
-          <button
-            type="submit"
-            style={{
-              backgroundColor: "blue",
-              borderRadius: "10px",
-              margin: "10px 0",
-              width: "300px",
-              color: "white",
-            }}
-            onClick={() => {
-              sendEmailVerify();
-            }}
-          >
-            {loggedinSendVerifyText}
-          </button>
-        )}
+        <div className="flex justify-center">
+          {loggedinSendVerify && (
+            <button
+              type="submit"
+              style={{
+                backgroundColor: "grey",
+                borderRadius: "15px",
+                margin: "10px 0",
+                width: "260px",
+                color: "white",
+              }}
+              onClick={() => {
+                sendEmailVerify();
+              }}
+            >
+              {loggedinSendVerifyText}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
