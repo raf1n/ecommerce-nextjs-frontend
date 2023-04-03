@@ -39,11 +39,11 @@ export interface ILoginResponse extends MyFetchInterface {
 }
 
 export interface IFilteredProductResponse extends MyFetchInterface {
-  res: IProduct[];
+  res: { filteredProducts: IProduct[]; count: number };
 }
 
 export interface IFilteredProductBySellerResponse extends MyFetchInterface {
-  res: { sellerData: ISeller; filteredProducts: IProduct[] };
+  res: { sellerData: ISeller; filteredProducts: IProduct[], count: number };
 }
 
 export interface IProductResponse extends MyFetchInterface {

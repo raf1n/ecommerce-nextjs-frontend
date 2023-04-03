@@ -19,6 +19,9 @@ const SellerProducts: React.FC<Props> = (props) => {
     min: 0,
     max: 15000,
   });
+  const [count, setCount] = useState<number>(0);
+  const [skip, setSkip] = useState(0);
+  const [limit, setLimit] = useState(9);
 
   useEffect(() => {
     const handleFilteredProducts = async () => {
@@ -36,6 +39,7 @@ const SellerProducts: React.FC<Props> = (props) => {
       if (res) {
         setSellerData(res.sellerData);
         controller.setFilteredProducts(res.filteredProducts);
+        setCount(res.count);
       }
     };
 
@@ -70,7 +74,12 @@ const SellerProducts: React.FC<Props> = (props) => {
                 <FilterAd />
               </div>
               <div className="flex-1 min-h-screen my-10">
-                <CategoryItemsRight setShowFilterWidget={setShowFilterWidget} />
+                <CategoryItemsRight
+                  setShowFilterWidget={setShowFilterWidget}
+                  count={count}
+                  skip={skip}
+                  limit={limit}
+                />
               </div>
             </div>
           </div>

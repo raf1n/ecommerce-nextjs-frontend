@@ -16,6 +16,9 @@ const CategoryPage: React.FC<Props> = (props) => {
     min: 0,
     max: 15000,
   });
+  const [count, setCount] = useState<number>(0);
+  const [skip, setSkip] = useState(0);
+  const [limit, setLimit] = useState(9);
 
   // const router = useRouter();
 
@@ -31,8 +34,8 @@ const CategoryPage: React.FC<Props> = (props) => {
   // }
 
   useEffect(() => {
-    controller.setApiLoading(true);
     const handleFilteredProducts = async () => {
+      controller.setApiLoading(true);
       const { res, err } = await EcommerceApi.getFilteredProducts(
         states.searchString,
         states.searchCategory,
@@ -44,12 +47,13 @@ const CategoryPage: React.FC<Props> = (props) => {
       );
 
       if (res) {
-        controller.setFilteredProducts(res);
+        controller.setFilteredProducts(res.filteredProducts);
+        setCount(res.count);
       }
+      controller.setApiLoading(false);
     };
 
     handleFilteredProducts();
-    controller.setApiLoading(false);
   }, [
     states.searchString,
     states.searchCategory,
@@ -71,7 +75,12 @@ const CategoryPage: React.FC<Props> = (props) => {
           <FilterAd />
         </div>
         <div className="flex-1 min-h-screen my-10">
-          <CategoryItemsRight setShowFilterWidget={setShowFilterWidget} />
+          <CategoryItemsRight
+            setShowFilterWidget={setShowFilterWidget}
+            count={count}
+            skip={skip}
+            limit={limit}
+          />
         </div>
       </div>
     </div>

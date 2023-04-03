@@ -10,9 +10,17 @@ import ProductCardVertical from "./../../shared/SharedProductCard/ProductCardVer
 interface Props {
   bannerImg?: string;
   setShowFilterWidget: React.Dispatch<React.SetStateAction<boolean>>;
+  count: number;
+  skip: number;
+  limit: number;
 }
 
-const CategoryItemsRight: React.FC<Props> = ({ setShowFilterWidget }) => {
+const CategoryItemsRight: React.FC<Props> = ({
+  setShowFilterWidget,
+  count,
+  skip,
+  limit,
+}) => {
   const states = useSelector(() => controller.states);
 
   const [cardType, setCardType] = useState("normal");
@@ -20,12 +28,25 @@ const CategoryItemsRight: React.FC<Props> = ({ setShowFilterWidget }) => {
   const bannerImg =
     "https://api.websolutionus.com/shopo/uploads/website-images/Mega-menu-2022-10-27-01-44-41-4959.png";
 
+  const showCountResult = (count: number) => {
+    if (!count) {
+      return `0 results`;
+    } else if (count === 1) {
+      return `1 result`;
+    } else if (count <= limit) {
+      return `1-${count} of ${count} results`;
+    } else if (count > limit) {
+      return `1-${limit} of ${count} results`;
+    }
+  };
+
   return (
     <div className="w-full">
       <div className="products-sorting w-full bg-white md:h-[70px] flex md:flex-row flex-col md:space-y-0 space-y-5 md:justify-between md:items-center p-[30px] mb-[40px]">
         <div>
           <p className="font-400 text-[13px]">
-            <span className="text-qgray"> Showing</span> 1-7 of 7 results
+            <span className="text-qgray"> Showing</span>{" "}
+            {showCountResult(count)}
           </p>
         </div>
         <div className="flex space-x-3 items-center">
