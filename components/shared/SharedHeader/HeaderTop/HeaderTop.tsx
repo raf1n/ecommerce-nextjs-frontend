@@ -49,9 +49,14 @@ const HeaderTop: React.FC<Props> = (props) => {
 
   console.log({ asPath, router });
 
-  if (pathname !== "/products" && searchRef.current) {
-    searchRef.current.value === "";
-  }
+  useEffect(() => {
+    if (pathname !== "/products" && searchRef.current) {
+      searchRef.current.value = "";
+      controller.setSearchString("");
+      setSearchCategory(undefined);
+      console.log(searchRef.current);
+    }
+  }, [pathname]);
 
   const sideDropdown = () => {
     // console.log("open");
@@ -147,11 +152,25 @@ const HeaderTop: React.FC<Props> = (props) => {
   };
 
   const handleSearch = () => {
-    if (searchString) {
-      controller.setSearchString(searchString);
+    if (searchRef.current?.value && !searchCategory) {
+      controller.setSearchString(searchRef.current?.value);
+      controller.setSearchCategory("", true);
+      router.push(`/products?search=${searchRef.current?.value}`);
     }
 
-    if (searchCategory) {
+    // if (searchCategory) {
+    //   const selectedCategory = states.categories.find(
+    //     (cat) => cat.cat_name === searchCategory.cat_name
+    //   );
+
+    //   if (selectedCategory) {
+    //     controller.setSearchCategory(selectedCategory.cat_slug, true);
+    //   }
+    // }
+
+    if (searchCategory && !searchRef.current?.value) {
+      controller.setSearchString("");
+
       const selectedCategory = states.categories.find(
         (cat) => cat.cat_name === searchCategory.cat_name
       );
@@ -159,13 +178,29 @@ const HeaderTop: React.FC<Props> = (props) => {
       if (selectedCategory) {
         controller.setSearchCategory(selectedCategory.cat_slug, true);
       }
+
+      router.push(`/products?category=${searchCategory.cat_name}`);
     }
 
-    if (searchCategory || searchString) {
+    if (searchCategory && searchRef.current?.value) {
+      controller.setSearchString(searchRef.current?.value);
+
+      const selectedCategory = states.categories.find(
+        (cat) => cat.cat_name === searchCategory.cat_name
+      );
+
+      if (selectedCategory) {
+        controller.setSearchCategory(selectedCategory.cat_slug, true);
+      }
+
       router.push(
-        `/products?${searchString ? `search=${searchString}` : ""}${
+        `/products?${
+          searchRef.current?.value ? `search=${searchRef.current?.value}` : ""
+        }${
           searchCategory
-            ? `${searchString ? "&" : ""}category=${searchCategory.cat_name}`
+            ? `${searchRef.current?.value ? "&" : ""}category=${
+                searchCategory.cat_name
+              }`
             : ""
         }`
       );
