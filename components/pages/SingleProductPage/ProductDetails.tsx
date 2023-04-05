@@ -47,12 +47,7 @@ const ProductDetails: React.FC<Props> = (props) => {
       setTotalReview(res.length);
       res.map((data) => {
         rating = rating + data.rating / res.length;
-        if (rating / 0.5 !== 0) {
-          setAvgRating(rating);
-        } else {
-          rating = Math.floor(rating * 2) / 2;
-          setAvgRating(rating);
-        }
+        setAvgRating(rating);
       });
     }
   };
@@ -205,7 +200,7 @@ const ProductDetails: React.FC<Props> = (props) => {
           )}
         </div>
         {totalReview && (
-          <span className="font-semibold text-[15px] font-normal text-qblack">
+          <span className="font-semibold text-[15px]  text-qblack">
             {" "}
             {totalReview} Reviews
           </span>
