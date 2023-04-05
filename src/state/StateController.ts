@@ -48,6 +48,8 @@ export interface IStates {
   initialDataLoading: boolean;
   user: IUser | null;
   apiLoading: boolean;
+  flashSaleDataTime: string;
+  // relatedProductData: Array<IProduct>;
 }
 
 export class Controller {
@@ -79,6 +81,8 @@ export class Controller {
     initialDataLoading: true,
     user: null,
     apiLoading: false,
+    flashSaleDataTime: "",
+    // relatedProductData: [],
   };
 
   @action
@@ -161,6 +165,11 @@ export class Controller {
   }
 
   @action
+  setflashSaleDataTime(time: string) {
+    this.states.flashSaleDataTime = time;
+  }
+
+  @action
   setClearSearchBrand() {
     this.states.searchBrand = "";
   }
@@ -221,6 +230,7 @@ export class Controller {
     this.states.topProducts = product;
     this.states.bestProducts = product;
     this.states.newProducts = product;
+    // this.states.relatedProductData = product;
   }
 
   @action
@@ -232,6 +242,11 @@ export class Controller {
   setPopularProducts(product: Array<IProduct>) {
     this.states.popularProducts = product;
   }
+
+  // @action
+  // setRelatedProductData(product: Array<IProduct>) {
+  //   this.states.relatedProductData = product;
+  // }
 
   @action
   setTopProducts(product: Array<IProduct>) {

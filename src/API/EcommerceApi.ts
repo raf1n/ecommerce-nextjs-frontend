@@ -21,6 +21,7 @@ import {
   IMegaCategoriesResponse,
   IOrderResponse,
   IPopularCategoriesResponse,
+  IRelatedProductResponse,
   IReviewsResponse,
   ISellerResponse,
   ISingleAddressResponse,
@@ -901,6 +902,22 @@ export class EcommerceApi {
 
     return await callFetch(
       `${API_ENDPOINT}/flash-sale/content/${name}`,
+      requestOptions
+    );
+  }
+
+  // getsellerwithProducts
+
+  static async getRelatedProduct(catSlug: string | undefined): Promise<any> {
+    const myHeaders = new Headers();
+    // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/products/admin/related/${catSlug}`,
       requestOptions
     );
   }

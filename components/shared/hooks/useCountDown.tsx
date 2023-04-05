@@ -5,6 +5,7 @@ import { controller } from "../../../src/state/StateController";
 interface Props {}
 
 const useCountDown = (date: any) => {
+  console.log(date);
   const states = useSelector(() => controller.states);
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);

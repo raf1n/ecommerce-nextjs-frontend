@@ -17,10 +17,22 @@ interface Props {
 
 const Campaign: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const { days, hours, minutes, seconds } = useCountDown("15 March, 2024");
+  // const { days, hours, minutes, seconds } = useCountDown("15 March, 2024");
   // console.log(days, hours, minutes, seconds); //"15 March, 2024"
 
   const [saleData, setSaleData] = useState<IFlashSale>();
+
+  const inputDate = states.flashSaleDataTime;
+  const date = new Date(inputDate);
+  // const options = { day: "numeric", month: "long", year: "numeric" };
+  const outputDate = date.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  console.log(outputDate);
+
+  const { days, hours, minutes, seconds } = useCountDown(outputDate);
 
   useEffect(() => {
     const fetchAllflashData = async () => {

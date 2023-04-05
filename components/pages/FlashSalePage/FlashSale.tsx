@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import ProductCard from "../../shared/SharedProductCard/ProductCard";
-import { IFlashSaleProducts } from "../../../interfaces/models";
+import { IFlashSale, IFlashSaleProducts } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import useCountDown from "../../shared/hooks/useCountDown";
 interface Props {}
@@ -10,7 +10,41 @@ interface Props {}
 const FlashSale: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [flashSaleData, setFlashSaleData] = useState<IFlashSaleProducts[]>([]);
-  const { days, hours, minutes, seconds } = useCountDown("12 May, 2023");
+  const [saleData, setSaleData] = useState<IFlashSale>();
+  const [loading, setloading] = useState(true);
+  const [outputTime, setOutputTime] = useState("15 March,2023");
+
+  useEffect(() => {
+    const fetchAllflashData = async () => {
+      const { res, err } = await EcommerceApi.getFlashSaleContent(
+        "flashcontnet"
+      );
+      if (err) {
+        console.log(err);
+      } else {
+        setSaleData(res);
+        // controller.setflashSaleDataTime(res.time);
+        // setloading(false);
+        // const inputDate = states.flashSaleDataTime;
+        const date = new Date(res.time);
+        // const options = { day: "numeric", month: "long", year: "numeric" };
+        const outputDate = date.toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
+        console.log(outputDate);
+        setOutputTime(outputDate);
+
+        // console.log(res);
+      }
+    };
+    fetchAllflashData();
+  }, []);
+
+  // if (!loading) {
+  //   const { days, hours, minutes, seconds } = useCountDown(outputDate);
+  // }
 
   useEffect(() => {
     const fetchAllFlashSalesData = async () => {
@@ -34,7 +68,8 @@ const FlashSale: React.FC<Props> = (props) => {
             backgroundImage:
               "url(https://api.websolutionus.com/shopo/uploads/website-images/flash_sale--2022-09-20-10-54-12-8555.png)",
           }}
-          className="flash-ad w-full h-[400px] flex sm:justify-end justify-center items-center mb-10 aos-init aos-animate">
+          className="flash-ad w-full h-[400px] flex sm:justify-end justify-center items-center mb-10 aos-init aos-animate"
+        >
           {/* <img
             src="https://api.websolutionus.com/shopo/uploads/website-images/flash_sale--2022-09-20-10-54-12-8555.png"
             alt=""
@@ -44,7 +79,7 @@ const FlashSale: React.FC<Props> = (props) => {
               <div className="countdown-item ">
                 <div className="  countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
                   <span className=" font-700 sm:text-[30px] font-bold text-base text-[#EB5757]">
-                    {days}
+                    {!loading && outputTime && useCountDown(outputTime).days}
                   </span>
                 </div>
                 <p className="sm:text-[18px] text-xs font-500 text-center leading-8 text-white">
@@ -54,7 +89,7 @@ const FlashSale: React.FC<Props> = (props) => {
               <div className="countdown-item">
                 <div className="countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
                   <span className="font-700 sm:text-[30px] font-bold text-base text-[#d557eb]">
-                    {hours}
+                    {!loading && outputTime && useCountDown(outputTime).hours}
                   </span>
                 </div>
                 <p className="sm:text-[18px] text-xs font-500 text-center leading-8 text-white">
@@ -64,7 +99,7 @@ const FlashSale: React.FC<Props> = (props) => {
               <div className="countdown-item">
                 <div className="countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
                   <span className="font-700 sm:text-[30px] font-bold text-base text-[#5772eb]">
-                    {minutes}
+                    {!loading && outputTime && useCountDown(outputTime).minutes}
                   </span>
                 </div>
                 <p className="sm:text-[18px] text-xs font-500 text-center leading-8 text-white">
@@ -74,7 +109,7 @@ const FlashSale: React.FC<Props> = (props) => {
               <div className="countdown-item">
                 <div className="countdown-number sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
                   <span className="font-700 sm:text-[30px] font-bold text-base text-[#57ebd7]">
-                    {seconds}
+                    {!loading && outputTime && useCountDown(outputTime).seconds}
                   </span>
                 </div>
                 <p className="sm:text-[18px] text-xs font-500 text-center leading-8 text-white">
@@ -90,7 +125,8 @@ const FlashSale: React.FC<Props> = (props) => {
               {flashSaleData.map((product, index) => (
                 <ProductCard
                   key={index}
-                  product={product.productsData}></ProductCard>
+                  product={product.productsData}
+                ></ProductCard>
               ))}
             </div>
           </div>
