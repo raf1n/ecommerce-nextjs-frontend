@@ -41,35 +41,30 @@ const HeaderTop: React.FC<Props> = (props) => {
     undefined
   );
 
-  const [searchString, setSearchString] = useState("");
+  // const [searchString, setSearchString] = useState("");
   const searchRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
-  const { asPath, pathname } = router;
+  const { asPath, route } = router;
 
   console.log({ asPath, router });
 
   useEffect(() => {
-    if (pathname !== "/products" && searchRef.current) {
+    if (route !== "/products" && searchRef.current) {
       searchRef.current.value = "";
-      controller.setSearchString("");
       setSearchCategory(undefined);
-      console.log(searchRef.current);
     }
-  }, [pathname]);
+  }, [route]);
 
   const sideDropdown = () => {
-    // console.log("open");
     setSideDropdownOpen(!sideDropdownOpen);
   };
 
   const routeSideDropdown = () => {
-    // console.log("open2");
     setShowCategory(!showCategory);
   };
 
   const topAllCategoriesDropdown = () => {
-    // console.log("open2");
     setShowTopAllCatgory(!showTopAllCatgory);
   };
 
@@ -92,7 +87,6 @@ const HeaderTop: React.FC<Props> = (props) => {
     const { res, err } = await EcommerceApi.getCategories();
     if (res) {
       controller.setCategories(res);
-      // console.log(res);
     }
   };
 
@@ -122,88 +116,64 @@ const HeaderTop: React.FC<Props> = (props) => {
     }
   };
 
+  const getAllCartData = async () => {
+    const { res, err } = await EcommerceApi.getAllCartData(user_slug);
+    if (res) {
+      controller.setAllCartListData(res);
+    }
+  };
+
+  const getAllWishlistData = async () => {
+    const { res, err } = await EcommerceApi.getAllWishlistProducts(user_slug);
+    if (res) {
+      controller.setAllWishlistData(res);
+    }
+  };
+
   useEffect(() => {
-    const getAllCartData = async () => {
-      const { res, err } = await EcommerceApi.getAllCartData(user_slug);
-      if (res) {
-        controller.setAllCartListData(res);
-      }
+    const dataLoading = async () => {
+      await Promise.all([
+        getSingleUser(),
+        getAllWishlistData(),
+        getAllCartData(),
+        fetchAllCategories(),
+        fetchAllSubCategories(),
+        fetchAllBrands(),
+      ]);
     };
 
-    const getAllWishlistData = async () => {
-      const { res, err } = await EcommerceApi.getAllWishlistProducts(user_slug);
-      if (res) {
-        controller.setAllWishlistData(res);
-      }
-    };
+    dataLoading();
 
-    getSingleUser();
-    getAllWishlistData();
-    getAllCartData();
-    fetchAllCategories();
-    fetchAllSubCategories();
-    fetchAllBrands();
     controller.setInitialDataLoading();
   }, []);
 
-  const handleChangeSearch = (e: any) => {
-    const input = e.target.value;
-    setSearchString(input);
-  };
-
   const handleSearch = () => {
     if (searchRef.current?.value && !searchCategory) {
-      controller.setSearchString(searchRef.current?.value);
-      controller.setSearchCategory("", true);
-      router.push(`/products?search=${searchRef.current?.value}`);
+      router.push({
+        pathname: "products",
+        query: {
+          search: searchRef.current?.value,
+        },
+      });
     }
 
-    // if (searchCategory) {
-    //   const selectedCategory = states.categories.find(
-    //     (cat) => cat.cat_name === searchCategory.cat_name
-    //   );
-
-    //   if (selectedCategory) {
-    //     controller.setSearchCategory(selectedCategory.cat_slug, true);
-    //   }
-    // }
-
     if (searchCategory && !searchRef.current?.value) {
-      controller.setSearchString("");
-
-      const selectedCategory = states.categories.find(
-        (cat) => cat.cat_name === searchCategory.cat_name
-      );
-
-      if (selectedCategory) {
-        controller.setSearchCategory(selectedCategory.cat_slug, true);
-      }
-
-      router.push(`/products?category=${searchCategory.cat_name}`);
+      router.push({
+        pathname: "products",
+        query: {
+          category: "+" + searchCategory.cat_slug,
+        },
+      });
     }
 
     if (searchCategory && searchRef.current?.value) {
-      controller.setSearchString(searchRef.current?.value);
-
-      const selectedCategory = states.categories.find(
-        (cat) => cat.cat_name === searchCategory.cat_name
-      );
-
-      if (selectedCategory) {
-        controller.setSearchCategory(selectedCategory.cat_slug, true);
-      }
-
-      router.push(
-        `/products?${
-          searchRef.current?.value ? `search=${searchRef.current?.value}` : ""
-        }${
-          searchCategory
-            ? `${searchRef.current?.value ? "&" : ""}category=${
-                searchCategory.cat_name
-              }`
-            : ""
-        }`
-      );
+      router.push({
+        pathname: "products",
+        query: {
+          search: searchRef.current?.value,
+          category: "+" + searchCategory.cat_slug,
+        },
+      });
     }
   };
 
@@ -227,7 +197,6 @@ const HeaderTop: React.FC<Props> = (props) => {
           className="w-full h-screen bg-black bg-opacity-40 z-40 left-0 top-0 fixed"
         ></div>
       )}
-      {/* {sideDropdownOpen && ( */}
       <div
         className={`w-[280px] transition-all duration-300 ease-in-out h-screen overflow-y-auto overflow-x-hidden overflow-style-none bg-white fixed left-0 top-0 z-50 ${
           sideDropdownOpen ? "-left-[0px]" : "-left-[280px]"
@@ -262,7 +231,6 @@ const HeaderTop: React.FC<Props> = (props) => {
                 type="search"
                 className="w-full text-xs h-full focus:outline-none focus:ring-0 placeholder:text-qgraytwo pl-2.5 "
                 placeholder="Search Product..."
-                onChange={handleChangeSearch}
               />
             </div>
             <div
@@ -296,7 +264,6 @@ const HeaderTop: React.FC<Props> = (props) => {
         </div>
 
         {showCategory && (
-          //Catagory
           <div className="category-item mt-5 w-full">
             <ul className="categories-list">
               {states.categories.map((category: ICategories) => (
@@ -420,7 +387,6 @@ const HeaderTop: React.FC<Props> = (props) => {
                     <div className="flex-1 bg-red-500 h-full">
                       <div className="h-full">
                         <input
-                          onChange={handleChangeSearch}
                           name="searchInput"
                           type="text"
                           className={styles["search-input"]}
@@ -446,8 +412,8 @@ const HeaderTop: React.FC<Props> = (props) => {
                           <DownArrowIcon />
                         </span>
                       </button>
-                      {/* all categories div */}
 
+                      {/* all categories div */}
                       {showTopAllCatgory && (
                         <div>
                           <div
@@ -466,18 +432,16 @@ const HeaderTop: React.FC<Props> = (props) => {
                             <ul className="flex flex-col space-y-2">
                               {states.categories.map(
                                 (items: ICategories, index) => (
-                                  <>
-                                    <li
-                                      onClick={() => {
-                                        topAllCategoriesDropdown();
-                                        setSearchCategory(items);
-                                      }}
-                                    >
-                                      <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
-                                        {items.cat_name}
-                                      </span>
-                                    </li>
-                                  </>
+                                  <li
+                                    onClick={() => {
+                                      topAllCategoriesDropdown();
+                                      setSearchCategory(items);
+                                    }}
+                                  >
+                                    <span className="text-qgray text-sm font-400 border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
+                                      {items.cat_name}
+                                    </span>
+                                  </li>
                                 )
                               )}
                             </ul>
@@ -536,45 +500,14 @@ const HeaderTop: React.FC<Props> = (props) => {
                               <li className="w-full h-full flex justify-between">
                                 <div className="flex space-x-[6px] justify-center items-center px-4 my-[20px]">
                                   <div className="w-[65px] h-full relative">
-                                    <span
-                                      style={{
-                                        boxSizing: "border-box",
-                                        display: "block",
-                                        overflow: "hidden",
-                                        width: "initial",
-                                        height: "initial",
-                                        background: "none",
-                                        opacity: "1",
-                                        border: "0px",
-                                        margin: "0px",
-                                        padding: "0px",
-                                        position: "absolute",
-                                        inset: "0px",
-                                      }}
-                                    >
+                                    <span>
                                       <img
                                         alt=""
                                         sizes="100vw"
                                         src={item.imageURL[0]}
-                                        // src="/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fcustom-images%2Fapple-watch-pro-2022-09-26-12-04-40-6657.png&amp;w=3840&amp;q=75"
                                         decoding="async"
                                         data-nimg="fill"
                                         className="w-full h-full object-contain"
-                                        style={{
-                                          position: "absolute",
-                                          inset: "0px",
-                                          boxSizing: "border-box",
-                                          padding: "0px",
-                                          border: "none",
-                                          margin: "auto",
-                                          display: "block",
-                                          width: "0px",
-                                          height: "0px",
-                                          minWidth: "100%",
-                                          maxWidth: "100%",
-                                          minHeight: "100%",
-                                          maxHeight: "100%",
-                                        }}
                                       />
                                     </span>
                                   </div>
@@ -678,11 +611,6 @@ const HeaderTop: React.FC<Props> = (props) => {
                                 className={`${styles["productItems"]} h-[250px] overflow-y-scroll p-5`}
                               >
                                 {isOpen && (
-                                  // <ul>
-                                  //   <li>Option 1</li>
-                                  //   <li>Option 2</li>
-                                  //   <li>Option 3</li>
-                                  // </ul>
                                   <div>
                                     <ul className="w-full flex flex-col space-y-5 text-left ">
                                       <li className="text-base text-qgraytwo">
@@ -691,7 +619,6 @@ const HeaderTop: React.FC<Props> = (props) => {
                                           {states.user?.displayName
                                             ? states.user?.displayName
                                             : states.user?.fullName}
-                                          {/* {states.user?.displayName} */}
                                         </span>
                                       </li>
                                       <li className="text-base text-qgraytwo cursor-pointer hover:text-qblack hover:font-semibold">
@@ -726,7 +653,6 @@ const HeaderTop: React.FC<Props> = (props) => {
                                       </li>
                                     </ul>
                                     <div className="w-full flex justify-center items-center border-t border-qgray-border">
-                                      {/* <Link href={"/login"}> */}
                                       <button
                                         onClick={() => signOut()}
                                         type="button"
@@ -734,25 +660,16 @@ const HeaderTop: React.FC<Props> = (props) => {
                                       >
                                         Sign Out
                                       </button>
-                                      {/* </Link> */}
                                     </div>
                                   </div>
                                 )}
                               </div>
                             </div>
                           </div>
-                          {/* <button onClick={toggleDropdown}></button> */}
                         </span>
                       </div>
                     </span>
                   </div>
-                  {/* <button
-                    className="compaire relative"
-                    onClick={toggleDropdown}
-                  >
-                    <Link rel="noopener noreferrer" href="/profile">
-                    </Link>
-                  </button> */}
                 </div>
               </div>
             </div>

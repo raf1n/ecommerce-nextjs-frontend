@@ -6,8 +6,11 @@ import ShopNowBtn from "../../helpers/Buttons/ShopNowBtn";
 import ProductCard from "../../shared/SharedProductCard/ProductCard";
 import BestDealBanner from "../HomePagee/BestDealBanner/BestDealBanner";
 import ProductCardVertical from "./../../shared/SharedProductCard/ProductCardVertical";
+import { IProduct } from "../../../interfaces/models";
+import { FilterIcon, NormalOrientation, VerticalOrientation } from "../../../src/utils/SvgReturn";
 
 interface Props {
+  filteredProducts: IProduct[];
   bannerImg?: string;
   setShowFilterWidget: React.Dispatch<React.SetStateAction<boolean>>;
   count: number;
@@ -16,6 +19,7 @@ interface Props {
 }
 
 const CategoryItemsRight: React.FC<Props> = ({
+  filteredProducts,
   setShowFilterWidget,
   count,
   skip,
@@ -32,7 +36,7 @@ const CategoryItemsRight: React.FC<Props> = ({
     if (!count) {
       return `0 results`;
     } else if (count === 1) {
-      return `1 result`;
+      return `${count} of ${count} result`;
     } else if (count <= limit) {
       return `1-${count} of ${count} results`;
     } else if (count > limit) {
@@ -58,14 +62,7 @@ const CategoryItemsRight: React.FC<Props> = ({
             }`}
             onClick={() => setCardType("normal")}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              className="fill-current"
-            >
-              <path fill="none" d="M0 0h24v24H0z"></path>
-              <path d="M11 5H5v14h6V5zm2 0v14h6V5h-6zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path>
-            </svg>
+            <NormalOrientation />
           </button>
           <button
             type="button"
@@ -74,14 +71,7 @@ const CategoryItemsRight: React.FC<Props> = ({
             }`}
             onClick={() => setCardType("vertical")}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              className="fill-current"
-            >
-              <path fill="none" d="M0 0h24v24H0z"></path>
-              <path d="M19 11V5H5v6h14zm0 2H5v6h14v-6zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path>
-            </svg>
+            <VerticalOrientation />
           </button>
         </div>
         <button
@@ -89,20 +79,7 @@ const CategoryItemsRight: React.FC<Props> = ({
           onClick={() => setShowFilterWidget(true)}
           className="w-10 lg:hidden h-10 rounded flex justify-center items-center border border-qyellow text-qyellow"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-            ></path>
-          </svg>
+          <FilterIcon />
         </button>
       </div>
       <div
@@ -112,7 +89,7 @@ const CategoryItemsRight: React.FC<Props> = ({
             : "lg:grid-cols-2"
         }  grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]`}
       >
-        {states.filteredProducts.slice(0, 6).map((product) => {
+        {filteredProducts.slice(0, 6).map((product) => {
           if (cardType === "normal") {
             return <ProductCard product={product} />;
           } else {
@@ -153,7 +130,7 @@ const CategoryItemsRight: React.FC<Props> = ({
             : "lg:grid-cols-2"
         }  grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]`}
       >
-        {states.filteredProducts.slice(6).map((product) => {
+        {filteredProducts.slice(6).map((product) => {
           if (cardType === "normal") {
             return <ProductCard product={product} />;
           } else {
@@ -161,13 +138,6 @@ const CategoryItemsRight: React.FC<Props> = ({
           }
         })}
       </div>
-
-      {/* ekhane abar keno product add kora holo ???*/}
-      {/* <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]">
-        {Jsondata.newReleasedProducts.slice(7).map((product) => (
-          <ProductCard product={product}></ProductCard>
-        ))}
-      </div> */}
     </div>
   );
 };
