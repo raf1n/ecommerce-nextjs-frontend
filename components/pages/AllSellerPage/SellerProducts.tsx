@@ -25,6 +25,7 @@ const SellerProducts: React.FC<Props> = (props) => {
 
   useEffect(() => {
     const handleFilteredProducts = async () => {
+      controller.setApiLoading(true);
       const { res, err } = await EcommerceApi.getFilteredProductsBySeller(
         states.searchSeller,
         states.searchString,
@@ -41,6 +42,7 @@ const SellerProducts: React.FC<Props> = (props) => {
         controller.setFilteredProducts(res.filteredProducts);
         setCount(res.count);
       }
+      controller.setApiLoading(false);
     };
 
     handleFilteredProducts();

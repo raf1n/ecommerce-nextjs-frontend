@@ -2,8 +2,9 @@ import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
-import { FaRegHeart, FaFlag } from "react-icons/fa";
-// import ReactStars from "react-rating-stars-component";
+import { FaRegHeart, FaFlag, FaRegStar, FaStarHalfAlt, FaStar } from "react-icons/fa";
+//@ts-ignore
+import ReactStars from "react-rating-stars-component";
 import { useRouter } from "next/router";
 import FacebookIcon from "react-share/lib/FacebookIcon";
 import TwitterIcon from "react-share/lib/TwitterIcon";
@@ -170,76 +171,18 @@ const ProductDetails: React.FC<Props> = (props) => {
 
       <div className="flex gap-x-[10px] items-center mb-6">
         <div className="flex">
-          <span className="text-gray-500">
-            <svg
-              width="18"
-              height="17"
-              viewBox="0 0 18 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
-            </svg>
-          </span>
-          <span className="text-gray-500">
-            <svg
-              width="18"
-              height="17"
-              viewBox="0 0 18 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
-            </svg>
-          </span>
-          <span className="text-gray-500">
-            <svg
-              width="18"
-              height="17"
-              viewBox="0 0 18 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
-            </svg>
-          </span>
-          <span className="text-gray-500">
-            <svg
-              width="18"
-              height="17"
-              viewBox="0 0 18 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
-            </svg>
-          </span>
-          <span className="text-gray-500">
-            <svg
-              width="18"
-              height="17"
-              viewBox="0 0 18 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
-            </svg>
-          </span>
+          <ReactStars
+            count={5}
+            value={3.8}
+            edit={false}
+            size={24}
+            isHalf={true}
+            emptyIcon={<FaRegStar />}
+            halfIcon={<FaStarHalfAlt />}
+            fullIcon={<FaStar />}
+            activeColor="rgb(255, 168, 0)"
+            color="#d3d3d3"
+          />
         </div>
         <span className="text-[13px] font-normal text-qblack">
           {/* {props.itemDetail?.reviews?.length}  */}
