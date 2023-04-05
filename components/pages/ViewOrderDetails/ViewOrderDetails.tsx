@@ -81,11 +81,12 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
               <div className="flex lg:space-x-[373px] space-x-[90px] rtl:space-x-reverse w-full h-full justify-center">
                 <div className="relative">
                   {orderData &&
-                  (orderData.order_status === "progress" ||
+                  (orderData.order_status === "pending" ||
+                    orderData.order_status === "progress" ||
                     orderData.order_status === "delivered") ? (
-                    <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
-                  ) : (
                     <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
+                  ) : (
+                    <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
                   )}
                   <div className="lg:w-[400px] w-[100px] h-[8px] absolute ltr:lg:-left-[390px] ltr:-left-[92px] rtl:lg:-right-[390px] rtl:-right-[92px] top-[10px] z-10  bg-white"></div>
                   <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
@@ -93,10 +94,10 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                   </p>
                 </div>
                 <div className="relative">
-                  {orderData && orderData.order_status === "progress" ? (
-                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
-                  ) : (
+                  {orderData && orderData.order_status === "pending" ? (
                     <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
+                  ) : (
+                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
                   )}
 
                   <div className="lg:w-[400px] w-[100px] h-[8px] absolute ltr:lg:-left-[390px] ltr:-left-[92px] rtl:lg:-right-[390px] rtl:-right-[92px] top-[10px] z-10  bg-white"></div>
@@ -105,10 +106,12 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                   </p>
                 </div>
                 <div className="relative">
-                  {orderData && orderData.order_status === "delivered" ? (
-                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
-                  ) : (
+                  {orderData &&
+                  (orderData.order_status === "pending" ||
+                    orderData.order_status === "progress") ? (
                     <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
+                  ) : (
+                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
                   )}
                   <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
                     Delivered

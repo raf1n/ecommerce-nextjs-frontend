@@ -774,7 +774,7 @@ export class EcommerceApi {
 
     return await callFetch(`${API_ENDPOINT}/blog-comments`, requestOptions);
   }
-
+  //get all blogs
   static async getAllBlogs(): Promise<IBlogResponse> {
     const myHeaders = new Headers();
     const requestOptions = {
@@ -794,7 +794,10 @@ export class EcommerceApi {
       redirect: "follow",
     };
 
-    return await callFetch(`${API_ENDPOINT}/blogcategories`, requestOptions);
+    return await callFetch(
+      `${API_ENDPOINT}/blogcategories/for-blog`,
+      requestOptions
+    );
   }
 
   // get filtered blog
