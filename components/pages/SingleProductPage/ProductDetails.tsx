@@ -170,12 +170,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -184,12 +182,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -198,12 +194,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -212,12 +206,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
           <span className="text-gray-500">
@@ -226,12 +218,10 @@ const ProductDetails: React.FC<Props> = (props) => {
               height="17"
               viewBox="0 0 18 17"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
+                fill="#D2D8E1"></path>
             </svg>
           </span>
         </div>
@@ -242,11 +232,20 @@ const ProductDetails: React.FC<Props> = (props) => {
       </div>
 
       <div className="flex gap-x-2 items-baseline mb-7">
-        <span className="font-semibold line-through text-qgray text-[15px]">
+        <span
+          className={`${
+            props.singleProduct?.offerPrice
+              ? "line-through text-qgray"
+              : "text-red-500 text-[24px]"
+          }  font-semibold  text-[15px]`}>
           ${props.singleProduct?.price}
         </span>
         <span className="text-red-500 font-semibold text-[24px] ml-2">
-          ${props.singleProduct?.offerPrice}
+          {props.singleProduct?.offerPrice ? `$` : ""}
+
+          {props.singleProduct?.offerPrice
+            ? props.singleProduct?.offerPrice
+            : ""}
         </span>
       </div>
 
@@ -276,8 +275,7 @@ const ProductDetails: React.FC<Props> = (props) => {
                 }
               }}
               type="button"
-              className="text-base text-qgray"
-            >
+              className="text-base text-qgray">
               -
             </button>
             <span className="text-qblack">{cartQuantity}</span>
@@ -288,8 +286,7 @@ const ProductDetails: React.FC<Props> = (props) => {
                 }
               }}
               type="button"
-              className="text-base text-qgray"
-            >
+              className="text-base text-qgray">
               +
             </button>
           </div>
@@ -297,8 +294,7 @@ const ProductDetails: React.FC<Props> = (props) => {
 
         <button
           onClick={handleWishlist}
-          className="w-[60px] h-full flex justify-center items-center border border-qgray-border"
-        >
+          className="w-[60px] h-full flex justify-center items-center border border-qgray-border">
           <span className="w-10 h-10 flex text-black hover:text-black justify-center items-center transition-all duration-300 ease-in-out   rounded">
             {
               //@ts-ignore
@@ -324,8 +320,7 @@ const ProductDetails: React.FC<Props> = (props) => {
             onClick={() =>
               handleIncreaseQuantity(props.singleProduct as ICartProduct)
             }
-            className="bg-black text-white text-sm font-semibold w-full h-full"
-          >
+            className="bg-black text-white text-sm font-semibold w-full h-full">
             Add To Cart
           </button>
         </div>
@@ -342,24 +337,21 @@ const ProductDetails: React.FC<Props> = (props) => {
         <button
           onClick={() => setReportModalSlug("aaa")}
           type="button"
-          className="font-semibold text-[13px]"
-        >
+          className="font-semibold text-[13px]">
           Report This Item
         </button>
       </div>
 
       <div
         data-aos="fade-up"
-        className="social-share flex items-center w-full aos-init aos-animate"
-      >
+        className="social-share flex items-center w-full aos-init aos-animate">
         <span className="text-qblack text-[13px] mr-[17px] inline-block">
           Share This
         </span>
         <div className="flex items-center">
           <div
             aria-label="facebook"
-            className="bg-transparent border-none p-0 cursor-pointer"
-          >
+            className="bg-transparent border-none p-0 cursor-pointer">
             <FacebookShareButton url={shareableRoute}>
               <FacebookIcon
                 size={40}
@@ -370,8 +362,7 @@ const ProductDetails: React.FC<Props> = (props) => {
           </div>
           <div
             aria-label="twitter"
-            className="bg-transparent border-none p-0 cursor-pointer"
-          >
+            className="bg-transparent border-none p-0 cursor-pointer">
             <TwitterShareButton url={shareableRoute}>
               <TwitterIcon
                 size={40}
