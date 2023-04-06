@@ -23,6 +23,7 @@ const PopularCategory: React.FC<Props> = (props) => {
       } else {
         setSlug(res[0]?.cat_slug);
         setPopularCategoriesData(res);
+        console.log("Pop", res);
       }
     };
     fetchAllPopularCategoriesData();
@@ -60,7 +61,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                                   onClick={() => setSlug(singlePop?.cat_slug)}
                                   className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
                                 >
-                                  {singlePop.cat_name}
+                                  {singlePop?.categoriesData?.cat_name}
                                 </span>
                               </li>
                             </>

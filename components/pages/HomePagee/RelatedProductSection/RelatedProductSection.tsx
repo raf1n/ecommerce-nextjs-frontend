@@ -82,7 +82,7 @@ const RelatedProductSection: React.FC<Props> = (props) => {
                       .slice(0, 2) */}
                   <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
                     {relatedProduct
-                      .slice(0, 2)
+                      .slice(0, 4)
                       .map((product: IProduct, slug: any) => (
                         <ProductCard key={slug} product={product}></ProductCard>
                       ))}
