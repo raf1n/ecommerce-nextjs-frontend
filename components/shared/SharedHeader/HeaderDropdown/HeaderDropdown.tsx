@@ -30,37 +30,6 @@ const HeaderDropdown: React.FC<Props> = (props) => {
     fetchAllMegaMenuCategoriesData();
   }, []);
 
-  // const fetchAllCategories = async () => {
-  //   const { res, err } = await EcommerceApi.getCategories();
-  //   if (res) {
-  //     controller.setCategories(res);
-  //   }
-  // };
-  // console.log(states.categories);
-  // console.log(states.subCategories);
-  // useEffect(() => {
-  //   const getAllCartData = async () => {
-  //     const { res, err } = await EcommerceApi.getAllCartData("user_slug_1");
-  //     if (res) {
-  //       controller.setAllCartListData(res);
-  //     }
-  //   };
-  //   const getAllWishlistData = async () => {
-  //     const { res, err } = await EcommerceApi.getAllWishlistProducts(
-  //       "user_slug_1"
-  //     );
-  //     if (res) {
-  //       controller.setAllWishlistData(res);
-  //     }
-  //   };
-  //   getAllWishlistData();
-  //   getAllCartData();
-  //   fetchAllCategories();
-  //   // fetchAllSubCategories();
-  //   // fetchAllBrands();
-  //   controller.setInitialDataLoading();
-  // }, []);
-
   return (
     <div>
       <div
@@ -153,10 +122,10 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                           <li className={`${styles["category-item"]}`}>
                             <Link
                               rel="noopener noreferrer"
-                              href={`/products?category=${single.cat_name}`}
-                              onClick={() =>
-                                controller.setSelectCategory(single.cat_slug)
-                              }
+                              href={`/products?category=+${single.cat_slug}`}
+                              // onClick={() =>
+                              //   controller.setSelectCategory(single.cat_slug)
+                              // }
                             >
                               <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                 <div className="flex items-center space-x-6">
@@ -227,12 +196,12 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                                       >
                                         <Link
                                           rel="noopener noreferrer"
-                                          href={`/products?sub_category=${s.subcat_name}`}
-                                          onClick={() =>
-                                            controller.setSelectSubCategory(
-                                              s.slug
-                                            )
-                                          }
+                                          href={`/products?sub_category=${s.slug}`}
+                                          // onClick={() =>
+                                          //   controller.setSelectSubCategory(
+                                          //     s.slug
+                                          //   )
+                                          // }
                                         >
                                           <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                                             <div>

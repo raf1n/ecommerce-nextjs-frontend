@@ -26,6 +26,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
 
   const handleSellerAdd = async (e: any) => {
     e.preventDefault();
+    controller.setApiLoading(true);
     const logo = e.target.logoUrl.files[0];
     const cover = e.target.coverUrl.files[0];
     const formData1 = new FormData();
@@ -76,6 +77,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
         // e.target.reset();
       }
     }
+    controller.setApiLoading(false);
   };
 
   return (

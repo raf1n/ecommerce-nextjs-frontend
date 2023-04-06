@@ -17,6 +17,7 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
   const states = useSelector(() => controller.states);
 
   const deleteWishlistProduct = async (product: IWishlistProduct) => {
+    controller.setApiLoading(true);
     if (user_slug) {
       product.user_slug = user_slug;
       const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
@@ -31,6 +32,7 @@ const SharedWishListItem: React.FC<Props> = ({ item }) => {
     } else {
       toast.error("Please login first");
     }
+    controller.setApiLoading(false);
   };
 
   return (

@@ -48,6 +48,7 @@ export interface IStates {
   initialDataLoading: boolean;
   user: IUser | null;
   apiLoading: boolean;
+  productCount: number;
 }
 
 export class Controller {
@@ -79,6 +80,7 @@ export class Controller {
     initialDataLoading: true,
     user: null,
     apiLoading: false,
+    productCount: 0,
   };
 
   @action

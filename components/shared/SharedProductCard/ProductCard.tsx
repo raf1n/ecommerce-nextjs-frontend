@@ -33,6 +33,7 @@ const ProductCard: React.FC<Props> = (props) => {
   };
 
   const handleWishlist = async () => {
+    controller.setApiLoading(true);
     const newProduct = { ...product };
     //@ts-ignore
     delete newProduct._id;
@@ -58,6 +59,7 @@ const ProductCard: React.FC<Props> = (props) => {
         controller.setRemoveWishlistSingleProduct(newProduct);
       }
     }
+    controller.setApiLoading(false);
   };
 
   const cartListProduct = states?.cartlistData.find(

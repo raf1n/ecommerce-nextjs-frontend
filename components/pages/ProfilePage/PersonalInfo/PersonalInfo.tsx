@@ -53,6 +53,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
 
   const handleUpdateProfile = async (e: any) => {
     e.preventDefault();
+    controller.setApiLoading(true);
+
     const avatar = e.target.user_avatar.files[0];
     const formData = new FormData();
     formData.append("image", avatar);
@@ -101,6 +103,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
         }
       }
     }
+    controller.setApiLoading(false);
   };
 
   return (

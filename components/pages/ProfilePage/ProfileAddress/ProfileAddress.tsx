@@ -53,6 +53,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
   };
 
   const handleDelete = async () => {
+    controller.setApiLoading(true);
     const { res, err } = await EcommerceApi.deleteAddress(deleteModalSlug);
     if (res) {
       setDeleteModalSlug("");
@@ -61,6 +62,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
       );
       setAddressData(remainingAddress);
     }
+    controller.setApiLoading(false);
   };
 
   useEffect(() => {

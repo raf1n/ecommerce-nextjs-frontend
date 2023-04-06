@@ -19,6 +19,7 @@ const SingleProduct: React.FC<Props> = (props) => {
   const { asPath } = router;
   const { itemDetail } = Jsondata;
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
+  const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
   // const [brand, setBrand] = useState<string | any>("");
   const user_slug = CookiesHandler.getSlug();
   console.log(asPath.split("=")[1]);
@@ -39,9 +40,12 @@ const SingleProduct: React.FC<Props> = (props) => {
       fetchProductData();
     }
   }, [productSlug, states.initialDataLoading]);
-  const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
+
+
   const handleReport = (e: any) => {
     e.preventDefault();
+    controller.setApiLoading(true);
+
     const reportedItem = {
       product_slug: asPath.split("=")[1],
       user_slug: user_slug,
@@ -50,7 +54,10 @@ const SingleProduct: React.FC<Props> = (props) => {
     };
     EcommerceApi.addReportedItem(reportedItem);
     setReportModalSlug("");
+
+    controller.setApiLoading(false);
   };
+
   return (
     <div className="w-full min-h-screen  pt-0 pb-0">
       <div className="product-view-main-wrapper bg-white pt-[30px] w-full">

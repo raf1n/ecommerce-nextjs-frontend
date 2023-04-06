@@ -2,8 +2,15 @@ import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
-import { FaRegHeart, FaFlag } from "react-icons/fa";
-// import ReactStars from "react-rating-stars-component";
+import {
+  FaRegHeart,
+  FaFlag,
+  FaRegStar,
+  FaStarHalfAlt,
+  FaStar,
+} from "react-icons/fa";
+//@ts-ignore
+import ReactStars from "react-rating-stars-component";
 import { useRouter } from "next/router";
 import FacebookIcon from "react-share/lib/FacebookIcon";
 import TwitterIcon from "react-share/lib/TwitterIcon";
@@ -17,7 +24,7 @@ import { CartHandler } from "../../../src/utils/CartHandler";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import toast from "react-hot-toast";
-import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+// import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
 
@@ -101,6 +108,7 @@ const ProductDetails: React.FC<Props> = (props) => {
       );
     }
 
+    controller.setApiLoading(true);
     if (user_slug) {
       if (!states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
         const cartProductData = {
@@ -134,6 +142,8 @@ const ProductDetails: React.FC<Props> = (props) => {
     } else {
       toast.error("Please Login First");
     }
+
+    controller.setApiLoading(false);
   };
 
   const isInWishlist = (slug: string | undefined) => {
@@ -146,6 +156,7 @@ const ProductDetails: React.FC<Props> = (props) => {
   };
 
   const handleWishlist = async () => {
+    controller.setApiLoading(true);
     //@ts-ignore
     const newProduct: IWishlistProduct = { ...singleProduct };
     //@ts-ignore
@@ -170,6 +181,8 @@ const ProductDetails: React.FC<Props> = (props) => {
         controller.setRemoveWishlistSingleProduct(newProduct);
       }
     }
+
+    controller.setApiLoading(false);
   };
 
   return (

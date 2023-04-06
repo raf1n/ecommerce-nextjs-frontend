@@ -56,6 +56,7 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
   //----------------------- addSubscriber ------------
   const addSubscriber = async (e: any) => {
     e.preventDefault();
+    controller.setApiLoading(true);
     const subs = {
       email: e.target.email.value,
       user_slug: states.user?.slug,
@@ -69,6 +70,7 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
     } else {
       toast.error("Please , Log In first  !");
     }
+    controller.setApiLoading(false);
   };
   //---------------------------------------------------
   const [latestBlogsData, setLatestBlogsData] = useState<IBlog[]>([]);
@@ -112,6 +114,7 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
 
   const handlePostComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    controller.setApiLoading(true);
 
     const formData = {
       userSlug: states.user?.slug,
@@ -129,6 +132,7 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
       //@ts-ignore
       e.target.reset();
     }
+    controller.setApiLoading(false);
   };
 
   return (

@@ -8,24 +8,21 @@ import { Jsondata } from "../../../src/utils/Jsondata";
 import FilterCheckCategory from "./FilterCheckCategory";
 import FilterHeader from "./FilterHeader";
 import FilterCheckBrand from "./FilterCheckBrand";
+import FilterRange from "./FilterRange";
 
 interface Props {
   showFilterWidget: boolean;
   setShowFilterWidget: React.Dispatch<React.SetStateAction<boolean>>;
+  value: { min: number; max: number };
   setValue: React.Dispatch<React.SetStateAction<{ min: number; max: number }>>;
 }
 
 const FilterWidget: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const { showFilterWidget, setShowFilterWidget, setValue } = props;
+  const { showFilterWidget, setShowFilterWidget, value, setValue } = props;
 
-  const [changingValue, setChangingValue] = useState({
-    min: 0,
-    max: 15000,
-  });
 
   return (
-    // <div className="w-full bg-white px-[30px] pt-[40px] mb-[30px] hidden lg:block">
     <div
       className={`w-full fixed lg:relative left-0 top-0 h-screen z-10 lg:h-auto overflow-y-scroll lg:overflow-y-auto bg-white px-[30px] pt-[40px] mb-[30px]  ${
         showFilterWidget ? "block z-30" : "hidden lg:block"
@@ -34,36 +31,19 @@ const FilterWidget: React.FC<Props> = (props) => {
       <div className="pb-10 border-b border-gray-200">
         <FilterHeader title="Product categories" />
         <ul>
-          {states.categories.map((category, i) => (
+          {states.categories.length !== 0 && states.categories.map((category, i) => (
             <FilterCheckCategory key={category.cat_slug} category={category} />
           ))}
         </ul>
       </div>
 
-      <div className="pb-10 border-b border-gray-200 mt-10">
-        <FilterHeader title="Price Range" />
-        <div className="mb-5">
-          <InputRange
-            maxValue={15000}
-            minValue={0}
-            value={changingValue}
-            draggableTrack={true}
-            onChange={(value) => {
-              setChangingValue(value);
-            }}
-            onChangeComplete={(value) => setValue(changingValue)}
-          />
-        </div>
-        <p className="text-xs text-qblack font-normal">
-          Price: ${changingValue.min} - ${changingValue.max}
-        </p>
-      </div>
+      <FilterRange value={value} setValue={setValue} />
 
       <div className="pb-10 border-b border-gray-200 mt-10">
         <FilterHeader title="Brands" />
 
         <ul>
-          {states.brands.map((brand, i) => (
+          {states.brands.length !== 0 && states.brands.map((brand, i) => (
             <FilterCheckBrand key={brand.slug} brand={brand} />
           ))}
         </ul>

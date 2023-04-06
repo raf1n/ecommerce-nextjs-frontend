@@ -31,6 +31,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
   };
 
   const handleDelete = async () => {
+    controller.setApiLoading(true);
     const { res, err } = await EcommerceApi.deleteAddress(deleteModalSlug);
     if (res) {
       setDeleteModalSlug("");
@@ -39,6 +40,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
       );
       setAddressData(remainingAddress);
     }
+    controller.setApiLoading(false);
   };
 
   useEffect(() => {
@@ -97,6 +99,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
       return;
     }
 
+    controller.setApiLoading(true);
+
     const { res, err } = await EcommerceApi.postOrder(order);
     if (err) {
       console.log(err);
@@ -108,6 +112,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
         router.push(res.data);
       }
     }
+    controller.setApiLoading(false);
   };
   // ------------------------------------ //
 
