@@ -78,18 +78,23 @@ const LoginForm: React.FC<Props> = (props) => {
 
       if (userErr) {
         console.log("Login error");
+        toast.error("An error occurred. Please try again.");
       } else {
-        if (userRes.role == "admin") {
+        if (userRes.role === "admin") {
           SocialLogin.logOut();
           setErrorLogin(true);
           toast.error("Already registered as Admin");
           // setErrorTextLogin("Already registered as Admin");
-        } else if (userRes.role == "seller") {
+        } else if (userRes.role === "seller") {
           SocialLogin.logOut();
           setErrorLogin(true);
           toast.error("Already registered as Seller");
           // setErrorTextLogin("Already registered as Seller");
-        } else if (userRes.slug && userRes.access_token) {
+        } else if (
+          userRes.role === "buyer" &&
+          userRes.slug &&
+          userRes.access_token
+        ) {
           controller.setUser(userRes);
           setErrorLogin(false);
           setSuccessLogin(true);
@@ -155,7 +160,7 @@ const LoginForm: React.FC<Props> = (props) => {
             // role: 'buyer'
           };
           const { res, err } = await EcommerceApi.login(data);
-          
+
           if (err) {
             setLoading(false);
             setErrorLogin(true);
@@ -164,17 +169,17 @@ const LoginForm: React.FC<Props> = (props) => {
             // setErrorTextLogin("Server Error");
           } else {
             setLoading(false);
-            if (res.role == "admin") {
+            if (res.role === "admin") {
               SocialLogin.logOut();
               setErrorLogin(true);
               toast.error("Already registered as Admin");
               // setErrorTextLogin("Already registered as Admin");
-            } else if (res.role == "seller") {
+            } else if (res.role === "seller") {
               SocialLogin.logOut();
               setErrorLogin(true);
               toast.error("Already registered as Seller");
               // setErrorTextLogin("Already registered as Seller");
-            } else if (res.slug && res.access_token) {
+            } else if (res.role === "buyer" && res.slug && res.access_token) {
               controller.setUser(res);
               setErrorLogin(false);
               setSuccessLogin(true);
