@@ -47,8 +47,6 @@ const HeaderTop: React.FC<Props> = (props) => {
   const router = useRouter();
   const { asPath, route } = router;
 
-  console.log({ asPath, router });
-
   useEffect(() => {
     if (route !== "/products" && searchRef.current) {
       searchRef.current.value = "";

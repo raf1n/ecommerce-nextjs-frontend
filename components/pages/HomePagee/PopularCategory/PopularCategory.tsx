@@ -54,39 +54,15 @@ const PopularCategory: React.FC<Props> = (props) => {
                       <div className="brands-list mb-[7px]">
                         <ul>
                           {popularCategoriesData.map((singlePop) => (
-                            <>
-                              <li>
-                                <span
-                                  onClick={() => setSlug(singlePop?.cat_slug)}
-                                  className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
-                                >
-                                  {singlePop.cat_name}
-                                </span>
-                              </li>
-                            </>
+                            <li key={singlePop?.cat_slug}>
+                              <span
+                                onClick={() => setSlug(singlePop?.cat_slug)}
+                                className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
+                              >
+                                {singlePop.cat_name}
+                              </span>
+                            </li>
                           ))}
-                          {/* <li>
-                            <span
-                              onClick={() => setSlug("mobile_slug")}
-                              className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
-                            >
-                              Mobile
-                            </span>
-                          </li> */}
-                          {/* <li>
-                            <span
-                              onClick={() => setSlug("electronics_slug")}
-                              className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
-                              Electronics
-                            </span>
-                          </li>
-                          <li>
-                            <span
-                              onClick={() => setSlug("game_slug")}
-                              className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
-                              Game
-                            </span>
-                          </li> */}
                         </ul>
                       </div>
                       <div className="flex space-x-2 items-center">
@@ -128,7 +104,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                   .filter((product) => product.catSlug === slug)
                   .slice(0, 3)
                   .map((pro) => (
-                    <ProductCard product={pro}></ProductCard>
+                    <ProductCard key={pro.slug} product={pro}></ProductCard>
                   ))}
               </div>
             </div>

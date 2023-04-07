@@ -8,8 +8,6 @@ interface Props {}
 const SharedLoadingModal: React.FC<Props> = (props) => {
   const loading = useSelector(() => controller.states.apiLoading);
 
-  console.log(loading);
-
   return (
     <>
       {loading && (

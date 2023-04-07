@@ -29,7 +29,7 @@ export default function MyApp(props: AppProps) {
           color="#ffbb38"
           startPosition={0.3}
           stopDelayMs={200}
-          height={6}
+          height={5}
           showOnShallow={true}
           options={{ showSpinner: false }}
         />
