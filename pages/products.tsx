@@ -1,8 +1,5 @@
-import { useRouter } from "next/router";
 import React from "react";
-import { useSelector } from "react-redux";
 import CategoryPage from "../components/pages/CategoryProductPage/CategoryPage";
-import { controller } from "../src/state/StateController";
 import { EcommerceApi } from "../src/API/EcommerceApi";
 import { IProduct } from "../interfaces/models";
 

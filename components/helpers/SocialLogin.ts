@@ -152,7 +152,7 @@ export class SocialLogin {
           if (error.message === "Firebase: Error (auth/user-not-found).") {
             resolve({
               res: null,
-              err: "Not Registerd",
+              err: "Not Registered",
             });
           } else if (
             error.message === "Firebase: Error (auth/network-request-failed)."
@@ -160,6 +160,13 @@ export class SocialLogin {
             resolve({
               res: null,
               err: "Internet not available",
+            });
+          } else if (
+            error.message === "Firebase: Error (auth/popup-closed-by-user)."
+          ) {
+            resolve({
+              res: null,
+              err: "Popup Closed By User",
             });
           } else if (
             error.message === "Firebase: Error (auth/invalid-email)."
@@ -284,6 +291,7 @@ export class SocialLogin {
     const auth = getAuth();
     await signOut(auth);
     CookiesHandler.removeAccessToken();
+    CookiesHandler.removeSlug();
     localStorage.clear();
     sessionStorage.clear();
     Router.push("/");

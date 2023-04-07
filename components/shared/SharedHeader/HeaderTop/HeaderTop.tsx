@@ -70,6 +70,8 @@ const HeaderTop: React.FC<Props> = (props) => {
 
   const signOut = async () => {
     await SocialLogin.logOut();
+    controller.setAllCartListData([]);
+    controller.setAllWishlistData([]);
     controller.setUser(null);
   };
 
@@ -298,20 +300,24 @@ const HeaderTop: React.FC<Props> = (props) => {
             <div className="flex justify-between items-center h-full px-4">
               <div className="topbar-nav">
                 <ul className="flex space-x-6">
-                  <li>
-                    <Link rel="noopener noreferrer" href="/profile">
-                      <span className="text-xs leading-6 text-qblack font-semibold cursor-pointer">
-                        Account
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link rel="noopener noreferrer" href="/track_order">
-                      <span className="text-xs leading-6 text-qblack font-semibold cursor-pointer">
-                        Track Order
-                      </span>
-                    </Link>
-                  </li>
+                  {states.user && (
+                    <>
+                      <li>
+                        <Link rel="noopener noreferrer" href="/profile">
+                          <span className="text-xs leading-6 text-qblack font-semibold cursor-pointer">
+                            Account
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link rel="noopener noreferrer" href="/track_order">
+                          <span className="text-xs leading-6 text-qblack font-semibold cursor-pointer">
+                            Track Order
+                          </span>
+                        </Link>
+                      </li>
+                    </>
+                  )}
                   <li>
                     <Link rel="noopener noreferrer" href="/faq">
                       <span className="text-xs leading-6 text-qblack font-semibold cursor-pointer">
