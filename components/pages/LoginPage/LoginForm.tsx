@@ -42,42 +42,70 @@ const LoginForm: React.FC<Props> = (props) => {
   const handleGoogleSignUp = async () => {
     controller.setApiLoading(true);
     // actions.setDialogLoading(true)
-    const { token, user } = await SocialLogin.loginWithGoogle();
-    if (token && user?.email && user?.displayName && user?.photoURL) {
-      const { email, displayName, photoURL } = user;
+    const { res, err } = await SocialLogin.loginWithGoogleTry();
+    console.log(
+      "🚀 ~ file: LoginForm.tsx:46 ~ handleGoogleSignUp ~ res, err:",
+      res,
+      err
+    );
+
+    if (
+      res &&
+      res.token &&
+      res.user?.email &&
+      res.user?.displayName &&
+      res.user?.photoURL
+    ) {
+      const {
+        user: { email, displayName, photoURL },
+      } = res;
       // window.smartlook('identify', email);
       const data: Partial<IUser> = {
-        token: token,
+        token: res.token,
         tokenType: "google",
         email: email,
         avatar: photoURL,
         fullName: displayName,
         role: "buyer",
       };
-      const { res, err } = await EcommerceApi.login(data);
-      if (err) {
+
+      const { res: userRes, err: userErr } = await EcommerceApi.login(data);
+      console.log(
+        "🚀 ~ file: LoginForm.tsx:73 ~ handleGoogleSignUp ~ res: userRes, err: userErr:",
+        userRes,
+        userErr
+      );
+
+      if (userErr) {
         console.log("Login error");
       } else {
-        if (res.role == "admin") {
+        if (userRes.role == "admin") {
+          SocialLogin.logOut();
           setErrorLogin(true);
           toast.error("Already registered as Admin");
           // setErrorTextLogin("Already registered as Admin");
-        } else if (res.role == "seller") {
+        } else if (userRes.role == "seller") {
+          SocialLogin.logOut();
           setErrorLogin(true);
           toast.error("Already registered as Seller");
           // setErrorTextLogin("Already registered as Seller");
-        } else if (res.slug && res.access_token) {
-          controller.setUser(res);
+        } else if (userRes.slug && userRes.access_token) {
+          controller.setUser(userRes);
           setErrorLogin(false);
           setSuccessLogin(true);
-          CookiesHandler.setAccessToken(res.access_token);
-          CookiesHandler.setSlug(res.slug as string);
+          CookiesHandler.setAccessToken(userRes.access_token);
+          CookiesHandler.setSlug(userRes.slug as string);
           toast.success("SignIn Success");
           // setSuccessTextLogin("SignIn Success");
-          router.push("/profile");
+          router.push("/");
         }
       }
     }
+
+    if (err) {
+      toast.error(err);
+    }
+
     controller.setApiLoading(false);
   };
 
@@ -127,6 +155,7 @@ const LoginForm: React.FC<Props> = (props) => {
             // role: 'buyer'
           };
           const { res, err } = await EcommerceApi.login(data);
+          
           if (err) {
             setLoading(false);
             setErrorLogin(true);
@@ -136,10 +165,12 @@ const LoginForm: React.FC<Props> = (props) => {
           } else {
             setLoading(false);
             if (res.role == "admin") {
+              SocialLogin.logOut();
               setErrorLogin(true);
               toast.error("Already registered as Admin");
               // setErrorTextLogin("Already registered as Admin");
             } else if (res.role == "seller") {
+              SocialLogin.logOut();
               setErrorLogin(true);
               toast.error("Already registered as Seller");
               // setErrorTextLogin("Already registered as Seller");

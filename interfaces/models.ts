@@ -17,6 +17,7 @@ export interface IUser {
   createdAt?: string;
   updatedAt: string;
   phone?: string;
+  status?: "active" | "inactive";
   address: {
     country?: string;
     state?: string;
@@ -83,7 +84,6 @@ export interface ISeller extends IUser {
   shopaddress?: string;
   logoUrl?: string;
   coverUrl?: string;
-  status?: string;
   user_email?: string;
   shop?: IShop;
   sellerProducts?: IProduct[];
