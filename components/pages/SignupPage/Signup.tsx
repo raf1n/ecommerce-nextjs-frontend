@@ -35,8 +35,6 @@ const Signup: React.FC<Props> = (props) => {
   //sign Up
   const handleEmailPasswordSignUp = async (e: any) => {
     e.preventDefault();
-    controller.setApiLoading(true);
-
     console.log(e.target.password.value);
     const password = e.target.password.value;
     const firstName = e.target.fname.value;
@@ -94,8 +92,6 @@ const Signup: React.FC<Props> = (props) => {
         }
       }
     }
-
-    controller.setApiLoading(false);
   };
 
   return (

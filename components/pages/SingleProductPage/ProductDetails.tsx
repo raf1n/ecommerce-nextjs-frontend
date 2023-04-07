@@ -2,7 +2,13 @@ import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
-import { FaRegHeart, FaFlag, FaRegStar, FaStarHalfAlt, FaStar } from "react-icons/fa";
+import {
+  FaRegHeart,
+  FaFlag,
+  FaRegStar,
+  FaStarHalfAlt,
+  FaStar,
+} from "react-icons/fa";
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
 import { useRouter } from "next/router";
@@ -18,6 +24,9 @@ import { CartHandler } from "../../../src/utils/CartHandler";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import toast from "react-hot-toast";
+// import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+//@ts-ignore
+import ReactStars from "react-rating-stars-component";
 
 interface Props {
   // brand: string;
@@ -31,8 +40,24 @@ const ProductDetails: React.FC<Props> = (props) => {
   const { singleProduct } = props;
   const states = useSelector(() => controller.states);
   const [brandName, setBrandName] = useState<string | undefined>("");
+  const [avgRating, setAvgRating] = useState(0);
+  const [totalReview, setTotalReview] = useState(0);
 
   let selectedItem: ICartProduct | undefined;
+
+  const getProductReviews = async () => {
+    let rating = 0;
+    const { res, err } = await EcommerceApi.getAllProductReviews(
+      singleProduct?.slug
+    );
+    if (res) {
+      setTotalReview(res.length);
+      res.map((data) => {
+        rating = rating + data.rating / res.length;
+        setAvgRating(rating);
+      });
+    }
+  };
 
   if (singleProduct) {
     selectedItem = states?.cartlistData?.find(
@@ -54,6 +79,7 @@ const ProductDetails: React.FC<Props> = (props) => {
       }
     };
     handleBrand();
+    getProductReviews();
   }, [singleProduct]);
   const { setReportModalSlug } = props;
   const router = useRouter();
@@ -171,23 +197,27 @@ const ProductDetails: React.FC<Props> = (props) => {
 
       <div className="flex gap-x-[10px] items-center mb-6">
         <div className="flex">
-          <ReactStars
-            count={5}
-            value={3.8}
-            edit={false}
-            size={24}
-            isHalf={true}
-            emptyIcon={<FaRegStar />}
-            halfIcon={<FaStarHalfAlt />}
-            fullIcon={<FaStar />}
-            activeColor="rgb(255, 168, 0)"
-            color="#d3d3d3"
-          />
+          {avgRating && (
+            <ReactStars
+              count={5}
+              value={avgRating}
+              edit={false}
+              size={24}
+              isHalf={true}
+              emptyIcon={<FaRegStar />}
+              halfIcon={<FaStarHalfAlt />}
+              fullIcon={<FaStar />}
+              activeColor="rgb(255, 168, 0)"
+              color="#d3d3d3"
+            />
+          )}
         </div>
-        <span className="text-[13px] font-normal text-qblack">
-          {/* {props.itemDetail?.reviews?.length}  */}
-          Reviews
-        </span>
+        {totalReview && (
+          <span className="font-semibold text-[15px]  text-qblack">
+            {" "}
+            {totalReview} Reviews
+          </span>
+        )}
       </div>
 
       <div className="flex gap-x-2 items-baseline mb-7">
