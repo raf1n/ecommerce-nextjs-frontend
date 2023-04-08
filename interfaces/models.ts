@@ -223,8 +223,9 @@ export interface IPopularCategories {
   cat_slug: string;
   // subcat_name: string;
   // subcat_status: string;
-  cat_name: string;
+  // cat_name: string;
   cat_image: string;
+  categoriesData: ICategories;
 }
 
 export interface IFeaturedCategories {

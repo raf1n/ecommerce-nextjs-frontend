@@ -21,23 +21,6 @@ interface Props {}
 
 const Homepage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const [saleData, setSaleData] = useState<IFlashSale>();
-
-  useEffect(() => {
-    const fetchAllflashData = async () => {
-      const { res, err } = await EcommerceApi.getFlashSaleContent(
-        "flashcontnet"
-      );
-      if (err) {
-        console.log(err);
-      } else {
-        setSaleData(res);
-
-        // console.log(res);
-      }
-    };
-    fetchAllflashData();
-  }, []);
 
   const fetchAllProducts = async () => {
     const { res, err } = await EcommerceApi.getAllProducts();

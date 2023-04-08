@@ -42,6 +42,10 @@ export interface IFilteredProductResponse extends MyFetchInterface {
   res: { filteredProducts: IProduct[]; count: number };
 }
 
+export interface IRelatedProductResponse extends MyFetchInterface {
+  res: IProduct[];
+}
+
 export interface IFilteredProductBySellerResponse extends MyFetchInterface {
   res: { sellerData: ISeller; filteredProducts: IProduct[], count: number };
 }
@@ -54,6 +58,8 @@ export interface IProductResponse extends MyFetchInterface {
     bestProducts: Array<IProduct>;
     newProducts: Array<IProduct>;
     allProductData: Array<IProduct>;
+    // relatedProductData: Array<IProduct>;
+    // relatedProductData: Array<IProduct>;
   };
 }
 export interface IWishlistResponse extends MyFetchInterface {

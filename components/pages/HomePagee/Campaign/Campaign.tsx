@@ -8,8 +8,9 @@ import img1 from "./googlePlay.png";
 import img2 from "./app.png";
 import Link from "next/link";
 import useCountDown from "../../../shared/hooks/useCountDown";
-import { IFlashSale } from "../../../../interfaces/models";
+import { IFlashSale, IFlashSaleProducts } from "../../../../interfaces/models";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
+import CountDown from "../../FlashSalePage/CountDown";
 
 interface Props {
   // saleData: any;
@@ -17,10 +18,13 @@ interface Props {
 
 const Campaign: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  const { days, hours, minutes, seconds } = useCountDown("15 March, 2024");
+  // const { days, hours, minutes, seconds } = useCountDown("15 March, 2024");
   // console.log(days, hours, minutes, seconds); //"15 March, 2024"
 
   const [saleData, setSaleData] = useState<IFlashSale>();
+  const [flashSaleData, setFlashSaleData] = useState<IFlashSaleProducts[]>([]);
+  const [loading, setloading] = useState(true);
+  const [outputTime, setOutputTime] = useState("");
 
   useEffect(() => {
     const fetchAllflashData = async () => {
@@ -30,32 +34,91 @@ const Campaign: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
-        setSaleData(res);
+        // setSaleData(res);
+        // controller.setflashSaleDataTime(res.time);
+        // setloading(false);
+        // const inputDate = states.flashSaleDataTime;
+        const date = new Date(res.time);
+        // const options = { day: "numeric", month: "long", year: "numeric" };
+        const outputDate = date.toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
+        console.log(outputDate);
+        setOutputTime(outputDate);
+        setloading(false);
 
         // console.log(res);
       }
     };
     fetchAllflashData();
+  }, [flashSaleData]);
+
+  // if (!loading) {
+  //   const { days, hours, minutes, seconds } = useCountDown(outputTime);
+  // }
+
+  useEffect(() => {
+    const fetchAllFlashSalesData = async () => {
+      const { res, err } = await EcommerceApi.getFlashSaleProductsData();
+      if (err) {
+        console.log(err);
+      } else {
+        setFlashSaleData(res);
+
+        console.log(res);
+      }
+    };
+    fetchAllFlashSalesData();
   }, []);
 
-  const saleTime = [
-    {
-      name: "Days",
-      duration: days,
-    },
-    {
-      name: "Hours",
-      duration: hours,
-    },
-    {
-      name: "Minutes",
-      duration: minutes,
-    },
-    {
-      name: "Seconds",
-      duration: seconds,
-    },
-  ];
+  // const inputDate = states.flashSaleDataTime;
+  // const date = new Date(inputDate);
+  // // const options = { day: "numeric", month: "long", year: "numeric" };
+  // const outputDate = date.toLocaleDateString("en-US", {
+  //   day: "numeric",
+  //   month: "long",
+  //   year: "numeric",
+  // });
+  // console.log(outputDate);
+
+  // const { days, hours, minutes, seconds } = useCountDown(outputDate);
+
+  // useEffect(() => {
+  //   const fetchAllflashData = async () => {
+  //     const { res, err } = await EcommerceApi.getFlashSaleContent(
+  //       "flashcontnet"
+  //     );
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       setSaleData(res);
+
+  //       console.log(res);
+  //     }
+  //   };
+  //   fetchAllflashData();
+  // }, []);
+
+  // const saleTime = [
+  //   {
+  //     name: "Days",
+  //     duration: days,
+  //   },
+  //   {
+  //     name: "Hours",
+  //     duration: hours,
+  //   },
+  //   {
+  //     name: "Minutes",
+  //     duration: minutes,
+  //   },
+  //   {
+  //     name: "Seconds",
+  //     duration: seconds,
+  //   },
+  // ];
 
   return (
     <div className="w-full lg:h-[460px] md:mb-[60px] mb-[30px]">
@@ -66,7 +129,7 @@ const Campaign: React.FC<Props> = (props) => {
           >
             <div className="w-full xl:p-12 p-5">
               <div className="w-full flex lg:justify-between justify-evenly lg:mb-10 mb-2">
-                {saleTime.map((item, index) => {
+                {/* {saleTime.map((item, index) => {
                   return (
                     <div>
                       <div className="sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] rounded-full bg-white flex justify-center items-center">
@@ -79,7 +142,10 @@ const Campaign: React.FC<Props> = (props) => {
                       </p>
                     </div>
                   );
-                })}
+                })} */}
+                {!loading && outputTime && (
+                  <CountDown outputTime={outputTime} />
+                )}
               </div>
               <div className="mb-4">
                 <h1 className="text-[44px] text-qblack font-semibold">
