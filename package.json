@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@bangladeshi/bangladesh-address": "^1.0.4",
     "@emailjs/browser": "^3.10.0",
     "@next/font": "13.1.1",
     "@tailwindcss/line-clamp": "^0.4.2",

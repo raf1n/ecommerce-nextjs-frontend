@@ -74,9 +74,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
     payment_method: selectedMethod,
     // transaction_id: "1HJGXX1222",
     address: {
-      country: selectedAddress?.country,
-      state: selectedAddress?.state,
-      city: selectedAddress?.city,
+      country: selectedAddress?.division,
+      state: selectedAddress?.district,
+      city: selectedAddress?.thana,
       address: selectedAddress?.address,
     },
     subTotal: CartHandler.cartSubTotal(cartListProduct),
@@ -134,12 +134,12 @@ const CheckoutPage: React.FC<Props> = (props) => {
                   <div className="addresses-widget w-full">
                     <div className="sm:flex justify-between items-center w-full mb-5">
                       <div className="bg-[#FFFAEF] border border-qyellow rounded ">
-                        <button
-                          type="button"
+                        <span
+                          // type="button"
                           className="px-4 py-3 text-md font-medium rounded-md  text-qblack bg-qyellow "
                         >
                           Shipping Address
-                        </button>
+                        </span>
                       </div>
                       <button
                         onClick={() => setForm(true)}
@@ -202,6 +202,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
                                       {singleAddress.name}
+                                      {/* {states?.user?.fullName} */}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">
@@ -225,7 +226,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       Country:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress.country}
+                                      {singleAddress.division}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">
@@ -233,7 +234,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       State:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress?.state}
+                                      {singleAddress?.district}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">
@@ -241,7 +242,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       City:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress?.city}
+                                      {singleAddress?.thana}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">

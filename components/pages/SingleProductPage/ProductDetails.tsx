@@ -221,11 +221,21 @@ const ProductDetails: React.FC<Props> = (props) => {
       </div>
 
       <div className="flex gap-x-2 items-baseline mb-7">
-        <span className="font-semibold line-through text-qgray text-[15px]">
+        <span
+          className={`${
+            props.singleProduct?.offerPrice
+              ? "line-through text-qgray"
+              : "text-red-500 text-[24px]"
+          }  font-semibold  text-[15px]`}
+        >
           ${props.singleProduct?.price}
         </span>
         <span className="text-red-500 font-semibold text-[24px] ml-2">
-          ${props.singleProduct?.offerPrice}
+          {props.singleProduct?.offerPrice ? `$` : ""}
+
+          {props.singleProduct?.offerPrice
+            ? props.singleProduct?.offerPrice
+            : ""}
         </span>
       </div>
 

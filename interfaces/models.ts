@@ -179,8 +179,11 @@ export interface IAddress {
   email: string;
   phone: string;
   country: string;
-  state: string;
-  city: string;
+  division: string;
+  // state: string;
+  district: string;
+  // city: string;
+  thana: string;
   address: string;
   slug: string;
   user_slug: string;
