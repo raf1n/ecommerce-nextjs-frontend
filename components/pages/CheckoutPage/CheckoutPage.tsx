@@ -105,12 +105,13 @@ const CheckoutPage: React.FC<Props> = (props) => {
     if (err) {
       console.log(err);
     } else if (res) {
-      controller.setClearCartlist();
-      const { res: cartdelRes, err } =
-        await EcommerceApi.deleteAllCartlistProduct(user_slug);
-      if (cartdelRes) {
-        router.push(res.data);
-      }
+      router.push(res.data);
+      // controller.setClearCartlist();
+      // const { res: cartdelRes, err } =
+      //   await EcommerceApi.deleteAllCartlistProduct(user_slug);
+      // if (cartdelRes) {
+      //   // router.push(res.data);
+      // }
     }
     controller.setApiLoading(false);
   };
