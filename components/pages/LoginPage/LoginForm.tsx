@@ -9,6 +9,7 @@ import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { useRouter } from "next/router";
 import { IUser } from "../../../interfaces/models";
+import toast from "react-hot-toast";
 
 interface Props {}
 
@@ -29,52 +30,95 @@ const LoginForm: React.FC<Props> = (props) => {
   }, []);
 
   const sendEmailVerify = async () => {
+    controller.setApiLoading(true);
     SocialLogin.sendEmail();
     setErrorLogin(false);
     setSuccessLogin(false);
-    setLoggedinSendVerifyText("Verification sent");
+    toast.success("Verification sent");
+    controller.setApiLoading(false);
+    // setLoggedinSendVerifyText("Verification sent");
   };
 
   const handleGoogleSignUp = async () => {
+    controller.setApiLoading(true);
     // actions.setDialogLoading(true)
-    const { token, user } = await SocialLogin.loginWithGoogle();
-    if (token && user?.email && user?.displayName && user?.photoURL) {
-      const { email, displayName, photoURL } = user;
+    const { res, err } = await SocialLogin.loginWithGoogleTry();
+    console.log(
+      "🚀 ~ file: LoginForm.tsx:46 ~ handleGoogleSignUp ~ res, err:",
+      res,
+      err
+    );
+
+    if (
+      res &&
+      res.token &&
+      res.user?.email &&
+      res.user?.displayName &&
+      res.user?.photoURL
+    ) {
+      const {
+        user: { email, displayName, photoURL },
+      } = res;
       // window.smartlook('identify', email);
       const data: Partial<IUser> = {
-        token: token,
+        token: res.token,
         tokenType: "google",
         email: email,
         avatar: photoURL,
         fullName: displayName,
         role: "buyer",
       };
-      const { res, err } = await EcommerceApi.login(data);
-      if (err) {
+
+      const { res: userRes, err: userErr } = await EcommerceApi.login(data);
+      console.log(
+        "🚀 ~ file: LoginForm.tsx:73 ~ handleGoogleSignUp ~ res: userRes, err: userErr:",
+        userRes,
+        userErr
+      );
+
+      if (userErr) {
         console.log("Login error");
+        toast.error("An error occurred. Please try again.");
       } else {
-        if (res.role == "admin") {
+        if (userRes.role === "admin") {
+          SocialLogin.logOut();
           setErrorLogin(true);
-          setErrorTextLogin("Already registered as Admin");
-        } else if (res.role == "seller") {
+          toast.error("Already registered as Admin");
+          // setErrorTextLogin("Already registered as Admin");
+        } else if (userRes.role === "seller") {
+          SocialLogin.logOut();
           setErrorLogin(true);
-          setErrorTextLogin("Already registered as Seller");
-        } else if (res.slug && res.access_token) {
-          controller.setUser(res);
+          toast.error("Already registered as Seller");
+          // setErrorTextLogin("Already registered as Seller");
+        } else if (
+          userRes.role === "buyer" &&
+          userRes.slug &&
+          userRes.access_token
+        ) {
+          controller.setUser(userRes);
           setErrorLogin(false);
           setSuccessLogin(true);
-          CookiesHandler.setAccessToken(res.access_token);
-          CookiesHandler.setSlug(res.slug as string);
-          setSuccessTextLogin("SignIn Success");
-          router.push("/profile");
+          CookiesHandler.setAccessToken(userRes.access_token);
+          CookiesHandler.setSlug(userRes.slug as string);
+          toast.success("SignIn Success");
+          // setSuccessTextLogin("SignIn Success");
+          router.push("/");
         }
       }
     }
+
+    if (err) {
+      toast.error(err);
+    }
+
+    controller.setApiLoading(false);
   };
 
   const handleEmailPasswordLogin = async (e: any) => {
     e.preventDefault();
     setLoading(true);
+    controller.setApiLoading(true);
+
     const loginPassword = e.target.password.value;
     const loginEmail = e.target.email.value;
 
@@ -86,15 +130,17 @@ const LoginForm: React.FC<Props> = (props) => {
       setLoading(false);
       setErrorLogin(true);
       setSuccessLogin(false);
-      setErrorTextLogin(err);
+      toast.error(err);
+      // setErrorTextLogin(err);
     } else {
       console.log("resss", res);
       setErrorLogin(false);
       setLoading(false);
       if (!res.user.emailVerified) {
-        console.log("kkk");
         setLoggedinSendVerify(true);
-        setLoggedinSendVerifyText("verify first and login again");
+        toast.error("verify first and login again");
+        // setLoggedinSendVerifyText("verify first and login again");
+        setLoggedinSendVerifyText("Click to send verification");
       } else {
         setLoggedinSendVerify(false);
         console.log("resooooo", res);
@@ -114,32 +160,41 @@ const LoginForm: React.FC<Props> = (props) => {
             // role: 'buyer'
           };
           const { res, err } = await EcommerceApi.login(data);
+
           if (err) {
             setLoading(false);
             setErrorLogin(true);
             setSuccessLogin(false);
-            setErrorTextLogin("Server Error");
+            toast.error("Server Error");
+            // setErrorTextLogin("Server Error");
           } else {
             setLoading(false);
-            if (res.role == "admin") {
+            if (res.role === "admin") {
+              SocialLogin.logOut();
               setErrorLogin(true);
-              setErrorTextLogin("Already registered as Admin");
-            } else if (res.role == "seller") {
+              toast.error("Already registered as Admin");
+              // setErrorTextLogin("Already registered as Admin");
+            } else if (res.role === "seller") {
+              SocialLogin.logOut();
               setErrorLogin(true);
-              setErrorTextLogin("Already registered as Seller");
-            } else if (res.slug && res.access_token) {
+              toast.error("Already registered as Seller");
+              // setErrorTextLogin("Already registered as Seller");
+            } else if (res.role === "buyer" && res.slug && res.access_token) {
               controller.setUser(res);
               setErrorLogin(false);
               setSuccessLogin(true);
               CookiesHandler.setAccessToken(res.access_token);
               CookiesHandler.setSlug(res.slug as string);
-              setSuccessTextLogin("SignIn Success");
+              toast.success("SignIn Success");
+              // setSuccessTextLogin("SignIn Success");
               router.push("/");
             }
           }
         }
       }
     }
+
+    controller.setApiLoading(false);
   };
 
   return (
@@ -260,23 +315,25 @@ const LoginForm: React.FC<Props> = (props) => {
         {successLogin && (
           <div style={{ color: "black" }}>{successTextLogin}</div>
         )}
-        {loggedinSendVerify && (
-          <button
-            type="submit"
-            style={{
-              backgroundColor: "blue",
-              borderRadius: "10px",
-              margin: "10px 0",
-              width: "300px",
-              color: "white",
-            }}
-            onClick={() => {
-              sendEmailVerify();
-            }}
-          >
-            {loggedinSendVerifyText}
-          </button>
-        )}
+        <div className="flex justify-center">
+          {loggedinSendVerify && (
+            <button
+              type="submit"
+              style={{
+                backgroundColor: "grey",
+                borderRadius: "15px",
+                margin: "10px 0",
+                width: "260px",
+                color: "white",
+              }}
+              onClick={() => {
+                sendEmailVerify();
+              }}
+            >
+              {loggedinSendVerifyText}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

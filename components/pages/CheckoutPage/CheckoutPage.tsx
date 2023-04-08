@@ -31,6 +31,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
   };
 
   const handleDelete = async () => {
+    controller.setApiLoading(true);
     const { res, err } = await EcommerceApi.deleteAddress(deleteModalSlug);
     if (res) {
       setDeleteModalSlug("");
@@ -39,6 +40,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
       );
       setAddressData(remainingAddress);
     }
+    controller.setApiLoading(false);
   };
 
   useEffect(() => {
@@ -72,9 +74,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
     payment_method: selectedMethod,
     // transaction_id: "1HJGXX1222",
     address: {
-      country: selectedAddress?.country,
-      state: selectedAddress?.state,
-      city: selectedAddress?.city,
+      country: selectedAddress?.division,
+      state: selectedAddress?.district,
+      city: selectedAddress?.thana,
       address: selectedAddress?.address,
     },
     subTotal: CartHandler.cartSubTotal(cartListProduct),
@@ -85,25 +87,33 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const handleCheckout = async () => {
     if (selectedMethod === "") {
       toast.error("Please Select Payment Method");
-    }
-    if (selectedMethod === "cod") {
+    } else if (selectedMethod === "cod") {
       toast.success("Your Order is Placed");
     }
-    if (!selectedAddress) {
+
+    if (addressData?.length === 0) {
+      toast.error("Please Add Shipping Address");
+      return;
+    } else if (!selectedAddress && addressData?.length !== 0) {
       toast.error("Please Select Shipping Address");
       return;
     }
+
+    controller.setApiLoading(true);
+
     const { res, err } = await EcommerceApi.postOrder(order);
     if (err) {
       console.log(err);
     } else if (res) {
-      controller.setClearCartlist();
-      const { res: cartdelRes, err } =
-        await EcommerceApi.deleteAllCartlistProduct(user_slug);
-      if (cartdelRes) {
-        router.push(res.data);
-      }
+      router.push(res.data);
+      // controller.setClearCartlist();
+      // const { res: cartdelRes, err } =
+      //   await EcommerceApi.deleteAllCartlistProduct(user_slug);
+      // if (cartdelRes) {
+      //   // router.push(res.data);
+      // }
     }
+    controller.setApiLoading(false);
   };
   // ------------------------------------ //
 
@@ -124,12 +134,12 @@ const CheckoutPage: React.FC<Props> = (props) => {
                   <div className="addresses-widget w-full">
                     <div className="sm:flex justify-between items-center w-full mb-5">
                       <div className="bg-[#FFFAEF] border border-qyellow rounded ">
-                        <button
-                          type="button"
+                        <span
+                          // type="button"
                           className="px-4 py-3 text-md font-medium rounded-md  text-qblack bg-qyellow "
                         >
                           Shipping Address
-                        </button>
+                        </span>
                       </div>
                       <button
                         onClick={() => setForm(true)}
@@ -192,6 +202,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
                                       {singleAddress.name}
+                                      {/* {states?.user?.fullName} */}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">
@@ -215,7 +226,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       Country:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress.country}
+                                      {singleAddress.division}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">
@@ -223,7 +234,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       State:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress?.state}
+                                      {singleAddress?.district}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">
@@ -231,7 +242,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       City:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress?.city}
+                                      {singleAddress?.thana}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">
@@ -406,9 +417,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   ></path>
                                 </svg>
                               </span>
@@ -442,9 +453,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   ></path>
                                 </svg>
                               </span>

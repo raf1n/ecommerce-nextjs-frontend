@@ -23,17 +23,17 @@ const ItemDetails: React.FC<Props> = (props) => {
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [seller, setSeller] = useState<ISeller | null>(null);
 
-  console.log(asPath.split("=")[1]);
+  // console.log(asPath.split("=")[1]);
   const productSlug = asPath.split("=")[1];
 
   const getProductReviews = async () => {
     const { res, err } = await EcommerceApi.getAllProductReviews(productSlug);
     if (res) {
-      console.log(res);
+      // console.log(res);
       setReviews(res);
     }
   };
-  console.log(singleProduct?.seller_slug);
+  // console.log(singleProduct?.seller_slug);
 
   const getSeller = async () => {
     const { res, err } = await EcommerceApi.getSellerWithProducts(

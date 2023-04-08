@@ -2,8 +2,15 @@ import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
-import { FaRegHeart, FaFlag } from "react-icons/fa";
-// import ReactStars from "react-rating-stars-component";
+import {
+  FaRegHeart,
+  FaFlag,
+  FaRegStar,
+  FaStarHalfAlt,
+  FaStar,
+} from "react-icons/fa";
+//@ts-ignore
+import ReactStars from "react-rating-stars-component";
 import { useRouter } from "next/router";
 import FacebookIcon from "react-share/lib/FacebookIcon";
 import TwitterIcon from "react-share/lib/TwitterIcon";
@@ -17,6 +24,9 @@ import { CartHandler } from "../../../src/utils/CartHandler";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import toast from "react-hot-toast";
+// import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+//@ts-ignore
+import ReactStars from "react-rating-stars-component";
 
 interface Props {
   // brand: string;
@@ -30,8 +40,24 @@ const ProductDetails: React.FC<Props> = (props) => {
   const { singleProduct } = props;
   const states = useSelector(() => controller.states);
   const [brandName, setBrandName] = useState<string | undefined>("");
+  const [avgRating, setAvgRating] = useState(0);
+  const [totalReview, setTotalReview] = useState(0);
 
   let selectedItem: ICartProduct | undefined;
+
+  const getProductReviews = async () => {
+    let rating = 0;
+    const { res, err } = await EcommerceApi.getAllProductReviews(
+      singleProduct?.slug
+    );
+    if (res) {
+      setTotalReview(res.length);
+      res.map((data) => {
+        rating = rating + data.rating / res.length;
+        setAvgRating(rating);
+      });
+    }
+  };
 
   if (singleProduct) {
     selectedItem = states?.cartlistData?.find(
@@ -53,6 +79,7 @@ const ProductDetails: React.FC<Props> = (props) => {
       }
     };
     handleBrand();
+    getProductReviews();
   }, [singleProduct]);
   const { setReportModalSlug } = props;
   const router = useRouter();
@@ -81,6 +108,7 @@ const ProductDetails: React.FC<Props> = (props) => {
       );
     }
 
+    controller.setApiLoading(true);
     if (user_slug) {
       if (!states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
         const cartProductData = {
@@ -114,6 +142,8 @@ const ProductDetails: React.FC<Props> = (props) => {
     } else {
       toast.error("Please Login First");
     }
+
+    controller.setApiLoading(false);
   };
 
   const isInWishlist = (slug: string | undefined) => {
@@ -126,6 +156,7 @@ const ProductDetails: React.FC<Props> = (props) => {
   };
 
   const handleWishlist = async () => {
+    controller.setApiLoading(true);
     //@ts-ignore
     const newProduct: IWishlistProduct = { ...singleProduct };
     //@ts-ignore
@@ -150,6 +181,8 @@ const ProductDetails: React.FC<Props> = (props) => {
         controller.setRemoveWishlistSingleProduct(newProduct);
       }
     }
+
+    controller.setApiLoading(false);
   };
 
   return (
@@ -164,89 +197,45 @@ const ProductDetails: React.FC<Props> = (props) => {
 
       <div className="flex gap-x-[10px] items-center mb-6">
         <div className="flex">
-          <span className="text-gray-500">
-            <svg
-              width="18"
-              height="17"
-              viewBox="0 0 18 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
-            </svg>
-          </span>
-          <span className="text-gray-500">
-            <svg
-              width="18"
-              height="17"
-              viewBox="0 0 18 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
-            </svg>
-          </span>
-          <span className="text-gray-500">
-            <svg
-              width="18"
-              height="17"
-              viewBox="0 0 18 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
-            </svg>
-          </span>
-          <span className="text-gray-500">
-            <svg
-              width="18"
-              height="17"
-              viewBox="0 0 18 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
-            </svg>
-          </span>
-          <span className="text-gray-500">
-            <svg
-              width="18"
-              height="17"
-              viewBox="0 0 18 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-                fill="#D2D8E1"
-              ></path>
-            </svg>
-          </span>
+          {avgRating && (
+            <ReactStars
+              count={5}
+              value={avgRating}
+              edit={false}
+              size={24}
+              isHalf={true}
+              emptyIcon={<FaRegStar />}
+              halfIcon={<FaStarHalfAlt />}
+              fullIcon={<FaStar />}
+              activeColor="rgb(255, 168, 0)"
+              color="#d3d3d3"
+            />
+          )}
         </div>
-        <span className="text-[13px] font-normal text-qblack">
-          {/* {props.itemDetail?.reviews?.length}  */}
-          Reviews
-        </span>
+        {totalReview && (
+          <span className="font-semibold text-[15px]  text-qblack">
+            {" "}
+            {totalReview} Reviews
+          </span>
+        )}
       </div>
 
       <div className="flex gap-x-2 items-baseline mb-7">
-        <span className="font-semibold line-through text-qgray text-[15px]">
+        <span
+          className={`${
+            props.singleProduct?.offerPrice
+              ? "line-through text-qgray"
+              : "text-red-500 text-[24px]"
+          }  font-semibold  text-[15px]`}
+        >
           ${props.singleProduct?.price}
         </span>
         <span className="text-red-500 font-semibold text-[24px] ml-2">
-          ${props.singleProduct?.offerPrice}
+          {props.singleProduct?.offerPrice ? `$` : ""}
+
+          {props.singleProduct?.offerPrice
+            ? props.singleProduct?.offerPrice
+            : ""}
         </span>
       </div>
 

@@ -8,7 +8,6 @@ import { IUser } from "../../../../interfaces/models";
 import { updateProfile } from "firebase/auth";
 import { SocialLogin } from "../../../helpers/SocialLogin";
 import style from "./PersonalInfo.module.css";
-import pen from "../../../../public/images/pen3.png";
 
 import toast from "react-hot-toast";
 interface Props {
@@ -53,6 +52,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
 
   const handleUpdateProfile = async (e: any) => {
     e.preventDefault();
+    controller.setApiLoading(true);
+
     const avatar = e.target.user_avatar.files[0];
     const formData = new FormData();
     formData.append("image", avatar);
@@ -101,6 +102,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
         }
       }
     }
+    controller.setApiLoading(false);
   };
 
   return (

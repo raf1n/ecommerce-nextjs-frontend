@@ -152,7 +152,7 @@ export class SocialLogin {
           if (error.message === "Firebase: Error (auth/user-not-found).") {
             resolve({
               res: null,
-              err: "Not Registerd",
+              err: "Not Registered",
             });
           } else if (
             error.message === "Firebase: Error (auth/network-request-failed)."
@@ -243,6 +243,44 @@ export class SocialLogin {
       });
   }
 
+  static async loginWithGoogleTry(): Promise<{
+    res: {
+      token: string | undefined;
+      user: User;
+    } | null;
+    err: string | null;
+  }> {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+
+    return new Promise((resolve) => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          console.log("loginWithEmailPassword", result);
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+
+          resolve({
+            res: {
+              token: credential?.accessToken,
+              user: result.user,
+            },
+            err: null,
+          });
+        })
+        .catch((error) => {
+          // console.log("repoo", error.message);
+          // if (
+          //   error.message === "Firebase: Error (auth/popup-closed-by-user)."
+          // ) {
+            resolve({
+              res: null,
+              err: "An error ocurred. Please try again.",
+            });
+          // }
+        });
+    });
+  }
+
   static async loginWithGoogle(): Promise<{
     token: string | undefined;
     user: User;
@@ -260,6 +298,7 @@ export class SocialLogin {
       user,
     };
   }
+
   static async loginWithFacebook(): Promise<{
     token: string | undefined;
     user: User;
@@ -279,11 +318,13 @@ export class SocialLogin {
       photoUrl,
     };
   }
+
   static async logOut(): Promise<void> {
     console.log("loggedout");
     const auth = getAuth();
     await signOut(auth);
     CookiesHandler.removeAccessToken();
+    CookiesHandler.removeSlug();
     localStorage.clear();
     sessionStorage.clear();
     Router.push("/");

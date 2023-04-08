@@ -62,6 +62,7 @@ const MyCart: React.FC<Props> = (props) => {
   };
 
   const handleAllCartProductClear = async () => {
+    controller.setApiLoading(true);
     if (user_slug) {
       const { res, err } = await EcommerceApi.deleteAllCartlistProduct(
         user_slug
@@ -70,9 +71,21 @@ const MyCart: React.FC<Props> = (props) => {
         console.log(err);
       } else {
         //
+        toast.success("Cart Cleared");
         controller.setClearCartlist();
       }
     }
+    controller.setApiLoading(false);
+  };
+
+  const handleDeleteFromCart = async (
+    item: ICartProduct,
+    user_slug: string
+  ) => {
+    controller.setApiLoading(true);
+    await CartHandler.handleDeleteFromCart(item, user_slug as string);
+    toast.success("Item Removed From Cart");
+    controller.setApiLoading(false);
   };
 
   return (
@@ -225,7 +238,7 @@ const MyCart: React.FC<Props> = (props) => {
                                 <span
                                   className="cursor-pointer"
                                   onClick={() =>
-                                    CartHandler.handleDeleteFromCart(
+                                    handleDeleteFromCart(
                                       item,
                                       user_slug as string
                                     )

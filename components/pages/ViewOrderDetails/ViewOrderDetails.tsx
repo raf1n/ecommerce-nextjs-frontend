@@ -16,6 +16,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const [orderData, setOrderData] = useState<IOrder | null>(null);
+  const [reviewModalSlug, setReviewModalSlug] = useState<any | string>("");
 
   const router = useRouter();
   const { asPath } = router;
@@ -27,12 +28,13 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
     setRating(newRating);
   };
 
-  const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
 
   const handleReview = (e: any) => {
     e.preventDefault();
+    controller.setApiLoading(true);
+
     const review = {
-      product_slug: reportModalSlug,
+      product_slug: reviewModalSlug,
       order_slug: orderData?.slug,
       user_slug: user_slug,
       name: e.target.name.value,
@@ -42,7 +44,8 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
     };
 
     EcommerceApi.addReview(review);
-    setReportModalSlug("");
+    setReviewModalSlug("");
+    controller.setApiLoading(false);
   };
 
   const fetchSingleOrder = async () => {
@@ -80,23 +83,27 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
               <div className="w-full px-10 flex justify-between pt-3 mb-7"></div>
               <div className="flex lg:space-x-[373px] space-x-[90px] rtl:space-x-reverse w-full h-full justify-center">
                 <div className="relative">
-                  {orderData &&
-                  (orderData.order_status === "progress" ||
-                    orderData.order_status === "delivered") ? (
-                    <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
-                  ) : (
-                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
-                  )}
+                  {/* {
+                    orderData && (
+                       (orderData.order_status === "pending" ||
+                         orderData.order_status === "progress" ||
+                        orderData.order_status === "delivered") ? ( */}
+                  <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
+                  {/* )
+                     ) : (
+                       <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
+                     )
+                  } */}
                   <div className="lg:w-[400px] w-[100px] h-[8px] absolute ltr:lg:-left-[390px] ltr:-left-[92px] rtl:lg:-right-[390px] rtl:-right-[92px] top-[10px] z-10  bg-white"></div>
                   <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
                     Pending
                   </p>
                 </div>
                 <div className="relative">
-                  {orderData && orderData.order_status === "progress" ? (
-                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
-                  ) : (
+                  {orderData && orderData.order_status === "pending" ? (
                     <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
+                  ) : (
+                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
                   )}
 
                   <div className="lg:w-[400px] w-[100px] h-[8px] absolute ltr:lg:-left-[390px] ltr:-left-[92px] rtl:lg:-right-[390px] rtl:-right-[92px] top-[10px] z-10  bg-white"></div>
@@ -105,10 +112,12 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                   </p>
                 </div>
                 <div className="relative">
-                  {orderData && orderData.order_status === "delivered" ? (
-                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
-                  ) : (
+                  {orderData &&
+                  (orderData.order_status === "pending" ||
+                    orderData.order_status === "in_progress") ? (
                     <div className="w-[30px] h-[30px] border-[8px] rounded-full  bg-white relative z-20 border-qgray"></div>
+                  ) : (
+                    <div className="w-[30px] h-[30px] border-[8px] rounded-full border-qyellow bg-white relative z-20"></div>
                   )}
                   <p className="absolute -left-4 top-10 sm:text-base text-sm font-400">
                     Delivered
@@ -237,7 +246,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                             </td>
                             <td className="text-center py-4 px-2 print:hidden">
                               <button
-                                onClick={() => setReportModalSlug(order.slug)}
+                                onClick={() => setReviewModalSlug(order.slug)}
                                 type="button"
                                 className="text-green-500 text-sm font-semibold capitalize">
                                 review
@@ -291,8 +300,8 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
       <ReviewProductModal
         rating={rating}
         ratingChanged={ratingChanged}
-        setReportModalSlug={setReportModalSlug}
-        reportModalSlug={reportModalSlug}
+        setReportModalSlug={setReviewModalSlug}
+        reportModalSlug={reviewModalSlug}
         handleReview={handleReview}
       />
     </div>

@@ -17,6 +17,7 @@ export interface IUser {
   createdAt?: string;
   updatedAt: string;
   phone?: string;
+  status?: "active" | "inactive";
   address: {
     country?: string;
     state?: string;
@@ -83,7 +84,6 @@ export interface ISeller extends IUser {
   shopaddress?: string;
   logoUrl?: string;
   coverUrl?: string;
-  status?: string;
   user_email?: string;
   shop?: IShop;
   sellerProducts?: IProduct[];
@@ -179,8 +179,11 @@ export interface IAddress {
   email: string;
   phone: string;
   country: string;
-  state: string;
-  city: string;
+  division: string;
+  // state: string;
+  district: string;
+  // city: string;
+  thana: string;
   address: string;
   slug: string;
   user_slug: string;
@@ -223,8 +226,9 @@ export interface IPopularCategories {
   cat_slug: string;
   // subcat_name: string;
   // subcat_status: string;
-  cat_name: string;
+  // cat_name: string;
   cat_image: string;
+  categoriesData: ICategories;
 }
 
 export interface IFeaturedCategories {

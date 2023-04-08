@@ -12,6 +12,8 @@ const FooterCta: React.FC<Props> = (props) => {
 
   const addSubscriber = async (e: any) => {
     e.preventDefault();
+    controller.setApiLoading(true);
+
     const subs = {
       email: e.target.email.value,
       user_slug: states.user?.slug,
@@ -23,8 +25,9 @@ const FooterCta: React.FC<Props> = (props) => {
         toast.success("Successfuly subscribed  !");
       }
     } else {
-      toast.error("Please , Log In first  !");
+      toast.error("Please, Log In first  !");
     }
+    controller.setApiLoading(false);
   };
 
   return (

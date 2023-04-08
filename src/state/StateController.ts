@@ -47,6 +47,10 @@ export interface IStates {
   brands: Array<IBrands>;
   initialDataLoading: boolean;
   user: IUser | null;
+  apiLoading: boolean;
+  productCount: number;
+  flashSaleDataTime: string;
+  // relatedProductData: Array<IProduct>;
 }
 
 export class Controller {
@@ -77,6 +81,10 @@ export class Controller {
     brands: [],
     initialDataLoading: true,
     user: null,
+    apiLoading: false,
+    productCount: 0,
+    flashSaleDataTime: "",
+    // relatedProductData: [],
   };
 
   @action
@@ -86,10 +94,6 @@ export class Controller {
       ...states,
     };
   }
-  // @action
-  // setBrandName(name: string) {
-  //   this.states.brandName = name;
-  // }
 
   @action
   setInitialDataLoading() {
@@ -159,6 +163,11 @@ export class Controller {
   }
 
   @action
+  setflashSaleDataTime(time: string) {
+    this.states.flashSaleDataTime = time;
+  }
+
+  @action
   setClearSearchBrand() {
     this.states.searchBrand = "";
   }
@@ -219,6 +228,7 @@ export class Controller {
     this.states.topProducts = product;
     this.states.bestProducts = product;
     this.states.newProducts = product;
+    // this.states.relatedProductData = product;
   }
 
   @action
@@ -230,6 +240,11 @@ export class Controller {
   setPopularProducts(product: Array<IProduct>) {
     this.states.popularProducts = product;
   }
+
+  // @action
+  // setRelatedProductData(product: Array<IProduct>) {
+  //   this.states.relatedProductData = product;
+  // }
 
   @action
   setTopProducts(product: Array<IProduct>) {
@@ -371,6 +386,11 @@ export class Controller {
   @action
   setUser(user: any) {
     this.states.user = user;
+  }
+
+  @action
+  setApiLoading(loading: boolean) {
+    this.states.apiLoading = loading;
   }
 }
 

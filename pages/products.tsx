@@ -1,10 +1,12 @@
-import { useRouter } from "next/router";
 import React from "react";
-import { useSelector } from "react-redux";
 import CategoryPage from "../components/pages/CategoryProductPage/CategoryPage";
-import { controller } from "../src/state/StateController";
+import { EcommerceApi } from "../src/API/EcommerceApi";
+import { IProduct } from "../interfaces/models";
 
-interface Props {}
+interface Props {
+  filteredProducts: IProduct[];
+  count: number;
+}
 
 const highlightArr = [
   {
@@ -30,39 +32,39 @@ const highlightArr = [
 ];
 
 const products: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
+  // controller.setFilteredProducts(props.filteredProducts);
 
-  const router = useRouter();
-
-  const { search, category, highlight, sub_category } = router.query;
-  console.log("router.query--", router.query);
-
-  if (search) {
-    controller.setSearchString(search as string);
-  }
-
-  if (highlight) {
-    const highQuery = highlightArr.find((high) => high.highlight === highlight);
-    console.log("sss", highlight, highQuery);
-    controller.setSearchHighlight(highQuery?.query as string);
-  } else if (!highlight) {
-    controller.setSearchHighlight("");
-  }
-
-  if (sub_category && states.subCategories) {
-    const querySubCat = states.subCategories.find(
-      (subCat) => subCat.subcat_name === sub_category
-    );
-    controller.setSearchSubCategory(querySubCat?.slug as string);
-  } else if (!sub_category) {
-    controller.setSearchSubCategory("");
-  }
-
-  // if (!category) {
-  //   controller.setClearSearchCategory();
-  // }
-
-  return <CategoryPage />;
+  return <CategoryPage filteredProducts={props.filteredProducts} count={props.count} />;
 };
+
+export async function getServerSideProps(context: any) {
+  const query = context.query;
+  // console.log("🚀 ~ file: products.tsx:77 ~ getServerSideProps ~ query:", query)
+
+  const search = query.search || "";
+  const categories = query.category || "";
+  const subCategory = query.sub_category || "";
+  const brands = query.brand || "";
+  const highlight =
+    highlightArr.find((high) => high.highlight === query.highlight)?.query ||
+    "";
+  const min = query.min || 0;
+  const max = query.max || 15000;
+
+  const { res, err } = await EcommerceApi.getFilteredProducts(
+    search,
+    categories,
+    subCategory,
+    brands,
+    highlight,
+    min,
+    max
+  );
+  // console.log("🚀 ~ file: products.tsx:98 ~ getServerSideProps ~ res:", res)
+
+  return {
+    props: res, // will be passed to the page component as props
+  };
+}
 
 export default products;

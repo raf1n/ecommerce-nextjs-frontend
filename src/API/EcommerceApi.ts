@@ -21,6 +21,7 @@ import {
   IMegaCategoriesResponse,
   IOrderResponse,
   IPopularCategoriesResponse,
+  IRelatedProductResponse,
   IReviewsResponse,
   ISellerResponse,
   ISingleAddressResponse,
@@ -480,18 +481,14 @@ export class EcommerceApi {
     data: Partial<IAddress>,
     slug: string
   ): Promise<ISingleAddressResponse> {
-    console.log(data);
-    console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
     const requestOptions = {
       method: slug ? "PUT" : "POST",
       headers: myHeaders,
       body: JSON.stringify(data),
       redirect: "follow",
     };
-
     if (slug) {
       return await callFetch(
         `${API_ENDPOINT}/addresses/${slug}`,
@@ -506,14 +503,11 @@ export class EcommerceApi {
   static async allAddress(
     email: string | undefined
   ): Promise<IAddressResponse> {
-    console.log(API_ENDPOINT);
     const myHeaders = new Headers();
-
     const requestOptions = {
       headers: myHeaders,
       redirect: "follow",
     };
-
     return await callFetch(
       `${API_ENDPOINT}/addresses/${email}`,
       requestOptions
@@ -774,7 +768,7 @@ export class EcommerceApi {
 
     return await callFetch(`${API_ENDPOINT}/blog-comments`, requestOptions);
   }
-
+  //get all blogs
   static async getAllBlogs(): Promise<IBlogResponse> {
     const myHeaders = new Headers();
     const requestOptions = {
@@ -794,7 +788,10 @@ export class EcommerceApi {
       redirect: "follow",
     };
 
-    return await callFetch(`${API_ENDPOINT}/blogcategories`, requestOptions);
+    return await callFetch(
+      `${API_ENDPOINT}/blogcategories/for-blog`,
+      requestOptions
+    );
   }
 
   // get filtered blog
@@ -841,6 +838,23 @@ export class EcommerceApi {
       requestOptions
     );
   }
+
+  static async getSellerByUser(
+    email: string | undefined
+  ): Promise<MyFetchInterface> {
+    const myHeaders = new Headers();
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/users/seller/${email}`,
+      requestOptions
+    );
+  }
   //Get all seller
   static async getAllSeller(query: string): Promise<IGetAllSellerResponse> {
     const myHeaders = new Headers();
@@ -884,6 +898,22 @@ export class EcommerceApi {
 
     return await callFetch(
       `${API_ENDPOINT}/flash-sale/content/${name}`,
+      requestOptions
+    );
+  }
+
+  // getsellerwithProducts
+
+  static async getRelatedProduct(catSlug: string | undefined): Promise<any> {
+    const myHeaders = new Headers();
+    // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/products/admin/related/${catSlug}`,
       requestOptions
     );
   }

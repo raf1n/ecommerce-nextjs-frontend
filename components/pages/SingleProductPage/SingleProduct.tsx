@@ -19,15 +19,17 @@ const SingleProduct: React.FC<Props> = (props) => {
   const { asPath } = router;
   const { itemDetail } = Jsondata;
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
+  const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
   // const [brand, setBrand] = useState<string | any>("");
   const user_slug = CookiesHandler.getSlug();
-  console.log(asPath.split("=")[1]);
+  // console.log(asPath.split("=")[1]);
   const productSlug = asPath.split("=")[1];
 
   useEffect(() => {
     const fetchProductData = async () => {
       const { res, err } = await EcommerceApi.getSingleProduct(productSlug);
       setSingleProduct(res);
+      // console.log(res);
       // console.log(states.brands);
       // const brandName = states.brands.find(
       //   (brand) => brand.slug === res?.brandSlug
@@ -39,9 +41,12 @@ const SingleProduct: React.FC<Props> = (props) => {
       fetchProductData();
     }
   }, [productSlug, states.initialDataLoading]);
-  const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
+
+
   const handleReport = (e: any) => {
     e.preventDefault();
+    controller.setApiLoading(true);
+
     const reportedItem = {
       product_slug: asPath.split("=")[1],
       user_slug: user_slug,
@@ -50,7 +55,10 @@ const SingleProduct: React.FC<Props> = (props) => {
     };
     EcommerceApi.addReportedItem(reportedItem);
     setReportModalSlug("");
+
+    controller.setApiLoading(false);
   };
+
   return (
     <div className="w-full min-h-screen  pt-0 pb-0">
       <div className="product-view-main-wrapper bg-white pt-[30px] w-full">
@@ -58,16 +66,19 @@ const SingleProduct: React.FC<Props> = (props) => {
           <div className="container-x mx-auto ">
             <Breadcrumb
               slug={`${itemDetail.name}`}
-              link={`${itemDetail.slug}`}></Breadcrumb>
+              link={`${itemDetail.slug}`}
+            ></Breadcrumb>
             <div className="lg:flex justify-between">
               <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
                 <ItemDetailsLeft
-                  singleProduct={singleProduct}></ItemDetailsLeft>
+                  singleProduct={singleProduct}
+                ></ItemDetailsLeft>
               </div>
               <div className="flex-1">
                 <ProductDetails
                   setReportModalSlug={setReportModalSlug}
-                  singleProduct={singleProduct}></ProductDetails>
+                  singleProduct={singleProduct}
+                ></ProductDetails>
               </div>
             </div>
             <ReportedItemModal
