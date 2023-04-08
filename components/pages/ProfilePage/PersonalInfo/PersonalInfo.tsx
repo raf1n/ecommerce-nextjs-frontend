@@ -8,7 +8,6 @@ import { IUser } from "../../../../interfaces/models";
 import { updateProfile } from "firebase/auth";
 import { SocialLogin } from "../../../helpers/SocialLogin";
 import style from "./PersonalInfo.module.css";
-import pen from "../../../../public/images/pen3.png";
 
 import toast from "react-hot-toast";
 interface Props {

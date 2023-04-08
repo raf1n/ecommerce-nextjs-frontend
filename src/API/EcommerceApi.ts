@@ -480,18 +480,14 @@ export class EcommerceApi {
     data: Partial<IAddress>,
     slug: string
   ): Promise<ISingleAddressResponse> {
-    console.log(data);
-    console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
     const requestOptions = {
       method: slug ? "PUT" : "POST",
       headers: myHeaders,
       body: JSON.stringify(data),
       redirect: "follow",
     };
-
     if (slug) {
       return await callFetch(
         `${API_ENDPOINT}/addresses/${slug}`,
@@ -506,14 +502,11 @@ export class EcommerceApi {
   static async allAddress(
     email: string | undefined
   ): Promise<IAddressResponse> {
-    console.log(API_ENDPOINT);
     const myHeaders = new Headers();
-
     const requestOptions = {
       headers: myHeaders,
       redirect: "follow",
     };
-
     return await callFetch(
       `${API_ENDPOINT}/addresses/${email}`,
       requestOptions

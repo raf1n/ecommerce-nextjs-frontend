@@ -72,9 +72,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
     payment_method: selectedMethod,
     // transaction_id: "1HJGXX1222",
     address: {
-      country: selectedAddress?.country,
-      state: selectedAddress?.state,
-      city: selectedAddress?.city,
+      country: selectedAddress?.division,
+      state: selectedAddress?.district,
+      city: selectedAddress?.thana,
       address: selectedAddress?.address,
     },
     subTotal: CartHandler.cartSubTotal(cartListProduct),
@@ -124,26 +124,23 @@ const CheckoutPage: React.FC<Props> = (props) => {
                   <div className="addresses-widget w-full">
                     <div className="sm:flex justify-between items-center w-full mb-5">
                       <div className="bg-[#FFFAEF] border border-qyellow rounded ">
-                        <button
-                          type="button"
-                          className="px-4 py-3 text-md font-medium rounded-md  text-qblack bg-qyellow "
-                        >
+                        <span
+                          // type="button"
+                          className="px-4 py-3 text-md font-medium rounded-md  text-qblack bg-qyellow ">
                           Shipping Address
-                        </button>
+                        </span>
                       </div>
                       <button
                         onClick={() => setForm(true)}
                         type="button"
-                        className="w-[100px] h-[40px] mt-2 sm:mt-0 border border-qblack hover:bg-qblack hover:text-white transition-all duration-300 ease-in-out"
-                      >
+                        className="w-[100px] h-[40px] mt-2 sm:mt-0 border border-qblack hover:bg-qblack hover:text-white transition-all duration-300 ease-in-out">
                         <span className="text-sm font-semibold">Add New</span>
                       </button>
                     </div>
                     {!form ? (
                       <div
                         data-aos="zoom-in"
-                        className="grid sm:grid-cols-2 grid-cols-1 gap-3 aos-init aos-animate"
-                      >
+                        className="grid sm:grid-cols-2 grid-cols-1 gap-3 aos-init aos-animate">
                         {addressData.map((singleAddress: IAddress, index) => (
                           <div
                             onClick={() => handleSelect(singleAddress)}
@@ -154,8 +151,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 : `w-full p-5 border cursor-pointer relative   bg-primarygray
                                 border-transparent
                                 `
-                            }
-                          >
+                            }>
                             <div className="flex justify-between items-center">
                               <p className="title text-[22px] font-semibold">
                                 {`Address ${index + 1}`}
@@ -165,8 +161,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                   setDeleteModalSlug(singleAddress.slug)
                                 }
                                 type="button"
-                                className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center"
-                              >
+                                className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center">
                                 <SvgIconRenderer
                                   width="17"
                                   height="19"
@@ -192,6 +187,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
                                       {singleAddress.name}
+                                      {/* {states?.user?.fullName} */}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">
@@ -215,7 +211,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       Country:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress.country}
+                                      {singleAddress.division}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">
@@ -223,7 +219,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       State:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress?.state}
+                                      {singleAddress?.district}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">
@@ -231,7 +227,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       City:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress?.city}
+                                      {singleAddress?.thana}
                                     </td>
                                   </tr>
                                   <tr className="flex mb-3">
@@ -286,8 +282,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                       </div>
                       <button
                         type="button"
-                        className="w-[90px] h-[50px] black-btn"
-                      >
+                        className="w-[90px] h-[50px] black-btn">
                         <span className="text-sm font-semibold">Apply</span>
                       </button>
                     </div>
@@ -316,8 +311,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 <div>
                                   <h4
                                     title="Apple watch pro"
-                                    className="text-[15px] text-qblack line-clamp-1 mb-2.5"
-                                  >
+                                    className="text-[15px] text-qblack line-clamp-1 mb-2.5">
                                     {pro.productName}
                                     <sup className="text-[13px] text-qgray ml-2 mt-2">
                                       x{pro.quantity}
@@ -385,8 +379,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                               selectedMethod === "cod"
                                 ? "border-2 border-qyellow"
                                 : "border border-gray-200"
-                            }`}
-                          >
+                            }`}>
                             <div className="w-full">
                               <span className="text-qblack font-bold text-base">
                                 Cash On Delivery
@@ -397,19 +390,16 @@ const CheckoutPage: React.FC<Props> = (props) => {
                             {selectedMethod === "cod" && (
                               <span
                                 data-aos="zoom-in"
-                                className="absolute text-white z-10 w-6 h-6 rounded-full bg-qyellow -right-2.5 -top-2.5 aos-init aos-animate"
-                              >
+                                className="absolute text-white z-10 w-6 h-6 rounded-full bg-qyellow -right-2.5 -top-2.5 aos-init aos-animate">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-6 w-6"
                                   viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
+                                  fill="currentColor">
                                   <path
                                     fill-rule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd"
-                                  ></path>
+                                    clip-rule="evenodd"></path>
                                 </svg>
                               </span>
                             )}
@@ -421,8 +411,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                               selectedMethod === "ssl"
                                 ? "border-2 border-qyellow"
                                 : "border border-gray-200"
-                            }`}
-                          >
+                            }`}>
                             <div className="w-full flex justify-center ">
                               <span className=" w-[120px] ">
                                 <img src={sslcommerze.src} alt="sslcommerze" />
@@ -433,19 +422,16 @@ const CheckoutPage: React.FC<Props> = (props) => {
                             {selectedMethod === "ssl" && (
                               <span
                                 data-aos="zoom-in"
-                                className="absolute text-white z-10 w-6 h-6 rounded-full bg-qyellow -right-2.5 -top-2.5 aos-init aos-animate"
-                              >
+                                className="absolute text-white z-10 w-6 h-6 rounded-full bg-qyellow -right-2.5 -top-2.5 aos-init aos-animate">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-6 w-6"
                                   viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
+                                  fill="currentColor">
                                   <path
                                     fill-rule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd"
-                                  ></path>
+                                    clip-rule="evenodd"></path>
                                 </svg>
                               </span>
                             )}
@@ -456,8 +442,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                     <button
                       onClick={handleCheckout}
                       type="button"
-                      className="w-full"
-                    >
+                      className="w-full">
                       <div className="w-full h-[50px] bg-black text-white  flex justify-center items-center">
                         <span className="text-sm font-semibold">
                           Place Order Now
