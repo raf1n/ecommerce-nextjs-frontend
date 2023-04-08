@@ -404,7 +404,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                       boxShadow: "none",
                       cursor: "pointer",
                     }}>
-                    <option value="bangladesh">Bangladesh</option>
+                    <option value="Bangladesh">Bangladesh</option>
                   </select>
                 </div>
               </div>

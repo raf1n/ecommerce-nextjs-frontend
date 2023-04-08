@@ -1,21 +1,16 @@
 .file {
-  display: inline-block;
-  /* display: hidden; */
-
   width: 10%;
-  /* padding: 58px 0px 0px 36px; */
   padding: 18px;
   height: 10px;
-  margin-left: 165px;
-  margin-top: -60px;
-  /* overflow-x: hidden; */
-  /* overflow: hidden; */
+  margin-left: 162px;
+  margin-top: -54px;
   cursor: pointer;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-color: rgb(255 187 56/1);
-  /* visibility: hidden; */
-  /* display: none; */
-  border-radius: 999px;
+  background-image: url("../../../../public/images/profile-icon.png");
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+}
+
+.file::file-selector-button {
+  visibility: hidden;
 }
