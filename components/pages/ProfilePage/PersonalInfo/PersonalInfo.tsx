@@ -314,12 +314,12 @@ const PersonalInfo: React.FC<Props> = (props) => {
                   </div>
                   <input
                     type="file"
-                    className={`${style["file"]}    absolute`}
+                    className={`${style["file"]} absolute`}
                     id="file"
                     name="user_avatar"
                   />
 
-                  <div className="w-[32px] h-[32px] hidden absolute z-index bottom-8  right-1 bg-qyellow rounded-full cursor-pointer">
+                  {/* <div className="w-[32px] h-[32px] hidden absolute z-index bottom-8  right-1 bg-qyellow rounded-full cursor-pointer">
                     <svg
                       width="32"
                       height="32"
@@ -333,7 +333,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
                         d="M20.9499 14.2904C19.7436 13.0842 18.5449 11.8854 17.3499 10.6904C17.5634 10.4694 17.7844 10.2446 18.0054 10.0199C18.2639 9.76139 18.5261 9.50291 18.7884 9.24443C19.118 8.91852 19.5713 8.91852 19.8972 9.24443C20.7251 10.0611 21.5492 10.8815 22.3771 11.6981C22.6993 12.0165 22.7105 12.4698 22.3996 12.792C21.9238 13.2865 21.4443 13.7772 20.9686 14.2717C20.9648 14.2792 20.9536 14.2867 20.9499 14.2904Z"
                         fill="white"></path>
                     </svg>
-                  </div>
+                  </div> */}
                 </div>
                 {/* <div className="sm:w-[198px] sm:h-[198px] w-[199px] h-[199px] rounded-full overflow-hidden relative">
                   <img src={states.user?.avatar} alt="profile" />
