@@ -818,6 +818,8 @@ export class EcommerceApi {
       body: JSON.stringify(data),
       redirect: "follow",
     };
+    console.log(data);
+
     return await callFetch(`${API_ENDPOINT}/subscriber`, requestOptions);
   }
 
