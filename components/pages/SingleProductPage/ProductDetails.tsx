@@ -24,9 +24,6 @@ import { CartHandler } from "../../../src/utils/CartHandler";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import toast from "react-hot-toast";
-// import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
-//@ts-ignore
-// import ReactStars from "react-rating-stars-component";
 
 interface Props {
   // brand: string;

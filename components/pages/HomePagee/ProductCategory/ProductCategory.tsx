@@ -37,7 +37,7 @@ const ProductCategory: React.FC<Props> = (props) => {
                   className="item w-full cursor-pointer group"
                 >
                   <Link
-                    href={`products?category=${item?.cat_slug}`}
+                    href={`products?category=+${item?.cat_slug}`}
                     rel="noopener noreferrer"
                   >
                     <div className="w-full h-[120px] relative rounded bg-white flex justify-center items-center">

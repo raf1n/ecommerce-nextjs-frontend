@@ -15,19 +15,20 @@ interface Props {
   product: IWishlistProduct;
 }
 
-const user_slug = CookiesHandler.getSlug();
+// const user_slug = CookiesHandler.getSlug();
 
 const ProductCardVertical: React.FC<Props> = (props) => {
   const { product } = props;
   const states = useSelector(() => controller.states);
-
+  const user_slug = useSelector(() => controller.states.user?.slug);
+  
   const handleWishlist = async () => {
-    controller.setApiLoading(true);
     if (!user_slug) {
       toast.error("Please login first");
       return;
     }
-
+    controller.setApiLoading(true);
+    
     product.user_slug = states.user?.slug;
 
     if (!isInWishlist(product.slug)) {

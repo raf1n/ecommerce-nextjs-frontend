@@ -1,54 +1,36 @@
 .file-logo {
-  display: inline-block;
-  /* display: hidden; */
-
   width: 10%;
-  /* padding: 58px 0px 0px 36px; */
   padding: 18px;
   height: 10px;
   margin-left: 160px;
   margin-top: -60px;
-  /* overflow-x: hidden; */
-  /* overflow: hidden; */
   cursor: pointer;
-  /* -webkit-box-sizing: border-box; */
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-color: #f539f8;
-  /* background-image: url("../../../public/images/pen3.png"); */
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Antu_mail-signature-unknown.svg/120px-Antu_mail-signature-unknown.svg.png");
-  background-repeat: repeat;
+  background-image: url("../../../public/images/icon.png");
   background-position: center;
-
-  /* visibility: hidden; */
-  /* display: none; */
+  background-size: cover;
   border-radius: 50%;
-  color: #f539f8;
 }
 
+.file-logo::file-selector-button {
+  visibility: hidden;
+}
+
+/* -----------cover ------------- */
 .file-cover {
   position: absolute;
   width: 10%;
   padding: 18px;
   height: 10px;
-  margin-left: 190px;
+  margin-left: 185px;
   margin-top: -18px;
   cursor: pointer;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-color: #f539f8;
-  /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU3AMbv_-lhvDnLLCgyfF33FYa_rMzZLueQA&usqp=CAU"); */
+  background-image: url("../../../public/images/icon.png");
   cursor: pointer;
-  border-radius: 999px;
-  background-color: #fa51fd;
-  /* z-index: 1; */
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
 }
 
 .file-cover::file-selector-button {
-  border: 0.1px solid #fa51fd;
-  color: #fa51fd;
-  background-color: #fa51fd;
-  display: none;
-  /* z-index: 2; */
+  visibility: hidden;
 }
