@@ -252,20 +252,23 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                         >
                           <div className="categories-wrapper flex-1 h-full flex justify-around -ml-[70px]">
                             {megaMenuData.map((data, idx) => (
-                              <div key={data.cat_slug} className="category">
+                              <div
+                                key={data.categoriesData.cat_slug}
+                                className="category"
+                              >
                                 <h1 className="text-[13px] font-bold text-qblack uppercase mb-[13px]">
-                                  {data.cat_name}
+                                  {data.categoriesData.cat_name}
                                 </h1>
                                 <div className="category-items">
                                   <ul className="flex flex-col space-y-2">
-                                    {data.sub_cat_list.map((subcat: any) => (
-                                      <li key={subcat.value}>
+                                    {data.sub_cat_list.map((subcat) => (
+                                      <li key={subcat.slug}>
                                         <Link
                                           rel="noopener noreferrer"
-                                          href={`/products?sub_category=${subcat.value}`}
+                                          href={`/products?sub_category=${subcat.slug}`}
                                         >
                                           <span className="text-qgray text-sm font-normal border-b border-transparent hover:border-qyellow hover:text-qyellow cursor-pointer">
-                                            {subcat.label}
+                                            {subcat.subcat_name}
                                           </span>
                                         </Link>
                                       </li>

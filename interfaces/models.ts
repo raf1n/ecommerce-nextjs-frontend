@@ -213,12 +213,8 @@ export interface IAd {
 }
 
 export interface IMegaCategory {
-  slug?: string;
-  cat_name?: string;
-  cat_slug?: string;
-  serial: number;
-  sub_cat_list: object[];
-  status: "active" | "inactive";
+  sub_cat_list: Array<ISubCategories>;
+  categoriesData: ICategories;
 }
 
 export interface IPopularCategories {
