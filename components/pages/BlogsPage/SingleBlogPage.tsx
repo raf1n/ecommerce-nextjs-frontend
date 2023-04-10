@@ -114,6 +114,10 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
 
   const handlePostComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!states.user) {
+      toast.error("Please Login to Comment");
+      return;
+    }
     controller.setApiLoading(true);
 
     const formData = {
@@ -317,8 +321,10 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                                   </label>
                                   <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                                     <input
+                                      defaultValue={states.user?.email}
+                                      readOnly
                                       placeholder="Email"
-                                      className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-white focus:ring-0 focus:outline-none h-[50px]"
+                                      className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full font-normal bg-gray-200 focus:ring-0 focus:outline-none h-[50px]"
                                       type="email"
                                       id="email"
                                       required
