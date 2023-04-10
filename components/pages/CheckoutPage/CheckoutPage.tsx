@@ -87,8 +87,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const handleCheckout = async () => {
     if (selectedMethod === "") {
       toast.error("Please Select Payment Method");
-    } else if (selectedMethod === "cod") {
-      toast.success("Your Order is Placed");
     }
 
     if (addressData?.length === 0) {
@@ -102,9 +100,12 @@ const CheckoutPage: React.FC<Props> = (props) => {
     controller.setApiLoading(true);
 
     const { res, err } = await EcommerceApi.postOrder(order);
+    if (res.message === "COD Order successful") {
+      toast.success("Your Order is Placed");
+    }
     if (err) {
       console.log(err);
-    } else if (res) {
+    } else if (res.message === "SSL Order successful") {
       router.push(res.data);
       // controller.setClearCartlist();
       // const { res: cartdelRes, err } =
