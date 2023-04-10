@@ -23,7 +23,8 @@ const FlashSale: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
-        // setSaleData(res);
+        setSaleData(res);
+        console.log(res.imageHome);
         // controller.setflashSaleDataTime(res.time);
         // setloading(false);
         // const inputDate = states.flashSaleDataTime;
@@ -68,9 +69,9 @@ const FlashSale: React.FC<Props> = (props) => {
     <div className="w-full min-h-screen mt-10 pt-0 pb-0">
       <div className="container-x mx-auto">
         <div
+          // "url(https://api.websolutionus.com/shopo/uploads/website-images/flash_sale--2022-09-20-10-54-12-8555.png)"
           style={{
-            backgroundImage:
-              "url(https://api.websolutionus.com/shopo/uploads/website-images/flash_sale--2022-09-20-10-54-12-8555.png)",
+            backgroundImage: `url(${saleData?.imageFlash})`,
           }}
           className="flash-ad w-full h-[400px] flex sm:justify-end justify-center items-center mb-10 aos-init aos-animate"
         >
