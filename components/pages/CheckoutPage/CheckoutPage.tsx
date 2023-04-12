@@ -101,7 +101,12 @@ const CheckoutPage: React.FC<Props> = (props) => {
 
     const { res, err } = await EcommerceApi.postOrder(order);
     if (res.message === "COD Order successful") {
-      toast.success("Your Order is Placed");
+      controller.setClearCartlist();
+      const { res: cartdelRes, err } =
+        await EcommerceApi.deleteAllCartlistProduct(user_slug);
+      if (cartdelRes) {
+        toast.success("Your Order is Placed");
+      }
     }
     if (err) {
       console.log(err);
