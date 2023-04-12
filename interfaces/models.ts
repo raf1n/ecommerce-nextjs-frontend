@@ -109,7 +109,7 @@ export interface IOrder {
   payment_method: string;
   user_slug: string | undefined;
   user_email: string | undefined;
-  // transaction_id: string;
+  transaction_id?: string;
   payment_status?: string;
   order_status?: string;
   address: {

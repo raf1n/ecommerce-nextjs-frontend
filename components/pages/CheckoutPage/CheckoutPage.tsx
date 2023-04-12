@@ -5,6 +5,7 @@ import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import sslcommerze from "../../../public/images/sslcommerze.png";
+import bkashLogo from "../../../public/images/bkash_logo.png";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CartHandler } from "../../../src/utils/CartHandler";
 import SharedAddNewAddress from "../../shared/SharedAddNewAddress/SharedAddNewAddress";
@@ -13,6 +14,7 @@ import SharedDeleteModal from "../../shared/SharedDeleteModal/SharedDeleteModal"
 import { useRouter } from "next/navigation";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import toast from "react-hot-toast";
+import { FaCheckSquare } from "react-icons/fa";
 
 interface Props {}
 
@@ -26,6 +28,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const [refresh, setRefresh] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState<IAddress | null>(null);
   const [selectedMethod, setSelectedMethod] = useState<string>("");
+  const [transactionId, setTransactionId] = useState("");
+
   const handleSelect = (addressData: IAddress) => {
     setSelectedAddress(addressData);
   };
@@ -72,7 +76,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
     // user_phone: states.user?.phone,
     user_phone: states.user?.phone,
     payment_method: selectedMethod,
-    // transaction_id: "1HJGXX1222",
     address: {
       country: selectedAddress?.division,
       state: selectedAddress?.district,
@@ -84,11 +87,14 @@ const CheckoutPage: React.FC<Props> = (props) => {
     shippingCost: 50,
     total: CartHandler.cartSubTotal(cartListProduct) - 100 + 50,
   };
+
   const handleCheckout = async () => {
     if (selectedMethod === "") {
-      toast.error("Please Select Payment Method");
-    } else if (selectedMethod === "cod") {
-      toast.success("Your Order is Placed");
+      toast.error("Please Select a Payment Method");
+      return;
+    } else if (selectedMethod === "bKash" && !transactionId) {
+      toast.error("Please provide your TrxID");
+      return;
     }
 
     if (addressData?.length === 0) {
@@ -99,6 +105,11 @@ const CheckoutPage: React.FC<Props> = (props) => {
       return;
     }
 
+    if (selectedMethod === "bKash") {
+      //@ts-ignore
+      order.transaction_id = transactionId;
+    }
+
     controller.setApiLoading(true);
 
     const { res, err } = await EcommerceApi.postOrder(order);
@@ -106,6 +117,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
       console.log(err);
     } else if (res) {
       router.push(res.data);
+      console.log(res);
       // controller.setClearCartlist();
       // const { res: cartdelRes, err } =
       //   await EcommerceApi.deleteAllCartlistProduct(user_slug);
@@ -425,6 +437,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                               </span>
                             )}
                           </div>
+
                           {/* sslcommerze method */}
                           <div
                             onClick={() => setSelectedMethod("ssl")}
@@ -461,6 +474,129 @@ const CheckoutPage: React.FC<Props> = (props) => {
                               </span>
                             )}
                           </div>
+
+                          {/* bKash method */}
+                          <div
+                            onClick={() => setSelectedMethod("bKash")}
+                            className={`payment-item text-center bg-[#F8F8F8] relative w-full h-[50px] font-bold text-sm text-white text-qyellow  flex justify-center items-center px-3 uppercase cursor-pointer   ${
+                              selectedMethod === "bKash"
+                                ? "border-2 border-qyellow"
+                                : "border border-gray-200"
+                            }`}
+                          >
+                            <div className="w-full flex justify-center ">
+                              <img
+                                src={bkashLogo.src}
+                                className="h-[45px]"
+                                alt="sslcommerze"
+                              />
+                            </div>
+
+                            {/* selected indicator */}
+                            {selectedMethod === "bKash" && (
+                              <span
+                                data-aos="zoom-in"
+                                className="absolute text-white z-10 w-6 h-6 rounded-full bg-qyellow -right-2.5 -top-2.5 aos-init aos-animate"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-6 w-6"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clipRule="evenodd"
+                                  ></path>
+                                </svg>
+                              </span>
+                            )}
+                          </div>
+
+                          {selectedMethod === "bKash" && (
+                            <div className="w-full bank-inputs mt-5">
+                              <div className="input-item mb-5">
+                                <div className="bank-info-alert flex flex-col gap-1 w-full p-5 bg-amber-100 rounded mb-4 text-sm">
+                                  <div>
+                                    <span className="">
+                                      <span className="text-[#e2116e]  font-medium">
+                                        বিকাশ নাম্বারঃ{" "}
+                                      </span>{" "}
+                                      01671918124 (মার্চেন্ট অ্যাকাউন্ট) <br />
+                                    </span>
+                                    <span className="text-[#e2116e]  font-medium">
+                                      পেমেন্ট করার নিয়মঃ <br />
+                                    </span>
+                                  </div>
+                                  <span className="flex gap-2">
+                                    <FaCheckSquare className="h-5 w-5 flex-shrink-0 text-[#e2116e]" />{" "}
+                                    *247# ডায়াল করো বা বিকাশ মোবাইল অ্যাপ-এ যাও{" "}
+                                    <br />
+                                  </span>
+                                  <span className="flex gap-2">
+                                    <FaCheckSquare className="h-5 w-5 flex-shrink-0 text-[#e2116e]" />{" "}
+                                    পেমেন্ট অপশন সিলেক্ট করো <br />
+                                  </span>
+                                  <span className="flex gap-2">
+                                    <FaCheckSquare className="h-5 w-5 flex-shrink-0 text-[#e2116e]" />{" "}
+                                    <span>
+                                      আমাদের বিকাশ মার্চেন্ট নাম্বারঃ{" "}
+                                      <span className="text-[#e2116e]  font-medium">
+                                        01671918124
+                                      </span>{" "}
+                                      লিখো <br />
+                                    </span>
+                                  </span>
+                                  <span className="flex gap-2">
+                                    <FaCheckSquare className="h-5 w-5 flex-shrink-0 text-[#e2116e]" />{" "}
+                                    টাকার পরিমানঃ $
+                                    {CartHandler.cartSubTotal(
+                                      states.cartlistData
+                                    )}
+                                    <br />
+                                  </span>
+                                  <span className="flex gap-2">
+                                    <FaCheckSquare className="h-5 w-5 flex-shrink-0 text-[#e2116e]" />{" "}
+                                    রেফারেন্সঃ তোমার নাম <br />
+                                  </span>
+                                  <span className="flex gap-2">
+                                    <FaCheckSquare className="h-5 w-5 flex-shrink-0 text-[#e2116e]" />{" "}
+                                    কাউন্টার নাম্বারঃ 1 <br />
+                                  </span>
+                                  <span className="flex gap-2">
+                                    <FaCheckSquare className="h-5 w-5 flex-shrink-0 text-[#e2116e]" />{" "}
+                                    তোমার পিন নাম্বার দিয়ে পেমেন্ট কমপ্লিট করো{" "}
+                                    <br />
+                                  </span>
+                                  <span className="flex gap-2">
+                                    <FaCheckSquare className="h-5 w-5 flex-shrink-0 text-[#e2116e]" />{" "}
+                                    ট্রানজেকশন আইডি/TrxID ফর্মে ফিলাপ করে দাও।{" "}
+                                    <br />
+                                  </span>
+                                  <span className="flex gap-2">
+                                    <FaCheckSquare className="h-5 w-5 flex-shrink-0 text-[#e2116e]" />{" "}
+                                    ট্রানজেকশন আইডি/TrxID দেওয়ার সময় অবশ্যই ভাল
+                                    করে খেয়াল করে, জিরো '0', ইংরেজি ও 'o',
+                                    ইংরেজি বড় হাতে অক্ষর আই 'I' ও ইংরেজি ছোট
+                                    হাতে অক্ষর এল 'l' দেখে দিবে। সাধারন ভাবে
+                                    ট্রানজেকশন আইডি/ বড় হাতে অক্ষরে দেওয়া থাকে
+                                  </span>
+                                </div>
+                                <h6 className="input-label capitalize text-[13px] font-600 leading-[24px] text-qblack block mb-2 ">
+                                  Transaction Information*
+                                </h6>
+                                <input
+                                  onChange={(e) =>
+                                    setTransactionId(e.target.value)
+                                  }
+                                  name="trxId"
+                                  className="w-full focus:ring-0 focus:outline-none py-3 px-4 border placeholder:text-sm text-sm"
+                                  placeholder="Example: TrxID"
+                                />
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

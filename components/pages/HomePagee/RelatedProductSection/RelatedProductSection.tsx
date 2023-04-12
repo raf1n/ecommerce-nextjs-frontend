@@ -78,8 +78,6 @@ const RelatedProductSection: React.FC<Props> = (props) => {
             <div className="section-style-one new-products md:mb-[60px] mb-[30px] bg-white">
               <div className="section-wrapper w-full ">
                 <div className="container-x mx-auto">
-                  {/* Jsondata.newReleasedProducts
-                      .slice(0, 2) */}
                   <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
                     {relatedProduct
                       .slice(0, 4)
