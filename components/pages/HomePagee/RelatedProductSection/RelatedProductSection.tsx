@@ -68,7 +68,7 @@ const RelatedProductSection: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <div className="related-product w-full bg-white">
+      <div className="related-product w-full bg-white px-2 md:px-0">
         <div className="container-x mx-auto">
           <div className="w-full py-[60px]">
             <h1 className="sm:text-3xl text-xl font-600 text-qblacktext leading-none mb-[30px]">

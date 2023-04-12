@@ -60,8 +60,8 @@ const SingleProduct: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="w-full min-h-screen  pt-0 pb-0">
-      <div className="product-view-main-wrapper bg-white pt-[30px] w-full">
+    <div className="w-full min-h-screen pt-0 pb-0">
+      <div className="product-view-main-wrapper bg-white px-2 md:px-0 pt-[30px] w-full">
         <div className="w-full bg-white pb-[60px] ">
           <div className="container-x mx-auto ">
             <Breadcrumb
