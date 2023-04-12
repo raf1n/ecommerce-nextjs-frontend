@@ -287,9 +287,8 @@ const HeaderTop: React.FC<Props> = (props) => {
                   className="category-item"
                   onClick={() =>
                     router.push({
-                      pathname: "/products",
+                      pathname: "products",
                       query: {
-                        // ...router.query,
                         category: "+" + category.cat_slug,
                       },
                     })
