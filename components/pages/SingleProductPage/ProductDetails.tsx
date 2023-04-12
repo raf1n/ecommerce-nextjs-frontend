@@ -20,7 +20,6 @@ import {
   IWishlistProduct,
 } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
-import { CartHandler } from "../../../src/utils/CartHandler";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import toast from "react-hot-toast";
