@@ -107,19 +107,19 @@ const MyCart: React.FC<Props> = (props) => {
                   <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <tbody>
                       <tr className="text-[13px] font-medium text-black bg-[#F6F6F6] whitespace-nowrap px-2 border-b default-border-bottom uppercase">
-                        <td className="py-4 capitalize pl-10 block whitespace-nowrap">
+                        <td width="60%" className="py-4 capitalize pl-10 block whitespace-nowrap">
                           Product
                         </td>
-                        <td className="py-4 capitalize whitespace-nowrap text-center">
+                        <td width={150} className="py-4 capitalize whitespace-nowrap text-center">
                           Price
                         </td>
-                        <td className="py-4 capitalize whitespace-nowrap text-center">
+                        <td width={120} className="py-4 capitalize whitespace-nowrap text-center">
                           Quantity
                         </td>
-                        <td className="py-4 capitalize whitespace-nowrap text-center">
+                        <td width={150} className="py-4 capitalize whitespace-nowrap text-center">
                           Total
                         </td>
-                        <td className="py-4 capitalize whitespace-nowrap text-center block">
+                        <td width={60} className="py-4 capitalize whitespace-nowrap text-center block">
                           {/* Action */}
                         </td>
                       </tr>
@@ -132,7 +132,7 @@ const MyCart: React.FC<Props> = (props) => {
                             key={item.slug}
                             className="bg-white border-b hover:bg-gray-50"
                           >
-                            <td className="pl-10 py-4 capitalize w-[380px] ">
+                            <td width="60%" className="pl-10 py-4 capitalize w-[380px] ">
                               <div className="flex space-x-6 items-center">
                                 <div className="w-[80px] h-[80px] overflow-hidden flex justify-center items-center border border-[#EDEDED] relative">
                                   <span
@@ -187,7 +187,7 @@ const MyCart: React.FC<Props> = (props) => {
                                 </div>
                               </div>
                             </td>
-                            <td className="text-center py-4 capitalize px-2">
+                            <td width={150}  className="text-center py-4 capitalize px-2">
                               <div className="flex space-x-1 items-center justify-center">
                                 <span className="text-[15px] font-normal">
                                   $
@@ -197,7 +197,7 @@ const MyCart: React.FC<Props> = (props) => {
                                 </span>
                               </div>
                             </td>
-                            <td className="text-center py-4 capitalize px-2">
+                            <td width={120} className="text-center py-4 capitalize px-2">
                               <div className="flex space-x-1 items-center justify-center ">
                                 <div className="w-[120px] h-full px-[26px] flex items-center border border-gray-200">
                                   <div className="flex justify-between items-center w-full py-2">
@@ -226,14 +226,14 @@ const MyCart: React.FC<Props> = (props) => {
                                 </div>
                               </div>
                             </td>
-                            <td className="text-center py-4 capitalize px-2">
+                            <td width={150}  className="text-center py-4 capitalize px-2">
                               <div className="flex space-x-1 items-center justify-center">
                                 <span className="text-[15px] font-normal">
                                   ${CartHandler.getPrice(item)}
                                 </span>
                               </div>
                             </td>
-                            <td className="text-right py-4 capitalize">
+                            <td width={60}  className="text-right py-4 capitalize">
                               <div className="flex space-x-1 items-center justify-center p-2">
                                 <span
                                   className="cursor-pointer"
