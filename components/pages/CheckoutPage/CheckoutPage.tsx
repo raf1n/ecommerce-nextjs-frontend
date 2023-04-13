@@ -113,7 +113,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
     controller.setApiLoading(true);
 
     const { res, err } = await EcommerceApi.postOrder(order);
-    if (res.message === "COD Order successful") {
+    if (res.message === "COD Order successful" || res.message === "BKash Order successful") {
       controller.setClearCartlist();
       const { res: cartdelRes, err } =
         await EcommerceApi.deleteAllCartlistProduct(user_slug);
