@@ -68,7 +68,7 @@ const RelatedProductSection: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <div className="related-product w-full bg-white">
+      <div className="related-product w-full bg-white px-2 md:px-0">
         <div className="container-x mx-auto">
           <div className="w-full py-[60px]">
             <h1 className="sm:text-3xl text-xl font-600 text-qblacktext leading-none mb-[30px]">
@@ -78,8 +78,6 @@ const RelatedProductSection: React.FC<Props> = (props) => {
             <div className="section-style-one new-products md:mb-[60px] mb-[30px] bg-white">
               <div className="section-wrapper w-full ">
                 <div className="container-x mx-auto">
-                  {/* Jsondata.newReleasedProducts
-                      .slice(0, 2) */}
                   <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
                     {relatedProduct
                       .slice(0, 4)
