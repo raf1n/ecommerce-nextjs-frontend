@@ -113,9 +113,17 @@ const CheckoutPage: React.FC<Props> = (props) => {
     controller.setApiLoading(true);
 
     const { res, err } = await EcommerceApi.postOrder(order);
+    if (res.message === "COD Order successful") {
+      controller.setClearCartlist();
+      const { res: cartdelRes, err } =
+        await EcommerceApi.deleteAllCartlistProduct(user_slug);
+      if (cartdelRes) {
+        toast.success("Your Order is Placed");
+      }
+    }
     if (err) {
       console.log(err);
-    } else if (res) {
+    } else if (res.message === "SSL Order successful") {
       router.push(res.data);
       console.log(res);
       // controller.setClearCartlist();

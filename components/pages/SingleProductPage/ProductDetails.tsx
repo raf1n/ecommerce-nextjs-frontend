@@ -2,6 +2,7 @@ import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { useRouter } from "next/router";
 import {
   FaRegHeart,
   FaFlag,
@@ -11,7 +12,7 @@ import {
 } from "react-icons/fa";
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
-import { useRouter } from "next/router";
+
 import FacebookIcon from "react-share/lib/FacebookIcon";
 import TwitterIcon from "react-share/lib/TwitterIcon";
 import {
@@ -39,6 +40,9 @@ const ProductDetails: React.FC<Props> = (props) => {
   const [avgRating, setAvgRating] = useState(0);
   const [totalReview, setTotalReview] = useState(0);
 
+  const { asPath } = useRouter();
+  let productSlug = asPath.split("=")[1];
+
   let selectedItem: ICartProduct | undefined;
 
   const getProductReviews = async () => {
@@ -46,12 +50,15 @@ const ProductDetails: React.FC<Props> = (props) => {
     const { res, err } = await EcommerceApi.getAllProductReviews(
       singleProduct?.slug
     );
-    if (res) {
+    if (res?.length !== 0) {
       setTotalReview(res.length);
       res.map((data) => {
         rating = rating + data.rating / res.length;
         setAvgRating(rating);
       });
+    } else if (res?.length === 0) {
+      setTotalReview(0);
+      setAvgRating(0);
     }
   };
 
@@ -76,7 +83,7 @@ const ProductDetails: React.FC<Props> = (props) => {
     };
     handleBrand();
     getProductReviews();
-  }, [singleProduct]);
+  }, [singleProduct, productSlug]);
   const { setReportModalSlug } = props;
   const router = useRouter();
 
@@ -193,7 +200,7 @@ const ProductDetails: React.FC<Props> = (props) => {
 
       <div className="flex gap-x-[10px] items-center mb-6">
         <div className="flex">
-          {avgRating && (
+          {singleProduct && avgRating !== 0 && (
             <ReactStars
               count={5}
               value={avgRating}
@@ -207,8 +214,29 @@ const ProductDetails: React.FC<Props> = (props) => {
               color="#d3d3d3"
             />
           )}
+          {singleProduct && avgRating === 0 && (
+            <ReactStars
+              count={5}
+              value={0}
+              edit={false}
+              size={24}
+              isHalf={true}
+              emptyIcon={<FaRegStar />}
+              halfIcon={<FaStarHalfAlt />}
+              fullIcon={<FaStar />}
+              activeColor="rgb(255, 168, 0)"
+              color="#d3d3d3"
+            />
+          )}
         </div>
-        {totalReview && (
+
+        {singleProduct && totalReview !== 0 && (
+          <span className="font-semibold text-[15px]  text-qblack">
+            {" "}
+            {totalReview} Reviews
+          </span>
+        )}
+        {singleProduct && totalReview === 0 && (
           <span className="font-semibold text-[15px]  text-qblack">
             {" "}
             {totalReview} Reviews
