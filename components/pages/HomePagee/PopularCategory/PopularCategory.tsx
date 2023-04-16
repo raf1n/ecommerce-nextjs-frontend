@@ -5,6 +5,7 @@ import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { controller } from "../../../../src/state/StateController";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
+import Link from "next/link";
 
 interface Props {}
 
@@ -69,9 +70,12 @@ const PopularCategory: React.FC<Props> = (props) => {
                         </ul>
                       </div>
                       <div className="flex space-x-2 items-center">
-                        <span className=" text-qblack font-semibold text-sm">
+                        <Link
+                          href="/products?highlight=popular_category"
+                          className=" text-qblack font-semibold text-sm"
+                        >
                           Shop Now
-                        </span>
+                        </Link>
                         <span>
                           <svg
                             width="7"

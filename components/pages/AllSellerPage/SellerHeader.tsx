@@ -63,7 +63,9 @@ const SellerHeader: React.FC<Props> = ({ sellerData }) => {
                     pathFill="black"
                   />
                 </span>
-                <span>{sellerData?.email}</span>
+                <span className="line-clamp-1" title={sellerData?.email}>
+                  {sellerData?.email}
+                </span>
               </li>
               <li className=" flex space-x-5 items-center leading-9 text-base ">
                 <span>
@@ -91,12 +93,17 @@ const SellerHeader: React.FC<Props> = ({ sellerData }) => {
                     pathFill="black"
                   />
                 </span>
-                <span>{sellerData?.shop?.shop_address}</span>
+                <span
+                  className="line-clamp-1"
+                  title={sellerData?.shop?.shop_address}
+                >
+                  {sellerData?.shop?.shop_address}
+                </span>
               </li>
             </ul>
           </div>
 
-          <div className="saller-name lg:block hidden p-5 bg-white bg-opacity-80 rounded-lg">
+          <div className="saller-name lg:block hidden py-5 px-9 bg-white bg-opacity-80 rounded-lg">
             <h1 className="text-[60px] font-bold">
               {sellerData?.shop?.shop_name}
             </h1>
@@ -113,7 +120,6 @@ const SellerHeader: React.FC<Props> = ({ sellerData }) => {
                 activeColor="rgb(255, 168, 0)"
                 color="rgb(107 114 128)"
               />
-
             </div>
           </div>
           <div className="saller-logo mt-5 sm:mt-5 p-5 md:p-0 bg-white md:bg-none bg-opacity-80 md:bg-opacity-0 rounded-lg">

@@ -7,6 +7,7 @@ import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
 import { IFeaturedCategories } from "../../../../interfaces/models";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
+import Link from "next/link";
 
 interface Props {}
 
@@ -69,34 +70,15 @@ const FeaturedCategory: React.FC<Props> = (props) => {
                               </li>
                             </>
                           ))}
-                          {/* <li>
-                            <span
-                              onClick={() => setSlug("mobile_slug")}
-                              className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
-                            >
-                              Mobile
-                            </span>
-                          </li> */}
-                          {/* <li>
-                            <span
-                              onClick={() => setSlug("electronics_slug")}
-                              className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
-                              Electronics
-                            </span>
-                          </li>
-                          <li>
-                            <span
-                              onClick={() => setSlug("game_slug")}
-                              className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
-                              Game
-                            </span>
-                          </li> */}
                         </ul>
                       </div>
                       <div className="flex space-x-2 items-center">
-                        <span className=" text-qblack font-semibold text-sm">
+                        <Link
+                          href="/products?highlight=featured_product"
+                          className=" text-qblack font-semibold text-sm"
+                        >
                           Shop Now
-                        </span>
+                        </Link>
                         <span>
                           <svg
                             width="7"
