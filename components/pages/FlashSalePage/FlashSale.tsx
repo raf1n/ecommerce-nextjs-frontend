@@ -72,6 +72,8 @@ const FlashSale: React.FC<Props> = (props) => {
           // "url(https://api.websolutionus.com/shopo/uploads/website-images/flash_sale--2022-09-20-10-54-12-8555.png)"
           style={{
             backgroundImage: `url(${saleData?.imageFlash})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
           }}
           className="flash-ad w-full h-[400px] flex sm:justify-end justify-center items-center mb-10 aos-init aos-animate"
         >
