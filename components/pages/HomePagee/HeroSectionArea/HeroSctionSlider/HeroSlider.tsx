@@ -72,8 +72,7 @@ const HeroSlider: React.FC<Props> = (props) => {
           {sliderData.map((el) => (
             <div
               style={{ width: "100%", display: " inline-block" }}
-              className="w-full h-full "
-            >
+              className="w-full h-full ">
               <div
                 className="flex w-full max-w-full relative items-center h-[220px] xl:h-[600px] md:h-[500px] lg:h-[600px] pl-[30px]"
                 style={{
@@ -83,8 +82,7 @@ const HeroSlider: React.FC<Props> = (props) => {
      )`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
-                }}
-              >
+                }}>
                 <div>
                   <div className="md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[30px] mb-[15px]">
                     <span className="text-qblack uppercase md:text-xs text-[10px] font-semibold">
@@ -101,7 +99,7 @@ const HeroSlider: React.FC<Props> = (props) => {
                       {el.titleTWo}
                     </h1>
                   </div>
-                  <Link href={`single_product?slug=${el.slug}`}>
+                  <Link href={`single_product?slug=${el.productLink}`}>
                     <ShopNowBtn color={{ textColor: "text-qblack" }} />
                   </Link>
                 </div>

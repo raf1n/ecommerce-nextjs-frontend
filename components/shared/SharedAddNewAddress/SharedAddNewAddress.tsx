@@ -258,6 +258,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
       wholeAddress.find((divi: any) => divi.divisionName === event.target.value)
         .district
     );
+    setThanas([]);
   };
 
   const changeDistrict = (event: any) => {
@@ -304,19 +305,16 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
         </h1>
         <span
           onClick={() => setForm(false)}
-          className="text-qyellow cursor-pointer"
-        >
+          className="text-qyellow cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
             viewBox="0 0 20 20"
-            fill="currentColor"
-          >
+            fill="currentColor">
             <path
               fillRule="evenodd"
               d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-              clipRule="evenodd"
-            ></path>
+              clipRule="evenodd"></path>
           </svg>
         </span>
       </div>
@@ -452,8 +450,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                       borderRadius: 0,
                       boxShadow: "none",
                       cursor: "pointer",
-                    }}
-                  >
+                    }}>
                     <option>Select divisions</option>
                     {wholeAddress.map((divi: any, i: any) => (
                       <option key={i} value={divi.divisionName}>
@@ -499,8 +496,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                         borderRadius: 0,
                         boxShadow: "none",
                         cursor: "pointer",
-                      }}
-                    >
+                      }}>
                       <option>Select District</option>
                       {districts.map((dis: any, i: any) => (
                         <option key={i} value={dis.districtName}>
@@ -545,8 +541,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
                         borderRadius: 0,
                         boxShadow: "none",
                         cursor: "pointer",
-                      }}
-                    >
+                      }}>
                       <option>Select Thana</option>
                       {thanas.map((thana: string, i: any) => (
                         <option key={i} value={thana}>
@@ -583,8 +578,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
               </div>
               <label
                 htmlFor="home"
-                className="text-qblack text-[15px] select-none capitalize"
-              >
+                className="text-qblack text-[15px] select-none capitalize">
                 home
               </label>
             </div>
@@ -594,8 +588,7 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
               </div>
               <label
                 htmlFor="office"
-                className="text-qblack text-[15px] select-none"
-              >
+                className="text-qblack text-[15px] select-none">
                 Office
               </label>
             </div>

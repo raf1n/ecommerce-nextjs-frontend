@@ -17,7 +17,8 @@ export interface IUser {
   createdAt?: string;
   updatedAt: string;
   phone?: string;
-  status?: "active" | "inactive";
+  // status?: "active" | "inactive";
+  status?: string;
   address: {
     country?: string;
     state?: string;
