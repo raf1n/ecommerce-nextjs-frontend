@@ -9,11 +9,11 @@ import {
   AddressIcon,
   ChangePassIcon,
   DashboardIcon,
-  HeartIcon,
   LogOutIcon,
   OrderIcon,
   PersonalInfoIcon,
   ReviewIcon,
+  WishlistIcon,
 } from "../../../src/utils/SvgReturn";
 
 interface Props {}
@@ -83,7 +83,7 @@ const ProfilePage: React.FC<Props> = (props) => {
                     href="/profile#wishlist"
                     className="flex gap-x-3 items-center text-qgray hover:text-qblack capitalize"
                   >
-                    <HeartIcon />
+                    <WishlistIcon />
                     <span className="font-normal text-base capitalize cursor-pointer">
                       Wishlist
                     </span>
