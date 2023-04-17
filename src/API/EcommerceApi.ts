@@ -16,8 +16,9 @@ import {
   IFilteredProductBySellerResponse,
   IFilteredProductResponse,
   IFlashSaleProductsResponse,
-  IflashSaleResponse,
+  IFlashSaleResponse,
   IGetAllSellerResponse,
+  IGetSingleUserResponse,
   IMegaCategoriesResponse,
   IOrderResponse,
   IPopularCategoriesResponse,
@@ -889,8 +890,7 @@ export class EcommerceApi {
   }
 
   //flash sale content get
-
-  static async getFlashSaleContent(name: string): Promise<IflashSaleResponse> {
+  static async getFlashSaleContent(name: string): Promise<IFlashSaleResponse> {
     const myHeaders = new Headers();
 
     const requestOptions = {
@@ -905,7 +905,6 @@ export class EcommerceApi {
   }
 
   // getsellerwithProducts
-
   static async getRelatedProduct(catSlug: string | undefined): Promise<any> {
     const myHeaders = new Headers();
     // myHeaders.append("Authorization", `Bearer ${CookiesHandler.getAccessToken()}`);
@@ -919,4 +918,20 @@ export class EcommerceApi {
       requestOptions
     );
   }
+
+    //get user data for private route
+    static async getUserAuth(slug: string): Promise<IGetSingleUserResponse> {
+      const myHeaders = new Headers();
+      const requestOptions = {
+        headers: myHeaders,
+        // credentials: 'include',
+        credentials: "same-origin",
+        redirect: "follow",
+      };
+  
+      return await callFetch(
+        `${API_ENDPOINT}/users/private/${slug}`,
+        requestOptions
+      );
+    }
 }

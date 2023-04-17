@@ -16,31 +16,31 @@ import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 interface Props {}
 
 const ProfileDashboardRenderer: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
+  const loggedInUser = useSelector(() => controller.states.user);
   const [allOrders, setAllOrders] = useState<IOrder[]>([]);
   const [allCompletedOrders, setAllCompletedOrders] = useState<IOrder[]>([]);
 
   const { asPath } = useRouter();
-  const user_slug = CookiesHandler.getSlug();
+
   const hash = asPath.split("#")[1];
-  const loggedInUser = states.user;
-  
+
   useEffect(() => {
     const getAllOrders = async () => {
-      const { res, err } = await EcommerceApi.allOrders(user_slug);
-      console.log(res);
-      console.log(err);
-      if (res) {
-        setAllOrders(res.data);
-        const completedOrders = res.data.filter(
-          (dt) => dt.order_status === "completed"
-        );
-        setAllCompletedOrders(completedOrders);
+      if (loggedInUser) {
+        const { res, err } = await EcommerceApi.allOrders(loggedInUser.slug);
+        if (res) {
+          setAllOrders(res.data);
+          const completedOrders = res.data.filter(
+            (dt) => dt.order_status === "completed"
+          );
+          setAllCompletedOrders(completedOrders);
+        }
       }
     };
 
     getAllOrders();
-  }, []);
+  }, [loggedInUser]);
+
   switch (hash) {
     case "dashboard": {
       return (

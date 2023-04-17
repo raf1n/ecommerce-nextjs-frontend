@@ -10,7 +10,6 @@ import {
 import { state, action, computed, createStore } from "usm-redux";
 import { compose } from "redux";
 import { IProduct } from "../../interfaces/models";
-import { EcommerceApi } from "../API/EcommerceApi";
 
 const composeEnhancers =
   // @ts-ignore

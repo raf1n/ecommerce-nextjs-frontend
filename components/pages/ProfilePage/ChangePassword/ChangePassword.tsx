@@ -45,34 +45,6 @@ const ChangePassword: React.FC<Props> = (props) => {
     <div className="item-body dashboard-wrapper w-full">
       <div className="changePasswordTab w-full">
         <div className="w-full flex lg:flex-row space-x-5 lg:items-center">
-          {/* <form onSubmit={handlePassChange}>
-            <div className="lg:w-[397px] w-full mb-10">
-              <ChangePasswordInput label="Old Password" id="old_password" />
-              <ChangePasswordInput label="Password" id="new_password" />
-              <ChangePasswordInput
-                label="Re-Enter Password"
-                id="re-enter_password"
-              />
-
-              <div className="w-full mt-[30px] flex justify-start">
-                <div className="sm:flex sm:space-x-[30px] items-center">
-                  <div className="w-[180px] h-[50px] lg:mb-0 mb-5">
-                    <button type="button" className="yellow-btn ">
-                      <div className="w-full text-sm font-semibold ">
-                        Update Password
-                      </div>
-                    </button>
-                  </div>
-                  <button type="button">
-                    <div className="w-full text-sm font-semibold text-qblack mb-5 sm:mb-0">
-                      Cancel
-                    </div>
-                  </button>
-                </div>
-              </div>
-
-            </div>
-          </form>  */}
           <form onSubmit={handlePassChange} className={``}>
             <div className={``}>
               <div>
@@ -133,15 +105,15 @@ const ChangePassword: React.FC<Props> = (props) => {
                     <div className="sm:flex sm:space-x-[30px] items-center">
                       <div className="w-[180px] h-[50px] lg:mb-0 mb-5">
                         <button type="submit" className="yellow-btn ">
-                          <div className="w-full text-sm font-semibold ">
+                          <span className="w-full text-sm font-semibold ">
                             Update Password
-                          </div>
+                          </span>
                         </button>
                       </div>
                       <button type="button">
-                        <div className="w-full text-sm font-semibold text-qblack mb-5 sm:mb-0">
+                        <span className="w-full text-sm font-semibold text-qblack mb-5 sm:mb-0">
                           Cancel
-                        </div>
+                        </span>
                       </button>
                     </div>
                   </div>

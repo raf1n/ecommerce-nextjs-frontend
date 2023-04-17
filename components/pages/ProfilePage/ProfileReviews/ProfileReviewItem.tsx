@@ -71,9 +71,9 @@ const ProfileReviewItem: React.FC<Props> = ({
             <Link
               href={`http://localhost:3000/single_product?slug=${reviewProducts.slug}`}
             >
-              <h6 className=" mb-2 sm:text-[15px] text-[13px] font-bold leading-[24px] line-clamp-1 hover:text-blue-600 cursor-pointer">
+              <span className=" mb-2 sm:text-[15px] text-[13px] font-bold leading-[24px] line-clamp-1 hover:text-blue-600 cursor-pointer">
                 {reviewProducts.productName}
-              </h6>
+              </span>
             </Link>
             <p className="price mb-[26px] text-sm text-qgray line-clamp-2">
               {message}

@@ -199,6 +199,10 @@ export interface IGetAllSellerResponse extends MyFetchInterface {
   res: ISeller[];
 }
 
-export interface IflashSaleResponse extends MyFetchInterface {
+export interface IFlashSaleResponse extends MyFetchInterface {
   res: IFlashSale;
+}
+
+export interface IGetSingleUserResponse extends MyFetchInterface {
+  res: IUser;
 }
