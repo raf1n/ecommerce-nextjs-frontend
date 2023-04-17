@@ -157,6 +157,8 @@ const HeaderTop: React.FC<Props> = (props) => {
         pathname: "products",
         query: {
           search: searchRef.current?.value,
+          min: 0,
+          max: 15000,
         },
       });
     }
@@ -166,6 +168,8 @@ const HeaderTop: React.FC<Props> = (props) => {
         pathname: "products",
         query: {
           category: "+" + searchCategory.cat_slug,
+          min: 0,
+          max: 15000,
         },
       });
     }
@@ -176,20 +180,24 @@ const HeaderTop: React.FC<Props> = (props) => {
         query: {
           search: searchRef.current?.value,
           category: "+" + searchCategory.cat_slug,
+          min: 0,
+          max: 15000,
         },
       });
     }
   };
 
   const handleSearchMobile = () => {
-    console.log(mobSearchRef.current?.value);
 
     if (mobSearchRef.current?.value) {
       router.push({
         pathname: "products",
         query: {
           search: mobSearchRef.current?.value,
+          min: 0,
+          max: 15000,
         },
+
       });
     }
   };

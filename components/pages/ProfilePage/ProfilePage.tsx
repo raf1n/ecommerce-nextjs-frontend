@@ -23,6 +23,8 @@ const ProfilePage: React.FC<Props> = (props) => {
 
   const signOut = async () => {
     await SocialLogin.logOut();
+    controller.setAllCartListData([]);
+    controller.setAllWishlistData([]);
     controller.setUser(null);
   };
 
