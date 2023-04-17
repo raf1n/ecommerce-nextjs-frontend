@@ -56,7 +56,7 @@ const ItemDetails: React.FC<Props> = (props) => {
   }, [productSlug, states.initialDataLoading, singleProduct?.seller_slug]);
 
   return (
-    <div className="w-full bg-qgrayBorder">
+    <div className="w-full bg-qgrayBorder px-2 md:px-0">
       <div className="container-x mx-auto pb-[60px]">
         <div className="tab-buttons w-full mb-10 mt-5 sm:mt-0">
           <div>

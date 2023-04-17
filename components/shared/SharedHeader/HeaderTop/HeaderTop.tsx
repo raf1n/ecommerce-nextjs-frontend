@@ -43,13 +43,15 @@ const HeaderTop: React.FC<Props> = (props) => {
 
   // const [searchString, setSearchString] = useState("");
   const searchRef = useRef<HTMLInputElement>(null);
+  const mobSearchRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
   const { asPath, route } = router;
 
   useEffect(() => {
-    if (route !== "/products" && searchRef.current) {
+    if (route !== "/products" && searchRef.current && mobSearchRef.current) {
       searchRef.current.value = "";
+      mobSearchRef.current.value = "";
       setSearchCategory(undefined);
     }
   }, [route]);
@@ -148,11 +150,15 @@ const HeaderTop: React.FC<Props> = (props) => {
   }, []);
 
   const handleSearch = () => {
+    console.log(searchRef.current?.value);
+
     if (searchRef.current?.value && !searchCategory) {
       router.push({
         pathname: "products",
         query: {
           search: searchRef.current?.value,
+          min: 0,
+          max: 15000,
         },
       });
     }
@@ -162,6 +168,8 @@ const HeaderTop: React.FC<Props> = (props) => {
         pathname: "products",
         query: {
           category: "+" + searchCategory.cat_slug,
+          min: 0,
+          max: 15000,
         },
       });
     }
@@ -172,7 +180,24 @@ const HeaderTop: React.FC<Props> = (props) => {
         query: {
           search: searchRef.current?.value,
           category: "+" + searchCategory.cat_slug,
+          min: 0,
+          max: 15000,
         },
+      });
+    }
+  };
+
+  const handleSearchMobile = () => {
+
+    if (mobSearchRef.current?.value) {
+      router.push({
+        pathname: "products",
+        query: {
+          search: mobSearchRef.current?.value,
+          min: 0,
+          max: 15000,
+        },
+
       });
     }
   };
@@ -205,14 +230,12 @@ const HeaderTop: React.FC<Props> = (props) => {
         <div className="w-full px-5 mt-5 mb-4">
           <div className="flex justify-between items-center">
             <div className="flex space-x-5 items-center">
-              <div className="favorite relative">
-                <span>
-                  <HeartIcon />
-                </span>
+              <Link href="/wishlist" className="favorite relative">
+                <HeartIcon />
                 <span className="w-[18px] h-[18px] rounded-full bg-qyellow absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px]">
-                  1
+                  {states.wishlistData.length}
                 </span>
-              </div>
+              </Link>
             </div>
             <button
               type="button"
@@ -228,14 +251,14 @@ const HeaderTop: React.FC<Props> = (props) => {
           <div className="search-bar w-full h-[34px] flex ">
             <div className="flex-1 bg-white h-full border border-r-0 border-[#E9E9E9]">
               <input
-                type="search"
                 className="w-full text-xs h-full focus:outline-none focus:ring-0 placeholder:text-qgraytwo pl-2.5 "
                 placeholder="Search Product..."
+                ref={mobSearchRef}
               />
             </div>
             <div
               className="cursor-pointer w-[40px] h-full bg-qyellow flex justify-center items-center"
-              onClick={() => handleSearch()}
+              onClick={() => handleSearchMobile()}
             >
               <span>
                 <SearchIcon />
@@ -267,7 +290,18 @@ const HeaderTop: React.FC<Props> = (props) => {
           <div className="category-item mt-5 w-full">
             <ul className="categories-list">
               {states.categories.map((category: ICategories) => (
-                <li key={category.cat_slug} className="category-item">
+                <li
+                  key={category.cat_slug}
+                  className="category-item"
+                  onClick={() =>
+                    router.push({
+                      pathname: "products",
+                      query: {
+                        category: "+" + category.cat_slug,
+                      },
+                    })
+                  }
+                >
                   <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex items-center space-x-6">
                       <span>
@@ -354,7 +388,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                 </div>
               </div>
               <div className="block lg:hidden">
-                <Link rel="noopener noreferrer" href="/become-seller">
+                <Link rel="noopener noreferrer" href="/become_seller">
                   <span className="text-xs leading-6 text-qblack px-3 py-1 bg-qyellow font-medium cursor-pointer">
                     Become seller
                   </span>
@@ -387,14 +421,14 @@ const HeaderTop: React.FC<Props> = (props) => {
                   </Link>
                 </div>
                 <div className="w-[517px] h-[44px]">
-                  <div className="w-full h-full flex items-center  border border-qgray-border bg-white  search-com">
+                  <div className="w-full h-full flex items-center  border border-qgray-border bg-white search-com">
                     <div className="flex-1 bg-red-500 h-full">
                       <div className="h-full">
                         <input
                           name="searchInput"
                           type="text"
                           className={styles["search-input"]}
-                          placeholder="Search Products..."
+                          placeholder="Search Product..."
                           ref={searchRef}
                         />
                       </div>
@@ -710,7 +744,6 @@ const HeaderTop: React.FC<Props> = (props) => {
                       src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27153%27%20height=%2744%27/%3e"
                       alt="logo"
                     />
-                    6
                   </span>
                   <img
                     className={`${styles["imgStyle"]}`}
@@ -720,12 +753,12 @@ const HeaderTop: React.FC<Props> = (props) => {
                 </span>
               </Link>
             </div>
-            <Link href="/checkout" className="cart relative cursor-pointer">
+            <Link href="/cart" className="cart relative cursor-pointer">
               <span>
                 <CartIcon />
               </span>
               <span className="w-[18px] h-[18px] rounded-full bg-qyellow absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px]">
-                0
+                {states.cartlistData.length}
               </span>
             </Link>
           </div>

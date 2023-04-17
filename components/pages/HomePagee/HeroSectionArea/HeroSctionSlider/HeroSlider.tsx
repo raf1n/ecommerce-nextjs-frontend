@@ -68,7 +68,6 @@ const HeroSlider: React.FC<Props> = (props) => {
     <div className="xl:w-[740px] w-full lg:h-full xl:h-full md:h-[500px] h-[220px] xl:mb-0 mb-2 aos-init aos-animate">
       <div className={`slider-wrapper w-full h-full`}>
         <Slider {...settings}>
-          {/* [1, 2] */}
           {sliderData.map((el) => (
             <div
               style={{ width: "100%", display: " inline-block" }}
@@ -76,10 +75,7 @@ const HeroSlider: React.FC<Props> = (props) => {
               <div
                 className="flex w-full max-w-full relative items-center h-[220px] xl:h-[600px] md:h-[500px] lg:h-[600px] pl-[30px]"
                 style={{
-                  // "https://api.websolutionus.com/shopo/uploads/custom-images/slider-2022-10-27-01-36-44-4193.png"
-                  backgroundImage: `url(${el.image}
-       
-     )`,
+                  backgroundImage: `url(${el.image})`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                 }}>
@@ -91,11 +87,9 @@ const HeroSlider: React.FC<Props> = (props) => {
                   </div>
                   <div className="md:mb-[30px] mb-[15px]">
                     <p className="md:text-[50px] text-[20px] leading-none text-qblack md:mb-3">
-                      {/* Headphone */}
                       {el.titleOne}
                     </p>
                     <h1 className="md:text-[50px] text-[20px] md:w-[400px] md:leading-[66px] text-qblack font-bold">
-                      {/* JBL Music */}
                       {el.titleTWo}
                     </h1>
                   </div>
