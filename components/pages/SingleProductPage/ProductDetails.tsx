@@ -31,11 +31,11 @@ interface Props {
   setReportModalSlug: Dispatch<SetStateAction<string>>;
 }
 
-const user_slug = CookiesHandler.getSlug();
-
 const ProductDetails: React.FC<Props> = (props) => {
   const { singleProduct } = props;
   const states = useSelector(() => controller.states);
+  const user_slug = states.user?.slug;
+
   const [brandName, setBrandName] = useState<string | undefined>("");
   const [avgRating, setAvgRating] = useState(0);
   const [totalReview, setTotalReview] = useState(0);
@@ -72,6 +72,9 @@ const ProductDetails: React.FC<Props> = (props) => {
     selectedItem?.quantity || 1
   );
 
+  const { setReportModalSlug } = props;
+  const router = useRouter();
+
   useEffect(() => {
     const handleBrand = () => {
       if (states.brands && singleProduct && singleProduct.brandSlug) {
@@ -84,8 +87,6 @@ const ProductDetails: React.FC<Props> = (props) => {
     handleBrand();
     getProductReviews();
   }, [singleProduct, productSlug]);
-  const { setReportModalSlug } = props;
-  const router = useRouter();
 
   const shareableRoute = process.env.NEXT_PUBLIC_API_ENDPOINT + router.asPath;
   // const shareableRoute = "https://www.google.com" || undefined;
@@ -93,6 +94,11 @@ const ProductDetails: React.FC<Props> = (props) => {
   // console.log({ shareableRoute, router });
 
   const handleIncreaseQuantity = async (item: ICartProduct) => {
+    if (!user_slug) {
+      toast.error("Please Login First");
+      return;
+    }
+
     if (!item.stock) {
       toast.error(
         "Sorry, this product is out of stock. Please add to wishlist instead."
@@ -109,41 +115,38 @@ const ProductDetails: React.FC<Props> = (props) => {
       toast.error(
         "Sorry, One can not buy more than 10 units of a single product."
       );
+      return;
     }
 
     controller.setApiLoading(true);
-    if (user_slug) {
-      if (!states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
-        const cartProductData = {
-          user_slug: user_slug,
-          product_slug: singleProduct?.slug,
-          quantity: 1,
-        };
+    if (!states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
+      const cartProductData = {
+        user_slug: user_slug,
+        product_slug: singleProduct?.slug,
+        quantity: 1,
+      };
 
-        const { res, err } = await EcommerceApi.addToCart(cartProductData);
+      const { res, err } = await EcommerceApi.addToCart(cartProductData);
 
-        if (res) {
-          const newProduct = {
-            ...singleProduct,
-            cart_slug: res.slug,
-          };
-
-          //@ts-ignore
-          controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
-        } else {
-          console.log(err);
-          toast.error("Failed");
-        }
-      } else {
+      if (res) {
         const newProduct = {
           ...singleProduct,
+          cart_slug: res.slug,
         };
 
         //@ts-ignore
         controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
+      } else {
+        console.log(err);
+        toast.error("Failed");
       }
     } else {
-      toast.error("Please Login First");
+      const newProduct = {
+        ...singleProduct,
+      };
+
+      //@ts-ignore
+      controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
     }
 
     controller.setApiLoading(false);
@@ -159,6 +162,11 @@ const ProductDetails: React.FC<Props> = (props) => {
   };
 
   const handleWishlist = async () => {
+    if (!user_slug) {
+      toast.error("Please Login First");
+      return;
+    }
+
     controller.setApiLoading(true);
     //@ts-ignore
     const newProduct: IWishlistProduct = { ...singleProduct };
