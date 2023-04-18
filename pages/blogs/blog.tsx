@@ -31,12 +31,14 @@ export async function getServerSideProps(context: any) {
     return {
       props: {
         blogData: res,
-        blogComments: blogCommentsRes
+        blogComments: blogCommentsRes,
+        fallback: false,
       }, // will be passed to the page component as props
     };
   } else {
     return {
       props: {}, // will be passed to the page component as props
+      fallback: false,
     };
   }
 }

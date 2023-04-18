@@ -34,7 +34,12 @@ const highlightArr = [
 const products: React.FC<Props> = (props) => {
   // controller.setFilteredProducts(props.filteredProducts);
 
-  return <CategoryPage filteredProducts={props.filteredProducts} count={props.count} />;
+  return (
+    <CategoryPage
+      filteredProducts={props.filteredProducts}
+      count={props.count}
+    />
+  );
 };
 
 export async function getServerSideProps(context: any) {
@@ -63,7 +68,8 @@ export async function getServerSideProps(context: any) {
   // console.log("🚀 ~ file: products.tsx:98 ~ getServerSideProps ~ res:", res)
 
   return {
-    props: res, // will be passed to the page component as props
+    props: res,
+    fallback: false, // will be passed to the page component as props
   };
 }
 

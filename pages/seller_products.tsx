@@ -54,7 +54,8 @@ export async function getServerSideProps(context: any) {
   // console.log("🚀 ~ file: products.tsx:98 ~ getServerSideProps ~ res:", res)
 
   return {
-    props: res, // will be passed to the page component as props
+    props: res,
+    fallback: false, // will be passed to the page component as props
   };
 }
 
