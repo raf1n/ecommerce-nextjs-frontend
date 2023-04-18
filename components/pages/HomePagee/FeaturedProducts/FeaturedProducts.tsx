@@ -50,8 +50,7 @@ const FeaturedCategory: React.FC<Props> = (props) => {
                     style={{
                       background:
                         "url(https://api.websolutionus.com/shopo/uploads/website-images/featured-cat-banner-2022-09-21-02-43-49-4710.jpg) 0% 0% / cover no-repeat",
-                    }}
-                  >
+                    }}>
                     <div>
                       <h1 className="text-base font-semibold tracking-wide mb-2">
                         Featured Category
@@ -63,8 +62,7 @@ const FeaturedCategory: React.FC<Props> = (props) => {
                               <li>
                                 <span
                                   onClick={() => setSlug(singlePop?.cat_slug)}
-                                  className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
-                                >
+                                  className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
                                   {singlePop.cat_name}
                                 </span>
                               </li>
