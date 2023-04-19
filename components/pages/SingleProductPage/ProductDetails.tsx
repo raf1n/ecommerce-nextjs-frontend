@@ -3,13 +3,7 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { useRouter } from "next/router";
-import {
-  FaRegHeart,
-  FaFlag,
-  FaRegStar,
-  FaStarHalfAlt,
-  FaStar,
-} from "react-icons/fa";
+import { FaFlag, FaRegStar, FaStarHalfAlt, FaStar } from "react-icons/fa";
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
 
@@ -21,12 +15,10 @@ import {
   IWishlistProduct,
 } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
-import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import toast from "react-hot-toast";
 
 interface Props {
-  // brand: string;
   singleProduct: IProduct | null;
   setReportModalSlug: Dispatch<SetStateAction<string>>;
 }
@@ -39,11 +31,18 @@ const ProductDetails: React.FC<Props> = (props) => {
   const [brandName, setBrandName] = useState<string | undefined>("");
   const [avgRating, setAvgRating] = useState(0);
   const [totalReview, setTotalReview] = useState(0);
+  const [categoryName, setCategoryName] = useState<string | undefined>("");
 
   const { asPath } = useRouter();
   let productSlug = asPath.split("=")[1];
 
   let selectedItem: ICartProduct | undefined;
+
+  const [cartQuantity, setCartQuantity] = useState<number>(
+    selectedItem?.quantity || 1
+  );
+
+  const { setReportModalSlug } = props;
 
   const getProductReviews = async () => {
     let rating = 0;
@@ -68,12 +67,17 @@ const ProductDetails: React.FC<Props> = (props) => {
     );
   }
 
-  const [cartQuantity, setCartQuantity] = useState<number>(
-    selectedItem?.quantity || 1
-  );
-
-  const { setReportModalSlug } = props;
-  const router = useRouter();
+  useEffect(() => {
+    const handleCategory = () => {
+      if (states.categories && singleProduct && singleProduct.catSlug) {
+        let cat = states.categories.find(
+          (cat) => cat.cat_slug === singleProduct.catSlug
+        );
+        setCategoryName(cat?.cat_name);
+      }
+    };
+    handleCategory();
+  }, [singleProduct, productSlug]);
 
   useEffect(() => {
     const handleBrand = () => {
@@ -88,10 +92,7 @@ const ProductDetails: React.FC<Props> = (props) => {
     getProductReviews();
   }, [singleProduct, productSlug]);
 
-  const shareableRoute = process.env.NEXT_PUBLIC_API_ENDPOINT + router.asPath;
-  // const shareableRoute = "https://www.google.com" || undefined;
-
-  // console.log({ shareableRoute, router });
+  const shareableRoute = process.env.NEXT_PUBLIC_API_ENDPOINT + asPath;
 
   const handleIncreaseQuantity = async (item: ICartProduct) => {
     if (!user_slug) {
@@ -218,7 +219,7 @@ const ProductDetails: React.FC<Props> = (props) => {
               emptyIcon={<FaRegStar />}
               halfIcon={<FaStarHalfAlt />}
               fullIcon={<FaStar />}
-              activeColor="rgb(255, 168, 0)"
+              activeColor="#FFA800"
               color="#d3d3d3"
             />
           )}
@@ -232,7 +233,7 @@ const ProductDetails: React.FC<Props> = (props) => {
               emptyIcon={<FaRegStar />}
               halfIcon={<FaStarHalfAlt />}
               fullIcon={<FaStar />}
-              activeColor="rgb(255, 168, 0)"
+              activeColor="#FFA800"
               color="#d3d3d3"
             />
           )}
@@ -336,7 +337,6 @@ const ProductDetails: React.FC<Props> = (props) => {
               )
             }
           </span>
-          {/* </> */}
         </button>
 
         <div className="flex-1 h-full">
@@ -354,7 +354,7 @@ const ProductDetails: React.FC<Props> = (props) => {
 
       <div className="mb-[20px]">
         <p className="text-[13px] text-qgray leading-7">
-          <span className="text-qblack">Category :</span>
+          <span className="text-qblack">Category : {categoryName}</span>
         </p>
       </div>
 

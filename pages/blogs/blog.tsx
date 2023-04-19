@@ -25,7 +25,8 @@ export async function getServerSideProps(context: any) {
   const slug = context.query.slug || "iphone_12_is_very_good_1rr2-Op57";
 
   const { res, err } = await EcommerceApi.getSingleBlog(slug);
-  const { res: blogCommentsRes, err: commentsErr } = await EcommerceApi.getBlogComments(slug);
+  const { res: blogCommentsRes, err: commentsErr } =
+    await EcommerceApi.getBlogComments(slug);
 
   if (res && blogCommentsRes) {
     return {
@@ -33,12 +34,13 @@ export async function getServerSideProps(context: any) {
         blogData: res,
         blogComments: blogCommentsRes,
         fallback: false,
-      }, // will be passed to the page component as props
+      },
     };
   } else {
     return {
-      props: {}, // will be passed to the page component as props
-      fallback: false,
+      props: {
+        fallback: false,
+      },
     };
   }
 }
