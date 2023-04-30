@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { IProduct, IWishlistProduct } from "../../../interfaces/models";
+import {
+  IProduct,
+  IReview,
+  IWishlistProduct,
+} from "../../../interfaces/models";
 import { controller } from "../../../src/state/StateController";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
@@ -11,6 +15,9 @@ import Link from "next/link";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import toast from "react-hot-toast";
+//@ts-ignore
+import ReactStars from "react-rating-stars-component";
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 interface Props {
   // product: IProduct;
   product: IWishlistProduct;
@@ -23,6 +30,26 @@ const ProductCard: React.FC<Props> = (props) => {
   // console.log(product);
   const states = useSelector(() => controller.states);
   const user_slug = useSelector(() => controller.states.user?.slug);
+
+  const [avgRating, setAvgRating] = useState(0);
+
+  useEffect(() => {
+    const getProductReviews = async () => {
+      let rating = 0;
+      const { res, err } = await EcommerceApi.getAllProductReviews(
+        product?.slug
+      );
+      if (res?.length !== 0) {
+        res.map((data) => {
+          rating = rating + data.rating / res.length;
+          setAvgRating(rating);
+        });
+      } else if (res?.length === 0) {
+        setAvgRating(0);
+      }
+    };
+    getProductReviews();
+  }, [product.slug]);
 
   const isInWishlist = (slug: string | undefined) => {
     for (let i = 0; i < states?.wishlistData?.length; i++) {
@@ -38,7 +65,7 @@ const ProductCard: React.FC<Props> = (props) => {
       toast.error("Please login first");
       return;
     }
-    
+
     controller.setApiLoading(true);
     const newProduct = { ...product };
     //@ts-ignore
@@ -209,61 +236,34 @@ const ProductCard: React.FC<Props> = (props) => {
                 </button>
               </div>
               <div className="reviews flex space-x-[1px] mb-3">
-                <span className="text-gray-500">
-                  <SvgIconRenderer
-                    width={"18"}
-                    height={"17"}
-                    viewBox={"0 0 18 17"}
-                    fill={"none"}
-                    xmlns={"http://www.w3.org/2000/svg"}
-                    path={SvgPaths.ratingIcon}
-                    pathFill={"#D2D8E1"}
+                {product && avgRating !== 0 && (
+                  <ReactStars
+                    count={5}
+                    value={avgRating}
+                    edit={false}
+                    size={24}
+                    isHalf={true}
+                    emptyIcon={<FaRegStar />}
+                    halfIcon={<FaStarHalfAlt />}
+                    fullIcon={<FaStar />}
+                    activeColor="#FFA800"
+                    color="#d3d3d3"
                   />
-                </span>
-                <span className="text-gray-500">
-                  <SvgIconRenderer
-                    width={"18"}
-                    height={"17"}
-                    viewBox={"0 0 18 17"}
-                    fill={"none"}
-                    xmlns={"http://www.w3.org/2000/svg"}
-                    path={SvgPaths.ratingIcon}
-                    pathFill={"#D2D8E1"}
+                )}
+                {product && avgRating === 0 && (
+                  <ReactStars
+                    count={5}
+                    value={0}
+                    edit={false}
+                    size={24}
+                    isHalf={true}
+                    emptyIcon={<FaRegStar />}
+                    halfIcon={<FaStarHalfAlt />}
+                    fullIcon={<FaStar />}
+                    activeColor="#FFA800"
+                    color="#d3d3d3"
                   />
-                </span>
-                <span className="text-gray-500">
-                  <SvgIconRenderer
-                    width={"18"}
-                    height={"17"}
-                    viewBox={"0 0 18 17"}
-                    fill={"none"}
-                    xmlns={"http://www.w3.org/2000/svg"}
-                    path={SvgPaths.ratingIcon}
-                    pathFill={"#D2D8E1"}
-                  />
-                </span>
-                <span className="text-gray-500">
-                  <SvgIconRenderer
-                    width={"18"}
-                    height={"17"}
-                    viewBox={"0 0 18 17"}
-                    fill={"none"}
-                    xmlns={"http://www.w3.org/2000/svg"}
-                    path={SvgPaths.ratingIcon}
-                    pathFill={"#D2D8E1"}
-                  />
-                </span>
-                <span className="text-gray-500">
-                  <SvgIconRenderer
-                    width={"18"}
-                    height={"17"}
-                    viewBox={"0 0 18 17"}
-                    fill={"none"}
-                    xmlns={"http://www.w3.org/2000/svg"}
-                    path={SvgPaths.ratingIcon}
-                    pathFill={"#D2D8E1"}
-                  />
-                </span>
+                )}
               </div>
               <Link
                 rel="noopener noreferrer"
