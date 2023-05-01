@@ -12,8 +12,8 @@ const HeaderDropdown: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [openDropdown, setOpenDropdown] = useState(false);
   const [megaMenuData, setMegaMenuData] = useState<IMegaCategory[]>([]);
+  
   const openCategoryDropDown = () => {
-    console.log("hello");
     setOpenDropdown(!openDropdown);
   };
 
@@ -123,7 +123,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                         >
                           <Link
                             rel="noopener noreferrer"
-                            href={`/products?category=+${single.cat_slug}`}
+                            href={`/products?category=%2B${single.cat_slug}`}
                           >
                             <div className=" flex justify-between items-center px-5 h-10 transition-all duration-300 ease-in-out cursor-pointer">
                               <div className="flex items-center space-x-6">
@@ -297,7 +297,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                               <div className="w-[90px]">
                                 <Link
                                   rel="noopener noreferrer"
-                                  href={`/products?category=electronics`}
+                                  href={`/products?category=%2Belectronics_slug_333`}
                                 >
                                   <div className="cursor-pointer w-full relative ">
                                     <div className="inline-flex space-x-1.5 items-center relative z-20">

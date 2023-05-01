@@ -77,7 +77,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                         </div>
                         <div className="details">
                           <Link href={`/blogs/blog?slug=${data.slug}`}>
-                            <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalizen cursor-pointer">
+                            <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalize cursor-pointer">
                               {data?.title?.length > 72
                                 ? data?.title?.slice(0, 72) + "..."
                                 : data?.title}
@@ -167,7 +167,7 @@ const BlogsCards: React.FC<Props> = (props) => {
                         </div>
                         <div className="details">
                           <Link href={`/blogs/blog?slug=${data.slug}`}>
-                            <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalizen cursor-pointer">
+                            <h1 className="text-[22px] text-qblack hover:text-blue-500 font-semibold line-clamp-2 mb-1 capitalize cursor-pointer">
                               {data?.title?.length > 72
                                 ? data?.title?.slice(0, 72) + "..."
                                 : data?.title}
