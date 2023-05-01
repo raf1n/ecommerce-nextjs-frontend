@@ -6,6 +6,7 @@ import { controller } from "../../../../src/state/StateController";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
 import Link from "next/link";
+import { ArrowIcon } from "../../../../src/utils/SvgReturn";
 
 interface Props {}
 
@@ -47,7 +48,8 @@ const PopularCategory: React.FC<Props> = (props) => {
                     style={{
                       background:
                         "url(https://api.websolutionus.com/shopo/uploads/website-images/popular-cat-banner-2022-09-20-01-15-44-7577.jpg) 0% 0% / cover no-repeat",
-                    }}>
+                    }}
+                  >
                     <div>
                       <h1 className="text-base font-semibold tracking-wide mb-2">
                         Popular Category
@@ -55,15 +57,14 @@ const PopularCategory: React.FC<Props> = (props) => {
                       <div className="brands-list mb-[7px]">
                         <ul>
                           {popularCategoriesData.map((singlePop) => (
-                            <>
-                              <li>
-                                <span
-                                  onClick={() => setSlug(singlePop?.cat_slug)}
-                                  className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
-                                  {singlePop?.categoriesData?.cat_name}
-                                </span>
-                              </li>
-                            </>
+                            <li>
+                              <span
+                                onClick={() => setSlug(singlePop?.cat_slug)}
+                                className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
+                              >
+                                {singlePop?.categoriesData?.cat_name}
+                              </span>
+                            </li>
                           ))}
                         </ul>
                       </div>
@@ -75,30 +76,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                           Shop Now
                         </Link>
                         <span>
-                          <svg
-                            width="7"
-                            height="11"
-                            viewBox="0 0 7 11"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <rect
-                              x="2.08984"
-                              y="0.636719"
-                              width="6.94219"
-                              height="1.54271"
-                              transform="rotate(45 2.08984 0.636719)"
-                              fill="#1D1D1D"
-                            ></rect>
-                            <rect
-                              x="7"
-                              y="5.54492"
-                              width="6.94219"
-                              height="1.54271"
-                              transform="rotate(135 7 5.54492)"
-                              fill="#1D1D1D"
-                            ></rect>
-                          </svg>
+                          <ArrowIcon />
                         </span>
                       </div>
                     </div>
