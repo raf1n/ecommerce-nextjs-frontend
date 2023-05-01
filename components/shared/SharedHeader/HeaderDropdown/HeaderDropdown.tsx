@@ -12,7 +12,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [openDropdown, setOpenDropdown] = useState(false);
   const [megaMenuData, setMegaMenuData] = useState<IMegaCategory[]>([]);
-  
+
   const openCategoryDropDown = () => {
     setOpenDropdown(!openDropdown);
   };

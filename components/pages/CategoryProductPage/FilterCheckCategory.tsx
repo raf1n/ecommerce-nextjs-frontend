@@ -14,21 +14,23 @@ const FilterCheckCategory: React.FC<Props> = (props) => {
   } = props;
   const states = useSelector(() => controller.states);
   const router = useRouter();
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     if (router.query.category) {
-      setChecked(router.query.category?.includes(cat_slug))
+      setChecked(router.query.category?.includes(cat_slug));
     } else {
       setChecked(false);
     }
-  }, [router.query])
+  }, [router.query]);
 
   const catRouting = (cat: string) => {
     let catString = (router.query.category as string) || "";
 
-    if (catString.includes(cat)) {
+    if (catString.includes("+" + cat)) {
       catString = catString.replace("+" + cat, "");
+    } else if (catString.includes(" " + cat)) {
+      catString = catString.replace(" " + cat, "");
     } else {
       catString = catString + "+" + cat;
     }

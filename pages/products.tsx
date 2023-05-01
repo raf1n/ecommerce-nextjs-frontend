@@ -32,8 +32,6 @@ const highlightArr = [
 ];
 
 const products: React.FC<Props> = (props) => {
-  // controller.setFilteredProducts(props.filteredProducts);
-
   return (
     <CategoryPage
       filteredProducts={props.filteredProducts}
@@ -44,7 +42,6 @@ const products: React.FC<Props> = (props) => {
 
 export async function getServerSideProps(context: any) {
   const query = context.query;
-  // console.log("🚀 ~ file: products.tsx:77 ~ getServerSideProps ~ query:", query)
 
   const search = query.search || "";
   const categories = query.category || "";
@@ -65,7 +62,6 @@ export async function getServerSideProps(context: any) {
     min,
     max
   );
-  // console.log("🚀 ~ file: products.tsx:98 ~ getServerSideProps ~ res:", res)
 
   return {
     props: {

@@ -56,7 +56,7 @@ const AD2: React.FC<Props> = (props) => {
             </div>
             <div className="group">
               <Link
-                href={`products?category=${singleAdData?.category_link}`}
+                href={`products?category=%2B${singleAdData?.category_link}`}
                 rel="noopener noreferrer"
               >
                 <div className="w-[136px] h-[40px] bg-white relative flex justify-center overflow-hidden">
