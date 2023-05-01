@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import ChangePassword from "./ChangePassword/ChangePassword";
@@ -11,7 +11,6 @@ import ProfileReviews from "./ProfileReviews/ProfileReviews";
 import ProfileWishlist from "./ProfileWishlist/ProfileWishlist";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { IOrder } from "../../../interfaces/models";
-import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 
 interface Props {}
 

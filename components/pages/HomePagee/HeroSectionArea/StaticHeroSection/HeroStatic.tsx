@@ -67,7 +67,7 @@ const HeroStatic: React.FC<Props> = (props) => {
               </h1>
             </div>
           </div>
-          <Link href={`products?category=+${singleAdData?.category_link}`}>
+          <Link href={`products?category=%2B${singleAdData?.category_link}`}>
             <ShopNowBtn color={{ textColor: "text-qblack" }} />
           </Link>
         </div>
@@ -99,7 +99,7 @@ const HeroStatic: React.FC<Props> = (props) => {
               </h1>
             </div>
           </div>
-          <Link href={`products?category=+${singleSecondAdData?.category_link}`}>
+          <Link href={`products?category=%2B${singleSecondAdData?.category_link}`}>
             <ShopNowBtn color={{ textColor: "text-qblack" }} />
           </Link>
         </div>
