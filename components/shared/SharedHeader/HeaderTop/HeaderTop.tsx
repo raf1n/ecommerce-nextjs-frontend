@@ -269,7 +269,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                     router.push({
                       pathname: "products",
                       query: {
-                        category: "%2B" + category.cat_slug,
+                        category: "+" + category.cat_slug,
                         min: 0,
                         max: 15000,
                       },

@@ -26,7 +26,7 @@ const ProductCategory: React.FC<Props> = (props) => {
   }, []);
 
   return (
-    <div className="category-section-wrapper w-full">
+    <div className="category-section-wrapper w-full hidden md:block">
       <div className="container-x mx-auto pb-[50px]">
         <div>
           <div className="w-full grid xl:grid-cols-8 md:grid-cols-4 grid-cols-2 gap-[30px]">
