@@ -11,10 +11,10 @@ import toast from "react-hot-toast";
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 interface Props {
   product: IWishlistProduct;
 }
-
 
 const ProductCardVertical: React.FC<Props> = (props) => {
   const { product } = props;
@@ -22,6 +22,8 @@ const ProductCardVertical: React.FC<Props> = (props) => {
   const user_slug = useSelector(() => controller.states.user?.slug);
 
   const [avgRating, setAvgRating] = useState(0);
+
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
     const getProductReviews = async () => {
@@ -141,7 +143,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
         <div className="main-wrapper-card relative">
           <div
             data-aos="fade-left"
-            className={`${styles["product-row-card-style-one"]} w-full lg:h-[250px] h-[200px] bg-white group relative overflow-hidden aos-init aos-animate`}
+            className={`${styles["product-row-card-style-one"]} w-full lg:h-[250px] h-[145px] bg-white group relative overflow-hidden aos-init aos-animate`}
           >
             <div className="flex space-x-5 items-center w-full h-full lg:p-[30px] sm:p-5 p-2 ">
               <div className="lg:w-1/2 w-1/3 h-full relative transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out">
@@ -187,13 +189,13 @@ const ProductCardVertical: React.FC<Props> = (props) => {
               </div>
               <div className="flex-1 flex flex-col justify-center h-full">
                 <div>
-                  <div className="flex space-x-1 mb-3">
+                  <div className="flex space-x-1 mb-1 md:mb-3">
                     {product && avgRating !== 0 && (
                       <ReactStars
                         count={5}
                         value={avgRating}
                         edit={false}
-                        size={24}
+                        size={width && width > 640 ? 24 : 16}
                         isHalf={true}
                         emptyIcon={<FaRegStar />}
                         halfIcon={<FaStarHalfAlt />}
@@ -207,7 +209,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                         count={5}
                         value={0}
                         edit={false}
-                        size={24}
+                        size={width && width > 640 ? 24 : 16}
                         isHalf={true}
                         emptyIcon={<FaRegStar />}
                         halfIcon={<FaStarHalfAlt />}
@@ -218,21 +220,21 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                     )}
                   </div>
                   <Link href={`/single_product?slug=${product.slug}`}>
-                    <p className="title mb-2 sm:text-[15px] text-[13px] font-600 text-slate-700 font-semibold leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer capitalize">
+                    <p className="title mb-1 md:mb-2 md:text-[15px] text-sm font-600 text-slate-700 font-semibold leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer capitalize">
                       {product.productName}
                     </p>
                   </Link>
-                  <p className="price mb-[26px]">
+                  <p className="price mb-2 md:mb-[26px]">
                     <span
                       className={` ${
                         product.offerPrice
                           ? "line-through text-qgray"
                           : " text-qred"
-                      } main-price  font-semibold text-[18px] `}
+                      } main-price  font-semibold text-sm md:text-[18px] `}
                     >
                       <span>${product.price}</span>
                     </span>
-                    <span className="offer-price text-red-500 font-600 font-semibold text-[18px] ml-2">
+                    <span className="offer-price text-red-500 font-600 font-semibold text-sm md:text-[18px] ml-2">
                       <span>
                         {product.offerPrice ? `$` : ""}
                         {product.offerPrice ? product.offerPrice : ""}

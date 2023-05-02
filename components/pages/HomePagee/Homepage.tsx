@@ -16,6 +16,7 @@ import PopularCategory from "./PopularCategory/PopularCategory";
 import ProductCategory from "./ProductCategory/ProductCategory";
 import ShopByBrand from "./ShopByBrandSection/ShopByBrand";
 import TopRatedSection from "./TopRatedProductsSection/TopRatedSection";
+import SharedLoadingModal from "../../shared/SharedLoadingModal/SharedLoadingModal";
 
 interface Props {}
 
@@ -39,6 +40,18 @@ const Homepage: React.FC<Props> = (props) => {
   useEffect(() => {
     fetchAllProducts();
   }, []);
+
+  const [isMounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    if (isMounted) {
+      // console.log("hash", window.location.hash);
+    } else {
+      setMounted(true);
+    }
+  }, [isMounted]);
+
+  if (!isMounted) return <SharedLoadingModal />;
 
   return (
     <div className="md:p-0">
