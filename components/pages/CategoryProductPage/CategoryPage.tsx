@@ -27,7 +27,7 @@ const CategoryPage: React.FC<Props> = ({ filteredProducts, count }) => {
   return (
     <div className="container-x mx-auto ">
       <div className="lg:flex lg:gap-x-[30px]">
-        <div className="lg:w-[270px] my-10">
+        <div className="">
           <FilterWidget
             showFilterWidget={showFilterWidget}
             setShowFilterWidget={setShowFilterWidget}
@@ -36,7 +36,7 @@ const CategoryPage: React.FC<Props> = ({ filteredProducts, count }) => {
           />
           <FilterAd />
         </div>
-        <div className="flex-1 min-h-screen my-10">
+        <div className="flex-1 min-h-screen my-2 md:my-10">
           <CategoryItemsRight
             filteredProducts={filteredProducts}
             count={count}

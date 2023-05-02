@@ -50,14 +50,12 @@ const CategoryItemsRight: React.FC<Props> = ({
 
   return (
     <div className="w-full">
-      <div className="products-sorting w-full bg-white md:h-[70px] flex md:flex-row flex-col md:space-y-0 space-y-5 md:justify-between md:items-center p-[30px] mb-[40px]">
-        <div>
-          <p className="font-400 text-[13px]">
-            <span className="text-qgray"> Showing</span>{" "}
-            {showCountResult(count)}
-          </p>
-        </div>
-        <div className="flex space-x-3 items-center">
+      <div className="products-sorting w-full bg-white md:h-[70px] flex md:flex-row md:space-y-0 justify-between items-center p-4 md:p-[30px] mb-2 md:mb-[40px]">
+        <p className="font-400 text-[13px]">
+          <span className="text-qgray"> Showing</span> {showCountResult(count)}
+        </p>
+
+        <div className="md:gap-3 md:items-center hidden md:flex">
           <span className="font-bold text-qblack text-[13px]">View by :</span>
           <button
             type="button"
@@ -78,6 +76,7 @@ const CategoryItemsRight: React.FC<Props> = ({
             <VerticalOrientation />
           </button>
         </div>
+
         <button
           type="button"
           onClick={() => setShowFilterWidget(true)}
@@ -88,14 +87,12 @@ const CategoryItemsRight: React.FC<Props> = ({
       </div>
       <div
         className={`grid ${
-          cardType === "normal"
-            ? "xl:grid-cols-3 sm:grid-cols-2"
-            : "lg:grid-cols-2"
-        }  grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]`}
+          cardType === "normal" ? "xl:grid-cols-3" : ""
+        }  grid-cols-2 xl:gap-[30px] md:gap-5 gap-2 mb-[40px]`}
       >
         {filteredProducts.slice(0, 6).map((product) => {
           if (cardType === "normal") {
-            return <ProductCard product={product} />;
+            return <ProductCard product={product} grid={true} />;
           } else {
             return <ProductCardVertical product={product} />;
           }
@@ -129,14 +126,12 @@ const CategoryItemsRight: React.FC<Props> = ({
 
       <div
         className={`grid ${
-          cardType === "normal"
-            ? "xl:grid-cols-3 sm:grid-cols-2"
-            : "lg:grid-cols-2"
-        }  grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]`}
+          cardType === "normal" ? "xl:grid-cols-3" : ""
+        }  grid-cols-2 xl:gap-[30px] md:gap-5 gap-2 mb-[40px]`}
       >
         {filteredProducts.slice(6).map((product) => {
           if (cardType === "normal") {
-            return <ProductCard product={product} />;
+            return <ProductCard product={product} grid={true} />;
           } else {
             return <ProductCardVertical product={product} />;
           }

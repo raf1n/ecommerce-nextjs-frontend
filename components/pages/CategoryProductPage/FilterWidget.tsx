@@ -24,8 +24,8 @@ const FilterWidget: React.FC<Props> = (props) => {
 
   return (
     <div
-      className={`w-full fixed lg:relative left-0 top-0 h-screen z-10 lg:h-auto overflow-y-scroll lg:overflow-y-auto bg-white px-[30px] pt-[40px] mb-[30px]  ${
-        showFilterWidget ? "block z-30" : "hidden lg:block"
+      className={`lg:w-[270px] py-2 md:py-0 my-0 md:my-10 w-full fixed lg:relative left-0 top-0 h-screen z-10 lg:h-auto overflow-y-scroll lg:overflow-y-auto bg-white px-[30px] pt-[40px] mb-[30px]  ${
+        showFilterWidget ? "block z-50" : "hidden lg:block"
       }`}
     >
       <div className="pb-10 border-b border-gray-200">

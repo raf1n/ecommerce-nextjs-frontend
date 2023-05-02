@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import {
-  IProduct,
-  IReview,
-  IWishlistProduct,
-} from "../../../interfaces/models";
+import { IWishlistProduct } from "../../../interfaces/models";
 import { controller } from "../../../src/state/StateController";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
@@ -13,21 +9,17 @@ import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
 import Link from "next/link";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
-import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import toast from "react-hot-toast";
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 interface Props {
-  // product: IProduct;
   product: IWishlistProduct;
+  grid?: boolean;
 }
 
-// const user_slug = CookiesHandler.getSlug();
-
-const ProductCard: React.FC<Props> = (props) => {
-  const { product } = props;
+const ProductCard: React.FC<Props> = ({ product, grid = false }) => {
   const states = useSelector(() => controller.states);
   const user_slug = useSelector(() => controller.states.user?.slug);
 
@@ -145,16 +137,20 @@ const ProductCard: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="w-full sm:w-auto flex-shrink-0">
+    <div
+      className={
+        grid ? "w-auto" : "w-[220px]" + " sm:w-auto flex-shrink-0 snap-start"
+      }
+    >
       <div data-aos="fade-up" className="item aos-init">
         <div className="main-wrapper-card relative">
           <div
-            className={`${styles["product-card-one"]} w-full h-[350px] md:h-[445px] bg-white relative group overflow-hidden`}
+            className={`${styles["product-card-one"]} w-full h-[270px] md:h-[445px] bg-white relative group overflow-hidden`}
             style={{
               boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px 0px",
             }}
           >
-            <div className="product-card-img w-full md:p-0 h-[200px] md:h-[300px] -mt-2">
+            <div className="product-card-img w-full h-[150px] md:h-[300px] -mt-2">
               <div className="w-full h-full relative flex justify-center items-center transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out mt-2">
                 <picture className="w-full h-full md:h-auto flex justify-center p-1">
                   {product && product?.imageURL?.length > 0 && (
@@ -163,12 +159,13 @@ const ProductCard: React.FC<Props> = (props) => {
                       src={product?.imageURL[0]}
                       decoding="async"
                       data-nimg="fill"
+                      className="object-contain"
                     />
                   )}
                 </picture>
               </div>
             </div>
-            <div className="product-card-details px-[20px] md:px-[30px] pb-[12px] md:pb-[30px] relative pt-2">
+            <div className="product-card-details px-[12px] md:px-[30px] pb-[12px] md:pb-[30px] relative pt-2">
               <div className="absolute w-full h-10 px-[12px] md:px-[30px] left-0 top-40 group-hover:top-[65px] md:group-hover:top-[80px] transition-all duration-300 ease-in-out">
                 <button
                   onClick={handleCartToggle}
@@ -236,7 +233,7 @@ const ProductCard: React.FC<Props> = (props) => {
                 rel="noopener noreferrer"
                 href={`/single_product?slug=${product.slug}`}
               >
-                <p className="title mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer capitalize">
+                <p className="title md-1 md:mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer capitalize">
                   {product.productName}
                 </p>
               </Link>
@@ -246,11 +243,11 @@ const ProductCard: React.FC<Props> = (props) => {
                     product.offerPrice
                       ? "line-through text-qgray"
                       : " text-qred"
-                  } main-price  font-semibold text-md md:text-[18px] `}
+                  } main-price  font-semibold text-sm md:text-[18px] `}
                 >
                   <span>${product.price}</span>
                 </span>
-                <span className="offer-price text-qred font-semibold text-md md:text-[18px] ml-2">
+                <span className="offer-price text-qred font-semibold text-sm md:text-[18px] ml-2">
                   <span>
                     {product.offerPrice ? `$` : ""}
                     {product.offerPrice ? product.offerPrice : ""}
