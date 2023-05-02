@@ -22,7 +22,8 @@ const SellerCard: React.FC<Props> = (props) => {
     <div>
       <div
         data-aos="fade-up"
-        className="item w-full aos-init aos-animate mt-[55px]">
+        className="item w-full aos-init aos-animate mt-[15px]"
+      >
         <div
           className={`w-full sm:h-[328px] sm:p-[30px] p-5 ${Styles["bg-image"]}`}
         >
@@ -136,7 +137,9 @@ const SellerCard: React.FC<Props> = (props) => {
                           pathFill="black"
                         />
                       </span>
-                      <span className="line-clamp-1">{props.seller?.shop?.shop_address}</span>
+                      <span className="line-clamp-1">
+                        {props.seller?.shop?.shop_address}
+                      </span>
                     </li>
                   </ul>
                 </div>

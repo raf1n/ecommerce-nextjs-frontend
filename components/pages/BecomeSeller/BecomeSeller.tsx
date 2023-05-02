@@ -87,7 +87,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
         link="/become_seller"
         title="Seller Application"
       />
-      <div className="content-wrapper w-full my-10 p-2">
+      <div className="content-wrapper w-full my-10">
         <div className="container-x mx-auto">
           <div className="w-full bg-white sm:p-[30px] p-3">
             <form onSubmit={(e) => handleSellerAdd(e)}>

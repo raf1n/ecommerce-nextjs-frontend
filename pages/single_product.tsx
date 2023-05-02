@@ -12,7 +12,7 @@ const SingleProductPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   return (
-    <div className="p-2">
+    <div>
       <SingleProduct />
       <Itemdetails />
       <RelatedProductSection />

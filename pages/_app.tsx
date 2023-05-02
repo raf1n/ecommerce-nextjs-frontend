@@ -35,7 +35,9 @@ export default function MyApp(props: AppProps) {
         />
         <Toaster />
         <Header />
-        <Component {...pageProps} />
+        <div className="p-2">
+          <Component {...pageProps} />
+        </div>
         <Footer />
         <SharedLoadingModal />
       </React.Fragment>

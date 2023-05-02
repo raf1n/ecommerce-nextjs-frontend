@@ -41,7 +41,7 @@ const Homepage: React.FC<Props> = (props) => {
   }, []);
 
   return (
-    <div className="md:p-0 p-2">
+    <div className="md:p-0">
       <HeroSection />
       <ProductCategory />
       <PopularCategory />

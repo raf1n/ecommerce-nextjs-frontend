@@ -25,7 +25,7 @@ const CategoryPage: React.FC<Props> = ({ filteredProducts, count }) => {
   const [limit, setLimit] = useState(9);
 
   return (
-    <div className="container-x mx-auto px-2">
+    <div className="container-x mx-auto ">
       <div className="lg:flex lg:gap-x-[30px]">
         <div className="lg:w-[270px] my-10">
           <FilterWidget
