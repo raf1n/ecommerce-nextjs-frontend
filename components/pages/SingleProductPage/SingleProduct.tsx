@@ -18,9 +18,9 @@ const SingleProduct: React.FC<Props> = (props) => {
   const { asPath } = router;
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
   const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
-  
+
   const user_slug = CookiesHandler.getSlug();
-  
+
   const productSlug = asPath.split("=")[1];
 
   useEffect(() => {
@@ -33,7 +33,6 @@ const SingleProduct: React.FC<Props> = (props) => {
       fetchProductData();
     }
   }, [productSlug, states.initialDataLoading]);
-
 
   const handleReport = (e: any) => {
     e.preventDefault();
