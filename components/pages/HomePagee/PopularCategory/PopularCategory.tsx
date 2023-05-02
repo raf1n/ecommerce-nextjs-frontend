@@ -7,6 +7,8 @@ import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
 import Link from "next/link";
 import { ArrowIcon } from "../../../../src/utils/SvgReturn";
+import useWindowDimensions from "../../../shared/hooks/useWindowDimensions";
+import styles from "../../../../styles/Scrollbar.module.css";
 
 interface Props {}
 
@@ -16,6 +18,8 @@ const PopularCategory: React.FC<Props> = (props) => {
     IPopularCategories[]
   >([]);
   const [slug, setSlug] = useState("");
+
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
     const fetchAllPopularCategoriesData = async () => {
@@ -41,7 +45,13 @@ const PopularCategory: React.FC<Props> = (props) => {
           />
           <div className="section-content">
             <div className="products-section w-full">
-              <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
+              <div
+                className={
+                  width && width > 640
+                    ? "grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5"
+                    : `flex flex-nowrap gap-3 overflow-scroll ${styles["scrollbar"]}`
+                }
+              >
                 <div className="category-card hidden xl:block w-full">
                   <div
                     className="category-card-wrappwer w-full h-[445px] p-[30px]"

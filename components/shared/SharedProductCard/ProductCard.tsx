@@ -145,7 +145,7 @@ const ProductCard: React.FC<Props> = (props) => {
   };
 
   return (
-    <div>
+    <div className="w-[220px] sm:w-auto flex-shrink-0">
       <div data-aos="fade-up" className="item aos-init">
         <div className="main-wrapper-card relative">
           <div
@@ -168,8 +168,8 @@ const ProductCard: React.FC<Props> = (props) => {
                 </picture>
               </div>
             </div>
-            <div className="product-card-details px-[30px] pb-[30px] relative pt-2">
-              <div className="absolute w-full h-10 px-[30px] left-0 top-40 group-hover:top-[65px] md:group-hover:top-[80px] transition-all duration-300 ease-in-out">
+            <div className="product-card-details px-[12px] md:px-[30px] pb-[12px] md:pb-[30px] relative pt-2">
+              <div className="absolute w-full h-10 px-[12px] md:px-[30px] left-0 top-40 group-hover:top-[65px] md:group-hover:top-[80px] transition-all duration-300 ease-in-out">
                 <button
                   onClick={handleCartToggle}
                   type="button"
@@ -208,7 +208,7 @@ const ProductCard: React.FC<Props> = (props) => {
                     count={5}
                     value={avgRating}
                     edit={false}
-                    size={width && width > 420 ? 24 : 16}
+                    size={width && width > 640 ? 24 : 16}
                     isHalf={true}
                     emptyIcon={<FaRegStar />}
                     halfIcon={<FaStarHalfAlt />}
@@ -222,7 +222,7 @@ const ProductCard: React.FC<Props> = (props) => {
                     count={5}
                     value={0}
                     edit={false}
-                    size={width && width > 420 ? 24 : 16}
+                    size={width && width > 640 ? 24 : 16}
                     isHalf={true}
                     emptyIcon={<FaRegStar />}
                     halfIcon={<FaStarHalfAlt />}
