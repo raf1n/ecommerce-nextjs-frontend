@@ -7,7 +7,11 @@ import ProductCard from "../../shared/SharedProductCard/ProductCard";
 import BestDealBanner from "../HomePagee/BestDealBanner/BestDealBanner";
 import ProductCardVertical from "./../../shared/SharedProductCard/ProductCardVertical";
 import { IProduct } from "../../../interfaces/models";
-import { FilterIcon, NormalOrientation, VerticalOrientation } from "../../../src/utils/SvgReturn";
+import {
+  FilterIcon,
+  NormalOrientation,
+  VerticalOrientation,
+} from "../../../src/utils/SvgReturn";
 
 interface Props {
   filteredProducts: IProduct[];

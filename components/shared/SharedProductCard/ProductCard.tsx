@@ -145,16 +145,16 @@ const ProductCard: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="w-[220px] sm:w-auto flex-shrink-0">
+    <div className="w-full sm:w-auto flex-shrink-0">
       <div data-aos="fade-up" className="item aos-init">
         <div className="main-wrapper-card relative">
           <div
-            className={`${styles["product-card-one"]} w-full h-[270px] md:h-[445px] bg-white relative group overflow-hidden`}
+            className={`${styles["product-card-one"]} w-full h-[350px] md:h-[445px] bg-white relative group overflow-hidden`}
             style={{
               boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px 0px",
             }}
           >
-            <div className="product-card-img w-full h-[150px] md:h-[300px] -mt-2">
+            <div className="product-card-img w-full md:p-0 h-[200px] md:h-[300px] -mt-2">
               <div className="w-full h-full relative flex justify-center items-center transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out mt-2">
                 <picture className="w-full h-full md:h-auto flex justify-center p-1">
                   {product && product?.imageURL?.length > 0 && (
@@ -168,7 +168,7 @@ const ProductCard: React.FC<Props> = (props) => {
                 </picture>
               </div>
             </div>
-            <div className="product-card-details px-[12px] md:px-[30px] pb-[12px] md:pb-[30px] relative pt-2">
+            <div className="product-card-details px-[20px] md:px-[30px] pb-[12px] md:pb-[30px] relative pt-2">
               <div className="absolute w-full h-10 px-[12px] md:px-[30px] left-0 top-40 group-hover:top-[65px] md:group-hover:top-[80px] transition-all duration-300 ease-in-out">
                 <button
                   onClick={handleCartToggle}
