@@ -87,7 +87,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
         link="/become_seller"
         title="Seller Application"
       />
-      <div className="content-wrapper w-full my-10">
+      <div className="content-wrapper w-full my-10 p-2">
         <div className="container-x mx-auto">
           <div className="w-full bg-white sm:p-[30px] p-3">
             <form onSubmit={(e) => handleSellerAdd(e)}>
@@ -107,7 +107,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="email">
+                          htmlFor="email"
+                        >
                           Email Address*
                         </label>
                         <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -127,7 +128,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="phone">
+                          htmlFor="phone"
+                        >
                           phone no
                         </label>
                         <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -157,7 +159,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="shopname">
+                          htmlFor="shopname"
+                        >
                           Shop Name*
                         </label>
                         <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -176,7 +179,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="shopaddress">
+                          htmlFor="shopaddress"
+                        >
                           Address
                         </label>
                         <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -216,7 +220,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                         <button
                           // disabled={}
                           type="submit"
-                          className="black-btn disabled:bg-opacity-50 disabled:cursor-not-allowed text-sm text-white w-[490px] h-[50px] font-semibold flex justify-center bg-purple items-center">
+                          className="black-btn disabled:bg-opacity-50 disabled:cursor-not-allowed text-sm text-white w-[490px] h-[50px] font-semibold flex justify-center bg-purple items-center"
+                        >
                           <span>Create Seller Account</span>
                         </button>
                       </div>
@@ -256,7 +261,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                               padding: "0",
                               position: "absolute",
                               inset: "0",
-                            }}>
+                            }}
+                          >
                             {selectedLogo ? (
                               <img
                                 alt=""
@@ -349,7 +355,8 @@ const BecomeSeller: React.FC<Props> = (props) => {
                               padding: "0px",
                               position: "absolute",
                               inset: "0px",
-                            }}>
+                            }}
+                          >
                             {selectedCover ? (
                               <img
                                 alt=""

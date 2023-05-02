@@ -47,19 +47,21 @@ const PopularCategory: React.FC<Props> = (props) => {
                     style={{
                       background:
                         "url(https://api.websolutionus.com/shopo/uploads/website-images/popular-cat-banner-2022-09-20-01-15-44-7577.jpg) 0% 0% / cover no-repeat",
-                    }}>
+                    }}
+                  >
                     <div>
                       <h1 className="text-base font-semibold tracking-wide mb-2">
                         Popular Category
                       </h1>
                       <div className="brands-list mb-[7px]">
                         <ul>
-                          {popularCategoriesData.map((singlePop) => (
+                          {popularCategoriesData.map((singlePop, indx) => (
                             <>
-                              <li>
+                              <li key={indx}>
                                 <span
                                   onClick={() => setSlug(singlePop?.cat_slug)}
-                                  className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
+                                  className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
+                                >
                                   {singlePop?.categoriesData?.cat_name}
                                 </span>
                               </li>
