@@ -226,15 +226,7 @@ const HeaderTop: React.FC<Props> = (props) => {
         } ${styles["sideDropdownScrollStyle"]}`}
       >
         <div className="w-full px-5 mt-5 mb-4">
-          <div className="flex justify-between items-center">
-            <div className="flex space-x-5 items-center">
-              <Link href="/wishlist" className="favorite relative">
-                <HeartIcon />
-                <span className="w-[18px] h-[18px] rounded-full bg-qyellow absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px]">
-                  {states.wishlistData.length}
-                </span>
-              </Link>
-            </div>
+          <div className="flex justify-end items-center">
             <button
               type="button"
               onClick={() => {
@@ -245,25 +237,7 @@ const HeaderTop: React.FC<Props> = (props) => {
             </button>
           </div>
         </div>
-        <div className="w-full mt-5 px-5">
-          <div className="search-bar w-full h-[34px] flex ">
-            <div className="flex-1 bg-white h-full border border-r-0 border-[#E9E9E9]">
-              <input
-                className="w-full text-xs h-full focus:outline-none focus:ring-0 placeholder:text-qgraytwo pl-2.5 "
-                placeholder="Search Product..."
-                ref={mobSearchRef}
-              />
-            </div>
-            <div
-              className="cursor-pointer w-[40px] h-full bg-qyellow flex justify-center items-center"
-              onClick={() => handleSearchMobile()}
-            >
-              <span>
-                <SearchIcon />
-              </span>
-            </div>
-          </div>
-        </div>
+        
         <div className="w-full mt-5 px-5 flex items-center space-x-3">
           <span
             className="text-base font-semibold  text-qblack"
@@ -296,6 +270,8 @@ const HeaderTop: React.FC<Props> = (props) => {
                       pathname: "products",
                       query: {
                         category: "+" + category.cat_slug,
+                        min: 0,
+                        max: 15000,
                       },
                     })
                   }
@@ -325,9 +301,9 @@ const HeaderTop: React.FC<Props> = (props) => {
       </div>
 
       <header className="header-section-wrapper relative ">
-        <div className="shop-topbar w-full bg-white h-10 border-b border-qgray-border">
+        <div className="shop-topbar w-full bg-white h-10 border-b border-qgray-border hidden md:block">
           <div className="container-x mx-auto h-full ">
-            <div className="flex justify-between items-center h-full px-4">
+            <div className="flex justify-between items-center h-full px-4 md:px-0">
               <div className="topbar-nav">
                 <ul className="flex space-x-6">
                   {states.user && (
@@ -711,54 +687,84 @@ const HeaderTop: React.FC<Props> = (props) => {
             </div>
           </div>
         </div>
-        <div className="quomodo-shop-drawer lg:hidden block w-full h-[60px] bg-white">
-          <div className="w-full h-full flex justify-between items-center px-5">
-            <div
-              onClick={() => {
-                sideDropdown();
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
+        <div className="quomodo-shop-drawer lg:hidden block w-full bg-white">
+          <div>
+            <div className="w-full h-full flex justify-between items-center px-5">
+              <div
+                onClick={() => {
+                  sideDropdown();
+                }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h7"
-                ></path>
-              </svg>
-            </div>
-            <div className="w-[200px] h-full relative">
-              <Link rel="noreferrer" href="/">
-                <span className={`${styles["spanStyle"]}`}>
-                  <span className={`${styles["spanStyle2"]}`}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h7"
+                  ></path>
+                </svg>
+              </div>
+              <div className="w-[200px] h-full relative flex justify-center items-center">
+                <Link rel="noreferrer" href="/" className="h-full flex justify-center items-center">
+                  <span className={`${styles["spanStyle"]}`}>
+                    <span className={`${styles["spanStyle2"]}`}>
+                      <img
+                        className={`${styles["imgStyle2"]}`}
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27153%27%20height=%2744%27/%3e"
+                        alt="logo"
+                      />
+                    </span>
                     <img
-                      className={`${styles["imgStyle2"]}`}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27153%27%20height=%2744%27/%3e"
+                      className={`${styles["imgStyle"]}`}
+                      src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Flogo-2022-11-22-11-19-02-4634.png&w=256&q=75"
                       alt="logo"
                     />
                   </span>
-                  <img
-                    className={`${styles["imgStyle"]}`}
-                    src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Flogo-2022-11-22-11-19-02-4634.png&w=256&q=75"
-                    alt="logo"
-                  />
-                </span>
-              </Link>
+                </Link>
+              </div>
+              <div className="flex items-center gap-5">
+                <Link href="/wishlist" className="favorite relative">
+                  <HeartIcon />
+                  <span className="w-[18px] h-[18px] rounded-full bg-qyellow absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px]">
+                    {states.wishlistData.length}
+                  </span>
+                </Link>
+                <Link href="/cart" className="cart relative cursor-pointer">
+                  <span>
+                    <CartIcon />
+                  </span>
+                  <span className="w-[18px] h-[18px] rounded-full bg-qyellow absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px]">
+                    {states.cartlistData.length}
+                  </span>
+                </Link>
+              </div>
             </div>
-            <Link href="/cart" className="cart relative cursor-pointer">
-              <span>
-                <CartIcon />
-              </span>
-              <span className="w-[18px] h-[18px] rounded-full bg-qyellow absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px]">
-                {states.cartlistData.length}
-              </span>
-            </Link>
+
+            <div className="w-full mt-3 px-5 flex justify-center">
+              <div className="search-bar w-full h-[34px] flex max-w-[480px] mb-3">
+                <div className="flex-1 bg-white h-full border border-r-0 border-[#E9E9E9]">
+                  <input
+                    className="w-full text-xs h-full focus:outline-none focus:ring-0 placeholder:text-qgraytwo pl-2.5 "
+                    placeholder="Search Product..."
+                    ref={mobSearchRef}
+                  />
+                </div>
+                <div
+                  className="cursor-pointer w-[40px] h-full bg-qyellow flex justify-center items-center"
+                  onClick={() => handleSearchMobile()}
+                >
+                  <span>
+                    <SearchIcon />
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <HeaderDropdown />

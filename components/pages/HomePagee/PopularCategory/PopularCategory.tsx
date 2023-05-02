@@ -6,6 +6,9 @@ import { controller } from "../../../../src/state/StateController";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
 import Link from "next/link";
+import { ArrowIcon } from "../../../../src/utils/SvgReturn";
+import useWindowDimensions from "../../../shared/hooks/useWindowDimensions";
+import styles from "../../../../styles/Scrollbar.module.css";
 
 interface Props {}
 
@@ -15,6 +18,8 @@ const PopularCategory: React.FC<Props> = (props) => {
     IPopularCategories[]
   >([]);
   const [slug, setSlug] = useState("");
+
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
     const fetchAllPopularCategoriesData = async () => {
@@ -40,7 +45,13 @@ const PopularCategory: React.FC<Props> = (props) => {
           />
           <div className="section-content">
             <div className="products-section w-full">
-              <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
+              <div
+                className={
+                  width && width > 640
+                    ? "grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5"
+                    : `flex flex-nowrap gap-3 overflow-scroll ${styles["scrollbar"]}`
+                }
+              >
                 <div className="category-card hidden xl:block w-full">
                   <div
                     className="category-card-wrappwer w-full h-[445px] p-[30px]"
@@ -77,30 +88,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                           Shop Now
                         </Link>
                         <span>
-                          <svg
-                            width="7"
-                            height="11"
-                            viewBox="0 0 7 11"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <rect
-                              x="2.08984"
-                              y="0.636719"
-                              width="6.94219"
-                              height="1.54271"
-                              transform="rotate(45 2.08984 0.636719)"
-                              fill="#1D1D1D"
-                            ></rect>
-                            <rect
-                              x="7"
-                              y="5.54492"
-                              width="6.94219"
-                              height="1.54271"
-                              transform="rotate(135 7 5.54492)"
-                              fill="#1D1D1D"
-                            ></rect>
-                          </svg>
+                          <ArrowIcon />
                         </span>
                       </div>
                     </div>

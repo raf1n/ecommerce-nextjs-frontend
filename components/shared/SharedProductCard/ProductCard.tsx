@@ -18,6 +18,7 @@ import toast from "react-hot-toast";
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 interface Props {
   // product: IProduct;
   product: IWishlistProduct;
@@ -27,11 +28,12 @@ interface Props {
 
 const ProductCard: React.FC<Props> = (props) => {
   const { product } = props;
-  // console.log(product);
   const states = useSelector(() => controller.states);
   const user_slug = useSelector(() => controller.states.user?.slug);
 
   const [avgRating, setAvgRating] = useState(0);
+
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
     const getProductReviews = async () => {
@@ -143,66 +145,31 @@ const ProductCard: React.FC<Props> = (props) => {
   };
 
   return (
-    <div>
+    <div className="w-[220px] sm:w-auto flex-shrink-0">
       <div data-aos="fade-up" className="item aos-init">
         <div className="main-wrapper-card relative">
           <div
-            className={`${styles["product-card-one"]} w-full h-[445px] bg-white relative group overflow-hidden`}
+            className={`${styles["product-card-one"]} w-full h-[270px] md:h-[445px] bg-white relative group overflow-hidden`}
             style={{
               boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px 0px",
             }}
           >
-            <div className="product-card-img w-full h-[300px] -mt-2">
-              <div className="w-full h-full relative flex justify-center items-center transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out">
-                <span
-                  style={{
-                    boxSizing: "border-box",
-                    display: "block",
-                    overflow: "hidden",
-                    width: "initial",
-                    height: "initial",
-                    background: "none",
-                    opacity: 1,
-                    border: 0,
-                    margin: 0,
-                    padding: 0,
-                    position: "absolute",
-                    inset: 0,
-                  }}
-                >
-                  <picture>
-                    {product && product?.imageURL?.length > 0 && (
-                      <img
-                        alt=""
-                        src={product?.imageURL[0]}
-                        decoding="async"
-                        data-nimg="fill"
-                        className="w-full h-full object-contain"
-                        style={{
-                          position: "absolute",
-                          inset: 0,
-                          boxSizing: "border-box",
-                          padding: 0,
-                          border: "none",
-                          margin: "auto",
-                          display: "block",
-                          width: 0,
-                          height: 0,
-                          minWidth: "100%",
-                          maxWidth: "100%",
-                          minHeight: "100%",
-                          maxHeight: "100%",
-                          objectFit: "scale-down",
-                        }}
-                        sizes="100vw"
-                      />
-                    )}
-                  </picture>
-                </span>
+            <div className="product-card-img w-full h-[150px] md:h-[300px] -mt-2">
+              <div className="w-full h-full relative flex justify-center items-center transform scale-100 group-hover:scale-110 transition duration-300 ease-in-out mt-2">
+                <picture className="w-full h-full md:h-auto flex justify-center p-1">
+                  {product && product?.imageURL?.length > 0 && (
+                    <img
+                      alt=""
+                      src={product?.imageURL[0]}
+                      decoding="async"
+                      data-nimg="fill"
+                    />
+                  )}
+                </picture>
               </div>
             </div>
-            <div className="product-card-details px-[30px] pb-[30px] relative pt-2">
-              <div className="absolute w-full h-10 px-[30px] left-0 top-40 group-hover:top-[85px] transition-all duration-300 ease-in-out">
+            <div className="product-card-details px-[12px] md:px-[30px] pb-[12px] md:pb-[30px] relative pt-2">
+              <div className="absolute w-full h-10 px-[12px] md:px-[30px] left-0 top-40 group-hover:top-[65px] md:group-hover:top-[80px] transition-all duration-300 ease-in-out">
                 <button
                   onClick={handleCartToggle}
                   type="button"
@@ -235,13 +202,13 @@ const ProductCard: React.FC<Props> = (props) => {
                   ></div>
                 </button>
               </div>
-              <div className="reviews flex space-x-[1px] mb-3">
+              <div className="reviews flex space-x-[1px] mb-1 md:mb-3">
                 {product && avgRating !== 0 && (
                   <ReactStars
                     count={5}
                     value={avgRating}
                     edit={false}
-                    size={24}
+                    size={width && width > 640 ? 24 : 16}
                     isHalf={true}
                     emptyIcon={<FaRegStar />}
                     halfIcon={<FaStarHalfAlt />}
@@ -255,7 +222,7 @@ const ProductCard: React.FC<Props> = (props) => {
                     count={5}
                     value={0}
                     edit={false}
-                    size={24}
+                    size={width && width > 640 ? 24 : 16}
                     isHalf={true}
                     emptyIcon={<FaRegStar />}
                     halfIcon={<FaStarHalfAlt />}
@@ -269,7 +236,7 @@ const ProductCard: React.FC<Props> = (props) => {
                 rel="noopener noreferrer"
                 href={`/single_product?slug=${product.slug}`}
               >
-                <p className="title mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
+                <p className="title mb-2 text-[15px] font-semibold text-qblack leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer capitalize">
                   {product.productName}
                 </p>
               </Link>
@@ -279,11 +246,11 @@ const ProductCard: React.FC<Props> = (props) => {
                     product.offerPrice
                       ? "line-through text-qgray"
                       : " text-qred"
-                  } main-price  font-semibold text-[18px] `}
+                  } main-price  font-semibold text-md md:text-[18px] `}
                 >
-                  <span>${product.price} </span>
+                  <span>${product.price}</span>
                 </span>
-                <span className="offer-price text-qred font-semibold text-[18px] ml-2">
+                <span className="offer-price text-qred font-semibold text-md md:text-[18px] ml-2">
                   <span>
                     {product.offerPrice ? `$` : ""}
                     {product.offerPrice ? product.offerPrice : ""}
@@ -329,23 +296,6 @@ const ProductCard: React.FC<Props> = (props) => {
                   )}
                 </span>
               </button>
-
-              {/* <button
-                className="absolute group-hover:right-4 -right-10 top-[168px] transition-all duration-500 ease-in-out"
-                type="button"
-              >
-                <span className="w-10 h-10 flex justify-center text-black hover:text-white transition-all duration-300 ease-in-out items-center hover:bg-qyellow bg-primarygray rounded">
-                  <SvgIconRenderer
-                    width={"20"}
-                    height={"22"}
-                    viewBox={"0 0 20 22"}
-                    fill={"none"}
-                    xmlns={"http://www.w3.org/2000/svg"}
-                    path={SvgPaths.compare}
-                    pathFill={"black"}
-                  />
-                </span>
-              </button> */}
             </div>
           </div>
           <span className={`${styles["anim"]} ${styles["bottom"]} `}></span>

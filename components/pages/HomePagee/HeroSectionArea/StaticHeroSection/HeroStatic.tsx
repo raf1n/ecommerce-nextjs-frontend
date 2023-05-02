@@ -40,7 +40,7 @@ const HeroStatic: React.FC<Props> = (props) => {
   }, []);
 
   return (
-    <div className="flex-1 flex xl:flex-col flex-row xl:space-y-[30px] xl:h-full md:h-[350px] h-[150px] aos-init aos-animate">
+    <div className="flex-1 hidden md:flex xl:flex-col flex-row xl:space-y-[30px] xl:h-full md:h-[350px] h-[150px] aos-init aos-animate ">
       <div
         className="w-full xl:h-1/2 xl:mr-o mr-2 relative flex items-center group md:pl-[40px] pl-[30px]"
         style={{
@@ -67,7 +67,7 @@ const HeroStatic: React.FC<Props> = (props) => {
               </h1>
             </div>
           </div>
-          <Link href={`products?category=+${singleAdData?.category_link}`}>
+          <Link href={`products?category=%2B${singleAdData?.category_link}`}>
             <ShopNowBtn color={{ textColor: "text-qblack" }} />
           </Link>
         </div>
@@ -99,7 +99,7 @@ const HeroStatic: React.FC<Props> = (props) => {
               </h1>
             </div>
           </div>
-          <Link href={`products?category=+${singleSecondAdData?.category_link}`}>
+          <Link href={`products?category=%2B${singleSecondAdData?.category_link}`}>
             <ShopNowBtn color={{ textColor: "text-qblack" }} />
           </Link>
         </div>

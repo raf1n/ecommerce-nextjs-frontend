@@ -29,7 +29,7 @@ const SellerCard: React.FC<Props> = (props) => {
           <div className="flex sm:flex-row flex-col-reverse sm:items-center justify-between w-full h-full">
             <div className="flex flex-col justify-between h-full">
               <div className="">
-                <h1 className="text-[30px] font-semibold text-qblack">
+                <h1 className="text-[30px] font-semibold text-qblack capitalize">
                   {props.seller.shop?.shop_name}
                 </h1>
                 <div className="flex space-x-2 items-center mb-[30px]">

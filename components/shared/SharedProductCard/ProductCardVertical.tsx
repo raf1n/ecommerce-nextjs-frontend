@@ -1,11 +1,9 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { action } from "usm-redux";
-import { IProduct, IWishlistProduct } from "../../../interfaces/models";
+import { IWishlistProduct } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
-import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import styles from "./ProductCardVertical.module.css";
@@ -14,11 +12,9 @@ import toast from "react-hot-toast";
 import ReactStars from "react-rating-stars-component";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 interface Props {
-  // product: IProduct;
   product: IWishlistProduct;
 }
 
-// const user_slug = CookiesHandler.getSlug();
 
 const ProductCardVertical: React.FC<Props> = (props) => {
   const { product } = props;
@@ -139,14 +135,6 @@ const ProductCardVertical: React.FC<Props> = (props) => {
     controller.setApiLoading(false);
   };
 
-  // const handleWishlist = () => {
-  //   controller.setAddtoWishlist(product);
-  // };
-
-  // const handleCartlist = () => {
-  //   controller.setAddtoCartlist(product);
-  // };
-
   return (
     <div>
       <div className="item w-full group">
@@ -230,7 +218,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                     )}
                   </div>
                   <Link href={`/single_product?slug=${product.slug}`}>
-                    <p className="title mb-2 sm:text-[15px] text-[13px] font-600 text-slate-700 font-semibold leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer">
+                    <p className="title mb-2 sm:text-[15px] text-[13px] font-600 text-slate-700 font-semibold leading-[24px] line-clamp-2 hover:text-blue-600 cursor-pointer capitalize">
                       {product.productName}
                     </p>
                   </Link>
@@ -251,35 +239,6 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                       </span>
                     </span>
                   </p>
-
-                  {/* <button
-                    onClick={handleCartToggle}
-                    type="button"
-                    className={`${styles["yellow-btn"]} group relative w-full h-full flex shadow justify-center items-center overflow-hidden`}>
-                    <div
-                      className={`${styles["btn-content"]} flex items-center space-x-3 relative z-10`}>
-                      <span>
-                        <SvgIconRenderer
-                          width="14"
-                          height="16"
-                          viewBox="0 0 14 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="fill-current"
-                          path={SvgPaths.cartIcon}
-                          pathFill="fill-current"
-                        />
-                      </span>
-
-                      {cartListProduct ? (
-                        <span>Remove from Cart</span>
-                      ) : (
-                        <span>Add to Cart</span>
-                      )}
-                    </div>
-                    <div
-                      className={`${styles["bg-shape"]} w-full h-full absolute bg-qblack`}></div>
-                  </button> */}
 
                   <button
                     type="button"
@@ -337,22 +296,6 @@ const ProductCardVertical: React.FC<Props> = (props) => {
                   />
                 </span>
               </button>
-              {/* <button
-                className="absolute group-hover:left-4 -left-10 top-[107px] transition-all duration-500 ease-in-out"
-                type="button"
-              >
-                <span className="w-10 h-10 flex justify-center text-black hover:text-white transition-all duration-300 ease-in-out items-center hover:bg-qyellow bg-primarygray rounded">
-                  <SvgIconRenderer
-                    width={"20"}
-                    height={"22"}
-                    viewBox={"0 0 20 22"}
-                    fill={"none"}
-                    xmlns={"http://www.w3.org/2000/svg"}
-                    path={SvgPaths.compare}
-                    pathFill={"black"}
-                  />
-                </span>
-              </button> */}
             </div>
           </div>
           <span className={`${styles["anim"]} ${styles["bottom"]} `}></span>
