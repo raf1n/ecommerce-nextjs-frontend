@@ -76,6 +76,7 @@ export interface IProduct {
   isFeatured?: boolean;
   isPopular?: boolean;
   seller_slug?: string;
+  rating: number;
 }
 
 export interface ISeller extends IUser {

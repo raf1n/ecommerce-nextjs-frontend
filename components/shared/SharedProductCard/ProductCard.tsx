@@ -27,23 +27,23 @@ const ProductCard: React.FC<Props> = ({ product, grid = false }) => {
 
   const { height, width } = useWindowDimensions();
 
-  useEffect(() => {
-    const getProductReviews = async () => {
-      let rating = 0;
-      const { res, err } = await EcommerceApi.getAllProductReviews(
-        product?.slug
-      );
-      if (res?.length !== 0) {
-        res.map((data) => {
-          rating = rating + data.rating / res.length;
-          setAvgRating(rating);
-        });
-      } else if (res?.length === 0) {
-        setAvgRating(0);
-      }
-    };
-    getProductReviews();
-  }, [product.slug]);
+  // useEffect(() => {
+  //   const getProductReviews = async () => {
+  //     let rating = 0;
+  //     const { res, err } = await EcommerceApi.getAllProductReviews(
+  //       product?.slug
+  //     );
+  //     if (res?.length !== 0) {
+  //       res.map((data) => {
+  //         rating = rating + data.rating / res.length;
+  //         setAvgRating(rating);
+  //       });
+  //     } else if (res?.length === 0) {
+  //       setAvgRating(0);
+  //     }
+  //   };
+  //   getProductReviews();
+  // }, [product.slug]);
 
   const isInWishlist = (slug: string | undefined) => {
     for (let i = 0; i < states?.wishlistData?.length; i++) {
@@ -200,10 +200,10 @@ const ProductCard: React.FC<Props> = ({ product, grid = false }) => {
                 </button>
               </div>
               <div className="reviews flex space-x-[1px] mb-1 md:mb-3">
-                {product && avgRating !== 0 && (
+                {product && (
                   <ReactStars
                     count={5}
-                    value={avgRating}
+                    value={product?.rating}
                     edit={false}
                     size={width && width > 640 ? 24 : 16}
                     isHalf={true}
@@ -214,7 +214,7 @@ const ProductCard: React.FC<Props> = ({ product, grid = false }) => {
                     color="#d3d3d3"
                   />
                 )}
-                {product && avgRating === 0 && (
+                {/* {product && avgRating === 0 && (
                   <ReactStars
                     count={5}
                     value={0}
@@ -227,7 +227,7 @@ const ProductCard: React.FC<Props> = ({ product, grid = false }) => {
                     activeColor="#FFA800"
                     color="#d3d3d3"
                   />
-                )}
+                )} */}
               </div>
               <Link
                 rel="noopener noreferrer"
