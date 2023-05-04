@@ -31,7 +31,7 @@ const ProfilePage: React.FC<Props> = (props) => {
   return (
     <div className="min-h-screen container-x mx-auto">
       <div className="my-10">
-        <div className="font-normal text-[13px] text-qblack mb-[23px]">
+        <div className="font-normal text-[13px] text-qblack mb-[23px] hidden md:block">
           <Breadcrumb slug="Profile" link="/profile" />
         </div>
 

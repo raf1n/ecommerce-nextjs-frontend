@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/globals.css";
 import { AppProps } from "next/app";
 import { Provider } from "react-redux";
@@ -21,6 +21,23 @@ export default function MyApp(props: AppProps) {
     }
     SocialLogin.initFirebase();
   }, []);
+
+  const [isMounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    if (isMounted) {
+      // console.log("hash", window.location.hash);
+    } else {
+      setMounted(true);
+    }
+  }, [isMounted]);
+
+  if (!isMounted)
+    return (
+      <Provider store={store}>
+        <SharedLoadingModal />{" "}
+      </Provider>
+    );
 
   return (
     <Provider store={store}>

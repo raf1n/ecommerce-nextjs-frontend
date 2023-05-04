@@ -8,7 +8,6 @@ import styles from "./styles.module.css";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { ICartProduct, ICategories } from "../../../../interfaces/models";
 import { useRouter } from "next/router";
-import { CookiesHandler } from "../../../../src/utils/CookiesHandler";
 import { SocialLogin } from "../../../helpers/SocialLogin";
 import { toast } from "react-hot-toast";
 import {
@@ -24,14 +23,17 @@ import {
   RedCrossIcon,
   SearchIcon,
 } from "../../../../src/utils/SvgReturn";
+import { BiArrowBack } from "react-icons/bi";
+import { CookiesHandler } from "../../../../src/utils/CookiesHandler";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 interface Props {}
 
 const user_slug = CookiesHandler.getSlug();
-console.log(user_slug);
 
 const HeaderTop: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
   const [sideDropdownOpen, setSideDropdownOpen] = useState(false);
   const [showCategory, setShowCategory] = useState(true);
   const [showTopAllCatgory, setShowTopAllCatgory] = useState(false);
@@ -47,6 +49,8 @@ const HeaderTop: React.FC<Props> = (props) => {
 
   const router = useRouter();
   const { asPath, route } = router;
+
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
     if (route !== "/products" && searchRef.current && mobSearchRef.current) {
@@ -210,6 +214,17 @@ const HeaderTop: React.FC<Props> = (props) => {
     controller.setApiLoading(false);
   };
 
+  if (asPath !== "/" && width && width <= 640) {
+    return (
+      <header className="print:hidden w-full bg-white h-10 px-4 py-1 flex justify-start items-center">
+        <BiArrowBack
+          className="w-7 h-7 p-1 bg-qyellow rounded-full"
+          onClick={() => router.back()}
+        />
+      </header>
+    );
+  }
+
   return (
     <div className="print:hidden">
       {sideDropdownOpen && (
@@ -237,7 +252,7 @@ const HeaderTop: React.FC<Props> = (props) => {
             </button>
           </div>
         </div>
-        
+
         <div className="w-full mt-5 px-5 flex items-center space-x-3">
           <span
             className="text-base font-semibold  text-qblack"
@@ -711,7 +726,11 @@ const HeaderTop: React.FC<Props> = (props) => {
                 </svg>
               </div>
               <div className="w-[200px] h-full relative flex justify-center items-center">
-                <Link rel="noreferrer" href="/" className="h-full flex justify-center items-center">
+                <Link
+                  rel="noreferrer"
+                  href="/"
+                  className="h-full flex justify-center items-center"
+                >
                   <span className={`${styles["spanStyle"]}`}>
                     <span className={`${styles["spanStyle2"]}`}>
                       <img
