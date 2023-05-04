@@ -23,7 +23,7 @@ import {
   RedCrossIcon,
   SearchIcon,
 } from "../../../../src/utils/SvgReturn";
-import { BiArrowBack, BiUser } from "react-icons/bi";
+import { BiArrowBack } from "react-icons/bi";
 import { CookiesHandler } from "../../../../src/utils/CookiesHandler";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { FaUser } from "react-icons/fa";
@@ -41,6 +41,7 @@ const HeaderTop: React.FC<Props> = (props) => {
   const [showCategory, setShowCategory] = useState(true);
   const [showTopAllCatgory, setShowTopAllCatgory] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState("");
 
   const [searchCategory, setSearchCategory] = useState<ICategories | undefined>(
     undefined
@@ -311,20 +312,7 @@ const HeaderTop: React.FC<Props> = (props) => {
           <div className="category-item mt-5 w-full">
             <ul className="categories-list">
               {states.categories.map((category: ICategories) => (
-                <li
-                  key={category.cat_slug}
-                  className="category-item"
-                  onClick={() =>
-                    router.push({
-                      pathname: "products",
-                      query: {
-                        category: "+" + category.cat_slug,
-                        min: 0,
-                        max: 15000,
-                      },
-                    })
-                  }
-                >
+                <li key={category.cat_slug} className="category-item">
                   <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex items-center space-x-6">
                       <span>
@@ -332,16 +320,62 @@ const HeaderTop: React.FC<Props> = (props) => {
                           <AnchorIcon />
                         </span>
                       </span>
-                      <span className="text-sm font-normal capitalize">
+                      <span
+                        className="text-xs font-normal capitalize"
+                        onClick={() =>
+                          router.push({
+                            pathname: "products",
+                            query: {
+                              category: "+" + category.cat_slug,
+                              min: 0,
+                              max: 15000,
+                            },
+                          })
+                        }
+                      >
                         {category.cat_name}
                       </span>
                     </div>
-                    <div>
-                      <span>
-                        <ArrowIcon />
-                      </span>
+                    <div
+                      onClick={() => setExpandedCategory(category.cat_slug)}
+                      className={
+                        (expandedCategory === category.cat_slug
+                          ? "rotate-90"
+                          : "") + " ease-in p-2"
+                      }
+                    >
+                      <ArrowIcon />
                     </div>
                   </div>
+                  <ul
+                    className={
+                      expandedCategory === category.cat_slug ? "" : "hidden"
+                    }
+                  >
+                    {states.subCategories
+                      .filter((subCat) => subCat.cat_slug === category.cat_slug)
+                      .map((s) => (
+                        <li
+                          key={s.slug}
+                          className="pl-20 h-10 text-xs flex justify-between items-center cursor-pointer"
+                        >
+                          <span
+                            onClick={() =>
+                              router.push({
+                                pathname: "products",
+                                query: {
+                                  sub_category: s.slug,
+                                  min: 0,
+                                  max: 15000,
+                                },
+                              })
+                            }
+                          >
+                            {s.subcat_name}
+                          </span>
+                        </li>
+                      ))}
+                  </ul>
                 </li>
               ))}
             </ul>
