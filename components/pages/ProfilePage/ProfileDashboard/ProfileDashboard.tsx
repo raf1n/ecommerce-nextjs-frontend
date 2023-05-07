@@ -169,7 +169,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
         {sellerData && (
           <>
             <div className="w-[1px] h-0 lg:h-[164px] bg-[#E4E4E4]"></div>
-            <div className="ml-6">
+            <div className="ml-0 md:ml-6">
               <p className="title text-[22px] font-semibold">
                 Shop Information
               </p>

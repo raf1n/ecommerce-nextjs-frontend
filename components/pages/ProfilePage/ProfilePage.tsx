@@ -30,12 +30,12 @@ const ProfilePage: React.FC<Props> = (props) => {
 
   return (
     <div className="min-h-screen container-x mx-auto">
-      <div className="my-10">
+      <div className="my-2 md:my-10">
         <div className="font-normal text-[13px] text-qblack mb-[23px] hidden md:block">
           <Breadcrumb slug="Profile" link="/profile" />
         </div>
 
-        <div className="bg-white xl:p-10 p-5">
+        <div className="bg-white xl:p-10 p-2 md:p-5">
           <div className="w-full flex justify-between items-center">
             <h1 className="text-[22px] font-bold text-qblack">
               Your Dashboard
