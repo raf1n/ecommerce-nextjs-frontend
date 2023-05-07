@@ -24,8 +24,8 @@ const FilterWidget: React.FC<Props> = (props) => {
 
   return (
     <div
-      className={`w-full fixed lg:relative left-0 top-0 h-screen z-10 lg:h-auto overflow-y-scroll lg:overflow-y-auto bg-white px-[30px] pt-[40px] mb-[30px]  ${
-        showFilterWidget ? "block z-30" : "hidden lg:block"
+      className={`lg:w-[270px] py-2 md:py-0 my-0 md:my-10 w-full fixed lg:relative left-0 top-0 h-screen z-10 lg:h-auto overflow-y-scroll lg:overflow-y-auto bg-white px-[30px] pt-[40px] mb-[30px]  ${
+        showFilterWidget ? "block z-50" : "hidden lg:block"
       }`}
     >
       <div className="pb-10 border-b border-gray-200">
@@ -56,11 +56,11 @@ const FilterWidget: React.FC<Props> = (props) => {
       <button
         type="button"
         onClick={() => setShowFilterWidget(false)}
-        class="w-10 h-10 fixed top-5 right-5 z-50 rounded lg:hidden flex justify-center items-center border border-qred text-qred"
+        className="w-10 h-10 fixed top-5 right-5 z-50 rounded lg:hidden flex justify-center items-center border border-qred text-qred"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
+          className="h-5 w-5"
           viewBox="0 0 20 20"
           fill="currentColor"
         >

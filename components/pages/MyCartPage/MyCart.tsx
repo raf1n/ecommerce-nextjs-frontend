@@ -9,21 +9,18 @@ import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CartHandler } from "../../../src/utils/CartHandler";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import toast from "react-hot-toast";
-interface Props {
-  // cartlistData: Array<IProduct>;
-}
-const user_slug = CookiesHandler.getSlug();
-
-// const user_slug = CookiesHandler.getSlug();
+import useWindowDimensions from "../../shared/hooks/useWindowDimensions";
+interface Props {}
 
 const MyCart: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
+  const { user, cartlistData } = useSelector(() => controller.states);
+  const user_slug = user?.slug;
+
+  const { height, width } = useWindowDimensions();
 
   const handleIncreaseQuantity = async (item: ICartProduct) => {
-    if (states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
-      const selectedItem = states?.cartlistData?.find(
-        (prd) => prd.slug === item.slug
-      );
+    if (cartlistData?.some((prd) => prd.slug === item.slug)) {
+      const selectedItem = cartlistData?.find((prd) => prd.slug === item.slug);
 
       if (
         selectedItem &&
@@ -89,51 +86,82 @@ const MyCart: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="w-full min-h-screen  pt-[30px] pb-[5px]">
-      {states.cartlistData.length === 0 ? (
-        <>
-          <SharedEmptyCart
-            slug="cartlist"
-            imgURL="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2F%2Fuploads%2Fwebsite-images%2Fempty_cart-2022-11-17-11-10-20-7795.png&w=1920&q=75"
-          />
-        </>
+    <div className="w-full min-h-screen pt-0 md:pt-[30px] pb-[5px]">
+      {cartlistData.length === 0 ? (
+        <SharedEmptyCart
+          slug="cartlist"
+          imgURL="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2F%2Fuploads%2Fwebsite-images%2Fempty_cart-2022-11-17-11-10-20-7795.png&w=1920&q=75"
+        />
       ) : (
         <>
           <PageHeader slug="Cart" link="/cart" title="Your Cart" />
-          <div className="w-full mt-[23px] ">
+          <div className="w-full mt-2 md:mt-[23px] ">
             <div className="container-x mx-auto">
-              <div className="w-full mb-[30px]">
-                <div className="relative w-full overflow-x-auto border border-[#EDEDED]">
+              <div className="w-full mb-2 md:mb-[30px]">
+                <div className="relative w-full overflow-x-auto md:border border-[#EDEDED]">
                   <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <tbody>
-                      <tr className="text-[13px] font-medium text-black bg-[#F6F6F6] whitespace-nowrap px-2 border-b default-border-bottom uppercase">
-                        <td width="60%" className="py-4 capitalize pl-10 block whitespace-nowrap">
+                      <tr
+                        className={
+                          width && width > 640
+                            ? "text-[13px] font-medium text-black bg-[#F6F6F6] whitespace-nowrap px-2 border-b default-border-bottom uppercase"
+                            : "hidden"
+                        }
+                      >
+                        <td
+                          width="60%"
+                          className="py-4 capitalize pl-10 block whitespace-nowrap"
+                        >
                           Product
                         </td>
-                        <td width={150} className="py-4 capitalize whitespace-nowrap text-center">
+                        <td
+                          width={150}
+                          className="py-4 capitalize whitespace-nowrap text-center"
+                        >
                           Price
                         </td>
-                        <td width={120} className="py-4 capitalize whitespace-nowrap text-center">
+                        <td
+                          width={120}
+                          className="py-4 capitalize whitespace-nowrap text-center"
+                        >
                           Quantity
                         </td>
-                        <td width={150} className="py-4 capitalize whitespace-nowrap text-center">
+                        <td
+                          width={150}
+                          className="py-4 capitalize whitespace-nowrap text-center"
+                        >
                           Total
                         </td>
-                        <td width={60} className="py-4 capitalize whitespace-nowrap text-center block">
+                        <td
+                          width={60}
+                          className="py-4 capitalize whitespace-nowrap text-center block"
+                        >
                           {/* Action */}
                         </td>
                       </tr>
-                      {states?.cartlistData?.map((item, ind) => {
-                        const selectedItem = states?.cartlistData?.find(
+                      {cartlistData?.map((item, ind) => {
+                        const selectedItem = cartlistData?.find(
                           (product) => item.slug === product.slug
                         );
                         return (
                           <tr
                             key={item.slug}
-                            className="bg-white border-b hover:bg-gray-50"
+                            className={
+                              width && width > 640
+                                ? "border-b"
+                                : "flex mb-2 border" +
+                                  " bg-white  hover:bg-gray-50 relative overflow-hidden"
+                            }
                           >
-                            <td width="60%" className="pl-10 py-4 capitalize w-[380px] ">
-                              <div className="flex space-x-6 items-center">
+                            <td
+                              width="60%"
+                              className={
+                                width && width > 640
+                                  ? "pl-10 py-4 w-[380px]"
+                                  : "w-full p-2" + " capitalize"
+                              }
+                            >
+                              <div className="flex gap-x-4 md:gap-x-6 md:items-center">
                                 <div className="w-[80px] h-[80px] overflow-hidden flex justify-center items-center border border-[#EDEDED] relative">
                                   <span
                                     style={{
@@ -177,7 +205,7 @@ const MyCart: React.FC<Props> = (props) => {
                                   </span>
                                 </div>
                                 <div className="flex-1 flex flex-col">
-                                  <p className="font-medium text-[15px] text-qblack hover:text-blue-500 cursor-pointer">
+                                  <p className="font-medium text-sm md:text-[15px] text-qblack hover:text-blue-500 cursor-pointer pt-1 md:pt-0 line-clamp-1">
                                     <Link
                                       href={`/single_product?slug=${item.slug}`}
                                     >
@@ -187,9 +215,17 @@ const MyCart: React.FC<Props> = (props) => {
                                 </div>
                               </div>
                             </td>
-                            <td width={150}  className="text-center py-4 capitalize px-2">
+
+                            <td
+                              width={150}
+                              className={
+                                width && width > 640
+                                  ? "text-center py-4 capitalize px-2"
+                                  : "hidden"
+                              }
+                            >
                               <div className="flex space-x-1 items-center justify-center">
-                                <span className="text-[15px] font-normal">
+                                <span className="text-sm md:text-[15px] font-semibold md:font-normal">
                                   $
                                   {item.offerPrice
                                     ? item.offerPrice
@@ -197,16 +233,24 @@ const MyCart: React.FC<Props> = (props) => {
                                 </span>
                               </div>
                             </td>
-                            <td width={120} className="text-center py-4 capitalize px-2">
-                              <div className="flex space-x-1 items-center justify-center ">
-                                <div className="w-[120px] h-full px-[26px] flex items-center border border-gray-200">
+
+                            <td
+                              width={120}
+                              className={
+                                width && width > 640
+                                  ? "text-center py-4 capitalize px-2"
+                                  : "absolute left-[103px] top-[50px]"
+                              }
+                            >
+                              <div className="md:flex space-x-1 items-center justify-center ">
+                                <div className="w-[75px] md:w-[120px] h-full md:px-[26px] flex items-center md:border border-gray-200">
                                   <div className="flex justify-between items-center w-full py-2">
                                     <button
                                       onClick={() =>
                                         handleDecreaseQuantity(item)
                                       }
                                       type="button"
-                                      className="text-base text-qgray font-bold"
+                                      className="text-base text-white md:text-qgray font-bold bg-qyellow md:bg-transparent hover:bg-yellow-600 md:hover:bg-transparent rounded-full md:rounded-none w-5 md:w-auto h-5 md:h-auto flex md:block justify-center items-center"
                                     >
                                       -
                                     </button>
@@ -218,7 +262,7 @@ const MyCart: React.FC<Props> = (props) => {
                                         handleIncreaseQuantity(item)
                                       }
                                       type="button"
-                                      className="text-base text-qgray font-bold"
+                                      className="text-base text-white md:text-qgray font-bold bg-qyellow md:bg-transparent hover:bg-yellow-600 md:hover:bg-transparent rounded-full md:rounded-none w-5 md:w-auto h-5 md:h-auto flex md:block justify-center items-center"
                                     >
                                       +
                                     </button>
@@ -226,14 +270,30 @@ const MyCart: React.FC<Props> = (props) => {
                                 </div>
                               </div>
                             </td>
-                            <td width={150}  className="text-center py-4 capitalize px-2">
-                              <div className="flex space-x-1 items-center justify-center">
-                                <span className="text-[15px] font-normal">
+
+                            <td
+                              width={150}
+                              className={
+                                width && width > 640
+                                  ? "text-center py-4 capitalize px-2"
+                                  : "absolute left-[103px] top-[34px] text-qred "
+                              }
+                            >
+                              <div className="md:flex space-x-1 items-center justify-center">
+                                <span className="text-sm md:text-[15px] font-semibold md:font-normal">
                                   ${CartHandler.getPrice(item)}
                                 </span>
                               </div>
                             </td>
-                            <td width={60}  className="text-right py-4 capitalize">
+
+                            <td
+                              width={60}
+                              className={
+                                width && width > 640
+                                  ? "text-right py-4 capitalize"
+                                  : "absolute -right-[13px] top-[5px]"
+                              }
+                            >
                               <div className="flex space-x-1 items-center justify-center p-2">
                                 <span
                                   className="cursor-pointer"
@@ -267,18 +327,22 @@ const MyCart: React.FC<Props> = (props) => {
                 </div>
               </div>
               <div className="w-full sm:flex justify-between ">
-                <div className="flex space-x-4 items-center mb-16">
-                  <button onClick={handleAllCartProductClear}>
+                <div className="flex w-full md:space-x-4 items-center mb-16">
+                  <button
+                    className="hidden md:block"
+                    onClick={handleAllCartProductClear}
+                  >
                     <div className="w-full text-sm font-semibold text-qred mb-5 sm:mb-0">
                       Clear Cart
                     </div>
                   </button>
-                  <Link href="/checkout">
-                    <div className="w-[300px] h-[50px] bg-black flex justify-center items-center cursor-pointer">
-                      <span className="text-sm text-white font-semibold">
-                        Proceed to Checkout
-                      </span>
-                    </div>
+                  <Link
+                    className="grid w-full md:w-[300px] h-[50px] bg-black place-items-center"
+                    href="/checkout"
+                  >
+                    <span className="text-sm text-white font-semibold">
+                      Proceed to Checkout
+                    </span>
                   </Link>
                 </div>
               </div>

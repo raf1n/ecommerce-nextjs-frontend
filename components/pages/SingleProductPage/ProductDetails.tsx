@@ -3,13 +3,7 @@ import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { useRouter } from "next/router";
-import {
-  FaRegHeart,
-  FaFlag,
-  FaRegStar,
-  FaStarHalfAlt,
-  FaStar,
-} from "react-icons/fa";
+import { FaFlag, FaRegStar, FaStarHalfAlt, FaStar } from "react-icons/fa";
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
 
@@ -21,29 +15,34 @@ import {
   IWishlistProduct,
 } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
-import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import toast from "react-hot-toast";
 
 interface Props {
-  // brand: string;
   singleProduct: IProduct | null;
   setReportModalSlug: Dispatch<SetStateAction<string>>;
 }
 
-const user_slug = CookiesHandler.getSlug();
-
 const ProductDetails: React.FC<Props> = (props) => {
   const { singleProduct } = props;
   const states = useSelector(() => controller.states);
+  const user_slug = states.user?.slug;
+
   const [brandName, setBrandName] = useState<string | undefined>("");
   const [avgRating, setAvgRating] = useState(0);
   const [totalReview, setTotalReview] = useState(0);
+  const [categoryName, setCategoryName] = useState<string | undefined>("");
 
   const { asPath } = useRouter();
   let productSlug = asPath.split("=")[1];
 
   let selectedItem: ICartProduct | undefined;
+
+  const [cartQuantity, setCartQuantity] = useState<number>(
+    selectedItem?.quantity || 1
+  );
+
+  const { setReportModalSlug } = props;
 
   const getProductReviews = async () => {
     let rating = 0;
@@ -68,9 +67,17 @@ const ProductDetails: React.FC<Props> = (props) => {
     );
   }
 
-  const [cartQuantity, setCartQuantity] = useState<number>(
-    selectedItem?.quantity || 1
-  );
+  useEffect(() => {
+    const handleCategory = () => {
+      if (states.categories && singleProduct && singleProduct.catSlug) {
+        let cat = states.categories.find(
+          (cat) => cat.cat_slug === singleProduct.catSlug
+        );
+        setCategoryName(cat?.cat_name);
+      }
+    };
+    handleCategory();
+  }, [singleProduct, productSlug]);
 
   useEffect(() => {
     const handleBrand = () => {
@@ -84,15 +91,15 @@ const ProductDetails: React.FC<Props> = (props) => {
     handleBrand();
     getProductReviews();
   }, [singleProduct, productSlug]);
-  const { setReportModalSlug } = props;
-  const router = useRouter();
 
-  const shareableRoute = process.env.NEXT_PUBLIC_API_ENDPOINT + router.asPath;
-  // const shareableRoute = "https://www.google.com" || undefined;
-
-  // console.log({ shareableRoute, router });
+  const shareableRoute = process.env.NEXT_PUBLIC_API_ENDPOINT + asPath;
 
   const handleIncreaseQuantity = async (item: ICartProduct) => {
+    if (!user_slug) {
+      toast.error("Please Login First");
+      return;
+    }
+
     if (!item.stock) {
       toast.error(
         "Sorry, this product is out of stock. Please add to wishlist instead."
@@ -109,41 +116,40 @@ const ProductDetails: React.FC<Props> = (props) => {
       toast.error(
         "Sorry, One can not buy more than 10 units of a single product."
       );
+      return;
     }
 
     controller.setApiLoading(true);
-    if (user_slug) {
-      if (!states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
-        const cartProductData = {
-          user_slug: user_slug,
-          product_slug: singleProduct?.slug,
-          quantity: 1,
-        };
+    if (!states?.cartlistData?.some((prd) => prd.slug === item.slug)) {
+      const cartProductData = {
+        user_slug: user_slug,
+        product_slug: singleProduct?.slug,
+        quantity: 1,
+      };
 
-        const { res, err } = await EcommerceApi.addToCart(cartProductData);
+      const { res, err } = await EcommerceApi.addToCart(cartProductData);
 
-        if (res) {
-          const newProduct = {
-            ...singleProduct,
-            cart_slug: res.slug,
-          };
-
-          //@ts-ignore
-          controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
-        } else {
-          console.log(err);
-          toast.error("Failed");
-        }
-      } else {
+      if (res) {
         const newProduct = {
           ...singleProduct,
+          cart_slug: res.slug,
         };
 
         //@ts-ignore
         controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
+        toast.success("Added to cart");
+      } else {
+        console.log(err);
+        toast.error("Failed");
       }
     } else {
-      toast.error("Please Login First");
+      const newProduct = {
+        ...singleProduct,
+      };
+
+      //@ts-ignore
+      controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
+      toast.success("Added to cart");
     }
 
     controller.setApiLoading(false);
@@ -159,6 +165,11 @@ const ProductDetails: React.FC<Props> = (props) => {
   };
 
   const handleWishlist = async () => {
+    if (!user_slug) {
+      toast.error("Please Login First");
+      return;
+    }
+
     controller.setApiLoading(true);
     //@ts-ignore
     const newProduct: IWishlistProduct = { ...singleProduct };
@@ -171,8 +182,8 @@ const ProductDetails: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(res);
         controller.setAddtoWishlist(newProduct);
+        toast.success("Added to wishlist");
       }
     } else {
       const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
@@ -182,6 +193,7 @@ const ProductDetails: React.FC<Props> = (props) => {
       if (err) {
       } else {
         controller.setRemoveWishlistSingleProduct(newProduct);
+        toast.success("Removed from wishlist");
       }
     }
 
@@ -210,7 +222,7 @@ const ProductDetails: React.FC<Props> = (props) => {
               emptyIcon={<FaRegStar />}
               halfIcon={<FaStarHalfAlt />}
               fullIcon={<FaStar />}
-              activeColor="rgb(255, 168, 0)"
+              activeColor="#FFA800"
               color="#d3d3d3"
             />
           )}
@@ -224,7 +236,7 @@ const ProductDetails: React.FC<Props> = (props) => {
               emptyIcon={<FaRegStar />}
               halfIcon={<FaStarHalfAlt />}
               fullIcon={<FaStar />}
-              activeColor="rgb(255, 168, 0)"
+              activeColor="#FFA800"
               color="#d3d3d3"
             />
           )}
@@ -328,7 +340,6 @@ const ProductDetails: React.FC<Props> = (props) => {
               )
             }
           </span>
-          {/* </> */}
         </button>
 
         <div className="flex-1 h-full">
@@ -346,7 +357,7 @@ const ProductDetails: React.FC<Props> = (props) => {
 
       <div className="mb-[20px]">
         <p className="text-[13px] text-qgray leading-7">
-          <span className="text-qblack">Category :</span>
+          <span className="text-qblack">Category : {categoryName}</span>
         </p>
       </div>
 

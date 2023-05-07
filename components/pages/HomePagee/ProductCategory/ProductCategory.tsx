@@ -26,7 +26,7 @@ const ProductCategory: React.FC<Props> = (props) => {
   }, []);
 
   return (
-    <div className="category-section-wrapper w-full">
+    <div className="category-section-wrapper w-full hidden md:block">
       <div className="container-x mx-auto pb-[50px]">
         <div>
           <div className="w-full grid xl:grid-cols-8 md:grid-cols-4 grid-cols-2 gap-[30px]">
@@ -37,7 +37,7 @@ const ProductCategory: React.FC<Props> = (props) => {
                   className="item w-full cursor-pointer group"
                 >
                   <Link
-                    href={`products?category=+${item?.cat_slug}`}
+                    href={`products?category=%2B${item?.cat_slug}`}
                     rel="noopener noreferrer"
                   >
                     <div className="w-full h-[120px] relative rounded bg-white flex justify-center items-center">

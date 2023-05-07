@@ -39,7 +39,7 @@ const TrackOrder: React.FC<Props> = (props) => {
           <div className="page-title-wrapper bg-[#FFFAEF] w-full  ">
             <PageHeader
               slug="track-order"
-              link="/track-order"
+              link="/track_order"
               title="Track Order"
             ></PageHeader>
           </div>

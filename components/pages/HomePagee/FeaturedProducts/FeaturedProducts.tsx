@@ -8,6 +8,8 @@ import SectionHeader from "../SectionHeader";
 import { IFeaturedCategories } from "../../../../interfaces/models";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import Link from "next/link";
+import useWindowDimensions from "../../../shared/hooks/useWindowDimensions";
+import styles from "../../../../styles/Scrollbar.module.css";
 
 interface Props {}
 
@@ -17,6 +19,8 @@ const FeaturedCategory: React.FC<Props> = (props) => {
     IFeaturedCategories[]
   >([]);
   const [slug, setSlug] = useState("");
+
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
     const fetchAllPopularCategoriesData = async () => {
@@ -43,14 +47,21 @@ const FeaturedCategory: React.FC<Props> = (props) => {
           />
           <div className="section-content">
             <div className="products-section w-full">
-              <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
+              <div
+                className={
+                  width && width > 640
+                    ? "grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5"
+                    : `flex flex-nowrap gap-3 overflow-scroll ${styles["scrollbar"]}`
+                }
+              >
                 <div className="category-card hidden xl:block w-full">
                   <div
                     className="category-card-wrappwer w-full h-[445px] p-[30px]"
                     style={{
                       background:
                         "url(https://api.websolutionus.com/shopo/uploads/website-images/featured-cat-banner-2022-09-21-02-43-49-4710.jpg) 0% 0% / cover no-repeat",
-                    }}>
+                    }}
+                  >
                     <div>
                       <h1 className="text-base font-semibold tracking-wide mb-2">
                         Featured Category
@@ -62,7 +73,8 @@ const FeaturedCategory: React.FC<Props> = (props) => {
                               <li>
                                 <span
                                   onClick={() => setSlug(singlePop?.cat_slug)}
-                                  className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer">
+                                  className="text-sm text-qgray hober:text-qBlack border-b border-transparent hover:border-qblack hover:text-qblack capitalize cursor-pointer"
+                                >
                                   {singlePop.cat_name}
                                 </span>
                               </li>
@@ -107,6 +119,7 @@ const FeaturedCategory: React.FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
+
                 {states.allProducts
                   .filter((product) => product.catSlug === slug)
                   .slice(0, 3)

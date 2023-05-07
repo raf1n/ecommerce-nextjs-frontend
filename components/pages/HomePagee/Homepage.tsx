@@ -16,6 +16,7 @@ import PopularCategory from "./PopularCategory/PopularCategory";
 import ProductCategory from "./ProductCategory/ProductCategory";
 import ShopByBrand from "./ShopByBrandSection/ShopByBrand";
 import TopRatedSection from "./TopRatedProductsSection/TopRatedSection";
+import SharedLoadingModal from "../../shared/SharedLoadingModal/SharedLoadingModal";
 
 interface Props {}
 
@@ -41,7 +42,7 @@ const Homepage: React.FC<Props> = (props) => {
   }, []);
 
   return (
-    <div className="md:p-0 p-2">
+    <div className="md:p-0">
       <HeroSection />
       <ProductCategory />
       <PopularCategory />

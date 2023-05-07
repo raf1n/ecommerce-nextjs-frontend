@@ -68,17 +68,20 @@ const HeroSlider: React.FC<Props> = (props) => {
     <div className="xl:w-[740px] w-full lg:h-full xl:h-full md:h-[500px] h-[220px] xl:mb-0 mb-2 aos-init aos-animate">
       <div className={`slider-wrapper w-full h-full`}>
         <Slider {...settings}>
-          {sliderData.map((el) => (
+          {sliderData.map((el, indx) => (
             <div
+              key={indx}
               style={{ width: "100%", display: " inline-block" }}
-              className="w-full h-full ">
+              className="w-full h-full "
+            >
               <div
                 className="flex w-full max-w-full relative items-center h-[220px] xl:h-[600px] md:h-[500px] lg:h-[600px] pl-[30px]"
                 style={{
                   backgroundImage: `url(${el.image})`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
-                }}>
+                }}
+              >
                 <div>
                   <div className="md:w-[112px] w-[100px] shadow md:h-[25px] h-[18px] flex items-center justify-center bg-white rounded-full md:mb-[30px] mb-[15px]">
                     <span className="text-qblack uppercase md:text-xs text-[10px] font-semibold">

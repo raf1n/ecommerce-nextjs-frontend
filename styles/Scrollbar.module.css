@@ -1,9 +1,10 @@
 .scrollbar::-webkit-scrollbar {
   display: none;
-  width: 3px;
-  transition: display 0.5s ease;
+  /* width: 3px;
+  transition: display 0.5s ease; */
 }
-.scrollbar:hover::-webkit-scrollbar {
+
+/* .scrollbar:hover::-webkit-scrollbar {
   display: block;
   width: 3px;
 }
@@ -15,6 +16,5 @@
  
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: darkgrey;
-  /* outline: 1px solid slategrey; */
   border-radius: 5px;
-}
+} */

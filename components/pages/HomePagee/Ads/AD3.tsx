@@ -49,7 +49,7 @@ const AD3: React.FC<Props> = (props) => {
                   </h1>
                 </div>
               </div>
-              <Link href={`products?category=${singleAdData?.category_link}`}>
+              <Link href={`products?category=%2B${singleAdData?.category_link}`}>
                 <ShopNowBtn color={{ textColor: "text-qred" }} />
               </Link>
             </div>

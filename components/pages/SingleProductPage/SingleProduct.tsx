@@ -3,7 +3,6 @@ import ItemDetailsLeft from "./ItemDetailsLeft/ItemDetailsLeft";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import ProductDetails from "./ProductDetails";
-import { Jsondata } from "../../../src/utils/Jsondata";
 import Breadcrumb from "../../shared/SharedBreadcrumb/Breadcrumb";
 import ReportedItemModal from "./ReportedItemModal/ReportedItemModal";
 import { useRouter } from "next/router";
@@ -17,31 +16,23 @@ const SingleProduct: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const router = useRouter();
   const { asPath } = router;
-  const { itemDetail } = Jsondata;
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
   const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
-  // const [brand, setBrand] = useState<string | any>("");
+
   const user_slug = CookiesHandler.getSlug();
-  // console.log(asPath.split("=")[1]);
+
   const productSlug = asPath.split("=")[1];
 
   useEffect(() => {
     const fetchProductData = async () => {
       const { res, err } = await EcommerceApi.getSingleProduct(productSlug);
       setSingleProduct(res);
-      // console.log(res);
-      // console.log(states.brands);
-      // const brandName = states.brands.find(
-      //   (brand) => brand.slug === res?.brandSlug
-      // );
-      // setBrand(brandName?.name);
     };
 
     if (!states.initialDataLoading) {
       fetchProductData();
     }
   }, [productSlug, states.initialDataLoading]);
-
 
   const handleReport = (e: any) => {
     e.preventDefault();
@@ -65,8 +56,8 @@ const SingleProduct: React.FC<Props> = (props) => {
         <div className="w-full bg-white pb-[60px] ">
           <div className="container-x mx-auto ">
             <Breadcrumb
-              slug={`${itemDetail.name}`}
-              link={`${itemDetail.slug}`}
+              slug={`${singleProduct?.productName}`}
+              link={`/single_product?slug=${singleProduct?.slug}`}
             ></Breadcrumb>
             <div className="lg:flex justify-between">
               <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
