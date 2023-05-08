@@ -157,7 +157,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
                 <table>
                   <tbody>
                     <tr className="flex mb-3">
-                      <td className="text-sm md:text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>Name:</span>
                       </td>
                       <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium">
@@ -165,7 +165,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-sm md:text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>Email:</span>
                       </td>
                       <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium">
@@ -173,7 +173,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-sm md:text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>phone:</span>
                       </td>
                       <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium">
@@ -181,7 +181,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-sm md:text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>Country:</span>
                       </td>
                       <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium capitalize">
@@ -189,7 +189,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-sm md:text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>Division:</span>
                       </td>
                       <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium capitalize">
@@ -197,7 +197,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-sm md:text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>District:</span>
                       </td>
                       <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium capitalize">
@@ -205,7 +205,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-sm md:text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>Thana:</span>
                       </td>
                       <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium capitalize">
@@ -213,8 +213,8 @@ const ProfileAddress: React.FC<Props> = (props) => {
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-sm md:text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                        <span>Address:</span>
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
+                        <span>Area:</span>
                       </td>
                       <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium capitalize">
                         {singleAddress.address}

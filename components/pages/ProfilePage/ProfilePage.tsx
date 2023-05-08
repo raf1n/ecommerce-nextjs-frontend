@@ -43,7 +43,7 @@ const ProfilePage: React.FC<Props> = (props) => {
           </div>
 
           <div className="w-full mt-4 md:mt-8 xl:flex xl:gap-x-10">
-            <div className="xl:w-[236px] xl:min-h-[600px] xl:border-r border-[rgba(0, 0, 0, 0.1)] mb-5 md:mb-10 xl:mb-0">
+            <div className="xl:w-[236px] xl:min-h-[600px] xl:border-r border-[rgba(0, 0, 0, 0.1)] mb-7 md:mb-10 xl:mb-0">
               <div className="flex xl:flex-col flex-row xl:space-y-10 flex-wrap gap-3 xl:gap-0">
                 <div className="group">
                   <Link
