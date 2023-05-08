@@ -16,7 +16,6 @@ interface Props {
     reviewProducts: any;
   };
 }
-// console.log(props.review);
 
 const ProfileReviewItem: React.FC<Props> = ({
   review: { createdAt, reviewProducts, status, rating, message },
@@ -59,9 +58,6 @@ const ProfileReviewItem: React.FC<Props> = ({
                   activeColor="rgb(255, 168, 0)"
                   color="#d3d3d3"
                 />
-                {/* <span className="text-[13px] font-normal text-qblack mt-1 inline-block">
-                  ({rating})
-                </span> */}
               </div>
             ) : (
               ""

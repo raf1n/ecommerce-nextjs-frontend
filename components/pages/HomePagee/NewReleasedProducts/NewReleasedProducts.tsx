@@ -26,7 +26,7 @@ const NewReleasedProducts: React.FC<Props> = (props) => {
                 className={
                   width && width > 640
                     ? "grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5"
-                    : `flex flex-nowrap gap-3 overflow-scroll ${styles["scrollbar"]}`
+                    : `flex flex-nowrap gap-3 overflow-scroll snap-x snap-mandatory ${styles["scrollbar"]}`
                 }
               >
                   {states.newProducts.map((product, index) => (

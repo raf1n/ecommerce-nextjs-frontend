@@ -313,7 +313,7 @@ const HeaderTop: React.FC<Props> = (props) => {
             <ul className="categories-list">
               {states.categories.map((category: ICategories) => (
                 <li key={category.cat_slug} className="category-item">
-                  <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                  <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex items-center space-x-6">
                       <span>
                         <span>
@@ -321,7 +321,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                         </span>
                       </span>
                       <span
-                        className="text-xs font-normal capitalize"
+                        className="text-sm font-normal capitalize"
                         onClick={() =>
                           router.push({
                             pathname: "products",
@@ -357,7 +357,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                       .map((s) => (
                         <li
                           key={s.slug}
-                          className="pl-20 h-10 text-xs flex justify-between items-center cursor-pointer"
+                          className="pl-20 h-10 text-sm flex justify-between items-center cursor-pointer"
                         >
                           <span
                             onClick={() =>
@@ -384,7 +384,7 @@ const HeaderTop: React.FC<Props> = (props) => {
           <div className="menu-item mt-5 w-full">
             <ul className="categories-list">
               <li className="category-item">
-                <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                   <div className="flex items-center space-x-6">
                     <span className="text-sm font-normal capitalize">
                       Pages
@@ -394,7 +394,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                 </div>
                 <ul className="submenu-list ml-5">
                   <Link className="category-item" href="/privacy_policy">
-                    <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                    <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                       <div className="flex items-center space-x-6">
                         <span className="text-sm font-normal capitalize">
                           Privacy Policy
@@ -404,7 +404,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                     </div>
                   </Link>
                   <Link className="category-item" href="/faq">
-                    <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                    <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                       <div className="flex items-center space-x-6">
                         <span className="text-sm font-normal capitalize">
                           FAQ
@@ -414,7 +414,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                     </div>
                   </Link>
                   <Link className="category-item" href="/terms_condition">
-                    <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                    <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                       <div className="flex items-center space-x-6">
                         <span className="text-sm font-normal capitalize">
                           Terms and Conditions
@@ -427,7 +427,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                     className="category-item"
                     href="/seller_terms_condition"
                   >
-                    <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                    <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                       <div className="flex items-center space-x-6">
                         <span className="text-sm font-normal capitalize">
                           Seller terms and conditions
@@ -439,7 +439,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                 </ul>
               </li>
               <Link className="category-item" href="/about">
-                <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                <div className="flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                   <div className="flex items-center space-x-6">
                     <span className="text-sm font-normal capitalize">
                       About
@@ -449,7 +449,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                 </div>
               </Link>
               <Link className="category-item" href="blogs">
-                <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                <div className="flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                   <div className="flex items-center space-x-6">
                     <span className="text-sm font-normal capitalize">
                       blogs
@@ -459,7 +459,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                 </div>
               </Link>
               <Link className="category-item" href="contact">
-                <div className="flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                <div className="flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                   <div className="flex items-center space-x-6">
                     <span className="text-sm font-normal capitalize">
                       Contact
