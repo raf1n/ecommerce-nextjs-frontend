@@ -2,6 +2,7 @@ import React from "react";
 import CategoryPage from "../components/pages/CategoryProductPage/CategoryPage";
 import { EcommerceApi } from "../src/API/EcommerceApi";
 import { IProduct } from "../interfaces/models";
+import SharedHead from "../components/shared/SharedHead/SharedHead";
 
 interface Props {
   filteredProducts: IProduct[];
@@ -33,10 +34,13 @@ const highlightArr = [
 
 const products: React.FC<Props> = (props) => {
   return (
-    <CategoryPage
-      filteredProducts={props.filteredProducts}
-      count={props.count}
-    />
+    <>
+      <SharedHead title="Search Products" />
+      <CategoryPage
+        filteredProducts={props.filteredProducts}
+        count={props.count}
+      />
+    </>
   );
 };
 

@@ -206,7 +206,7 @@ const ProductDetails: React.FC<Props> = (props) => {
         {brandName}
       </span>
 
-      <h1 className="text-xl text-qblack font-medium mb-4">
+      <h1 className="text-xl text-qblack font-medium mb-4 capitalize">
         {props.singleProduct?.productName}
       </h1>
 

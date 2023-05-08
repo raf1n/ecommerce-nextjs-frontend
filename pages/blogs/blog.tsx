@@ -5,6 +5,7 @@ import SingleBlogPage from "../../components/pages/BlogsPage/SingleBlogPage";
 import { IBlog, IBlogComment } from "../../interfaces/models";
 import { EcommerceApi } from "../../src/API/EcommerceApi";
 import { controller } from "../../src/state/StateController";
+import SharedHead from "../../components/shared/SharedHead/SharedHead";
 
 interface Props {
   blogData: IBlog | any;
@@ -12,11 +13,18 @@ interface Props {
 }
 
 const blog: React.FC<Props> = ({ blogData, blogComments }) => {
-  console.log(blogData);
-
   const states = useSelector(() => controller.states);
 
-  return <SingleBlogPage blogData={blogData} blogComments={blogComments} />;
+  return (
+    <>
+      <SharedHead
+        title={blogData.title}
+        keyword={blogData.seo_title}
+        desc={blogData.seo_description}
+      />
+      <SingleBlogPage blogData={blogData} blogComments={blogComments} />;
+    </>
+  );
 };
 
 export async function getServerSideProps(context: any) {
