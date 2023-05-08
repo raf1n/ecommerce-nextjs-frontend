@@ -20,7 +20,6 @@ const ProfileReviews: React.FC<Props> = (props) => {
     if (user_slug) {
       const { res, err } = await EcommerceApi.getAllReviews(user_slug);
       if (res) {
-        console.log("res from get-all-reviews =", res);
         setReviewDatas(res);
       } else {
         console.log(" reviews=", err);
@@ -62,7 +61,7 @@ const ProfileReviews: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
+    <div className="grid md:grid-cols-2 grid-cols-1 gap-2 md:gap-8">
       {reviewDatas.map((review, idx) => (
         <ProfileReviewItem review={review} />
       ))}
