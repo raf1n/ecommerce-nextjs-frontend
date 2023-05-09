@@ -6,16 +6,19 @@ import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import { useRouter } from "next/router";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { IProduct } from "../../../../interfaces/models";
+import useWindowDimensions from "../../../shared/hooks/useWindowDimensions";
+import styles from "../../../../styles/Scrollbar.module.css";
 
 interface Props {}
 
 const RelatedProductSection: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  // const [categorySlug, setCategorySlug] = useState<string | undefined>("");
   const [relatedProduct, setRelatedProduct] = useState<any>([]);
+  const { height, width } = useWindowDimensions();
+
   const { asPath } = useRouter();
   const productSlug = asPath.split("=")[1];
-  // console.log(productSlug);
+
   let categorySlug: string | undefined = "";
 
   useEffect(() => {
@@ -41,25 +44,7 @@ const RelatedProductSection: React.FC<Props> = (props) => {
           }
         }
       }
-
-      // console.log(states.brands);
-      // const brandName = states.brands.find(
-      //   (brand) => brand.slug === res?.brandSlug
-      // );
-      // setBrand(brandName?.name);
     };
-
-    // const getRelatedProduct = async () => {
-    //   console.log(categorySlug);
-    //   if (categorySlug) {
-    //     const { res, err } = await EcommerceApi.getRelatedProduct(categorySlug);
-    //     setRelatedProduct(res);
-    //     console.log(res);
-    //   }
-
-    // };
-
-    // getRelatedProduct();
 
     if (!states.initialDataLoading) {
       fetchProductData();
@@ -77,18 +62,20 @@ const RelatedProductSection: React.FC<Props> = (props) => {
 
             <div className="section-style-one new-products md:mb-[60px] mb-[30px] bg-white">
               <div className="section-wrapper w-full ">
-                <div className="container-x mx-auto">
-                  <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5">
-                    {relatedProduct
-                      .slice(0, 4)
-                      .filter(
-                        (producto: IProduct) => producto.slug !== productSlug
-                      )
+                <div
+                  className={
+                    width && width > 640
+                      ? "grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5"
+                      : `flex flex-nowrap gap-3 overflow-scroll snap-x snap-mandatory ${styles["scrollbar"]}`
+                  }
+                >
+                  {relatedProduct
+                    .slice(0, 4)
+                    .filter((prd: IProduct) => prd.slug !== productSlug)
 
-                      .map((product: IProduct, slug: any) => (
-                        <ProductCard key={slug} product={product}></ProductCard>
-                      ))}
-                  </div>
+                    .map((product: IProduct, slug: any) => (
+                      <ProductCard key={slug} product={product}></ProductCard>
+                    ))}
                 </div>
               </div>
             </div>

@@ -16,9 +16,10 @@ import toast from "react-hot-toast";
 import SvgIconRenderer from "../../helpers/SvgIconRenderer";
 import useWindowDimensions from "../../shared/hooks/useWindowDimensions";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
+import { createPortal } from "react-dom";
 
 interface Props {
-  blogData: IBlog | any;
+  blogData: IBlog;
   blogComments: IBlogComment[] | [];
 }
 
@@ -55,6 +56,9 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
   };
 
   useEffect(() => {
+    //@ts-ignore
+    document.getElementById("blog-description").innerHTML =
+      blogData.long_description || "";
     FetchByCat();
     FetchBlogCat();
   }, [cat]);
@@ -81,12 +85,12 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
   //---------------------------------------------------
 
   const timeline = (createdAt: string): string => {
-    const xmas95 = new Date(createdAt);
+    const dateObj = new Date(createdAt);
     // const options = { month: "long" };
-    const year = xmas95.getFullYear();
-    const date = xmas95.getDate();
+    const year = dateObj.getFullYear();
+    const date = dateObj.getDate();
     const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
-      xmas95
+      dateObj
     );
     return `${date} ${month} ${year}`;
   };
@@ -97,17 +101,11 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
       if (err) {
         console.log(err);
       } else {
-        // setSlug(res[0]?.cat_slug);
         setLatestBlogsData(res.latestBlogs);
-        console.log(res.latestBlogs);
-
-        // console.log(res);
       }
     };
     fetchAllLatestBlogsData();
   }, []);
-
-  const { asPath } = useRouter();
 
   const [blogCommentsState, setBlogCommentsState] = useState(blogComments);
 
@@ -179,7 +177,11 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
           <div className="blog-article lg:flex lg:space-x-[30px] rtl:space-x-reverse mb-7">
             <div className="flex-1">
               <div className="img w-full  relative">
-                <img className="w-full max-h-[300px] object-cover" src={blogData.imageURL} alt="" />
+                <img
+                  className="w-full max-h-[300px] object-cover"
+                  src={blogData.imageURL}
+                  alt=""
+                />
               </div>
               <div className="blog pt-[24px]">
                 <div className="short-data flex space-x-9 rtl:space-x-reverse items-center mb-3">
@@ -221,12 +223,14 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                   <div className="mb-4 md:mb-8 text-sm md:text-base">
                     {blogData.description}
                   </div>
+                  {blogData.long_description &&
+                    createPortal(blogData.long_description, document.body)}
                   <div
                     id="blog-description"
                     className="mb-6 md:mb-10 prose prose-w-full max-w-full dark:prose-invert prose-strong:text-black prose-headings:text-qblack prose-headings:mb-3 prose-headings:mt-0 prose-blockquote:text-gray-500 prose-code:text-black prose-code:bg-slate-300 prose-code:px-1 prose-code:rounded-sm prose-base focus:outline-none leading-1 text-black text-sm md:text-base"
-                    dangerouslySetInnerHTML={{
-                      __html: blogData.long_description,
-                    }}
+                    // dangerouslySetInnerHTML={{
+                    //   __html: blogData.long_description,
+                    // }}
                   ></div>
                 </article>
               </div>
@@ -360,7 +364,10 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                           </h1>
                           {blogCommentsState?.length !== 0 ? (
                             blogCommentsState?.map((blogComment) => (
-                              <BlogCommentCard blogComment={blogComment} />
+                              <BlogCommentCard
+                                key={blogComment.slug}
+                                blogComment={blogComment}
+                              />
                             ))
                           ) : (
                             <div className="bg-gray-200 rounded-sm text-sm px-3 py-2 mb-4">
@@ -398,7 +405,10 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                 <ul className="flex flex-col gap-2 md:gap-5-5 mb-3">
                   {latestBlogsData
                     .map((latestData) => (
-                      <li className="flex space-x-5 rtl:space-x-reverse">
+                      <li
+                        key={latestData.slug}
+                        className="flex space-x-5 rtl:space-x-reverse"
+                      >
                         <div className="w-16 md:w-[85px] h-16 md:h-[92px] overflow-hidden rounded relative">
                           <img
                             className="h-full object-cover"
@@ -412,9 +422,9 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                               {latestData.title}
                             </p>
                           </Link>
-                            <span className="text-xs md:text-sm text-qgraytwo">
-                              {timeline(latestData?.createdAt)}
-                            </span>
+                          <span className="text-xs md:text-sm text-qgraytwo">
+                            {timeline(latestData?.createdAt)}
+                          </span>
                         </div>
                       </li>
                     ))
@@ -430,7 +440,10 @@ const SingleBlogPage: React.FC<Props> = ({ blogData, blogComments }) => {
                 <div className="w-full h-[1px] bg-[#DCDCDC] mb-2 md:mb-5"></div>
                 <ul className="flex flex-col gap-3 md:gap-5">
                   {categories.map((cat, i) => (
-                    <li className="flex justify-between items-center group">
+                    <li
+                      key={cat.slug}
+                      className="flex justify-between items-center group"
+                    >
                       <Link href={``}>
                         <span
                           onClick={() => setCat(cat?.name)}

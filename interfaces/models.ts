@@ -250,6 +250,7 @@ export interface IBlog {
   title: string;
   category?: string;
   description?: string;
+  long_description?: string;
 
   isShowHomepage?: string;
   status?: string;

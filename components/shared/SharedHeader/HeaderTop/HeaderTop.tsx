@@ -618,6 +618,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                               {states.categories.map(
                                 (items: ICategories, index) => (
                                   <li
+                                    key={items.cat_slug}
                                     onClick={() => {
                                       topAllCategoriesDropdown();
                                       setSearchCategory(items);
@@ -682,7 +683,10 @@ const HeaderTop: React.FC<Props> = (props) => {
                           )}
                           <ul>
                             {states.cartlistData.map((item, idx) => (
-                              <li className="w-full h-full flex justify-between">
+                              <li
+                                key={item.cart_slug}
+                                className="w-full h-full flex justify-between"
+                              >
                                 <div className="flex space-x-[6px] justify-center items-center px-4 my-[20px]">
                                   <div className="w-[65px] h-full relative">
                                     <span>
