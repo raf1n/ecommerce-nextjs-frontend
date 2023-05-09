@@ -37,22 +37,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const [discount, setDiscount] = useState<any>(0);
   const [shippingCost, setShippingCost] = useState<number>(50);
 
-  console.log(values.coupon);
-
-  let total;
-  const applyCoupon = async () => {
-    console.log("coupon", values.coupon);
-    const { res, err } = await EcommerceApi.applyCoupon(values.coupon);
-    if (res) {
-      setDiscount(300);
-      // set("");
-      toast.success("Successfully applied coupon !");
-    } else {
-      toast.error("Invalid coupon code ");
-      // console.log("err", err);
-    }
-  };
-
   const handleSelect = (addressData: IAddress) => {
     setSelectedAddress(addressData);
   };
@@ -76,7 +60,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(res);
+        // console.log(res);
         setAddressData(res);
       }
     };
@@ -86,11 +70,56 @@ const CheckoutPage: React.FC<Props> = (props) => {
     }
   }, [refresh, states.user?.email]);
 
-  // ---------------- ------------------- //
+  // ----------------------------------- //
   const router = useRouter();
   const cartListProduct = states.cartlistData;
   const user_slug = CookiesHandler.getSlug();
+  // -----------------------------------//
+  // var today = new Date();
+  // var todayInSeconds = today.getTime();
+  // console.log("td", todayInSeconds);
 
+  const applyCoupon = async () => {
+    setDiscount(0);
+    const { res, err } = await EcommerceApi.applyCoupon(values.coupon);
+
+    if (res) {
+      const dateString = res.expired_date;
+      const expDate = new Date(dateString);
+      const expTimeInSeconds = expDate.getTime();
+      // console.log("ed", expTimeInSeconds);
+      var today = new Date();
+      // console.log("td", today.getTime());
+
+      if (
+        res.status === "active" &&
+        res.items_number > 0 &&
+        expTimeInSeconds > today.getTime() &&
+        res.minimum_purchase <= CartHandler.cartSubTotal(cartListProduct)
+      ) {
+        if (res.discount.role === "amount") {
+          setDiscount(res.discount.value);
+          toast.success("Successfully applied coupon in taka !");
+        }
+
+        if (res.discount.role === "percent") {
+          setDiscount(
+            (CartHandler.cartSubTotal(cartListProduct) * res.discount.value) /
+              100
+          );
+          toast.success("Successfully applied coupon in percent!");
+        }
+      } else {
+        toast.error(
+          `Expired / coupon date over  or minimum purchase should be ${res.minimum_purchase} !`
+        );
+      }
+    } else {
+      toast.error("Invalid coupon");
+    }
+  };
+
+  // ------------------------------------- //
   const order = {
     product_list: cartListProduct,
     user_name: states.user?.fullName,
@@ -106,13 +135,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
       address: selectedAddress?.address,
     },
     subTotal: CartHandler.cartSubTotal(cartListProduct),
-    // discount: 100,
-    // shippingCost: 50,
 
     total: CartHandler.cartSubTotal(cartListProduct) - discount + shippingCost,
   };
-
-  // console.log("hi-", order);
 
   const handleCheckout = async () => {
     if (selectedMethod === "") {
@@ -352,7 +377,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
                       <button
                         onClick={applyCoupon}
                         type="submit"
-                        className="w-[90px] h-[50px] black-btn">
+                        disabled={!values.coupon}
+                        className="w-[90px] h-[50px] black-btn disabled:bg-opacity-50 disabled:cursor-not-allowed">
                         <span className="text-sm font-semibold">Apply</span>
                       </button>
                     </div>
@@ -447,7 +473,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
                         <p className="text-2xl font-medium text-qred">
                           $
                           {CartHandler.cartSubTotal(states.cartlistData) -
-                            discount}
+                            discount +
+                            shippingCost}
                         </p>
                       </div>
                     </div>

@@ -935,7 +935,7 @@ export class EcommerceApi {
 
   // coupon apply
   static async applyCoupon(coupon: string): Promise<any> {
-    console.log(coupon, "in ecom api");
+    // console.log(coupon, "in ecom api");
     const myHeaders = new Headers();
     const requestOptions = {
       method: "GET",
