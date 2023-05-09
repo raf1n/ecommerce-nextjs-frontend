@@ -35,33 +35,29 @@ const BlogCard: React.FC<Props> = ({ data }) => {
         <div className="py-2 px-3 md:p-[24px]">
           <div className="short-data flex space-x-9 items-center mb-2 md:mb-3">
             <div className="flex space-x-1.5 items-center">
-              <span>
-                <SvgIconRenderer
-                  width={width && width > 640 ? "12" : "10"}
-                  height={width && width > 640 ? "15" : "12"}
-                  viewBox="0 0 12 15"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  path={SvgPaths.adminIcon}
-                  pathFill="#FFBB38"
-                />
-              </span>
+              <SvgIconRenderer
+                width={width && width > 640 ? "12" : "10"}
+                height={width && width > 640 ? "15" : "12"}
+                viewBox="0 0 12 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                path={SvgPaths.adminIcon}
+                pathFill="#FFBB38"
+              />
               <span className="text-xs md:text-base text-qgraytwo capitalize">
                 By Admin
               </span>
             </div>
             <div className="flex space-x-1.5 items-center">
-              <span>
-                <SvgIconRenderer
-                  width={width && width > 640 ? "16" : "13"}
-                  height={width && width > 640 ? "15" : "12"}
-                  viewBox="0 0 16 15"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  path={SvgPaths.commentIcon}
-                  pathFill="#FFBB38"
-                />
-              </span>
+              <SvgIconRenderer
+                width={width && width > 640 ? "16" : "13"}
+                height={width && width > 640 ? "15" : "12"}
+                viewBox="0 0 16 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                path={SvgPaths.commentIcon}
+                pathFill="#FFBB38"
+              />
               <span className="text-xs md:text-base text-qgraytwo">
                 0 Comments
               </span>

@@ -22,7 +22,7 @@ const blog: React.FC<Props> = ({ blogData, blogComments }) => {
         keyword={blogData.seo_title}
         desc={blogData.seo_description}
       />
-      <SingleBlogPage blogData={blogData} blogComments={blogComments} />;
+      <SingleBlogPage blogData={blogData} blogComments={blogComments} />
     </>
   );
 };
