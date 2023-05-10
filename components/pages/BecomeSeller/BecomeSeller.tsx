@@ -13,21 +13,25 @@ const BecomeSeller: React.FC<Props> = (props) => {
 
   const [selectedLogo, setSelectedLogo] = useState(null);
   const [selectedCover, setSelectedCover] = useState(null);
+  const [applyButton, setApplyButton] = useState(false);
 
   const logoChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedLogo(e.target.files[0]);
     }
+    setApplyButton(true);
   };
   const coverChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedCover(e.target.files[0]);
     }
+    setApplyButton(true);
   };
 
   const handleSellerAdd = async (e: any) => {
     e.preventDefault();
     controller.setApiLoading(true);
+
     const logo = e.target.logoUrl.files[0];
     const cover = e.target.coverUrl.files[0];
     const formData1 = new FormData();
@@ -107,8 +111,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="email"
-                        >
+                          htmlFor="email">
                           Email Address*
                         </label>
                         <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -128,8 +131,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="phone"
-                        >
+                          htmlFor="phone">
                           phone no
                         </label>
                         <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -159,8 +161,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="shopname"
-                        >
+                          htmlFor="shopname">
                           Shop Name*
                         </label>
                         <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -179,8 +180,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
                       <div className="input-com w-full h-full">
                         <label
                           className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal"
-                          htmlFor="shopaddress"
-                        >
+                          htmlFor="shopaddress">
                           Address
                         </label>
                         <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
@@ -218,10 +218,9 @@ const BecomeSeller: React.FC<Props> = (props) => {
                     <div className="signin-area mb-3">
                       <div className="flex justify-center">
                         <button
-                          // disabled={}
+                          disabled={applyButton === false}
                           type="submit"
-                          className="black-btn disabled:bg-opacity-50 disabled:cursor-not-allowed text-sm text-white w-[490px] h-[50px] font-semibold flex justify-center bg-purple items-center"
-                        >
+                          className="black-btn disabled:bg-opacity-50 disabled:cursor-not-allowed text-sm text-white w-[490px] h-[50px] font-semibold flex justify-center bg-purple items-center">
                           <span>Create Seller Account</span>
                         </button>
                       </div>
@@ -261,8 +260,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
                               padding: "0",
                               position: "absolute",
                               inset: "0",
-                            }}
-                          >
+                            }}>
                             {selectedLogo ? (
                               <img
                                 alt=""
@@ -355,8 +353,7 @@ const BecomeSeller: React.FC<Props> = (props) => {
                               padding: "0px",
                               position: "absolute",
                               inset: "0px",
-                            }}
-                          >
+                            }}>
                             {selectedCover ? (
                               <img
                                 alt=""
