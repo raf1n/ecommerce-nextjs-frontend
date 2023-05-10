@@ -691,7 +691,6 @@ export class EcommerceApi {
   // get all featured
 
   static async allFeaturedCategories(): Promise<IFeaturedCategoriesResponse> {
-    // console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     const requestOptions = {
       headers: myHeaders,
@@ -705,7 +704,6 @@ export class EcommerceApi {
   }
 
   static async allPopularCategories(): Promise<IPopularCategoriesResponse> {
-    // console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     const requestOptions = {
       headers: myHeaders,
@@ -919,19 +917,34 @@ export class EcommerceApi {
     );
   }
 
-    //get user data for private route
-    static async getUserAuth(slug: string): Promise<IGetSingleUserResponse> {
-      const myHeaders = new Headers();
-      const requestOptions = {
-        headers: myHeaders,
-        // credentials: 'include',
-        credentials: "same-origin",
-        redirect: "follow",
-      };
-  
-      return await callFetch(
-        `${API_ENDPOINT}/users/private/${slug}`,
-        requestOptions
-      );
-    }
+  //get user data for private route
+  static async getUserAuth(slug: string): Promise<IGetSingleUserResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      headers: myHeaders,
+      // credentials: 'include',
+      credentials: "same-origin",
+      redirect: "follow",
+    };
+
+    return await callFetch(
+      `${API_ENDPOINT}/users/private/${slug}`,
+      requestOptions
+    );
+  }
+
+  // coupon apply
+  static async applyCoupon(coupon: string): Promise<any> {
+    // console.log(coupon, "in ecom api");
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    return await callFetch(
+      `${API_ENDPOINT}/coupon/apply/couponCode?code=${coupon}`,
+      requestOptions
+    );
+  }
 }

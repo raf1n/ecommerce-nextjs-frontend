@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import { SvgPaths } from "../../../src/utils/SvgPaths";
@@ -20,7 +20,7 @@ interface Props {}
 
 const CheckoutPage: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
-  // -------- mike ---------- //
+
   const [form, setForm] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [addressData, setAddressData] = useState<IAddress[]>([]);
@@ -29,6 +29,13 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const [selectedAddress, setSelectedAddress] = useState<IAddress | null>(null);
   const [selectedMethod, setSelectedMethod] = useState<string>("");
   const [transactionId, setTransactionId] = useState("");
+  // const [coupon, setCoupon] = useState<string>("");
+  const [values, setValues] = useState({
+    coupon: "",
+  });
+
+  const [discount, setDiscount] = useState<any>(0);
+  const [shippingCost, setShippingCost] = useState<number>(50);
 
   const handleSelect = (addressData: IAddress) => {
     setSelectedAddress(addressData);
@@ -53,7 +60,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(res);
+        // console.log(res);
         setAddressData(res);
       }
     };
@@ -63,11 +70,56 @@ const CheckoutPage: React.FC<Props> = (props) => {
     }
   }, [refresh, states.user?.email]);
 
-  // ---------------- ------------------- //
+  // ----------------------------------- //
   const router = useRouter();
   const cartListProduct = states.cartlistData;
   const user_slug = CookiesHandler.getSlug();
+  // -----------------------------------//
+  // var today = new Date();
+  // var todayInSeconds = today.getTime();
+  // console.log("td", todayInSeconds);
 
+  const applyCoupon = async () => {
+    setDiscount(0);
+    const { res, err } = await EcommerceApi.applyCoupon(values.coupon);
+
+    if (res) {
+      const dateString = res.expired_date;
+      const expDate = new Date(dateString);
+      const expTimeInSeconds = expDate.getTime();
+      // console.log("ed", expTimeInSeconds);
+      var today = new Date();
+      // console.log("td", today.getTime());
+
+      if (
+        res.status === "active" &&
+        res.items_number > 0 &&
+        expTimeInSeconds > today.getTime() &&
+        res.minimum_purchase <= CartHandler.cartSubTotal(cartListProduct)
+      ) {
+        if (res.discount.role === "amount") {
+          setDiscount(res.discount.value);
+          toast.success("Successfully applied coupon in taka !");
+        }
+
+        if (res.discount.role === "percent") {
+          setDiscount(
+            (CartHandler.cartSubTotal(cartListProduct) * res.discount.value) /
+              100
+          );
+          toast.success("Successfully applied coupon in percent!");
+        }
+      } else {
+        toast.error(
+          `Expired / coupon date over  or minimum purchase should be ${res.minimum_purchase} !`
+        );
+      }
+    } else {
+      toast.error("Invalid coupon");
+    }
+  };
+
+  // ------------------------------------- //
   const order = {
     product_list: cartListProduct,
     user_name: states.user?.fullName,
@@ -83,9 +135,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
       address: selectedAddress?.address,
     },
     subTotal: CartHandler.cartSubTotal(cartListProduct),
-    discount: 100,
-    shippingCost: 50,
-    total: CartHandler.cartSubTotal(cartListProduct) - 100 + 50,
+
+    total: CartHandler.cartSubTotal(cartListProduct) - discount + shippingCost,
   };
 
   const handleCheckout = async () => {
@@ -113,12 +164,19 @@ const CheckoutPage: React.FC<Props> = (props) => {
     controller.setApiLoading(true);
 
     const { res, err } = await EcommerceApi.postOrder(order);
-    if (res.message === "COD Order successful" || res.message === "BKash Order successful") {
+    if (
+      res.message === "COD Order successful" ||
+      res.message === "BKash Order successful"
+    ) {
       controller.setClearCartlist();
       const { res: cartdelRes, err } =
         await EcommerceApi.deleteAllCartlistProduct(user_slug);
       if (cartdelRes) {
         toast.success("Your Order is Placed");
+        setDiscount(0);
+        console.log(values.coupon);
+        // setCoupon("");
+        setValues({ coupon: "" });
       }
     }
     if (err) {
@@ -156,24 +214,21 @@ const CheckoutPage: React.FC<Props> = (props) => {
                       <div className="bg-[#FFFAEF] border border-qyellow rounded ">
                         <span
                           // type="button"
-                          className="px-4 py-3 text-md font-medium rounded-md  text-qblack bg-qyellow "
-                        >
+                          className="px-4 py-3 text-md font-medium rounded-md  text-qblack bg-qyellow ">
                           Shipping Address
                         </span>
                       </div>
                       <button
                         onClick={() => setForm(true)}
                         type="button"
-                        className="w-[100px] h-[40px] mt-2 sm:mt-0 border border-qblack hover:bg-qblack hover:text-white transition-all duration-300 ease-in-out"
-                      >
+                        className="w-[100px] h-[40px] mt-2 sm:mt-0 border border-qblack hover:bg-qblack hover:text-white transition-all duration-300 ease-in-out">
                         <span className="text-sm font-semibold">Add New</span>
                       </button>
                     </div>
                     {!form ? (
                       <div
                         data-aos="zoom-in"
-                        className="grid sm:grid-cols-2 grid-cols-1 gap-3 aos-init aos-animate"
-                      >
+                        className="grid sm:grid-cols-2 grid-cols-1 gap-3 aos-init aos-animate">
                         {addressData.map((singleAddress: IAddress, index) => (
                           <div
                             onClick={() => handleSelect(singleAddress)}
@@ -184,8 +239,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 : `w-full p-5 border cursor-pointer relative   bg-primarygray
                                 border-transparent
                                 `
-                            }
-                          >
+                            }>
                             <div className="flex justify-between items-center">
                               <p className="title text-[22px] font-semibold">
                                 {`Address ${index + 1}`}
@@ -195,8 +249,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                   setDeleteModalSlug(singleAddress.slug)
                                 }
                                 type="button"
-                                className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center"
-                              >
+                                className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center">
                                 <SvgIconRenderer
                                   width="17"
                                   height="19"
@@ -243,7 +296,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                   </tr>
                                   <tr className="flex mb-3">
                                     <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                      Country:
+                                      Division:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
                                       {singleAddress.division}
@@ -251,7 +304,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                   </tr>
                                   <tr className="flex mb-3">
                                     <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                      State:
+                                      District:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
                                       {singleAddress?.district}
@@ -259,7 +312,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                   </tr>
                                   <tr className="flex mb-3">
                                     <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                      City:
+                                      Thana:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-1 font-medium">
                                       {singleAddress?.thana}
@@ -267,7 +320,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                   </tr>
                                   <tr className="flex mb-3">
                                     <td className="text-base text-qgraytwo w-[70px] block  capitalize">
-                                      Address:
+                                      Area:
                                     </td>
                                     <td className="text-base text-qblack line-clamp-2 font-medium">
                                       {singleAddress.address}
@@ -297,6 +350,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                     )}
                   </div>
                 </div>
+
                 <div className="flex-1">
                   <div className="mb-10">
                     <h1 className="sm:text-2xl text-xl text-qblack font-medium mt-5 mb-5">
@@ -307,18 +361,24 @@ const CheckoutPage: React.FC<Props> = (props) => {
                         <div className="input-com w-full h-full">
                           <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                             <input
+                              value={values.coupon}
+                              onChange={(e) =>
+                                setValues({ ...values, coupon: e.target.value })
+                              }
                               placeholder="Discount Code"
                               className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none "
                               type="text"
-                              value=""
+                              name="coupon"
+                              id="coupon"
                             />
                           </div>
                         </div>
                       </div>
                       <button
-                        type="button"
-                        className="w-[90px] h-[50px] black-btn"
-                      >
+                        onClick={applyCoupon}
+                        type="submit"
+                        disabled={!values.coupon}
+                        className="w-[90px] h-[50px] black-btn disabled:bg-opacity-50 disabled:cursor-not-allowed">
                         <span className="text-sm font-semibold">Apply</span>
                       </button>
                     </div>
@@ -347,8 +407,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 <div>
                                   <h4
                                     title="Apple watch pro"
-                                    className="text-[15px] text-qblack line-clamp-1 mb-2.5"
-                                  >
+                                    className="text-[15px] text-qblack line-clamp-1 mb-2.5">
                                     {pro.productName}
                                     <sup className="text-[13px] text-qgray ml-2 mt-2">
                                       x{pro.quantity}
@@ -377,31 +436,45 @@ const CheckoutPage: React.FC<Props> = (props) => {
                           ${CartHandler.cartSubTotal(states.cartlistData)}
                         </p>
                       </div>
+
                       <div className=" flex justify-between mb-5">
                         <p className="text-[13px] text-qblack uppercase font-bold">
                           Discount coupon (-)
                         </p>
                         <p className="text-[15px] font-bold text-qblack uppercase">
-                          $0.00
+                          {discount}
+                        </p>
+                      </div>
+
+                      <div className=" flex justify-between mb-5">
+                        <p className="text-[13px] text-qblack uppercase font-bold">
+                          Shipping (+)
+                        </p>
+                        <p className="text-[15px] font-bold text-qblack uppercase">
+                          {shippingCost}
                         </p>
                       </div>
                     </div>
-                    <div className="shipping mb-6 mt-6">
+
+                    {/* <div className="shipping mb-6 mt-6">
                       <span className="text-[15px] font-medium text-qblack mb-[18px] block">
-                        Shipping (+)
+                        Shipping (+) {shippingCost}
                       </span>
                       <div className="flex flex-col space-y-2.5">
                         <div></div>
                         <div></div>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="mt-[30px]">
                       <div className=" flex justify-between mb-5">
                         <p className="text-2xl font-medium text-qblack capitalize">
                           Total
                         </p>
                         <p className="text-2xl font-medium text-qred">
-                          ${CartHandler.cartSubTotal(states.cartlistData)}
+                          $
+                          {CartHandler.cartSubTotal(states.cartlistData) -
+                            discount +
+                            shippingCost}
                         </p>
                       </div>
                     </div>
@@ -416,8 +489,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                               selectedMethod === "cod"
                                 ? "border-2 border-qyellow"
                                 : "border border-gray-200"
-                            }`}
-                          >
+                            }`}>
                             <div className="w-full">
                               <span className="text-qblack font-bold text-base">
                                 Cash On Delivery
@@ -428,19 +500,16 @@ const CheckoutPage: React.FC<Props> = (props) => {
                             {selectedMethod === "cod" && (
                               <span
                                 data-aos="zoom-in"
-                                className="absolute text-white z-10 w-6 h-6 rounded-full bg-qyellow -right-2.5 -top-2.5 aos-init aos-animate"
-                              >
+                                className="absolute text-white z-10 w-6 h-6 rounded-full bg-qyellow -right-2.5 -top-2.5 aos-init aos-animate">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-6 w-6"
                                   viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
+                                  fill="currentColor">
                                   <path
                                     fillRule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clipRule="evenodd"
-                                  ></path>
+                                    clipRule="evenodd"></path>
                                 </svg>
                               </span>
                             )}
@@ -453,8 +522,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                               selectedMethod === "ssl"
                                 ? "border-2 border-qyellow"
                                 : "border border-gray-200"
-                            }`}
-                          >
+                            }`}>
                             <div className="w-full flex justify-center ">
                               <span className=" w-[120px] ">
                                 <img src={sslcommerze.src} alt="sslcommerze" />
@@ -465,19 +533,16 @@ const CheckoutPage: React.FC<Props> = (props) => {
                             {selectedMethod === "ssl" && (
                               <span
                                 data-aos="zoom-in"
-                                className="absolute text-white z-10 w-6 h-6 rounded-full bg-qyellow -right-2.5 -top-2.5 aos-init aos-animate"
-                              >
+                                className="absolute text-white z-10 w-6 h-6 rounded-full bg-qyellow -right-2.5 -top-2.5 aos-init aos-animate">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-6 w-6"
                                   viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
+                                  fill="currentColor">
                                   <path
                                     fillRule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clipRule="evenodd"
-                                  ></path>
+                                    clipRule="evenodd"></path>
                                 </svg>
                               </span>
                             )}
@@ -490,8 +555,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                               selectedMethod === "bKash"
                                 ? "border-2 border-qyellow"
                                 : "border border-gray-200"
-                            }`}
-                          >
+                            }`}>
                             <div className="w-full flex justify-center ">
                               <img
                                 src={bkashLogo.src}
@@ -504,19 +568,16 @@ const CheckoutPage: React.FC<Props> = (props) => {
                             {selectedMethod === "bKash" && (
                               <span
                                 data-aos="zoom-in"
-                                className="absolute text-white z-10 w-6 h-6 rounded-full bg-qyellow -right-2.5 -top-2.5 aos-init aos-animate"
-                              >
+                                className="absolute text-white z-10 w-6 h-6 rounded-full bg-qyellow -right-2.5 -top-2.5 aos-init aos-animate">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-6 w-6"
                                   viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
+                                  fill="currentColor">
                                   <path
                                     fillRule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clipRule="evenodd"
-                                  ></path>
+                                    clipRule="evenodd"></path>
                                 </svg>
                               </span>
                             )}
@@ -611,8 +672,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                     <button
                       onClick={handleCheckout}
                       type="button"
-                      className="w-full"
-                    >
+                      className="w-full">
                       <div className="w-full h-[50px] bg-black text-white  flex justify-center items-center">
                         <span className="text-sm font-semibold">
                           Place Order Now

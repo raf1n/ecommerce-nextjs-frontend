@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/globals.css";
 import { AppProps } from "next/app";
 import { Provider } from "react-redux";
@@ -9,6 +9,7 @@ import Footer from "../components/shared/SharedFooter/Footer";
 import { SocialLogin } from "../components/helpers/SocialLogin";
 import { Toaster } from "react-hot-toast";
 import SharedLoadingModal from "../components/shared/SharedLoadingModal/SharedLoadingModal";
+import SharedHead from "../components/shared/SharedHead/SharedHead";
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -22,25 +23,45 @@ export default function MyApp(props: AppProps) {
     SocialLogin.initFirebase();
   }, []);
 
+  const [isMounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    if (isMounted) {
+      // console.log("hash", window.location.hash);
+    } else {
+      setMounted(true);
+    }
+  }, [isMounted]);
+
+  if (!isMounted)
+    return (
+      <Provider store={store}>
+        <SharedLoadingModal />{" "}
+      </Provider>
+    );
+
   return (
-    <Provider store={store}>
-      <React.Fragment>
-        <NextNProgress
-          color="#ffbb38"
-          startPosition={0.3}
-          stopDelayMs={200}
-          height={3}
-          showOnShallow={true}
-          options={{ showSpinner: false }}
-        />
-        <Toaster />
-        <Header />
-        <div className="p-2">
-          <Component {...pageProps} />
-        </div>
-        <Footer />
-        <SharedLoadingModal />
-      </React.Fragment>
-    </Provider>
+    <>
+      <SharedHead />
+      <Provider store={store}>
+        <React.Fragment>
+          <NextNProgress
+            color="#ffbb38"
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={3}
+            showOnShallow={true}
+            options={{ showSpinner: false }}
+          />
+          <Toaster />
+          <Header />
+          <div className="p-2">
+            <Component {...pageProps} />
+          </div>
+          <Footer />
+          <SharedLoadingModal />
+        </React.Fragment>
+      </Provider>
+    </>
   );
 }

@@ -89,7 +89,7 @@ const ProfileAddress: React.FC<Props> = (props) => {
   };
   return (
     <div className="item-body dashboard-wrapper w-full">
-      <div className="w-[180px] h-[50px] mt-4 mb-5">
+      <div className="w-[150px] md:w-[180px] h-[32px] md:h-[50px] md:mt-4 mb-3 md:mb-5">
         <button
           onClick={() => {
             setForm(true);
@@ -103,9 +103,9 @@ const ProfileAddress: React.FC<Props> = (props) => {
       {!form ? (
         <div className="grid sm:grid-cols-2 grid-cols-1 gap-[30px]">
           {addressData.map((singleAddress: IAddress, index) => (
-            <div className="w-full bg-primarygray rounded p-5 border">
+            <div className="w-full bg-primarygray rounded p-3 md:p-5 border">
               <div className="flex justify-between items-center">
-                <p className="title text-[22px] font-semibold">{`Address ${
+                <p className="title text-lg md:text-[22px] font-semibold">{`Address ${
                   index + 1
                 }`}</p>
                 <div className="flex space-x-2.5 items-center">
@@ -157,66 +157,66 @@ const ProfileAddress: React.FC<Props> = (props) => {
                 <table>
                   <tbody>
                     <tr className="flex mb-3">
-                      <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>Name:</span>
                       </td>
-                      <td className="text-base text-qblack line-clamp-1 font-medium">
+                      <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium">
                         {singleAddress.name}
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>Email:</span>
                       </td>
-                      <td className="text-base text-qblack line-clamp-1 font-medium">
+                      <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium">
                         {singleAddress.email}
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>phone:</span>
                       </td>
-                      <td className="text-base text-qblack line-clamp-1 font-medium">
+                      <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium">
                         {singleAddress.phone}
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>Country:</span>
                       </td>
-                      <td className="text-base text-qblack line-clamp-1 font-medium capitalize">
+                      <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium capitalize">
                         {singleAddress.country}
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>Division:</span>
                       </td>
-                      <td className="text-base text-qblack line-clamp-1 font-medium capitalize">
+                      <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium capitalize">
                         {singleAddress.division}
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>District:</span>
                       </td>
-                      <td className="text-base text-qblack line-clamp-1 font-medium capitalize">
+                      <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium capitalize">
                         {singleAddress.district}
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
                         <span>Thana:</span>
                       </td>
-                      <td className="text-base text-qblack line-clamp-1 font-medium capitalize">
+                      <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium capitalize">
                         {singleAddress.thana}
                       </td>
                     </tr>
                     <tr className="flex mb-3">
-                      <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                        <span>Address:</span>
+                      <td className="text-sm md:text-base text-qgraytwo w-[75px] block line-clamp-1 capitalize">
+                        <span>Area:</span>
                       </td>
-                      <td className="text-base text-qblack line-clamp-1 font-medium capitalize">
+                      <td className="text-sm md:text-base text-qblack line-clamp-1 font-medium capitalize">
                         {singleAddress.address}
                       </td>
                     </tr>

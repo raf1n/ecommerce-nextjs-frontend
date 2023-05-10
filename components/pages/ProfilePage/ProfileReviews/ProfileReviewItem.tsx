@@ -5,6 +5,7 @@ import { controller } from "./../../../../src/state/StateController";
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import useWindowDimensions from "../../../shared/hooks/useWindowDimensions";
 
 interface Props {
   review: {
@@ -15,22 +16,20 @@ interface Props {
     reviewProducts: any;
   };
 }
-// console.log(props.review);
 
 const ProfileReviewItem: React.FC<Props> = ({
   review: { createdAt, reviewProducts, status, rating, message },
 }) => {
   const states = useSelector(() => controller.states);
-  console.log({
-    review: { createdAt, reviewProducts, status, rating, message },
-  });
+
+  const { height, width } = useWindowDimensions();
 
   return (
     <div
-      className="min-h-[170px] bg-white group"
+      className="min-h-[120px] md:min-h-[170px] bg-white group"
       style={{ boxShadow: "rgba(0, 0, 0, 0.05) 0px 15px 64px" }}
     >
-      <div className="flex gap-x-2 items-center w-full h-full p-2 relative">
+      <div className="flex gap-x-2 items-center w-full h-full md:p-2 relative">
         <div className="w-1/3 h-full flex justify-center">
           <img
             className="max-h-[152px] object-contain"
@@ -51,7 +50,7 @@ const ProfileReviewItem: React.FC<Props> = ({
                   count={5}
                   value={rating}
                   edit={false}
-                  size={24}
+                  size={width && width > 640 ? 24 : 16}
                   isHalf={true}
                   emptyIcon={<FaRegStar />}
                   halfIcon={<FaStarHalfAlt />}
@@ -59,9 +58,6 @@ const ProfileReviewItem: React.FC<Props> = ({
                   activeColor="rgb(255, 168, 0)"
                   color="#d3d3d3"
                 />
-                {/* <span className="text-[13px] font-normal text-qblack mt-1 inline-block">
-                  ({rating})
-                </span> */}
               </div>
             ) : (
               ""
@@ -71,7 +67,7 @@ const ProfileReviewItem: React.FC<Props> = ({
             <Link
               href={`http://localhost:3000/single_product?slug=${reviewProducts.slug}`}
             >
-              <span className=" mb-2 sm:text-[15px] text-[13px] font-bold leading-[24px] line-clamp-1 hover:text-blue-600 cursor-pointer">
+              <span className=" mb-2 sm:text-[15px] text-[13px] font-bold md:leading-[24px] line-clamp-1 hover:text-blue-600 cursor-pointer">
                 {reviewProducts.productName}
               </span>
             </Link>

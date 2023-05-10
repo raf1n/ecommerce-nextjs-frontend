@@ -72,7 +72,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
 
   return (
     <form onSubmit={handleUpdateProfile}>
-      <div className="flex flex-col-reverse lg:flex-row space-x-8">
+      <div className="flex flex-col-reverse lg:flex-row space-x-8 px-1 md:px-0">
         <div>
           <div className="mb-8">
             <div className="w-full mb-5 sm:mb-0">
@@ -93,8 +93,9 @@ const PersonalInfo: React.FC<Props> = (props) => {
               </div>
             </div>
           </div>
-          <div className="flex gap-x-2.5 items-center mb-8">
-            <div className="sm:w-1/2 w-full">
+
+          <div className="md:flex gap-x-2.5 items-center mb-8">
+            <div className="md:w-1/2 w-full mb-8 md:mb-0">
               <div className="w-full h-full">
                 <label className="capitalize block  mb-2 text-qgray text-[13px] font-normal">
                   Email
@@ -110,7 +111,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 />
               </div>
             </div>
-            <div className="sm:w-1/2 w-full">
+
+            <div className="md:w-1/2 w-full">
               <div className="w-full h-full">
                 <label className="capitalize block  mb-2 text-qgray text-[13px] font-normal">
                   Phone Number
@@ -128,6 +130,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
               </div>
             </div>
           </div>
+
           <div className="mb-6">
             <h1 className="capitalize block mb-2 text-qgray text-[13px] font-normal">
               Country*
@@ -144,8 +147,9 @@ const PersonalInfo: React.FC<Props> = (props) => {
               />
             </div>
           </div>
-          <div className="flex space-x-5 items-center mb-6">
-            <div className="w-1/2">
+
+          <div className="md:flex gap-x-2.5 items-center mb-6">
+            <div className="md:w-1/2 w-full mb-8 md:mb-0">
               <h1 className="capitalize block mb-2 text-qgray text-[13px] font-normal">
                 State*
               </h1>
@@ -161,7 +165,8 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 />
               </div>
             </div>
-            <div className="w-1/2">
+
+            <div className="w-full md:w-1/2">
               <h1 className="capitalize block mb-2 text-qgray text-[13px] font-normal">
                 City*
               </h1>
@@ -178,6 +183,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
               </div>
             </div>
           </div>
+
           <div className="mb-8">
             <div className="w-full">
               <div className="w-full h-full">
@@ -204,7 +210,7 @@ const PersonalInfo: React.FC<Props> = (props) => {
             </button>
             <button
               type="submit"
-              className="w-[164px] h-[50px] bg-qyellow rounded text-qblack text-sm"
+              className="w-[164px] h-[50px] bg-qyellow rounded text-qblack text-sm font-semibold"
             >
               Update Profile
             </button>

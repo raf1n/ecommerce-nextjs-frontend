@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { controller } from "../../../src/state/StateController";
 
 interface Props {}
 
 const useCountDown = (date: any) => {
-  console.log(date);
-  // const states = useSelector(() => controller.states);
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -49,5 +45,3 @@ const useCountDown = (date: any) => {
 };
 
 export default useCountDown;
-
-// @ts-ignore

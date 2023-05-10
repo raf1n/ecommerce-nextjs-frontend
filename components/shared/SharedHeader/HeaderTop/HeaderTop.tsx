@@ -8,7 +8,6 @@ import styles from "./styles.module.css";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { ICartProduct, ICategories } from "../../../../interfaces/models";
 import { useRouter } from "next/router";
-import { CookiesHandler } from "../../../../src/utils/CookiesHandler";
 import { SocialLogin } from "../../../helpers/SocialLogin";
 import { toast } from "react-hot-toast";
 import {
@@ -24,18 +23,25 @@ import {
   RedCrossIcon,
   SearchIcon,
 } from "../../../../src/utils/SvgReturn";
+import { BiArrowBack } from "react-icons/bi";
+import { CookiesHandler } from "../../../../src/utils/CookiesHandler";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { FaUser } from "react-icons/fa";
+import { LogOutIcon } from "../../../../src/utils/SvgReturn";
 
 interface Props {}
 
 const user_slug = CookiesHandler.getSlug();
-console.log(user_slug);
 
 const HeaderTop: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+  const user = useSelector(() => controller.states.user);
+
   const [sideDropdownOpen, setSideDropdownOpen] = useState(false);
   const [showCategory, setShowCategory] = useState(true);
   const [showTopAllCatgory, setShowTopAllCatgory] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState("");
 
   const [searchCategory, setSearchCategory] = useState<ICategories | undefined>(
     undefined
@@ -47,6 +53,8 @@ const HeaderTop: React.FC<Props> = (props) => {
 
   const router = useRouter();
   const { asPath, route } = router;
+
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
     if (route !== "/products" && searchRef.current && mobSearchRef.current) {
@@ -60,9 +68,9 @@ const HeaderTop: React.FC<Props> = (props) => {
     setSideDropdownOpen(!sideDropdownOpen);
   };
 
-  const routeSideDropdown = () => {
-    setShowCategory(!showCategory);
-  };
+  // const routeSideDropdown = () => {
+  //   setShowCategory(!showCategory);
+  // };
 
   const topAllCategoriesDropdown = () => {
     setShowTopAllCatgory(!showTopAllCatgory);
@@ -210,6 +218,17 @@ const HeaderTop: React.FC<Props> = (props) => {
     controller.setApiLoading(false);
   };
 
+  if (asPath !== "/" && width && width <= 640) {
+    return (
+      <header className="print:hidden w-full bg-white h-12 px-4 py-1 flex justify-start items-center">
+        <BiArrowBack
+          className="w-7 h-7 p-1 bg-qyellow rounded-full"
+          onClick={() => router.back()}
+        />
+      </header>
+    );
+  }
+
   return (
     <div className="print:hidden">
       {sideDropdownOpen && (
@@ -226,7 +245,36 @@ const HeaderTop: React.FC<Props> = (props) => {
         } ${styles["sideDropdownScrollStyle"]}`}
       >
         <div className="w-full px-5 mt-5 mb-4">
-          <div className="flex justify-end items-center">
+          <div className="flex justify-between items-center">
+            {user ? (
+              <div className="flex flex-col gap-2">
+                <Link
+                  href="/profile#dashboard"
+                  className="flex gap-3 items-center p-1"
+                >
+                  <FaUser className="w-[18px] h-[18px] fill-qblack" />
+                  <span className="line-clamp-1 text-sm font-medium capitalize  cursor-pointer">
+                    {user?.fullName}
+                  </span>
+                </Link>
+                <div
+                  onClick={() => signOut()}
+                  className="flex gap-x-3 items-center text-qblack text-sm font-medium capitalize  cursor-pointer bg-qyellow p-1 rounded-md"
+                >
+                  <span className="ml-[2px]">
+                    <LogOutIcon />
+                  </span>
+                  <span className="capitalize">Logout</span>
+                </div>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="flex gap-x-3 items-center text-qblack text-sm font-medium capitalize  cursor-pointer bg-qyellow py-1 px-3 rounded-md"
+              >
+                Log in
+              </Link>
+            )}
             <button
               type="button"
               onClick={() => {
@@ -237,64 +285,189 @@ const HeaderTop: React.FC<Props> = (props) => {
             </button>
           </div>
         </div>
-        
+
         <div className="w-full mt-5 px-5 flex items-center space-x-3">
           <span
-            className="text-base font-semibold  text-qblack"
-            onClick={() => {
-              routeSideDropdown();
-            }}
+            className={
+              (showCategory ? "text-qblack" : "text-qgray") +
+              " text-base font-semibold"
+            }
+            onClick={() => setShowCategory(true)}
           >
             Categories
           </span>
           <span className="w-[1px] h-[14px] bg-qgray"></span>
           <span
-            className="text-base font-semibold text-qgray "
-            onClick={() => {
-              routeSideDropdown();
-            }}
+            className={
+              (showCategory ? "text-qgray" : "text-qblack") +
+              " text-base font-semibold"
+            }
+            onClick={() => setShowCategory(false)}
           >
             Main Menu
           </span>
         </div>
 
-        {showCategory && (
+        {showCategory ? (
           <div className="category-item mt-5 w-full">
             <ul className="categories-list">
               {states.categories.map((category: ICategories) => (
-                <li
-                  key={category.cat_slug}
-                  className="category-item"
-                  onClick={() =>
-                    router.push({
-                      pathname: "products",
-                      query: {
-                        category: "+" + category.cat_slug,
-                        min: 0,
-                        max: 15000,
-                      },
-                    })
-                  }
-                >
-                  <div className=" flex justify-between items-center px-5 h-12 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                <li key={category.cat_slug} className="category-item">
+                  <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex items-center space-x-6">
                       <span>
                         <span>
                           <AnchorIcon />
                         </span>
                       </span>
-                      <span className="text-sm font-normal capitalize">
+                      <span
+                        className="text-sm font-normal capitalize"
+                        onClick={() =>
+                          router.push({
+                            pathname: "products",
+                            query: {
+                              category: "+" + category.cat_slug,
+                              min: 0,
+                              max: 15000,
+                            },
+                          })
+                        }
+                      >
                         {category.cat_name}
                       </span>
                     </div>
-                    <div>
-                      <span>
-                        <ArrowIcon />
-                      </span>
+                    <div
+                      onClick={() => setExpandedCategory(category.cat_slug)}
+                      className={
+                        (expandedCategory === category.cat_slug
+                          ? "rotate-90"
+                          : "") + " ease-in p-2"
+                      }
+                    >
+                      <ArrowIcon />
                     </div>
                   </div>
+                  <ul
+                    className={
+                      expandedCategory === category.cat_slug ? "" : "hidden"
+                    }
+                  >
+                    {states.subCategories
+                      .filter((subCat) => subCat.cat_slug === category.cat_slug)
+                      .map((s) => (
+                        <li
+                          key={s.slug}
+                          className="pl-20 h-10 text-sm flex justify-between items-center cursor-pointer"
+                        >
+                          <span
+                            onClick={() =>
+                              router.push({
+                                pathname: "products",
+                                query: {
+                                  sub_category: s.slug,
+                                  min: 0,
+                                  max: 15000,
+                                },
+                              })
+                            }
+                          >
+                            {s.subcat_name}
+                          </span>
+                        </li>
+                      ))}
+                  </ul>
                 </li>
               ))}
+            </ul>
+          </div>
+        ) : (
+          <div className="menu-item mt-5 w-full">
+            <ul className="categories-list">
+              <li className="category-item">
+                <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                  <div className="flex items-center space-x-6">
+                    <span className="text-sm font-normal capitalize">
+                      Pages
+                    </span>
+                  </div>
+                  <ArrowIcon />
+                </div>
+                <ul className="submenu-list ml-5">
+                  <Link className="category-item" href="/privacy_policy">
+                    <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                      <div className="flex items-center space-x-6">
+                        <span className="text-sm font-normal capitalize">
+                          Privacy Policy
+                        </span>
+                      </div>
+                      <ArrowIcon />
+                    </div>
+                  </Link>
+                  <Link className="category-item" href="/faq">
+                    <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                      <div className="flex items-center space-x-6">
+                        <span className="text-sm font-normal capitalize">
+                          FAQ
+                        </span>
+                      </div>
+                      <ArrowIcon />
+                    </div>
+                  </Link>
+                  <Link className="category-item" href="/terms_condition">
+                    <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                      <div className="flex items-center space-x-6">
+                        <span className="text-sm font-normal capitalize">
+                          Terms and Conditions
+                        </span>
+                      </div>
+                      <ArrowIcon />
+                    </div>
+                  </Link>
+                  <Link
+                    className="category-item"
+                    href="/seller_terms_condition"
+                  >
+                    <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                      <div className="flex items-center space-x-6">
+                        <span className="text-sm font-normal capitalize">
+                          Seller terms and conditions
+                        </span>
+                      </div>
+                      <ArrowIcon />
+                    </div>
+                  </Link>
+                </ul>
+              </li>
+              <Link className="category-item" href="/about">
+                <div className="flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                  <div className="flex items-center space-x-6">
+                    <span className="text-sm font-normal capitalize">
+                      About
+                    </span>
+                  </div>
+                  <ArrowIcon />
+                </div>
+              </Link>
+              <Link className="category-item" href="blogs">
+                <div className="flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                  <div className="flex items-center space-x-6">
+                    <span className="text-sm font-normal capitalize">
+                      blogs
+                    </span>
+                  </div>
+                  <ArrowIcon />
+                </div>
+              </Link>
+              <Link className="category-item" href="contact">
+                <div className="flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
+                  <div className="flex items-center space-x-6">
+                    <span className="text-sm font-normal capitalize">
+                      Contact
+                    </span>
+                  </div>
+                  <ArrowIcon />
+                </div>
+              </Link>
             </ul>
           </div>
         )}
@@ -445,6 +618,7 @@ const HeaderTop: React.FC<Props> = (props) => {
                               {states.categories.map(
                                 (items: ICategories, index) => (
                                   <li
+                                    key={items.cat_slug}
                                     onClick={() => {
                                       topAllCategoriesDropdown();
                                       setSearchCategory(items);
@@ -509,7 +683,10 @@ const HeaderTop: React.FC<Props> = (props) => {
                           )}
                           <ul>
                             {states.cartlistData.map((item, idx) => (
-                              <li className="w-full h-full flex justify-between">
+                              <li
+                                key={item.cart_slug}
+                                className="w-full h-full flex justify-between"
+                              >
                                 <div className="flex space-x-[6px] justify-center items-center px-4 my-[20px]">
                                   <div className="w-[65px] h-full relative">
                                     <span>
@@ -711,7 +888,11 @@ const HeaderTop: React.FC<Props> = (props) => {
                 </svg>
               </div>
               <div className="w-[200px] h-full relative flex justify-center items-center">
-                <Link rel="noreferrer" href="/" className="h-full flex justify-center items-center">
+                <Link
+                  rel="noreferrer"
+                  href="/"
+                  className="h-full flex justify-center items-center"
+                >
                   <span className={`${styles["spanStyle"]}`}>
                     <span className={`${styles["spanStyle2"]}`}>
                       <img

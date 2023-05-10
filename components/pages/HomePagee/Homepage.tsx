@@ -41,18 +41,6 @@ const Homepage: React.FC<Props> = (props) => {
     fetchAllProducts();
   }, []);
 
-  const [isMounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    if (isMounted) {
-      // console.log("hash", window.location.hash);
-    } else {
-      setMounted(true);
-    }
-  }, [isMounted]);
-
-  if (!isMounted) return <SharedLoadingModal />;
-
   return (
     <div className="md:p-0">
       <HeroSection />

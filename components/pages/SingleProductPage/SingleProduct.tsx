@@ -9,13 +9,16 @@ import { useRouter } from "next/router";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { IProduct } from "../../../interfaces/models";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
+import SharedHead from "../../shared/SharedHead/SharedHead";
 
 interface Props {}
 
 const SingleProduct: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
+
   const router = useRouter();
   const { asPath } = router;
+  // const [title, setTitle] = useState("")
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
   const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
 
@@ -51,36 +54,43 @@ const SingleProduct: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="w-full min-h-screen pt-0 pb-0">
-      <div className="product-view-main-wrapper bg-white px-2 md:px-0 pt-[30px] w-full">
-        <div className="w-full bg-white pb-[60px] ">
-          <div className="container-x mx-auto ">
-            <Breadcrumb
-              slug={`${singleProduct?.productName}`}
-              link={`/single_product?slug=${singleProduct?.slug}`}
-            ></Breadcrumb>
-            <div className="lg:flex justify-between">
-              <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
-                <ItemDetailsLeft
-                  singleProduct={singleProduct}
-                ></ItemDetailsLeft>
+    <>
+      <SharedHead
+        title={singleProduct?.productName}
+        keyword={singleProduct?.seoTitle}
+        desc={singleProduct?.seoDescription}
+      />
+      <div className="w-full min-h-screen pt-0 pb-0">
+        <div className="product-view-main-wrapper bg-white px-2 md:px-0 pt-[30px] w-full">
+          <div className="w-full bg-white pb-[60px] ">
+            <div className="container-x mx-auto ">
+              <Breadcrumb
+                slug={`${singleProduct?.productName}`}
+                link={`/single_product?slug=${singleProduct?.slug}`}
+              ></Breadcrumb>
+              <div className="lg:flex justify-between">
+                <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
+                  <ItemDetailsLeft
+                    singleProduct={singleProduct}
+                  ></ItemDetailsLeft>
+                </div>
+                <div className="flex-1">
+                  <ProductDetails
+                    setReportModalSlug={setReportModalSlug}
+                    singleProduct={singleProduct}
+                  ></ProductDetails>
+                </div>
               </div>
-              <div className="flex-1">
-                <ProductDetails
-                  setReportModalSlug={setReportModalSlug}
-                  singleProduct={singleProduct}
-                ></ProductDetails>
-              </div>
+              <ReportedItemModal
+                setReportModalSlug={setReportModalSlug}
+                handleReport={handleReport}
+                reportModalSlug={reportModalSlug}
+              />
             </div>
-            <ReportedItemModal
-              setReportModalSlug={setReportModalSlug}
-              handleReport={handleReport}
-              reportModalSlug={reportModalSlug}
-            />
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

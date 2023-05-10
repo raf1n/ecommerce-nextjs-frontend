@@ -137,6 +137,7 @@ const ProductDetails: React.FC<Props> = (props) => {
 
         //@ts-ignore
         controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
+        toast.success("Added to cart");
       } else {
         console.log(err);
         toast.error("Failed");
@@ -148,6 +149,7 @@ const ProductDetails: React.FC<Props> = (props) => {
 
       //@ts-ignore
       controller.setAddToCartListWithQuantity(newProduct, cartQuantity);
+      toast.success("Added to cart");
     }
 
     controller.setApiLoading(false);
@@ -180,8 +182,8 @@ const ProductDetails: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(res);
         controller.setAddtoWishlist(newProduct);
+        toast.success("Added to wishlist");
       }
     } else {
       const { res, err } = await EcommerceApi.deleteWishlistSingleProduct(
@@ -191,6 +193,7 @@ const ProductDetails: React.FC<Props> = (props) => {
       if (err) {
       } else {
         controller.setRemoveWishlistSingleProduct(newProduct);
+        toast.success("Removed from wishlist");
       }
     }
 
@@ -203,7 +206,7 @@ const ProductDetails: React.FC<Props> = (props) => {
         {brandName}
       </span>
 
-      <h1 className="text-xl text-qblack font-medium mb-4">
+      <h1 className="text-xl text-qblack font-medium mb-4 capitalize">
         {props.singleProduct?.productName}
       </h1>
 
