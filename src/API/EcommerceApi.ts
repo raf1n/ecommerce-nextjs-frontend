@@ -11,6 +11,7 @@ import {
   IBlogCategoryResponse,
   IBlogResponse,
   ICartResponse,
+  IDataWithUserResponse,
   IDataWoUserResponse,
   IFeaturedCategoriesResponse,
   IFilteredBlogResponse,
@@ -958,5 +959,18 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/wo-user`, requestOptions);
+  }
+
+  static async getSiteDataWithUser(
+    slug: string
+  ): Promise<IDataWithUserResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/with-user/${slug}`, requestOptions);
   }
 }

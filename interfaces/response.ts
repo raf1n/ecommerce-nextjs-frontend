@@ -20,6 +20,7 @@ import {
   ISubscriber,
   IBlogComment,
   IFlashSale,
+  IWishlistProduct,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -212,5 +213,16 @@ export interface IDataWoUserResponse extends MyFetchInterface {
     categories: ICategories[];
     brands: IBrands[];
     subCategories: ISubCategories[];
+  };
+}
+
+export interface IDataWithUserResponse extends MyFetchInterface {
+  res: {
+    categories: ICategories[];
+    brands: IBrands[];
+    subCategories: ISubCategories[];
+    user: IUser;
+    cart: ICartProduct[];
+    wishlist: IWishlistProduct[];
   };
 }
