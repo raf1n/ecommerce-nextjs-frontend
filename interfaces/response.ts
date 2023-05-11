@@ -47,7 +47,7 @@ export interface IRelatedProductResponse extends MyFetchInterface {
 }
 
 export interface IFilteredProductBySellerResponse extends MyFetchInterface {
-  res: { sellerData: ISeller; filteredProducts: IProduct[], count: number };
+  res: { sellerData: ISeller; filteredProducts: IProduct[]; count: number };
 }
 
 export interface IProductResponse extends MyFetchInterface {
@@ -205,4 +205,12 @@ export interface IFlashSaleResponse extends MyFetchInterface {
 
 export interface IGetSingleUserResponse extends MyFetchInterface {
   res: IUser;
+}
+
+export interface IDataWoUserResponse extends MyFetchInterface {
+  res: {
+    categories: ICategories[];
+    brands: IBrands[];
+    subCategories: ISubCategories[];
+  };
 }

@@ -11,6 +11,7 @@ import {
   IBlogCategoryResponse,
   IBlogResponse,
   ICartResponse,
+  IDataWoUserResponse,
   IFeaturedCategoriesResponse,
   IFilteredBlogResponse,
   IFilteredProductBySellerResponse,
@@ -946,5 +947,16 @@ export class EcommerceApi {
       `${API_ENDPOINT}/coupon/apply/couponCode?code=${coupon}`,
       requestOptions
     );
+  }
+
+  static async getSiteDataWoUser(): Promise<IDataWoUserResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/wo-user`, requestOptions);
   }
 }

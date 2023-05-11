@@ -42,12 +42,10 @@ const HeaderTop: React.FC<Props> = (props) => {
   const [showTopAllCatgory, setShowTopAllCatgory] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState("");
-
   const [searchCategory, setSearchCategory] = useState<ICategories | undefined>(
     undefined
   );
 
-  // const [searchString, setSearchString] = useState("");
   const searchRef = useRef<HTMLInputElement>(null);
   const mobSearchRef = useRef<HTMLInputElement>(null);
 
@@ -142,14 +140,25 @@ const HeaderTop: React.FC<Props> = (props) => {
 
   useEffect(() => {
     const dataLoading = async () => {
-      await Promise.all([
-        getSingleUser(),
-        getAllWishlistData(),
-        getAllCartData(),
-        fetchAllCategories(),
-        fetchAllSubCategories(),
-        fetchAllBrands(),
-      ]);
+      if (user_slug) {
+        await Promise.all([
+          getSingleUser(),
+          getAllWishlistData(),
+          getAllCartData(),
+          fetchAllCategories(),
+          fetchAllSubCategories(),
+          fetchAllBrands(),
+        ]);
+      } else {
+        const { res, err } = await EcommerceApi.getSiteDataWoUser();
+        // console.log({ res, err });
+        // console.log(res.subCats);
+        if (res) {
+          controller.setCategories(res.categories);
+          controller.setBrands(res.brands);
+          controller.setSubCategories(res.subCategories);
+        }
+      }
     };
 
     dataLoading();
