@@ -21,6 +21,7 @@ import {
   IFlashSaleResponse,
   IGetAllSellerResponse,
   IGetSingleUserResponse,
+  IHomePageDataResponse,
   IMegaCategoriesResponse,
   IOrderResponse,
   IPopularCategoriesResponse,
@@ -972,5 +973,16 @@ export class EcommerceApi {
     };
 
     return await callFetch(`${API_ENDPOINT}/with-user/${slug}`, requestOptions);
+  }
+
+  static async getHomePageData(): Promise<IHomePageDataResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/home`, requestOptions);
   }
 }

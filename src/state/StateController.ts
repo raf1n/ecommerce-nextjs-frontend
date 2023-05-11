@@ -1,7 +1,12 @@
 import {
+  IAd,
   IBrands,
   ICartProduct,
   ICategories,
+  IFeaturedCategories,
+  IFlashSale,
+  IPopularCategories,
+  ISlider,
   ISubCategories,
   IUser,
   IWishlistProduct,
@@ -49,7 +54,14 @@ export interface IStates {
   apiLoading: boolean;
   productCount: number;
   flashSaleDataTime: string;
-  // relatedProductData: Array<IProduct>;
+  sliders: ISlider[] | null;
+  sliderOne: IAd | null;
+  sliderTwo: IAd | null;
+  popularCategories: IPopularCategories[];
+  flashSale: IFlashSale | null;
+  featuredCategories: IFeaturedCategories[];
+  adOne: IAd | null;
+  adTwo: IAd | null;
 }
 
 export class Controller {
@@ -83,7 +95,14 @@ export class Controller {
     apiLoading: false,
     productCount: 0,
     flashSaleDataTime: "",
-    // relatedProductData: [],
+    sliders: [],
+    sliderOne: null,
+    sliderTwo: null,
+    popularCategories: [],
+    flashSale: null,
+    featuredCategories: [],
+    adOne: null,
+    adTwo: null,
   };
 
   @action
@@ -97,6 +116,27 @@ export class Controller {
   @action
   setInitialDataLoading() {
     this.states.initialDataLoading = !this.states.initialDataLoading;
+  }
+
+  @action
+  setHomePageData(
+    sliders: ISlider[],
+    sld1: IAd,
+    sld2: IAd,
+    popCats: IPopularCategories[],
+    flashSale: IFlashSale,
+    featuredCategories: IFeaturedCategories[],
+    ad1: IAd,
+    ad2: IAd
+  ) {
+    this.states.sliders = sliders;
+    this.states.sliderOne = sld1;
+    this.states.sliderTwo = sld2;
+    this.states.popularCategories = popCats;
+    this.states.flashSale = flashSale;
+    this.states.featuredCategories = featuredCategories;
+    this.states.adOne = ad1;
+    this.states.adTwo = ad2;
   }
 
   @action
@@ -191,30 +231,6 @@ export class Controller {
     this.states.searchSeller = "";
   }
 
-  // @action
-  // setClearSearchHighlight() {
-  //   this.states.searchHighlight = "";
-  // }
-
-  // @action
-  // setClearSearchSeller() {
-  //   this.states.searchSeller = "";
-  // }
-
-  // @action
-  // setClearSearchSubCategory() {
-  //   this.states.searchSubCategory = "";
-  // }
-
-  // @action
-  // setClearSearchState() {
-  //   this.states.searchString = "";
-  //   this.states.searchCategory = "";
-  //   this.states.searchBrand = "";
-  //   this.states.searchSubCategory = "";
-  //   this.states.searchHighlight = "";
-  // }
-
   @action
   setFilteredProducts(products: Array<IProduct>) {
     this.states.filteredProducts = [...products];
@@ -239,11 +255,6 @@ export class Controller {
   setPopularProducts(product: Array<IProduct>) {
     this.states.popularProducts = product;
   }
-
-  // @action
-  // setRelatedProductData(product: Array<IProduct>) {
-  //   this.states.relatedProductData = product;
-  // }
 
   @action
   setTopProducts(product: Array<IProduct>) {
@@ -309,14 +320,12 @@ export class Controller {
     this.states.wishlistData = this.states.wishlistData?.filter(
       (item) => item.slug !== product.slug
     );
-    // }
 
     this.states.wishlistCounter -= 1;
   }
 
   @action
   setAddtoCartlist(productToAdd: ICartProduct) {
-    // if found, increment quantity
     if (
       this.states?.cartlistData?.some((item) => item.slug === productToAdd.slug)
     ) {

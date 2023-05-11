@@ -226,3 +226,16 @@ export interface IDataWithUserResponse extends MyFetchInterface {
     wishlist: IWishlistProduct[];
   };
 }
+
+export interface IHomePageDataResponse extends MyFetchInterface {
+  res: {
+    sliders: ISlider[];
+    sliderOne: IAd;
+    sliderTwo: IAd;
+    popularCategories: IPopularCategories[];
+    flashSale: IFlashSale;
+    featuredCategories: IFeaturedCategories[];
+    adOne: IAd;
+    adTwo: IAd;
+  };
+}

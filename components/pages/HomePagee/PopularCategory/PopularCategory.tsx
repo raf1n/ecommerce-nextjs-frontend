@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { IPopularCategories } from "../../../../interfaces/models";
-import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { controller } from "../../../../src/state/StateController";
 import ProductCard from "../../../shared/SharedProductCard/ProductCard";
 import SectionHeader from "../SectionHeader";
@@ -13,27 +11,17 @@ import styles from "../../../../styles/Scrollbar.module.css";
 interface Props {}
 
 const PopularCategory: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
-  const [popularCategoriesData, setPopularCategoriesData] = useState<
-    IPopularCategories[]
-  >([]);
+  const popularCategoriesData = useSelector(
+    () => controller.states.popularCategories
+  );
+  const allProducts = useSelector(() => controller.states.allProducts);
   const [slug, setSlug] = useState("");
 
   const { height, width } = useWindowDimensions();
 
   useEffect(() => {
-    const fetchAllPopularCategoriesData = async () => {
-      const { res, err } = await EcommerceApi.allPopularCategories();
-      if (err) {
-        console.log(err);
-      } else {
-        setSlug(res[0]?.cat_slug);
-        setPopularCategoriesData(res);
-        console.log("Pop", res);
-      }
-    };
-    fetchAllPopularCategoriesData();
-  }, []);
+    setSlug(popularCategoriesData[0]?.cat_slug);
+  }, [popularCategoriesData]);
 
   return (
     <div>
@@ -67,8 +55,8 @@ const PopularCategory: React.FC<Props> = (props) => {
                         </h1>
                         <div className="brands-list mb-[7px]">
                           <ul>
-                            {popularCategoriesData.map((singlePop, indx) => (
-                              <>
+                            {popularCategoriesData.length !== 0 &&
+                              popularCategoriesData.map((singlePop, indx) => (
                                 <li key={indx}>
                                   <span
                                     onClick={() => setSlug(singlePop?.cat_slug)}
@@ -77,8 +65,7 @@ const PopularCategory: React.FC<Props> = (props) => {
                                     {singlePop?.categoriesData?.cat_name}
                                   </span>
                                 </li>
-                              </>
-                            ))}
+                              ))}
                           </ul>
                         </div>
                         <div className="flex space-x-2 items-center">
@@ -96,12 +83,15 @@ const PopularCategory: React.FC<Props> = (props) => {
                     </div>
                   </div>
 
-                  {states.allProducts
-                    .filter((product) => product.catSlug === slug)
-                    .slice(0, 3)
-                    .map((pro) => (
-                      <ProductCard key={pro.slug} product={pro}></ProductCard>
-                    ))}
+                  {popularCategoriesData.length !== 0 &&
+                    allProducts.length !== 0 &&
+                    slug &&
+                    allProducts
+                      .filter((product) => product.catSlug === slug)
+                      .slice(0, 3)
+                      .map((pro) => (
+                        <ProductCard key={pro.slug} product={pro}></ProductCard>
+                      ))}
                 </div>
               )}
             </div>

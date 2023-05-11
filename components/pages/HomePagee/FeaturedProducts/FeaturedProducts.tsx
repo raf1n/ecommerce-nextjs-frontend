@@ -14,28 +14,17 @@ import styles from "../../../../styles/Scrollbar.module.css";
 interface Props {}
 
 const FeaturedCategory: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
-  const [featuredCategoriesData, setFeaturedCategoriesData] = useState<
-    IFeaturedCategories[]
-  >([]);
+  const featuredCategoriesData = useSelector(
+    () => controller.states.featuredCategories
+  );
+  const allProducts = useSelector(() => controller.states.allProducts);
   const [slug, setSlug] = useState("");
 
   const { height, width } = useWindowDimensions();
 
   useEffect(() => {
-    const fetchAllPopularCategoriesData = async () => {
-      const { res, err } = await EcommerceApi.allFeaturedCategories();
-      if (err) {
-        console.log(err);
-      } else {
-        setSlug(res[0]?.cat_slug);
-        setFeaturedCategoriesData(res);
-
-        // console.log(res);
-      }
-    };
-    fetchAllPopularCategoriesData();
-  }, []);
+    setSlug(featuredCategoriesData[0]?.cat_slug);
+  }, [featuredCategoriesData]);
 
   return (
     <div>
@@ -120,12 +109,13 @@ const FeaturedCategory: React.FC<Props> = (props) => {
                   </div>
                 </div>
 
-                {states.allProducts
-                  .filter((product) => product.catSlug === slug)
-                  .slice(0, 3)
-                  .map((pro) => (
-                    <ProductCard product={pro}></ProductCard>
-                  ))}
+                {featuredCategoriesData.length !== 0 &&
+                  allProducts.length !== 0 &&
+                  slug &&
+                  allProducts
+                    .filter((product) => product.catSlug === slug)
+                    .slice(0, 3)
+                    .map((pro) => <ProductCard product={pro}></ProductCard>)}
               </div>
             </div>
           </div>

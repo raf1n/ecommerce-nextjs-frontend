@@ -1,36 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { controller } from "../../../../src/state/StateController";
-import { Jsondata } from "../../../../src/utils/Jsondata";
 import styles from "./ProductCategory.module.css";
-import { ICategories } from "../../../../interfaces/models";
-import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 interface Props {}
 
 const ProductCategory: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
-  const [categoriesData, setCategoriesData] = useState<ICategories[]>([]);
-
-  useEffect(() => {
-    const fetchAllCategoriesData = async () => {
-      const { res, err } = await EcommerceApi.getCategories();
-      if (err) {
-        console.log(err);
-      } else {
-        setCategoriesData(res);
-        // console.log(res);
-      }
-    };
-    fetchAllCategoriesData();
-  }, []);
+  const categoriesData = useSelector(() => controller.states.categories);
 
   return (
     <div className="category-section-wrapper w-full hidden md:block">
       <div className="container-x mx-auto pb-[50px]">
         <div>
           <div className="w-full grid xl:grid-cols-8 md:grid-cols-4 grid-cols-2 gap-[30px]">
-            {categoriesData.map((item: ICategories, index) => {
+            {categoriesData.map((item, index) => {
               return (
                 <div
                   key={item.cat_slug}
