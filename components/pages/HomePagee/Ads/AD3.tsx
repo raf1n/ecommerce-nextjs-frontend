@@ -9,24 +9,7 @@ import styles from "./Ads.module.css";
 interface Props {}
 
 const AD3: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
-
-  const [singleAdData, setSingleAdData] = useState<IAd>();
-
-  useEffect(() => {
-    const fetchSingleAdData = async () => {
-      const { res, err } = await EcommerceApi.getSingleAd(
-        "Homepage Single Banner Two"
-      );
-      if (err) {
-        console.log(err);
-      } else {
-        setSingleAdData(res);
-        console.log(singleAdData);
-      }
-    };
-    fetchSingleAdData();
-  }, []);
+  const singleAdData = useSelector(() => controller.states.adTwo);
 
   return (
     <div className="w-full text-white md:mb-[60px] mb-[30px]">

@@ -1,43 +1,14 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { IAd } from "../../../../../interfaces/models";
-import { EcommerceApi } from "../../../../../src/API/EcommerceApi";
 import { controller } from "../../../../../src/state/StateController";
 import ShopNowBtn from "../../../../helpers/Buttons/ShopNowBtn";
 
 interface Props {}
 
 const HeroStatic: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
-  const [singleAdData, setSingleAdData] = useState<IAd>();
-  const [singleSecondAdData, setSingleSecondAdData] = useState<IAd>();
-
-  useEffect(() => {
-    const fetchSingleAdData = async () => {
-      const { res, err } = await EcommerceApi.getSingleAd("Slider Banner One");
-      if (err) {
-        console.log(err);
-      } else {
-        setSingleAdData(res);
-        console.log(singleAdData);
-      }
-    };
-    fetchSingleAdData();
-  }, []);
-
-  useEffect(() => {
-    const fetchSingleSecondAdData = async () => {
-      const { res, err } = await EcommerceApi.getSingleAd("Slider Banner Two");
-      if (err) {
-        console.log(err);
-      } else {
-        setSingleSecondAdData(res);
-        console.log(singleSecondAdData);
-      }
-    };
-    fetchSingleSecondAdData();
-  }, []);
+  const singleAdData = useSelector(() => controller.states.sliderOne);
+  const singleSecondAdData = useSelector(() => controller.states.sliderTwo);
 
   return (
     <div className="flex-1 hidden md:flex xl:flex-col flex-row xl:space-y-[30px] xl:h-full md:h-[350px] h-[150px] aos-init aos-animate ">

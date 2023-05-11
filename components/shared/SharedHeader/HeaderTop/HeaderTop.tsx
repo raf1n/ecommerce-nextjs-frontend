@@ -31,9 +31,8 @@ import { LogOutIcon } from "../../../../src/utils/SvgReturn";
 
 interface Props {}
 
-const user_slug = CookiesHandler.getSlug();
-
 const HeaderTop: React.FC<Props> = (props) => {
+  const user_slug = CookiesHandler.getSlug();
   const states = useSelector(() => controller.states);
   const user = useSelector(() => controller.states.user);
 
@@ -42,12 +41,10 @@ const HeaderTop: React.FC<Props> = (props) => {
   const [showTopAllCatgory, setShowTopAllCatgory] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState("");
-
   const [searchCategory, setSearchCategory] = useState<ICategories | undefined>(
     undefined
   );
 
-  // const [searchString, setSearchString] = useState("");
   const searchRef = useRef<HTMLInputElement>(null);
   const mobSearchRef = useRef<HTMLInputElement>(null);
 
@@ -93,69 +90,36 @@ const HeaderTop: React.FC<Props> = (props) => {
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const fetchAllCategories = async () => {
-    const { res, err } = await EcommerceApi.getCategories();
-    if (res) {
-      controller.setCategories(res);
-    }
-  };
-
-  const fetchAllSubCategories = async () => {
-    const { res, err } = await EcommerceApi.getSubCategories();
-    if (res) {
-      controller.setSubCategories(res);
-    }
-  };
-
-  const fetchAllBrands = async () => {
-    const { res, err } = await EcommerceApi.getBrands();
-
-    if (err) {
-    } else {
-      controller.setBrands(res);
-    }
-  };
-
-  const getSingleUser = async () => {
-    const { res, err } = await EcommerceApi.getSingleUser(user_slug);
-
-    if (err) {
-    } else if (res) {
-      console.log(res);
-      controller.setUser(res);
-    }
-  };
-
-  const getAllCartData = async () => {
-    const { res, err } = await EcommerceApi.getAllCartData(user_slug);
-    if (res) {
-      controller.setAllCartListData(res);
-    }
-  };
-
-  const getAllWishlistData = async () => {
-    const { res, err } = await EcommerceApi.getAllWishlistProducts(user_slug);
-    if (res) {
-      controller.setAllWishlistData(res);
-    }
-  };
-
   useEffect(() => {
     const dataLoading = async () => {
-      await Promise.all([
-        getSingleUser(),
-        getAllWishlistData(),
-        getAllCartData(),
-        fetchAllCategories(),
-        fetchAllSubCategories(),
-        fetchAllBrands(),
-      ]);
+      if (user_slug) {
+        const { res, err } = await EcommerceApi.getSiteDataWithUser(user_slug);
+        if (res) {
+          controller.setCategories(res.categories);
+          controller.setBrands(res.brands);
+          controller.setSubCategories(res.subCategories);
+          controller.setUser(res.user);
+          controller.setAllWishlistData(res.wishlist);
+          controller.setAllCartListData(res.cart);
+        }
+      } else {
+        const { res, err } = await EcommerceApi.getSiteDataWoUser();
+
+        if (res) {
+          controller.setCategories(res.categories);
+          controller.setBrands(res.brands);
+          controller.setSubCategories(res.subCategories);
+          controller.setUser(null);
+          controller.setAllWishlistData([]);
+          controller.setAllCartListData([]);
+        }
+      }
     };
 
     dataLoading();
 
     controller.setInitialDataLoading();
-  }, []);
+  }, [user_slug]);
 
   const handleSearch = () => {
     console.log(searchRef.current?.value);
