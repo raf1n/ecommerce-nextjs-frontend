@@ -102,8 +102,8 @@ export interface IWishlistProduct extends IProduct {
 
 export interface IOrder {
   subTotal: number;
-  discount: number;
-  shippingCost: number;
+  discount?: number;
+  shippingCost?: number;
   total: number;
   slug?: string;
   createdAt?: string;
