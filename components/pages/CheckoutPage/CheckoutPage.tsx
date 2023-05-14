@@ -85,21 +85,28 @@ const CheckoutPage: React.FC<Props> = (props) => {
 
     if (res) {
       const dateString = res.expired_date;
+      console.log(dateString);
       const expDate = new Date(dateString);
+      expDate.setHours(0);
+      expDate.setDate(expDate.getDate() + 1);
+
       const expTimeInSeconds = expDate.getTime();
-      // console.log("ed", expTimeInSeconds);
+      console.log("ed", expDate);
+      console.log("eds", expTimeInSeconds);
+
       var today = new Date();
-      // console.log("td", today.getTime());
+      console.log("tds", today.getTime());
 
       if (
         res.status === "active" &&
         res.items_number > 0 &&
-        expTimeInSeconds > today.getTime() &&
+        expDate > today &&
+        res.items_number >= res.apply_qty &&
         res.minimum_purchase <= CartHandler.cartSubTotal(cartListProduct)
       ) {
         if (res.discount.role === "amount") {
           setDiscount(res.discount.value);
-          toast.success("Successfully applied coupon in taka !");
+          toast.success(" Successfully applied coupon !");
         }
 
         if (res.discount.role === "percent") {
@@ -107,7 +114,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
             (CartHandler.cartSubTotal(cartListProduct) * res.discount.value) /
               100
           );
-          toast.success("Successfully applied coupon in percent!");
+          toast.success(" Successfully applied coupon !");
         }
       } else {
         toast.error(
