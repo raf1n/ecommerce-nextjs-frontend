@@ -20,6 +20,7 @@ import {
   ISubscriber,
   IBlogComment,
   IFlashSale,
+  IWishlistProduct,
 } from "./models";
 import { MyFetchInterface } from "./MyFetchInterface";
 import { IAddress } from "./models";
@@ -47,7 +48,7 @@ export interface IRelatedProductResponse extends MyFetchInterface {
 }
 
 export interface IFilteredProductBySellerResponse extends MyFetchInterface {
-  res: { sellerData: ISeller; filteredProducts: IProduct[], count: number };
+  res: { sellerData: ISeller; filteredProducts: IProduct[]; count: number };
 }
 
 export interface IProductResponse extends MyFetchInterface {
@@ -205,4 +206,36 @@ export interface IFlashSaleResponse extends MyFetchInterface {
 
 export interface IGetSingleUserResponse extends MyFetchInterface {
   res: IUser;
+}
+
+export interface IDataWoUserResponse extends MyFetchInterface {
+  res: {
+    categories: ICategories[];
+    brands: IBrands[];
+    subCategories: ISubCategories[];
+  };
+}
+
+export interface IDataWithUserResponse extends MyFetchInterface {
+  res: {
+    categories: ICategories[];
+    brands: IBrands[];
+    subCategories: ISubCategories[];
+    user: IUser;
+    cart: ICartProduct[];
+    wishlist: IWishlistProduct[];
+  };
+}
+
+export interface IHomePageDataResponse extends MyFetchInterface {
+  res: {
+    sliders: ISlider[];
+    sliderOne: IAd;
+    sliderTwo: IAd;
+    popularCategories: IPopularCategories[];
+    flashSale: IFlashSale;
+    featuredCategories: IFeaturedCategories[];
+    adOne: IAd;
+    adTwo: IAd;
+  };
 }

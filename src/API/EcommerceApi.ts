@@ -11,6 +11,8 @@ import {
   IBlogCategoryResponse,
   IBlogResponse,
   ICartResponse,
+  IDataWithUserResponse,
+  IDataWoUserResponse,
   IFeaturedCategoriesResponse,
   IFilteredBlogResponse,
   IFilteredProductBySellerResponse,
@@ -19,6 +21,7 @@ import {
   IFlashSaleResponse,
   IGetAllSellerResponse,
   IGetSingleUserResponse,
+  IHomePageDataResponse,
   IMegaCategoriesResponse,
   IOrderResponse,
   IPopularCategoriesResponse,
@@ -946,5 +949,40 @@ export class EcommerceApi {
       `${API_ENDPOINT}/coupon/apply/couponCode?code=${coupon}`,
       requestOptions
     );
+  }
+
+  static async getSiteDataWoUser(): Promise<IDataWoUserResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/wo-user`, requestOptions);
+  }
+
+  static async getSiteDataWithUser(
+    slug: string
+  ): Promise<IDataWithUserResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/with-user/${slug}`, requestOptions);
+  }
+
+  static async getHomePageData(): Promise<IHomePageDataResponse> {
+    const myHeaders = new Headers();
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    return await callFetch(`${API_ENDPOINT}/home`, requestOptions);
   }
 }

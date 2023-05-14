@@ -5,10 +5,6 @@ import DeliveryComponents from "../DeliveryPolicyData/DeliveryComponents";
 import HeroSlider from "./HeroSctionSlider/HeroSlider";
 import HeroStatic from "./StaticHeroSection/HeroStatic";
 
-
-
-
-
 interface Props { }
 
 const HeroSection: React.FC<Props> = (props) => {

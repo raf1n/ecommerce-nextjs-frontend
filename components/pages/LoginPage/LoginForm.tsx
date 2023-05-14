@@ -43,11 +43,6 @@ const LoginForm: React.FC<Props> = (props) => {
     controller.setApiLoading(true);
     // actions.setDialogLoading(true)
     const { res, err } = await SocialLogin.loginWithGoogleTry();
-    console.log(
-      "🚀 ~ file: LoginForm.tsx:46 ~ handleGoogleSignUp ~ res, err:",
-      res,
-      err
-    );
 
     if (
       res &&
@@ -70,11 +65,6 @@ const LoginForm: React.FC<Props> = (props) => {
       };
 
       const { res: userRes, err: userErr } = await EcommerceApi.login(data);
-      console.log(
-        "🚀 ~ file: LoginForm.tsx:73 ~ handleGoogleSignUp ~ res: userRes, err: userErr:",
-        userRes,
-        userErr
-      );
 
       if (userErr) {
         console.log("Login error");
@@ -95,11 +85,11 @@ const LoginForm: React.FC<Props> = (props) => {
           userRes.slug &&
           userRes.access_token
         ) {
-          controller.setUser(userRes);
-          setErrorLogin(false);
-          setSuccessLogin(true);
           CookiesHandler.setAccessToken(userRes.access_token);
           CookiesHandler.setSlug(userRes.slug as string);
+          setErrorLogin(false);
+          setSuccessLogin(true);
+          controller.setUser(userRes);
           toast.success("SignIn Success");
           // setSuccessTextLogin("SignIn Success");
           router.push("/");

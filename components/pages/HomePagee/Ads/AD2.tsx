@@ -11,29 +11,12 @@ import { IAd } from "../../../../interfaces/models";
 interface Props {}
 
 const AD2: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
-  const [singleAdData, setSingleAdData] = useState<IAd>();
-
-  useEffect(() => {
-    const fetchSingleAdData = async () => {
-      const { res, err } = await EcommerceApi.getSingleAd(
-        "Homepage Single Banner One"
-      );
-      if (err) {
-        console.log(err);
-      } else {
-        setSingleAdData(res);
-        console.log(singleAdData);
-      }
-    };
-    fetchSingleAdData();
-  }, []);
+  const singleAdData = useSelector(() => controller.states.adOne);
 
   return (
     <div className="one-column-ads-one md:h-[295px] h-[190px] md:mb-[60px] mb-[30px] w-full">
       <div className="container-x mx-auto h-full">
         <div
-          // ${styles["ad2-bg"]}
           style={{
             backgroundImage: `url(${singleAdData?.adImage})`,
             backgroundSize: `cover`,

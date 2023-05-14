@@ -6,8 +6,6 @@ import styles from "./Campaign.module.css";
 import img1 from "./googlePlay.png";
 import img2 from "./app.png";
 import Link from "next/link";
-import { IFlashSale, IFlashSaleProducts } from "../../../../interfaces/models";
-import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import CountDown from "../../FlashSalePage/CountDown";
 
 interface Props {
@@ -15,49 +13,23 @@ interface Props {
 }
 
 const Campaign: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
-
-  const [saleData, setSaleData] = useState<IFlashSale>();
-  const [flashSaleData, setFlashSaleData] = useState<IFlashSaleProducts[]>([]);
+  const saleData = useSelector(() => controller.states.flashSale);
   const [loading, setLoading] = useState(true);
   const [outputTime, setOutputTime] = useState("");
 
   useEffect(() => {
-    const fetchAllFlashData = async () => {
-      const { res, err } = await EcommerceApi.getFlashSaleContent(
-        "flashcontnet"
-      );
-      if (err) {
-        console.log(err);
-      } else {
-        setSaleData(res);
-        const date = new Date(res.time);
-        const outputDate = date.toLocaleDateString("en-US", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        });
+    if (saleData) {
+      const date = new Date(saleData.time);
+      const outputDate = date.toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
 
-        setOutputTime(outputDate);
-        setLoading(false);
-      }
-    };
-    fetchAllFlashData();
-  }, [flashSaleData]);
-
-  useEffect(() => {
-    const fetchAllFlashSalesData = async () => {
-      const { res, err } = await EcommerceApi.getFlashSaleProductsData();
-      if (err) {
-        console.log(err);
-      } else {
-        setFlashSaleData(res);
-
-        console.log(res);
-      }
-    };
-    fetchAllFlashSalesData();
-  }, []);
+      setOutputTime(outputDate);
+      setLoading(false);
+    }
+  }, [saleData]);
 
   return (
     <div className="w-full lg:h-[460px] md:mb-[60px] mb-[30px]">
