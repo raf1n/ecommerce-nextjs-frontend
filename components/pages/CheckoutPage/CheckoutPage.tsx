@@ -142,8 +142,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
       address: selectedAddress?.address,
     },
     subTotal: CartHandler.cartSubTotal(cartListProduct),
-
     total: CartHandler.cartSubTotal(cartListProduct) - discount + shippingCost,
+    shipping: shippingCost,
   };
 
   const handleCheckout = async () => {
@@ -171,9 +171,10 @@ const CheckoutPage: React.FC<Props> = (props) => {
     controller.setApiLoading(true);
 
     const { res, err } = await EcommerceApi.postOrder(order);
+
     if (
-      res.message === "COD Order successful" ||
-      res.message === "BKash Order successful"
+      res?.message === "COD Order successful" ||
+      res?.message === "BKash Order successful"
     ) {
       controller.setClearCartlist();
       const { res: cartdelRes, err } =
@@ -188,7 +189,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
     }
     if (err) {
       console.log(err);
-    } else if (res.message === "SSL Order successful") {
+      toast.error("An error occurred. Please try again.");
+    } else if (res?.message === "SSL Order successful") {
       router.push(res.data);
       console.log(res);
       // controller.setClearCartlist();
