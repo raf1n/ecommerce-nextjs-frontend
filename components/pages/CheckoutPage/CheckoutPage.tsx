@@ -198,8 +198,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
       //   // router.push(res.data);
       // }
     } else {
-      //@ts-ignore
-      toast.error(res.errorMessage);
+      toast.error(res?.message);
     }
     controller.setApiLoading(false);
   };
