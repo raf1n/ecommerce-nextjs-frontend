@@ -172,8 +172,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
 
     const { res, err } = await EcommerceApi.postOrder(order);
     if (
-      res.message === "COD Order successful" ||
-      res.message === "BKash Order successful"
+      res?.message === "COD Order successful" ||
+      res?.message === "BKash Order successful"
     ) {
       controller.setClearCartlist();
       const { res: cartdelRes, err } =
@@ -188,8 +188,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
     }
     if (err) {
       console.log(err);
-    } else if (res.message === "SSL Order successful") {
-      router.push(res.data);
+    } else if (res?.message === "SSL Order successful") {
+      router.push(res?.data);
       console.log(res);
       // controller.setClearCartlist();
       // const { res: cartdelRes, err } =
@@ -197,6 +197,9 @@ const CheckoutPage: React.FC<Props> = (props) => {
       // if (cartdelRes) {
       //   // router.push(res.data);
       // }
+    } else {
+      //@ts-ignore
+      toast.error(res.errorMessage);
     }
     controller.setApiLoading(false);
   };
