@@ -26,7 +26,7 @@ import {
 import { BiArrowBack } from "react-icons/bi";
 import { CookiesHandler } from "../../../../src/utils/CookiesHandler";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
-import { FaUser } from "react-icons/fa";
+import { FaHome, FaUser } from "react-icons/fa";
 import { LogOutIcon } from "../../../../src/utils/SvgReturn";
 
 interface Props {}
@@ -184,10 +184,14 @@ const HeaderTop: React.FC<Props> = (props) => {
 
   if (asPath !== "/" && width && width <= 640) {
     return (
-      <header className="print:hidden w-full bg-white h-12 px-4 py-1 flex justify-start items-center">
+      <header className="print:hidden w-full bg-white h-12 px-4 py-1 flex justify-between items-center">
         <BiArrowBack
           className="w-7 h-7 p-1 bg-qyellow rounded-full"
           onClick={() => router.back()}
+        />
+        <FaHome
+          className="w-7 h-7 fill-qyellow"
+          onClick={() => router.push("/")}
         />
       </header>
     );
