@@ -303,7 +303,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                 className={
                                   width && width > 640
                                     ? "border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center"
-                                    : "border border-qgray w-[25px] h-[25px] rounded-full flex justify-center items-center absolute left-[80%] top-5"
+                                    : "border border-qgray w-[25px] h-[25px] rounded-full flex justify-center items-center absolute left-[85%] top-5"
                                 }
                               >
                                 <SvgIconRenderer
@@ -328,7 +328,13 @@ const CheckoutPage: React.FC<Props> = (props) => {
                               <table>
                                 <tbody>
                                   {singleAddress?.name && (
-                                    <tr className="flex mb-1">
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
                                       <td
                                         className={
                                           width && width > 640
@@ -349,7 +355,13 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                     </tr>
                                   )}
                                   {singleAddress.email && (
-                                    <tr className="flex mb-1">
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
                                       <td
                                         className={
                                           width && width > 640
@@ -365,7 +377,13 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                     </tr>
                                   )}
                                   {singleAddress.phone && (
-                                    <tr className="flex mb-1">
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
                                       <td
                                         className={
                                           width && width > 640
@@ -381,7 +399,13 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                     </tr>
                                   )}
                                   {singleAddress.division && (
-                                    <tr className="flex mb-1">
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
                                       <td
                                         className={
                                           width && width > 640
@@ -399,11 +423,17 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                     </tr>
                                   )}
                                   {singleAddress.district && (
-                                    <tr className="flex mb-1">
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
                                       <td
                                         className={
                                           width && width > 640
-                                            ? "text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize"
+                                            ? "text-base text-qblack line-clamp-1 font-medium"
                                             : "w-[27px]"
                                         }
                                       >
@@ -414,7 +444,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       <td
                                         className={
                                           width && width > 640
-                                            ? "text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize"
+                                            ? "text-base text-qblack line-clamp-1 font-medium"
                                             : "w-[27px]"
                                         }
                                       >
@@ -423,7 +453,13 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                     </tr>
                                   )}
                                   {singleAddress.thana && (
-                                    <tr className="flex mb-1">
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
                                       <td
                                         className={
                                           width && width > 640
@@ -436,7 +472,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       <td
                                         className={
                                           width && width > 640
-                                            ? "text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize"
+                                            ? "text-base text-qblack line-clamp-1 font-medium"
                                             : "w-[27px]"
                                         }
                                       >
@@ -445,7 +481,13 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                     </tr>
                                   )}
                                   {singleAddress.address && (
-                                    <tr className="flex mb-1">
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
                                       <td
                                         className={
                                           width && width > 640
@@ -458,7 +500,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                       <td
                                         className={
                                           width && width > 640
-                                            ? "text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize font-medium"
+                                            ? "text-base text-qblack line-clamp-1 font-medium"
                                             : "w-[27px]"
                                         }
                                       >
