@@ -15,6 +15,10 @@ import { useRouter } from "next/navigation";
 import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import toast from "react-hot-toast";
 import { FaCheckSquare } from "react-icons/fa";
+import { BiMap } from "react-icons/bi";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+
+import useWindowDimensions from "../../shared/hooks/useWindowDimensions";
 
 interface Props {}
 
@@ -74,6 +78,8 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const router = useRouter();
   const cartListProduct = states.cartlistData;
   const user_slug = CookiesHandler.getSlug();
+
+  const { height, width } = useWindowDimensions();
   // -----------------------------------//
   // var today = new Date();
   // var todayInSeconds = today.getTime();
@@ -217,7 +223,13 @@ const CheckoutPage: React.FC<Props> = (props) => {
             <div className="container-x mx-auto">
               <div className="w-full lg:flex lg:space-x-[30px]">
                 <div className="lg:w-4/6 w-full px-2 py-1">
-                  <h1 className="sm:text-2xl text-xl text-qblack font-medium mt-5 mb-5">
+                  <h1
+                    className={
+                      width && width > 640
+                        ? "text-xl text-qblack font-medium mt-5 mb-5"
+                        : "text-md mt-3 mb-3 font-semibold"
+                    }
+                  >
                     Addresses
                   </h1>
                   <div className="addresses-widget w-full">
@@ -225,17 +237,27 @@ const CheckoutPage: React.FC<Props> = (props) => {
                       <div className=" rounded ">
                         <span
                           // type="button"
-                          className="px-4 py-3 text-sm lg:text-md font-medium rounded-md  text-qblack bg-qyellow "
+                          className={
+                            width && width > 640
+                              ? "px-4 py-3 text-sm lg:text-md font-medium rounded-md  text-qblack bg-qyellow "
+                              : "text-qyellow font-medium border-b border-qyellow py-1"
+                          }
                         >
-                          Shipping Address
+                          Shipping Addresses
                         </span>
                       </div>
                       <button
                         onClick={() => setForm(true)}
                         type="button"
-                        className="w-[100px] h-[40px] lg:mt-2 sm:mt-0 border rounded border-qblack hover:bg-qblack hover:text-white transition-all duration-300 ease-in-out"
+                        className={
+                          width && width > 640
+                            ? "w-[100px] h-[40px] lg:mt-2 sm:mt-0 border rounded border-qblack hover:bg-qblack hover:text-white transition-all duration-300 ease-in-out"
+                            : "text-sm  border px-3 py-[1px] rounded bg-qyellow"
+                        }
                       >
-                        <span className="text-sm font-semibold">Add New</span>
+                        <span className="text-sm font-semibold">
+                          {width && width > 640 ? "Add New" : "Add"}
+                        </span>
                       </button>
                     </div>
                     {!form ? (
@@ -248,15 +270,29 @@ const CheckoutPage: React.FC<Props> = (props) => {
                             onClick={() => handleSelect(singleAddress)}
                             className={
                               singleAddress?.slug === selectedAddress?.slug
-                                ? `w-full p-5 border cursor-pointer relative    border-qyellow bg-[#FFFAEF]
+                                ? `${
+                                    width && width > 640
+                                      ? "w-full p-5 border cursor-pointer relative    border-qyellow bg-[rgb(255,250,239)]"
+                                      : "w-full px-3 border cursor-pointer relative    border-qyellow bg-[#FFFAEF] rounded"
+                                  } 
                                 `
-                                : `w-full p-5 border cursor-pointer relative   bg-primarygray
-                                border-transparent
+                                : `${
+                                    width && width > 640
+                                      ? "w-full p-5 border cursor-pointer relative bg-primarygray border-transparent"
+                                      : "w-full px-3 border cursor-pointer relative bg-primarygray border-transparent rounded"
+                                  }  
+                                
                                 `
                             }
                           >
                             <div className="flex justify-between items-center">
-                              <p className="title text-[22px] font-semibold">
+                              <p
+                                className={
+                                  width && width > 640
+                                    ? "title text-[22px] font-semibold"
+                                    : "hidden"
+                                }
+                              >
                                 {`Address ${index + 1}`}
                               </p>
                               <button
@@ -264,10 +300,14 @@ const CheckoutPage: React.FC<Props> = (props) => {
                                   setDeleteModalSlug(singleAddress.slug)
                                 }
                                 type="button"
-                                className="border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center"
+                                className={
+                                  width && width > 640
+                                    ? "border border-qgray w-[34px] h-[34px] rounded-full flex justify-center items-center"
+                                    : "border border-qgray w-[25px] h-[25px] rounded-full flex justify-center items-center absolute left-[85%] top-5"
+                                }
                               >
                                 <SvgIconRenderer
-                                  width="17"
+                                  width={width && width > 640 ? "17" : "14"}
                                   height="19"
                                   viewBox="0 0 17 19"
                                   fill="none"
@@ -282,66 +322,192 @@ const CheckoutPage: React.FC<Props> = (props) => {
                               handleDelete={handleDelete}
                               setDeleteModalSlug={setDeleteModalSlug}
                             />
-                            <div className="mt-5">
+                            <div
+                              className={width && width > 640 ? "mt-5" : "my-3"}
+                            >
                               <table>
                                 <tbody>
-                                  <tr className="flex mb-3">
-                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                      Name:
-                                    </td>
-                                    <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress.name}
-                                      {/* {states?.user?.fullName} */}
-                                    </td>
-                                  </tr>
-                                  <tr className="flex mb-3">
-                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                      Email:
-                                    </td>
-                                    <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress.email}
-                                    </td>
-                                  </tr>
-                                  <tr className="flex mb-3">
-                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                      phone:
-                                    </td>
-                                    <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress.phone}
-                                    </td>
-                                  </tr>
-                                  <tr className="flex mb-3">
-                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                      Division:
-                                    </td>
-                                    <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress.division}
-                                    </td>
-                                  </tr>
-                                  <tr className="flex mb-3">
-                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                      District:
-                                    </td>
-                                    <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress?.district}
-                                    </td>
-                                  </tr>
-                                  <tr className="flex mb-3">
-                                    <td className="text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize">
-                                      Thana:
-                                    </td>
-                                    <td className="text-base text-qblack line-clamp-1 font-medium">
-                                      {singleAddress?.thana}
-                                    </td>
-                                  </tr>
-                                  <tr className="flex mb-3">
-                                    <td className="text-base text-qgraytwo w-[70px] block  capitalize">
-                                      Area:
-                                    </td>
-                                    <td className="text-base text-qblack line-clamp-2 font-medium">
-                                      {singleAddress.address}
-                                    </td>
-                                  </tr>
+                                  {singleAddress?.name && (
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
+                                      <td
+                                        className={
+                                          width && width > 640
+                                            ? "text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize"
+                                            : "flex items-center"
+                                        }
+                                      >
+                                        {width && width > 640 ? (
+                                          "Name:"
+                                        ) : (
+                                          <BiMap className="h-6 w-6 text-qyellow"></BiMap>
+                                        )}
+                                      </td>
+                                      <td className="text-base text-qblack line-clamp-1 font-medium">
+                                        {singleAddress.name}
+                                        {/* {states?.user?.fullName} */}
+                                      </td>
+                                    </tr>
+                                  )}
+                                  {singleAddress.email && (
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
+                                      <td
+                                        className={
+                                          width && width > 640
+                                            ? "text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize"
+                                            : "w-[27px]"
+                                        }
+                                      >
+                                        {width && width > 640 ? "Email:" : ""}
+                                      </td>
+                                      <td className="text-base text-qblack line-clamp-1 font-medium">
+                                        {singleAddress.email}
+                                      </td>
+                                    </tr>
+                                  )}
+                                  {singleAddress.phone && (
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
+                                      <td
+                                        className={
+                                          width && width > 640
+                                            ? "text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize"
+                                            : "w-[27px]"
+                                        }
+                                      >
+                                        {width && width > 640 ? "phone:" : ""}
+                                      </td>
+                                      <td className="text-base text-qblack line-clamp-1 font-medium">
+                                        {singleAddress.phone}
+                                      </td>
+                                    </tr>
+                                  )}
+                                  {singleAddress.division && (
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
+                                      <td
+                                        className={
+                                          width && width > 640
+                                            ? "text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize"
+                                            : "w-[27px]"
+                                        }
+                                      >
+                                        {width && width > 640
+                                          ? "Division:"
+                                          : ""}
+                                      </td>
+                                      <td className="text-base text-qblack line-clamp-1 font-medium">
+                                        {singleAddress.division}
+                                      </td>
+                                    </tr>
+                                  )}
+                                  {singleAddress.district && (
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
+                                      <td
+                                        className={
+                                          width && width > 640
+                                            ? "text-base text-qblack line-clamp-1 font-medium"
+                                            : "w-[27px]"
+                                        }
+                                      >
+                                        {width && width > 640
+                                          ? "District:"
+                                          : ""}
+                                      </td>
+                                      <td
+                                        className={
+                                          width && width > 640
+                                            ? "text-base text-qblack line-clamp-1 font-medium"
+                                            : "w-[27px]"
+                                        }
+                                      >
+                                        {singleAddress?.district}
+                                      </td>
+                                    </tr>
+                                  )}
+                                  {singleAddress.thana && (
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
+                                      <td
+                                        className={
+                                          width && width > 640
+                                            ? "text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize"
+                                            : "w-[27px]"
+                                        }
+                                      >
+                                        {width && width > 640 ? "Thana:" : ""}
+                                      </td>
+                                      <td
+                                        className={
+                                          width && width > 640
+                                            ? "text-base text-qblack line-clamp-1 font-medium"
+                                            : "w-[27px]"
+                                        }
+                                      >
+                                        {singleAddress?.thana}
+                                      </td>
+                                    </tr>
+                                  )}
+                                  {singleAddress.address && (
+                                    <tr
+                                      className={
+                                        width && width > 640
+                                          ? "flex mb-3"
+                                          : "flex mb-1"
+                                      }
+                                    >
+                                      <td
+                                        className={
+                                          width && width > 640
+                                            ? "text-base text-qgraytwo w-[70px] block line-clamp-1 capitalize"
+                                            : "w-[27px]"
+                                        }
+                                      >
+                                        {width && width > 640 ? "Area:" : ""}
+                                      </td>
+                                      <td
+                                        className={
+                                          width && width > 640
+                                            ? "text-base text-qblack line-clamp-1 font-medium"
+                                            : "w-[27px]"
+                                        }
+                                      >
+                                        {singleAddress.address}
+                                      </td>
+                                    </tr>
+                                  )}
                                 </tbody>
                               </table>
                             </div>
@@ -401,7 +567,16 @@ const CheckoutPage: React.FC<Props> = (props) => {
                     </div>
                   </div>
                   <h1 className="sm:text-2xl text-xl text-qblack font-medium mt-5 mb-5">
-                    Order Summary
+                    {width && width > 640 ? (
+                      " Order Summary"
+                    ) : (
+                      <div className="flex items-center gap-5">
+                        <AiOutlineShoppingCart className="w-5 h-5 text-red-800" />
+                        {states.cartlistData.length > 1
+                          ? states.cartlistData.length + " Products"
+                          : states.cartlistData.length + " Product"}
+                      </div>
+                    )}
                   </h1>
                   <div className="w-full px-10 py-[30px] border border-[#EDEDED]">
                     <div className="sub-total mb-6">
@@ -474,15 +649,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
                       </div>
                     </div>
 
-                    {/* <div className="shipping mb-6 mt-6">
-                      <span className="text-[15px] font-medium text-qblack mb-[18px] block">
-                        Shipping (+) {shippingCost}
-                      </span>
-                      <div className="flex flex-col space-y-2.5">
-                        <div></div>
-                        <div></div>
-                      </div>
-                    </div> */}
                     <div className="mt-[30px]">
                       <div className=" flex justify-between mb-5">
                         <p className="text-2xl font-medium text-qblack capitalize">
