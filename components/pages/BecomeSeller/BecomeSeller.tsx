@@ -72,13 +72,11 @@ const BecomeSeller: React.FC<Props> = (props) => {
           sellerData
         );
         if (!sellerRes) {
-          console.log(sellerRes);
           toast.error("Already exists !");
         } else {
           toast.success("Successfully Applied ! !");
           e.target.reset();
         }
-        console.log(sellerData, email);
       }
     }
     controller.setApiLoading(false);

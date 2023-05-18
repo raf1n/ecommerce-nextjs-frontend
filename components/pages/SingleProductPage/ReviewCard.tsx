@@ -13,7 +13,7 @@ interface Props {
 const ReviewCard: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const { review } = props;
-  console.log(review);
+  
   return (
     <div className="comment-item bg-white px-10 py-[32px] mb-2.5">
       <div className="comment-author flex justify-between items-center mb-3">

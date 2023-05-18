@@ -28,7 +28,6 @@ const ProfileDashboard: React.FC<Props> = (props) => {
 
       if (err) {
       } else if (res) {
-        console.log(res);
         setSellerData(res);
       }
     }

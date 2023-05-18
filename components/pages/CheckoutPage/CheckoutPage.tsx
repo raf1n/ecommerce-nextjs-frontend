@@ -64,7 +64,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
-        // console.log(res);
         setAddressData(res);
       }
     };
@@ -80,10 +79,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
   const user_slug = CookiesHandler.getSlug();
 
   const { height, width } = useWindowDimensions();
-  // -----------------------------------//
-  // var today = new Date();
-  // var todayInSeconds = today.getTime();
-  // console.log("td", todayInSeconds);
 
   const applyCoupon = async () => {
     setDiscount(0);
@@ -91,17 +86,13 @@ const CheckoutPage: React.FC<Props> = (props) => {
 
     if (res) {
       const dateString = res.expired_date;
-      console.log(dateString);
       const expDate = new Date(dateString);
       expDate.setHours(0);
       expDate.setDate(expDate.getDate() + 1);
 
       const expTimeInSeconds = expDate.getTime();
-      console.log("ed", expDate);
-      console.log("eds", expTimeInSeconds);
 
       var today = new Date();
-      console.log("tds", today.getTime());
 
       if (
         res.status === "active" &&
@@ -188,7 +179,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
       if (cartdelRes) {
         toast.success("Your Order is Placed");
         setDiscount(0);
-        console.log(values.coupon);
         // setCoupon("");
         setValues({ coupon: "" });
       }
@@ -198,13 +188,6 @@ const CheckoutPage: React.FC<Props> = (props) => {
       toast.error("An error occurred. Please try again.");
     } else if (res?.message === "SSL Order successful") {
       router.push(res?.data);
-      console.log(res);
-      // controller.setClearCartlist();
-      // const { res: cartdelRes, err } =
-      //   await EcommerceApi.deleteAllCartlistProduct(user_slug);
-      // if (cartdelRes) {
-      //   // router.push(res.data);
-      // }
     } else {
       toast.error(res?.message);
     }

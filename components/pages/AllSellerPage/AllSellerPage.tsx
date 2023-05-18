@@ -30,8 +30,6 @@ const AllSellerPage: React.FC<Props> = (props) => {
     fetchAllSeller();
   }, [searchString, sortBy, sortType]);
 
-  console.log(sellersData);
-
   return (
     <div className="w-full min-h-screen  pt-0 pb-0 ">
       <div>

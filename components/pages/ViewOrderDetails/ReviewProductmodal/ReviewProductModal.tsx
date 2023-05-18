@@ -23,8 +23,6 @@ const ReviewProductModal: React.FC<Props> = (props) => {
     rating,
   } = props;
 
-  console.log(handleReview);
-
   return (
     <>
       {reportModalSlug ? (
