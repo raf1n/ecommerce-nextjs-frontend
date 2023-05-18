@@ -11,7 +11,8 @@ import {
 
 interface Props {
   allOrders: IOrder[];
-  allCompletedOrders: IOrder[];
+  allCompletedOrdersLength: number;
+  newOrdersLength: number;
   user: IUser | null;
 }
 
@@ -59,7 +60,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
               New Orders
             </p>
             <span className="text-base md:text-[40px] text-white group-hover:text-qblacktext font-bold leading-none md:mt-1 block">
-              22
+              {props.newOrdersLength}
             </span>
           </div>
         </div>
@@ -73,7 +74,7 @@ const ProfileDashboard: React.FC<Props> = (props) => {
               Delivery Completed
             </p>
             <span className="text-base md:text-[40px] text-white group-hover:text-qblacktext font-bold leading-none md:mt-1 block">
-              {props.allCompletedOrders.length}
+              {props.allCompletedOrdersLength}
             </span>
           </div>
         </div>
