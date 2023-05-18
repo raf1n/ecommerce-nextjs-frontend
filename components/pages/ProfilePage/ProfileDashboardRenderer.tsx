@@ -69,7 +69,7 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
       );
     }
     case "personal_info": {
-      return <PersonalInfo user={loggedInUser} />;
+      return <PersonalInfo />;
     }
     case "order": {
       return <ProfileOrder orders={allOrders} />;

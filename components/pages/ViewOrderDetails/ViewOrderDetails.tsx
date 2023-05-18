@@ -206,59 +206,57 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                       </tr>
 
                       {orderData?.product_list.map((order) => (
-                        <>
-                          <tr className="bg-white border-b hover:bg-gray-50">
-                            <td className="pl-10 w-[400px] py-4 ">
-                              <div className="flex space-x-6 items-center">
-                                <div className="flex-1 flex flex-col">
-                                  <p className="font-medium text-[15px] text-blue-500 rtl:text-right rtl:pr-10">
-                                    <Link
-                                      href={`http://localhost:3000/single_product?slug=${order.slug}`}
-                                    >
-                                      {order.productName}
-                                    </Link>
-                                  </p>
-                                </div>
+                        <tr className="bg-white border-b hover:bg-gray-50">
+                          <td className="pl-10 w-[400px] py-4 ">
+                            <div className="flex space-x-6 items-center">
+                              <div className="flex-1 flex flex-col">
+                                <p className="font-medium text-[15px] text-blue-500 rtl:text-right rtl:pr-10">
+                                  <Link
+                                    href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/single_product?slug=${order.slug}`}
+                                  >
+                                    {order.productName}
+                                  </Link>
+                                </p>
                               </div>
-                            </td>
-                            <td className=" py-4">
-                              <div className="flex justify-center items-center">
-                                <div className="w-[54px] h-[40px] justify-center flex items-center border border-qgray-border">
-                                  <span>{order.quantity}</span>
-                                </div>
+                            </div>
+                          </td>
+                          <td className=" py-4">
+                            <div className="flex justify-center items-center">
+                              <div className="w-[54px] h-[40px] justify-center flex items-center border border-qgray-border">
+                                <span>{order.quantity}</span>
                               </div>
-                            </td>
-                            <td className="text-center py-4 px-2">
-                              <div className="flex space-x-1 items-center justify-center">
-                                <span className="text-[15px] font-normal">
-                                  <span>$</span>
-                                  <span>
-                                    {order.offerPrice
-                                      ? order.offerPrice
-                                      : order.price}
-                                  </span>
+                            </div>
+                          </td>
+                          <td className="text-center py-4 px-2">
+                            <div className="flex space-x-1 items-center justify-center">
+                              <span className="text-[15px] font-normal">
+                                <span>$</span>
+                                <span>
+                                  {order.offerPrice
+                                    ? order.offerPrice
+                                    : order.price}
                                 </span>
-                              </div>
-                            </td>
-                            <td className="text-center py-4 px-2">
-                              <div className="flex space-x-1 items-center justify-center">
-                                <span className="text-[15px] font-normal">
-                                  <span>$</span>
-                                  <span>{CartHandler.getPrice(order)}</span>
-                                </span>
-                              </div>
-                            </td>
-                            <td className="text-center py-4 px-2 print:hidden">
-                              <button
-                                onClick={() => setReviewModalSlug(order.slug)}
-                                type="button"
-                                className="text-green-500 text-sm font-semibold capitalize"
-                              >
-                                review
-                              </button>
-                            </td>
-                          </tr>
-                        </>
+                              </span>
+                            </div>
+                          </td>
+                          <td className="text-center py-4 px-2">
+                            <div className="flex space-x-1 items-center justify-center">
+                              <span className="text-[15px] font-normal">
+                                <span>$</span>
+                                <span>{CartHandler.getPrice(order)}</span>
+                              </span>
+                            </div>
+                          </td>
+                          <td className="text-center py-4 px-2 print:hidden">
+                            <button
+                              onClick={() => setReviewModalSlug(order.slug)}
+                              type="button"
+                              className="text-green-500 text-sm font-semibold capitalize"
+                            >
+                              review
+                            </button>
+                          </td>
+                        </tr>
                       ))}
                     </tbody>
                   </table>

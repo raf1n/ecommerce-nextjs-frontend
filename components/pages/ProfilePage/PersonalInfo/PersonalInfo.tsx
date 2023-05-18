@@ -1,21 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "./../../../../src/state/StateController";
-import Select, { components, MenuProps } from "react-select";
-import { useState } from "react";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
-import { IUser } from "../../../../interfaces/models";
-import { updateProfile } from "firebase/auth";
 import { SocialLogin } from "../../../helpers/SocialLogin";
 import style from "./PersonalInfo.module.css";
 
 import toast from "react-hot-toast";
-interface Props {
-  user: IUser | null;
-}
+interface Props {}
 
 const PersonalInfo: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
+  const user = useSelector(() => controller.states.user);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const imageChange = (e: any) => {
+    if (e.target.files[0]) {
+      console.log(e.target.files[0]);
+    }
+
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
+    }
+  };
 
   const handleUpdateProfile = async (e: any) => {
     e.preventDefault();
@@ -26,47 +31,43 @@ const PersonalInfo: React.FC<Props> = (props) => {
     formData.append("image", avatar);
 
     const { res, err } = await EcommerceApi.uploadImage(formData);
-    if (res?.data?.url || !res?.data?.url) {
-      let imageUrl;
-      imageUrl = res?.data?.url;
-      if (res?.data?.url === undefined || null) {
-        imageUrl = states.user?.avatar;
-      }
 
-      const newProfileData = {
-        fullName: e.target.name.value,
-        avatar: imageUrl,
-      };
-      console.log(newProfileData);
+    let imageUrl;
+    imageUrl = res?.data?.url;
+    if (res?.data?.url === undefined || null) {
+      imageUrl = user?.avatar;
+    }
 
-      const { res: socialRes, err } =
-        await SocialLogin.updateLoggedInUserProfile(
-          states.user?.slug,
-          newProfileData
-        );
+    const newProfileData = {
+      fullName: e.target.name.value,
+      avatar: imageUrl,
+    };
 
-      const email = states.user?.email;
-      const address = {
-        name: e.target.name.value,
-        avatar: newProfileData.avatar,
-        phone: e.target.phone.value,
-        country: e.target.country.value,
-        state: e.target.state.value,
-        city: e.target.city.value,
-        address: e.target.address.value,
-      };
+    const { res: socialRes, err: socialErr } =
+      await SocialLogin.updateLoggedInUserProfile(user?.slug, newProfileData);
 
-      if (socialRes === "Profile updated") {
-        const { res: dbRes, err } = await EcommerceApi.updateUserInfo(
-          email,
-          address
-        );
-        if (dbRes) {
-          controller.setUser(dbRes);
-          toast("Updated successfully!");
-        }
+    const email = user?.email;
+    const address = {
+      name: e.target.name.value,
+      avatar: newProfileData.avatar,
+      phone: e.target.phone.value,
+      country: e.target.country.value,
+      state: e.target.state.value,
+      city: e.target.city.value,
+      address: e.target.address.value,
+    };
+
+    if (socialRes === "Profile updated") {
+      const { res: dbRes, err } = await EcommerceApi.updateUserInfo(
+        email,
+        address
+      );
+      if (dbRes) {
+        controller.setUser(dbRes);
+        toast("Updated successfully!");
       }
     }
+
     controller.setApiLoading(false);
   };
 
@@ -74,28 +75,28 @@ const PersonalInfo: React.FC<Props> = (props) => {
     <form onSubmit={handleUpdateProfile}>
       <div className="flex flex-col-reverse lg:flex-row space-x-8 px-1 md:px-0">
         <div>
-          <div className="mb-8">
-            <div className="w-full mb-5 sm:mb-0">
+          <div className="mb-3 md:mb-8">
+            <div className="w-full md:mb-5 sm:mb-0">
               <div className="w-full h-full">
-                <label className="capitalize block  mb-2 text-qgray text-[13px] font-normal">
+                <label className="capitalize block mb-2 text-qgray text-[13px] font-normal">
                   Name
                 </label>
-                <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
+                <div className="border w-full h-full overflow-hidden relative border-qgrayBorder">
                   <input
-                    defaultValue={props.user?.fullName}
+                    defaultValue={user?.fullName}
                     name="name"
                     placeholder="Name"
                     type="text"
                     maxLength={50}
-                    className="placeholder:text-sm text-sm px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                    className="placeholder:text-sm text-sm px-3 md:px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none w-full h-10 md:h-[50px]"
                   />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="md:flex gap-x-2.5 items-center mb-8">
-            <div className="md:w-1/2 w-full mb-8 md:mb-0">
+          <div className="md:flex gap-x-2.5 items-center mb-3 md:mb-8">
+            <div className="md:w-1/2 w-full mb-3 md:mb-0">
               <div className="w-full h-full">
                 <label className="capitalize block  mb-2 text-qgray text-[13px] font-normal">
                   Email
@@ -106,62 +107,62 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 <input
                   readOnly
                   name="email"
-                  value={props.user?.email}
-                  className="border border-yellow-500 px-6 w-full h-[50px] bg-yellow-50 text-dark-gray flex items-center cursor-not-allowed rounded"
+                  value={user?.email}
+                  className="border border-yellow-500 w-full text-sm px-3 md:px-6  h-10 md:h-[50px] bg-yellow-50 text-dark-gray flex items-center cursor-not-allowed rounded"
                 />
               </div>
             </div>
 
             <div className="md:w-1/2 w-full">
               <div className="w-full h-full">
-                <label className="capitalize block  mb-2 text-qgray text-[13px] font-normal">
+                <label className="capitalize block mb-2 text-qgray text-[13px] font-normal">
                   Phone Number
                 </label>
                 <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
                   <input
-                    defaultValue={props?.user?.phone}
+                    defaultValue={user?.phone}
                     name="phone"
                     placeholder="01834 *******"
                     type="tel"
                     maxLength={50}
-                    className="placeholder:text-sm text-sm px-6 text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                    className="placeholder:text-sm text-sm text-dark-gray font-normal bg-white focus:ring-0 focus:outline-none w-full px-3 md:px-6 h-10 md:h-[50px]"
                   />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3 md:mb-8">
             <h1 className="capitalize block mb-2 text-qgray text-[13px] font-normal">
               Country*
             </h1>
 
             <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
               <input
-                defaultValue={props.user?.address?.country}
+                defaultValue={user?.address?.country}
                 name="country"
                 placeholder="country"
                 type="text"
                 maxLength={50}
-                className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                className="input-field placeholder:text-sm text-sm text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full px-3 md:px-6  h-10 md:h-[50px]"
               />
             </div>
           </div>
 
-          <div className="md:flex gap-x-2.5 items-center mb-6">
-            <div className="md:w-1/2 w-full mb-8 md:mb-0">
+          <div className="md:flex gap-x-2.5 items-center mb-3 md:mb-6">
+            <div className="md:w-1/2 w-full mb-3 md:mb-0">
               <h1 className="capitalize block mb-2 text-qgray text-[13px] font-normal">
                 State*
               </h1>
 
               <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                 <input
-                  defaultValue={props.user?.address?.state}
+                  defaultValue={user?.address?.state}
                   name="state"
                   placeholder="State"
                   type="text"
                   maxLength={50}
-                  className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                  className="input-field placeholder:text-sm text-sm text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full px-3 md:px-6  h-10 md:h-[50px]"
                 />
               </div>
             </div>
@@ -173,18 +174,18 @@ const PersonalInfo: React.FC<Props> = (props) => {
 
               <div className="input-wrapper border  w-full h-full overflow-hidden relative border-qgray-border">
                 <input
-                  defaultValue={props.user?.address?.city}
+                  defaultValue={user?.address?.city}
                   name="city"
                   placeholder="City"
                   type="text"
                   maxLength={50}
-                  className="input-field placeholder:text-sm text-sm px-6 text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                  className="input-field placeholder:text-sm text-sm text-dark-gray   font-normal bg-white focus:ring-0 focus:outline-none w-full px-3 md:px-6  h-10 md:h-[50px]"
                 />
               </div>
             </div>
           </div>
 
-          <div className="mb-8">
+          <div className="mb-3 md:mb-8">
             <div className="w-full">
               <div className="w-full h-full">
                 <label className="capitalize block  mb-2 text-qgray text-[13px] font-normal">
@@ -192,12 +193,12 @@ const PersonalInfo: React.FC<Props> = (props) => {
                 </label>
                 <div className="border  w-full h-full overflow-hidden relative border-qgrayBorder">
                   <input
-                    defaultValue={props.user?.address?.address}
+                    defaultValue={user?.address?.address}
                     name="address"
                     placeholder="Your Address here"
                     type="text"
                     maxLength={200}
-                    className="placeholder:text-sm text-sm px-6 text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                    className="placeholder:text-sm text-sm text-dark-gray  font-normal bg-white focus:ring-0 focus:outline-none w-full px-3 md:px-6  h-10 md:h-[50px]"
                   />
                 </div>
               </div>
@@ -244,30 +245,23 @@ const PersonalInfo: React.FC<Props> = (props) => {
             <div className="flex xl:justify-center justify-start">
               <div className="relative">
                 <div className="sm:w-[198px] sm:h-[198px] w-[199px] h-[199px] rounded-full overflow-hidden relative">
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      display: "block",
-                      overflow: "hidden",
-                      width: "initial",
-                      height: "initial",
-                      background: "none",
-                      opacity: "1",
-                      border: "0px",
-                      margin: "0px",
-                      padding: "0px",
-                      position: "absolute",
-                      inset: "0px",
-                    }}
-                  >
-                    <img src={states.user?.avatar} alt="profile" />
-                  </div>
+                  <img
+                    className="w-full h-full object-contain"
+                    src={
+                      selectedImage
+                        ? URL.createObjectURL(selectedImage)
+                        : user?.avatar
+                    }
+                    alt="profile"
+                  />
                 </div>
                 <input
                   type="file"
                   className={`${style["file"]} absolute`}
                   id="file"
                   name="user_avatar"
+                  onChange={imageChange}
+                  accept="image/*"
                 />
               </div>
             </div>
