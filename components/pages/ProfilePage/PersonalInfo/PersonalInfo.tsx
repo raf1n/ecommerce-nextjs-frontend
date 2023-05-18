@@ -8,15 +8,13 @@ import style from "./PersonalInfo.module.css";
 import toast from "react-hot-toast";
 interface Props {}
 
+// TODO: image upload validation on height and width
+
 const PersonalInfo: React.FC<Props> = (props) => {
   const user = useSelector(() => controller.states.user);
   const [selectedImage, setSelectedImage] = useState(null);
 
   const imageChange = (e: any) => {
-    if (e.target.files[0]) {
-      console.log(e.target.files[0]);
-    }
-
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
     }
