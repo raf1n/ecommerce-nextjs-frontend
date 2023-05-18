@@ -45,12 +45,12 @@ const ProfileReviewItem: React.FC<Props> = ({
             </span>
 
             {rating > 0 ? (
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-1">
                 <ReactStars
                   count={5}
                   value={rating}
                   edit={false}
-                  size={width && width > 640 ? 24 : 16}
+                  size={width && width > 640 ? 23 : 16}
                   isHalf={true}
                   emptyIcon={<FaRegStar />}
                   halfIcon={<FaStarHalfAlt />}
@@ -65,7 +65,7 @@ const ProfileReviewItem: React.FC<Props> = ({
 
             <div className="flex mb-1.5"></div>
             <Link
-              href={`http://localhost:3000/single_product?slug=${reviewProducts.slug}`}
+              href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/single_product?slug=${reviewProducts.slug}`}
             >
               <span className=" mb-2 sm:text-[15px] text-[13px] font-bold md:leading-[24px] line-clamp-1 hover:text-blue-600 cursor-pointer">
                 {reviewProducts.productName}
