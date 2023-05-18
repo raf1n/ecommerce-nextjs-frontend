@@ -67,7 +67,6 @@ const LoginForm: React.FC<Props> = (props) => {
       const { res: userRes, err: userErr } = await EcommerceApi.login(data);
 
       if (userErr) {
-        console.log("Login error");
         toast.error("An error occurred. Please try again.");
       } else {
         if (userRes.role === "admin") {
@@ -121,11 +120,11 @@ const LoginForm: React.FC<Props> = (props) => {
       setErrorLogin(true);
       setSuccessLogin(false);
       toast.error(err);
-      // setErrorTextLogin(err);
+
     } else {
-      console.log("resss", res);
       setErrorLogin(false);
       setLoading(false);
+
       if (!res.user.emailVerified) {
         setLoggedinSendVerify(true);
         toast.error("verify first and login again");
@@ -133,13 +132,12 @@ const LoginForm: React.FC<Props> = (props) => {
         setLoggedinSendVerifyText("Click to send verification");
       } else {
         setLoggedinSendVerify(false);
-        console.log("resooooo", res);
+        
         const token = res?.user?.accessToken;
         const user = res.user;
-        console.log("use,tok", user?.email);
-        console.log("dis", user?.displayName);
+        
         if (token && user?.email) {
-          console.log("enter");
+          
           const { email, displayName } = user;
           const data: Partial<IUser> = {
             token: token,
@@ -147,8 +145,8 @@ const LoginForm: React.FC<Props> = (props) => {
             email: email,
             avatar: "https://tinyurl.com/382e6w5t",
             fullName: displayName,
-            // role: 'buyer'
           };
+
           const { res, err } = await EcommerceApi.login(data);
 
           if (err) {
@@ -156,19 +154,19 @@ const LoginForm: React.FC<Props> = (props) => {
             setErrorLogin(true);
             setSuccessLogin(false);
             toast.error("Server Error");
-            // setErrorTextLogin("Server Error");
+            
           } else {
             setLoading(false);
             if (res.role === "admin") {
               SocialLogin.logOut();
               setErrorLogin(true);
               toast.error("Already registered as Admin");
-              // setErrorTextLogin("Already registered as Admin");
+              
             } else if (res.role === "seller") {
               SocialLogin.logOut();
               setErrorLogin(true);
               toast.error("Already registered as Seller");
-              // setErrorTextLogin("Already registered as Seller");
+              
             } else if (res.role === "buyer" && res.slug && res.access_token) {
               controller.setUser(res);
               setErrorLogin(false);
@@ -176,7 +174,6 @@ const LoginForm: React.FC<Props> = (props) => {
               CookiesHandler.setAccessToken(res.access_token);
               CookiesHandler.setSlug(res.slug as string);
               toast.success("SignIn Success");
-              // setSuccessTextLogin("SignIn Success");
               router.push("/");
             }
           }

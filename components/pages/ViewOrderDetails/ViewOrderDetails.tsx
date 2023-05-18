@@ -1,19 +1,17 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 import { IOrder } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
 import ReviewProductModal from "./ReviewProductmodal/ReviewProductModal";
 import { CartHandler } from "../../../src/utils/CartHandler";
-import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import Link from "next/link";
 interface Props {}
 
-const user_slug = CookiesHandler.getSlug();
-
 const ViewOrderDetails: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
+  const user_slug = useSelector(() => controller.states.user?.slug);
 
   const [orderData, setOrderData] = useState<IOrder | null>(null);
   const [reviewModalSlug, setReviewModalSlug] = useState<any | string>("");
@@ -22,7 +20,6 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
   const { asPath } = router;
   const orderSlug = asPath.split("/")[2];
 
-  // console.log(productSlug);
   const [rating, setRating] = useState(0);
   const ratingChanged = (newRating: number) => {
     setRating(newRating);
@@ -43,21 +40,30 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
     };
 
     const { res, err } = await EcommerceApi.addReview(review);
-    setReviewModalSlug("");
-    setRating(0);
-    controller.setApiLoading(false);
+
+    if (res) {
+      setReviewModalSlug("");
+      setRating(0);
+      controller.setApiLoading(false);
+      toast.success("Thank you for your feedback");
+    } else if (err) {
+      toast.error("Sorry, we could not process your review. Plese try again.");
+    }
   };
 
   const fetchSingleOrder = async () => {
-    const { res, err } = await EcommerceApi.getSingleOrder(orderSlug);
-    if (res) {
-      setOrderData(res);
-    } else {
+    if (user_slug && orderSlug) {
+      const { res, err } = await EcommerceApi.getSingleOrder(orderSlug);
+      if (res) {
+        setOrderData(res);
+      } else {
+      }
     }
   };
+
   useEffect(() => {
     fetchSingleOrder();
-  }, [orderSlug]);
+  }, [orderSlug, user_slug]);
 
   return (
     <div>

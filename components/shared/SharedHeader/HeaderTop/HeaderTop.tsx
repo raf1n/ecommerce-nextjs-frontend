@@ -65,10 +65,6 @@ const HeaderTop: React.FC<Props> = (props) => {
     setSideDropdownOpen(!sideDropdownOpen);
   };
 
-  // const routeSideDropdown = () => {
-  //   setShowCategory(!showCategory);
-  // };
-
   const topAllCategoriesDropdown = () => {
     setShowTopAllCatgory(!showTopAllCatgory);
   };
@@ -122,7 +118,6 @@ const HeaderTop: React.FC<Props> = (props) => {
   }, [user_slug]);
 
   const handleSearch = () => {
-    console.log(searchRef.current?.value);
 
     if (searchRef.current?.value && !searchCategory) {
       router.push({

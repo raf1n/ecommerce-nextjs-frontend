@@ -57,7 +57,6 @@ const ProductCardVertical: React.FC<Props> = (props) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(res);
         toast.success("Added To Wishlist");
         controller.setAddtoWishlist(product);
       }

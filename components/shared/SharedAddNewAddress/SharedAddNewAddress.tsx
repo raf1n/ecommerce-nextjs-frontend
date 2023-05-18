@@ -57,14 +57,12 @@ const SharedAddNewAddress: React.FC<Props> = (props) => {
         phone: e.target.phone.value,
         country: e.target.country.value,
         division: division,
-        // state: e.target.state.value,
         district: district,
-        // city: e.target.city.value,
         thana: thana,
         address: e.target.address.value,
         user_slug: user_slug,
       };
-      console.log("addresses--", addresses);
+      
       const { res, err } = await EcommerceApi.updateAddress(
         addresses,
         singleAddressData?.slug
