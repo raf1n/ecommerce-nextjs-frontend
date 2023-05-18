@@ -570,7 +570,7 @@ const CheckoutPage: React.FC<Props> = (props) => {
                     {width && width > 640 ? (
                       " Order Summary"
                     ) : (
-                      <div className="flex items-center gap-5">
+                      <div className="flex items-center gap-3">
                         <AiOutlineShoppingCart className="w-5 h-5 text-red-800" />
                         {states.cartlistData.length > 1
                           ? states.cartlistData.length + " Products"
@@ -578,46 +578,105 @@ const CheckoutPage: React.FC<Props> = (props) => {
                       </div>
                     )}
                   </h1>
-                  <div className="w-full px-10 py-[30px] border border-[#EDEDED]">
-                    <div className="sub-total mb-6">
-                      <div className=" flex justify-between mb-5">
-                        <p className="text-[13px] font-medium text-qblack uppercase">
-                          Product
-                        </p>
-                        <p className="text-[13px]  text-qblack uppercase font-bold">
-                          Total
-                        </p>
+                  <div
+                    className={
+                      width && width > 640
+                        ? "w-full px-10 py-[30px] border border-[#EDEDED]"
+                        : ""
+                    }
+                  >
+                    <div>
+                      <div
+                        className={
+                          width && width > 640 ? "sub-total mb-6" : "hidden"
+                        }
+                      >
+                        <div className=" flex justify-between mb-5">
+                          <p className="text-[13px] font-medium text-qblack uppercase">
+                            Product
+                          </p>
+                          <p className="text-[13px]  text-qblack uppercase font-bold">
+                            Total
+                          </p>
+                        </div>
+                        <div className="w-full h-[1px] bg-[#EDEDED]"></div>
                       </div>
-                      <div className="w-full h-[1px] bg-[#EDEDED]"></div>
-                    </div>
-                    <div className="product-list w-full mb-[30px]">
-                      <ul className="flex flex-col space-y-5">
-                        {states.cartlistData.map((pro) => (
-                          <>
-                            <li>
-                              <div className="flex justify-between items-center">
-                                <div>
-                                  <h4
-                                    title="Apple watch pro"
-                                    className="text-[15px] text-qblack line-clamp-1 mb-2.5"
-                                  >
-                                    {pro.productName}
-                                    <sup className="text-[13px] text-qgray ml-2 mt-2">
-                                      x{pro.quantity}
-                                    </sup>
-                                  </h4>
-                                  <p className="text-[13px] text-qgray line-clamp-1"></p>
-                                </div>
-                                <div>
-                                  <span className="text-[15px] text-qblack font-medium">
-                                    ${CartHandler.getPrice(pro)}
-                                  </span>
-                                </div>
-                              </div>
-                            </li>
-                          </>
-                        ))}
-                      </ul>
+                      {width && width > 640 ? (
+                        <div className="product-list w-full mb-[30px]">
+                          <ul className="flex flex-col space-y-5">
+                            {states.cartlistData.map((pro) => (
+                              <>
+                                <li>
+                                  <div className="flex justify-between items-center">
+                                    <div>
+                                      <h4
+                                        title="Apple watch pro"
+                                        className="text-[15px] text-qblack line-clamp-1 mb-2.5"
+                                      >
+                                        {pro.productName}
+                                        <sup className="text-[13px] text-qgray ml-2 mt-2">
+                                          x{pro.quantity}
+                                        </sup>
+                                      </h4>
+                                      <p className="text-[13px] text-qgray line-clamp-1"></p>
+                                    </div>
+                                    <div>
+                                      <span className="text-[15px] text-qblack font-medium">
+                                        ${CartHandler.getPrice(pro)}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </li>
+                              </>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : (
+                        <div className="product-list w-full mb-[30px]">
+                          <ul className="flex flex-col gap-y-3">
+                            {states.cartlistData.map((pro) => (
+                              <>
+                                <li className="border rounded">
+                                  <div className="flex justify-between items-center">
+                                    <div className="flex flex-row w-full items-center">
+                                      <div className="w-[35%]  border-r py-2">
+                                        <img
+                                          className="object-fill p-1"
+                                          src={
+                                            pro?.imageURL[0]
+                                              ? pro?.imageURL[0]
+                                              : "https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fmamunuiux.com%2Fshopo%2Fuploads%2Fcustom-images%2Fjbl-clip-4-orange-portable-speaker-2022-09-27-03-24-27-9922.png&w=1080&q=75"
+                                          }
+                                          alt=""
+                                        />
+                                      </div>
+                                      <div className="w-[70%]">
+                                        <div className="mx-3">
+                                          <h4
+                                            title="Apple watch pro"
+                                            className="text-[15px] text-qblack line-clamp-1 mb-1 font-semibold"
+                                          >
+                                            {pro.productName}
+                                          </h4>
+                                          <p className="text-[15px] text-red-600  mt-1 font-bold">
+                                            ${CartHandler.getPrice(pro)}
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <p className="text-[13px] text-qgray line-clamp-1"></p>
+                                    </div>
+                                    <div className="mx-3">
+                                      <span className="text-[15px] text-qblack font-medium">
+                                        x{pro.quantity}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </li>
+                              </>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                     <div className="w-full h-[1px] bg-[#EDEDED]"></div>
                     <div className="mt-[20px]">
@@ -662,8 +721,14 @@ const CheckoutPage: React.FC<Props> = (props) => {
                         </p>
                       </div>
                     </div>
-                    <div className="mt-[30px] mb-5 relative">
+
+                    <div className="mt-[30px] mb-4 relative">
                       <div className="w-full">
+                        {width && width < 640 && (
+                          <h1 className="mb-3 text-base">
+                            Please Select your payment method
+                          </h1>
+                        )}
                         <div className="flex flex-col space-y-3">
                           {/* cash on delivery method */}
                           <div
