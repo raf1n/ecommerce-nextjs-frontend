@@ -15,6 +15,14 @@ interface Props {
 const blog: React.FC<Props> = ({ blogData, blogComments }) => {
   const states = useSelector(() => controller.states);
 
+  const router = useRouter();
+
+  if (!blogData) {
+    router.replace("/404");
+    return <></>;
+  }
+
+
   return (
     <>
       <SharedHead
