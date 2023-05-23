@@ -8,6 +8,7 @@ import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 interface Props {
   reportModalSlug: string;
   setReportModalSlug: Dispatch<SetStateAction<string>>;
+  setSellerSlug: Dispatch<SetStateAction<string>>;
   handleReview: Function;
   ratingChanged: Function;
   rating: number;
@@ -19,6 +20,7 @@ const ReviewProductModal: React.FC<Props> = (props) => {
     handleReview,
     reportModalSlug,
     setReportModalSlug,
+    setSellerSlug,
     ratingChanged,
     rating,
   } = props;
@@ -35,7 +37,10 @@ const ReviewProductModal: React.FC<Props> = (props) => {
               <div className="title-bar flex items-center justify-between mb-3">
                 <h6 className="text-2xl font-medium">Review Products</h6>
                 <span
-                  onClick={() => setReportModalSlug("")}
+                  onClick={() => {
+                    setReportModalSlug("");
+                    setSellerSlug("");
+                  }}
                   className="cursor-pointer"
                 >
                   <svg
