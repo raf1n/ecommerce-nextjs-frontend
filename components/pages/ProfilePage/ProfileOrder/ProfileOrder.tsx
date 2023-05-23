@@ -13,8 +13,6 @@ interface Props {
 const ProfileOrder: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
-  console.log(props.orders);
-
   const { height, width } = useWindowDimensions();
 
   if (props.orders.length === 0) {

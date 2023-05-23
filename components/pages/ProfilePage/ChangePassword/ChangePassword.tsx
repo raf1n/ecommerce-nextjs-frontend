@@ -31,12 +31,10 @@ const ChangePassword: React.FC<Props> = (props) => {
       newPass
     );
 
-    console.log({ res, err });
     if (err) {
       setErrorText(err);
     } else {
       e.target.reset();
-      console.log(res);
       toast.success("Successfully updated !");
       setErrorText("");
     }

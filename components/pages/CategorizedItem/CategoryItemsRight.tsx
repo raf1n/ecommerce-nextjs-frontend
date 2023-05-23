@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
-import { Jsondata } from "../../../src/utils/Jsondata";
 import ShopNowBtn from "../../helpers/Buttons/ShopNowBtn";
 import ProductCard from "../../shared/SharedProductCard/ProductCard";
-import BestDealBanner from "../HomePagee/BestDealBanner/BestDealBanner";
 import ProductCardVertical from "./../../shared/SharedProductCard/ProductCardVertical";
 import { IProduct } from "../../../interfaces/models";
 import {

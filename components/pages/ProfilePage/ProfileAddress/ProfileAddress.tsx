@@ -72,8 +72,6 @@ const ProfileAddress: React.FC<Props> = (props) => {
         console.log(err);
       } else {
         setAddressData(res);
-        console.log(res);
-        // console.log(res);
       }
     };
     allAddress();

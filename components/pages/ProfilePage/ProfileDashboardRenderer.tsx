@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { controller } from "../../../src/state/StateController";
 import ChangePassword from "./ChangePassword/ChangePassword";
@@ -17,7 +17,8 @@ interface Props {}
 const ProfileDashboardRenderer: React.FC<Props> = (props) => {
   const loggedInUser = useSelector(() => controller.states.user);
   const [allOrders, setAllOrders] = useState<IOrder[]>([]);
-  const [allCompletedOrders, setAllCompletedOrders] = useState<IOrder[]>([]);
+  const [allCompletedOrdersLength, setAllCompletedOrdersLength] = useState(0);
+  const [newOrdersLength, setNewOrdersLength] = useState(0);
 
   const { asPath } = useRouter();
 
@@ -29,10 +30,25 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
         const { res, err } = await EcommerceApi.allOrders(loggedInUser.slug);
         if (res) {
           setAllOrders(res.data);
+
           const completedOrders = res.data.filter(
             (dt) => dt.order_status === "completed"
           );
-          setAllCompletedOrders(completedOrders);
+          setAllCompletedOrdersLength(completedOrders.length);
+
+          const newOrders = res.data.filter((ord) => {
+            const ordDate =
+              new Date(ord.createdAt as string).getTime() +
+              2 * 24 * 60 * 60 * 1000;
+
+            const todayDate = new Date().getTime();
+
+            if (todayDate <= ordDate) {
+              return ord;
+            }
+          });
+
+          setNewOrdersLength(newOrders.length);
         }
       }
     };
@@ -45,13 +61,14 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
       return (
         <ProfileDashboard
           user={loggedInUser}
-          allCompletedOrders={allCompletedOrders}
+          allCompletedOrdersLength={allCompletedOrdersLength}
+          newOrdersLength={newOrdersLength}
           allOrders={allOrders}
         />
       );
     }
     case "personal_info": {
-      return <PersonalInfo user={loggedInUser} />;
+      return <PersonalInfo />;
     }
     case "order": {
       return <ProfileOrder orders={allOrders} />;
@@ -72,7 +89,8 @@ const ProfileDashboardRenderer: React.FC<Props> = (props) => {
       return (
         <ProfileDashboard
           user={loggedInUser}
-          allCompletedOrders={allCompletedOrders}
+          allCompletedOrdersLength={allCompletedOrdersLength}
+          newOrdersLength={newOrdersLength}
           allOrders={allOrders}
         />
       );

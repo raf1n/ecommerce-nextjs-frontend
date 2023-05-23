@@ -32,6 +32,10 @@ const SingleProduct: React.FC<Props> = (props) => {
     const fetchProductData = async () => {
       const { res, err } = await EcommerceApi.getSingleProduct(productSlug);
       setSingleProduct(res);
+
+      if (err) {
+        router.replace("/404");
+      }
     };
 
     if (!states.initialDataLoading && router.isReady) {

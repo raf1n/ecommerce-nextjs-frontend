@@ -71,7 +71,6 @@ export interface LoginInterface {
 
 export class EcommerceApi {
   static async login(data: Partial<IUser>): Promise<ILoginResponse> {
-    console.log(data.token);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -105,7 +104,6 @@ export class EcommerceApi {
   static async uploadLogoandCover(
     data: Partial<any>
   ): Promise<MyFetchInterface> {
-    console.log("data logo cover img -", data);
     const requestOptions = {
       method: "POST",
       body: data,
@@ -120,7 +118,6 @@ export class EcommerceApi {
 
   // image add
   static async uploadImage(data: Partial<any>): Promise<MyFetchInterface> {
-    console.log("uploadImage-", data);
     const requestOptions = {
       method: "POST",
       body: data,
@@ -199,7 +196,6 @@ export class EcommerceApi {
     product_slug: string | undefined,
     user_slug: string | undefined
   ): Promise<MyFetchInterface> {
-    console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     const requestOptions = {
       method: "DELETE",
@@ -216,8 +212,6 @@ export class EcommerceApi {
   static async deleteAllWishlistProduct(
     user_slug: string | undefined
   ): Promise<MyFetchInterface> {
-    console.log(API_ENDPOINT);
-    console.log(user_slug);
     const myHeaders = new Headers();
 
     const requestOptions = {
@@ -233,7 +227,6 @@ export class EcommerceApi {
   }
   // order
   static async postOrder(order: IOrder): Promise<IOrderResponse> {
-    console.log("from api", order);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const requestOptions = {
@@ -307,8 +300,6 @@ export class EcommerceApi {
       redirect: "follow",
     };
 
-    console.log(shopName);
-
     return await callFetch(
       `${API_ENDPOINT}/products/filter-by-shop/${shopName}?search=${search}&categories=${categories}&sub_category=${subCategory}&brands=${brands}&highlight=${highlight}&min=${min}&max=${max}`,
       requestOptions
@@ -331,7 +322,6 @@ export class EcommerceApi {
   static async addReportedItem(
     data: Partial<IReportedItem>
   ): Promise<MyFetchInterface> {
-    console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const requestOptions = {
@@ -465,8 +455,6 @@ export class EcommerceApi {
   static async createAddress(
     data: Partial<IAddress>
   ): Promise<IAddressResponse> {
-    console.log(data);
-    console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -521,8 +509,6 @@ export class EcommerceApi {
   //Delete Address Data
 
   static async deleteAddress(slug: string): Promise<MyFetchInterface> {
-    console.log(API_ENDPOINT);
-    console.log(slug);
     const myHeaders = new Headers();
 
     const requestOptions = {
@@ -538,8 +524,6 @@ export class EcommerceApi {
   static async deleteAllCartlistProduct(
     user_slug: string | undefined
   ): Promise<MyFetchInterface> {
-    console.log(API_ENDPOINT);
-    console.log(user_slug);
     const myHeaders = new Headers();
 
     const requestOptions = {
@@ -578,10 +562,7 @@ export class EcommerceApi {
     user_slug: string | undefined,
     order_status?: string
   ): Promise<IAllOrderResponse> {
-    console.log(API_ENDPOINT);
     const myHeaders = new Headers();
-    console.log(user_slug);
-    console.log(order_status);
     const requestOptions = {
       headers: myHeaders,
       redirect: "follow",
@@ -598,10 +579,8 @@ export class EcommerceApi {
   static async getLoggedInUser(
     email: string | undefined
   ): Promise<MyFetchInterface> {
-    console.log(API_ENDPOINT);
     const myHeaders = new Headers();
     myHeaders.append("content-type", "application/json");
-    console.log(email);
     const requestOptions = {
       method: "GET",
       headers: myHeaders,
@@ -610,23 +589,6 @@ export class EcommerceApi {
 
     return await callFetch(`${API_ENDPOINT}/users/${email}`, requestOptions);
   }
-
-  // get all sliders
-
-  // static async allSlidersAdmin(query: string): Promise<ISliderResponse> {
-  //   console.log(API_ENDPOINT);
-  //   const myHeaders = new Headers();
-  //   console.log(query);
-  //   const requestOptions = {
-  //     headers: myHeaders,
-  //     redirect: "follow",
-  //   };
-
-  //   return await callFetch(
-  //     `${API_ENDPOINT}/slider/admin?${query}`,
-  //     requestOptions
-  //   );
-  // }
 
   //get all Slider
   static async getAllSlider(): Promise<ISliderResponse> {
@@ -798,7 +760,6 @@ export class EcommerceApi {
 
   // get filtered blog
   static async getFilteredBlog(cat: string): Promise<IFilteredBlogResponse> {
-    console.log("act api", cat);
     const myHeaders = new Headers();
     const requestOptions = {
       method: "GET",
@@ -821,7 +782,6 @@ export class EcommerceApi {
       body: JSON.stringify(data),
       redirect: "follow",
     };
-    console.log(data);
 
     return await callFetch(`${API_ENDPOINT}/subscriber`, requestOptions);
   }
@@ -938,7 +898,6 @@ export class EcommerceApi {
 
   // coupon apply
   static async applyCoupon(coupon: string): Promise<any> {
-    // console.log(coupon, "in ecom api");
     const myHeaders = new Headers();
     const requestOptions = {
       method: "GET",

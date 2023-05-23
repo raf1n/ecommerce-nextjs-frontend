@@ -85,7 +85,6 @@ export class SocialLogin {
         })
 
         .catch((error) => {
-          console.log("repoo", error);
           if (
             error.message === "Firebase: Error (auth/email-already-in-use)."
           ) {
@@ -141,7 +140,6 @@ export class SocialLogin {
 
       signInWithEmailAndPassword(auth, email, password)
         .then((result) => {
-          console.log("loginWithEmailPassword", result);
           resolve({
             res: result,
             err: null,
@@ -233,12 +231,10 @@ export class SocialLogin {
       .then(() => {
         // Password reset email sent!
         // ..
-        console.log("hhhh");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log("kikii", error.message);
         // ..
       });
   }
@@ -289,8 +285,6 @@ export class SocialLogin {
     const auth = getAuth();
     const result = await signInWithPopup(auth, provider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
-    console.log("result", result);
-    console.log("credential", credential);
     const token = credential?.accessToken;
     const user = result.user;
     return {
@@ -320,7 +314,6 @@ export class SocialLogin {
   }
 
   static async logOut(): Promise<void> {
-    console.log("loggedout");
     const auth = getAuth();
     await signOut(auth);
     CookiesHandler.removeAccessToken();

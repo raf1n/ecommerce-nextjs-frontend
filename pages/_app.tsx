@@ -27,7 +27,7 @@ export default function MyApp(props: AppProps) {
 
   useEffect(() => {
     if (isMounted) {
-      // console.log("hash", window.location.hash);
+      
     } else {
       setMounted(true);
     }
@@ -55,7 +55,7 @@ export default function MyApp(props: AppProps) {
           />
           <Toaster />
           <Header />
-          <div className="p-2">
+          <div className="p-2 md:p-0">
             <Component {...pageProps} />
           </div>
           <Footer />
