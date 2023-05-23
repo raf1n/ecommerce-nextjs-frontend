@@ -47,7 +47,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
       controller.setApiLoading(false);
       toast.success("Thank you for your feedback");
     } else if (err) {
-      toast.error("Sorry, we could not process your review. Plese try again.");
+      toast.error("Sorry, we could not process your review. Please try again.");
     }
   };
 
@@ -57,6 +57,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
       if (res) {
         setOrderData(res);
       } else {
+        router.replace("/404");
       }
     }
   };
