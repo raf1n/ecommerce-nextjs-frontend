@@ -22,7 +22,7 @@ const ProfileReviews: React.FC<Props> = (props) => {
       if (res) {
         setReviewDatas(res);
       } else {
-        console.log(" reviews=", err);
+        console.log(err);
       }
     }
   };

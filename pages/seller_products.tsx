@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import React from "react";
 import { useSelector } from "react-redux";
 import SellerProducts from "../components/pages/AllSellerPage/SellerProducts";
@@ -8,21 +7,17 @@ import { IProduct, ISeller } from "../interfaces/models";
 import SharedHead from "../components/shared/SharedHead/SharedHead";
 
 interface Props {
-  // shopName: string;
   sellerData: ISeller;
   filteredProducts: IProduct[];
   count: number;
 }
 
 const seller_products: React.FC<Props> = ({
-  // shopName,
   sellerData,
   filteredProducts,
   count,
 }) => {
   const states = useSelector(() => controller.states);
-  console.log(sellerData);
-  // const title = shopName;
 
   return (
     <>
@@ -38,7 +33,6 @@ const seller_products: React.FC<Props> = ({
 
 export async function getServerSideProps(context: any) {
   const query = context.query;
-  // console.log("🚀 ~ file: products.tsx:77 ~ getServerSideProps ~ query:", query)
 
   const seller = query.seller || "";
   const search = query.search || "";
@@ -59,11 +53,9 @@ export async function getServerSideProps(context: any) {
     min,
     max
   );
-  // console.log("🚀 ~ file: products.tsx:98 ~ getServerSideProps ~ res:", res)
 
   return {
     props: {
-      // shopName: res.sellerData.shopname || "Seller Products",
       sellerData: res.sellerData,
       filteredProducts: res.filteredProducts,
       count: res.count,

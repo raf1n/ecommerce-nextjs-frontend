@@ -71,7 +71,6 @@ const ProductCard: React.FC<Props> = ({ product, grid = false }) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(res);
         toast.success("Added To Wishlist");
         controller.setAddtoWishlist(newProduct);
       }

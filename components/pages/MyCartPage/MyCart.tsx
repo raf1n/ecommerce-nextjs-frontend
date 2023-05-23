@@ -1,13 +1,12 @@
 import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
-import { ICartProduct, IProduct } from "../../../interfaces/models";
+import { ICartProduct } from "../../../interfaces/models";
 import { controller } from "../../../src/state/StateController";
 import SharedEmptyCart from "../../shared/SharedEmptyCart/SharedEmptyCart";
 import PageHeader from "../../shared/SharedPageHeader/PageHeader";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { CartHandler } from "../../../src/utils/CartHandler";
-import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import toast from "react-hot-toast";
 import useWindowDimensions from "../../shared/hooks/useWindowDimensions";
 interface Props {}

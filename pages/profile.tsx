@@ -15,7 +15,7 @@ const Profile: NextPage<Props> = (props) => {
 
   useEffect(() => {
     if (isMounted) {
-      // console.log("hash", window.location.hash);
+      
     } else {
       setMounted(true);
     }

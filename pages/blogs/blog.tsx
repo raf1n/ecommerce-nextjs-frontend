@@ -15,6 +15,14 @@ interface Props {
 const blog: React.FC<Props> = ({ blogData, blogComments }) => {
   const states = useSelector(() => controller.states);
 
+  const router = useRouter();
+
+  if (!blogData) {
+    router.replace("/404");
+    return <></>;
+  }
+
+
   return (
     <>
       <SharedHead
@@ -28,8 +36,6 @@ const blog: React.FC<Props> = ({ blogData, blogComments }) => {
 };
 
 export async function getServerSideProps(context: any) {
-  console.log(context.query.slug);
-
   const slug = context.query.slug || "iphone_12_is_very_good_1rr2-Op57";
 
   const { res, err } = await EcommerceApi.getSingleBlog(slug);

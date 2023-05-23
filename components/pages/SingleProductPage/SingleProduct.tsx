@@ -17,25 +17,36 @@ const SingleProduct: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
 
   const router = useRouter();
-  const { asPath } = router;
+  const { asPath, query } = router;
+
   // const [title, setTitle] = useState("")
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
   const [reportModalSlug, setReportModalSlug] = useState<any | string>("");
 
   const user_slug = CookiesHandler.getSlug();
 
-  const productSlug = asPath.split("=")[1];
-
   useEffect(() => {
+    if (!router.isReady) return;
+
+    let productSlug = query.slug;
+
     const fetchProductData = async () => {
-      const { res, err } = await EcommerceApi.getSingleProduct(productSlug);
-      setSingleProduct(res);
+      const { res, err } = await EcommerceApi.getSingleProduct(
+        productSlug as string
+      );
+      if (res) {
+        setSingleProduct(res);
+      }
+
+      if (err) {
+        router.replace("/404");
+      }
     };
 
-    if (!states.initialDataLoading) {
+    if (!states.initialDataLoading && router.isReady) {
       fetchProductData();
     }
-  }, [productSlug, states.initialDataLoading]);
+  }, [router.isReady, query.slug, states.initialDataLoading]);
 
   const handleReport = (e: any) => {
     e.preventDefault();

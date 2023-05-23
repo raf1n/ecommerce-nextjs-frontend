@@ -6,21 +6,18 @@ import Styles from "./signup.module.css";
 import Link from "next/link";
 import { SocialLogin } from "../../helpers/SocialLogin";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
-import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import { IUser } from "../../../interfaces/models";
 import toast from "react-hot-toast";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 interface Props {}
 
 const Signup: React.FC<Props> = (props) => {
   const states = useSelector(() => controller.states);
   const [checked, setChecked] = useState(false);
   const router = useRouter();
-  // const [email, setEmail] = useState('');
+  
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState("");
-  // const [success, setSuccess] = useState(false);
-  // const [successText, setSuccessText] = useState('')
 
   const [sendVerifyText, setSendVerifyText] = useState(false);
 
@@ -32,10 +29,9 @@ const Signup: React.FC<Props> = (props) => {
     SocialLogin.initFirebase();
   }, []);
 
-  //sign Up
   const handleEmailPasswordSignUp = async (e: any) => {
     e.preventDefault();
-    console.log(e.target.password.value);
+
     const password = e.target.password.value;
     const firstName = e.target.fname.value;
     const lastName = e.target.lname.value;
@@ -45,11 +41,8 @@ const Signup: React.FC<Props> = (props) => {
     if (e.target.password.value.length < 6) {
       setError(true);
       toast.error("password must be 6 characters minimum");
-      // setErrorText("password must be 6 characters minimum");
+      
     } else {
-      console.log("display", displayName);
-      console.log("email", email);
-      console.log("pass", password);
       const { res, err } = await SocialLogin.signUpWithEmailPassword(
         displayName,
         email,
@@ -58,15 +51,12 @@ const Signup: React.FC<Props> = (props) => {
       if (err) {
         setError(true);
         toast.error(err);
-        // setErrorText(err);
+        
       } else {
-        console.log("resooooo", res);
         const token = res?.user?.accessToken;
         const user = res.user;
-        console.log("use,tok", user?.email);
-        console.log("dis", user?.displayName);
+        
         if (token && user?.email) {
-          console.log("enter");
           const { email } = user;
           const data: Partial<IUser> = {
             token: token,
@@ -76,13 +66,13 @@ const Signup: React.FC<Props> = (props) => {
             fullName: displayName,
             role: "buyer",
           };
+
           const { res, err } = await EcommerceApi.login(data);
           if (err) {
             setError(true);
-            // setSuccess(false)
             toast.error("Database Server Error");
-            // setErrorText("Database Server Error");
             SocialLogin.loginWithEmailPasswordAfterServerError();
+          
           } else {
             SocialLogin.sendEmail();
             setSendVerifyText(true);

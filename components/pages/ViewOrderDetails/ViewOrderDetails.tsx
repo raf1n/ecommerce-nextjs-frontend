@@ -1,32 +1,45 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 import { IOrder } from "../../../interfaces/models";
 import { EcommerceApi } from "../../../src/API/EcommerceApi";
 import { controller } from "../../../src/state/StateController";
 import ReviewProductModal from "./ReviewProductmodal/ReviewProductModal";
 import { CartHandler } from "../../../src/utils/CartHandler";
-import { CookiesHandler } from "../../../src/utils/CookiesHandler";
 import Link from "next/link";
 interface Props {}
 
-const user_slug = CookiesHandler.getSlug();
-
 const ViewOrderDetails: React.FC<Props> = (props) => {
-  const states = useSelector(() => controller.states);
+  const user_slug = useSelector(() => controller.states.user?.slug);
 
   const [orderData, setOrderData] = useState<IOrder | null>(null);
   const [reviewModalSlug, setReviewModalSlug] = useState<any | string>("");
+  const [sellerSlug, setSellerSlug] = useState<any | string>("");
 
   const router = useRouter();
   const { asPath } = router;
   const orderSlug = asPath.split("/")[2];
 
-  // console.log(productSlug);
   const [rating, setRating] = useState(0);
   const ratingChanged = (newRating: number) => {
     setRating(newRating);
   };
+
+  const fetchSingleOrder = async () => {
+    if (user_slug && orderSlug) {
+      const { res, err } = await EcommerceApi.getSingleOrder(orderSlug);
+      if (res) {
+        setOrderData(res);
+      } else {
+        router.replace("/404");
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchSingleOrder();
+  }, [orderSlug, user_slug]);
 
   const handleReview = async (e: any) => {
     e.preventDefault();
@@ -36,6 +49,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
       product_slug: reviewModalSlug,
       order_slug: orderData?.slug,
       user_slug: user_slug,
+      seller_slug: sellerSlug,
       name: e.target.name.value,
       message: e.target.message.value,
       rating: rating,
@@ -43,21 +57,17 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
     };
 
     const { res, err } = await EcommerceApi.addReview(review);
-    setReviewModalSlug("");
-    setRating(0);
+
+    if (res) {
+      setReviewModalSlug("");
+      setRating(0);
+      toast.success("Thank you for your feedback");
+    } else if (err) {
+      toast.error("Sorry, we could not process your review. Please try again.");
+    }
+    
     controller.setApiLoading(false);
   };
-
-  const fetchSingleOrder = async () => {
-    const { res, err } = await EcommerceApi.getSingleOrder(orderSlug);
-    if (res) {
-      setOrderData(res);
-    } else {
-    }
-  };
-  useEffect(() => {
-    fetchSingleOrder();
-  }, [orderSlug]);
 
   return (
     <div>
@@ -206,59 +216,60 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                       </tr>
 
                       {orderData?.product_list.map((order) => (
-                        <>
-                          <tr className="bg-white border-b hover:bg-gray-50">
-                            <td className="pl-10 w-[400px] py-4 ">
-                              <div className="flex space-x-6 items-center">
-                                <div className="flex-1 flex flex-col">
-                                  <p className="font-medium text-[15px] text-blue-500 rtl:text-right rtl:pr-10">
-                                    <Link
-                                      href={`http://localhost:3000/single_product?slug=${order.slug}`}
-                                    >
-                                      {order.productName}
-                                    </Link>
-                                  </p>
-                                </div>
+                        <tr className="bg-white border-b hover:bg-gray-50">
+                          <td className="pl-10 w-[400px] py-4 ">
+                            <div className="flex space-x-6 items-center">
+                              <div className="flex-1 flex flex-col">
+                                <p className="font-medium text-[15px] text-blue-500 rtl:text-right rtl:pr-10">
+                                  <Link
+                                    href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/single_product?slug=${order.slug}`}
+                                  >
+                                    {order.productName}
+                                  </Link>
+                                </p>
                               </div>
-                            </td>
-                            <td className=" py-4">
-                              <div className="flex justify-center items-center">
-                                <div className="w-[54px] h-[40px] justify-center flex items-center border border-qgray-border">
-                                  <span>{order.quantity}</span>
-                                </div>
+                            </div>
+                          </td>
+                          <td className=" py-4">
+                            <div className="flex justify-center items-center">
+                              <div className="w-[54px] h-[40px] justify-center flex items-center border border-qgray-border">
+                                <span>{order.quantity}</span>
                               </div>
-                            </td>
-                            <td className="text-center py-4 px-2">
-                              <div className="flex space-x-1 items-center justify-center">
-                                <span className="text-[15px] font-normal">
-                                  <span>$</span>
-                                  <span>
-                                    {order.offerPrice
-                                      ? order.offerPrice
-                                      : order.price}
-                                  </span>
+                            </div>
+                          </td>
+                          <td className="text-center py-4 px-2">
+                            <div className="flex space-x-1 items-center justify-center">
+                              <span className="text-[15px] font-normal">
+                                <span>$</span>
+                                <span>
+                                  {order.offerPrice
+                                    ? order.offerPrice
+                                    : order.price}
                                 </span>
-                              </div>
-                            </td>
-                            <td className="text-center py-4 px-2">
-                              <div className="flex space-x-1 items-center justify-center">
-                                <span className="text-[15px] font-normal">
-                                  <span>$</span>
-                                  <span>{CartHandler.getPrice(order)}</span>
-                                </span>
-                              </div>
-                            </td>
-                            <td className="text-center py-4 px-2 print:hidden">
-                              <button
-                                onClick={() => setReviewModalSlug(order.slug)}
-                                type="button"
-                                className="text-green-500 text-sm font-semibold capitalize"
-                              >
-                                review
-                              </button>
-                            </td>
-                          </tr>
-                        </>
+                              </span>
+                            </div>
+                          </td>
+                          <td className="text-center py-4 px-2">
+                            <div className="flex space-x-1 items-center justify-center">
+                              <span className="text-[15px] font-normal">
+                                <span>$</span>
+                                <span>{CartHandler.getPrice(order)}</span>
+                              </span>
+                            </div>
+                          </td>
+                          <td className="text-center py-4 px-2 print:hidden">
+                            <button
+                              onClick={() => {
+                                setReviewModalSlug(order.slug);
+                                setSellerSlug(order?.seller_slug);
+                              }}
+                              type="button"
+                              className="text-green-500 text-sm font-semibold capitalize"
+                            >
+                              review
+                            </button>
+                          </td>
+                        </tr>
                       ))}
                     </tbody>
                   </table>
@@ -306,6 +317,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
         rating={rating}
         ratingChanged={ratingChanged}
         setReportModalSlug={setReviewModalSlug}
+        setSellerSlug={setSellerSlug}
         reportModalSlug={reviewModalSlug}
         handleReview={handleReview}
       />

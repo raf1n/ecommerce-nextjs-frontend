@@ -25,13 +25,10 @@ const RelatedProductSection: React.FC<Props> = (props) => {
     const fetchProductData = async () => {
       if (productSlug !== "[id]") {
         const { res, err } = await EcommerceApi.getSingleProduct(productSlug);
-        console.log(res);
 
         if (res) {
-          console.log(res.catSlug);
 
           categorySlug = res.catSlug;
-          console.log(categorySlug ? categorySlug : "null");
 
           if (categorySlug) {
             const { res, err } = await EcommerceApi.getRelatedProduct(
@@ -39,7 +36,6 @@ const RelatedProductSection: React.FC<Props> = (props) => {
             );
             if (res) {
               setRelatedProduct(res);
-              console.log(res);
             }
           }
         }
