@@ -15,6 +15,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
 
   const [orderData, setOrderData] = useState<IOrder | null>(null);
   const [reviewModalSlug, setReviewModalSlug] = useState<any | string>("");
+  const [sellerSlug, setSellerSlug] = useState<any | string>("");
 
   const router = useRouter();
   const { asPath } = router;
@@ -23,32 +24,6 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
   const [rating, setRating] = useState(0);
   const ratingChanged = (newRating: number) => {
     setRating(newRating);
-  };
-
-  const handleReview = async (e: any) => {
-    e.preventDefault();
-    controller.setApiLoading(true);
-
-    const review = {
-      product_slug: reviewModalSlug,
-      order_slug: orderData?.slug,
-      user_slug: user_slug,
-      name: e.target.name.value,
-      message: e.target.message.value,
-      rating: rating,
-      status: "active",
-    };
-
-    const { res, err } = await EcommerceApi.addReview(review);
-
-    if (res) {
-      setReviewModalSlug("");
-      setRating(0);
-      controller.setApiLoading(false);
-      toast.success("Thank you for your feedback");
-    } else if (err) {
-      toast.error("Sorry, we could not process your review. Please try again.");
-    }
   };
 
   const fetchSingleOrder = async () => {
@@ -65,6 +40,34 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
   useEffect(() => {
     fetchSingleOrder();
   }, [orderSlug, user_slug]);
+
+  const handleReview = async (e: any) => {
+    e.preventDefault();
+    controller.setApiLoading(true);
+
+    const review = {
+      product_slug: reviewModalSlug,
+      order_slug: orderData?.slug,
+      user_slug: user_slug,
+      seller_slug: sellerSlug,
+      name: e.target.name.value,
+      message: e.target.message.value,
+      rating: rating,
+      status: "active",
+    };
+
+    const { res, err } = await EcommerceApi.addReview(review);
+
+    if (res) {
+      setReviewModalSlug("");
+      setRating(0);
+      toast.success("Thank you for your feedback");
+    } else if (err) {
+      toast.error("Sorry, we could not process your review. Please try again.");
+    }
+    
+    controller.setApiLoading(false);
+  };
 
   return (
     <div>
@@ -256,7 +259,10 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
                           </td>
                           <td className="text-center py-4 px-2 print:hidden">
                             <button
-                              onClick={() => setReviewModalSlug(order.slug)}
+                              onClick={() => {
+                                setReviewModalSlug(order.slug);
+                                setSellerSlug(order?.seller_slug);
+                              }}
                               type="button"
                               className="text-green-500 text-sm font-semibold capitalize"
                             >
@@ -311,6 +317,7 @@ const ViewOrderDetails: React.FC<Props> = (props) => {
         rating={rating}
         ratingChanged={ratingChanged}
         setReportModalSlug={setReviewModalSlug}
+        setSellerSlug={setSellerSlug}
         reportModalSlug={reviewModalSlug}
         handleReview={handleReview}
       />
