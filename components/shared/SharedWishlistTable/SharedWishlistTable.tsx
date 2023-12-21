@@ -30,7 +30,7 @@ const SharedWishlistTable: React.FC<Props> = (props) => {
         controller.setRemoveWishlistSingleProduct(product);
       }
     } else {
-      toast.error("Please login first");
+      toast.error("Please Login to add in Wishlist");
     }
     controller.setApiLoading(false);
   };
@@ -57,7 +57,7 @@ const SharedWishlistTable: React.FC<Props> = (props) => {
         </tr>
         {states.wishlistData?.map((item, i) => (
           <SharedWishListItem
-          width={width}
+            width={width}
             item={item}
             deleteWishlistProduct={deleteWishlistProduct}
             key={i}

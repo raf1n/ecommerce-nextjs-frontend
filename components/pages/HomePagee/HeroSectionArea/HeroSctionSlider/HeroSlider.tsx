@@ -73,10 +73,10 @@ const HeroSlider: React.FC<Props> = (props) => {
                       </span>
                     </div>
                     <div className="md:mb-[30px] mb-[15px]">
-                      <p className="md:text-[50px] text-[20px] leading-none text-qblack md:mb-3">
+                      <p className="md:text-[50px] text-[20px] leading-none text-white md:mb-3">
                         {el.titleOne}
                       </p>
-                      <h1 className="md:text-[50px] text-[20px] md:w-[400px] md:leading-[66px] text-qblack font-bold">
+                      <h1 className="md:text-[50px] text-[20px] md:w-[400px] md:leading-[66px] text-white font-bold">
                         {el.titleTWo}
                       </h1>
                     </div>

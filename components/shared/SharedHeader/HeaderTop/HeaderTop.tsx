@@ -118,7 +118,6 @@ const HeaderTop: React.FC<Props> = (props) => {
   }, [user_slug]);
 
   const handleSearch = () => {
-
     if (searchRef.current?.value && !searchCategory) {
       router.push({
         pathname: "products",
@@ -516,15 +515,15 @@ const HeaderTop: React.FC<Props> = (props) => {
                     <span className={`${styles["spanStyle"]}`}>
                       <span className={`${styles["spanStyle2"]}`}>
                         <img
-                          className={`${styles["imgStyle2"]}`}
-                          src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Flogo-2022-11-22-11-19-02-4634.png&w=256&q=75"
+                          className={`w-20 h-20`}
+                          src="https://res.cloudinary.com/nayem1816/image/upload/v1703148421/online-course-application/wastageImage/ne9510yh5yxatsz3bhxh.png"
                           alt="logo"
                         />
                       </span>
 
                       <img
                         className={`${styles["imgStyle"]}`}
-                        src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Flogo-2022-11-22-11-19-02-4634.png&w=256&q=75"
+                        src="https://res.cloudinary.com/nayem1816/image/upload/v1703148421/online-course-application/wastageImage/ne9510yh5yxatsz3bhxh.png"
                         alt="logo"
                       />
                     </span>
@@ -859,14 +858,14 @@ const HeaderTop: React.FC<Props> = (props) => {
                   <span className={`${styles["spanStyle"]}`}>
                     <span className={`${styles["spanStyle2"]}`}>
                       <img
-                        className={`${styles["imgStyle2"]}`}
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27153%27%20height=%2744%27/%3e"
+                        className={`w-20 h-20`}
+                        src="https://res.cloudinary.com/nayem1816/image/upload/v1703148421/online-course-application/wastageImage/ne9510yh5yxatsz3bhxh.png"
                         alt="logo"
                       />
                     </span>
                     <img
-                      className={`${styles["imgStyle"]}`}
-                      src="https://shopo-ecom.vercel.app/_next/image?url=https%3A%2F%2Fapi.websolutionus.com%2Fshopo%2Fuploads%2Fwebsite-images%2Flogo-2022-11-22-11-19-02-4634.png&w=256&q=75"
+                      className={`w-20 h-20 hidden`}
+                      src="https://res.cloudinary.com/nayem1816/image/upload/v1703148421/online-course-application/wastageImage/ne9510yh5yxatsz3bhxh.png"
                       alt="logo"
                     />
                   </span>
