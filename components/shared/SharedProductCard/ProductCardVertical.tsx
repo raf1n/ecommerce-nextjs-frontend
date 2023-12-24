@@ -45,7 +45,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
 
   const handleWishlist = async () => {
     if (!user_slug) {
-      toast.error("Please login first");
+      toast.error("Please Login to add in wishlist");
       return;
     }
     controller.setApiLoading(true);
@@ -98,7 +98,7 @@ const ProductCardVertical: React.FC<Props> = (props) => {
 
   const handleCartToggle = async () => {
     if (!user_slug) {
-      toast.error("Please login first");
+      toast.error("Please Login to add in Cart");
       return;
     }
 

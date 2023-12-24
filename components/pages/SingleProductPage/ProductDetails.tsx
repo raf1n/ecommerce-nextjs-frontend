@@ -96,7 +96,7 @@ const ProductDetails: React.FC<Props> = (props) => {
 
   const handleIncreaseQuantity = async (item: ICartProduct) => {
     if (!user_slug) {
-      toast.error("Please Login First");
+      toast.error("Please Login to perform this Operation");
       return;
     }
 
@@ -166,7 +166,7 @@ const ProductDetails: React.FC<Props> = (props) => {
 
   const handleWishlist = async () => {
     if (!user_slug) {
-      toast.error("Please Login First");
+      toast.error("Please Login to add in Wishlist");
       return;
     }
 

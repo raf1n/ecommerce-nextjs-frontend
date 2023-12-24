@@ -56,7 +56,7 @@ const ProductCard: React.FC<Props> = ({ product, grid = false }) => {
 
   const handleWishlist = async () => {
     if (!user_slug) {
-      toast.error("Please login first");
+      toast.error("Please Login to add in Wishlist");
       return;
     }
 
@@ -94,7 +94,7 @@ const ProductCard: React.FC<Props> = ({ product, grid = false }) => {
 
   const handleCartToggle = async () => {
     if (!user_slug) {
-      toast.error("Please login first");
+      toast.error("Please Login to add in Cart");
       return;
     }
 

@@ -5,7 +5,12 @@ import { ICategories, IMegaCategory } from "../../../../interfaces/models";
 import { EcommerceApi } from "../../../../src/API/EcommerceApi";
 import { controller } from "../../../../src/state/StateController";
 import styles from "./styles.module.css";
-import { AllCategoriesIcon, AnchorIcon, ArrowIcon, DownArrowIcon } from "../../../../src/utils/SvgReturn";
+import {
+  AllCategoriesIcon,
+  AnchorIcon,
+  ArrowIcon,
+  DownArrowIcon,
+} from "../../../../src/utils/SvgReturn";
 
 interface Props {}
 
@@ -139,7 +144,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                   <ul className="nav-wrapper flex xl:space-x-10 space-x-5">
                     <li>
                       <span className="flex items-center text-sm font-semibold cursor-pointer ">
-                        <span>Shop</span>
+                        <span>Trending</span>
                         <span className="ml-1.5 ">
                           <DownArrowIcon />
                         </span>
@@ -247,7 +252,7 @@ const HeaderDropdown: React.FC<Props> = (props) => {
                     </li>
                     <li className="relative">
                       <span className="flex items-center text-sm font-semibold cursor-pointer ">
-                        <span>Pages</span>
+                        <span>More</span>
                         <span className="ml-1.5 ">
                           <DownArrowIcon />
                         </span>
