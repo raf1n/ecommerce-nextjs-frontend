@@ -120,7 +120,6 @@ const LoginForm: React.FC<Props> = (props) => {
       setErrorLogin(true);
       setSuccessLogin(false);
       toast.error(err);
-
     } else {
       setErrorLogin(false);
       setLoading(false);
@@ -132,12 +131,11 @@ const LoginForm: React.FC<Props> = (props) => {
         setLoggedinSendVerifyText("Click to send verification");
       } else {
         setLoggedinSendVerify(false);
-        
+
         const token = res?.user?.accessToken;
         const user = res.user;
-        
+
         if (token && user?.email) {
-          
           const { email, displayName } = user;
           const data: Partial<IUser> = {
             token: token,
@@ -154,19 +152,16 @@ const LoginForm: React.FC<Props> = (props) => {
             setErrorLogin(true);
             setSuccessLogin(false);
             toast.error("Server Error");
-            
           } else {
             setLoading(false);
             if (res.role === "admin") {
               SocialLogin.logOut();
               setErrorLogin(true);
               toast.error("Already registered as Admin");
-              
             } else if (res.role === "seller") {
               SocialLogin.logOut();
               setErrorLogin(true);
               toast.error("Already registered as Seller");
-              
             } else if (res.role === "buyer" && res.slug && res.access_token) {
               controller.setUser(res);
               setErrorLogin(false);
@@ -185,7 +180,7 @@ const LoginForm: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="lg:w-[572px] w-full h-[783px] bg-white flex flex-col justify-center sm:p-10 p-5 border border-[#E0E0E0]">
+    <div className="lg:w-[572px] w-full h-[583px] bg-white flex flex-col justify-center sm:p-10 p-5 border border-[#E0E0E0]">
       <div className="w-full">
         <div className="flex flex-col justify-center items-center relative text-center mb-7">
           <h1 className="text-[34px] font-bold leading-[74px] text-qblack">
